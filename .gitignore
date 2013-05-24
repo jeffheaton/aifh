@@ -1,6 +1,10 @@
+.DS_Store
+.gradle
 *.class
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+!gradle-wrapper.jar

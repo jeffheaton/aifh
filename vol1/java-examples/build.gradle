@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'com.heatonresearch.aifh.ExampleRunner'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'net.sf.opencsv:opencsv:2.3'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.4'
+}
