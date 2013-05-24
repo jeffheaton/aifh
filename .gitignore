@@ -1,10 +1,11 @@
 .DS_Store
 .gradle
-*.class
+.idea
 
-# Package Files #
+*.class
 *.jar
 *.war
 *.ear
+*.iml
 
 !gradle-wrapper.jar
