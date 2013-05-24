@@ -1,25 +1,66 @@
 package com.heatonresearch.aifh.normalize;
 
 import au.com.bytecode.opencsv.CSVReader;
+import com.heatonresearch.aifh.AIFHError;
 
-import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataSet {
 
+    private final String[] headers;
+    private final List<Object[]> data = new ArrayList<Object[]>();
 
+    public DataSet(String[] theHeaders) {
+        this.headers = theHeaders;
+    }
 
-    public static void main(String[] args) {
+    public int getHeaderCount() {
+        return headers.length;
+    }
+
+    public void add(Object[] obj) {
+        this.data.add(obj);
+    }
+
+    public static DataSet load(InputStream is) {
+        DataSet result = null;
 
         try {
+            Reader reader = new InputStreamReader(is);
+            CSVReader csv = new CSVReader(reader);
 
-            CSVReader reader = new CSVReader(new FileReader(args[0]));
+            String[] headers = csv.readNext();
+
+            result = new DataSet(headers);
+
             String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                // nextLine[] is an array of values from the line
-                System.out.println(nextLine[0] + nextLine[1] + "etc...");
+            while ((nextLine = csv.readNext()) != null) {
+                if (nextLine.length != result.getHeaderCount()) {
+                    throw new AIFHError("Found a CSV line with "
+                            + nextLine.length + " columns, when expecting " + result.getHeaderCount());
+                }
+                Object[] obj = new Object[result.getHeaderCount()];
+                for(int i=0;i<nextLine.length;i++) {
+                    obj[i] = nextLine[i];
+                }
+                result.add(obj);
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            csv.close();
+        } catch (IOException ex) {
+            throw (new AIFHError(ex));
         }
+
+        return result;
     }
+
+    public static void save(InputStream is, DataSet ds) {
+
+    }
+
+
 }
