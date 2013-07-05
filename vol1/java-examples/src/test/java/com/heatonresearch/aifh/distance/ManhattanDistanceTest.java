@@ -4,13 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/27/13
- * Time: 6:36 AM
- * To change this template use File | Settings | File Templates.
- */
 public class ManhattanDistanceTest {
     @Test
     public void testDistanceCalc() {
