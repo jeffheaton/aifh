@@ -10,6 +10,10 @@ package com.heatonresearch.aifh.randomize;
 public interface GenerateRandom {
     double nextGaussian();
 
+    double nextGaussian(double high);
+
+    double nextGaussian(double low, double high);
+
     boolean nextBoolean();
 
     long nextLong();
@@ -18,7 +22,13 @@ public interface GenerateRandom {
 
     double nextDouble();
 
+    double nextDouble(double high);
+
+    double nextDouble(double low, double high);
+
     int nextInt();
 
-    int nextInt(int i);
+    int nextInt(int high);
+
+    int nextInt(int low, int high);
 }

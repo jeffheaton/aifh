@@ -1,5 +1,6 @@
 package com.heatonresearch.aifh.kmeans;
 
+import com.heatonresearch.aifh.general.data.BasicData;
 import junit.framework.TestCase;
 import org.junit.Test;
 
@@ -24,9 +25,9 @@ public class TestCluster extends TestCase {
         double[] ob2 = {4.0, 20.0, 200.0};
         double[] ob3 = {6.0, 30.0, 300.0};
 
-        cluster.getObservations().add(ob1);
-        cluster.getObservations().add(ob2);
-        cluster.getObservations().add(ob3);
+        cluster.getObservations().add(new BasicData(ob1));
+        cluster.getObservations().add(new BasicData(ob2));
+        cluster.getObservations().add(new BasicData(ob3));
 
         assertEquals(3, cluster.getObservations().size());
 

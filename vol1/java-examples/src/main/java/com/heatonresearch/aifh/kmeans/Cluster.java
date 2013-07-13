@@ -1,5 +1,7 @@
 package com.heatonresearch.aifh.kmeans;
 
+import com.heatonresearch.aifh.general.data.UnsupervisedData;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
  */
 public class Cluster {
 
-    private final List<double[]> observations = new ArrayList<double[]>();
+    private final List<UnsupervisedData> observations = new ArrayList<UnsupervisedData>();
     private final double[] center;
 
     public Cluster(int theDimensions) {
@@ -24,7 +26,7 @@ public class Cluster {
         return this.center;
     }
 
-    public List<double[]> getObservations() {
+    public List<UnsupervisedData> getObservations() {
         return this.observations;
     }
 
@@ -33,9 +35,9 @@ public class Cluster {
             this.center[i] = 0;
         }
 
-        for (double[] observation : this.observations) {
+        for (UnsupervisedData observation : this.observations) {
             for (int i = 0; i < center.length; i++) {
-                this.center[i] += observation[i];
+                this.center[i] += observation.getInput()[i];
             }
         }
 

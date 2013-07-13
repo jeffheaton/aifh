@@ -3,6 +3,7 @@ package com.heatonresearch.aifh.kmeans;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.distance.CalculateDistance;
 import com.heatonresearch.aifh.distance.EuclideanDistance;
+import com.heatonresearch.aifh.general.data.UnsupervisedData;
 import com.heatonresearch.aifh.randomize.BasicGenerateRandom;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
@@ -30,17 +31,17 @@ public class KMeans {
      * @param theObservations The observations.
      * @return The number of dimensions.
      */
-    private int findDimensions(final double[][] theObservations) {
-        if (theObservations.length == 0) {
+    private int findDimensions(final List<UnsupervisedData> theObservations) {
+        if (theObservations.size() == 0) {
             throw new AIFHError("No observations provided to cluster, array zero length.");
         }
 
-        if (theObservations.length < this.k) {
+        if (theObservations.size() < this.k) {
             throw new AIFHError("There are fewer observations ("
-                    + theObservations.length + ") than k (" + this.k + ").");
+                    + theObservations.size() + ") than k (" + this.k + ").");
         }
 
-        int dimensions = theObservations[0].length;
+        int dimensions = theObservations.get(0).getInput().length;
 
         if (dimensions == 0) {
             throw new AIFHError("Observations have no dimensions.");
@@ -49,7 +50,7 @@ public class KMeans {
         return dimensions;
     }
 
-    public void initRandom(final double[][] theObservations) {
+    public void initRandom(final List<UnsupervisedData> theObservations) {
         int dimensions = findDimensions(theObservations);
 
         // create the clusters
@@ -58,7 +59,7 @@ public class KMeans {
         }
 
         // assign each observation to a random cluster
-        for (double[] observation : theObservations) {
+        for (UnsupervisedData observation : theObservations) {
             int clusterIndex = this.randomGeneration.nextInt(this.k);
             Cluster cluster = this.clusters.get(clusterIndex);
             cluster.getObservations().add(observation);
@@ -73,7 +74,7 @@ public class KMeans {
                     Cluster source = this.clusters.get(sourceIndex);
                     if (source != cluster && source.getObservations().size() > 1) {
                         int sourceObservationIndex = this.randomGeneration.nextInt(source.getObservations().size());
-                        double[] sourceObservation = source.getObservations().get(sourceObservationIndex);
+                        UnsupervisedData sourceObservation = source.getObservations().get(sourceObservationIndex);
                         source.getObservations().remove(sourceObservationIndex);
                         cluster.getObservations().add(sourceObservation);
                     }
@@ -86,7 +87,7 @@ public class KMeans {
 
     }
 
-    public void initForgy(final double[][] theObservations) {
+    public void initForgy(final List<UnsupervisedData> theObservations) {
         int dimensions = findDimensions(theObservations);
 
         this.clusters.clear();
@@ -100,20 +101,20 @@ public class KMeans {
             int observationIndex = -1;
 
             while (observationIndex == -1) {
-                observationIndex = this.randomGeneration.nextInt(theObservations.length);
+                observationIndex = this.randomGeneration.nextInt(theObservations.size());
                 if (usedObservations.contains(observationIndex)) {
                     observationIndex = -1;
                 }
             }
 
-            double[] observation = theObservations[observationIndex];
+            double[] observation = theObservations.get(observationIndex).getInput();
             System.arraycopy(observation, 0, cluster.getCenter(), 0, dimensions);
             usedObservations.add(observationIndex);
         }
 
         // assign all observations to a cluster
-        for (double[] observation : theObservations) {
-            Cluster cluster = findNearestCluster(observation);
+        for (UnsupervisedData observation : theObservations) {
+            Cluster cluster = findNearestCluster(observation.getInput());
             cluster.getObservations().add(observation);
         }
 
@@ -136,9 +137,9 @@ public class KMeans {
 
             if (observationCount > 1) {
                 while (observationIndex < observationCount) {
-                    double[] observation = cluster.getObservations().get(observationIndex++);
+                    UnsupervisedData observation = cluster.getObservations().get(observationIndex++);
 
-                    Cluster targetCluster = findNearestCluster(observation);
+                    Cluster targetCluster = findNearestCluster(observation.getInput());
                     if (targetCluster != cluster) {
                         cluster.getObservations().remove(observation);
                         targetCluster.getObservations().add(observation);

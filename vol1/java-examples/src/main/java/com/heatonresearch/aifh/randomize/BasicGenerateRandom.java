@@ -9,7 +9,8 @@ import java.util.Random;
  * Time: 6:10 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BasicGenerateRandom implements GenerateRandom {
+public class BasicGenerateRandom extends AbstractGenerateRandom {
+
     private Random rand;
 
     public BasicGenerateRandom(long seed) {
@@ -23,11 +24,6 @@ public class BasicGenerateRandom implements GenerateRandom {
     @Override
     public int nextInt() {
         return this.rand.nextInt();
-    }
-
-    @Override
-    public int nextInt(int range) {
-        return this.rand.nextInt(range);
     }
 
     @Override

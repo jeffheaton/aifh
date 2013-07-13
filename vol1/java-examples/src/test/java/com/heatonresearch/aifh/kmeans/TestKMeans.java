@@ -1,7 +1,12 @@
 package com.heatonresearch.aifh.kmeans;
 
+import com.heatonresearch.aifh.general.data.BasicData;
+import com.heatonresearch.aifh.general.data.UnsupervisedData;
 import com.heatonresearch.aifh.randomize.BasicGenerateRandom;
 import junit.framework.TestCase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,6 +16,7 @@ import junit.framework.TestCase;
  * To change this template use File | Settings | File Templates.
  */
 public class TestKMeans extends TestCase {
+
     public static final double[][] DATA_SET = {
             {0, 0},
             {0, 1},
@@ -26,10 +32,29 @@ public class TestKMeans extends TestCase {
             {99, 0}
     };
 
+    public static List<UnsupervisedData> getDataSet() {
+        List<UnsupervisedData> result = new ArrayList<UnsupervisedData>();
+        result.add(new BasicData(new double[]{0, 0}, "a"));
+        result.add(new BasicData(new double[]{0, 1}, "a"));
+        result.add(new BasicData(new double[]{1, 0}, "a"));
+        result.add(new BasicData(new double[]{100, 100}, "b"));
+        result.add(new BasicData(new double[]{99, 100}, "b"));
+        result.add(new BasicData(new double[]{100, 99}, "b"));
+        result.add(new BasicData(new double[]{0, 100}, "c"));
+        result.add(new BasicData(new double[]{1, 100}, "c"));
+        result.add(new BasicData(new double[]{0, 99}, "c"));
+        result.add(new BasicData(new double[]{100, 0}, "d"));
+        result.add(new BasicData(new double[]{100, 1}, "d"));
+        result.add(new BasicData(new double[]{99, 0}, "d"));
+
+
+        return result;
+    }
+
     public void testClusterGeneral() {
         KMeans kmeans = new KMeans(4);
         kmeans.setRandomGeneration(new BasicGenerateRandom(22));
-        kmeans.initForgy(DATA_SET);
+        kmeans.initForgy(getDataSet());
         int iterations = kmeans.iteration(1000);
         assertEquals(3, iterations);
 
