@@ -1,18 +1,15 @@
 package com.heatonresearch.aifh.randomize;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/12/13
- * Time: 6:10 PM
- * To change this template use File | Settings | File Templates.
+ * Interface that defines how random numbers are generated.  Provides the means to generate both uniform and normal
+ * (gaussian) distributed random numbers.
  */
 public interface GenerateRandom {
+
+    /**
+     * @return
+     */
     double nextGaussian();
-
-    double nextGaussian(double high);
-
-    double nextGaussian(double low, double high);
 
     boolean nextBoolean();
 

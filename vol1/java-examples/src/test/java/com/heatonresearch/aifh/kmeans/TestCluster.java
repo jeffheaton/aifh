@@ -1,8 +1,9 @@
 package com.heatonresearch.aifh.kmeans;
 
 import com.heatonresearch.aifh.general.data.BasicData;
-import junit.framework.TestCase;
 import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,11 +12,12 @@ import org.junit.Test;
  * Time: 9:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TestCluster extends TestCase {
+public class TestCluster {
 
     @Test
     public void testDimensions() {
         Cluster cluster = new Cluster(3);
+        assertEquals(true, cluster.toString().length() > 0);
         assertEquals(3, cluster.getDimensions());
     }
 

@@ -28,14 +28,4 @@ public abstract class AbstractGenerateRandom implements GenerateRandom {
     public int nextInt(int range) {
         return nextInt(0, range);
     }
-
-    @Override
-    public double nextGaussian(double high) {
-        return nextGaussian(0, high);
-    }
-
-    @Override
-    public double nextGaussian(double low, double high) {
-        return (low + (int) (nextGaussian() * ((high - low))));
-    }
 }

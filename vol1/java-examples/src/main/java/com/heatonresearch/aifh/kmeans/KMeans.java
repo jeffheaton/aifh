@@ -16,9 +16,25 @@ import java.util.Set;
  * KMeans Clustering.
  */
 public class KMeans {
+
+    /**
+     * The number of clusters.
+     */
     private final int k;
+
+    /**
+     * The clusters.
+     */
     private final List<Cluster> clusters = new ArrayList<Cluster>();
+
+    /**
+     * The random number generator to use.
+     */
     private GenerateRandom randomGeneration = new BasicGenerateRandom();
+
+    /**
+     * The
+     */
     private CalculateDistance distanceMetric = new EuclideanDistance();
 
     public KMeans(final int theK) {
@@ -77,6 +93,7 @@ public class KMeans {
                         UnsupervisedData sourceObservation = source.getObservations().get(sourceObservationIndex);
                         source.getObservations().remove(sourceObservationIndex);
                         cluster.getObservations().add(sourceObservation);
+                        done = true;
                     }
                 }
             }
