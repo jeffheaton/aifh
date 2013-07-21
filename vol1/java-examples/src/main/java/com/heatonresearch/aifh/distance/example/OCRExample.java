@@ -115,7 +115,7 @@ public class OCRExample extends JFrame {
         this.entry.setSample(this.sample);
         getContentPane().add(this.sample);
 
-        setTitle("Java Neural Network");
+        setTitle("OCR");
         getContentPane().setLayout(null);
         setSize(405, 382);
         setVisible(false);
