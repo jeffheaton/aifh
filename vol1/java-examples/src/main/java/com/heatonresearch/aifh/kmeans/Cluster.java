@@ -1,6 +1,6 @@
 package com.heatonresearch.aifh.kmeans;
 
-import com.heatonresearch.aifh.general.data.UnsupervisedData;
+import com.heatonresearch.aifh.general.data.BasicData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ public class Cluster {
     /**
      * The observations in this cluster.
      */
-    private final List<UnsupervisedData> observations = new ArrayList<UnsupervisedData>();
+    private final List<BasicData> observations = new ArrayList<BasicData>();
 
     /**
      * The center of these observations.
@@ -49,7 +49,7 @@ public class Cluster {
     /**
      * @return The observations in this cluster.
      */
-    public List<UnsupervisedData> getObservations() {
+    public List<BasicData> getObservations() {
         return this.observations;
     }
 
@@ -64,7 +64,7 @@ public class Cluster {
         }
 
         // Now sum up all of the observations to the center.
-        for (UnsupervisedData observation : this.observations) {
+        for (BasicData observation : this.observations) {
             for (int i = 0; i < center.length; i++) {
                 this.center[i] += observation.getInput()[i];
             }

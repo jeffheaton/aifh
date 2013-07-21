@@ -3,7 +3,6 @@ package com.heatonresearch.aifh.kmeans;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.distance.EuclideanDistance;
 import com.heatonresearch.aifh.general.data.BasicData;
-import com.heatonresearch.aifh.general.data.UnsupervisedData;
 import com.heatonresearch.aifh.randomize.BasicGenerateRandom;
 import org.junit.Test;
 
@@ -36,8 +35,8 @@ public class TestKMeans {
             {99, 0}
     };
 
-    public static List<UnsupervisedData> getDataSet() {
-        List<UnsupervisedData> result = new ArrayList<UnsupervisedData>();
+    public static List<BasicData> getDataSet() {
+        List<BasicData> result = new ArrayList<BasicData>();
         result.add(new BasicData(new double[]{0, 0}, "a"));
         result.add(new BasicData(new double[]{0, 1}, "a"));
         result.add(new BasicData(new double[]{1, 0}, "a"));
@@ -117,14 +116,14 @@ public class TestKMeans {
 
     @Test(expected = AIFHError.class)
     public void testNoObservations() {
-        List<UnsupervisedData> list = new ArrayList<UnsupervisedData>();
+        List<BasicData> list = new ArrayList<BasicData>();
         KMeans kmeans = new KMeans(3);
         kmeans.initForgy(list);
     }
 
     @Test(expected = AIFHError.class)
     public void testNoDimension() {
-        List<UnsupervisedData> list = new ArrayList<UnsupervisedData>();
+        List<BasicData> list = new ArrayList<BasicData>();
         list.add(new BasicData(0));
         KMeans kmeans = new KMeans(3);
         kmeans.initForgy(list);

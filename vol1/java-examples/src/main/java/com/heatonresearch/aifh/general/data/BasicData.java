@@ -1,5 +1,7 @@
 package com.heatonresearch.aifh.general.data;
 
+import java.util.Arrays;
+
 /**
  * Created with IntelliJ IDEA.
  * User: jheaton
@@ -7,7 +9,7 @@ package com.heatonresearch.aifh.general.data;
  * Time: 12:24 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BasicData implements UnsupervisedData {
+public class BasicData {
     private final double[] input;
     private final double[] ideal;
     private String label;
@@ -40,7 +42,6 @@ public class BasicData implements UnsupervisedData {
         this(theInputData, null);
     }
 
-    @Override
     public double[] getInput() {
         return input;
     }
@@ -55,5 +56,18 @@ public class BasicData implements UnsupervisedData {
 
     public void setLabel(final String label) {
         this.label = label;
+    }
+
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("[BasicData: input:");
+        result.append(Arrays.toString(this.input));
+        result.append(", ideal:");
+        result.append(Arrays.toString(this.ideal));
+        result.append(", label:");
+        result.append(this.label);
+        result.append("]");
+
+        return result.toString();
     }
 }

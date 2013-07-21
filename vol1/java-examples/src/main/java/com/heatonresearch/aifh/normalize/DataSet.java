@@ -3,6 +3,7 @@ package com.heatonresearch.aifh.normalize;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 import com.heatonresearch.aifh.AIFHError;
+import com.heatonresearch.aifh.general.data.BasicData;
 
 import java.io.*;
 import java.text.NumberFormat;
@@ -547,4 +548,25 @@ public class DataSet {
     }
 
 
+    public List<BasicData> extractUnsupervisedLabeled(final int labelIndex) {
+        List<BasicData> result = new ArrayList<BasicData>();
+
+        int dimensions = getHeaderCount() - 1;
+
+        for (int rowIndex = 0; rowIndex < size(); rowIndex++) {
+            Object[] raw = this.data.get(rowIndex);
+            BasicData row = new BasicData(dimensions, 0, raw[labelIndex].toString());
+
+            int colIndex = 0;
+            for (int rawColIndex = 0; rawColIndex < getHeaderCount(); rawColIndex++) {
+                if (rawColIndex != labelIndex) {
+                    row.getInput()[colIndex++] = convertNumeric(raw, rawColIndex);
+                }
+            }
+
+            result.add(row);
+        }
+
+        return result;
+    }
 }
