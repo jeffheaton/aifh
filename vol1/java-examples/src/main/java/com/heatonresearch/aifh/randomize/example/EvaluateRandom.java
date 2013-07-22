@@ -1,7 +1,6 @@
 package com.heatonresearch.aifh.randomize.example;
 
-import com.heatonresearch.aifh.randomize.BasicGenerateRandom;
-import com.heatonresearch.aifh.randomize.GenerateRandom;
+import com.heatonresearch.aifh.randomize.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,15 +20,20 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
     private JButton buttonStart;
     private JButton buttonStop;
     private boolean requestStop;
+    private JComboBox comboNormal;
+    private JComboBox comboGenerator;
 
     public EvaluateRandom() {
+        String[] distributions = {"Uniform", "Normal"};
+        String[] generators = {"Java", "LCG", "Secure", "Multiply With Carry (MWC)", "Mersenne Twister"};
+
         setSize(640, 480);
         Container content = this.getContentPane();
         content.setLayout(new BorderLayout());
         content.add(this.histogram = new HistoPanel(), BorderLayout.CENTER);
 
         JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new GridLayout(4, 2));
+        controlPanel.setLayout(new GridLayout(3, 2));
         content.add(controlPanel, BorderLayout.SOUTH);
 
         this.buttonStart = new JButton("Start");
@@ -41,12 +45,10 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
         this.buttonStart.setEnabled(true);
         this.buttonStop.setEnabled(false);
 
-        controlPanel.add(new JLabel("1"));
-        controlPanel.add(new JLabel("2"));
-        controlPanel.add(new JLabel("3"));
-        controlPanel.add(new JLabel("4"));
-        controlPanel.add(new JLabel("5"));
-        controlPanel.add(new JLabel("6"));
+        controlPanel.add(new JLabel("Random Generator"));
+        controlPanel.add(this.comboGenerator = new JComboBox(generators));
+        controlPanel.add(new JLabel("Normal Distribution"));
+        controlPanel.add(this.comboNormal = new JComboBox(distributions));
         controlPanel.add(this.buttonStart);
         controlPanel.add(this.buttonStop);
 
@@ -78,11 +80,42 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
         this.buttonStart.setEnabled(false);
         this.buttonStop.setEnabled(true);
 
-        GenerateRandom rnd = new BasicGenerateRandom();
+        GenerateRandom rnd;
 
-        while (!this.requestStop) {
-            this.histogram.reportNumber(rnd.nextDouble());
+        switch (this.comboGenerator.getSelectedIndex()) {
+            case 0:
+                rnd = new BasicGenerateRandom();
+                break;
+            case 1:
+                rnd = new LinearCongruentialRandom();
+                break;
+            case 2:
+                rnd = new SecureGenerateRandom();
+                break;
+            case 3:
+                rnd = new MultiplyWithCarryGenerateRandom();
+                break;
+            case 4:
+                rnd = new MersenneTwisterGenerateRandom();
+                break;
+            default:
+                rnd = new BasicGenerateRandom();
         }
+
+        boolean uniform = this.comboNormal.getSelectedIndex() == 0;
+        this.histogram.setUniformMode(uniform);
+        this.histogram.reset();
+
+        if (uniform) {
+            while (!this.requestStop) {
+                this.histogram.reportNumber(rnd.nextDouble());
+            }
+        } else {
+            while (!this.requestStop) {
+                this.histogram.reportNumber(rnd.nextGaussian());
+            }
+        }
+
 
         this.buttonStart.setEnabled(true);
         this.buttonStop.setEnabled(false);

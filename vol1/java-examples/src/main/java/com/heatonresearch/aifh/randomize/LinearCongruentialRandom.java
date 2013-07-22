@@ -66,6 +66,13 @@ public class LinearCongruentialRandom extends AbstractBoxMuller {
     }
 
     /**
+     * Constructor to use a seed equal to system time.
+     */
+    public LinearCongruentialRandom() {
+        this(System.currentTimeMillis());
+    }
+
+    /**
      * Create a LCG with the specified modulus, multiplier and increment. Unless
      * you REALLY KNOW WHAT YOU ARE DOING, just use the constructor that just
      * takes a seed. It will set these values to the same as set by the GCC C
