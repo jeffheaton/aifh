@@ -21,7 +21,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.distance.example;
+package com.heatonresearch.aifh.examples.distance;
 
 import javax.swing.*;
 import java.awt.*;

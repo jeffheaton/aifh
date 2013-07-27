@@ -26,4 +26,4 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.intro;
+package com.heatonresearch.aifh.examples.intro;

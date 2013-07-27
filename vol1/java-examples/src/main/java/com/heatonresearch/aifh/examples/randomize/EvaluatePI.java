@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.randomize.example;
+package com.heatonresearch.aifh.examples.randomize;
 
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;

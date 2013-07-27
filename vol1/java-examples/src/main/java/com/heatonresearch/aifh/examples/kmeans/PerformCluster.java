@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.kmeans.example;
+package com.heatonresearch.aifh.examples.kmeans;
 
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.kmeans.Cluster;

@@ -21,7 +21,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.distance.example;
+package com.heatonresearch.aifh.examples.distance;
 
 /**
  * SampleData: Holds sampled data that will be used to train the neural network.

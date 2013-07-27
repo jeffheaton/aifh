@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.intro.example;
+package com.heatonresearch.aifh.examples.intro;
 
 import au.com.bytecode.opencsv.CSVReader;
 

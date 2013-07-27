@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.randomize.example;
+package com.heatonresearch.aifh.examples.randomize;
 
 import javax.swing.*;
 import java.awt.*;

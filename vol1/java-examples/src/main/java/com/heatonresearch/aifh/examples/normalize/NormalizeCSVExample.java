@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.normalize.example;
+package com.heatonresearch.aifh.examples.normalize;
 
 import com.heatonresearch.aifh.normalize.DataSet;
 

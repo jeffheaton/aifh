@@ -1,7 +1,7 @@
 package com.heatonresearch.aifh;
 
-import com.heatonresearch.aifh.intro.example.CSVExample;
-import com.heatonresearch.aifh.normalize.example.NormalizeCSVExample;
+import com.heatonresearch.aifh.examples.intro.CSVExample;
+import com.heatonresearch.aifh.examples.normalize.NormalizeCSVExample;
 
 public class ExampleRunner {
     public static void main(String[] args) {
