@@ -9,3 +9,6 @@
 *.iml
 
 !gradle-wrapper.jar
+
+*.py[c|o]
+*.swp
