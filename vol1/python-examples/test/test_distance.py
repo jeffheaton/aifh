@@ -13,7 +13,7 @@ from flexmock import flexmock
 
 
 # Import for the library that we're testing here
-lib = os.path.dirname(__file__) + os.sep + ".." + os.sep
+lib = os.path.dirname(__file__) + os.sep + ".." + os.sep + "distance" + os.sep
 sys.path.append(lib)
 from distance import Distance
 
