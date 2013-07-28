@@ -13,9 +13,10 @@ from flexmock import flexmock
 
 
 # Import for the library that we're testing here
-lib = os.path.dirname(__file__) + os.sep + ".." + os.sep + "lib"
-sys.path.append(lib)
-from distance.manhattan_distance import ManhattanDistance
+distance_dir = os.path.dirname(__file__) + os.sep + ".." + os.sep + ".." + \
+  os.sep + "lib" + os.sep + "distance"
+sys.path.append(distance_dir)
+from manhattan_distance import ManhattanDistance
 
 
 class TestManhattanDistance(unittest.TestCase):

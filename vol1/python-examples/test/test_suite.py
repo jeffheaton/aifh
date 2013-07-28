@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # Programmer: Chris Bunch (shatterednirvana@gmail.com)
 
+
+import os
 import sys
 import unittest
 
 
 # imports for distance tests
-from test_chebyshev_distance import TestChebyshevDistance
-from test_euclidean_distance import TestEuclideanDistance
-from test_manhattan_distance import TestManhattanDistance
+from distance.test_chebyshev_distance import TestChebyshevDistance
+from distance.test_euclidean_distance import TestEuclideanDistance
+from distance.test_manhattan_distance import TestManhattanDistance
 
 
 test_cases = [TestChebyshevDistance, TestEuclideanDistance,
