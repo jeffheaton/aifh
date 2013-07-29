@@ -1,0 +1,5 @@
+# Whenever a Python file changes, run all the tests to make sure we didn't
+# break anything.
+watch('(.*).(py)') { |md|
+  system "python test/test_suite.py"
+}
