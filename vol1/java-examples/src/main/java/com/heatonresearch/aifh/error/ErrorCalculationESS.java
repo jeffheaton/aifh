@@ -16,7 +16,7 @@ public class ErrorCalculationESS extends AbstractErrorCalculation {
     @Override
     public double calculate() {
         if (this.setSize == 0) {
-            return 0;
+            return Double.POSITIVE_INFINITY;
         }
         final double err = this.globalError / 2;
         return err;

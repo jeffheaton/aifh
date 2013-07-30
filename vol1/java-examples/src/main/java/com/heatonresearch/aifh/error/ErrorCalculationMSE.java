@@ -17,7 +17,7 @@ public class ErrorCalculationMSE extends AbstractErrorCalculation {
     @Override
     public final double calculate() {
         if (this.setSize == 0) {
-            return 0;
+            return Double.POSITIVE_INFINITY;
         }
         final double err = this.globalError / this.setSize;
         return err;

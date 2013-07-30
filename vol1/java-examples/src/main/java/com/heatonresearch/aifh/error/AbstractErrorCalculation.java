@@ -46,4 +46,20 @@ public abstract class AbstractErrorCalculation implements ErrorCalculation {
         this.setSize++;
 
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void clear() {
+        this.globalError = this.setSize = 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getSetSize() {
+        return this.setSize;
+    }
 }

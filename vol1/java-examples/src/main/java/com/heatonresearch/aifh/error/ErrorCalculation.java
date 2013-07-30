@@ -31,4 +31,8 @@ public interface ErrorCalculation {
      * @return The current error for the neural network.
      */
     double calculate();
+
+    void clear();
+
+    int getSetSize();
 }
