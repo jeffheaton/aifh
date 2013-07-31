@@ -21,7 +21,7 @@ public abstract class AbstractGenerateRandom implements GenerateRandom {
 
     @Override
     public double nextDouble(final double low, final double high) {
-        return (low + (int) (nextDouble() * ((high - low))));
+        return (low + (nextDouble() * ((high - low))));
     }
 
     @Override

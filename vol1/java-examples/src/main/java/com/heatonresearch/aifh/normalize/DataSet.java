@@ -569,4 +569,26 @@ public class DataSet {
 
         return result;
     }
+
+    public List<BasicData> extractSupervised(final int inputBegin, int inputCount, int idealBegin, int idealCount) {
+        List<BasicData> result = new ArrayList<BasicData>();
+
+        for (int rowIndex = 0; rowIndex < size(); rowIndex++) {
+            Object[] raw = this.data.get(rowIndex);
+            BasicData row = new BasicData(inputCount, idealCount);
+
+            for (int i = 0; i < inputCount; i++) {
+                row.getInput()[i] = convertNumeric(raw, inputBegin + i);
+            }
+
+            for (int i = 0; i < idealCount; i++) {
+                row.getIdeal()[i] = convertNumeric(raw, idealBegin + i);
+            }
+
+            result.add(row);
+        }
+
+        return result;
+
+    }
 }

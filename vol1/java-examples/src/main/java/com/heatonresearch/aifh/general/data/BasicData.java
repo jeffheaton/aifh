@@ -1,6 +1,8 @@
 package com.heatonresearch.aifh.general.data;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -70,4 +72,20 @@ public class BasicData {
 
         return result.toString();
     }
+
+    public static List<BasicData> convertArrays(final double[][] inputData, final double[][] idealData) {
+        List<BasicData> result = new ArrayList<BasicData>();
+        int inputCount = inputData[0].length;
+        int idealCount = idealData[0].length;
+
+        for (int row = 0; row < inputData.length; row++) {
+            BasicData dataRow = new BasicData(inputCount, idealCount);
+            System.arraycopy(inputData[row], 0, dataRow.getInput(), 0, inputCount);
+            System.arraycopy(idealData[row], 0, dataRow.getIdeal(), 0, idealCount);
+            result.add(dataRow);
+        }
+
+        return result;
+    }
+
 }

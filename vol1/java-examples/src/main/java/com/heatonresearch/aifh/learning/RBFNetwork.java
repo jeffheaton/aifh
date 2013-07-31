@@ -10,7 +10,7 @@ import com.heatonresearch.aifh.general.fns.GaussianFunction;
  * Time: 12:57 PM
  * To change this template use File | Settings | File Templates.
  */
-public class RBFNetwork {
+public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm {
     private int inputCount;
     private int outputCount;
     private FnRBF rbf[];
@@ -79,5 +79,11 @@ public class RBFNetwork {
 
     public double[] getLongTermMemory() {
         return longTermMemory;
+    }
+
+
+    @Override
+    public int computeClassification(final double[] input) {
+        return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

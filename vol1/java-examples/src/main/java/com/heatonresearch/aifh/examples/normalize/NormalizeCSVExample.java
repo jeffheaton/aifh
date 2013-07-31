@@ -14,6 +14,9 @@ public class NormalizeCSVExample {
         }
 
         DataSet ds = DataSet.load(new File(args[0]));
+
+        // The following ranges are setup for the Iris data set.  If you wish to normalize other files you will
+        // need to modify the below function calls other files.
         ds.normalizeRange(0, 0, 1);
         ds.normalizeRange(1, 0, 1);
         ds.normalizeRange(2, 0, 1);
