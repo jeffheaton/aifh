@@ -2,6 +2,8 @@ package com.heatonresearch.aifh.regression;
 
 import Jama.Matrix;
 import Jama.QRDecomposition;
+import com.heatonresearch.aifh.error.ErrorCalculation;
+import com.heatonresearch.aifh.error.ErrorCalculationMSE;
 import com.heatonresearch.aifh.general.data.BasicData;
 
 import java.util.List;
@@ -17,6 +19,8 @@ public class TrainLeastSquares {
     private List<BasicData> trainingData;
     private double sst;
     private double sse;
+    private ErrorCalculation errorCalculation = new ErrorCalculationMSE();
+    private double error;
 
     public TrainLeastSquares(MultipleLinearRegression theAlgorithm, List<BasicData> theTrainingData) {
         this.algorithm = theAlgorithm;
@@ -65,6 +69,18 @@ public class TrainLeastSquares {
         for (int i = 0; i < this.algorithm.getLongTermMemory().length; i++) {
             this.algorithm.getLongTermMemory()[i] = beta.get(i, 0);
         }
+
+        // calculate error
+        this.errorCalculation.clear();
+        for (int row = 0; row < this.trainingData.size(); row++) {
+            BasicData dataRow = this.trainingData.get(row);
+            double[] output = this.algorithm.computeRegression(dataRow.getInput());
+            this.errorCalculation.updateError(output, dataRow.getIdeal(), 1.0);
+        }
+        this.error = this.errorCalculation.calculate();
     }
 
+    public double getError() {
+        return this.error;
+    }
 }

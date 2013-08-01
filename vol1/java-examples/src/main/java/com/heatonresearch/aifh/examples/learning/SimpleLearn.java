@@ -1,7 +1,7 @@
 package com.heatonresearch.aifh.examples.learning;
 
 import com.heatonresearch.aifh.general.data.BasicData;
-import com.heatonresearch.aifh.learning.RBFNetwork;
+import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 import com.heatonresearch.aifh.learning.TrainGreedyRandom;
 
 import java.util.Arrays;
@@ -39,11 +39,11 @@ public class SimpleLearn {
         System.out.println("Final score: " + train.getLastError());
     }
 
-    public static void query(RBFNetwork network, List<BasicData> theTrainingData) {
+    public static void query(RegressionAlgorithm network, List<BasicData> theTrainingData) {
         for (int row = 0; row < theTrainingData.size(); row++) {
             BasicData data = theTrainingData.get(row);
             double[] output = network.computeRegression(data.getInput());
-            System.out.println(Arrays.toString(data.getInput()) + " -> " + Arrays.toString(output));
+            System.out.println(Arrays.toString(data.getInput()) + " -> " + Arrays.toString(output) + ", Ideal: " + Arrays.toString(data.getIdeal()));
         }
     }
 }
