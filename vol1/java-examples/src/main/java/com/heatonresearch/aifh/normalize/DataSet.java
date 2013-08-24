@@ -591,4 +591,62 @@ public class DataSet {
         return result;
 
     }
+
+    public void deleteUnknowns() {
+        int rowIndex = 0;
+        while (rowIndex < this.data.size()) {
+            Object[] row = data.get(rowIndex);
+            boolean remove = false;
+            for (int col = 0; col < row.length; col++) {
+                if (row[col].toString().equals("?")) {
+                    remove = true;
+                    break;
+                }
+            }
+
+            if (remove) {
+                data.remove(rowIndex);
+            } else {
+                rowIndex++;
+            }
+        }
+    }
+
+    public void deleteColumn(int col) {
+        String[] headers2 = new String[headers.length - 1];
+
+        // first, remove the header
+        int h2Index = 0;
+        for (int i = 0; i < headers.length; i++) {
+            if (i != col) {
+                headers2[h2Index++] = headers[i];
+            }
+        }
+        this.headers = headers2;
+
+        // now process the data
+        int rowIndex = 0;
+        for (Object[] row : this.data) {
+            Object[] row2 = new Object[headers.length];
+            int r2Index = 0;
+            for (int i = 0; i <= headers.length; i++) {
+                if (i != col) {
+                    row2[r2Index++] = row[i];
+                }
+            }
+            this.data.set(rowIndex++, row2);
+        }
+    }
+
+    public void replaceColumn(final int columnIndex, final double searchFor, final double replaceWith, final double others) {
+        for (Object[] row : this.data) {
+            double d = convertNumeric(row, columnIndex);
+            if (Math.abs(d - searchFor) < 0.0001) {
+                row[columnIndex] = replaceWith;
+            } else {
+                row[columnIndex] = others;
+            }
+
+        }
+    }
 }

@@ -1,10 +1,13 @@
 package com.heatonresearch.aifh.regression;
 
+import com.heatonresearch.aifh.general.fns.Fn;
+import com.heatonresearch.aifh.general.fns.link.LinearLinkFunction;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 
 public class MultipleLinearRegression implements RegressionAlgorithm {
 
     private double[] longTermMemory;
+    private Fn linkFunction = new LinearLinkFunction();
 
     public MultipleLinearRegression(int theInputCount) {
         this.longTermMemory = new double[theInputCount + 1];
@@ -21,11 +24,20 @@ public class MultipleLinearRegression implements RegressionAlgorithm {
 
         double[] result = new double[1];
         result[0] = sum;
+        result[0] = this.linkFunction.evaluate(result);
         return result;
     }
 
     @Override
     public double[] getLongTermMemory() {
         return this.longTermMemory;
+    }
+
+    public Fn getLinkFunction() {
+        return linkFunction;
+    }
+
+    public void setLinkFunction(final Fn linkFunction) {
+        this.linkFunction = linkFunction;
     }
 }
