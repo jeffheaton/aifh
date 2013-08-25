@@ -24,8 +24,10 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
         this.inputCount = theInputCount;
         this.outputCount = theOutputCount;
 
+        // calculate input and output weight counts
+        // add 1 to output to account for an extra bias node
         int inputWeightCount = inputCount * rbfCount;
-        int outputWeightCount = rbfCount * outputCount;
+        int outputWeightCount = (rbfCount + 1) * outputCount;
         int rbfParams = (inputCount + 1) * rbfCount;
         this.longTermMemory = new double[
                 inputWeightCount + outputWeightCount + rbfParams];
@@ -45,9 +47,11 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
     public double[] computeRegression(double[] input) {
 
         // first, compute the output values of each of the RBFs
-        double[] rbfOutput = new double[rbf.length];
+        // Add in one additional RBF output for bias (always set to one).
+        double[] rbfOutput = new double[rbf.length + 1];
+        rbfOutput[rbfOutput.length - 1] = 1; // bias
 
-        for (int rbfIndex = 0; rbfIndex < rbfOutput.length; rbfIndex++) {
+        for (int rbfIndex = 0; rbfIndex < rbf.length; rbfIndex++) {
 
             // weight the input
             double[] weightedInput = new double[input.length];

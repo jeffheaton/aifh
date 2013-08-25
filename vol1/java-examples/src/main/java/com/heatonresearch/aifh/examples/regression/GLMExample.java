@@ -34,10 +34,12 @@ public class GLMExample extends SimpleLearn {
             reg.setLinkFunction(new LogisticLinkFunction());
             TrainReweightLeastSquares train = new TrainReweightLeastSquares(reg, trainingData);
 
-            for (int i = 0; i < 5000; i++) {
+            int iteration = 0;
+            do {
+                iteration++;
                 train.iteration();
-                System.out.println("Iteration #" + i + ", Error: " + train.getError());
-            }
+                System.out.println("Iteration #" + iteration + ", Error: " + train.getError());
+            } while (iteration < 1000 && train.getError() > 0.01);
 
             query(reg, trainingData);
             System.out.println("Error: " + train.getError());
