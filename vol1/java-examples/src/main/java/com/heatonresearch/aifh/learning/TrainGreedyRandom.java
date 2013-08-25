@@ -4,7 +4,7 @@ import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
-public class TrainGreedyRandom {
+public class TrainGreedyRandom implements LearningAlgorithm {
     private RegressionAlgorithm algorithm;
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private double lastError = Double.POSITIVE_INFINITY;
@@ -17,6 +17,7 @@ public class TrainGreedyRandom {
         this.score = theScore;
     }
 
+    @Override
     public void iteration() {
         int len = this.algorithm.getLongTermMemory().length;
 
@@ -25,11 +26,7 @@ public class TrainGreedyRandom {
         System.arraycopy(this.algorithm.getLongTermMemory(), 0, oldState, 0, len);
 
         // randomize the method
-
-        for (int i = 0; i < len; i++) {
-            double d = this.rnd.nextDouble(this.lowRange, this.highRange);
-            this.algorithm.getLongTermMemory()[i] = this.rnd.nextDouble(this.lowRange, this.highRange);
-        }
+        performRandomize(this.algorithm.getLongTermMemory());
 
         // did we improve it?  Only keep the new method if it improved (greedy).
         double currentError = score.calculateScore(this.algorithm);
@@ -41,6 +38,19 @@ public class TrainGreedyRandom {
         }
     }
 
+    public void performRandomize(double[] memory) {
+        for (int i = 0; i < memory.length; i++) {
+            double d = this.rnd.nextDouble(this.lowRange, this.highRange);
+            memory[i] = this.rnd.nextDouble(this.lowRange, this.highRange);
+        }
+    }
+
+    @Override
+    public String getStatus() {
+        return "";
+    }
+
+    @Override
     public double getLastError() {
         return this.lastError;
     }
@@ -59,5 +69,9 @@ public class TrainGreedyRandom {
 
     public void setHighRange(final double highRange) {
         this.highRange = highRange;
+    }
+
+    public boolean done() {
+        return false;
     }
 }

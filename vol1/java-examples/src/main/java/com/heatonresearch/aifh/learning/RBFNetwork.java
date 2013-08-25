@@ -2,6 +2,7 @@ package com.heatonresearch.aifh.learning;
 
 import com.heatonresearch.aifh.general.fns.FnRBF;
 import com.heatonresearch.aifh.general.fns.GaussianFunction;
+import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 /**
  * Created with IntelliJ IDEA.
@@ -83,6 +84,12 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
 
     public double[] getLongTermMemory() {
         return longTermMemory;
+    }
+
+    public void reset(GenerateRandom rnd) {
+        for (int i = 0; i < this.longTermMemory.length; i++) {
+            this.longTermMemory[i] = rnd.nextDouble(-1, 1);
+        }
     }
 
 

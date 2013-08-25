@@ -1,8 +1,8 @@
 package com.heatonresearch.aifh.examples.learning;
 
 import com.heatonresearch.aifh.general.data.BasicData;
+import com.heatonresearch.aifh.learning.LearningAlgorithm;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
-import com.heatonresearch.aifh.learning.TrainGreedyRandom;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class SimpleLearn {
 
-    public void performIterations(TrainGreedyRandom train, int maxIterations, double targetScore, boolean shouldMinimize) {
+    public void performIterations(LearningAlgorithm train, int maxIterations, double targetScore, boolean shouldMinimize) {
         int iterationNumber = 0;
         boolean done = false;
 
@@ -25,7 +25,9 @@ public class SimpleLearn {
 
             train.iteration();
 
-            if (iterationNumber >= maxIterations) {
+            if (train.done()) {
+                done = true;
+            } else if (iterationNumber >= maxIterations) {
                 done = true;
             } else if (shouldMinimize && train.getLastError() < targetScore) {
                 done = true;
@@ -33,7 +35,7 @@ public class SimpleLearn {
                 done = true;
             }
 
-            System.out.println("Iteration #" + iterationNumber + ", Score=" + train.getLastError());
+            System.out.println("Iteration #" + iterationNumber + ", Score=" + train.getLastError() + ", " + train.getStatus());
         } while (!done);
 
         System.out.println("Final score: " + train.getLastError());
