@@ -1,13 +1,13 @@
 package com.heatonresearch.aifh.regression;
 
 import com.heatonresearch.aifh.general.fns.Fn;
-import com.heatonresearch.aifh.general.fns.link.LinearLinkFunction;
+import com.heatonresearch.aifh.general.fns.link.IdentityLinkFunction;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 
 public class MultipleLinearRegression implements RegressionAlgorithm {
 
     private double[] longTermMemory;
-    private Fn linkFunction = new LinearLinkFunction();
+    private Fn linkFunction = new IdentityLinkFunction();
 
     public MultipleLinearRegression(int theInputCount) {
         this.longTermMemory = new double[theInputCount + 1];

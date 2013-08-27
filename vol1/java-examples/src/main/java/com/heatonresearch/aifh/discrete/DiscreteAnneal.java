@@ -1,38 +1,33 @@
-package com.heatonresearch.aifh.learning;
+package com.heatonresearch.aifh.discrete;
 
-import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 /**
- * http://en.wikipedia.org/wiki/Simulated_annealing
+ * Created with IntelliJ IDEA.
+ * User: jheaton
+ * Date: 8/25/13
+ * Time: 3:46 PM
+ * To change this template use File | Settings | File Templates.
  */
-public class TrainAnneal implements LearningAlgorithm {
-    private RegressionAlgorithm algorithm;
+public abstract class DiscreteAnneal {
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
-    private double globalBestError = Double.POSITIVE_INFINITY;
-    private double[] globalBest[];
-    private double currentError;
-    private ScoreFunction score;
+    private double globalBestScore = Double.POSITIVE_INFINITY;
+    private double currentScore;
     private int kMax;
     private int k;
     private double startingTemperature;
     private double endingTemperature;
     private double currentTemperature;
-    private int cycles = 1000;
+    private int cycles = 100;
     private double lastProbability;
+    private boolean shouldMinimize;
 
-    public TrainAnneal(RegressionAlgorithm theAlgorithm, ScoreFunction theScore) {
-        this(theAlgorithm, theScore, 1000, 400, 0.0001);
-    }
-
-    public TrainAnneal(RegressionAlgorithm theAlgorithm, ScoreFunction theScore, int theKMax, double theStartingTemperature, double theEndingTemperature) {
-        this.algorithm = theAlgorithm;
-        this.score = theScore;
+    public DiscreteAnneal(boolean theShouldMinimize, int theKMax, double theStartingTemperature, double theEndingTemperature) {
         this.kMax = theKMax;
-        this.currentError = score.calculateScore(this.algorithm);
         this.startingTemperature = theStartingTemperature;
         this.endingTemperature = theEndingTemperature;
+        this.shouldMinimize = theShouldMinimize;
     }
 
     public double coolingSchedule() {
@@ -40,68 +35,86 @@ public class TrainAnneal implements LearningAlgorithm {
         return this.startingTemperature * Math.pow(this.endingTemperature / this.startingTemperature, ex);
     }
 
-    @Override
     public void iteration() {
-        int len = this.algorithm.getLongTermMemory().length;
+        if (k == 0) {
+            this.currentScore = evaluate();
+            foundNewBest();
+            this.globalBestScore = this.currentScore;
+        }
+
         k++;
 
         this.currentTemperature = coolingSchedule();
 
         for (int cycle = 0; cycle < this.cycles; cycle++) {
             // backup current state
-            double[] oldState = new double[len];
-            System.arraycopy(this.algorithm.getLongTermMemory(), 0, oldState, 0, len);
+            backupState();
 
             // randomize the method
-            performRandomize(this.algorithm.getLongTermMemory());
+            moveToNeighbor();
 
             // did we improve it?  Only keep the new method if it improved (greedy).
-            double trialError = score.calculateScore(this.algorithm);
+            double trialScore = evaluate();
 
             // was this iteration an improvement?  If so, always keep.
             boolean keep = false;
 
-            if (trialError < this.currentError) {
+            if ((trialScore < this.currentScore) ? shouldMinimize : !shouldMinimize) {
+                // it was better, so always keep it
                 keep = true;
             } else {
-
-                this.lastProbability = calcProbability(currentError, trialError, this.currentTemperature);
+                // it was worse, so we might keep it
+                this.lastProbability = calcProbability(currentScore, trialScore, this.currentTemperature);
                 if (this.lastProbability > this.rnd.nextDouble()) {
                     keep = true;
                 }
             }
 
             if (keep) {
-                this.currentError = trialError;
+                this.currentScore = trialScore;
                 // better than global error
-                if (trialError < this.globalBestError) {
-                    this.globalBestError = trialError;
-                    System.arraycopy(this.algorithm.getLongTermMemory(), 0, oldState, 0, len);
+                if (trialScore < this.globalBestScore ? shouldMinimize : !shouldMinimize) {
+                    this.globalBestScore = trialScore;
+                    foundNewBest();
                 }
             } else {
-                System.arraycopy(oldState, 0, this.algorithm.getLongTermMemory(), 0, len);
+                restoreState();
             }
         }
     }
 
-    public void performRandomize(double[] memory) {
-        for (int i = 0; i < memory.length; i++) {
-            double d = this.rnd.nextGaussian() * 3;
-            memory[i] += d;
-        }
-    }
+    public abstract void backupState();
+
+    public abstract void restoreState();
+
+    public abstract void foundNewBest();
+
+    public abstract void moveToNeighbor();
+
+    public abstract double evaluate();
 
     public boolean done() {
         return k >= kMax;
     }
 
-    @Override
-    public double getLastError() {
-        return this.globalBestError;
+    public double getBestScore() {
+        return this.globalBestScore;
     }
 
     public double calcProbability(double ecurrent, double enew, double t) {
         return Math.exp(-(Math.abs(enew - ecurrent) / t));
+    }
+
+    public int getK() {
+        return this.k;
+    }
+
+    public int getCycles() {
+        return cycles;
+    }
+
+    public void setCycles(final int cycles) {
+        this.cycles = cycles;
     }
 
     public String getStatus() {

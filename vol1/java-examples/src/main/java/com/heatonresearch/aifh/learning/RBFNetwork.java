@@ -1,8 +1,11 @@
 package com.heatonresearch.aifh.learning;
 
+import com.heatonresearch.aifh.general.VectorUtil;
 import com.heatonresearch.aifh.general.fns.FnRBF;
 import com.heatonresearch.aifh.general.fns.GaussianFunction;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
+
+import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.
@@ -72,7 +75,8 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
         for (int outputIndex = 0; outputIndex < result.length; outputIndex++) {
             double sum = 0;
             for (int rbfIndex = 0; rbfIndex < rbfOutput.length; rbfIndex++) {
-                int memoryIndex = this.indexOutputWeights + (outputIndex * rbf.length) + rbfIndex;
+                // add 1 to rbf length for bias
+                int memoryIndex = this.indexOutputWeights + (outputIndex * (rbf.length + 1)) + rbfIndex;
                 sum += rbfOutput[rbfIndex] * this.longTermMemory[memoryIndex];
             }
             result[outputIndex] = sum;
@@ -95,6 +99,20 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
 
     @Override
     public int computeClassification(final double[] input) {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        double[] output = computeRegression(input);
+        return VectorUtil.maxIndex(output);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("[RBFNetwork:inputCount=");
+        result.append(this.inputCount);
+        result.append(",outputCount=");
+        result.append(this.outputCount);
+        result.append(",RBFs=");
+        result.append(Arrays.toString(this.rbf));
+        result.append("]");
+        return result.toString();
     }
 }

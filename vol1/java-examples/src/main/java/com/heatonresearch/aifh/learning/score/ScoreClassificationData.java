@@ -23,7 +23,7 @@ public class ScoreClassificationData implements ScoreFunction {
 
     @Override
     public double calculateScore(final MachineLearningAlgorithm algo) {
-        int correctCount = 0;
+        int incorrectCount = 0;
         int totalCount = 0;
 
         ClassificationAlgorithm ralgo = (ClassificationAlgorithm) algo;
@@ -33,11 +33,11 @@ public class ScoreClassificationData implements ScoreFunction {
             BasicData pair = this.trainingData.get(row);
             int output = ralgo.computeClassification(pair.getInput());
 
-            if (output == this.trainingData.get(row).getIdeal()[0]) {
-                correctCount++;
+            if (output != this.trainingData.get(row).getIdeal()[0]) {
+                incorrectCount++;
             }
         }
 
-        return (double) correctCount / (double) totalCount;
+        return (double) incorrectCount / (double) totalCount;
     }
 }

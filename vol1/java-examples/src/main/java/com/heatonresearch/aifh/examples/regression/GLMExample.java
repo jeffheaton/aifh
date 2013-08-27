@@ -2,7 +2,7 @@ package com.heatonresearch.aifh.examples.regression;
 
 import com.heatonresearch.aifh.examples.learning.SimpleLearn;
 import com.heatonresearch.aifh.general.data.BasicData;
-import com.heatonresearch.aifh.general.fns.link.LogisticLinkFunction;
+import com.heatonresearch.aifh.general.fns.link.LogitLinkFunction;
 import com.heatonresearch.aifh.normalize.DataSet;
 import com.heatonresearch.aifh.regression.MultipleLinearRegression;
 import com.heatonresearch.aifh.regression.TrainReweightLeastSquares;
@@ -31,7 +31,7 @@ public class GLMExample extends SimpleLearn {
             List<BasicData> trainingData = ds.extractSupervised(0, 9, 9, 1);
 
             MultipleLinearRegression reg = new MultipleLinearRegression(9);
-            reg.setLinkFunction(new LogisticLinkFunction());
+            reg.setLinkFunction(new LogitLinkFunction());
             TrainReweightLeastSquares train = new TrainReweightLeastSquares(reg, trainingData);
 
             int iteration = 0;
