@@ -33,7 +33,7 @@ public class LearnXOR extends SimpleLearn {
         List<BasicData> trainingData = BasicData.convertArrays(XOR_INPUT, XOR_IDEAL);
         RBFNetwork network = new RBFNetwork(2, 5, 1);
         ScoreFunction score = new ScoreRegressionData(trainingData);
-        TrainGreedyRandom train = new TrainGreedyRandom(network, score);
+        TrainGreedyRandom train = new TrainGreedyRandom(true, network, score);
         performIterations(train, 1000000, 0.01, true);
         query(network, trainingData);
     }

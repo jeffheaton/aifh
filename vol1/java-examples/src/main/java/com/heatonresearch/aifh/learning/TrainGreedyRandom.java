@@ -5,16 +5,18 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 public class TrainGreedyRandom implements LearningAlgorithm {
-    private RegressionAlgorithm algorithm;
+    private MachineLearningAlgorithm algorithm;
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private double lastError = Double.POSITIVE_INFINITY;
     private ScoreFunction score;
     private double lowRange = -10;
     private double highRange = 10;
+    private boolean shouldMinimize;
 
-    public TrainGreedyRandom(RegressionAlgorithm theAlgorithm, ScoreFunction theScore) {
+    public TrainGreedyRandom(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
         this.algorithm = theAlgorithm;
         this.score = theScore;
+        this.shouldMinimize = theShouldMinimize;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class TrainGreedyRandom implements LearningAlgorithm {
         // did we improve it?  Only keep the new method if it improved (greedy).
         double currentError = score.calculateScore(this.algorithm);
 
-        if (currentError < this.lastError) {
+        if ((currentError < this.lastError) ? shouldMinimize : !shouldMinimize) {
             this.lastError = currentError;
         } else {
             System.arraycopy(oldState, 0, this.algorithm.getLongTermMemory(), 0, len);
@@ -40,7 +42,6 @@ public class TrainGreedyRandom implements LearningAlgorithm {
 
     public void performRandomize(double[] memory) {
         for (int i = 0; i < memory.length; i++) {
-            double d = this.rnd.nextDouble(this.lowRange, this.highRange);
             memory[i] = this.rnd.nextDouble(this.lowRange, this.highRange);
         }
     }
@@ -73,5 +74,10 @@ public class TrainGreedyRandom implements LearningAlgorithm {
 
     public boolean done() {
         return false;
+    }
+
+    @Override
+    public void finishTraining() {
+
     }
 }

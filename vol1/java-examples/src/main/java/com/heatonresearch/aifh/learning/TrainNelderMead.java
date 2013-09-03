@@ -60,16 +60,16 @@ public class TrainNelderMead implements LearningAlgorithm {
     private final double[] trainedWeights;
     private final double[] step;
     private int konvge;
-    private RegressionAlgorithm algorithm;
+    private MachineLearningAlgorithm algorithm;
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private ScoreFunction score;
     private double lastError;
 
-    public TrainNelderMead(RegressionAlgorithm theAlgorithm, ScoreFunction theScore) {
+    public TrainNelderMead(MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
         this(theAlgorithm, theScore, 100);
     }
 
-    public TrainNelderMead(RegressionAlgorithm theAlgorithm, ScoreFunction theScore, double stepValue) {
+    public TrainNelderMead(MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore, double stepValue) {
         this.algorithm = theAlgorithm;
         this.score = theScore;
 
@@ -150,7 +150,7 @@ public class TrainNelderMead implements LearningAlgorithm {
             this.start[j] = x;
         }
         /*
-		 * The simplex construction is complete.
+         * The simplex construction is complete.
 		 *
 		 * Find highest and lowest Y values. YNEWLO = Y(IHI) indicates the
 		 * vertex of the simplex to be replaced.
@@ -393,5 +393,10 @@ public class TrainNelderMead implements LearningAlgorithm {
 
     public double getLastError() {
         return this.lastError;
+    }
+
+    @Override
+    public void finishTraining() {
+
     }
 }

@@ -36,4 +36,10 @@ public class TestEquilateral extends TestCase {
         assertThat(eq.decode(d1), is(equalTo(1)));
         assertThat(eq.decode(d2), is(equalTo(2)));
     }
+
+    @Test(expected = AIFHError.class)
+    public void testError() {
+        Equilateral eq = new Equilateral(3, -1, 1);
+        eq.encode(10);
+    }
 }

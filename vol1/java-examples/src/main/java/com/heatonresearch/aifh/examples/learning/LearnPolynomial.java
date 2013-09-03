@@ -36,7 +36,7 @@ public class LearnPolynomial extends SimpleLearn {
         List<BasicData> trainingData = generateTrainingData();
         PolynomialFn poly = new PolynomialFn(3);
         ScoreFunction score = new ScoreRegressionData(trainingData);
-        TrainGreedyRandom train = new TrainGreedyRandom(poly, score);
+        TrainGreedyRandom train = new TrainGreedyRandom(true, poly, score);
         performIterations(train, 1000000, 0.01, true);
         System.out.println(poly.toString());
     }

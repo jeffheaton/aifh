@@ -38,6 +38,7 @@ public class SimpleLearn {
             System.out.println("Iteration #" + iterationNumber + ", Score=" + train.getLastError() + ", " + train.getStatus());
         } while (!done);
 
+        train.finishTraining();
         System.out.println("Final score: " + train.getLastError());
     }
 

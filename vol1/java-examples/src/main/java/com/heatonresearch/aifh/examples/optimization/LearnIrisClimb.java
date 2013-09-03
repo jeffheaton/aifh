@@ -39,7 +39,7 @@ public class LearnIrisClimb extends SimpleLearn {
             RBFNetwork network = new RBFNetwork(4, 4, 2);
             network.reset(new MersenneTwisterGenerateRandom());
             ScoreFunction score = new ScoreRegressionData(trainingData);
-            TrainHillClimb train = new TrainHillClimb(network, score);
+            TrainHillClimb train = new TrainHillClimb(true, network, score);
             performIterations(train, 1000000, 0.01, true);
             query(network, trainingData);
 

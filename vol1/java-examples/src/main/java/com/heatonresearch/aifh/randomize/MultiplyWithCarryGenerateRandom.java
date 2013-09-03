@@ -6,12 +6,16 @@ package com.heatonresearch.aifh.randomize;
  * http://www.javaprogrammingforums.com/blogs/helloworld922/11-complimentary-multiply-carry-better-way-generate-pseudo-random-numbers.html
  * http://en.wikipedia.org/wiki/Multiply-with-carry
  */
-public class MultiplyWithCarryGenerateRandom extends BasicGenerateRandom {
+public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
     private long c;
     private long multiplier;
     private int n = 0;
     private int r;
     private long[] seed;
+
+    public MultiplyWithCarryGenerateRandom(long seed) {
+        this(new long[]{seed}, seed / 2, 64, 987657110L);
+    }
 
     public MultiplyWithCarryGenerateRandom() {
         this(new long[]{System.currentTimeMillis()}, System.nanoTime(), 64, 987657110L);
@@ -24,12 +28,14 @@ public class MultiplyWithCarryGenerateRandom extends BasicGenerateRandom {
         if (seeds == null || seeds.length == 0) {
             seeds = new long[]{System.currentTimeMillis()};
         }
+
+        LinearCongruentialRandom rnd = new LinearCongruentialRandom(seeds[0]);
         this.c = (carry & 0xFFFFFFFFL) % multiplier;
         for (int i = 0; i < r; ++i) {
             if (i < seeds.length) {
                 this.seed[i] = seeds[i] & 0xFFFFFFFFL;
             } else {
-                this.seed[i] = super.nextInt() & 0xFFFFFFFFL;
+                this.seed[i] = rnd.nextInt() & 0xFFFFFFFFL;
             }
             if (this.seed[i] == 0xFFFFFFFFL) {
                 this.seed[i] = 1L;
@@ -72,5 +78,24 @@ public class MultiplyWithCarryGenerateRandom extends BasicGenerateRandom {
             }
         }
         this.r = theR;
+    }
+
+    public long nextLong() {
+        return ((long) next(32) << 32) + next(32);
+    }
+
+    @Override
+    public boolean nextBoolean() {
+        return nextDouble() > 0.5;
+    }
+
+    @Override
+    public double nextFloat() {
+        return (float) nextDouble();
+    }
+
+    @Override
+    public int nextInt() {
+        return (int) nextLong();
     }
 }

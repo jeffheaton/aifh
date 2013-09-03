@@ -1,11 +1,15 @@
 package com.heatonresearch.aifh.normalize;
 
-import junit.framework.TestCase;
+import com.heatonresearch.aifh.AIFH;
+import com.heatonresearch.aifh.general.data.BasicData;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.List;
 
-public class TestDataSet extends TestCase {
+import static org.junit.Assert.*;
+
+public class TestDataSet {
 
     private DataSet generateTestData() {
         String[] headers = {"text", "numeric", "dec"};
@@ -88,24 +92,25 @@ public class TestDataSet extends TestCase {
     @Test
     public void testMin() {
         DataSet ds1 = generateTestData();
-        assertEquals(1.0, ds1.getMin(1));
+        assertEquals(1.0, ds1.getMin(1), AIFH.DEFAULT_PRECISION);
         // test again, as strings are now numbers, from the last call
-        assertEquals(1.0, ds1.getMin(1));
+        assertEquals(1.0, ds1.getMin(1), AIFH.DEFAULT_PRECISION);
     }
 
     @Test
     public void testMax() {
         DataSet ds1 = generateTestData();
-        assertEquals(3.0, ds1.getMax(1));
+        assertEquals(3.0, ds1.getMax(1), AIFH.DEFAULT_PRECISION);
         // test again, as strings are now numbers, from the last call
-        assertEquals(3.0, ds1.getMax(1));
+        assertEquals(3.0, ds1.getMax(1), AIFH.DEFAULT_PRECISION);
     }
 
     @Test
     public void testNormalizeRange() {
         DataSet ds1 = generateTestData();
         ds1.normalizeRange(1, -1, 1);
-        assertEquals(-1.0, Double.parseDouble(ds1.getData().get(0)[1].toString()));
+        assertEquals(-1.0, Double.parseDouble(ds1.getData().get(0)[1].toString())
+                , AIFH.DEFAULT_PRECISION);
     }
 
     @Test
@@ -116,18 +121,22 @@ public class TestDataSet extends TestCase {
         double max = ds1.getMax(2);
 
         ds1.normalizeRange(2, min, max, -1, 1);
-        assertEquals(-1.0, Double.parseDouble(ds1.getData().get(0)[2].toString()));
+        assertEquals(-1.0, Double.parseDouble(ds1.getData().get(0)[2].toString())
+                , AIFH.DEFAULT_PRECISION);
         ds1.deNormalizeRange(2, min, max, -1, 1);
-        assertEquals(0.1, Double.parseDouble(ds1.getData().get(0)[2].toString()));
+        assertEquals(0.1, Double.parseDouble(ds1.getData().get(0)[2].toString())
+                , AIFH.DEFAULT_PRECISION);
     }
 
     @Test
     public void testNormalizeReciprocal() {
         DataSet ds1 = generateTestData();
         ds1.normalizeReciprocal(1);
-        assertEquals(0.5, Double.parseDouble(ds1.getData().get(1)[1].toString()));
+        assertEquals(0.5, Double.parseDouble(ds1.getData().get(1)[1].toString())
+                , AIFH.DEFAULT_PRECISION);
         ds1.deNormalizeReciprocal(1);
-        assertEquals(2.0, Double.parseDouble(ds1.getData().get(1)[1].toString()));
+        assertEquals(2.0, Double.parseDouble(ds1.getData().get(1)[1].toString())
+                , AIFH.DEFAULT_PRECISION);
     }
 
     @Test
@@ -148,5 +157,45 @@ public class TestDataSet extends TestCase {
         ds1.encodeEquilateral(0);
     }
 
+    @Test
+    public void testDeleteColumn() {
+        DataSet ds1 = generateTestData();
+        ds1.deleteColumn(0);
+        assertEquals(2, ds1.getHeaderCount());
+        assertTrue(ds1.getHeaders()[0].equals("numeric"));
+        assertTrue(ds1.getHeaders()[1].equals("dec"));
+    }
+
+    @Test
+    public void testExtractUnsupervisedLabeled() {
+        DataSet ds1 = generateTestData();
+        List<BasicData> result = ds1.extractUnsupervisedLabeled(0);
+        assertEquals(3, result.size());
+        assertTrue(result.get(0).getLabel().equals("One"));
+    }
+
+    @Test
+    public void testExtractSupervised() {
+        DataSet ds1 = generateTestData();
+        List<BasicData> result = ds1.extractSupervised(1, 1, 2, 1);
+        assertEquals(3, result.size());
+    }
+
+    @Test
+    public void testReplaceColumn() {
+        DataSet ds1 = generateTestData();
+        ds1.replaceColumn(1, 2, 1, 0);
+        List<BasicData> result = ds1.extractSupervised(1, 1, 2, 1);
+        assertEquals(0.0, result.get(0).getInput()[0], AIFH.DEFAULT_PRECISION);
+        assertEquals(1.0, result.get(1).getInput()[0], AIFH.DEFAULT_PRECISION);
+    }
+
+    @Test
+    public void testDeleteUnknowns() {
+        DataSet ds1 = generateTestData();
+        ds1.getData().get(1)[2] = "?";
+        ds1.deleteUnknowns();
+        assertEquals(2, ds1.getData().size());
+    }
 
 }

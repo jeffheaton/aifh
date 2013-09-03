@@ -15,4 +15,6 @@ public interface LearningAlgorithm {
     boolean done();
 
     String getStatus();
+
+    void finishTraining();
 }

@@ -8,10 +8,10 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
  * http://en.wikipedia.org/wiki/Simulated_annealing
  */
 public class TrainAnneal implements LearningAlgorithm {
-    private RegressionAlgorithm algorithm;
+    private MachineLearningAlgorithm algorithm;
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private double globalBestError = Double.POSITIVE_INFINITY;
-    private double[] globalBest[];
+    private double[] globalBest;
     private double currentError;
     private ScoreFunction score;
     private int kMax;
@@ -19,20 +19,24 @@ public class TrainAnneal implements LearningAlgorithm {
     private double startingTemperature;
     private double endingTemperature;
     private double currentTemperature;
-    private int cycles = 1000;
+    private int cycles = 100;
     private double lastProbability;
+    private boolean shouldMinimize;
 
-    public TrainAnneal(RegressionAlgorithm theAlgorithm, ScoreFunction theScore) {
-        this(theAlgorithm, theScore, 1000, 400, 0.0001);
+    public TrainAnneal(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
+        this(theShouldMinimize, theAlgorithm, theScore, 1000, 400, 0.0001);
     }
 
-    public TrainAnneal(RegressionAlgorithm theAlgorithm, ScoreFunction theScore, int theKMax, double theStartingTemperature, double theEndingTemperature) {
+    public TrainAnneal(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore, int theKMax, double theStartingTemperature, double theEndingTemperature) {
         this.algorithm = theAlgorithm;
         this.score = theScore;
         this.kMax = theKMax;
+        this.shouldMinimize = theShouldMinimize;
         this.currentError = score.calculateScore(this.algorithm);
         this.startingTemperature = theStartingTemperature;
         this.endingTemperature = theEndingTemperature;
+        this.globalBest = new double[theAlgorithm.getLongTermMemory().length];
+        System.arraycopy(this.algorithm.getLongTermMemory(), 0, this.globalBest, 0, this.globalBest.length);
     }
 
     public double coolingSchedule() {
@@ -61,7 +65,7 @@ public class TrainAnneal implements LearningAlgorithm {
             // was this iteration an improvement?  If so, always keep.
             boolean keep = false;
 
-            if (trialError < this.currentError) {
+            if ((trialError < this.currentError) ? shouldMinimize : !shouldMinimize) {
                 keep = true;
             } else {
 
@@ -74,9 +78,10 @@ public class TrainAnneal implements LearningAlgorithm {
             if (keep) {
                 this.currentError = trialError;
                 // better than global error
-                if (trialError < this.globalBestError) {
+                if (trialError < this.globalBestError ? shouldMinimize : !shouldMinimize) {
                     this.globalBestError = trialError;
                     System.arraycopy(this.algorithm.getLongTermMemory(), 0, oldState, 0, len);
+                    System.arraycopy(this.algorithm.getLongTermMemory(), 0, this.globalBest, 0, len);
                 }
             } else {
                 System.arraycopy(oldState, 0, this.algorithm.getLongTermMemory(), 0, len);
@@ -102,6 +107,39 @@ public class TrainAnneal implements LearningAlgorithm {
 
     public double calcProbability(double ecurrent, double enew, double t) {
         return Math.exp(-(Math.abs(enew - ecurrent) / t));
+    }
+
+    public double getCurrentTemperature() {
+        return currentTemperature;
+    }
+
+    public int getK() {
+        return k;
+    }
+
+    public double getStartingTemperature() {
+        return startingTemperature;
+    }
+
+    public double getEndingTemperature() {
+        return endingTemperature;
+    }
+
+    public int getCycles() {
+        return cycles;
+    }
+
+    public double getLastProbability() {
+        return lastProbability;
+    }
+
+    public void setCycles(final int cycles) {
+        this.cycles = cycles;
+    }
+
+    @Override
+    public void finishTraining() {
+        System.arraycopy(this.globalBest, 0, this.algorithm.getLongTermMemory(), 0, this.globalBest.length);
     }
 
     public String getStatus() {

@@ -37,7 +37,7 @@ public class LearnIris extends SimpleLearn {
 
             RBFNetwork network = new RBFNetwork(4, 4, 2);
             ScoreFunction score = new ScoreRegressionData(trainingData);
-            TrainGreedyRandom train = new TrainGreedyRandom(network, score);
+            TrainGreedyRandom train = new TrainGreedyRandom(true, network, score);
             performIterations(train, 1000000, 0.01, true);
             query(network, trainingData);
 

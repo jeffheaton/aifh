@@ -15,7 +15,8 @@ public class SecureGenerateRandom extends AbstractGenerateRandom {
     private Random rand;
 
     public SecureGenerateRandom(long seed) {
-        this.rand = new SecureRandom();
+        byte[] s = {(byte) seed};
+        this.rand = new SecureRandom(s);
     }
 
     public SecureGenerateRandom() {

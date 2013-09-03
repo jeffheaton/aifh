@@ -12,16 +12,18 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
  * To change this template use File | Settings | File Templates.
  */
 public class TrainHillClimb implements LearningAlgorithm {
-    private RegressionAlgorithm algorithm;
+    private MachineLearningAlgorithm algorithm;
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private double lastError = Double.POSITIVE_INFINITY;
     private ScoreFunction score;
     private double[] candidate = new double[5];
     private double[] stepSize;
+    private boolean shouldMinimize;
 
-    public TrainHillClimb(RegressionAlgorithm theAlgorithm, ScoreFunction theScore, double acceleration, double stepSize) {
+    public TrainHillClimb(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore, double acceleration, double stepSize) {
         this.algorithm = theAlgorithm;
         this.score = theScore;
+        this.shouldMinimize = theShouldMinimize;
 
         this.stepSize = new double[theAlgorithm.getLongTermMemory().length];
         for (int i = 0; i < theAlgorithm.getLongTermMemory().length; i++) {
@@ -35,8 +37,8 @@ public class TrainHillClimb implements LearningAlgorithm {
         candidate[4] = acceleration;
     }
 
-    public TrainHillClimb(RegressionAlgorithm theAlgorithm, ScoreFunction theScore) {
-        this(theAlgorithm, theScore, 1.2, 1);
+    public TrainHillClimb(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
+        this(theShouldMinimize, theAlgorithm, theScore, 1.2, 1);
     }
 
     @Override
@@ -48,14 +50,15 @@ public class TrainHillClimb implements LearningAlgorithm {
 
         for (int i = 0; i < len; i++) {
             int best = -1;
-            double bestScore = Double.POSITIVE_INFINITY;
+            double bestScore = this.shouldMinimize ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
 
             for (int j = 0; j < candidate.length; j++) {
                 this.algorithm.getLongTermMemory()[i] += stepSize[i] * candidate[j];
                 double temp = score.calculateScore(this.algorithm);
                 this.algorithm.getLongTermMemory()[i] -= stepSize[i] * candidate[j];
 
-                if (temp < bestScore) {
+                if ((temp < bestScore) ? shouldMinimize : !shouldMinimize) {
+
                     bestScore = temp;
                     this.lastError = bestScore;
                     best = j;
@@ -80,5 +83,10 @@ public class TrainHillClimb implements LearningAlgorithm {
 
     public String getStatus() {
         return "";
+    }
+
+    @Override
+    public void finishTraining() {
+
     }
 }
