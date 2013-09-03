@@ -164,8 +164,8 @@ public class TrainNelderMead implements LearningAlgorithm {
                 this.ilo = i;
             }
         }
-		/*
-		 * Inner loop.
+        /*
+         * Inner loop.
 		 */
         for (; ; ) {
 			/*

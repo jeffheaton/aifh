@@ -24,15 +24,12 @@ public class Equilateral implements Serializable {
     /**
      * Construct an equilateral matrix.
      *
-     * @param count
-     *            The number of sets, these will be the rows in the matrix.
-     * @param high
-     *            The high value for the outputs.
-     * @param low
-     *            The low value for the outputs.
+     * @param count The number of sets, these will be the rows in the matrix.
+     * @param high  The high value for the outputs.
+     * @param low   The low value for the outputs.
      */
     public Equilateral(final int count, final double high, final double low) {
-        if( count<MIN_EQ ) {
+        if (count < MIN_EQ) {
             throw new AIFHError("Must have at least three classes.");
         }
         this.matrix = equilat(count, high, low);
@@ -42,8 +39,7 @@ public class Equilateral implements Serializable {
      * Decode a set of activations and see which set it has the lowest Euclidean
      * distance from.
      *
-     * @param activations
-     *            The output from the neural network.
+     * @param activations The output from the neural network.
      * @return The set that these activations were closest too.
      */
     public final int decode(final double[] activations) {
@@ -63,12 +59,11 @@ public class Equilateral implements Serializable {
     /**
      * Get the activations for the specified set.
      *
-     * @param set
-     *            The set to determine the activations for.
+     * @param set The set to determine the activations for.
      * @return The activations for the specified sets.
      */
     public final double[] encode(final int set) {
-        if( set<0 || set>this.matrix.length ) {
+        if (set < 0 || set > this.matrix.length) {
             throw new AIFHError("Class out of range for equilateral: " + set);
         }
         return this.matrix[set];
@@ -77,12 +72,9 @@ public class Equilateral implements Serializable {
     /**
      * Called internally to generate the matrix.
      *
-     * @param n
-     *            The number of sets to generate for.
-     * @param high
-     *            The high end of the range of values to generate.
-     * @param low
-     *            The low end of the range of values to generate.
+     * @param n    The number of sets to generate for.
+     * @param high The high end of the range of values to generate.
+     * @param low  The low end of the range of values to generate.
      * @return One row for each set, the columns are the activations for that
      *         set.
      */
@@ -130,8 +122,9 @@ public class Equilateral implements Serializable {
 
     /**
      * Get the Euclidean distance between the specified data and the set number.
+     *
      * @param data The data to check.
-     * @param set The set to check.
+     * @param set  The set to check.
      * @return The distance.
      */
     public final double getDistance(final double[] data, final int set) {

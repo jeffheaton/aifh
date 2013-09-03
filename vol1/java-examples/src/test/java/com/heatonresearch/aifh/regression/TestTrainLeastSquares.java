@@ -1,5 +1,6 @@
 package com.heatonresearch.aifh.regression;
 
+import com.heatonresearch.aifh.AIFH;
 import com.heatonresearch.aifh.general.data.BasicData;
 import org.junit.Test;
 
@@ -43,6 +44,7 @@ public class TestTrainLeastSquares {
         assertEquals(10.514285, regression.getLongTermMemory()[1], 0.0001);
         assertEquals(0.14285, regression.getLongTermMemory()[2], 0.0001);
         assertEquals(1.0, train.getR2(), 0.0001);
+        assertEquals(0, train.getError(), AIFH.DEFAULT_PRECISION);
 
         for (int i = 0; i < x.length; i++) {
             double[] output = regression.computeRegression(x[i]);
