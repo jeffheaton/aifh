@@ -20,21 +20,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class TestKMeans {
 
-    public static final double[][] DATA_SET = {
-            {0, 0},
-            {0, 1},
-            {1, 0},
-            {100, 100},
-            {99, 100},
-            {100, 99},
-            {0, 100},
-            {1, 100},
-            {0, 99},
-            {100, 0},
-            {100, 1},
-            {99, 0}
-    };
-
     public static List<BasicData> getDataSet() {
         List<BasicData> result = new ArrayList<BasicData>();
         result.add(new BasicData(new double[]{0, 0}, "a"));

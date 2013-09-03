@@ -26,6 +26,6 @@ public class TestInverseSquaredLinkFunction {
     public void testException() {
         InverseSquaredLinkFunction fn = new InverseSquaredLinkFunction();
         double[] x = {1, 2};
-        double y = fn.evaluate(x);
+        fn.evaluate(x);
     }
 }

@@ -28,7 +28,7 @@ public class TestGaussianFunction {
         double[] params = {5, 0, 0, 0};
         GaussianFunction funct = new GaussianFunction(3, params, 0);
         double[] x = {-1, 0, 1};
-        double y = funct.evaluate(x);
+        funct.evaluate(x);
         assertEquals("[GaussianFunction:width=5.00,center=,0.00,0.00]", funct.toString());
     }
 

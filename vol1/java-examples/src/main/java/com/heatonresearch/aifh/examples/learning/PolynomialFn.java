@@ -11,7 +11,7 @@ import com.heatonresearch.aifh.learning.RegressionAlgorithm;
  */
 public class PolynomialFn implements RegressionAlgorithm {
 
-    private double[] longTermMemory;
+    private final double[] longTermMemory;
 
     public PolynomialFn(int polyOrder) {
         this.longTermMemory = new double[polyOrder];

@@ -22,12 +22,12 @@ public abstract class AbstractBoxMuller extends AbstractGenerateRandom {
     /**
      * The mean.
      */
-    private double mean = 0;
+    public static final double MU = 0;
 
     /**
      * The standard deviation.
      */
-    private double standardDeviation = 1;
+    private static final double SIGMA = 1;
 
 
     @Override
@@ -51,6 +51,6 @@ public abstract class AbstractBoxMuller extends AbstractGenerateRandom {
             this.useLast = true;
         }
 
-        return (this.mean + y1 * this.standardDeviation);
+        return (AbstractBoxMuller.MU + y1 * AbstractBoxMuller.SIGMA);
     }
 }

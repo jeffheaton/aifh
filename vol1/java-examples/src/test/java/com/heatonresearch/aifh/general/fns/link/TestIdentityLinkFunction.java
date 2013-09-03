@@ -27,6 +27,6 @@ public class TestIdentityLinkFunction {
     public void testException() {
         IdentityLinkFunction fn = new IdentityLinkFunction();
         double[] x = {1, 2};
-        double y = fn.evaluate(x);
+        fn.evaluate(x);
     }
 }

@@ -47,7 +47,6 @@ public class ErrorCalculationRMS extends AbstractErrorCalculation {
         if (this.setSize == 0) {
             return Double.POSITIVE_INFINITY;
         }
-        final double err = Math.sqrt(this.globalError / this.setSize);
-        return err;
+        return Math.sqrt(this.globalError / this.setSize);
     }
 }

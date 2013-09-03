@@ -15,13 +15,12 @@ import java.util.Arrays;
  * To change this template use File | Settings | File Templates.
  */
 public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm {
-    private int inputCount;
-    private int outputCount;
-    private FnRBF rbf[];
-    private double[] longTermMemory;
-    private int indexInputWeights;
-    private int indexOutputWeights;
-    private int indexRBFParams;
+    private final int inputCount;
+    private final int outputCount;
+    private final FnRBF[] rbf;
+    private final double[] longTermMemory;
+    private final int indexInputWeights;
+    private final int indexOutputWeights;
 
     public RBFNetwork(int theInputCount, int rbfCount, int theOutputCount) {
 
@@ -37,13 +36,13 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
                 inputWeightCount + outputWeightCount + rbfParams];
 
         this.indexInputWeights = 0;
-        this.indexRBFParams = inputWeightCount;
+        int indexRBFParams = inputWeightCount;
         this.indexOutputWeights = indexRBFParams + rbfParams;
 
         this.rbf = new FnRBF[rbfCount];
 
         for (int i = 0; i < rbfCount; i++) {
-            int rbfIndex = this.indexRBFParams + ((inputCount + 1) * i);
+            int rbfIndex = indexRBFParams + ((inputCount + 1) * i);
             this.rbf[i] = new GaussianFunction(inputCount, this.longTermMemory, rbfIndex);
         }
     }

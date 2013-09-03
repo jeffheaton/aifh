@@ -6,7 +6,7 @@ import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 
 public class MultipleLinearRegression implements RegressionAlgorithm {
 
-    private double[] longTermMemory;
+    private final double[] longTermMemory;
     private Fn linkFunction = new IdentityLinkFunction();
 
     public MultipleLinearRegression(int theInputCount) {

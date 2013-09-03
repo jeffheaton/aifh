@@ -12,13 +12,13 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
  * To change this template use File | Settings | File Templates.
  */
 public class TrainHillClimb implements LearningAlgorithm {
-    private MachineLearningAlgorithm algorithm;
+    private final MachineLearningAlgorithm algorithm;
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private double lastError = Double.POSITIVE_INFINITY;
-    private ScoreFunction score;
-    private double[] candidate = new double[5];
-    private double[] stepSize;
-    private boolean shouldMinimize;
+    private final ScoreFunction score;
+    private final double[] candidate = new double[5];
+    private final double[] stepSize;
+    private final boolean shouldMinimize;
 
     public TrainHillClimb(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore, double acceleration, double stepSize) {
         this.algorithm = theAlgorithm;

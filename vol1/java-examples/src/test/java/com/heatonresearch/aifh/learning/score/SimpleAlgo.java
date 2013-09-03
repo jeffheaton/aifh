@@ -11,7 +11,7 @@ import com.heatonresearch.aifh.learning.RegressionAlgorithm;
  * To change this template use File | Settings | File Templates.
  */
 public class SimpleAlgo implements RegressionAlgorithm, ClassificationAlgorithm {
-    private double[] cannedResults;
+    private final double[] cannedResults;
     private int currentIndex = 0;
 
     public SimpleAlgo(double[] theCannedResults) {

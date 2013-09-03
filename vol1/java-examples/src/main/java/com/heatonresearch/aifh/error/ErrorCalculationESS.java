@@ -46,8 +46,7 @@ public class ErrorCalculationESS extends AbstractErrorCalculation {
         if (this.setSize == 0) {
             return Double.POSITIVE_INFINITY;
         }
-        final double err = this.globalError / 2;
-        return err;
+        return this.globalError / 2;
 
     }
 }

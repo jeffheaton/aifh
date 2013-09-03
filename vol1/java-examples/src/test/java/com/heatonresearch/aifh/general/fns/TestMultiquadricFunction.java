@@ -28,7 +28,7 @@ public class TestMultiquadricFunction {
         double[] params = {5, 0, 0, 0};
         MultiquadricFunction funct = new MultiquadricFunction(3, params, 0);
         double[] x = {-1, 0, 1};
-        double y = funct.evaluate(x);
+        funct.evaluate(x);
         assertEquals("[MultiquadricFunction:width=5.00,center=,0.00,0.00]", funct.toString());
     }
 

@@ -21,6 +21,7 @@ public class TestCluster {
         assertEquals(3, cluster.getDimensions());
     }
 
+    @Test
     public void testCenter() {
         Cluster cluster = new Cluster(3);
         double[] ob1 = {2.0, 10.0, 100.0};

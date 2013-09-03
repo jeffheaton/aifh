@@ -59,10 +59,10 @@ public class TrainNelderMead implements LearningAlgorithm {
     private final double[] start;
     private final double[] trainedWeights;
     private final double[] step;
-    private int konvge;
-    private MachineLearningAlgorithm algorithm;
+    private final int konvge;
+    private final MachineLearningAlgorithm algorithm;
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
-    private ScoreFunction score;
+    private final ScoreFunction score;
     private double lastError;
 
     public TrainNelderMead(MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
@@ -165,7 +165,7 @@ public class TrainNelderMead implements LearningAlgorithm {
 		 */
         for (; ; ) {
             /*
-			 * if (kcount <= icount) { break; }
+             * if (kcount <= icount) { break; }
 			 */
             this.ynewlo = this.y[0];
             this.ihi = 0;

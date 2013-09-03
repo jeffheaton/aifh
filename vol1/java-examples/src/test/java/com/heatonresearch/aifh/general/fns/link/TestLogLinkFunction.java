@@ -26,6 +26,6 @@ public class TestLogLinkFunction {
     public void testException() {
         LogLinkFunction fn = new LogLinkFunction();
         double[] x = {1, 2};
-        double y = fn.evaluate(x);
+        fn.evaluate(x);
     }
 }

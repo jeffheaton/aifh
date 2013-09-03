@@ -15,11 +15,11 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class TrainReweightLeastSquares {
-    private MultipleLinearRegression algorithm;
-    private List<BasicData> trainingData;
+    private final MultipleLinearRegression algorithm;
+    private final List<BasicData> trainingData;
     private double error;
-    private double[][] hessian;
-    private Matrix gradient;
+    private final double[][] hessian;
+    private final Matrix gradient;
 
     public TrainReweightLeastSquares(MultipleLinearRegression theAlgorithm, List<BasicData> theTrainingData) {
         this.algorithm = theAlgorithm;

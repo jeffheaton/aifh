@@ -39,17 +39,17 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class DiscreteAnneal {
-    private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
+    private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private double globalBestScore = Double.POSITIVE_INFINITY;
     private double currentScore;
-    private int kMax;
+    private final int kMax;
     private int k;
-    private double startingTemperature;
-    private double endingTemperature;
+    private final double startingTemperature;
+    private final double endingTemperature;
     private double currentTemperature;
     private int cycles = 100;
     private double lastProbability;
-    private boolean shouldMinimize;
+    private final boolean shouldMinimize;
 
     public DiscreteAnneal(boolean theShouldMinimize, int theKMax, double theStartingTemperature, double theEndingTemperature) {
         this.kMax = theKMax;

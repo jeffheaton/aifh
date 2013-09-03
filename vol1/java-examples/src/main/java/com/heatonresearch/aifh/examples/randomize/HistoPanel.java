@@ -25,10 +25,10 @@ public class HistoPanel extends JPanel {
     private int runtime;
     private double low;
     private double high;
-    private int[] boxes;
+    private final int[] boxes;
     private boolean uniformMode;
-    private DecimalFormat formatter = new DecimalFormat("#.##");
-    private NumberFormat intFormatter = NumberFormat.getNumberInstance();
+    private final DecimalFormat formatter = new DecimalFormat("#.##");
+    private final NumberFormat intFormatter = NumberFormat.getNumberInstance();
 
     public HistoPanel() {
         this.boxes = new int[2000];

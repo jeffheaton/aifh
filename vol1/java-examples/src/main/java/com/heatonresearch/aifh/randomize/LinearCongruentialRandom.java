@@ -130,8 +130,7 @@ public class LinearCongruentialRandom extends AbstractBoxMuller {
      */
     @Override
     public final double nextDouble() {
-        double result = (double) nextLong() / LinearCongruentialRandom.MAX_RAND;
-        return result;
+        return (double) nextLong() / LinearCongruentialRandom.MAX_RAND;
     }
 
     /**

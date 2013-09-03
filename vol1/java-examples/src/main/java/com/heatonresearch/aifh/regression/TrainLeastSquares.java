@@ -15,11 +15,11 @@ import java.util.List;
  */
 public class TrainLeastSquares {
 
-    private MultipleLinearRegression algorithm;
-    private List<BasicData> trainingData;
+    private final MultipleLinearRegression algorithm;
+    private final List<BasicData> trainingData;
     private double sst;
     private double sse;
-    private ErrorCalculation errorCalculation = new ErrorCalculationMSE();
+    private final ErrorCalculation errorCalculation = new ErrorCalculationMSE();
     private double error;
 
     public TrainLeastSquares(MultipleLinearRegression theAlgorithm, List<BasicData> theTrainingData) {

@@ -26,6 +26,6 @@ public class TestLogitLinkFunction {
     public void testException() {
         LogitLinkFunction fn = new LogitLinkFunction();
         double[] x = {1, 2};
-        double y = fn.evaluate(x);
+        fn.evaluate(x);
     }
 }

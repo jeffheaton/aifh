@@ -9,7 +9,7 @@ package com.heatonresearch.aifh.learning;
  */
 public class TrialAlgo implements MachineLearningAlgorithm {
 
-    private double[] memory = new double[3];
+    private final double[] memory = new double[3];
 
     @Override
     public double[] getLongTermMemory() {

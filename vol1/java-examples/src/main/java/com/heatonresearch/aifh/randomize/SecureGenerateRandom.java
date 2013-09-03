@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class SecureGenerateRandom extends AbstractGenerateRandom {
 
-    private Random rand;
+    private final Random rand;
 
     public SecureGenerateRandom(long seed) {
         byte[] s = {(byte) seed};

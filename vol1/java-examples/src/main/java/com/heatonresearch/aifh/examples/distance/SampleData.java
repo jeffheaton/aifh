@@ -36,7 +36,7 @@ public class SampleData implements Comparable<SampleData>, Cloneable {
     /**
      * The downsampled data as a grid of booleans.
      */
-    protected boolean grid[][];
+    protected final boolean[][] grid;
 
     /**
      * The letter.

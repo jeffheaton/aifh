@@ -5,13 +5,13 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 public class TrainGreedyRandom implements LearningAlgorithm {
-    private MachineLearningAlgorithm algorithm;
-    private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
+    private final MachineLearningAlgorithm algorithm;
+    private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private double lastError = Double.POSITIVE_INFINITY;
-    private ScoreFunction score;
+    private final ScoreFunction score;
     private double lowRange = -10;
     private double highRange = 10;
-    private boolean shouldMinimize;
+    private final boolean shouldMinimize;
 
     public TrainGreedyRandom(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
         this.algorithm = theAlgorithm;

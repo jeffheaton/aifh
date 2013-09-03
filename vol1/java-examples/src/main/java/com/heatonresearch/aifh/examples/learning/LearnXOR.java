@@ -20,13 +20,13 @@ public class LearnXOR extends SimpleLearn {
     /**
      * The input necessary for XOR.
      */
-    public static double XOR_INPUT[][] = {{0.0, 0.0}, {1.0, 0.0},
+    public static final double[][] XOR_INPUT = {{0.0, 0.0}, {1.0, 0.0},
             {0.0, 1.0}, {1.0, 1.0}};
 
     /**
      * The ideal data necessary for XOR.
      */
-    public static double XOR_IDEAL[][] = {{0.0}, {1.0}, {1.0}, {0.0}};
+    public static final double[][] XOR_IDEAL = {{0.0}, {1.0}, {1.0}, {0.0}};
 
 
     public void process() {

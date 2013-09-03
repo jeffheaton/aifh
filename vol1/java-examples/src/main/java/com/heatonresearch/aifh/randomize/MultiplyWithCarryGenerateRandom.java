@@ -11,7 +11,7 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
     private long multiplier;
     private int n = 0;
     private int r;
-    private long[] seed;
+    private final long[] seed;
 
     public MultiplyWithCarryGenerateRandom(long seed) {
         this(new long[]{seed}, seed / 2, 64, 987657110L);

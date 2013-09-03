@@ -12,10 +12,10 @@ import java.text.NumberFormat;
 public abstract class AbstractRBF implements FnRBF {
 
 
-    private double[] params;
-    private int indexWidth;
-    private int indexCenters;
-    private int dimensions;
+    private final double[] params;
+    private final int indexWidth;
+    private final int indexCenters;
+    private final int dimensions;
 
 
     public AbstractRBF(int theDimensions, double[] theParams, int theIndex) {

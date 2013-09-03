@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class BasicGenerateRandom extends AbstractGenerateRandom {
 
-    private Random rand;
+    private final Random rand;
 
     public BasicGenerateRandom(long seed) {
         this.rand = new Random(seed);

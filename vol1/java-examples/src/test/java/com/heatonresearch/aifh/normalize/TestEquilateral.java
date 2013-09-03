@@ -1,7 +1,6 @@
 package com.heatonresearch.aifh.normalize;
 
 import com.heatonresearch.aifh.AIFHError;
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -10,11 +9,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(JUnit4.class)
-public class TestEquilateral extends TestCase {
+public class TestEquilateral {
 
     @Test(expected = AIFHError.class)
     public void testTooFew() {
-        Equilateral eq = new Equilateral(2, -1, 1);
+        new Equilateral(2, -1, 1);
 
     }
 

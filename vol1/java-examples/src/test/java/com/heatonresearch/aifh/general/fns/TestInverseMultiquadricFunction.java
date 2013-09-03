@@ -28,7 +28,7 @@ public class TestInverseMultiquadricFunction {
         double[] params = {5, 0, 0, 0};
         InverseMultiquadricFunction funct = new InverseMultiquadricFunction(3, params, 0);
         double[] x = {-1, 0, 1};
-        double y = funct.evaluate(x);
+        funct.evaluate(x);
         assertEquals("[InverseMultiquadricFunction:width=5.00,center=,0.00,0.00]", funct.toString());
     }
 

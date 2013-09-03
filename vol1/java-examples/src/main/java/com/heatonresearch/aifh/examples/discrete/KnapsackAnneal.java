@@ -43,23 +43,23 @@ public class KnapsackAnneal extends DiscreteAnneal {
     /**
      * Number of items to choose from.
      */
-    public static int NUM_ITEMS_TO_CHOOSE = 25;
+    public static final int NUM_ITEMS_TO_CHOOSE = 25;
 
     /**
      * The max weight of the knapsack.
      */
-    public static int KNAPSACK_MAX_WEIGHT = 50;
+    public static final int KNAPSACK_MAX_WEIGHT = 50;
 
-    public static int ITEM_MAX_WEIGHT = 20;
-    public static int ITEM_MAX_VALUE = 1000;
+    public static final int ITEM_MAX_WEIGHT = 20;
+    public static final int ITEM_MAX_VALUE = 1000;
 
-    private int[] profit = new int[NUM_ITEMS_TO_CHOOSE + 1];
-    private int[] weight = new int[NUM_ITEMS_TO_CHOOSE + 1];
+    private final int[] profit = new int[NUM_ITEMS_TO_CHOOSE + 1];
+    private final int[] weight = new int[NUM_ITEMS_TO_CHOOSE + 1];
 
-    private boolean[] currentTaken;
-    private boolean[] backupTaken;
-    private boolean[] bestTaken;
-    private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
+    private final boolean[] currentTaken;
+    private final boolean[] backupTaken;
+    private final boolean[] bestTaken;
+    private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
     public KnapsackAnneal() {
         super(false, 1000, 40000, 0.001);

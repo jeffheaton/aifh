@@ -97,11 +97,11 @@ public class OCRExample extends JFrame {
      * The save button
      */
     private final JButton save = new JButton();
-    JLabel JLabel3 = new JLabel();
-    JLabel JLabel8 = new JLabel();
-    JLabel JLabel5 = new JLabel();
+    final JLabel JLabel3 = new JLabel();
+    final JLabel JLabel8 = new JLabel();
+    final JLabel JLabel5 = new JLabel();
 
-    private CalculateDistance distanceCalc = new EuclideanDistance();
+    private final CalculateDistance distanceCalc = new EuclideanDistance();
 
     /**
      * The constructor.

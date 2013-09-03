@@ -48,9 +48,9 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
     public static final double MAP_SIZE = 10;
     public static final int CITY_COUNT = 50;
 
-    private CalculateDistance distance = new EuclideanDistance();
+    private final CalculateDistance distance = new EuclideanDistance();
     private double[][] cities;
-    private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
+    private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private int[] currentPath;
     private int[] backupPath;
     private int[] bestPath;

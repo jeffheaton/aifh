@@ -17,11 +17,11 @@ import java.awt.event.ActionListener;
 public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
 
     private HistoPanel histogram = new HistoPanel();
-    private JButton buttonStart;
-    private JButton buttonStop;
+    private final JButton buttonStart;
+    private final JButton buttonStop;
     private boolean requestStop;
-    private JComboBox comboNormal;
-    private JComboBox comboGenerator;
+    private final JComboBox comboNormal;
+    private final JComboBox comboGenerator;
 
     public EvaluateRandom() {
         String[] distributions = {"Uniform", "Normal"};

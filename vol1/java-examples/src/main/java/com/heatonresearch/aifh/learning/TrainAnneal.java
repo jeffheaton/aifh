@@ -8,20 +8,20 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
  * http://en.wikipedia.org/wiki/Simulated_annealing
  */
 public class TrainAnneal implements LearningAlgorithm {
-    private MachineLearningAlgorithm algorithm;
-    private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
+    private final MachineLearningAlgorithm algorithm;
+    private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private double globalBestError = Double.POSITIVE_INFINITY;
-    private double[] globalBest;
+    private final double[] globalBest;
     private double currentError;
-    private ScoreFunction score;
-    private int kMax;
+    private final ScoreFunction score;
+    private final int kMax;
     private int k;
-    private double startingTemperature;
-    private double endingTemperature;
+    private final double startingTemperature;
+    private final double endingTemperature;
     private double currentTemperature;
     private int cycles = 100;
     private double lastProbability;
-    private boolean shouldMinimize;
+    private final boolean shouldMinimize;
 
     public TrainAnneal(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
         this(theShouldMinimize, theAlgorithm, theScore, 1000, 400, 0.0001);

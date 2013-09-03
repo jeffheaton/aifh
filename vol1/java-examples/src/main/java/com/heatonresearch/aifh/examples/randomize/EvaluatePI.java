@@ -12,7 +12,7 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
  */
 public class EvaluatePI {
 
-    private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
+    private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
     public void process() {
         long tries = 0;
