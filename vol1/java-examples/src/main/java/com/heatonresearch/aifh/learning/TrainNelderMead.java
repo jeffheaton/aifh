@@ -112,11 +112,7 @@ public class TrainNelderMead implements LearningAlgorithm {
      */
     @Override
     public boolean done() {
-        if (this.converged) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.converged;
     }
 
     @Override
@@ -168,7 +164,7 @@ public class TrainNelderMead implements LearningAlgorithm {
          * Inner loop.
 		 */
         for (; ; ) {
-			/*
+            /*
 			 * if (kcount <= icount) { break; }
 			 */
             this.ynewlo = this.y[0];

@@ -70,7 +70,6 @@ public class SampleData implements Comparable<SampleData>, Cloneable {
     public Object clone()
 
     {
-
         final SampleData obj = new SampleData(this.letter, getWidth(),
                 getHeight());
         for (int y = 0; y < getHeight(); y++) {

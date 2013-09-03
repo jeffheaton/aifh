@@ -45,9 +45,6 @@ public class TrainHillClimb implements LearningAlgorithm {
     public void iteration() {
         int len = this.algorithm.getLongTermMemory().length;
 
-
-        double before = score.calculateScore(this.algorithm);
-
         for (int i = 0; i < len; i++) {
             int best = -1;
             double bestScore = this.shouldMinimize ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
