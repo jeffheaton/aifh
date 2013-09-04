@@ -57,7 +57,7 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
 
 
     public TravelingSalesmanAnneal() {
-        super(true, 1000, 400, 0.001);
+        super(1000, 400, 0.001);
     }
 
     public void run() {

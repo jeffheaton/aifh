@@ -1,8 +1,6 @@
 package com.heatonresearch.aifh.learning;
 
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
-import com.heatonresearch.aifh.randomize.GenerateRandom;
-import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 /**
  * The Nelder-Mead method is a commonly used parameter optimization method that
@@ -24,11 +22,6 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 public class TrainNelderMead implements LearningAlgorithm {
 
     /**
-     * The best error rate.
-     */
-    private double ynewlo;
-
-    /**
      * True if the network has converged, and no further training is needed.
      */
     private boolean converged = false;
@@ -36,32 +29,26 @@ public class TrainNelderMead implements LearningAlgorithm {
     /**
      * Used to calculate the centroid.
      */
-    private final double ccoeff = 0.5;
+    public final static double CCOEFF = 0.5;
+    public final static double ECOEFF = 2.0;
+    public final static double EPS = 0.001;
+    public final static double RCOEFF = 1.0;
+
     private double del;
-    private final double ecoeff = 2.0;
-    private final double eps = 0.001;
-    private int ihi;
-    private int ilo;
+
     private int jcount;
-    private int l;
     private final int nn;
     private final double[] p;
     private final double[] p2star;
     private final double[] pbar;
     private final double[] pstar;
-    private final double rcoeff = 1.0;
     private final double rq;
     private final double[] y;
-    private double y2star;
-    private double ylo;
-    private double ystar;
-    private double z;
     private final double[] start;
     private final double[] trainedWeights;
     private final double[] step;
     private final int konvge;
     private final MachineLearningAlgorithm algorithm;
-    private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
     private final ScoreFunction score;
     private double lastError;
 
@@ -132,16 +119,12 @@ public class TrainNelderMead implements LearningAlgorithm {
 
         final int n = this.start.length;
 
-        for (int i = 0; i < n; i++) {
-            this.p[i + n * n] = this.start[i];
-        }
+        System.arraycopy(this.start, 0, this.p, n * n, n);
         this.y[n] = fn(this.start);
         for (int j = 0; j < n; j++) {
             final double x = this.start[j];
             this.start[j] = this.start[j] + this.step[j] * this.del;
-            for (int i = 0; i < n; i++) {
-                this.p[i + j * n] = this.start[i];
-            }
+            System.arraycopy(this.start, 0, this.p, j * n, n);
             this.y[j] = fn(this.start);
             this.start[j] = x;
         }
@@ -151,124 +134,122 @@ public class TrainNelderMead implements LearningAlgorithm {
 		 * Find highest and lowest Y values. YNEWLO = Y(IHI) indicates the
 		 * vertex of the simplex to be replaced.
 		 */
-        this.ylo = this.y[0];
-        this.ilo = 0;
+        double ylo = this.y[0];
+        int ilo = 0;
 
         for (int i = 1; i < this.nn; i++) {
-            if (this.y[i] < this.ylo) {
-                this.ylo = this.y[i];
-                this.ilo = i;
+            if (this.y[i] < ylo) {
+                ylo = this.y[i];
+                ilo = i;
             }
         }
         /*
          * Inner loop.
 		 */
+        double ynewlo;
+
+        double z;
         for (; ; ) {
             /*
              * if (kcount <= icount) { break; }
 			 */
-            this.ynewlo = this.y[0];
-            this.ihi = 0;
+            ynewlo = this.y[0];
+            int ihi = 0;
 
             for (int i = 1; i < this.nn; i++) {
-                if (this.ynewlo < this.y[i]) {
-                    this.ynewlo = this.y[i];
-                    this.ihi = i;
+                if (ynewlo < this.y[i]) {
+                    ynewlo = this.y[i];
+                    ihi = i;
                 }
             }
-			/*
+            /*
 			 * Calculate PBAR, the centroid of the simplex vertices excepting
 			 * the vertex with Y value YNEWLO.
 			 */
             for (int i = 0; i < n; i++) {
-                this.z = 0.0;
+                z = 0.0;
                 for (int j = 0; j < this.nn; j++) {
-                    this.z = this.z + this.p[i + j * n];
+                    z = z + this.p[i + j * n];
                 }
-                this.z = this.z - this.p[i + this.ihi * n];
-                this.pbar[i] = this.z / n;
+                z = z - this.p[i + ihi * n];
+                this.pbar[i] = z / n;
             }
 			/*
 			 * Reflection through the centroid.
 			 */
             for (int i = 0; i < n; i++) {
-                this.pstar[i] = this.pbar[i] + this.rcoeff
-                        * (this.pbar[i] - this.p[i + this.ihi * n]);
+                this.pstar[i] = this.pbar[i] + RCOEFF
+                        * (this.pbar[i] - this.p[i + ihi * n]);
             }
-            this.ystar = fn(this.pstar);
+            final double ystar = fn(this.pstar);
 			/*
 			 * Successful reflection, so extension.
 			 */
-            if (this.ystar < this.ylo) {
+            final double y2star;
+            if (ystar < ylo) {
                 for (int i = 0; i < n; i++) {
-                    this.p2star[i] = this.pbar[i] + this.ecoeff
+                    this.p2star[i] = this.pbar[i] + ECOEFF
                             * (this.pstar[i] - this.pbar[i]);
                 }
-                this.y2star = fn(this.p2star);
+                y2star = fn(this.p2star);
 				/*
 				 * Check extension.
 				 */
-                if (this.ystar < this.y2star) {
-                    for (int i = 0; i < n; i++) {
-                        this.p[i + this.ihi * n] = this.pstar[i];
-                    }
-                    this.y[this.ihi] = this.ystar;
+                if (ystar < y2star) {
+                    System.arraycopy(this.pstar, 0, this.p, ihi * n, n);
+                    this.y[ihi] = ystar;
                 }
 				/*
 				 * Retain extension or contraction.
 				 */
                 else {
-                    for (int i = 0; i < n; i++) {
-                        this.p[i + this.ihi * n] = this.p2star[i];
-                    }
-                    this.y[this.ihi] = this.y2star;
+                    System.arraycopy(this.p2star, 0, this.p, ihi * n, n);
+                    this.y[ihi] = y2star;
                 }
             }
 			/*
 			 * No extension.
 			 */
             else {
-                this.l = 0;
+                int l = 0;
                 for (int i = 0; i < this.nn; i++) {
-                    if (this.ystar < this.y[i]) {
-                        this.l = this.l + 1;
+                    if (ystar < this.y[i]) {
+                        l = l + 1;
                     }
                 }
 
-                if (1 < this.l) {
-                    for (int i = 0; i < n; i++) {
-                        this.p[i + this.ihi * n] = this.pstar[i];
-                    }
-                    this.y[this.ihi] = this.ystar;
+                if (1 < l) {
+                    System.arraycopy(this.pstar, 0, this.p, ihi * n, n);
+                    this.y[ihi] = ystar;
                 }
 				/*
 				 * Contraction on the Y(IHI) side of the centroid.
 				 */
-                else if (this.l == 0) {
+                else if (l == 0) {
                     for (int i = 0; i < n; i++) {
-                        this.p2star[i] = this.pbar[i] + this.ccoeff
-                                * (this.p[i + this.ihi * n] - this.pbar[i]);
+                        this.p2star[i] = this.pbar[i] + CCOEFF
+                                * (this.p[i + ihi * n] - this.pbar[i]);
                     }
-                    this.y2star = fn(this.p2star);
+                    y2star = fn(this.p2star);
 					/*
 					 * Contract the whole simplex.
 					 */
-                    if (this.y[this.ihi] < this.y2star) {
+                    if (this.y[ihi] < y2star) {
                         for (int j = 0; j < this.nn; j++) {
                             for (int i = 0; i < n; i++) {
                                 this.p[i + j * n] = (this.p[i + j * n] + this.p[i
-                                        + this.ilo * n]) * 0.5;
+                                        + ilo * n]) * 0.5;
                                 this.trainedWeights[i] = this.p[i + j * n];
                             }
                             this.y[j] = fn(this.trainedWeights);
                         }
-                        this.ylo = this.y[0];
-                        this.ilo = 0;
+                        ylo = this.y[0];
+                        ilo = 0;
 
                         for (int i = 1; i < this.nn; i++) {
-                            if (this.y[i] < this.ylo) {
-                                this.ylo = this.y[i];
-                                this.ilo = i;
+                            if (this.y[i] < ylo) {
+                                ylo = this.y[i];
+                                ilo = i;
                             }
                         }
                         continue;
@@ -277,43 +258,37 @@ public class TrainNelderMead implements LearningAlgorithm {
 					 * Retain contraction.
 					 */
                     else {
-                        for (int i = 0; i < n; i++) {
-                            this.p[i + this.ihi * n] = this.p2star[i];
-                        }
-                        this.y[this.ihi] = this.y2star;
+                        System.arraycopy(this.p2star, 0, this.p, ihi * n, n);
+                        this.y[ihi] = y2star;
                     }
                 }
 				/*
 				 * Contraction on the reflection side of the centroid.
 				 */
-                else if (this.l == 1) {
+                else if (l == 1) {
                     for (int i = 0; i < n; i++) {
-                        this.p2star[i] = this.pbar[i] + this.ccoeff
+                        this.p2star[i] = this.pbar[i] + CCOEFF
                                 * (this.pstar[i] - this.pbar[i]);
                     }
-                    this.y2star = fn(this.p2star);
+                    y2star = fn(this.p2star);
 					/*
 					 * Retain reflection?
 					 */
-                    if (this.y2star <= this.ystar) {
-                        for (int i = 0; i < n; i++) {
-                            this.p[i + this.ihi * n] = this.p2star[i];
-                        }
-                        this.y[this.ihi] = this.y2star;
+                    if (y2star <= ystar) {
+                        System.arraycopy(this.p2star, 0, this.p, ihi * n, n);
+                        this.y[ihi] = y2star;
                     } else {
-                        for (int i = 0; i < n; i++) {
-                            this.p[i + this.ihi * n] = this.pstar[i];
-                        }
-                        this.y[this.ihi] = this.ystar;
+                        System.arraycopy(this.pstar, 0, this.p, ihi * n, n);
+                        this.y[ihi] = ystar;
                     }
                 }
             }
 			/*
 			 * Check if YLO improved.
 			 */
-            if (this.y[this.ihi] < this.ylo) {
-                this.ylo = this.y[this.ihi];
-                this.ilo = this.ihi;
+            if (this.y[ihi] < ylo) {
+                ylo = this.y[ihi];
+                ilo = ihi;
             }
             this.jcount = this.jcount - 1;
 
@@ -327,18 +302,18 @@ public class TrainNelderMead implements LearningAlgorithm {
             {
                 this.jcount = this.konvge;
 
-                this.z = 0.0;
+                z = 0.0;
                 for (int i = 0; i < this.nn; i++) {
-                    this.z = this.z + this.y[i];
+                    z = z + this.y[i];
                 }
-                final double x = this.z / this.nn;
+                final double x = z / this.nn;
 
-                this.z = 0.0;
+                z = 0.0;
                 for (int i = 0; i < this.nn; i++) {
-                    this.z = this.z + Math.pow(this.y[i] - x, 2);
+                    z = z + Math.pow(this.y[i] - x, 2);
                 }
 
-                if (this.z <= this.rq) {
+                if (z <= this.rq) {
                     break;
                 }
             }
@@ -346,25 +321,23 @@ public class TrainNelderMead implements LearningAlgorithm {
 		/*
 		 * Factorial tests to check that YNEWLO is a local minimum.
 		 */
-        for (int i = 0; i < n; i++) {
-            this.trainedWeights[i] = this.p[i + this.ilo * n];
-        }
-        this.ynewlo = this.y[this.ilo];
+        System.arraycopy(this.p, ilo * n, this.trainedWeights, 0, n);
+        ynewlo = this.y[ilo];
 
         boolean fault = false;
 
         for (int i = 0; i < n; i++) {
-            this.del = this.step[i] * this.eps;
+            this.del = this.step[i] * EPS;
             this.trainedWeights[i] += this.del;
-            this.z = fn(this.trainedWeights);
-            if (this.z < this.ynewlo) {
+            z = fn(this.trainedWeights);
+            if (z < ynewlo) {
                 fault = true;
                 break;
             }
             this.trainedWeights[i] = this.trainedWeights[i] - this.del
                     - this.del;
-            this.z = fn(this.trainedWeights);
-            if (this.z < this.ynewlo) {
+            z = fn(this.trainedWeights);
+            if (z < ynewlo) {
                 fault = true;
                 break;
             }
@@ -377,13 +350,11 @@ public class TrainNelderMead implements LearningAlgorithm {
 			/*
 			 * Restart the procedure.
 			 */
-            for (int i = 0; i < n; i++) {
-                this.start[i] = this.trainedWeights[i];
-            }
-            this.del = this.eps;
+            System.arraycopy(this.trainedWeights, 0, this.start, 0, n);
+            this.del = EPS;
         }
 
-        this.lastError = this.ynewlo;
+        this.lastError = ynewlo;
         System.arraycopy(this.trainedWeights, 0, this.algorithm.getLongTermMemory(), 0, this.trainedWeights.length);
     }
 

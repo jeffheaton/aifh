@@ -6,10 +6,21 @@ package com.heatonresearch.aifh.general.fns;
  * http://en.wikipedia.org/wiki/Radial_basis_function
  */
 public class MultiquadricFunction extends AbstractRBF {
+
+    /**
+     * Construct the Multiquadric RBF. Each RBF will require space equal to (dimensions + 1) in the params vector.
+     *
+     * @param theDimensions The number of dimensions.
+     * @param theParams     A vector to hold the parameters.
+     * @param theIndex      The index into the params vector.  You can store multiple RBF's in a vector.
+     */
     public MultiquadricFunction(final int theDimensions, final double[] theParams, final int theIndex) {
         super(theDimensions, theParams, theIndex);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double evaluate(final double[] x) {
         double value = 0;

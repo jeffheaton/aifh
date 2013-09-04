@@ -28,8 +28,17 @@
  */
 package com.heatonresearch.aifh.distance;
 
+/**
+ * The Euclidean distance is the straight-line distance between two points.  It is calculated by taking the
+ * square root of the sum of squares differences between each point in the vector.
+ * <p/>
+ * http://www.heatonresearch.com/wiki/Euclidean_Distance
+ */
 public class EuclideanDistance extends AbstractDistance {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double calculate(double[] position1, int pos1, double[] position2, int pos2, int length) {
         double sum = 0;

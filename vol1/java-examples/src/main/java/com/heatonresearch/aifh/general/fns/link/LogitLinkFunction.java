@@ -4,14 +4,15 @@ import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.general.fns.Fn;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/19/13
- * Time: 9:12 AM
- * To change this template use File | Settings | File Templates.
+ * The Logistic (logit) link function for a GLM.
+ * <p/>
+ * http://en.wikipedia.org/wiki/Generalized_linear_model
  */
 public class LogitLinkFunction implements Fn {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double evaluate(final double[] x) {
         if (x.length > 1) {

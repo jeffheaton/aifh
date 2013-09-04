@@ -32,48 +32,102 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/25/13
- * Time: 3:46 PM
- * To change this template use File | Settings | File Templates.
+ * Perform discrete simulated annealing.  Discrete simulated annealing involves a problem with
+ * a finite number of positions (or potential solutions).
  */
 public abstract class DiscreteAnneal {
+    /**
+     * The random number generator.
+     */
     private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
-    private double globalBestScore = Double.POSITIVE_INFINITY;
-    private double currentScore;
-    private final int kMax;
-    private int k;
-    private final double startingTemperature;
-    private final double endingTemperature;
-    private double currentTemperature;
-    private int cycles = 100;
-    private double lastProbability;
-    private final boolean shouldMinimize;
 
-    public DiscreteAnneal(boolean theShouldMinimize, int theKMax, double theStartingTemperature, double theEndingTemperature) {
+    /**
+     * The current global best score.  The global best score is the best score that has been found over all of the
+     * iterations.
+     */
+    private double globalBestScore = Double.POSITIVE_INFINITY;
+
+    /**
+     * The current score.
+     */
+    private double currentScore;
+
+    /**
+     * The maximum number of iterations to try.
+     */
+    private final int kMax;
+
+    /**
+     * The current iteration.
+     */
+    private int k;
+
+    /**
+     * The starting temperature.
+     */
+    private final double startingTemperature;
+
+    /**
+     * The ending temperature.
+     */
+    private final double endingTemperature;
+
+    /**
+     * The current temperature.
+     */
+    private double currentTemperature;
+
+    /**
+     * The number of cycles to try at each temperature.
+     */
+    private int cycles = 100;
+
+    /**
+     * The last probability of accepting a new non-improving move.
+     */
+    private double lastProbability;
+
+    /**
+     * Construct the Simulated Annealing trainer.
+     *
+     * @param theKMax                The maximum number of iterations.
+     * @param theStartingTemperature The starting temperature.
+     * @param theEndingTemperature   The ending temperature.
+     */
+    public DiscreteAnneal(int theKMax, double theStartingTemperature, double theEndingTemperature) {
         this.kMax = theKMax;
         this.startingTemperature = theStartingTemperature;
         this.endingTemperature = theEndingTemperature;
-        this.shouldMinimize = theShouldMinimize;
     }
 
+    /**
+     * @return The correct temperature for the current iteration.
+     */
     public double coolingSchedule() {
         double ex = (double) k / (double) kMax;
         return this.startingTemperature * Math.pow(this.endingTemperature / this.startingTemperature, ex);
     }
 
+    /**
+     * Perform one training iteration.  This will execute the specified number of cycles at the current
+     * temperature.
+     */
     public void iteration() {
+
+        // Is this the first time through, if so, then setup.
         if (k == 0) {
             this.currentScore = evaluate();
             foundNewBest();
             this.globalBestScore = this.currentScore;
         }
 
+        // incrament the current iteration counter
         k++;
 
+        // obtain the correct temperature
         this.currentTemperature = coolingSchedule();
 
+        // perform the specified number of cycles
         for (int cycle = 0; cycle < this.cycles; cycle++) {
             // backup current state
             backupState();
@@ -87,7 +141,7 @@ public abstract class DiscreteAnneal {
             // was this iteration an improvement?  If so, always keep.
             boolean keep = false;
 
-            if ((trialScore < this.currentScore) ? shouldMinimize : !shouldMinimize) {
+            if (trialScore < this.currentScore) {
                 // it was better, so always keep it
                 keep = true;
             } else {
@@ -98,53 +152,101 @@ public abstract class DiscreteAnneal {
                 }
             }
 
+            // should we keep this position?
             if (keep) {
                 this.currentScore = trialScore;
                 // better than global error
-                if (trialScore < this.globalBestScore ? shouldMinimize : !shouldMinimize) {
+                if (trialScore < this.globalBestScore) {
                     this.globalBestScore = trialScore;
                     foundNewBest();
                 }
             } else {
+                // do not keep this position
                 restoreState();
             }
         }
     }
 
+    /**
+     * Backup the current position (or state).
+     */
     public abstract void backupState();
 
+    /**
+     * Restore the current position (or state).
+     */
     public abstract void restoreState();
 
+    /**
+     * Handle the fact that we found a new global best.
+     */
     public abstract void foundNewBest();
 
+    /**
+     * Move to a neighbor position.
+     */
     public abstract void moveToNeighbor();
 
+    /**
+     * Evaluate the current position.
+     *
+     * @return The score.
+     */
     public abstract double evaluate();
 
+    /**
+     * @return True, if training has reached the last iteration.
+     */
     public boolean done() {
         return k >= kMax;
     }
 
+    /**
+     * @return The best score found so far.
+     */
     public double getBestScore() {
         return this.globalBestScore;
     }
 
-    public double calcProbability(double ecurrent, double enew, double t) {
+    /**
+     * Calculate the probability that a worse solution will be accepted.  The higher the temperature the more likely
+     * this will happen.
+     *
+     * @param ecurrent The current energy (or score/error).
+     * @param enew     The new energy (or score/error).
+     * @param t        The current temperature.
+     * @return The probability of accepting a worse solution.
+     */
+    public double calcProbability(final double ecurrent, final double enew, final double t) {
         return Math.exp(-(Math.abs(enew - ecurrent) / t));
     }
 
+    /**
+     * @return The current iteration.
+     */
     public int getK() {
         return this.k;
     }
 
+    /**
+     * @return The number of cycles per iteration.
+     */
     public int getCycles() {
         return cycles;
     }
 
+    /**
+     * Set the number of cycles.
+     *
+     * @param cycles The number of cycles per iteration.
+     */
     public void setCycles(final int cycles) {
         this.cycles = cycles;
     }
 
+    /**
+     * @return Returns the current status of the algorithm.
+     */
     public String getStatus() {
         StringBuilder result = new StringBuilder();
         result.append("k=");

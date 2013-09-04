@@ -72,8 +72,7 @@ public class TrainLeastSquares {
 
         // calculate error
         this.errorCalculation.clear();
-        for (int row = 0; row < this.trainingData.size(); row++) {
-            BasicData dataRow = this.trainingData.get(row);
+        for (BasicData dataRow : this.trainingData) {
             double[] output = this.algorithm.computeRegression(dataRow.getInput());
             this.errorCalculation.updateError(output, dataRow.getIdeal(), 1.0);
         }

@@ -29,8 +29,7 @@ public class ScoreRegressionData implements ScoreFunction {
         RegressionAlgorithm ralgo = (RegressionAlgorithm) algo;
         // evaulate
         errorCalc.clear();
-        for (int row = 0; row < this.trainingData.size(); row++) {
-            BasicData pair = this.trainingData.get(row);
+        for (BasicData pair : this.trainingData) {
             double[] output = ralgo.computeRegression(pair.getInput());
             errorCalc.updateError(output, pair.getIdeal(), 1.0);
         }

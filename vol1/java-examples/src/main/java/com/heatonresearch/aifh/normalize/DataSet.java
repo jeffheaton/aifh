@@ -597,8 +597,8 @@ public class DataSet {
         while (rowIndex < this.data.size()) {
             Object[] row = data.get(rowIndex);
             boolean remove = false;
-            for (int col = 0; col < row.length; col++) {
-                if (row[col].toString().equals("?")) {
+            for (final Object aRow : row) {
+                if (aRow.toString().equals("?")) {
                     remove = true;
                     break;
                 }

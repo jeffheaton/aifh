@@ -28,12 +28,12 @@ public class ScoreClassificationData implements ScoreFunction {
 
         ClassificationAlgorithm ralgo = (ClassificationAlgorithm) algo;
 
-        for (int row = 0; row < this.trainingData.size(); row++) {
+        for (BasicData aTrainingData : this.trainingData) {
             totalCount++;
-            BasicData pair = this.trainingData.get(row);
+            BasicData pair = aTrainingData;
             int output = ralgo.computeClassification(pair.getInput());
 
-            if (output != this.trainingData.get(row).getIdeal()[0]) {
+            if (output != aTrainingData.getIdeal()[0]) {
                 incorrectCount++;
             }
         }

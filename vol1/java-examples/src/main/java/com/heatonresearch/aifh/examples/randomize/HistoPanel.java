@@ -106,11 +106,11 @@ public class HistoPanel extends JPanel {
 
         int barCount = width / BAR_WIDTH;
         int mode = 0;
-        for (int i = 0; i < this.boxes.length; i++) {
-            mode = Math.max(mode, boxes[i]);
+        for (final int boxe : this.boxes) {
+            mode = Math.max(mode, boxe);
         }
 
-        int bar2box = 0;
+        int bar2box;
         int boxesIndex = 0;
 
         if (this.uniformMode) {

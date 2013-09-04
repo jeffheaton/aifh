@@ -29,11 +29,10 @@
 package com.heatonresearch.aifh.error;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/27/13
- * Time: 8:40 AM
- * To change this template use File | Settings | File Templates.
+ * Calculates the error as the square root of the average of the sum of the squared differences between the actual and
+ * ideal vectors.
+ * <p/>
+ * http://www.heatonresearch.com/wiki/Root_Mean_Square_Error
  */
 public class ErrorCalculationRMS extends AbstractErrorCalculation {
 

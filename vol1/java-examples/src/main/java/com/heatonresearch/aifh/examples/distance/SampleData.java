@@ -171,9 +171,9 @@ public class SampleData implements Comparable<SampleData>, Cloneable {
     public double[] getPosition() {
         double[] result = new double[this.grid.length * this.grid[0].length];
         int index = 0;
-        for (int row = 0; row < this.grid.length; row++) {
-            for (int col = 0; col < this.grid[row].length; col++) {
-                result[index++] = this.grid[row][col] ? 1.0 : -1.0;
+        for (final boolean[] aGrid : this.grid) {
+            for (final boolean anAGrid : aGrid) {
+                result[index++] = anAGrid ? 1.0 : -1.0;
             }
         }
         return result;

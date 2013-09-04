@@ -29,11 +29,12 @@
 package com.heatonresearch.aifh.error;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/27/13
- * Time: 8:23 AM
- * To change this template use File | Settings | File Templates.
+ * An error calculation metric calculates the difference between two vector sets.  One vector set will be the ideal
+ * expected output from a Machine Learning Algorithm.  The other vector set is the actual output.  Training a
+ * Machine Learning Algorithm typically involves minimizing this error.
+ * <p/>
+ * Error calculation metrics are very similar to distance metrics.  However, an error calculation metric operates over
+ * a set of vectors, whereas a distance metric operates over just two vectors.
  */
 public interface ErrorCalculation {
 
@@ -60,7 +61,13 @@ public interface ErrorCalculation {
      */
     double calculate();
 
+    /**
+     * Clear the error calculation and start over.
+     */
     void clear();
 
+    /**
+     * @return The total size of the set (vector size times number of vectors).
+     */
     int getSetSize();
 }

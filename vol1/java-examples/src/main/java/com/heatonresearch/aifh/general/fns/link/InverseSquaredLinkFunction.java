@@ -4,13 +4,15 @@ import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.general.fns.Fn;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/26/13
- * Time: 5:44 PM
- * To change this template use File | Settings | File Templates.
+ * The inverse squared link function for a GLM.
+ * <p/>
+ * http://en.wikipedia.org/wiki/Generalized_linear_model
  */
 public class InverseSquaredLinkFunction implements Fn {
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double evaluate(final double[] x) {
         if (x.length > 1) {

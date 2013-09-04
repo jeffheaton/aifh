@@ -28,8 +28,17 @@
  */
 package com.heatonresearch.aifh.distance;
 
+/**
+ * Chebyshev distance is the maximum absolute difference between any two vector elements.  This can be thought
+ * of as the number of spaces that a king chess piece must travel between two squares in a 2D dimension space.
+ * <p/>
+ * http://www.heatonresearch.com/wiki/Chebyshev_Distance
+ */
 public class ChebyshevDistance extends AbstractDistance {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double calculate(double[] position1, int pos1, double[] position2, int pos2, int length) {
         double result = 0;

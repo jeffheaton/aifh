@@ -62,7 +62,7 @@ public class KnapsackAnneal extends DiscreteAnneal {
     private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
     public KnapsackAnneal() {
-        super(false, 1000, 40000, 0.001);
+        super(1000, 40000, 0.001);
 
         this.currentTaken = new boolean[NUM_ITEMS_TO_CHOOSE];
         this.backupTaken = new boolean[NUM_ITEMS_TO_CHOOSE];
@@ -118,8 +118,8 @@ public class KnapsackAnneal extends DiscreteAnneal {
         // This means that the max allowed knapsack weight is greater than the total of grabbing everything.
         // This is kind of pointless, but don't go into an endless loop!
         boolean holdingEverythingAlready = true;
-        for (int i = 0; i < this.currentTaken.length; i++) {
-            if (!this.currentTaken[i]) {
+        for (final boolean aCurrentTaken : this.currentTaken) {
+            if (!aCurrentTaken) {
                 holdingEverythingAlready = false;
                 break;
             }

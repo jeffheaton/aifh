@@ -12,10 +12,20 @@ package com.heatonresearch.aifh.general.fns;
  */
 public class MexicanHatFunction extends AbstractRBF {
 
+    /**
+     * Construct the Mexican Hat RBF. Each RBF will require space equal to (dimensions + 1) in the params vector.
+     *
+     * @param theDimensions The number of dimensions.
+     * @param theParams     A vector to hold the parameters.
+     * @param theIndex      The index into the params vector.  You can store multiple RBF's in a vector.
+     */
     public MexicanHatFunction(final int theDimensions, final double[] theParams, final int theIndex) {
         super(theDimensions, theParams, theIndex);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double evaluate(final double[] x) {
         // calculate the "norm", but don't take square root

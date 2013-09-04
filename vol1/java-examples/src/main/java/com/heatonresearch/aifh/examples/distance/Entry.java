@@ -319,7 +319,7 @@ public class Entry extends JPanel {
      * Set the sample control to use. The sample control displays a downsampled
      * version of the character.
      *
-     * @param s
+     * @param s The sample.
      */
     public void setSample(final Sample s) {
         this.sample = s;

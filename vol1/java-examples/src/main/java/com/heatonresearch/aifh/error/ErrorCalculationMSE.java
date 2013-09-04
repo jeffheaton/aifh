@@ -29,18 +29,17 @@
 package com.heatonresearch.aifh.error;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/27/13
- * Time: 8:26 AM
- * To change this template use File | Settings | File Templates.
+ * Calculates the error as the average of the sum of the squared differences between the actual and ideal vectors.
+ * This is the most commonly used error calculation technique in this book.
+ * <p/>
+ * http://www.heatonresearch.com/wiki/Mean_Square_Error
  */
 public class ErrorCalculationMSE extends AbstractErrorCalculation {
 
     /**
      * Calculate the error with MSE.
      *
-     * @return The current error for the neural network.
+     * @return The current error.
      */
     @Override
     public final double calculate() {

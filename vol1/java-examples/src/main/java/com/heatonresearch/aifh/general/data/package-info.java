@@ -1,14 +1,14 @@
-/*
+/**
  * Artificial Intelligence for Humans
  * Volume 1: Fundamental Algorithms
- * Java Version
- * http://www.aifh.org
- * http://www.jeffheaton.com
  *
- * Code repository:
- * https://github.com/jeffheaton/aifh
-
- * Copyright 2013 by Jeff Heaton
+ * Chapter 3: Distance Metrics
+ *
+ * For more information on this series of books, see:
+ * http://www.heatonresearch.com/aifh
+ *
+ * -----------------------------------------------------------------------
+ * Copyright 2013 Heaton Research, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,25 +26,4 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.error;
-
-/**
- * The sum of squares method (ESS) measures the error as the sum of the squared difference of each vector element.
- * <p/>
- * http://www.heatonresearch.com/wiki/Sum_of_Squares_Error
- */
-public class ErrorCalculationESS extends AbstractErrorCalculation {
-    /**
-     * Calculate the error with ESS.
-     *
-     * @return The current error.
-     */
-    @Override
-    public double calculate() {
-        if (this.setSize == 0) {
-            return Double.POSITIVE_INFINITY;
-        }
-        return this.globalError / 2;
-
-    }
-}
+package com.heatonresearch.aifh.general.data;

@@ -4,13 +4,13 @@ import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.general.fns.Fn;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/19/13
- * Time: 9:32 AM
- * To change this template use File | Settings | File Templates.
+ * The identity link function simply returns the first element of the vector it is passed.
+ * Link functions can only accept vectors of size 1.
  */
 public class IdentityLinkFunction implements Fn {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double evaluate(final double[] x) {
         if (x.length > 1) {

@@ -43,8 +43,7 @@ public class SimpleLearn {
     }
 
     public static void query(RegressionAlgorithm network, List<BasicData> theTrainingData) {
-        for (int row = 0; row < theTrainingData.size(); row++) {
-            BasicData data = theTrainingData.get(row);
+        for (BasicData data : theTrainingData) {
             double[] output = network.computeRegression(data.getInput());
             System.out.println(Arrays.toString(data.getInput()) + " -> " + Arrays.toString(output) + ", Ideal: " + Arrays.toString(data.getIdeal()));
         }

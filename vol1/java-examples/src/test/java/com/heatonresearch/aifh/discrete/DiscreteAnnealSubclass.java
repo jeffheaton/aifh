@@ -5,13 +5,6 @@ import com.heatonresearch.aifh.distance.EuclideanDistance;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/26/13
- * Time: 4:09 PM
- * To change this template use File | Settings | File Templates.
- */
 public class DiscreteAnnealSubclass extends DiscreteAnneal {
     public static final double[] IDEAL = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     private final double[] currentHolder = {10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0};
@@ -20,8 +13,8 @@ public class DiscreteAnnealSubclass extends DiscreteAnneal {
     private final GenerateRandom rnd = new MersenneTwisterGenerateRandom(1);
     private final CalculateDistance distance = new EuclideanDistance();
 
-    public DiscreteAnnealSubclass(final boolean theShouldMinimize, final int theKMax, final double theStartingTemperature, final double theEndingTemperature) {
-        super(theShouldMinimize, theKMax, theStartingTemperature, theEndingTemperature);
+    public DiscreteAnnealSubclass(final int theKMax, final double theStartingTemperature, final double theEndingTemperature) {
+        super(theKMax, theStartingTemperature, theEndingTemperature);
         setCycles(1000);
     }
 

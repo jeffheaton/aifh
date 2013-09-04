@@ -44,9 +44,7 @@ public class ExampleRunner {
         // get the example args
         String[] exampleArgs = new String[args.length - 1];
 
-        for (int i = 0; i < args.length - 1; i++) {
-            exampleArgs[i] = args[i + 1];
-        }
+        System.arraycopy(args, 1, exampleArgs, 0, args.length - 1);
 
         // need to do this a better way, but for now this works
         if (exampleName.equals("NormalizeCSVExample")) {

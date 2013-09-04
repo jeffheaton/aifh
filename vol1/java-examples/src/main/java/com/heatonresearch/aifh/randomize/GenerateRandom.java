@@ -7,7 +7,7 @@ package com.heatonresearch.aifh.randomize;
 public interface GenerateRandom {
 
     /**
-     * @return
+     * @return The next normally distributed random number.
      */
     double nextGaussian();
 
