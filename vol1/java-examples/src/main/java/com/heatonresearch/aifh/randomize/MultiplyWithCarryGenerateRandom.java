@@ -1,6 +1,13 @@
 package com.heatonresearch.aifh.randomize;
 
 /**
+ * In Multiply with Carry (MWC) is a pseudo random number generator computer science, multiply-with-carry (MWC)
+ * is a method invented by George Marsaglia for generating sequences of random integers based on an initial set
+ * from two to many thousands of randomly chosen seed values. The main advantages of the MWC method are that it
+ * invokes simple computer integer arithmetic and leads to very fast generation of sequences of random numbers
+ * with immense periods.
+ * <p/>
+ * <p/>
  * This class was implemented using information from the following sources:
  * <p/>
  * http://www.javaprogrammingforums.com/blogs/helloworld922/11-complimentary-multiply-carry-better-way-generate-pseudo-random-numbers.html
@@ -43,6 +50,9 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double nextDouble() {
         return (((long) next(26) << 27) + next(27))
@@ -80,20 +90,33 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
         this.r = theR;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public long nextLong() {
         return ((long) next(32) << 32) + next(32);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean nextBoolean() {
         return nextDouble() > 0.5;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double nextFloat() {
         return (float) nextDouble();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int nextInt() {
         return (int) nextLong();

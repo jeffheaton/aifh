@@ -548,7 +548,12 @@ public class DataSet {
         return true;
     }
 
-
+    /**
+     * Extract and label an unsupervised training set.
+     *
+     * @param labelIndex The column index to use for the label.
+     * @return The training set.
+     */
     public List<BasicData> extractUnsupervisedLabeled(final int labelIndex) {
         List<BasicData> result = new ArrayList<BasicData>();
 
@@ -571,6 +576,15 @@ public class DataSet {
         return result;
     }
 
+    /**
+     * Extract a supervised training set.  This has both input and expected (ideal) output.
+     *
+     * @param inputBegin The first input column.
+     * @param inputCount The number of columns for input.
+     * @param idealBegin The first ideal column.
+     * @param idealCount The number of columns for ideal.
+     * @return
+     */
     public List<BasicData> extractSupervised(final int inputBegin, int inputCount, int idealBegin, int idealCount) {
         List<BasicData> result = new ArrayList<BasicData>();
 
@@ -593,6 +607,9 @@ public class DataSet {
 
     }
 
+    /**
+     * Delete all rows that contain unknown data.  An unknown column has a "?" value.
+     */
     public void deleteUnknowns() {
         int rowIndex = 0;
         while (rowIndex < this.data.size()) {
@@ -613,6 +630,11 @@ public class DataSet {
         }
     }
 
+    /**
+     * Delete the specified column.
+     *
+     * @param col The column to delete.
+     */
     public void deleteColumn(int col) {
         String[] headers2 = new String[headers.length - 1];
 
@@ -639,6 +661,14 @@ public class DataSet {
         }
     }
 
+    /**
+     * Replace all of the specified values in a column.
+     *
+     * @param columnIndex The column index.
+     * @param searchFor   What to search for.
+     * @param replaceWith What to replace with.
+     * @param others      What to fill in the others with that do not match.
+     */
     public void replaceColumn(final int columnIndex, final double searchFor, final double replaceWith, final double others) {
         for (Object[] row : this.data) {
             double d = convertNumeric(row, columnIndex);

@@ -1,11 +1,7 @@
 package com.heatonresearch.aifh.randomize;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/13/13
- * Time: 4:34 PM
- * To change this template use File | Settings | File Templates.
+ * Provides the ability for subclasses to generate normally distributed random numbers.
  */
 public abstract class AbstractBoxMuller extends AbstractGenerateRandom {
 
@@ -30,6 +26,9 @@ public abstract class AbstractBoxMuller extends AbstractGenerateRandom {
     private static final double SIGMA = 1;
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double nextGaussian() {
         double x1, x2, w, y1;

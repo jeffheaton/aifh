@@ -1,6 +1,9 @@
 package com.heatonresearch.aifh.randomize;
 
 /**
+ * The Mersenne twister is a pseudo random number generator developed in 1997 by Makoto Matsumoto and
+ * Takuji Nishimura that is based on a matrix linear recurrence over a finite binary field F2.
+ * <p/>
  * References:
  * <p/>
  * http://www.cs.gmu.edu/~sean/research/
@@ -117,16 +120,25 @@ public class MersenneTwisterGenerateRandom extends AbstractBoxMuller {
         return ((long) next(32) << 32) + next(32);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean nextBoolean() {
         return nextDouble() > 0.5;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double nextFloat() {
         return (float) nextDouble();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int nextInt() {
         return (int) nextLong();
