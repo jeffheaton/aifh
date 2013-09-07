@@ -40,7 +40,7 @@ public class LearnIrisAnneal extends SimpleLearn {
             RBFNetwork network = new RBFNetwork(4, 4, 2);
             network.reset(new MersenneTwisterGenerateRandom());
             ScoreFunction score = new ScoreRegressionData(trainingData);
-            TrainAnneal train = new TrainAnneal(true, network, score);
+            TrainAnneal train = new TrainAnneal(network, score);
             performIterations(train, 1000000, 0.01, true);
             query(network, trainingData);
 

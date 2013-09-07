@@ -16,20 +16,20 @@ import static org.junit.Assert.assertTrue;
 public class TestLearnAnneal {
     @Test
     public void testBasic() {
-        TrainAnneal anneal = new TrainAnneal(true, new TrialAlgo(), new TrialScore());
+        TrainAnneal anneal = new TrainAnneal(new TrialAlgo(), new TrialScore());
         assertEquals(400, anneal.coolingSchedule(), AIFH.DEFAULT_PRECISION);
     }
 
     @Test
     public void testGetStatus() {
-        TrainAnneal anneal = new TrainAnneal(true, new TrialAlgo(), new TrialScore());
+        TrainAnneal anneal = new TrainAnneal(new TrialAlgo(), new TrialScore());
         assertEquals("k=0,kMax=1000,t=0.0,prob=0.0", anneal.getStatus());
     }
 
     @Test
     public void testRandomize() {
         TrialAlgo algo = new TrialAlgo();
-        TrainAnneal anneal = new TrainAnneal(true, algo, new TrialScore());
+        TrainAnneal anneal = new TrainAnneal(algo, new TrialScore());
         anneal.performRandomize(algo.getLongTermMemory());
         anneal.finishTraining();
         assertEquals(0, algo.getLongTermMemory()[0], AIFH.DEFAULT_PRECISION);
@@ -37,7 +37,7 @@ public class TestLearnAnneal {
 
     @Test
     public void testIterations() {
-        TrainAnneal anneal = new TrainAnneal(true, new TrialAlgo(), new TrialScore(), 10, 400, 0.0001);
+        TrainAnneal anneal = new TrainAnneal(new TrialAlgo(), new TrialScore(), 10, 400, 0.0001);
         anneal.setCycles(10);
         assertEquals(400, anneal.coolingSchedule(), AIFH.DEFAULT_PRECISION);
 

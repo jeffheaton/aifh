@@ -36,7 +36,7 @@ public class TestTraining {
 
     @Test
     public void testAnneal() {
-        TrainAnneal anneal = new TrainAnneal(true, new TrialAlgo(), new TrialScore());
+        TrainAnneal anneal = new TrainAnneal(new TrialAlgo(), new TrialScore());
         performTest(anneal);
     }
 

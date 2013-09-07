@@ -507,6 +507,7 @@ public class DataSet {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object other) {
         if (!(other instanceof DataSet)) {
             return false;
