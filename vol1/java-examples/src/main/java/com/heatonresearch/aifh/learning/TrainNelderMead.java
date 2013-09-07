@@ -102,6 +102,9 @@ public class TrainNelderMead implements LearningAlgorithm {
         return this.converged;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getStatus() {
         return "";
@@ -163,7 +166,7 @@ public class TrainNelderMead implements LearningAlgorithm {
                 }
             }
             /*
-			 * Calculate PBAR, the centroid of the simplex vertices excepting
+             * Calculate PBAR, the centroid of the simplex vertices excepting
 			 * the vertex with Y value YNEWLO.
 			 */
             for (int i = 0; i < n; i++) {
@@ -358,10 +361,17 @@ public class TrainNelderMead implements LearningAlgorithm {
         System.arraycopy(this.trainedWeights, 0, this.algorithm.getLongTermMemory(), 0, this.trainedWeights.length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public double getLastError() {
         return this.lastError;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void finishTraining() {
 

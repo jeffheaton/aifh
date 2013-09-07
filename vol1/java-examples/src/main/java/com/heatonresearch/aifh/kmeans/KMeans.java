@@ -13,7 +13,17 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * KMeans Clustering.
+ * KMeans Clustering.  First, observations are each placed into random clusters.  There are two methods to do this:
+ * random and Forgy. Then we iterate through assignment and update steps.  Assignment places clusters in new clusters
+ * that they might be closer to.  Update updates the center of each cluster, called the centroid.  The center of each
+ * cluster is the mean of all observations in that cluster.
+ * <p/>
+ * This class uses a number of supporting objects:
+ * <p/>
+ * randomGeneration: The random number generator used for clustering.
+ * distanceMetric: The distance metric used to determine distance to centroids.
+ * <p/>
+ * http://en.wikipedia.org/wiki/Kmeans
  */
 public class KMeans {
 
@@ -37,6 +47,11 @@ public class KMeans {
      */
     private CalculateDistance distanceMetric = new EuclideanDistance();
 
+    /**
+     * Construct the object with K clusters.
+     *
+     * @param theK
+     */
     public KMeans(final int theK) {
         this.k = theK;
     }
@@ -66,6 +81,12 @@ public class KMeans {
         return dimensions;
     }
 
+    /**
+     * Init the observations to random clusters.  Use the "Init Random" algorithm. The Random Partition method first
+     * randomly assigns a cluster to each observation and then proceeds to the update step, thus computing the initial mean to be the centroid of the cluster's randomly assigned points.
+     *
+     * @param theObservations The observations to cluster.
+     */
     public void initRandom(final List<BasicData> theObservations) {
         int dimensions = findDimensions(theObservations);
 
@@ -104,6 +125,13 @@ public class KMeans {
 
     }
 
+    /**
+     * Init the observations to random clusters.  The Forgy method randomly chooses k observations from the
+     * data set and uses these as the initial means.
+     *
+     * @param theObservations The observations to cluster.
+     */
+
     public void initForgy(final List<BasicData> theObservations) {
         int dimensions = findDimensions(theObservations);
 
@@ -139,12 +167,20 @@ public class KMeans {
         updateStep();
     }
 
+    /**
+     * The update step updates the centroids.
+     */
     private void updateStep() {
         for (Cluster cluster : clusters) {
             cluster.calculateCenter();
         }
     }
 
+    /**
+     * The assignment step assigns observations to the nearest clusters.
+     *
+     * @return True, if we are done.  We are done if no observations moved clusters.
+     */
     private boolean assignmentStep() {
         boolean done = true;
 
@@ -170,6 +206,12 @@ public class KMeans {
         return done;
     }
 
+    /**
+     * Find the nearest cluster for an observation.
+     *
+     * @param observation The observation.
+     * @return The nearest cluster.
+     */
     public Cluster findNearestCluster(final double[] observation) {
         Cluster result = null;
         double resultDist = Double.POSITIVE_INFINITY;
@@ -185,6 +227,11 @@ public class KMeans {
         return result;
     }
 
+    /**
+     * Perform one iteration of assignment and update steps.
+     *
+     * @return True, if we are done, no new assignments.
+     */
     public boolean iteration() {
         if (this.clusters.size() == 0) {
             throw new AIFHError("Must call one of the init methods first.");
@@ -199,6 +246,12 @@ public class KMeans {
         return done;
     }
 
+    /**
+     * Perform the specified number of iterations. Stop early if we are done.
+     *
+     * @param maxIterations The max number of iterations.
+     * @return True, if we are done.
+     */
     public int iteration(int maxIterations) {
         int iterationCount = 1;
 
@@ -209,26 +262,48 @@ public class KMeans {
         return iterationCount;
     }
 
+    /**
+     * @return The random number generator used.
+     */
     public GenerateRandom getRandomGeneration() {
         return randomGeneration;
     }
 
+    /**
+     * Set the random number generator to use.
+     *
+     * @param randomGeneration The random generator to use.
+     */
     public void setRandomGeneration(final GenerateRandom randomGeneration) {
         this.randomGeneration = randomGeneration;
     }
 
+    /**
+     * @return The distance metric used.
+     */
     public CalculateDistance getDistanceMetric() {
         return distanceMetric;
     }
 
+    /**
+     * Set the distance metric to use.
+     *
+     * @param distanceMetric
+     */
     public void setDistanceMetric(final CalculateDistance distanceMetric) {
         this.distanceMetric = distanceMetric;
     }
 
+    /**
+     * @return The number of clusters.
+     */
     public int getK() {
         return k;
     }
 
+    /**
+     * @return The clusters.
+     */
     public List<Cluster> getClusters() {
         return clusters;
     }

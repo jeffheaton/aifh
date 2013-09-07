@@ -1,18 +1,23 @@
 package com.heatonresearch.aifh.general;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/27/13
- * Time: 5:28 AM
- * To change this template use File | Settings | File Templates.
+ * Some vector utilities.
  */
 public final class VectorUtil {
 
+    /**
+     * Private constructor.
+     */
     private VectorUtil() {
 
     }
 
+    /**
+     * Return the index that has the max value.
+     *
+     * @param a The vector.
+     * @return The index.
+     */
     public static int maxIndex(double[] a) {
         int result = -1;
         double max = Double.NEGATIVE_INFINITY;

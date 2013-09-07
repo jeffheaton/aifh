@@ -8,15 +8,29 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import java.util.Arrays;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/29/13
- * Time: 12:57 PM
- * To change this template use File | Settings | File Templates.
+ * A RBF network is an advanced machine learning algorithm that uses a series of RBF functions to perform
+ * regression.  It can also perform classification by means of one-of-n encoding.
+ * <p/>
+ * The long term memory of a RBF network is made up of the widths and centers of the RBF functions, as well as
+ * input and output weighting.
+ * <p/>
+ * http://en.wikipedia.org/wiki/RBF_network
  */
 public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm {
+
+    /**
+     * The input count.
+     */
     private final int inputCount;
+
+    /**
+     * The output count.
+     */
     private final int outputCount;
+
+    /**
+     * The RBF functions.
+     */
     private final FnRBF[] rbf;
     private final double[] longTermMemory;
     private final int indexInputWeights;
@@ -47,6 +61,10 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public double[] computeRegression(double[] input) {
 
         // first, compute the output values of each of the RBFs
@@ -85,23 +103,37 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public double[] getLongTermMemory() {
         return longTermMemory;
     }
 
+    /**
+     * Randomize the long term memory, with the specified random number generator.
+     *
+     * @param rnd
+     */
     public void reset(GenerateRandom rnd) {
         for (int i = 0; i < this.longTermMemory.length; i++) {
             this.longTermMemory[i] = rnd.nextDouble(-1, 1);
         }
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int computeClassification(final double[] input) {
         double[] output = computeRegression(input);
         return VectorUtil.maxIndex(output);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
