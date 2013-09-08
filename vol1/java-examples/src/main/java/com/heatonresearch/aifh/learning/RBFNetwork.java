@@ -50,13 +50,12 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
                 inputWeightCount + outputWeightCount + rbfParams];
 
         this.indexInputWeights = 0;
-        int indexRBFParams = inputWeightCount;
-        this.indexOutputWeights = indexRBFParams + rbfParams;
+        this.indexOutputWeights = inputWeightCount + rbfParams;
 
         this.rbf = new FnRBF[rbfCount];
 
         for (int i = 0; i < rbfCount; i++) {
-            int rbfIndex = indexRBFParams + ((inputCount + 1) * i);
+            int rbfIndex = inputWeightCount + ((inputCount + 1) * i);
             this.rbf[i] = new GaussianFunction(inputCount, this.longTermMemory, rbfIndex);
         }
     }
@@ -114,7 +113,7 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
     /**
      * Randomize the long term memory, with the specified random number generator.
      *
-     * @param rnd
+     * @param rnd A random number generator.
      */
     public void reset(GenerateRandom rnd) {
         for (int i = 0; i < this.longTermMemory.length; i++) {

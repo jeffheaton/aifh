@@ -3,21 +3,28 @@ package com.heatonresearch.aifh.examples.learning;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/30/13
- * Time: 2:05 PM
- * To change this template use File | Settings | File Templates.
+ * A simple polynomial function, of a specified order. Implemented as a regression algorithm.
+ * <p/>
+ * http://en.wikipedia.org/wiki/Polynomial
  */
 public class PolynomialFn implements RegressionAlgorithm {
-
+    /**
+     * The coefficients.  The first is the intercept.
+     */
     private final double[] longTermMemory;
 
+    /**
+     * Construct a polynomial function.
+     *
+     * @param polyOrder The order.
+     */
     public PolynomialFn(int polyOrder) {
         this.longTermMemory = new double[polyOrder];
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double[] computeRegression(final double[] input) {
         double x = input[0];
@@ -33,11 +40,17 @@ public class PolynomialFn implements RegressionAlgorithm {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double[] getLongTermMemory() {
         return longTermMemory;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();

@@ -15,5 +15,11 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.4'
+    gradleVersion = '1.7'
+}
+
+task(runCSVExample, group: 'examples', description: 'Chapter 1: Read a CSV file',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.intro.CSVExample'
+    classpath = sourceSets.main.runtimeClasspath
 }

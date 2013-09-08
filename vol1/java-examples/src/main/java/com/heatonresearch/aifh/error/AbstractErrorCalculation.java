@@ -29,11 +29,7 @@
 package com.heatonresearch.aifh.error;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/27/13
- * Time: 8:31 AM
- * To change this template use File | Settings | File Templates.
+ * An abstract error calculation class that provides some basic functionality.
  */
 public abstract class AbstractErrorCalculation implements ErrorCalculation {
 

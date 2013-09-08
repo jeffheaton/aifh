@@ -9,11 +9,7 @@ import com.heatonresearch.aifh.learning.score.ScoreRegressionData;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/13/13
- * Time: 9:02 PM
- * To change this template use File | Settings | File Templates.
+ * Learn the XOR function with a RBF Network trained by Greedy Random.
  */
 public class LearnXOR extends SimpleLearn {
 
@@ -28,7 +24,9 @@ public class LearnXOR extends SimpleLearn {
      */
     public static final double[][] XOR_IDEAL = {{0.0}, {1.0}, {1.0}, {0.0}};
 
-
+    /**
+     * Perform the example.
+     */
     public void process() {
         List<BasicData> trainingData = BasicData.convertArrays(XOR_INPUT, XOR_IDEAL);
         RBFNetwork network = new RBFNetwork(2, 5, 1);
@@ -38,6 +36,11 @@ public class LearnXOR extends SimpleLearn {
         query(network, trainingData);
     }
 
+    /**
+     * The main method.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         LearnXOR prg = new LearnXOR();
         prg.process();

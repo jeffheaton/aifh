@@ -8,21 +8,42 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/21/13
- * Time: 2:00 PM
- * To change this template use File | Settings | File Templates.
+ * Graphically evaluate various random number generators.
  */
 public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
-
+    /**
+     * The histogram pannel.
+     */
     private HistoPanel histogram = new HistoPanel();
+
+    /**
+     * The start button.
+     */
     private final JButton buttonStart;
+
+    /**
+     * The stop button.
+     */
     private final JButton buttonStop;
+
+    /**
+     * Have we been requested to stop.
+     */
     private boolean requestStop;
+
+    /**
+     * Uniform or normal.
+     */
     private final JComboBox comboNormal;
+
+    /**
+     * The method to use.
+     */
     private final JComboBox comboGenerator;
 
+    /**
+     * Create the window.
+     */
     public EvaluateRandom() {
         String[] distributions = {"Uniform", "Normal"};
         String[] generators = {"Java", "LCG", "Secure", "Multiply With Carry (MWC)", "Mersenne Twister"};
@@ -55,11 +76,19 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    /**
+     * The main method.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         EvaluateRandom frame = new EvaluateRandom();
         frame.setVisible(true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void actionPerformed(final ActionEvent actionEvent) {
         if (actionEvent.getSource() == this.buttonStart) {
@@ -74,6 +103,9 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
         this.requestStop = false;

@@ -33,11 +33,9 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/26/13
- * Time: 11:28 AM
- * To change this template use File | Settings | File Templates.
+ * This example program shows how to use discrete simulated annealing to find solutions to the Kapsack problem.
+ * <p/>
+ * http://en.wikipedia.org/wiki/Knapsack_problem
  */
 public class KnapsackAnneal extends DiscreteAnneal {
     /**
@@ -50,17 +48,49 @@ public class KnapsackAnneal extends DiscreteAnneal {
      */
     public static final int KNAPSACK_MAX_WEIGHT = 50;
 
+    /**
+     * The max weight for an item.
+     */
     public static final int ITEM_MAX_WEIGHT = 20;
+
+    /**
+     * The max value for an item.
+     */
     public static final int ITEM_MAX_VALUE = 1000;
 
+    /**
+     * The profit for each item.
+     */
     private final int[] profit = new int[NUM_ITEMS_TO_CHOOSE + 1];
+
+    /**
+     * The weight for each item.
+     */
     private final int[] weight = new int[NUM_ITEMS_TO_CHOOSE + 1];
 
+    /**
+     * The current items taken.
+     */
     private final boolean[] currentTaken;
+
+    /**
+     * A backup of the items taken, in case we need to revert.
+     */
     private final boolean[] backupTaken;
+
+    /**
+     * The best set of items so far.
+     */
     private final boolean[] bestTaken;
+
+    /**
+     * A random number generator.
+     */
     private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
+    /**
+     * Construct the object and init.
+     */
     public KnapsackAnneal() {
         super(1000, 40000, 0.001);
 
@@ -74,6 +104,9 @@ public class KnapsackAnneal extends DiscreteAnneal {
         balance();
     }
 
+    /**
+     * Run the example.
+     */
     public void run() {
 
         // Generate a random set of items.
@@ -96,21 +129,33 @@ public class KnapsackAnneal extends DiscreteAnneal {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void backupState() {
         System.arraycopy(this.currentTaken, 0, this.backupTaken, 0, this.currentTaken.length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void restoreState() {
         System.arraycopy(this.backupTaken, 0, this.currentTaken, 0, this.currentTaken.length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void foundNewBest() {
         System.arraycopy(this.currentTaken, 0, this.bestTaken, 0, this.currentTaken.length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void moveToNeighbor() {
 
@@ -141,6 +186,9 @@ public class KnapsackAnneal extends DiscreteAnneal {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double evaluate() {
         if (calculateTotalWeight() > KNAPSACK_MAX_WEIGHT) {
@@ -156,6 +204,9 @@ public class KnapsackAnneal extends DiscreteAnneal {
         return result;
     }
 
+    /**
+     * @return The total weight.
+     */
     private int calculateTotalWeight() {
         int result = 0;
         for (int i = 0; i < this.currentTaken.length; i++) {
@@ -166,6 +217,9 @@ public class KnapsackAnneal extends DiscreteAnneal {
         return result;
     }
 
+    /**
+     * Balance and keep below max weight.
+     */
     private void balance() {
         while (calculateTotalWeight() > KNAPSACK_MAX_WEIGHT) {
             int remove = rnd.nextInt(this.currentTaken.length);
@@ -173,6 +227,11 @@ public class KnapsackAnneal extends DiscreteAnneal {
         }
     }
 
+    /**
+     * The main method.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         KnapsackAnneal prg = new KnapsackAnneal();
         prg.run();

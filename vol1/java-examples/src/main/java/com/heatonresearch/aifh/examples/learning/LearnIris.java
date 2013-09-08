@@ -11,14 +11,13 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/30/13
- * Time: 5:48 AM
- * To change this template use File | Settings | File Templates.
+ * Learn the Iris data using an RBF network taught by the Greedy Random algorithm.
  */
 public class LearnIris extends SimpleLearn {
 
+    /**
+     * Run the example.
+     */
     public void process() {
         try {
             InputStream istream = this.getClass().getResourceAsStream("/iris.csv");

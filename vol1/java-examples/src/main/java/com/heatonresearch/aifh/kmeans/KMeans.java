@@ -50,7 +50,7 @@ public class KMeans {
     /**
      * Construct the object with K clusters.
      *
-     * @param theK
+     * @param theK The number of clusters (K).
      */
     public KMeans(final int theK) {
         this.k = theK;
@@ -288,7 +288,7 @@ public class KMeans {
     /**
      * Set the distance metric to use.
      *
-     * @param distanceMetric
+     * @param distanceMetric The distance metric.
      */
     public void setDistanceMetric(final CalculateDistance distanceMetric) {
         this.distanceMetric = distanceMetric;

@@ -6,11 +6,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/21/13
- * Time: 2:09 PM
- * To change this template use File | Settings | File Templates.
+ * A histogram panel.
  */
 public class HistoPanel extends JPanel {
 

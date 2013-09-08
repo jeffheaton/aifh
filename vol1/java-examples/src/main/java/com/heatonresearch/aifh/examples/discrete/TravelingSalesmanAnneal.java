@@ -37,29 +37,64 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 import java.util.Arrays;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/25/13
- * Time: 3:51 PM
- * To change this template use File | Settings | File Templates.
+ * Use simulated annealing with the Traveling Salesman Problem (TSP).  The cities are placed in a circle, so the
+ * ideal path is known.  Because the cities are in a circle they should be visited in order for the absolute
+ * optimal path.
+ * <p/>
+ * http://en.wikipedia.org/wiki/Traveling_salesman_problem
  */
 public class TravelingSalesmanAnneal extends DiscreteAnneal {
 
+    /**
+     * The size of the map.
+     */
     public static final double MAP_SIZE = 10;
+
+    /**
+     * The city count.
+     */
     public static final int CITY_COUNT = 50;
 
+    /**
+     * The distance calculator.
+     */
     private final CalculateDistance distance = new EuclideanDistance();
+
+    /**
+     * The city coordinates.
+     */
     private double[][] cities;
+
+    /**
+     * A random number generator.
+     */
     private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
+
+    /**
+     * The current path being evaluated.
+     */
     private int[] currentPath;
+
+    /**
+     * The backup path, in case the current is not kept.
+     */
     private int[] backupPath;
+
+    /**
+     * The best path yet.
+     */
     private int[] bestPath;
 
-
+    /**
+     * Construct the object.
+     */
     public TravelingSalesmanAnneal() {
         super(1000, 400, 0.001);
     }
 
+    /**
+     * Run the example.
+     */
     public void run() {
         this.cities = new double[CITY_COUNT][2];
         this.currentPath = new int[CITY_COUNT];
@@ -102,21 +137,33 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
         System.out.println(Arrays.toString(this.bestPath));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void backupState() {
         System.arraycopy(this.currentPath, 0, this.backupPath, 0, this.currentPath.length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void restoreState() {
         System.arraycopy(this.backupPath, 0, this.currentPath, 0, this.currentPath.length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void foundNewBest() {
         System.arraycopy(this.currentPath, 0, this.bestPath, 0, this.currentPath.length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void moveToNeighbor() {
 
@@ -136,6 +183,9 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
         this.currentPath[pt2] = temp;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double evaluate() {
         double result = 0;
@@ -149,6 +199,11 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
         return result;
     }
 
+    /**
+     * The main function.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         TravelingSalesmanAnneal prg = new TravelingSalesmanAnneal();
         prg.run();

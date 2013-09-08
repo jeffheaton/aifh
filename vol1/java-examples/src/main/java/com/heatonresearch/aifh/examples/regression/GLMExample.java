@@ -11,13 +11,13 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/20/13
- * Time: 6:16 AM
- * To change this template use File | Settings | File Templates.
+ * Example that uses a GLM to predict the probability of breast cancer.
  */
 public class GLMExample extends SimpleLearn {
+
+    /**
+     * Run the example.
+     */
     public void process() {
         try {
             InputStream istream = this.getClass().getResourceAsStream("/breast-cancer-wisconsin.csv");
@@ -52,6 +52,11 @@ public class GLMExample extends SimpleLearn {
 
     }
 
+    /**
+     * The main method.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         GLMExample prg = new GLMExample();
         prg.process();

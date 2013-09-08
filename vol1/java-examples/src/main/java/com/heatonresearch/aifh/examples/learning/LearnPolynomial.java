@@ -9,11 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/30/13
- * Time: 1:59 PM
- * To change this template use File | Settings | File Templates.
+ * Learn a simple polynomial with the Greedy Random algorithm.
  */
 public class LearnPolynomial extends SimpleLearn {
 
@@ -32,6 +28,9 @@ public class LearnPolynomial extends SimpleLearn {
     }
 
 
+    /**
+     * Run the example.
+     */
     public void process() {
         List<BasicData> trainingData = generateTrainingData();
         PolynomialFn poly = new PolynomialFn(3);
@@ -41,6 +40,11 @@ public class LearnPolynomial extends SimpleLearn {
         System.out.println(poly.toString());
     }
 
+    /**
+     * The main method.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         LearnPolynomial prg = new LearnPolynomial();
         prg.process();

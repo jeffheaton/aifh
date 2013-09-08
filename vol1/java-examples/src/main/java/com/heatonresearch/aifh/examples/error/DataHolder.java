@@ -3,32 +3,44 @@ package com.heatonresearch.aifh.examples.error;
 import com.heatonresearch.aifh.error.ErrorCalculation;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/27/13
- * Time: 3:58 PM
- * To change this template use File | Settings | File Templates.
+ * Simple data holder for actual and ideal.  Just used for this example.
  */
 public class DataHolder {
+
+    /**
+     * The actual data.
+     */
     private double[][] actual;
+
+    /**
+     * The ideal data, what the actual should have been.
+     */
     private double[][] ideal;
 
-    public double[][] getActual() {
-        return actual;
-    }
-
+    /**
+     * Set the actual data.
+     *
+     * @param actual The actual data.
+     */
     public void setActual(final double[][] actual) {
         this.actual = actual;
     }
 
-    public double[][] getIdeal() {
-        return ideal;
-    }
-
+    /**
+     * Set the ideal data.
+     *
+     * @param ideal The ideal data.
+     */
     public void setIdeal(final double[][] ideal) {
         this.ideal = ideal;
     }
 
+    /**
+     * Calculate the error with the specified error calculation.
+     *
+     * @param calc The error calculation.
+     * @return The error.
+     */
     public double calculateError(ErrorCalculation calc) {
         calc.clear();
 

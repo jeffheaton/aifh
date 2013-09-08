@@ -8,14 +8,18 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/30/13
- * Time: 5:33 AM
- * To change this template use File | Settings | File Templates.
+ * Base class for many of the iteration based examples.  It will loop over iterations and display stats.
  */
 public class SimpleLearn {
 
+    /**
+     * Perform training iterations.
+     *
+     * @param train          The learning algorithm.
+     * @param maxIterations  The max number of iterations.
+     * @param targetScore    The target score.
+     * @param shouldMinimize True, if we should minimize.
+     */
     public void performIterations(LearningAlgorithm train, int maxIterations, double targetScore, boolean shouldMinimize) {
         int iterationNumber = 0;
         boolean done = false;
@@ -42,9 +46,15 @@ public class SimpleLearn {
         System.out.println("Final score: " + train.getLastError());
     }
 
-    public static void query(RegressionAlgorithm network, List<BasicData> theTrainingData) {
+    /**
+     * Query a regression algorithm and see how close it matches the training data.
+     *
+     * @param alg             The algorithm to evaluate.
+     * @param theTrainingData The training data.
+     */
+    public static void query(RegressionAlgorithm alg, List<BasicData> theTrainingData) {
         for (BasicData data : theTrainingData) {
-            double[] output = network.computeRegression(data.getInput());
+            double[] output = alg.computeRegression(data.getInput());
             System.out.println(Arrays.toString(data.getInput()) + " -> " + Arrays.toString(output) + ", Ideal: " + Arrays.toString(data.getIdeal()));
         }
     }

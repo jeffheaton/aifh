@@ -10,21 +10,52 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 import java.text.NumberFormat;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/27/13
- * Time: 3:54 PM
- * To change this template use File | Settings | File Templates.
+ * Example that demonstrates how to calculate errors.  This allows you to see how different types of distortion affect
+ * the final error for various error calculation methods.
+ * <p/>
+ * Type     ESS			MSE		RMS
+ * Small	1252		0.01	0.1
+ * Medium	31317		0.251	0.501
+ * Large	125269		1.002	1.001
+ * Huge	    12526940	100.216	10.011
  */
 public class EvaluateErrors {
-
+    /**
+     * The random seed to use.
+     */
     public static final int SEED = 1420;
+
+    /**
+     * The number of rows.
+     */
     public static final int ROWS = 10000;
+
+    /**
+     * The number of columns.
+     */
     public static final int COLS = 25;
+
+    /**
+     * The low value.
+     */
     public static final double LOW = -1;
+
+    /**
+     * The high value.
+     */
     public static final double HIGH = 1;
 
-
+    /**
+     * Generate random data.
+     *
+     * @param seed    The seed to use.
+     * @param rows    The number of rows to generate.
+     * @param cols    The number of columns to generate.
+     * @param low     The low value.
+     * @param high    The high value.
+     * @param distort The distortion factor.
+     * @return The data set.
+     */
     public DataHolder generate(int seed, int rows, int cols, double low, double high, double distort) {
         GenerateRandom rnd = new MersenneTwisterGenerateRandom(seed);
 
@@ -44,27 +75,9 @@ public class EvaluateErrors {
         return result;
     }
 
-    public DataHolder generateDominated(int seed, int rows, int cols, double low, double high, double distort) {
-        GenerateRandom rnd = new MersenneTwisterGenerateRandom(seed);
-
-        double[][] ideal = new double[rows][cols];
-        double[][] actual = new double[rows][cols];
-
-        for (int row = 0; row < rows; row++) {
-            actual[row][0] = ideal[row][0] + (rnd.nextGaussian() * distort);
-
-            for (int col = 1; col < cols; col++) {
-                ideal[row][col] = rnd.nextDouble(low, high);
-                actual[row][col] = ideal[row][col];
-            }
-        }
-
-        DataHolder result = new DataHolder();
-        result.setActual(actual);
-        result.setIdeal(ideal);
-        return result;
-    }
-
+    /**
+     * Run the example.
+     */
     public void process() {
 
         NumberFormat nf = NumberFormat.getInstance();
@@ -102,6 +115,11 @@ public class EvaluateErrors {
 
     }
 
+    /**
+     * The main method.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         EvaluateErrors prg = new EvaluateErrors();
         prg.process();

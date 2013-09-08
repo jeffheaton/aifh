@@ -4,14 +4,15 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/22/13
- * Time: 8:40 AM
- * To change this template use File | Settings | File Templates.
+ * Approximate PI by Monte Carlo.
+ * <p/>
+ * http://en.wikipedia.org/wiki/Monte_Carlo_method
  */
 public class EvaluatePI {
 
+    /**
+     * Random number generator.
+     */
     private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
     public void process() {
@@ -21,13 +22,14 @@ public class EvaluatePI {
 
         double x, y;
 
-        for (; ; ) {
-
+        for (int i = 0; i < 1000000; i++) {
+            // pick a point at random.
             x = rnd.nextDouble();
             y = rnd.nextDouble();
 
             tries++;
 
+            // was the point inside of a circle?
             if (x * x + y * y <= 1)
                 success++;
 
@@ -41,6 +43,11 @@ public class EvaluatePI {
         }
     }
 
+    /**
+     * The main method.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         EvaluatePI program = new EvaluatePI();
         program.process();

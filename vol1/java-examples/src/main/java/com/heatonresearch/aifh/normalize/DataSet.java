@@ -583,7 +583,7 @@ public class DataSet {
      * @param inputCount The number of columns for input.
      * @param idealBegin The first ideal column.
      * @param idealCount The number of columns for ideal.
-     * @return
+     * @return The training set.
      */
     public List<BasicData> extractSupervised(final int inputBegin, int inputCount, int idealBegin, int idealCount) {
         List<BasicData> result = new ArrayList<BasicData>();

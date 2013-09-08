@@ -13,13 +13,12 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/24/13
- * Time: 7:49 PM
- * To change this template use File | Settings | File Templates.
+ * Use a RBF network to learn the Iris data set, trained by hill climbing.
  */
 public class LearnIrisClimb extends SimpleLearn {
+    /**
+     * Run the example.
+     */
     public void process() {
         try {
             InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
@@ -51,6 +50,11 @@ public class LearnIrisClimb extends SimpleLearn {
 
     }
 
+    /**
+     * The main method.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         LearnIrisClimb prg = new LearnIrisClimb();
         prg.process();

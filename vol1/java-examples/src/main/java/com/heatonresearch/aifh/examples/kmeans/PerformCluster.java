@@ -5,36 +5,47 @@ import com.heatonresearch.aifh.kmeans.Cluster;
 import com.heatonresearch.aifh.kmeans.KMeans;
 import com.heatonresearch.aifh.normalize.DataSet;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/13/13
- * Time: 9:02 PM
- * To change this template use File | Settings | File Templates.
+ * Try to cluster the Iris data set.
  */
 public class PerformCluster {
+
+    /**
+     * The main method.
+     *
+     * @param args Not used.
+     */
     public static void main(String[] args) {
-        if (args.length > 2 || args.length < 1) {
-            System.out.println("Usage:\nPerformCluster [input file] [optional label field #]");
-        }
+        PerformCluster prg = new PerformCluster();
+        prg.run();
+    }
 
+    /**
+     * Perform the example.
+     */
+    public void run() {
+        try {
+            InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
+            DataSet ds = DataSet.load(istream);
+            istream.close();
+            List<BasicData> observations = ds.extractUnsupervisedLabeled(4);
+            KMeans kmeans = new KMeans(3);
+            kmeans.initForgy(observations);
+            int iterations = kmeans.iteration(1000);
+            System.out.println("Finished after " + iterations + " iterations.");
 
-        DataSet ds = DataSet.load(new File("/Users/jheaton/temp/iris.csv"));
-        List<BasicData> observations = ds.extractUnsupervisedLabeled(4);
-        KMeans kmeans = new KMeans(3);
-        kmeans.initForgy(observations);
-        int iterations = kmeans.iteration(1000);
-        System.out.println("Finished after " + iterations + " iterations.");
-
-        for (int i = 0; i < kmeans.getK(); i++) {
-            Cluster cluster = kmeans.getClusters().get(i);
-            System.out.println("* * * Cluster #" + i);
-            for (BasicData d : cluster.getObservations()) {
-                System.out.println(d.toString());
+            for (int i = 0; i < kmeans.getK(); i++) {
+                Cluster cluster = kmeans.getClusters().get(i);
+                System.out.println("* * * Cluster #" + i);
+                for (BasicData d : cluster.getObservations()) {
+                    System.out.println(d.toString());
+                }
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }
