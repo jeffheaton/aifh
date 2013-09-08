@@ -32,12 +32,14 @@ package com.heatonresearch.aifh.learning.score;
 import com.heatonresearch.aifh.learning.MachineLearningAlgorithm;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/30/13
- * Time: 2:12 PM
- * To change this template use File | Settings | File Templates.
+ * A score function evaluates a Machine Learning algorithm.  We will seek to either minimize or maximize the score.
  */
 public interface ScoreFunction {
+    /**
+     * Calculate a score for the specified algorithm.
+     *
+     * @param algo The algorithm to score.
+     * @return The score.
+     */
     double calculateScore(MachineLearningAlgorithm algo);
 }

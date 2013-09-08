@@ -224,7 +224,7 @@ public class OCRExample extends JFrame {
         sampleData.setLetter(letter.charAt(0));
 
         for (i = 0; i < this.letterListModel.size(); i++) {
-            final Comparable str = (Comparable) this.letterListModel
+            final String str = (String) this.letterListModel
                     .getElementAt(i);
             if (str.equals(letter)) {
                 JOptionPane.showMessageDialog(this,
@@ -233,7 +233,8 @@ public class OCRExample extends JFrame {
                 return;
             }
 
-            if (str.compareTo(sampleData) > 0) {
+            String l = "" + sampleData.getLetter();
+            if (str.compareTo(l) > 0) {
                 this.letterListModel.add(i, sampleData);
                 return;
             }

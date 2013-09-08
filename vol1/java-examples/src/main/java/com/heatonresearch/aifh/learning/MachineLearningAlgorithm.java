@@ -30,11 +30,7 @@
 package com.heatonresearch.aifh.learning;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/30/13
- * Time: 2:08 PM
- * To change this template use File | Settings | File Templates.
+ * Interface that describes a basic Machine Learning Algorithm, with long-term memory.
  */
 public interface MachineLearningAlgorithm {
     double[] getLongTermMemory();

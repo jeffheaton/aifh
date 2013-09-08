@@ -38,21 +38,32 @@ import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/30/13
- * Time: 2:13 PM
- * To change this template use File | Settings | File Templates.
+ * Score regression data.  The score is done using an error calculation method.
  */
 public class ScoreRegressionData implements ScoreFunction {
 
+    /**
+     * The error calculator.
+     */
     private ErrorCalculation errorCalc = new ErrorCalculationMSE();
+
+    /**
+     * The training data.
+     */
     private final List<BasicData> trainingData;
 
+    /**
+     * Construct the function.
+     *
+     * @param theTrainingData The training data.
+     */
     public ScoreRegressionData(List<BasicData> theTrainingData) {
         this.trainingData = theTrainingData;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double calculateScore(MachineLearningAlgorithm algo) {
         RegressionAlgorithm ralgo = (RegressionAlgorithm) algo;
@@ -66,14 +77,25 @@ public class ScoreRegressionData implements ScoreFunction {
         return errorCalc.calculate();
     }
 
+    /**
+     * @return The error calculation method.
+     */
     public ErrorCalculation getErrorCalc() {
         return errorCalc;
     }
 
+    /**
+     * Set the error calculation method.
+     *
+     * @param errorCalc The error calculation method.
+     */
     public void setErrorCalc(final ErrorCalculation errorCalc) {
         this.errorCalc = errorCalc;
     }
 
+    /**
+     * @return The training data.
+     */
     public List<BasicData> getTrainingData() {
         return trainingData;
     }

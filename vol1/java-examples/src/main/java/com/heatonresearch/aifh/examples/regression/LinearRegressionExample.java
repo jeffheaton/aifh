@@ -39,11 +39,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/1/13
- * Time: 5:08 AM
- * To change this template use File | Settings | File Templates.
+ * Linear regression example.
  */
 public class LinearRegressionExample extends SimpleLearn {
     public void process() {

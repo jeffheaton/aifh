@@ -36,20 +36,27 @@ import com.heatonresearch.aifh.learning.MachineLearningAlgorithm;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/30/13
- * Time: 3:48 PM
- * To change this template use File | Settings | File Templates.
+ * Score classification data. The score is the percentage cases that are wrong.
+ * There is no "partial credit" or closeness.  A case is either right or wrong.
  */
 public class ScoreClassificationData implements ScoreFunction {
-
+    /**
+     * The training data.
+     */
     private final List<BasicData> trainingData;
 
+    /**
+     * Construct the score function.
+     *
+     * @param theTrainingData The training data.
+     */
     public ScoreClassificationData(List<BasicData> theTrainingData) {
         this.trainingData = theTrainingData;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double calculateScore(final MachineLearningAlgorithm algo) {
         int incorrectCount = 0;
@@ -59,8 +66,7 @@ public class ScoreClassificationData implements ScoreFunction {
 
         for (BasicData aTrainingData : this.trainingData) {
             totalCount++;
-            BasicData pair = aTrainingData;
-            int output = ralgo.computeClassification(pair.getInput());
+            int output = ralgo.computeClassification(aTrainingData.getInput());
 
             if (output != aTrainingData.getIdeal()[0]) {
                 incorrectCount++;

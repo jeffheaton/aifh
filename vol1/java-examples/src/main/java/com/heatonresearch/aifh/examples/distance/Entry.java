@@ -158,6 +158,7 @@ public class Entry extends JPanel {
             this.sample.repaint();
             repaint();
         } catch (final InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
