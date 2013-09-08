@@ -8,19 +8,43 @@ import com.heatonresearch.aifh.general.data.BasicData;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/19/13
- * Time: 8:01 AM
- * To change this template use File | Settings | File Templates.
+ * Train a GLM using iteratively reweighted least squares.
+ * <p/>
+ * http://en.wikipedia.org/wiki/Iteratively_reweighted_least_squares
  */
 public class TrainReweightLeastSquares {
+
+    /**
+     * The GLM to train.
+     */
     private final MultipleLinearRegression algorithm;
+
+    /**
+     * The training data.
+     */
     private final List<BasicData> trainingData;
+
+    /**
+     * The last error.
+     */
     private double error;
+
+    /**
+     * The Hessian matrix.
+     */
     private final double[][] hessian;
+
+    /**
+     * The gradient matrix.
+     */
     private final Matrix gradient;
 
+    /**
+     * Construct the trainer.
+     *
+     * @param theAlgorithm    The GLM to train.
+     * @param theTrainingData The training data.
+     */
     public TrainReweightLeastSquares(MultipleLinearRegression theAlgorithm, List<BasicData> theTrainingData) {
         this.algorithm = theAlgorithm;
         this.trainingData = theTrainingData;
@@ -28,6 +52,9 @@ public class TrainReweightLeastSquares {
         this.hessian = new double[theAlgorithm.getLongTermMemory().length][theAlgorithm.getLongTermMemory().length];
     }
 
+    /**
+     * Perform one iteration of training.
+     */
     public void iteration() {
         int rowCount = this.trainingData.size();
         int coeffCount = this.algorithm.getLongTermMemory().length;
@@ -94,6 +121,9 @@ public class TrainReweightLeastSquares {
         this.error = max;
     }
 
+    /**
+     * @return The last error.
+     */
     public double getError() {
         return this.error;
     }

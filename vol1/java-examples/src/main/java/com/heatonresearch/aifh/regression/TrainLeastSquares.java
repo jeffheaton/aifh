@@ -9,28 +9,65 @@ import com.heatonresearch.aifh.general.data.BasicData;
 import java.util.List;
 
 /**
+ * Train a Linear Regression with Least Squares.  This will only work if you use the default identity function.
+ * <p/>
+ * <p/>
  * Note:, if you get this error message.
  * java.lang.RuntimeException: Matrix is rank deficient.
  * It means that a linear regression cannot be fit to your data.
  */
 public class TrainLeastSquares {
-
+    /**
+     * The linear regression object we are training.
+     */
     private final MultipleLinearRegression algorithm;
+
+    /**
+     * The training data.
+     */
     private final List<BasicData> trainingData;
+
+    /**
+     * Total sum of squares.
+     */
     private double sst;
+
+    /**
+     * Sum of squares for error.
+     */
     private double sse;
+
+    /**
+     * An error calculation method.
+     */
     private final ErrorCalculation errorCalculation = new ErrorCalculationMSE();
+
+    /**
+     * The last error.
+     */
     private double error;
 
+    /**
+     * Construct the trainer.
+     *
+     * @param theAlgorithm    The algorithm to train.
+     * @param theTrainingData The training data.
+     */
     public TrainLeastSquares(MultipleLinearRegression theAlgorithm, List<BasicData> theTrainingData) {
         this.algorithm = theAlgorithm;
         this.trainingData = theTrainingData;
     }
 
+    /**
+     * @return The R squared value.  The coefficient of determination.
+     */
     public double getR2() {
         return 1.0 - this.sse / this.sst;
     }
 
+    /**
+     * Train.  Single iteration.
+     */
     public void iteration() {
         int rowCount = trainingData.size();
         int inputColCount = trainingData.get(0).getInput().length;
@@ -79,6 +116,9 @@ public class TrainLeastSquares {
         this.error = this.errorCalculation.calculate();
     }
 
+    /**
+     * @return The current error.
+     */
     public double getError() {
         return this.error;
     }
