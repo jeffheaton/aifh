@@ -26,6 +26,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
+
 package com.heatonresearch.aifh.examples.discrete;
 
 import com.heatonresearch.aifh.discrete.DiscreteAnneal;
