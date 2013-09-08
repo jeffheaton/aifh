@@ -8,11 +8,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/26/13
- * Time: 5:08 PM
- * To change this template use File | Settings | File Templates.
+ * Test basic data.
  */
 public class TestBasicData {
 

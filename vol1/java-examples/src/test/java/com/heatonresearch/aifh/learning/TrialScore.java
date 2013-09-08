@@ -3,11 +3,7 @@ package com.heatonresearch.aifh.learning;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/31/13
- * Time: 11:55 AM
- * To change this template use File | Settings | File Templates.
+ * A trial score function.
  */
 public class TrialScore implements ScoreFunction {
     @Override

@@ -7,11 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/27/13
- * Time: 4:34 AM
- * To change this template use File | Settings | File Templates.
+ * Test the Logit link function.
  */
 public class TestLogitLinkFunction {
     @Test

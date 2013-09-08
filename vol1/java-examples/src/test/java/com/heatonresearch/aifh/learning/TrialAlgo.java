@@ -1,11 +1,7 @@
 package com.heatonresearch.aifh.learning;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/31/13
- * Time: 11:54 AM
- * To change this template use File | Settings | File Templates.
+ * A trial algorithm.
  */
 public class TrialAlgo implements MachineLearningAlgorithm {
 

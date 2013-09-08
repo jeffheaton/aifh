@@ -10,11 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/27/13
- * Time: 5:31 AM
- * To change this template use File | Settings | File Templates.
+ * Test the vector utility.
  */
 public class TestVectorUtil {
     @Test

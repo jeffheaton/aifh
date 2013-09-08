@@ -8,11 +8,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/27/13
- * Time: 4:44 AM
- * To change this template use File | Settings | File Templates.
+ * Test the RBF network.
  */
 public class TestRBFNetwork {
 

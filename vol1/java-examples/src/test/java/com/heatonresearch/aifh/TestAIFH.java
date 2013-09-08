@@ -8,11 +8,7 @@ import java.lang.reflect.Modifier;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/27/13
- * Time: 5:45 AM
- * To change this template use File | Settings | File Templates.
+ * Test the main AIFH class.
  */
 public class TestAIFH {
     @Test

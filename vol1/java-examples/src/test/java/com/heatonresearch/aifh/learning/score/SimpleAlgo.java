@@ -4,11 +4,7 @@ import com.heatonresearch.aifh.learning.ClassificationAlgorithm;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/27/13
- * Time: 6:44 AM
- * To change this template use File | Settings | File Templates.
+ * Simple learning algorithm to test.
  */
 public class SimpleAlgo implements RegressionAlgorithm, ClassificationAlgorithm {
     private final double[] cannedResults;

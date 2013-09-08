@@ -6,11 +6,7 @@ import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/12/13
- * Time: 9:28 PM
- * To change this template use File | Settings | File Templates.
+ * Test the cluster class.
  */
 public class TestCluster {
 

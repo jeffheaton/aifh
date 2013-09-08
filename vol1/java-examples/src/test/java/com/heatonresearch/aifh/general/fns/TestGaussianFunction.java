@@ -6,11 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/26/13
- * Time: 8:40 PM
- * To change this template use File | Settings | File Templates.
+ * Test the Gaussian function.
  */
 public class TestGaussianFunction {
     @Test

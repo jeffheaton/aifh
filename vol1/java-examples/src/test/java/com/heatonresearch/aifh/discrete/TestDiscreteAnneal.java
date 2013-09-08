@@ -8,11 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/26/13
- * Time: 4:08 PM
- * To change this template use File | Settings | File Templates.
+ * Test the discrete anneal subclass.
  */
 public class TestDiscreteAnneal {
     @Test

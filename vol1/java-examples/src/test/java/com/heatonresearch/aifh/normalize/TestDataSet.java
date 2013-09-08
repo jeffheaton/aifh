@@ -9,6 +9,9 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test the data set.
+ */
 public class TestDataSet {
 
     private DataSet generateTestData() {
@@ -33,7 +36,7 @@ public class TestDataSet {
         File filename = new File("deleteme.csv");
         DataSet.save(filename, ds);
         DataSet dataset2 = DataSet.load(filename);
-        filename.delete();
+        assertTrue(filename.delete());
 
         assertTrue(ds.equals(dataset2));
         assertTrue(dataset2.equals(ds));

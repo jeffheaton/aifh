@@ -6,11 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 9/2/13
- * Time: 3:20 PM
- * To change this template use File | Settings | File Templates.
+ * Test LCR random.
  */
 public class TestLinearCongruentialRandom {
     public static final boolean[] BOOLEAN_TEST = {
@@ -119,72 +115,72 @@ public class TestLinearCongruentialRandom {
     @Test
     public void testGenerateBoolean() {
         LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
-        for (int i = 0; i < BOOLEAN_TEST.length; i++) {
+        for (final boolean aBOOLEAN_TEST : BOOLEAN_TEST) {
             boolean g = rnd.nextBoolean();
-            assertEquals(g, BOOLEAN_TEST[i]);
+            assertEquals(g, aBOOLEAN_TEST);
         }
     }
 
     @Test
     public void testDoubleRange() {
         LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
-        for (int i = 0; i < DOUBLE_RANGE_TEST.length; i++) {
+        for (final double aDOUBLE_RANGE_TEST : DOUBLE_RANGE_TEST) {
             double g = rnd.nextDouble(-1, 1);
-            assertEquals(g, DOUBLE_RANGE_TEST[i], AIFH.DEFAULT_PRECISION);
+            assertEquals(g, aDOUBLE_RANGE_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testDouble() {
         LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
-        for (int i = 0; i < DOUBLE_TEST.length; i++) {
+        for (final double aDOUBLE_TEST : DOUBLE_TEST) {
             double g = rnd.nextDouble();
-            assertEquals(g, DOUBLE_TEST[i], AIFH.DEFAULT_PRECISION);
+            assertEquals(g, aDOUBLE_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testLong() {
         LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
-        for (int i = 0; i < LONG_TEST.length; i++) {
+        for (final long aLONG_TEST : LONG_TEST) {
             long l = rnd.nextLong();
-            assertEquals(l, LONG_TEST[i], AIFH.DEFAULT_PRECISION);
+            assertEquals(l, aLONG_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testFloat() {
         LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
-        for (int i = 0; i < FLOAT_TEST.length; i++) {
+        for (final float aFLOAT_TEST : FLOAT_TEST) {
             float l = (float) rnd.nextFloat();
-            assertEquals(l, FLOAT_TEST[i], AIFH.DEFAULT_PRECISION);
+            assertEquals(l, aFLOAT_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testGaussianFloat() {
         LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
-        for (int i = 0; i < GAUSSIAN_TEST.length; i++) {
+        for (final double aGAUSSIAN_TEST : GAUSSIAN_TEST) {
             double g = rnd.nextGaussian();
-            assertEquals(g, GAUSSIAN_TEST[i], AIFH.DEFAULT_PRECISION);
+            assertEquals(g, aGAUSSIAN_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testInt() {
         LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
-        for (int i = 0; i < INT_TEST.length; i++) {
+        for (final int aINT_TEST : INT_TEST) {
             int g = rnd.nextInt();
-            assertEquals(g, INT_TEST[i], AIFH.DEFAULT_PRECISION);
+            assertEquals(g, aINT_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testIntRange() {
         LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
-        for (int i = 0; i < INT_RANGE_TEST.length; i++) {
+        for (final int aINT_RANGE_TEST : INT_RANGE_TEST) {
             double g = rnd.nextInt(0, 10);
-            assertEquals(g, INT_RANGE_TEST[i], AIFH.DEFAULT_PRECISION);
+            assertEquals(g, aINT_RANGE_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 

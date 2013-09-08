@@ -1,11 +1,7 @@
 package com.heatonresearch.aifh.randomize;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 9/2/13
- * Time: 5:20 PM
- * To change this template use File | Settings | File Templates.
+ * Test secure random.
  */
 public class TestSecureGenerateRandom {
 

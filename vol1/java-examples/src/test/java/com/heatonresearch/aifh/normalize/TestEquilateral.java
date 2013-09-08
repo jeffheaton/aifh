@@ -8,6 +8,9 @@ import org.junit.runners.JUnit4;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+/**
+ * Test equilateral.
+ */
 @RunWith(JUnit4.class)
 public class TestEquilateral {
 

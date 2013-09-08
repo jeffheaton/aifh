@@ -7,11 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/31/13
- * Time: 11:50 AM
- * To change this template use File | Settings | File Templates.
+ * Test anneal learning.
  */
 public class TestLearnAnneal {
     @Test

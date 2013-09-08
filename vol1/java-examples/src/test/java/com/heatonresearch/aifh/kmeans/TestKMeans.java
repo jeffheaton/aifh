@@ -12,11 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/13/13
- * Time: 8:26 AM
- * To change this template use File | Settings | File Templates.
+ * Test KMeans.
  */
 public class TestKMeans {
 

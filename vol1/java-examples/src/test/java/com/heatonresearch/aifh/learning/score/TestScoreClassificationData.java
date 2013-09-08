@@ -9,11 +9,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 8/27/13
- * Time: 6:56 AM
- * To change this template use File | Settings | File Templates.
+ * Test classification data.
  */
 public class TestScoreClassificationData {
     public static final double[][] TEST_INPUT = {

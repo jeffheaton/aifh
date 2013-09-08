@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test the Euclidean distance.
+ */
 public class TestEuclideanDistance {
 
     @Test

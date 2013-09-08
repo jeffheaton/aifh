@@ -10,11 +10,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 9/3/13
- * Time: 6:42 AM
- * To change this template use File | Settings | File Templates.
+ * Test reweight squares.
  */
 public class TestTrainReweightLeastSquares {
     @Test

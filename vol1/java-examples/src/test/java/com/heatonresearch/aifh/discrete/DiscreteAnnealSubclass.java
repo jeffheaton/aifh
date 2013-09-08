@@ -5,6 +5,9 @@ import com.heatonresearch.aifh.distance.EuclideanDistance;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
+/**
+ * A simple test subclass for discrete anneal.
+ */
 public class DiscreteAnnealSubclass extends DiscreteAnneal {
     public static final double[] IDEAL = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     private final double[] currentHolder = {10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0};

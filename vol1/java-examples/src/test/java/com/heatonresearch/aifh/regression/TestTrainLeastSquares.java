@@ -9,11 +9,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 7/31/13
- * Time: 9:27 PM
- * To change this template use File | Settings | File Templates.
+ * Test Least squares.
  */
 public class TestTrainLeastSquares {
     @Test
