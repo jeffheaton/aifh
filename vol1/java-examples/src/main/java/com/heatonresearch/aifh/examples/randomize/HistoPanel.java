@@ -75,18 +75,18 @@ public class HistoPanel extends JPanel {
         }
     }
 
-    public void reportNumber(double d) {
+    public void reportNumber(final double d) {
         if (lastUpdate == -1) {
             lastUpdate = System.currentTimeMillis();
             started = lastUpdate;
         }
 
-        long currentTime = System.currentTimeMillis();
+        final long currentTime = System.currentTimeMillis();
         generated++;
         this.low = Math.min(this.low, d);
         this.high = Math.max(this.high, d);
 
-        int boxNumber = (int) ((d * 300.0) + 1000.0);
+        final int boxNumber = (int) ((d * 300.0) + 1000.0);
         if (boxNumber >= 0 && boxNumber < this.boxes.length) {
             this.boxes[boxNumber]++;
         }
@@ -119,23 +119,23 @@ public class HistoPanel extends JPanel {
         this.uniformMode = uniformMode;
     }
 
-    public void paint(Graphics g) {
-        int height = this.getHeight();
-        int width = this.getWidth();
+    public void paint(final Graphics g) {
+        final int height = this.getHeight();
+        final int width = this.getWidth();
 
         g.clearRect(0, 0, width, height);
         long gen = generated;
         gen /= 1024;
 
-        int h = g.getFontMetrics().getHeight();
+        final int h = g.getFontMetrics().getHeight();
 
-        int barCount = width / BAR_WIDTH;
+        final int barCount = width / BAR_WIDTH;
         int mode = 0;
         for (final int boxe : this.boxes) {
             mode = Math.max(mode, boxe);
         }
 
-        int bar2box;
+        final int bar2box;
         int boxesIndex = 0;
 
         if (this.uniformMode) {
@@ -153,8 +153,8 @@ public class HistoPanel extends JPanel {
             barAmount /= bar2box;
 
 
-            double barRatio = (double) barAmount / mode;
-            int barHeight = (int) (barRatio * height);
+            final double barRatio = (double) barAmount / mode;
+            final int barHeight = (int) (barRatio * height);
 
             g.setColor(Color.CYAN);
             g.fillRect(i * BAR_WIDTH, height - barHeight, BAR_WIDTH, barHeight);

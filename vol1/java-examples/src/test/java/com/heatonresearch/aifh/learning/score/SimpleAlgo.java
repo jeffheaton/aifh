@@ -39,7 +39,7 @@ public class SimpleAlgo implements RegressionAlgorithm, ClassificationAlgorithm 
     private final double[] cannedResults;
     private int currentIndex = 0;
 
-    public SimpleAlgo(double[] theCannedResults) {
+    public SimpleAlgo(final double[] theCannedResults) {
         this.cannedResults = theCannedResults;
     }
 
@@ -50,7 +50,7 @@ public class SimpleAlgo implements RegressionAlgorithm, ClassificationAlgorithm 
 
     @Override
     public double[] computeRegression(final double[] input) {
-        double[] result = new double[1];
+        final double[] result = new double[1];
         result[0] = this.cannedResults[currentIndex++];
         return result;
     }

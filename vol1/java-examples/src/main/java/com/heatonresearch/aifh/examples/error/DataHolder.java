@@ -70,7 +70,7 @@ public class DataHolder {
      * @param calc The error calculation.
      * @return The error.
      */
-    public double calculateError(ErrorCalculation calc) {
+    public double calculateError(final ErrorCalculation calc) {
         calc.clear();
 
         for (int row = 0; row < this.actual.length; row++) {

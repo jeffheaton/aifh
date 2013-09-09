@@ -60,7 +60,7 @@ public class MultipleLinearRegression implements RegressionAlgorithm {
      */
     private Fn linkFunction = new IdentityLinkFunction();
 
-    public MultipleLinearRegression(int theInputCount) {
+    public MultipleLinearRegression(final int theInputCount) {
         this.longTermMemory = new double[theInputCount + 1];
     }
 
@@ -76,7 +76,7 @@ public class MultipleLinearRegression implements RegressionAlgorithm {
         }
         sum += this.longTermMemory[0];
 
-        double[] result = new double[1];
+        final double[] result = new double[1];
         result[0] = sum;
         result[0] = this.linkFunction.evaluate(result);
         return result;

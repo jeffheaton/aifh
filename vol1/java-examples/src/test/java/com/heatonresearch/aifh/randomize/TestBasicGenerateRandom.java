@@ -145,72 +145,72 @@ public class TestBasicGenerateRandom {
 
     @Test
     public void testGenerateBoolean() {
-        BasicGenerateRandom rnd = new BasicGenerateRandom(1);
+        final BasicGenerateRandom rnd = new BasicGenerateRandom(1);
         for (final boolean aBOOLEAN_TEST : BOOLEAN_TEST) {
-            boolean g = rnd.nextBoolean();
+            final boolean g = rnd.nextBoolean();
             assertEquals(g, aBOOLEAN_TEST);
         }
     }
 
     @Test
     public void testDoubleRange() {
-        BasicGenerateRandom rnd = new BasicGenerateRandom(1);
+        final BasicGenerateRandom rnd = new BasicGenerateRandom(1);
         for (final double aDOUBLE_RANGE_TEST : DOUBLE_RANGE_TEST) {
-            double g = rnd.nextDouble(-1, 1);
+            final double g = rnd.nextDouble(-1, 1);
             assertEquals(g, aDOUBLE_RANGE_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testDouble() {
-        BasicGenerateRandom rnd = new BasicGenerateRandom(1);
+        final BasicGenerateRandom rnd = new BasicGenerateRandom(1);
         for (final double aDOUBLE_TEST : DOUBLE_TEST) {
-            double g = rnd.nextDouble();
+            final double g = rnd.nextDouble();
             assertEquals(g, aDOUBLE_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testLong() {
-        BasicGenerateRandom rnd = new BasicGenerateRandom(1);
+        final BasicGenerateRandom rnd = new BasicGenerateRandom(1);
         for (final long aLONG_TEST : LONG_TEST) {
-            long l = rnd.nextLong();
+            final long l = rnd.nextLong();
             assertEquals(l, aLONG_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testFloat() {
-        BasicGenerateRandom rnd = new BasicGenerateRandom(1);
+        final BasicGenerateRandom rnd = new BasicGenerateRandom(1);
         for (final float aFLOAT_TEST : FLOAT_TEST) {
-            float l = (float) rnd.nextFloat();
+            final float l = (float) rnd.nextFloat();
             assertEquals(l, aFLOAT_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testGaussianFloat() {
-        BasicGenerateRandom rnd = new BasicGenerateRandom(1);
+        final BasicGenerateRandom rnd = new BasicGenerateRandom(1);
         for (final double aGAUSSIAN_TEST : GAUSSIAN_TEST) {
-            double g = rnd.nextGaussian();
+            final double g = rnd.nextGaussian();
             assertEquals(g, aGAUSSIAN_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testInt() {
-        BasicGenerateRandom rnd = new BasicGenerateRandom(1);
+        final BasicGenerateRandom rnd = new BasicGenerateRandom(1);
         for (final int aINT_TEST : INT_TEST) {
-            int g = rnd.nextInt();
+            final int g = rnd.nextInt();
             assertEquals(g, aINT_TEST, AIFH.DEFAULT_PRECISION);
         }
     }
 
     @Test
     public void testIntRange() {
-        BasicGenerateRandom rnd = new BasicGenerateRandom(1);
+        final BasicGenerateRandom rnd = new BasicGenerateRandom(1);
         for (final int aINT_RANGE_TEST : INT_RANGE_TEST) {
-            double g = rnd.nextInt(0, 10);
+            final double g = rnd.nextInt(0, 10);
             assertEquals(g, aINT_RANGE_TEST, AIFH.DEFAULT_PRECISION);
         }
     }

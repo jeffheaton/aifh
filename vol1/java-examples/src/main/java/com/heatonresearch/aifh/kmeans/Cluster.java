@@ -43,7 +43,7 @@ public class Cluster {
     /**
      * The observations in this cluster.
      */
-    private final List<BasicData> observations = new ArrayList<BasicData>();
+    private final List<BasicData> observations = new ArrayList<>();
 
     /**
      * The center of these observations.
@@ -55,7 +55,7 @@ public class Cluster {
      *
      * @param theDimensions The number of dimensions.
      */
-    public Cluster(int theDimensions) {
+    public Cluster(final int theDimensions) {
         this.center = new double[theDimensions];
     }
 
@@ -93,7 +93,7 @@ public class Cluster {
         }
 
         // Now sum up all of the observations to the center.
-        for (BasicData observation : this.observations) {
+        for (final BasicData observation : this.observations) {
             for (int i = 0; i < center.length; i++) {
                 this.center[i] += observation.getInput()[i];
             }
@@ -110,7 +110,7 @@ public class Cluster {
      */
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder();
         result.append("[Cluster: dimensions=");
         result.append(getDimensions());
         result.append(", observations=");

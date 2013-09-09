@@ -47,8 +47,8 @@ public class PerformCluster {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        PerformCluster prg = new PerformCluster();
+    public static void main(final String[] args) {
+        final PerformCluster prg = new PerformCluster();
         prg.run();
     }
 
@@ -57,19 +57,19 @@ public class PerformCluster {
      */
     public void run() {
         try {
-            InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
-            DataSet ds = DataSet.load(istream);
+            final InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
+            final DataSet ds = DataSet.load(istream);
             istream.close();
-            List<BasicData> observations = ds.extractUnsupervisedLabeled(4);
-            KMeans kmeans = new KMeans(3);
+            final List<BasicData> observations = ds.extractUnsupervisedLabeled(4);
+            final KMeans kmeans = new KMeans(3);
             kmeans.initForgy(observations);
-            int iterations = kmeans.iteration(1000);
+            final int iterations = kmeans.iteration(1000);
             System.out.println("Finished after " + iterations + " iterations.");
 
             for (int i = 0; i < kmeans.getK(); i++) {
-                Cluster cluster = kmeans.getClusters().get(i);
+                final Cluster cluster = kmeans.getClusters().get(i);
                 System.out.println("* * * Cluster #" + i);
-                for (BasicData d : cluster.getObservations()) {
+                for (final BasicData d : cluster.getObservations()) {
                     System.out.println(d.toString());
                 }
             }

@@ -44,18 +44,18 @@ import java.util.List;
 public class LinearRegressionExample extends SimpleLearn {
     public void process() {
         try {
-            InputStream istream = this.getClass().getResourceAsStream("/abalone.csv");
+            final InputStream istream = this.getClass().getResourceAsStream("/abalone.csv");
 
-            DataSet ds = DataSet.load(istream);
+            final DataSet ds = DataSet.load(istream);
             // The following ranges are setup for the Iris data set.  If you wish to normalize other files you will
             // need to modify the below function calls other files.
             ds.encodeOneOfN(0, 0, 1);
             istream.close();
 
-            List<BasicData> trainingData = ds.extractSupervised(0, 10, 10, 1);
+            final List<BasicData> trainingData = ds.extractSupervised(0, 10, 10, 1);
 
-            MultipleLinearRegression reg = new MultipleLinearRegression(10);
-            TrainLeastSquares train = new TrainLeastSquares(reg, trainingData);
+            final MultipleLinearRegression reg = new MultipleLinearRegression(10);
+            final TrainLeastSquares train = new TrainLeastSquares(reg, trainingData);
             train.iteration();
 
             query(reg, trainingData);
@@ -69,8 +69,8 @@ public class LinearRegressionExample extends SimpleLearn {
 
     }
 
-    public static void main(String[] args) {
-        LinearRegressionExample prg = new LinearRegressionExample();
+    public static void main(final String[] args) {
+        final LinearRegressionExample prg = new LinearRegressionExample();
         prg.process();
     }
 }

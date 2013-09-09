@@ -57,35 +57,35 @@ public class TestBasicData {
 
     @Test
     public void testUnSupervised() {
-        BasicData data = new BasicData(2);
+        final BasicData data = new BasicData(2);
         assertEquals(2, data.getInput().length);
         assertEquals(0, data.getIdeal().length);
     }
 
     @Test
     public void testSupervised() {
-        BasicData data = new BasicData(2, 1);
+        final BasicData data = new BasicData(2, 1);
         assertEquals(2, data.getInput().length);
         assertEquals(1, data.getIdeal().length);
     }
 
     @Test
     public void testLabel() {
-        BasicData data = new BasicData(2);
+        final BasicData data = new BasicData(2);
         data.setLabel("label");
         assertEquals("label", data.getLabel());
     }
 
     @Test
     public void testToString() {
-        BasicData data = new BasicData(2);
+        final BasicData data = new BasicData(2);
         assertEquals("[BasicData: input:[0.0, 0.0], ideal:[], label:null]", data.toString());
     }
 
     @Test
     public void testArray() {
-        double[] a = {1.0, 2.0};
-        BasicData d = new BasicData(a);
+        final double[] a = {1.0, 2.0};
+        final BasicData d = new BasicData(a);
         assertEquals(2, d.getInput().length);
         assertEquals(0, d.getIdeal().length);
 
@@ -96,7 +96,7 @@ public class TestBasicData {
 
     @Test
     public void testArrays() {
-        List<BasicData> list = BasicData.convertArrays(TEST_INPUT, TEST_IDEAL);
+        final List<BasicData> list = BasicData.convertArrays(TEST_INPUT, TEST_IDEAL);
         assertEquals(4, list.size());
         assertEquals(2, list.get(0).getInput().length);
         assertEquals(1, list.get(0).getIdeal().length);

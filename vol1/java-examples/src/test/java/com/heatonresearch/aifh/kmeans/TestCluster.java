@@ -41,17 +41,17 @@ public class TestCluster {
 
     @Test
     public void testDimensions() {
-        Cluster cluster = new Cluster(3);
+        final Cluster cluster = new Cluster(3);
         assertEquals(true, cluster.toString().length() > 0);
         assertEquals(3, cluster.getDimensions());
     }
 
     @Test
     public void testCenter() {
-        Cluster cluster = new Cluster(3);
-        double[] ob1 = {2.0, 10.0, 100.0};
-        double[] ob2 = {4.0, 20.0, 200.0};
-        double[] ob3 = {6.0, 30.0, 300.0};
+        final Cluster cluster = new Cluster(3);
+        final double[] ob1 = {2.0, 10.0, 100.0};
+        final double[] ob2 = {4.0, 20.0, 200.0};
+        final double[] ob3 = {6.0, 30.0, 300.0};
 
         cluster.getObservations().add(new BasicData(ob1));
         cluster.getObservations().add(new BasicData(ob2));

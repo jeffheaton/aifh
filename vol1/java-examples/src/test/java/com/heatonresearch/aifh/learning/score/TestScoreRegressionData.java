@@ -60,20 +60,20 @@ public class TestScoreRegressionData {
 
     @Test
     public void testGeneral() {
-        List<BasicData> training = BasicData.convertArrays(TEST_INPUT, TEST_IDEAL);
-        ScoreRegressionData score = new ScoreRegressionData(training);
-        ErrorCalculation ec = new ErrorCalculationMSE();
+        final List<BasicData> training = BasicData.convertArrays(TEST_INPUT, TEST_IDEAL);
+        final ScoreRegressionData score = new ScoreRegressionData(training);
+        final ErrorCalculation ec = new ErrorCalculationMSE();
         score.setErrorCalc(ec);
         assertEquals(ec, score.getErrorCalc());
     }
 
     @Test
     public void testRegression() {
-        double[] ACTUAL = {0.0, 1.0, 0.0, 0.0};
-        List<BasicData> training = BasicData.convertArrays(TEST_INPUT, TEST_IDEAL);
-        ScoreRegressionData score = new ScoreRegressionData(training);
-        SimpleAlgo simple = new SimpleAlgo(ACTUAL);
-        double s = score.calculateScore(simple);
+        final double[] ACTUAL = {0.0, 1.0, 0.0, 0.0};
+        final List<BasicData> training = BasicData.convertArrays(TEST_INPUT, TEST_IDEAL);
+        final ScoreRegressionData score = new ScoreRegressionData(training);
+        final SimpleAlgo simple = new SimpleAlgo(ACTUAL);
+        final double s = score.calculateScore(simple);
         assertEquals(training, score.getTrainingData());
         assertEquals(0.25, s, AIFH.DEFAULT_PRECISION);
     }

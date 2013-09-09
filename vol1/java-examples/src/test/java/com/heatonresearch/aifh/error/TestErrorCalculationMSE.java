@@ -40,8 +40,8 @@ public class TestErrorCalculationMSE {
 
     @Test
     public void testErrorCalc() {
-        ErrorCalculation calc = new ErrorCalculationMSE();
-        double result = ErrorTestingUtil.calculateError(
+        final ErrorCalculation calc = new ErrorCalculationMSE();
+        final double result = ErrorTestingUtil.calculateError(
                 calc,
                 ErrorTestingUtil.ACTUAL,
                 ErrorTestingUtil.IDEAL);

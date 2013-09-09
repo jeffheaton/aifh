@@ -130,7 +130,7 @@ public class TrainAnneal implements LearningAlgorithm {
      * @param theAlgorithm The algorithm to optimize.
      * @param theScore     The score function.
      */
-    public TrainAnneal(MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
+    public TrainAnneal(final MachineLearningAlgorithm theAlgorithm, final ScoreFunction theScore) {
         this(theAlgorithm, theScore, 1000, 400, 0.0001);
     }
 
@@ -143,7 +143,7 @@ public class TrainAnneal implements LearningAlgorithm {
      * @param theStartingTemperature The starting temperature.
      * @param theEndingTemperature   The ending temperature.
      */
-    public TrainAnneal(MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore, int theKMax, double theStartingTemperature, double theEndingTemperature) {
+    public TrainAnneal(final MachineLearningAlgorithm theAlgorithm, final ScoreFunction theScore, final int theKMax, final double theStartingTemperature, final double theEndingTemperature) {
         this.algorithm = theAlgorithm;
         this.score = theScore;
         this.kMax = theKMax;
@@ -161,7 +161,7 @@ public class TrainAnneal implements LearningAlgorithm {
      * @return The probability.
      */
     public double coolingSchedule() {
-        double ex = (double) k / (double) kMax;
+        final double ex = (double) k / (double) kMax;
         return this.startingTemperature * Math.pow(this.endingTemperature / this.startingTemperature, ex);
     }
 
@@ -170,21 +170,21 @@ public class TrainAnneal implements LearningAlgorithm {
      */
     @Override
     public void iteration() {
-        int len = this.algorithm.getLongTermMemory().length;
+        final int len = this.algorithm.getLongTermMemory().length;
         k++;
 
         this.currentTemperature = coolingSchedule();
 
         for (int cycle = 0; cycle < this.cycles; cycle++) {
             // backup current state
-            double[] oldState = new double[len];
+            final double[] oldState = new double[len];
             System.arraycopy(this.algorithm.getLongTermMemory(), 0, oldState, 0, len);
 
             // randomize the method
             performRandomize(this.algorithm.getLongTermMemory());
 
             // did we improve it?  Only keep the new method if it improved (greedy).
-            double trialError = score.calculateScore(this.algorithm);
+            final double trialError = score.calculateScore(this.algorithm);
 
             // was this iteration an improvement?  If so, always keep.
             boolean keep = false;
@@ -218,9 +218,9 @@ public class TrainAnneal implements LearningAlgorithm {
      *
      * @param memory The long term memory.
      */
-    public void performRandomize(double[] memory) {
+    public void performRandomize(final double[] memory) {
         for (int i = 0; i < memory.length; i++) {
-            double d = this.rnd.nextGaussian() * 3;
+            final double d = this.rnd.nextGaussian() * 3;
             memory[i] += d;
         }
     }
@@ -250,7 +250,7 @@ public class TrainAnneal implements LearningAlgorithm {
      * @param t        The current temperature.
      * @return The probability.
      */
-    public double calcProbability(double ecurrent, double enew, double t) {
+    public double calcProbability(final double ecurrent, final double enew, final double t) {
         return Math.exp(-(Math.abs(enew - ecurrent) / t));
     }
 
@@ -318,7 +318,7 @@ public class TrainAnneal implements LearningAlgorithm {
      */
     @Override
     public String getStatus() {
-        StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder();
         result.append("k=");
         result.append(this.k);
         result.append(",kMax=");

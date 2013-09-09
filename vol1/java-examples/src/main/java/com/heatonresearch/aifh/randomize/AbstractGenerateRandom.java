@@ -63,7 +63,7 @@ public abstract class AbstractGenerateRandom implements GenerateRandom {
      * {@inheritDoc}
      */
     @Override
-    public int nextInt(int range) {
+    public int nextInt(final int range) {
         return nextInt(0, range);
     }
 }

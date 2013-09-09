@@ -54,14 +54,14 @@ public class Equilateral implements Serializable {
      * Construct an equilateral matrix.
      *
      * @param count The number of sets, these will be the rows in the matrix.
-     * @param high  The high value for the outputs.
-     * @param low   The low value for the outputs.
+     * @param low   The high value for the outputs.
+     * @param high  The low value for the outputs.
      */
-    public Equilateral(final int count, final double high, final double low) {
+    public Equilateral(final int count, final double low, final double high) {
         if (count < MIN_EQ) {
             throw new AIFHError("Must have at least three classes.");
         }
-        this.matrix = equilat(count, high, low);
+        this.matrix = equilat(count, low, high);
     }
 
     /**
@@ -102,13 +102,13 @@ public class Equilateral implements Serializable {
      * Called internally to generate the matrix.
      *
      * @param n    The number of sets to generate for.
-     * @param high The high end of the range of values to generate.
-     * @param low  The low end of the range of values to generate.
+     * @param low  The high end of the range of values to generate.
+     * @param high The low end of the range of values to generate.
      * @return One row for each set, the columns are the activations for that
      *         set.
      */
     private double[][] equilat(final int n,
-                               final double high, final double low) {
+                               final double low, final double high) {
         double r, f;
         final double[][] result = new double[n][n - 1];
 

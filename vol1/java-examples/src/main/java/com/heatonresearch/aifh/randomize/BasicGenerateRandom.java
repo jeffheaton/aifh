@@ -46,7 +46,7 @@ public class BasicGenerateRandom extends AbstractGenerateRandom {
      *
      * @param seed The seed.
      */
-    public BasicGenerateRandom(long seed) {
+    public BasicGenerateRandom(final long seed) {
         this.rand = new Random(seed);
     }
 

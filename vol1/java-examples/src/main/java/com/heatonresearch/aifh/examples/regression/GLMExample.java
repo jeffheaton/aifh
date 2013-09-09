@@ -49,19 +49,19 @@ public class GLMExample extends SimpleLearn {
      */
     public void process() {
         try {
-            InputStream istream = this.getClass().getResourceAsStream("/breast-cancer-wisconsin.csv");
+            final InputStream istream = this.getClass().getResourceAsStream("/breast-cancer-wisconsin.csv");
 
-            DataSet ds = DataSet.load(istream);
+            final DataSet ds = DataSet.load(istream);
             istream.close();
 
             ds.deleteUnknowns();
             ds.deleteColumn(0);
             ds.replaceColumn(9, 4, 1, 0);
-            List<BasicData> trainingData = ds.extractSupervised(0, 9, 9, 1);
+            final List<BasicData> trainingData = ds.extractSupervised(0, 9, 9, 1);
 
-            MultipleLinearRegression reg = new MultipleLinearRegression(9);
+            final MultipleLinearRegression reg = new MultipleLinearRegression(9);
             reg.setLinkFunction(new LogitLinkFunction());
-            TrainReweightLeastSquares train = new TrainReweightLeastSquares(reg, trainingData);
+            final TrainReweightLeastSquares train = new TrainReweightLeastSquares(reg, trainingData);
 
             int iteration = 0;
             do {
@@ -86,8 +86,8 @@ public class GLMExample extends SimpleLearn {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        GLMExample prg = new GLMExample();
+    public static void main(final String[] args) {
+        final GLMExample prg = new GLMExample();
         prg.process();
     }
 }

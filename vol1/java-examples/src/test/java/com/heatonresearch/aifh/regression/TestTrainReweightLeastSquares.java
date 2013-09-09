@@ -45,14 +45,14 @@ public class TestTrainReweightLeastSquares {
     @Test
     public void testTrain() {
 
-        double[][] x = {
+        final double[][] x = {
                 {1},
                 {3},
                 {2},
                 {200},
                 {230}};
 
-        double[][] y = {
+        final double[][] y = {
                 {1.0},
                 {1.0},
                 {1.0},
@@ -61,15 +61,15 @@ public class TestTrainReweightLeastSquares {
         };
 
 
-        List<BasicData> trainingData = BasicData.convertArrays(x, y);
-        MultipleLinearRegression regression = new MultipleLinearRegression(1);
+        final List<BasicData> trainingData = BasicData.convertArrays(x, y);
+        final MultipleLinearRegression regression = new MultipleLinearRegression(1);
         regression.setLinkFunction(new LogitLinkFunction());
-        TrainReweightLeastSquares train = new TrainReweightLeastSquares(regression, trainingData);
+        final TrainReweightLeastSquares train = new TrainReweightLeastSquares(regression, trainingData);
         train.iteration();
         train.getError();
 
-        double[] input = {0};
-        double[] output = regression.computeRegression(input);
+        final double[] input = {0};
+        final double[] output = regression.computeRegression(input);
         assertEquals(0.6630762084733353, output[0], AIFH.DEFAULT_PRECISION);
     }
 }

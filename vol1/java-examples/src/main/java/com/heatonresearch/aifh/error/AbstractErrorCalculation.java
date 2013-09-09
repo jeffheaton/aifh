@@ -50,7 +50,7 @@ public abstract class AbstractErrorCalculation implements ErrorCalculation {
     @Override
     public void updateError(final double[] actual, final double[] ideal, final double significance) {
         for (int i = 0; i < actual.length; i++) {
-            double delta = (ideal[i] - actual[i]) * significance;
+            final double delta = (ideal[i] - actual[i]) * significance;
 
             this.globalError += delta * delta;
         }
@@ -64,7 +64,7 @@ public abstract class AbstractErrorCalculation implements ErrorCalculation {
     @Override
     public void updateError(final double actual, final double ideal) {
 
-        double delta = ideal - actual;
+        final double delta = ideal - actual;
 
         this.globalError += delta * delta;
 

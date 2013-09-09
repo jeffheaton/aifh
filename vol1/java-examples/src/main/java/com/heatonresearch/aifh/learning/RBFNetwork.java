@@ -65,16 +65,16 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
     private final int indexInputWeights;
     private final int indexOutputWeights;
 
-    public RBFNetwork(int theInputCount, int rbfCount, int theOutputCount) {
+    public RBFNetwork(final int theInputCount, final int rbfCount, final int theOutputCount) {
 
         this.inputCount = theInputCount;
         this.outputCount = theOutputCount;
 
         // calculate input and output weight counts
         // add 1 to output to account for an extra bias node
-        int inputWeightCount = inputCount * rbfCount;
-        int outputWeightCount = (rbfCount + 1) * outputCount;
-        int rbfParams = (inputCount + 1) * rbfCount;
+        final int inputWeightCount = inputCount * rbfCount;
+        final int outputWeightCount = (rbfCount + 1) * outputCount;
+        final int rbfParams = (inputCount + 1) * rbfCount;
         this.longTermMemory = new double[
                 inputWeightCount + outputWeightCount + rbfParams];
 
@@ -84,7 +84,7 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
         this.rbf = new FnRBF[rbfCount];
 
         for (int i = 0; i < rbfCount; i++) {
-            int rbfIndex = inputWeightCount + ((inputCount + 1) * i);
+            final int rbfIndex = inputWeightCount + ((inputCount + 1) * i);
             this.rbf[i] = new GaussianFunction(inputCount, this.longTermMemory, rbfIndex);
         }
     }
@@ -93,20 +93,20 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
      * {@inheritDoc}
      */
     @Override
-    public double[] computeRegression(double[] input) {
+    public double[] computeRegression(final double[] input) {
 
         // first, compute the output values of each of the RBFs
         // Add in one additional RBF output for bias (always set to one).
-        double[] rbfOutput = new double[rbf.length + 1];
+        final double[] rbfOutput = new double[rbf.length + 1];
         rbfOutput[rbfOutput.length - 1] = 1; // bias
 
         for (int rbfIndex = 0; rbfIndex < rbf.length; rbfIndex++) {
 
             // weight the input
-            double[] weightedInput = new double[input.length];
+            final double[] weightedInput = new double[input.length];
 
             for (int inputIndex = 0; inputIndex < input.length; inputIndex++) {
-                int memoryIndex = this.indexInputWeights + (rbfIndex * this.inputCount) + inputIndex;
+                final int memoryIndex = this.indexInputWeights + (rbfIndex * this.inputCount) + inputIndex;
                 weightedInput[inputIndex] = input[inputIndex] * this.longTermMemory[memoryIndex];
             }
 
@@ -115,13 +115,13 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
         }
 
         // second, calculate the output, which is the result of the weighted result of the RBF's.
-        double[] result = new double[this.outputCount];
+        final double[] result = new double[this.outputCount];
 
         for (int outputIndex = 0; outputIndex < result.length; outputIndex++) {
             double sum = 0;
             for (int rbfIndex = 0; rbfIndex < rbfOutput.length; rbfIndex++) {
                 // add 1 to rbf length for bias
-                int memoryIndex = this.indexOutputWeights + (outputIndex * (rbf.length + 1)) + rbfIndex;
+                final int memoryIndex = this.indexOutputWeights + (outputIndex * (rbf.length + 1)) + rbfIndex;
                 sum += rbfOutput[rbfIndex] * this.longTermMemory[memoryIndex];
             }
             result[outputIndex] = sum;
@@ -144,7 +144,7 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
      *
      * @param rnd A random number generator.
      */
-    public void reset(GenerateRandom rnd) {
+    public void reset(final GenerateRandom rnd) {
         for (int i = 0; i < this.longTermMemory.length; i++) {
             this.longTermMemory[i] = rnd.nextDouble(-1, 1);
         }
@@ -155,7 +155,7 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
      */
     @Override
     public int computeClassification(final double[] input) {
-        double[] output = computeRegression(input);
+        final double[] output = computeRegression(input);
         return VectorUtil.maxIndex(output);
     }
 
@@ -164,7 +164,7 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
      */
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder();
         result.append("[RBFNetwork:inputCount=");
         result.append(this.inputCount);
         result.append(",outputCount=");

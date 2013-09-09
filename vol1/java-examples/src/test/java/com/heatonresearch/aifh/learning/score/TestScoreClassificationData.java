@@ -58,11 +58,11 @@ public class TestScoreClassificationData {
 
     @Test
     public void testClassification() {
-        double[] ACTUAL = {0.0, 1.0, 0.0, 0.0};
-        List<BasicData> training = BasicData.convertArrays(TEST_INPUT, TEST_IDEAL);
-        ScoreClassificationData score = new ScoreClassificationData(training);
-        SimpleAlgo simple = new SimpleAlgo(ACTUAL);
-        double s = score.calculateScore(simple);
+        final double[] ACTUAL = {0.0, 1.0, 0.0, 0.0};
+        final List<BasicData> training = BasicData.convertArrays(TEST_INPUT, TEST_IDEAL);
+        final ScoreClassificationData score = new ScoreClassificationData(training);
+        final SimpleAlgo simple = new SimpleAlgo(ACTUAL);
+        final double s = score.calculateScore(simple);
         assertEquals(0.25, s, AIFH.DEFAULT_PRECISION);
     }
 }

@@ -47,7 +47,7 @@ public final class VectorUtil {
      * @param a The vector.
      * @return The index.
      */
-    public static int maxIndex(double[] a) {
+    public static int maxIndex(final double[] a) {
         int result = -1;
         double max = Double.NEGATIVE_INFINITY;
 

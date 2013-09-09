@@ -103,7 +103,7 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
         this.bestPath = new int[CITY_COUNT];
 
         // place the cities in a circle
-        double ratio = (2 * Math.PI) / this.cities.length;
+        final double ratio = (2 * Math.PI) / this.cities.length;
 
         for (int cityNumber = 0; cityNumber < cities.length; cityNumber++) {
             this.cities[cityNumber][0] = (int) (Math.cos(ratio * cityNumber) * (MAP_SIZE / 2) + (MAP_SIZE / 2));
@@ -169,7 +169,7 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
     public void moveToNeighbor() {
 
         // pick the first point to swap
-        int pt1 = this.rnd.nextInt(this.currentPath.length);
+        final int pt1 = this.rnd.nextInt(this.currentPath.length);
 
         // pick the second point to swap, can't be the same as the first
         int pt2;
@@ -179,7 +179,7 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
         } while (pt1 == pt2);
 
         // swap them
-        int temp = this.currentPath[pt1];
+        final int temp = this.currentPath[pt1];
         this.currentPath[pt1] = this.currentPath[pt2];
         this.currentPath[pt2] = temp;
     }
@@ -192,8 +192,8 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
         double result = 0;
         for (int i = 0; i < (cities.length - 1); i++) {
             // find current and next city
-            double[] city1 = this.cities[this.currentPath[i]];
-            double[] city2 = this.cities[this.currentPath[i + 1]];
+            final double[] city1 = this.cities[this.currentPath[i]];
+            final double[] city2 = this.cities[this.currentPath[i + 1]];
             result += this.distance.calculate(city1, city2);
         }
 
@@ -205,8 +205,8 @@ public class TravelingSalesmanAnneal extends DiscreteAnneal {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        TravelingSalesmanAnneal prg = new TravelingSalesmanAnneal();
+    public static void main(final String[] args) {
+        final TravelingSalesmanAnneal prg = new TravelingSalesmanAnneal();
         prg.run();
     }
 }

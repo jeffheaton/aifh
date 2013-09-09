@@ -42,16 +42,16 @@ public class TestIdentityLinkFunction {
 
     @Test
     public void testEvaluate() {
-        IdentityLinkFunction fn = new IdentityLinkFunction();
-        double[] x = {2};
-        double y = fn.evaluate(x);
+        final IdentityLinkFunction fn = new IdentityLinkFunction();
+        final double[] x = {2};
+        final double y = fn.evaluate(x);
         assertEquals(2, y, AIFH.DEFAULT_PRECISION);
     }
 
     @Test(expected = AIFHError.class)
     public void testException() {
-        IdentityLinkFunction fn = new IdentityLinkFunction();
-        double[] x = {1, 2};
+        final IdentityLinkFunction fn = new IdentityLinkFunction();
+        final double[] x = {1, 2};
         fn.evaluate(x);
     }
 }

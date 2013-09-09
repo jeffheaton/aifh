@@ -33,17 +33,17 @@ import com.heatonresearch.aifh.examples.intro.CSVExample;
 import com.heatonresearch.aifh.examples.normalize.NormalizeCSVExample;
 
 public class ExampleRunner {
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         if (args.length < 1) {
             System.out.println("Usage: ExampleRunner [example class] [example arguments ...]");
             System.exit(0);
         }
 
         // get the example name
-        String exampleName = args[0];
+        final String exampleName = args[0];
 
         // get the example args
-        String[] exampleArgs = new String[args.length - 1];
+        final String[] exampleArgs = new String[args.length - 1];
 
         System.arraycopy(args, 1, exampleArgs, 0, args.length - 1);
 

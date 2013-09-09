@@ -52,7 +52,7 @@ public class ErrorTestingUtil {
             {17.0, 18.0, -19.0, 20.1}
     };
 
-    public static double calculateError(ErrorCalculation calc, double[][] actual, double[][] ideal) {
+    public static double calculateError(final ErrorCalculation calc, final double[][] actual, final double[][] ideal) {
 
         // First we are going to calculate by passing in 1d arrays to
         // the error calculation.  This is the most common case.
@@ -62,12 +62,12 @@ public class ErrorTestingUtil {
         assertEquals(Double.POSITIVE_INFINITY, calc.calculate(), 0.0001);
 
         for (int i = 0; i < actual.length; i++) {
-            double[] actualData = actual[i];
-            double[] idealData = ideal[i];
+            final double[] actualData = actual[i];
+            final double[] idealData = ideal[i];
             calc.updateError(actualData, idealData, 1.0);
         }
         assertEquals(20, calc.getSetSize());
-        double error1 = calc.calculate();
+        final double error1 = calc.calculate();
 
         // Secondly we are going to calculate by passing individual
         // elements.  This is less common, but the error calculation
@@ -78,14 +78,14 @@ public class ErrorTestingUtil {
         assertEquals(Double.POSITIVE_INFINITY, calc.calculate(), 0.0001);
 
         for (int i = 0; i < actual.length; i++) {
-            double[] actualData = actual[i];
-            double[] idealData = ideal[i];
+            final double[] actualData = actual[i];
+            final double[] idealData = ideal[i];
             for (int j = 0; j < actualData.length; j++) {
                 calc.updateError(actualData[j], idealData[j]);
             }
         }
         assertEquals(20, calc.getSetSize());
-        double error2 = calc.calculate();
+        final double error2 = calc.calculate();
 
         // these two should always equal
         assertEquals(error1, error2, 0.0001);

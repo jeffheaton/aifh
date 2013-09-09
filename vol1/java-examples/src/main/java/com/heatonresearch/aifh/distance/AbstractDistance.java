@@ -38,7 +38,7 @@ public abstract class AbstractDistance implements CalculateDistance {
      * {@inheritDoc}
      */
     @Override
-    public double calculate(double[] position1, double[] position2) {
+    public double calculate(final double[] position1, final double[] position2) {
         return calculate(position1, 0, position2, 0, position1.length);
     }
 }

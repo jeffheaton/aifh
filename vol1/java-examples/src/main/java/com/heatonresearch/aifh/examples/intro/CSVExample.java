@@ -48,7 +48,7 @@ public class CSVExample {
         CSVReader reader = null;
 
         try {
-            InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
+            final InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
             reader = new CSVReader(new InputStreamReader(istream));
 
             String[] nextLine;
@@ -73,8 +73,8 @@ public class CSVExample {
      *
      * @param args Arg 0 is the file to read.
      */
-    public static void main(String[] args) {
-        CSVExample prg = new CSVExample();
+    public static void main(final String[] args) {
+        final CSVExample prg = new CSVExample();
         prg.run();
     }
 }

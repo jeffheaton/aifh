@@ -18,8 +18,104 @@ task wrapper(type: Wrapper) {
     gradleVersion = '1.7'
 }
 
-task(runCSVExample, group: 'examples', description: 'Chapter 1: Read a CSV file',
+task(runCSVExample, group: 'examples', description: 'Chapter 1.  This example reads a CSV file',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.intro.CSVExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runNormalizeCSVExample, group: 'examples', description: 'Chapter 2:  This example normalizes a CSV file',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.normalize.NormalizeCSVExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runOCRExample, group: 'examples', description: 'Chapter 3:  This example performs basic OCR',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.distance.OCRExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runEvaluatePI, group: 'examples', description: 'Chapter 4:  This example approximates Pi using Monte Carlo',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.randomize.EvaluatePI'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runEvaluateRandom, group: 'examples', description: 'Chapter 4:  This example approximates Pi using Monte Carlo',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.randomize.EvaluateRandom'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runPerformCluster, group: 'examples', description: 'Chapter 5:  This example performs KMeans cluster',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.kmeans.PerformCluster'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runEvaluateErrors, group: 'examples', description: 'Chapter 6:  This example compares several error metrics',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.error.EvaluateErrors'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runLearnIris, group: 'examples', description: 'Chapter 7:  This example learns Iris w/ RBF network & Greedy Random',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.learning.LearnIris'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runLearnPolynomial, group: 'examples', description: 'Chapter 7:  This example learns a Polynomial w/ Greedy Random',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.learning.LearnPolynomial'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runLearnXOR, group: 'examples', description: 'Chapter 7:  This example learns the XOR function w/ RBF network & Greedy Random',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.learning.LearnPolynomial'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runLearnIrisAnneal, group: 'examples', description: 'Chapter 8:  This example learns the Iris dataset w/ RBF network & Simulated Annealing',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.optimization.LearnIrisAnneal'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runLearnIrisClimb, group: 'examples', description: 'Chapter 8:  This example learns the Iris dataset w/ RBF network & Hill Climbing',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.optimization.LearnIrisClimb'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runLearnIrisNelderMead, group: 'examples', description: 'Chapter 8:  This example learns the Iris dataset w/ RBF network & Nelder Mead',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.optimization.LearnIrisNelderMead'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runKnapsackAnneal, group: 'examples', description: 'Chapter 9:  This example optimizes the Knapsack problem with Simulated Annealing',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.discrete.KnapsackAnneal'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runTravelingSalesmanAnneal, group: 'examples', description: 'Chapter 9:  This example optimizes the Traveling Salesman problem with Simulated Annealing',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.discrete.TravelingSalesmanAnneal'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runGLMExample, group: 'examples', description: 'Chapter 10:  This uses a GLM to predict breast cancer',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.regression.GLMExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runLinearRegressionExample, group: 'examples', description: 'Chapter 10:  This uses linear regression for the Iris data set',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.regression.LinearRegressionExample'
     classpath = sourceSets.main.runtimeClasspath
 }

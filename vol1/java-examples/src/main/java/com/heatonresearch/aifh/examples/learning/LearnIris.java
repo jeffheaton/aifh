@@ -38,6 +38,7 @@ import com.heatonresearch.aifh.normalize.DataSet;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Learn the Iris data using an RBF network taught by the Greedy Random algorithm.
@@ -49,25 +50,25 @@ public class LearnIris extends SimpleLearn {
      */
     public void process() {
         try {
-            InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
+            final InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
 
-            DataSet ds = DataSet.load(istream);
+            final DataSet ds = DataSet.load(istream);
             // The following ranges are setup for the Iris data set.  If you wish to normalize other files you will
             // need to modify the below function calls other files.
             ds.normalizeRange(0, 0, 1);
             ds.normalizeRange(1, 0, 1);
             ds.normalizeRange(2, 0, 1);
             ds.normalizeRange(3, 0, 1);
-            ds.encodeEquilateral(4);
+            final Map<String, Integer> species = ds.encodeEquilateral(4);
             istream.close();
 
-            List<BasicData> trainingData = ds.extractSupervised(0, 4, 4, 2);
+            final List<BasicData> trainingData = ds.extractSupervised(0, 4, 4, 2);
 
-            RBFNetwork network = new RBFNetwork(4, 4, 2);
-            ScoreFunction score = new ScoreRegressionData(trainingData);
-            TrainGreedyRandom train = new TrainGreedyRandom(true, network, score);
-            performIterations(train, 1000000, 0.01, true);
-            query(network, trainingData);
+            final RBFNetwork network = new RBFNetwork(4, 4, 2);
+            final ScoreFunction score = new ScoreRegressionData(trainingData);
+            final TrainGreedyRandom train = new TrainGreedyRandom(true, network, score);
+            performIterations(train, 100000, 0.01, true);
+            queryEquilateral(network, trainingData, species, 0, 1);
 
 
         } catch (Throwable t) {
@@ -77,8 +78,8 @@ public class LearnIris extends SimpleLearn {
 
     }
 
-    public static void main(String[] args) {
-        LearnIris prg = new LearnIris();
+    public static void main(final String[] args) {
+        final LearnIris prg = new LearnIris();
         prg.process();
     }
 }

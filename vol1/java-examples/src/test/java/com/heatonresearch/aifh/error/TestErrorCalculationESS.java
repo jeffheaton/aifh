@@ -40,8 +40,8 @@ public class TestErrorCalculationESS {
 
     @Test
     public void testErrorCalc() {
-        ErrorCalculation calc = new ErrorCalculationESS();
-        double result = ErrorTestingUtil.calculateError(
+        final ErrorCalculation calc = new ErrorCalculationESS();
+        final double result = ErrorTestingUtil.calculateError(
                 calc,
                 ErrorTestingUtil.ACTUAL,
                 ErrorTestingUtil.IDEAL);

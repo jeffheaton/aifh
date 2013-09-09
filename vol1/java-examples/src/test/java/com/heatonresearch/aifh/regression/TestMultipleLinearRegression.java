@@ -43,19 +43,19 @@ public class TestMultipleLinearRegression {
 
     @Test
     public void testBasic() {
-        MultipleLinearRegression reg = new MultipleLinearRegression(1);
+        final MultipleLinearRegression reg = new MultipleLinearRegression(1);
 
         assertEquals(2, reg.getLongTermMemory().length);
 
-        LogLinkFunction lnk = new LogLinkFunction();
+        final LogLinkFunction lnk = new LogLinkFunction();
         reg.setLinkFunction(lnk);
         assertTrue(reg.getLinkFunction() == lnk);
 
         reg.getLongTermMemory()[0] = 1;
         reg.getLongTermMemory()[1] = 2;
 
-        double[] input = {1.0};
-        double[] output = reg.computeRegression(input);
+        final double[] input = {1.0};
+        final double[] output = reg.computeRegression(input);
         assertEquals(1, output.length);
         assertEquals(1.0986122886681098, output[0], AIFH.DEFAULT_PRECISION);
     }

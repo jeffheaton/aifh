@@ -50,7 +50,7 @@ public class ScoreClassificationData implements ScoreFunction {
      *
      * @param theTrainingData The training data.
      */
-    public ScoreClassificationData(List<BasicData> theTrainingData) {
+    public ScoreClassificationData(final List<BasicData> theTrainingData) {
         this.trainingData = theTrainingData;
     }
 
@@ -62,11 +62,11 @@ public class ScoreClassificationData implements ScoreFunction {
         int incorrectCount = 0;
         int totalCount = 0;
 
-        ClassificationAlgorithm ralgo = (ClassificationAlgorithm) algo;
+        final ClassificationAlgorithm ralgo = (ClassificationAlgorithm) algo;
 
-        for (BasicData aTrainingData : this.trainingData) {
+        for (final BasicData aTrainingData : this.trainingData) {
             totalCount++;
-            int output = ralgo.computeClassification(aTrainingData.getInput());
+            final int output = ralgo.computeClassification(aTrainingData.getInput());
 
             if (output != aTrainingData.getIdeal()[0]) {
                 incorrectCount++;

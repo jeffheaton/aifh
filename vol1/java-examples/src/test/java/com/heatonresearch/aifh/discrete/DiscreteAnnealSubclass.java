@@ -68,7 +68,7 @@ public class DiscreteAnnealSubclass extends DiscreteAnneal {
     @Override
     public void moveToNeighbor() {
         // pick the first point to swap
-        int pt1 = this.rnd.nextInt(this.currentHolder.length);
+        final int pt1 = this.rnd.nextInt(this.currentHolder.length);
 
         // pick the second point to swap, can't be the same as the first
         int pt2;
@@ -78,7 +78,7 @@ public class DiscreteAnnealSubclass extends DiscreteAnneal {
         } while (pt1 == pt2);
 
         // swap them
-        double temp = this.currentHolder[pt1];
+        final double temp = this.currentHolder[pt1];
         this.currentHolder[pt1] = this.currentHolder[pt2];
         this.currentHolder[pt2] = temp;
     }

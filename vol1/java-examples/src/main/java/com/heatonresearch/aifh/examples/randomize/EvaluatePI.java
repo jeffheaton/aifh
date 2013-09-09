@@ -51,7 +51,7 @@ public class EvaluatePI {
 
         double x, y;
 
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 1000000000; i++) {
             // pick a point at random.
             x = rnd.nextDouble();
             y = rnd.nextDouble();
@@ -64,7 +64,7 @@ public class EvaluatePI {
 
             lastUpdate++;
             if (lastUpdate >= 1000000) {
-                double pi = 4 * (double) success / (double) tries;
+                final double pi = 4 * (double) success / (double) tries;
                 System.out.println("Tries=" + tries + ", pi=" + pi);
                 lastUpdate = 0;
             }
@@ -77,8 +77,8 @@ public class EvaluatePI {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        EvaluatePI program = new EvaluatePI();
+    public static void main(final String[] args) {
+        final EvaluatePI program = new EvaluatePI();
         program.process();
     }
 }

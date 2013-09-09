@@ -223,7 +223,7 @@ public class KnapsackAnneal extends DiscreteAnneal {
      */
     private void balance() {
         while (calculateTotalWeight() > KNAPSACK_MAX_WEIGHT) {
-            int remove = rnd.nextInt(this.currentTaken.length);
+            final int remove = rnd.nextInt(this.currentTaken.length);
             this.currentTaken[remove] = false;
         }
     }
@@ -233,8 +233,8 @@ public class KnapsackAnneal extends DiscreteAnneal {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        KnapsackAnneal prg = new KnapsackAnneal();
+    public static void main(final String[] args) {
+        final KnapsackAnneal prg = new KnapsackAnneal();
         prg.run();
     }
 }

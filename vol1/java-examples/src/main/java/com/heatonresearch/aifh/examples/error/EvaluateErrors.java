@@ -85,11 +85,11 @@ public class EvaluateErrors {
      * @param distort The distortion factor.
      * @return The data set.
      */
-    public DataHolder generate(int seed, int rows, int cols, double low, double high, double distort) {
-        GenerateRandom rnd = new MersenneTwisterGenerateRandom(seed);
+    public DataHolder generate(final int seed, final int rows, final int cols, final double low, final double high, final double distort) {
+        final GenerateRandom rnd = new MersenneTwisterGenerateRandom(seed);
 
-        double[][] ideal = new double[rows][cols];
-        double[][] actual = new double[rows][cols];
+        final double[][] ideal = new double[rows][cols];
+        final double[][] actual = new double[rows][cols];
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
@@ -98,7 +98,7 @@ public class EvaluateErrors {
             }
         }
 
-        DataHolder result = new DataHolder();
+        final DataHolder result = new DataHolder();
         result.setActual(actual);
         result.setIdeal(ideal);
         return result;
@@ -109,32 +109,32 @@ public class EvaluateErrors {
      */
     public void process() {
 
-        NumberFormat nf = NumberFormat.getInstance();
+        final NumberFormat nf = NumberFormat.getInstance();
 
-        ErrorCalculation calcESS = new ErrorCalculationESS();
-        ErrorCalculation calcMSE = new ErrorCalculationMSE();
-        ErrorCalculation calcRMS = new ErrorCalculationRMS();
+        final ErrorCalculation calcESS = new ErrorCalculationESS();
+        final ErrorCalculation calcMSE = new ErrorCalculationMSE();
+        final ErrorCalculation calcRMS = new ErrorCalculationRMS();
 
-        DataHolder smallErrors = generate(SEED, ROWS, COLS, LOW, HIGH, 0.1);
-        DataHolder mediumErrors = generate(SEED, ROWS, COLS, LOW, HIGH, 0.5);
-        DataHolder largeErrors = generate(SEED, ROWS, COLS, LOW, HIGH, 1.0);
-        DataHolder hugeErrors = generate(SEED, ROWS, COLS, LOW, HIGH, 10.0);
+        final DataHolder smallErrors = generate(SEED, ROWS, COLS, LOW, HIGH, 0.1);
+        final DataHolder mediumErrors = generate(SEED, ROWS, COLS, LOW, HIGH, 0.5);
+        final DataHolder largeErrors = generate(SEED, ROWS, COLS, LOW, HIGH, 1.0);
+        final DataHolder hugeErrors = generate(SEED, ROWS, COLS, LOW, HIGH, 10.0);
 
-        double smallESS = smallErrors.calculateError(calcESS);
-        double smallMSE = smallErrors.calculateError(calcMSE);
-        double smallRMS = smallErrors.calculateError(calcRMS);
+        final double smallESS = smallErrors.calculateError(calcESS);
+        final double smallMSE = smallErrors.calculateError(calcMSE);
+        final double smallRMS = smallErrors.calculateError(calcRMS);
 
-        double mediumESS = mediumErrors.calculateError(calcESS);
-        double mediumMSE = mediumErrors.calculateError(calcMSE);
-        double mediumRMS = mediumErrors.calculateError(calcRMS);
+        final double mediumESS = mediumErrors.calculateError(calcESS);
+        final double mediumMSE = mediumErrors.calculateError(calcMSE);
+        final double mediumRMS = mediumErrors.calculateError(calcRMS);
 
-        double largeESS = largeErrors.calculateError(calcESS);
-        double largeMSE = largeErrors.calculateError(calcMSE);
-        double largeRMS = largeErrors.calculateError(calcRMS);
+        final double largeESS = largeErrors.calculateError(calcESS);
+        final double largeMSE = largeErrors.calculateError(calcMSE);
+        final double largeRMS = largeErrors.calculateError(calcRMS);
 
-        double hugeESS = hugeErrors.calculateError(calcESS);
-        double hugeMSE = hugeErrors.calculateError(calcMSE);
-        double hugeRMS = hugeErrors.calculateError(calcRMS);
+        final double hugeESS = hugeErrors.calculateError(calcESS);
+        final double hugeMSE = hugeErrors.calculateError(calcMSE);
+        final double hugeRMS = hugeErrors.calculateError(calcRMS);
 
         System.out.println("Type\tESS\t\t\tMSE\t\tRMS");
         System.out.println("Small\t" + (int) smallESS + "\t\t" + nf.format(smallMSE) + "\t" + nf.format(smallRMS));
@@ -149,8 +149,8 @@ public class EvaluateErrors {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        EvaluateErrors prg = new EvaluateErrors();
+    public static void main(final String[] args) {
+        final EvaluateErrors prg = new EvaluateErrors();
         prg.process();
     }
 }

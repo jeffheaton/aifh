@@ -41,16 +41,16 @@ import static org.junit.Assert.assertEquals;
 public class TestInverseSquaredLinkFunction {
     @Test
     public void testEvaluate() {
-        InverseSquaredLinkFunction fn = new InverseSquaredLinkFunction();
-        double[] x = {2};
-        double y = fn.evaluate(x);
+        final InverseSquaredLinkFunction fn = new InverseSquaredLinkFunction();
+        final double[] x = {2};
+        final double y = fn.evaluate(x);
         assertEquals(-0.25, y, AIFH.DEFAULT_PRECISION);
     }
 
     @Test(expected = AIFHError.class)
     public void testException() {
-        InverseSquaredLinkFunction fn = new InverseSquaredLinkFunction();
-        double[] x = {1, 2};
+        final InverseSquaredLinkFunction fn = new InverseSquaredLinkFunction();
+        final double[] x = {1, 2};
         fn.evaluate(x);
     }
 }

@@ -41,8 +41,8 @@ public class TestErrorCalculationRMS {
 
     @Test
     public void testErrorCalc() {
-        ErrorCalculation calc = new ErrorCalculationRMS();
-        double result = ErrorTestingUtil.calculateError(
+        final ErrorCalculation calc = new ErrorCalculationRMS();
+        final double result = ErrorTestingUtil.calculateError(
                 calc,
                 ErrorTestingUtil.ACTUAL,
                 ErrorTestingUtil.IDEAL);

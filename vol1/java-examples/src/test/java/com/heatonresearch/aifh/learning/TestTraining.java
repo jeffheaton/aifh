@@ -39,13 +39,13 @@ import static org.junit.Assert.*;
  */
 public class TestTraining {
 
-    private void performTest(LearningAlgorithm train) {
+    private void performTest(final LearningAlgorithm train) {
 
         assertFalse(train.done());
 
         train.getStatus();
         train.iteration();
-        double startError = train.getLastError();
+        final double startError = train.getLastError();
 
         for (int i = 0; i < 1000 && !train.done(); i++) {
             train.iteration();
@@ -61,13 +61,13 @@ public class TestTraining {
 
     @Test
     public void testAnneal() {
-        TrainAnneal anneal = new TrainAnneal(new TrialAlgo(), new TrialScore());
+        final TrainAnneal anneal = new TrainAnneal(new TrialAlgo(), new TrialScore());
         performTest(anneal);
     }
 
     @Test
     public void testGreedyRandom() {
-        TrainGreedyRandom train = new TrainGreedyRandom(true, new TrialAlgo(), new TrialScore());
+        final TrainGreedyRandom train = new TrainGreedyRandom(true, new TrialAlgo(), new TrialScore());
 
         train.setLowRange(0);
         train.setHighRange(10);
@@ -80,13 +80,13 @@ public class TestTraining {
 
     @Test
     public void testHillClimbing() {
-        TrainHillClimb train = new TrainHillClimb(true, new TrialAlgo(), new TrialScore());
+        final TrainHillClimb train = new TrainHillClimb(true, new TrialAlgo(), new TrialScore());
         performTest(train);
     }
 
     @Test
     public void testNelderMead() {
-        TrainNelderMead train = new TrainNelderMead(new TrialAlgo(), new TrialScore());
+        final TrainNelderMead train = new TrainNelderMead(new TrialAlgo(), new TrialScore());
         performTest(train);
     }
 }

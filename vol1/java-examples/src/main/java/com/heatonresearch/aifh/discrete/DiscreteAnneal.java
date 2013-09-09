@@ -95,7 +95,7 @@ public abstract class DiscreteAnneal {
      * @param theStartingTemperature The starting temperature.
      * @param theEndingTemperature   The ending temperature.
      */
-    public DiscreteAnneal(int theKMax, double theStartingTemperature, double theEndingTemperature) {
+    public DiscreteAnneal(final int theKMax, final double theStartingTemperature, final double theEndingTemperature) {
         this.kMax = theKMax;
         this.startingTemperature = theStartingTemperature;
         this.endingTemperature = theEndingTemperature;
@@ -105,7 +105,7 @@ public abstract class DiscreteAnneal {
      * @return The correct temperature for the current iteration.
      */
     public double coolingSchedule() {
-        double ex = (double) k / (double) kMax;
+        final double ex = (double) k / (double) kMax;
         return this.startingTemperature * Math.pow(this.endingTemperature / this.startingTemperature, ex);
     }
 
@@ -137,7 +137,7 @@ public abstract class DiscreteAnneal {
             moveToNeighbor();
 
             // did we improve it?  Only keep the new method if it improved (greedy).
-            double trialScore = evaluate();
+            final double trialScore = evaluate();
 
             // was this iteration an improvement?  If so, always keep.
             boolean keep = false;
@@ -249,7 +249,7 @@ public abstract class DiscreteAnneal {
      * @return Returns the current status of the algorithm.
      */
     public String getStatus() {
-        StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder();
         result.append("k=");
         result.append(this.k);
         result.append(",kMax=");

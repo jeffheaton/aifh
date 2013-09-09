@@ -60,7 +60,10 @@ public abstract class AbstractBoxMuller extends AbstractGenerateRandom {
      */
     @Override
     public double nextGaussian() {
-        double x1, x2, w, y1;
+        double x1;
+        double x2;
+        double w;
+        final double y1;
 
         // use value from previous call
         if (this.useLast) {

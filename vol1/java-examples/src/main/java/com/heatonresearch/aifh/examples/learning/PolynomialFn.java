@@ -47,7 +47,7 @@ public class PolynomialFn implements RegressionAlgorithm {
      *
      * @param polyOrder The order.
      */
-    public PolynomialFn(int polyOrder) {
+    public PolynomialFn(final int polyOrder) {
         this.longTermMemory = new double[polyOrder];
     }
 
@@ -56,14 +56,14 @@ public class PolynomialFn implements RegressionAlgorithm {
      */
     @Override
     public double[] computeRegression(final double[] input) {
-        double x = input[0];
+        final double x = input[0];
         double y = 0;
 
         for (int i = 0; i < this.longTermMemory.length; i++) {
             y += this.longTermMemory[i] * Math.pow(x, (double) i);
         }
 
-        double[] result = new double[1];
+        final double[] result = new double[1];
         result[0] = y;
 
         return result;
@@ -82,10 +82,10 @@ public class PolynomialFn implements RegressionAlgorithm {
      */
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder();
 
         for (int i = this.longTermMemory.length - 1; i >= 0; i--) {
-            double c = this.longTermMemory[i];
+            final double c = this.longTermMemory[i];
 
             if (result.length() > 0) {
                 if (c >= 0) {

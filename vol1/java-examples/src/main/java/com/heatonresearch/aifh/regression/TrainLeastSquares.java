@@ -82,7 +82,7 @@ public class TrainLeastSquares {
      * @param theAlgorithm    The algorithm to train.
      * @param theTrainingData The training data.
      */
-    public TrainLeastSquares(MultipleLinearRegression theAlgorithm, List<BasicData> theTrainingData) {
+    public TrainLeastSquares(final MultipleLinearRegression theAlgorithm, final List<BasicData> theTrainingData) {
         this.algorithm = theAlgorithm;
         this.trainingData = theTrainingData;
     }
@@ -98,15 +98,15 @@ public class TrainLeastSquares {
      * Train.  Single iteration.
      */
     public void iteration() {
-        int rowCount = trainingData.size();
-        int inputColCount = trainingData.get(0).getInput().length;
+        final int rowCount = trainingData.size();
+        final int inputColCount = trainingData.get(0).getInput().length;
 
-        Matrix xMatrix = new Matrix(rowCount, inputColCount + 1);
-        Matrix yMatrix = new Matrix(rowCount, 1);
+        final Matrix xMatrix = new Matrix(rowCount, inputColCount + 1);
+        final Matrix yMatrix = new Matrix(rowCount, 1);
 
         for (int row = 0; row < trainingData.size(); row++) {
-            BasicData dataRow = this.trainingData.get(row);
-            int colSize = dataRow.getInput().length;
+            final BasicData dataRow = this.trainingData.get(row);
+            final int colSize = dataRow.getInput().length;
 
             xMatrix.set(row, 0, 1);
             for (int col = 0; col < colSize; col++) {
@@ -116,20 +116,20 @@ public class TrainLeastSquares {
         }
 
         // Calculate the least squares solution
-        QRDecomposition qr = new QRDecomposition(xMatrix);
-        Matrix beta = qr.solve(yMatrix);
+        final QRDecomposition qr = new QRDecomposition(xMatrix);
+        final Matrix beta = qr.solve(yMatrix);
 
         double sum = 0.0;
         for (int i = 0; i < inputColCount; i++)
             sum += yMatrix.get(i, 0);
-        double mean = sum / inputColCount;
+        final double mean = sum / inputColCount;
 
         for (int i = 0; i < inputColCount; i++) {
-            double dev = yMatrix.get(i, 0) - mean;
+            final double dev = yMatrix.get(i, 0) - mean;
             sst += dev * dev;
         }
 
-        Matrix residuals = xMatrix.times(beta).minus(yMatrix);
+        final Matrix residuals = xMatrix.times(beta).minus(yMatrix);
         sse = residuals.norm2() * residuals.norm2();
 
         for (int i = 0; i < this.algorithm.getLongTermMemory().length; i++) {
@@ -138,8 +138,8 @@ public class TrainLeastSquares {
 
         // calculate error
         this.errorCalculation.clear();
-        for (BasicData dataRow : this.trainingData) {
-            double[] output = this.algorithm.computeRegression(dataRow.getInput());
+        for (final BasicData dataRow : this.trainingData) {
+            final double[] output = this.algorithm.computeRegression(dataRow.getInput());
             this.errorCalculation.updateError(output, dataRow.getIdeal(), 1.0);
         }
         this.error = this.errorCalculation.calculate();

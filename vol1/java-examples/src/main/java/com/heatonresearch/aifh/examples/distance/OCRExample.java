@@ -224,8 +224,8 @@ public class OCRExample extends JFrame {
         sampleData.setLetter(letter.charAt(0));
 
         for (i = 0; i < this.letterListModel.size(); i++) {
-            final String str = (String) this.letterListModel
-                    .getElementAt(i);
+            final String str = "" + ((SampleData) this.letterListModel
+                    .getElementAt(i)).getLetter();
             if (str.equals(letter)) {
                 JOptionPane.showMessageDialog(this,
                         "That letter is already defined, delete it first!",
@@ -233,7 +233,7 @@ public class OCRExample extends JFrame {
                 return;
             }
 
-            String l = "" + sampleData.getLetter();
+            final String l = "" + sampleData.getLetter();
             if (str.compareTo(l) > 0) {
                 this.letterListModel.add(i, sampleData);
                 return;
@@ -300,8 +300,8 @@ public class OCRExample extends JFrame {
      */
     void load_actionPerformed() {
         try {
-            FileReader f;// the actual file stream
-            BufferedReader r;// used to read the file line by line
+            final FileReader f;// the actual file stream
+            final BufferedReader r;// used to read the file line by line
 
             f = new FileReader(new File("./sample.dat"));
             r = new BufferedReader(f);
@@ -346,13 +346,13 @@ public class OCRExample extends JFrame {
         double bestPosition = Double.POSITIVE_INFINITY;
         String letter = "?";
 
-        double[] letterToRecognize = this.sample.getData().getPosition();
+        final double[] letterToRecognize = this.sample.getData().getPosition();
 
         for (int i = 0; i < this.letterListModel.size(); i++) {
             final SampleData ds = (SampleData) this.letterListModel
                     .getElementAt(i);
 
-            double dist = this.distanceCalc.calculate(letterToRecognize, ds.getPosition());
+            final double dist = this.distanceCalc.calculate(letterToRecognize, ds.getPosition());
             if (dist < bestPosition) {
                 bestPosition = dist;
                 letter = "" + ds.getLetter();
@@ -372,8 +372,8 @@ public class OCRExample extends JFrame {
      */
     void save_actionPerformed() {
         try {
-            OutputStream os;// the actual file stream
-            PrintStream ps;// used to read the file line by line
+            final OutputStream os;// the actual file stream
+            final PrintStream ps;// used to read the file line by line
 
             os = new FileOutputStream("./sample.dat", false);
             ps = new PrintStream(os);

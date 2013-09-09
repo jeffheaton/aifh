@@ -61,15 +61,15 @@ public class MersenneTwisterGenerateRandom extends AbstractBoxMuller {
         this(System.currentTimeMillis());
     }
 
-    public MersenneTwisterGenerateRandom(long seed) {
+    public MersenneTwisterGenerateRandom(final long seed) {
         setSeed(seed);
     }
 
-    public MersenneTwisterGenerateRandom(int[] array) {
+    public MersenneTwisterGenerateRandom(final int[] array) {
         setSeed(array);
     }
 
-    public void setSeed(long seed) {
+    public void setSeed(final long seed) {
         stateVector = new int[N];
 
         mag01 = new int[2];
@@ -83,7 +83,7 @@ public class MersenneTwisterGenerateRandom extends AbstractBoxMuller {
         }
     }
 
-    public void setSeed(int[] array) {
+    public void setSeed(final int[] array) {
         int i, j, k;
         setSeed(19650218);
         i = 1;
@@ -110,7 +110,7 @@ public class MersenneTwisterGenerateRandom extends AbstractBoxMuller {
         stateVector[0] = 0x80000000;
     }
 
-    protected int next(int bits) {
+    protected int next(final int bits) {
         int y;
 
         if (mti >= N) {

@@ -39,7 +39,7 @@ public class AIFHError extends Error {
      *
      * @param t The throable.
      */
-    public AIFHError(Throwable t) {
+    public AIFHError(final Throwable t) {
         super(t);
     }
 
@@ -48,7 +48,7 @@ public class AIFHError extends Error {
      *
      * @param s The string.
      */
-    public AIFHError(String s) {
+    public AIFHError(final String s) {
         super(s);
     }
 }

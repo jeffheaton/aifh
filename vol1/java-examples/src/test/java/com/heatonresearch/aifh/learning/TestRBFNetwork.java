@@ -43,7 +43,7 @@ public class TestRBFNetwork {
 
     @Test
     public void testBasics() {
-        RBFNetwork network = new RBFNetwork(2, 1, 1);
+        final RBFNetwork network = new RBFNetwork(2, 1, 1);
 
         // should be 7, (2*1) + (1+(1 bias))*1 + 3 RBF params
         // 2 + 2 + 3 = 7
@@ -55,7 +55,7 @@ public class TestRBFNetwork {
 
     @Test
     public void testResetCompute() {
-        RBFNetwork network = new RBFNetwork(2, 1, 1);
+        final RBFNetwork network = new RBFNetwork(2, 1, 1);
         double total = 0;
         for (int i = 0; i < network.getLongTermMemory().length; i++) {
             total += network.getLongTermMemory()[i];
@@ -74,9 +74,9 @@ public class TestRBFNetwork {
 
     @Test
     public void testComputeRegression() {
-        RBFNetwork network = new RBFNetwork(2, 1, 1);
+        final RBFNetwork network = new RBFNetwork(2, 1, 1);
 
-        double[] ltm = {
+        final double[] ltm = {
                 2.0,  // input 1 to RBF 1
                 2.0,  // input 2 to RBF 1
                 5.0,  // RBF width
@@ -88,9 +88,9 @@ public class TestRBFNetwork {
 
         System.arraycopy(ltm, 0, network.getLongTermMemory(), 0, ltm.length);
 
-        double[] x = {1, 2};
+        final double[] x = {1, 2};
 
-        double y = network.computeRegression(x)[0];
+        final double y = network.computeRegression(x)[0];
 
         // Inputs: (2*1) + (2*2) = 6
         // RBF: Gaussian(6) = 1
@@ -100,9 +100,9 @@ public class TestRBFNetwork {
 
     @Test
     public void testComputeClassification() {
-        RBFNetwork network = new RBFNetwork(2, 1, 2);
+        final RBFNetwork network = new RBFNetwork(2, 1, 2);
 
-        double[] ltm = {
+        final double[] ltm = {
                 2.0,  // input 1 to RBF 1
                 2.0,  // input 2 to RBF 1
                 5.0,  // RBF width
@@ -116,9 +116,9 @@ public class TestRBFNetwork {
 
         System.arraycopy(ltm, 0, network.getLongTermMemory(), 0, ltm.length);
 
-        double[] x = {1, 2};
+        final double[] x = {1, 2};
 
-        double[] y = network.computeRegression(x);
+        final double[] y = network.computeRegression(x);
 
         // Inputs: (2*1) + (2*2) = 6
         // RBF: Gaussian(6) = 1
@@ -130,7 +130,7 @@ public class TestRBFNetwork {
         // Outputs: (1*5) + (1*6) = 11
         assertEquals(11, y[1], AIFH.DEFAULT_PRECISION);
 
-        int cls = network.computeClassification(x);
+        final int cls = network.computeClassification(x);
 
         // class 1 is higher than class 0
         assertEquals(1, cls);

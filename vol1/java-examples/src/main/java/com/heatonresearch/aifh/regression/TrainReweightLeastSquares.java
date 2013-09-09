@@ -74,7 +74,7 @@ public class TrainReweightLeastSquares {
      * @param theAlgorithm    The GLM to train.
      * @param theTrainingData The training data.
      */
-    public TrainReweightLeastSquares(MultipleLinearRegression theAlgorithm, List<BasicData> theTrainingData) {
+    public TrainReweightLeastSquares(final MultipleLinearRegression theAlgorithm, final List<BasicData> theTrainingData) {
         this.algorithm = theAlgorithm;
         this.trainingData = theTrainingData;
         this.gradient = new Matrix(theAlgorithm.getLongTermMemory().length, 1);
@@ -85,16 +85,16 @@ public class TrainReweightLeastSquares {
      * Perform one iteration of training.
      */
     public void iteration() {
-        int rowCount = this.trainingData.size();
-        int coeffCount = this.algorithm.getLongTermMemory().length;
+        final int rowCount = this.trainingData.size();
+        final int coeffCount = this.algorithm.getLongTermMemory().length;
 
-        double[][] working = new double[rowCount][coeffCount];
-        double[] errors = new double[rowCount];
-        double[] weights = new double[rowCount];
-        Matrix deltas;
+        final double[][] working = new double[rowCount][coeffCount];
+        final double[] errors = new double[rowCount];
+        final double[] weights = new double[rowCount];
+        final Matrix deltas;
 
         for (int i = 0; i < rowCount; i++) {
-            BasicData element = this.trainingData.get(i);
+            final BasicData element = this.trainingData.get(i);
 
             working[i][0] = 1;
             for (int j = 0; j < element.getInput().length; j++)
@@ -102,8 +102,8 @@ public class TrainReweightLeastSquares {
         }
 
         for (int i = 0; i < rowCount; i++) {
-            BasicData element = this.trainingData.get(i);
-            double y = this.algorithm.computeRegression(element.getInput())[0];
+            final BasicData element = this.trainingData.get(i);
+            final double y = this.algorithm.computeRegression(element.getInput())[0];
             errors[i] = y - element.getIdeal()[0];
             weights[i] = y * (1.0 - y);
         }
@@ -121,7 +121,7 @@ public class TrainReweightLeastSquares {
         }
 
         for (int k = 0; k < weights.length; k++) {
-            double[] r = working[k];
+            final double[] r = working[k];
 
             for (int j = 0; j < r.length; j++) {
                 for (int i = 0; i < r.length; i++) {
@@ -130,7 +130,7 @@ public class TrainReweightLeastSquares {
             }
         }
 
-        LUDecomposition lu = new LUDecomposition(new Matrix(hessian));
+        final LUDecomposition lu = new LUDecomposition(new Matrix(hessian));
 
         if (lu.isNonsingular()) {
             deltas = lu.solve(gradient);
@@ -138,7 +138,7 @@ public class TrainReweightLeastSquares {
             throw new AIFHError("Matrix Non singular");
         }
 
-        double[] prev = this.algorithm.getLongTermMemory().clone();
+        final double[] prev = this.algorithm.getLongTermMemory().clone();
 
         for (int i = 0; i < this.algorithm.getLongTermMemory().length; i++)
             this.algorithm.getLongTermMemory()[i] -= deltas.get(i, 0);

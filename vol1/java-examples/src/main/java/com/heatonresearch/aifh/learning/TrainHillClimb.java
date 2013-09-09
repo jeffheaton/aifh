@@ -78,8 +78,8 @@ public class TrainHillClimb implements LearningAlgorithm {
      * @param acceleration      The acceleration for step sizes.
      * @param stepSize          The initial step sizes.
      */
-    public TrainHillClimb(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore,
-                          double acceleration, double stepSize) {
+    public TrainHillClimb(final boolean theShouldMinimize, final MachineLearningAlgorithm theAlgorithm, final ScoreFunction theScore,
+                          final double acceleration, final double stepSize) {
         this.algorithm = theAlgorithm;
         this.score = theScore;
         this.shouldMinimize = theShouldMinimize;
@@ -110,7 +110,7 @@ public class TrainHillClimb implements LearningAlgorithm {
      * @param theAlgorithm      The algorithm to optimize.
      * @param theScore          The scoring function.
      */
-    public TrainHillClimb(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
+    public TrainHillClimb(final boolean theShouldMinimize, final MachineLearningAlgorithm theAlgorithm, final ScoreFunction theScore) {
         this(theShouldMinimize, theAlgorithm, theScore, 1.2, 1);
     }
 
@@ -119,7 +119,7 @@ public class TrainHillClimb implements LearningAlgorithm {
      */
     @Override
     public void iteration() {
-        int len = this.algorithm.getLongTermMemory().length;
+        final int len = this.algorithm.getLongTermMemory().length;
 
         for (int i = 0; i < len; i++) {
             int best = -1;
@@ -127,7 +127,7 @@ public class TrainHillClimb implements LearningAlgorithm {
 
             for (int j = 0; j < candidate.length; j++) {
                 this.algorithm.getLongTermMemory()[i] += stepSize[i] * candidate[j];
-                double temp = score.calculateScore(this.algorithm);
+                final double temp = score.calculateScore(this.algorithm);
                 this.algorithm.getLongTermMemory()[i] -= stepSize[i] * candidate[j];
 
                 if ((temp < bestScore) ? shouldMinimize : !shouldMinimize) {

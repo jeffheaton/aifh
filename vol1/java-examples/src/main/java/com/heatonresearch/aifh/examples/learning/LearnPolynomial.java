@@ -43,11 +43,11 @@ import java.util.List;
 public class LearnPolynomial extends SimpleLearn {
 
     public List<BasicData> generateTrainingData() {
-        List<BasicData> result = new ArrayList<BasicData>();
+        final List<BasicData> result = new ArrayList<>();
 
         for (double x = -50; x < 50; x++) {
-            double y = (2 * Math.pow(x, 2)) + (4 * x) + 6;
-            BasicData pair = new BasicData(1, 1);
+            final double y = (2 * Math.pow(x, 2)) + (4 * x) + 6;
+            final BasicData pair = new BasicData(1, 1);
             pair.getInput()[0] = x;
             pair.getIdeal()[0] = y;
             result.add(pair);
@@ -61,10 +61,10 @@ public class LearnPolynomial extends SimpleLearn {
      * Run the example.
      */
     public void process() {
-        List<BasicData> trainingData = generateTrainingData();
-        PolynomialFn poly = new PolynomialFn(3);
-        ScoreFunction score = new ScoreRegressionData(trainingData);
-        TrainGreedyRandom train = new TrainGreedyRandom(true, poly, score);
+        final List<BasicData> trainingData = generateTrainingData();
+        final PolynomialFn poly = new PolynomialFn(3);
+        final ScoreFunction score = new ScoreRegressionData(trainingData);
+        final TrainGreedyRandom train = new TrainGreedyRandom(true, poly, score);
         performIterations(train, 1000000, 0.01, true);
         System.out.println(poly.toString());
     }
@@ -74,8 +74,8 @@ public class LearnPolynomial extends SimpleLearn {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        LearnPolynomial prg = new LearnPolynomial();
+    public static void main(final String[] args) {
+        final LearnPolynomial prg = new LearnPolynomial();
         prg.process();
     }
 }

@@ -58,7 +58,7 @@ public class BasicData {
      *
      * @param theInputDimensions The number of dimensions.
      */
-    public BasicData(int theInputDimensions) {
+    public BasicData(final int theInputDimensions) {
         this(theInputDimensions, 0, null);
     }
 
@@ -68,11 +68,11 @@ public class BasicData {
      * @param theInputDimensions The dimensions for the input vector.
      * @param theIdealDimensions The dimensions for the ideal vector.
      */
-    public BasicData(int theInputDimensions, int theIdealDimensions) {
+    public BasicData(final int theInputDimensions, final int theIdealDimensions) {
         this(theInputDimensions, theIdealDimensions, null);
     }
 
-    public BasicData(int theInputDimensions, int theIdealDimensions, String theLabel) {
+    public BasicData(final int theInputDimensions, final int theIdealDimensions, final String theLabel) {
         this.label = theLabel;
         this.input = new double[theInputDimensions];
         this.ideal = new double[theIdealDimensions];
@@ -85,7 +85,7 @@ public class BasicData {
      * @param theIdealData The ideal data vector.
      * @param theLabel     The label.
      */
-    public BasicData(double[] theInputData, double[] theIdealData, String theLabel) {
+    public BasicData(final double[] theInputData, final double[] theIdealData, final String theLabel) {
         this.label = theLabel;
         this.input = theInputData;
         this.ideal = theIdealData;
@@ -97,7 +97,7 @@ public class BasicData {
      * @param theInputData The input vector.
      * @param theLabel     The label.
      */
-    public BasicData(double[] theInputData, String theLabel) {
+    public BasicData(final double[] theInputData, final String theLabel) {
         this(theInputData, new double[0], theLabel);
     }
 
@@ -106,7 +106,7 @@ public class BasicData {
      *
      * @param theInputData The input vector.
      */
-    public BasicData(double[] theInputData) {
+    public BasicData(final double[] theInputData) {
         this(theInputData, null);
     }
 
@@ -144,7 +144,7 @@ public class BasicData {
      * {@inheritDoc}
      */
     public String toString() {
-        StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder();
         result.append("[BasicData: input:");
         result.append(Arrays.toString(this.input));
         result.append(", ideal:");
@@ -165,15 +165,15 @@ public class BasicData {
      */
     public static List<BasicData> convertArrays(final double[][] inputData, final double[][] idealData) {
         // create the list
-        List<BasicData> result = new ArrayList<BasicData>();
+        final List<BasicData> result = new ArrayList<>();
 
         // get the lengths
-        int inputCount = inputData[0].length;
-        int idealCount = idealData[0].length;
+        final int inputCount = inputData[0].length;
+        final int idealCount = idealData[0].length;
 
         // build the list
         for (int row = 0; row < inputData.length; row++) {
-            BasicData dataRow = new BasicData(inputCount, idealCount);
+            final BasicData dataRow = new BasicData(inputCount, idealCount);
             System.arraycopy(inputData[row], 0, dataRow.getInput(), 0, inputCount);
             System.arraycopy(idealData[row], 0, dataRow.getIdeal(), 0, idealCount);
             result.add(dataRow);

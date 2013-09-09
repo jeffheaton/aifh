@@ -39,9 +39,9 @@ import static org.junit.Assert.assertEquals;
 public class TestChebyshevDistance {
     @Test
     public void testDistanceCalc() {
-        CalculateDistance calc = new ChebyshevDistance();
-        double[] pos1 = {0.5, 1.0, 2.5,};
-        double[] pos2 = {0.1, 2.0, -2.5,};
+        final CalculateDistance calc = new ChebyshevDistance();
+        final double[] pos1 = {0.5, 1.0, 2.5,};
+        final double[] pos2 = {0.1, 2.0, -2.5,};
 
         assertEquals(5.0, calc.calculate(pos1, pos2), 0.001);
     }

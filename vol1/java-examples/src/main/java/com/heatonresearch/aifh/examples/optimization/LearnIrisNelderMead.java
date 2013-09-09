@@ -40,6 +40,7 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Use a RBF network to learn the Iris data set, trained by Nelder Mead.
@@ -50,26 +51,26 @@ public class LearnIrisNelderMead extends SimpleLearn {
      */
     public void process() {
         try {
-            InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
+            final InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
 
-            DataSet ds = DataSet.load(istream);
+            final DataSet ds = DataSet.load(istream);
             // The following ranges are setup for the Iris data set.  If you wish to normalize other files you will
             // need to modify the below function calls other files.
             ds.normalizeRange(0, 0, 1);
             ds.normalizeRange(1, 0, 1);
             ds.normalizeRange(2, 0, 1);
             ds.normalizeRange(3, 0, 1);
-            ds.encodeEquilateral(4);
+            final Map<String, Integer> species = ds.encodeEquilateral(4);
             istream.close();
 
-            List<BasicData> trainingData = ds.extractSupervised(0, 4, 4, 2);
+            final List<BasicData> trainingData = ds.extractSupervised(0, 4, 4, 2);
 
-            RBFNetwork network = new RBFNetwork(4, 4, 2);
+            final RBFNetwork network = new RBFNetwork(4, 4, 2);
             network.reset(new MersenneTwisterGenerateRandom());
-            ScoreFunction score = new ScoreRegressionData(trainingData);
-            TrainNelderMead train = new TrainNelderMead(network, score);
+            final ScoreFunction score = new ScoreRegressionData(trainingData);
+            final TrainNelderMead train = new TrainNelderMead(network, score);
             performIterations(train, 1000, 0.01, true);
-            query(network, trainingData);
+            queryEquilateral(network, trainingData, species, 0, 1);
 
 
         } catch (Throwable t) {
@@ -84,8 +85,8 @@ public class LearnIrisNelderMead extends SimpleLearn {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        LearnIrisNelderMead prg = new LearnIrisNelderMead();
+    public static void main(final String[] args) {
+        final LearnIrisNelderMead prg = new LearnIrisNelderMead();
         prg.process();
     }
 }

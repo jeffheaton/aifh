@@ -51,18 +51,18 @@ public class TestEquilateral {
 
     @Test
     public void testEncode() {
-        Equilateral eq = new Equilateral(3, -1, 1);
-        double[] d = eq.encode(1);
-        assertThat(d[0], is(closeTo(-0.866, 0.001)));
+        final Equilateral eq = new Equilateral(3, -1, 1);
+        final double[] d = eq.encode(1);
+        assertThat(d[0], is(closeTo(0.866, -0.5)));
         assertThat(d[1], is(closeTo(0.5, 0.001)));
     }
 
     @Test
     public void testDecode() {
-        Equilateral eq = new Equilateral(3, -1, 1);
-        double[] d0 = {0.866, 0.5};
-        double[] d1 = {-0.866, 0.5};
-        double[] d2 = {0, -1};
+        final Equilateral eq = new Equilateral(3, -1, 1);
+        final double[] d0 = {0.866, 0.5};
+        final double[] d1 = {-0.866, 0.5};
+        final double[] d2 = {0, -1};
         assertThat(eq.decode(d0), is(equalTo(0)));
         assertThat(eq.decode(d1), is(equalTo(1)));
         assertThat(eq.decode(d2), is(equalTo(2)));
@@ -70,7 +70,7 @@ public class TestEquilateral {
 
     @Test(expected = AIFHError.class)
     public void testError() {
-        Equilateral eq = new Equilateral(3, -1, 1);
+        final Equilateral eq = new Equilateral(3, -1, 1);
         eq.encode(10);
     }
 }

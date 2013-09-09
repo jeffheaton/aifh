@@ -81,11 +81,11 @@ public class TrainNelderMead implements LearningAlgorithm {
     private final ScoreFunction score;
     private double lastError;
 
-    public TrainNelderMead(MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
+    public TrainNelderMead(final MachineLearningAlgorithm theAlgorithm, final ScoreFunction theScore) {
         this(theAlgorithm, theScore, 100);
     }
 
-    public TrainNelderMead(MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore, double stepValue) {
+    public TrainNelderMead(final MachineLearningAlgorithm theAlgorithm, final ScoreFunction theScore, final double stepValue) {
         this.algorithm = theAlgorithm;
         this.score = theScore;
 
@@ -206,15 +206,15 @@ public class TrainNelderMead implements LearningAlgorithm {
                 z = z - this.p[i + ihi * n];
                 this.pbar[i] = z / n;
             }
-			/*
-			 * Reflection through the centroid.
+            /*
+             * Reflection through the centroid.
 			 */
             for (int i = 0; i < n; i++) {
                 this.pstar[i] = this.pbar[i] + RCOEFF
                         * (this.pbar[i] - this.p[i + ihi * n]);
             }
             final double ystar = fn(this.pstar);
-			/*
+            /*
 			 * Successful reflection, so extension.
 			 */
             final double y2star;

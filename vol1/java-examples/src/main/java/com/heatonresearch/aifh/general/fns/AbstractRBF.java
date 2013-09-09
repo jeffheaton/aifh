@@ -66,7 +66,7 @@ public abstract class AbstractRBF implements FnRBF {
      * @param theParams     A vector to hold the paramaters.
      * @param theIndex      The index into the params vector.  You can store multiple RBF's in a vector.
      */
-    public AbstractRBF(int theDimensions, double[] theParams, int theIndex) {
+    public AbstractRBF(final int theDimensions, final double[] theParams, final int theIndex) {
         this.dimensions = theDimensions;
         this.params = theParams;
         this.indexWidth = theIndex;
@@ -113,7 +113,7 @@ public abstract class AbstractRBF implements FnRBF {
         final NumberFormat f = NumberFormat.getNumberInstance();
         f.setMinimumFractionDigits(2);
 
-        StringBuilder result = new StringBuilder();
+        final StringBuilder result = new StringBuilder();
         result.append("[");
         result.append(this.getClass().getSimpleName());
         result.append(":width=");

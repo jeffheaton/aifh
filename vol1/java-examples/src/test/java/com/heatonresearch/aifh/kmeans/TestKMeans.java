@@ -46,7 +46,7 @@ import static org.junit.Assert.assertEquals;
 public class TestKMeans {
 
     public static List<BasicData> getDataSet() {
-        List<BasicData> result = new ArrayList<BasicData>();
+        final List<BasicData> result = new ArrayList<>();
         result.add(new BasicData(new double[]{0, 0}, "a"));
         result.add(new BasicData(new double[]{0, 1}, "a"));
         result.add(new BasicData(new double[]{1, 0}, "a"));
@@ -66,16 +66,16 @@ public class TestKMeans {
 
     @Test
     public void testClusterForgy() {
-        KMeans kmeans = new KMeans(4);
+        final KMeans kmeans = new KMeans(4);
         kmeans.setRandomGeneration(new BasicGenerateRandom(22));
         kmeans.initForgy(getDataSet());
-        int iterations = kmeans.iteration(1000);
+        final int iterations = kmeans.iteration(1000);
         assertEquals(3, iterations);
 
-        Cluster cluster1 = kmeans.getClusters().get(0);
-        Cluster cluster2 = kmeans.getClusters().get(1);
-        Cluster cluster3 = kmeans.getClusters().get(2);
-        Cluster cluster4 = kmeans.getClusters().get(3);
+        final Cluster cluster1 = kmeans.getClusters().get(0);
+        final Cluster cluster2 = kmeans.getClusters().get(1);
+        final Cluster cluster3 = kmeans.getClusters().get(2);
+        final Cluster cluster4 = kmeans.getClusters().get(3);
 
         assertEquals(3, cluster1.getObservations().size());
         assertEquals(3, cluster2.getObservations().size());
@@ -85,16 +85,16 @@ public class TestKMeans {
 
     @Test
     public void testClusterRandom() {
-        KMeans kmeans = new KMeans(4);
+        final KMeans kmeans = new KMeans(4);
         kmeans.setRandomGeneration(new BasicGenerateRandom(22));
         kmeans.initRandom(getDataSet());
-        int iterations = kmeans.iteration(1000);
+        final int iterations = kmeans.iteration(1000);
         assertEquals(4, iterations);
 
-        Cluster cluster1 = kmeans.getClusters().get(0);
-        Cluster cluster2 = kmeans.getClusters().get(1);
-        Cluster cluster3 = kmeans.getClusters().get(2);
-        Cluster cluster4 = kmeans.getClusters().get(3);
+        final Cluster cluster1 = kmeans.getClusters().get(0);
+        final Cluster cluster2 = kmeans.getClusters().get(1);
+        final Cluster cluster3 = kmeans.getClusters().get(2);
+        final Cluster cluster4 = kmeans.getClusters().get(3);
 
         assertEquals(3, cluster1.getObservations().size());
         assertEquals(3, cluster2.getObservations().size());
@@ -104,7 +104,7 @@ public class TestKMeans {
 
     @Test
     public void testGeneral() {
-        KMeans kmeans = new KMeans(5);
+        final KMeans kmeans = new KMeans(5);
         assertEquals(5, kmeans.getK());
         kmeans.setRandomGeneration(new BasicGenerateRandom());
         kmeans.setDistanceMetric(new EuclideanDistance());
@@ -114,37 +114,37 @@ public class TestKMeans {
 
     @Test(expected = AIFHError.class)
     public void testTooManyClusters() {
-        KMeans kmeans = new KMeans(13);
+        final KMeans kmeans = new KMeans(13);
         kmeans.initRandom(getDataSet());
     }
 
     @Test(expected = AIFHError.class)
     public void testEarlyIteration() {
-        KMeans kmeans = new KMeans(3);
+        final KMeans kmeans = new KMeans(3);
         kmeans.iteration();
     }
 
     @Test(expected = AIFHError.class)
     public void testNoObservations() {
-        List<BasicData> list = new ArrayList<BasicData>();
-        KMeans kmeans = new KMeans(3);
+        final List<BasicData> list = new ArrayList<>();
+        final KMeans kmeans = new KMeans(3);
         kmeans.initForgy(list);
     }
 
     @Test(expected = AIFHError.class)
     public void testNoDimension() {
-        List<BasicData> list = new ArrayList<BasicData>();
+        final List<BasicData> list = new ArrayList<>();
         list.add(new BasicData(0));
-        KMeans kmeans = new KMeans(3);
+        final KMeans kmeans = new KMeans(3);
         kmeans.initForgy(list);
     }
 
     @Test
     public void testMaxClusters() {
-        KMeans kmeans = new KMeans(12);
+        final KMeans kmeans = new KMeans(12);
         kmeans.setRandomGeneration(new BasicGenerateRandom(22));
         kmeans.initRandom(getDataSet());
-        int iterations = kmeans.iteration(1000);
+        final int iterations = kmeans.iteration(1000);
         assertEquals(1, iterations);
     }
 }

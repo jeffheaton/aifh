@@ -41,16 +41,16 @@ import static org.junit.Assert.assertEquals;
 public class TestLogLinkFunction {
     @Test
     public void testEvaluate() {
-        LogLinkFunction fn = new LogLinkFunction();
-        double[] x = {2};
-        double y = fn.evaluate(x);
+        final LogLinkFunction fn = new LogLinkFunction();
+        final double[] x = {2};
+        final double y = fn.evaluate(x);
         assertEquals(0.6931471805599453, y, AIFH.DEFAULT_PRECISION);
     }
 
     @Test(expected = AIFHError.class)
     public void testException() {
-        LogLinkFunction fn = new LogLinkFunction();
-        double[] x = {1, 2};
+        final LogLinkFunction fn = new LogLinkFunction();
+        final double[] x = {1, 2};
         fn.evaluate(x);
     }
 }

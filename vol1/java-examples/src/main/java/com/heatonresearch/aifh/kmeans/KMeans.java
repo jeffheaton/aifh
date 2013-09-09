@@ -64,7 +64,7 @@ public class KMeans {
     /**
      * The clusters.
      */
-    private final List<Cluster> clusters = new ArrayList<Cluster>();
+    private final List<Cluster> clusters = new ArrayList<>();
 
     /**
      * The random number generator to use.
@@ -101,7 +101,7 @@ public class KMeans {
                     + theObservations.size() + ") than k (" + this.k + ").");
         }
 
-        int dimensions = theObservations.get(0).getInput().length;
+        final int dimensions = theObservations.get(0).getInput().length;
 
         if (dimensions == 0) {
             throw new AIFHError("Observations have no dimensions.");
@@ -117,7 +117,7 @@ public class KMeans {
      * @param theObservations The observations to cluster.
      */
     public void initRandom(final List<BasicData> theObservations) {
-        int dimensions = findDimensions(theObservations);
+        final int dimensions = findDimensions(theObservations);
 
         // create the clusters
         for (int i = 0; i < this.k; i++) {
@@ -125,22 +125,22 @@ public class KMeans {
         }
 
         // assign each observation to a random cluster
-        for (BasicData observation : theObservations) {
-            int clusterIndex = this.randomGeneration.nextInt(this.k);
-            Cluster cluster = this.clusters.get(clusterIndex);
+        for (final BasicData observation : theObservations) {
+            final int clusterIndex = this.randomGeneration.nextInt(this.k);
+            final Cluster cluster = this.clusters.get(clusterIndex);
             cluster.getObservations().add(observation);
         }
 
         // handle any empty clusters
-        for (Cluster cluster : this.clusters) {
+        for (final Cluster cluster : this.clusters) {
             if (cluster.getObservations().size() == 0) {
                 boolean done = false;
                 while (!done) {
-                    int sourceIndex = this.randomGeneration.nextInt(this.k);
-                    Cluster source = this.clusters.get(sourceIndex);
+                    final int sourceIndex = this.randomGeneration.nextInt(this.k);
+                    final Cluster source = this.clusters.get(sourceIndex);
                     if (source != cluster && source.getObservations().size() > 1) {
-                        int sourceObservationIndex = this.randomGeneration.nextInt(source.getObservations().size());
-                        BasicData sourceObservation = source.getObservations().get(sourceObservationIndex);
+                        final int sourceObservationIndex = this.randomGeneration.nextInt(source.getObservations().size());
+                        final BasicData sourceObservation = source.getObservations().get(sourceObservationIndex);
                         source.getObservations().remove(sourceObservationIndex);
                         cluster.getObservations().add(sourceObservation);
                         done = true;
@@ -162,14 +162,14 @@ public class KMeans {
      */
 
     public void initForgy(final List<BasicData> theObservations) {
-        int dimensions = findDimensions(theObservations);
+        final int dimensions = findDimensions(theObservations);
 
         this.clusters.clear();
 
-        Set<Integer> usedObservations = new HashSet<Integer>();
+        final Set<Integer> usedObservations = new HashSet<>();
 
         for (int i = 0; i < this.k; i++) {
-            Cluster cluster = new Cluster(dimensions);
+            final Cluster cluster = new Cluster(dimensions);
             this.clusters.add(cluster);
 
             int observationIndex = -1;
@@ -181,14 +181,14 @@ public class KMeans {
                 }
             }
 
-            double[] observation = theObservations.get(observationIndex).getInput();
+            final double[] observation = theObservations.get(observationIndex).getInput();
             System.arraycopy(observation, 0, cluster.getCenter(), 0, dimensions);
             usedObservations.add(observationIndex);
         }
 
         // assign all observations to a cluster
-        for (BasicData observation : theObservations) {
-            Cluster cluster = findNearestCluster(observation.getInput());
+        for (final BasicData observation : theObservations) {
+            final Cluster cluster = findNearestCluster(observation.getInput());
             cluster.getObservations().add(observation);
         }
 
@@ -200,7 +200,7 @@ public class KMeans {
      * The update step updates the centroids.
      */
     private void updateStep() {
-        for (Cluster cluster : clusters) {
+        for (final Cluster cluster : clusters) {
             cluster.calculateCenter();
         }
     }
@@ -213,15 +213,15 @@ public class KMeans {
     private boolean assignmentStep() {
         boolean done = true;
 
-        for (Cluster cluster : this.clusters) {
+        for (final Cluster cluster : this.clusters) {
             int observationIndex = 0;
             int observationCount = cluster.getObservations().size();
 
             if (observationCount > 1) {
                 while (observationIndex < observationCount) {
-                    BasicData observation = cluster.getObservations().get(observationIndex++);
+                    final BasicData observation = cluster.getObservations().get(observationIndex++);
 
-                    Cluster targetCluster = findNearestCluster(observation.getInput());
+                    final Cluster targetCluster = findNearestCluster(observation.getInput());
                     if (targetCluster != cluster) {
                         cluster.getObservations().remove(observation);
                         targetCluster.getObservations().add(observation);
@@ -245,8 +245,8 @@ public class KMeans {
         Cluster result = null;
         double resultDist = Double.POSITIVE_INFINITY;
 
-        for (Cluster cluster : this.clusters) {
-            double dist = this.distanceMetric.calculate(observation, cluster.getCenter());
+        for (final Cluster cluster : this.clusters) {
+            final double dist = this.distanceMetric.calculate(observation, cluster.getCenter());
             if (dist < resultDist) {
                 resultDist = dist;
                 result = cluster;
@@ -266,7 +266,7 @@ public class KMeans {
             throw new AIFHError("Must call one of the init methods first.");
         }
 
-        boolean done = assignmentStep();
+        final boolean done = assignmentStep();
 
         if (!done) {
             updateStep();
@@ -281,7 +281,7 @@ public class KMeans {
      * @param maxIterations The max number of iterations.
      * @return True, if we are done.
      */
-    public int iteration(int maxIterations) {
+    public int iteration(final int maxIterations) {
         int iterationCount = 1;
 
         while (iterationCount <= maxIterations && !iteration()) {

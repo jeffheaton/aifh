@@ -49,7 +49,7 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
     private int r;
     private final long[] seed;
 
-    public MultiplyWithCarryGenerateRandom(long seed) {
+    public MultiplyWithCarryGenerateRandom(final long seed) {
         this(new long[]{seed}, seed / 2, 64, 987657110L);
     }
 
@@ -57,7 +57,7 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
         this(new long[]{System.currentTimeMillis()}, System.nanoTime(), 64, 987657110L);
     }
 
-    public MultiplyWithCarryGenerateRandom(long[] seeds, long carry, int r, long multiplier) {
+    public MultiplyWithCarryGenerateRandom(long[] seeds, final long carry, final int r, final long multiplier) {
         setR(r);
         setMultiplier(multiplier);
         this.seed = new long[r];
@@ -65,7 +65,7 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
             seeds = new long[]{System.currentTimeMillis()};
         }
 
-        LinearCongruentialRandom rnd = new LinearCongruentialRandom(seeds[0]);
+        final LinearCongruentialRandom rnd = new LinearCongruentialRandom(seeds[0]);
         this.c = (carry & 0xFFFFFFFFL) % multiplier;
         for (int i = 0; i < r; ++i) {
             if (i < seeds.length) {
@@ -88,7 +88,7 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
                 / (double) (1L << 53);
     }
 
-    private int next(int bits) {
+    private int next(final int bits) {
         final long t = multiplier * seed[n] + c;
         final long d32 = t >>> 32;
         c = d32 + ((t & 0xFFFFFFFFL) >= 0xFFFFFFFFL - d32 ? 1L : 0L);
@@ -98,7 +98,7 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
         return (int) (result >>> 32 - bits);
     }
 
-    private void setMultiplier(long theMultiplier) {
+    private void setMultiplier(final long theMultiplier) {
         this.multiplier = theMultiplier;
     }
 

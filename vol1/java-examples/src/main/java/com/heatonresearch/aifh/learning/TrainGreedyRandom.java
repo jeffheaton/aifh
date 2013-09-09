@@ -83,7 +83,7 @@ public class TrainGreedyRandom implements LearningAlgorithm {
      * @param theAlgorithm      The algorithm to optimize.
      * @param theScore          The score function.
      */
-    public TrainGreedyRandom(boolean theShouldMinimize, MachineLearningAlgorithm theAlgorithm, ScoreFunction theScore) {
+    public TrainGreedyRandom(final boolean theShouldMinimize, final MachineLearningAlgorithm theAlgorithm, final ScoreFunction theScore) {
         this.algorithm = theAlgorithm;
         this.score = theScore;
         this.shouldMinimize = theShouldMinimize;
@@ -101,17 +101,17 @@ public class TrainGreedyRandom implements LearningAlgorithm {
      */
     @Override
     public void iteration() {
-        int len = this.algorithm.getLongTermMemory().length;
+        final int len = this.algorithm.getLongTermMemory().length;
 
         // backup current state
-        double[] oldState = new double[len];
+        final double[] oldState = new double[len];
         System.arraycopy(this.algorithm.getLongTermMemory(), 0, oldState, 0, len);
 
         // randomize the method
         performRandomize(this.algorithm.getLongTermMemory());
 
         // did we improve it?  Only keep the new method if it improved (greedy).
-        double currentError = score.calculateScore(this.algorithm);
+        final double currentError = score.calculateScore(this.algorithm);
 
         if ((currentError < this.lastError) ? shouldMinimize : !shouldMinimize) {
             this.lastError = currentError;
@@ -125,7 +125,7 @@ public class TrainGreedyRandom implements LearningAlgorithm {
      *
      * @param memory The long term memory.
      */
-    public void performRandomize(double[] memory) {
+    public void performRandomize(final double[] memory) {
         for (int i = 0; i < memory.length; i++) {
             memory[i] = this.rnd.nextDouble(this.lowRange, this.highRange);
         }

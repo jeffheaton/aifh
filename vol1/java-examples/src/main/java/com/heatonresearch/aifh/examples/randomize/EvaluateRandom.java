@@ -74,15 +74,15 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
      * Create the window.
      */
     public EvaluateRandom() {
-        String[] distributions = {"Uniform", "Normal"};
-        String[] generators = {"Java", "LCG", "Secure", "Multiply With Carry (MWC)", "Mersenne Twister"};
+        final String[] distributions = {"Uniform", "Normal"};
+        final String[] generators = {"Java", "LCG", "Secure", "Multiply With Carry (MWC)", "Mersenne Twister"};
 
         setSize(640, 480);
-        Container content = this.getContentPane();
+        final Container content = this.getContentPane();
         content.setLayout(new BorderLayout());
         content.add(this.histogram = new HistoPanel(), BorderLayout.CENTER);
 
-        JPanel controlPanel = new JPanel();
+        final JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridLayout(3, 2));
         content.add(controlPanel, BorderLayout.SOUTH);
 
@@ -110,8 +110,8 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        EvaluateRandom frame = new EvaluateRandom();
+    public static void main(final String[] args) {
+        final EvaluateRandom frame = new EvaluateRandom();
         frame.setVisible(true);
     }
 
@@ -123,7 +123,7 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
         if (actionEvent.getSource() == this.buttonStart) {
             this.buttonStart.setEnabled(false);
             this.buttonStop.setEnabled(false);
-            Thread t = new Thread(this);
+            final Thread t = new Thread(this);
             t.start();
         } else {
             this.buttonStart.setEnabled(false);
@@ -141,7 +141,7 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
         this.buttonStart.setEnabled(false);
         this.buttonStop.setEnabled(true);
 
-        GenerateRandom rnd;
+        final GenerateRandom rnd;
 
         switch (this.comboGenerator.getSelectedIndex()) {
             case 0:
@@ -163,7 +163,7 @@ public class EvaluateRandom extends JFrame implements ActionListener, Runnable {
                 rnd = new BasicGenerateRandom();
         }
 
-        boolean uniform = this.comboNormal.getSelectedIndex() == 0;
+        final boolean uniform = this.comboNormal.getSelectedIndex() == 0;
         this.histogram.setUniformMode(uniform);
         this.histogram.reset();
 

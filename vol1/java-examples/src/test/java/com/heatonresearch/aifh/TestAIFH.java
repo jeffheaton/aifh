@@ -42,7 +42,7 @@ import static org.junit.Assert.assertTrue;
 public class TestAIFH {
     @Test
     public void testConstructorIsPrivate() throws Exception {
-        Constructor constructor = AIFH.class.getDeclaredConstructor();
+        final Constructor constructor = AIFH.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         constructor.newInstance();

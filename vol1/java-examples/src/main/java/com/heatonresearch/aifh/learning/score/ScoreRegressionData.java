@@ -57,7 +57,7 @@ public class ScoreRegressionData implements ScoreFunction {
      *
      * @param theTrainingData The training data.
      */
-    public ScoreRegressionData(List<BasicData> theTrainingData) {
+    public ScoreRegressionData(final List<BasicData> theTrainingData) {
         this.trainingData = theTrainingData;
     }
 
@@ -65,12 +65,12 @@ public class ScoreRegressionData implements ScoreFunction {
      * {@inheritDoc}
      */
     @Override
-    public double calculateScore(MachineLearningAlgorithm algo) {
-        RegressionAlgorithm ralgo = (RegressionAlgorithm) algo;
+    public double calculateScore(final MachineLearningAlgorithm algo) {
+        final RegressionAlgorithm ralgo = (RegressionAlgorithm) algo;
         // evaulate
         errorCalc.clear();
-        for (BasicData pair : this.trainingData) {
-            double[] output = ralgo.computeRegression(pair.getInput());
+        for (final BasicData pair : this.trainingData) {
+            final double[] output = ralgo.computeRegression(pair.getInput());
             errorCalc.updateError(output, pair.getIdeal(), 1.0);
         }
 

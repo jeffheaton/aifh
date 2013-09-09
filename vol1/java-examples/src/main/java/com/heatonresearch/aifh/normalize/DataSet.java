@@ -47,7 +47,7 @@ public class DataSet {
     /**
      * The data loaded from a CSV, or other source.
      */
-    private final List<Object[]> data = new ArrayList<Object[]>();
+    private final List<Object[]> data = new ArrayList<>();
     /**
      * The column headers.
      */
@@ -63,7 +63,7 @@ public class DataSet {
      *
      * @param theHeaders The column headers.
      */
-    public DataSet(String[] theHeaders) {
+    public DataSet(final String[] theHeaders) {
         this.headers = theHeaders;
     }
 
@@ -74,8 +74,8 @@ public class DataSet {
      * @param column The column to change.
      * @return The numeric value.
      */
-    private double convertNumeric(Object[] obj, int column) {
-        double x;
+    private double convertNumeric(final Object[] obj, final int column) {
+        final double x;
         if (obj[column] instanceof Double) {
             x = (Double) obj[column];
         } else {
@@ -96,10 +96,10 @@ public class DataSet {
      * @param filename The filename.
      * @return The data set read.
      */
-    public static DataSet load(File filename) {
+    public static DataSet load(final File filename) {
         try {
-            FileInputStream fis = new FileInputStream(filename);
-            DataSet ds = load(fis);
+            final FileInputStream fis = new FileInputStream(filename);
+            final DataSet ds = load(fis);
             fis.close();
             return ds;
         } catch (IOException ex) {
@@ -113,14 +113,14 @@ public class DataSet {
      * @param is The input stream.
      * @return The loaded file.
      */
-    public static DataSet load(InputStream is) {
-        DataSet result;
+    public static DataSet load(final InputStream is) {
+        final DataSet result;
 
         try {
-            Reader reader = new InputStreamReader(is);
-            CSVReader csv = new CSVReader(reader);
+            final Reader reader = new InputStreamReader(is);
+            final CSVReader csv = new CSVReader(reader);
 
-            String[] headers = csv.readNext();
+            final String[] headers = csv.readNext();
 
             result = new DataSet(headers);
 
@@ -132,7 +132,7 @@ public class DataSet {
                     throw new AIFHError("Found a CSV line with "
                             + nextLine.length + " columns, when expecting " + result.getHeaderCount());
                 }
-                Object[] obj = new Object[result.getHeaderCount()];
+                final Object[] obj = new Object[result.getHeaderCount()];
                 System.arraycopy(nextLine, 0, obj, 0, nextLine.length);
                 result.add(obj);
             }
@@ -150,9 +150,9 @@ public class DataSet {
      * @param filename The filename.
      * @param ds       The data set to save.
      */
-    public static void save(File filename, DataSet ds) {
+    public static void save(final File filename, final DataSet ds) {
         try {
-            FileOutputStream fos = new FileOutputStream(filename);
+            final FileOutputStream fos = new FileOutputStream(filename);
             save(fos, ds);
             fos.close();
         } catch (IOException ex) {
@@ -166,15 +166,15 @@ public class DataSet {
      * @param os The output stream.
      * @param ds The data set.
      */
-    public static void save(OutputStream os, DataSet ds) {
+    public static void save(final OutputStream os, final DataSet ds) {
         try {
-            Writer writer = new OutputStreamWriter(os);
-            CSVWriter csv = new CSVWriter(writer);
+            final Writer writer = new OutputStreamWriter(os);
+            final CSVWriter csv = new CSVWriter(writer);
 
             csv.writeNext(ds.getHeaders());
-            String[] items2 = new String[ds.getHeaderCount()];
+            final String[] items2 = new String[ds.getHeaderCount()];
 
-            for (Object[] item : ds.getData()) {
+            for (final Object[] item : ds.getData()) {
                 for (int i = 0; i < ds.getHeaderCount(); i++) {
                     items2[i] = item[i].toString();
                 }
@@ -205,7 +205,7 @@ public class DataSet {
      *
      * @param row The row to add.
      */
-    public void add(Object[] row) {
+    public void add(final Object[] row) {
         this.data.add(row);
     }
 
@@ -222,10 +222,10 @@ public class DataSet {
      * @param column The column.
      * @return The max numeric value.
      */
-    public double getMax(int column) {
+    public double getMax(final int column) {
         double result = Double.NEGATIVE_INFINITY;
 
-        for (Object[] obj : this.data) {
+        for (final Object[] obj : this.data) {
             result = Math.max(result, convertNumeric(obj, column));
         }
 
@@ -238,10 +238,10 @@ public class DataSet {
      * @param column The column.
      * @return The min numeric value.
      */
-    public double getMin(int column) {
+    public double getMin(final int column) {
         double result = Double.POSITIVE_INFINITY;
 
-        for (Object[] obj : this.data) {
+        for (final Object[] obj : this.data) {
             result = Math.min(result, convertNumeric(obj, column));
         }
 
@@ -258,9 +258,9 @@ public class DataSet {
      * @param normalizedLow  The desired low normalized value.
      * @param normalizedHigh The desired high normalized value.
      */
-    public void normalizeRange(int column, double dataLow, double dataHigh, double normalizedLow, double normalizedHigh) {
-        for (Object[] obj : this.data) {
-            double x = convertNumeric(obj, column);
+    public void normalizeRange(final int column, final double dataLow, final double dataHigh, final double normalizedLow, final double normalizedHigh) {
+        for (final Object[] obj : this.data) {
+            final double x = convertNumeric(obj, column);
 
             obj[column] = ((x - dataLow)
                     / (dataHigh - dataLow))
@@ -276,9 +276,9 @@ public class DataSet {
      * @param normalizedLow  The desired low normalized value.
      * @param normalizedHigh The desired high normalized value.
      */
-    public void normalizeRange(int column, double normalizedLow, double normalizedHigh) {
-        double dataLow = getMin(column);
-        double dataHigh = getMax(column);
+    public void normalizeRange(final int column, final double normalizedLow, final double normalizedHigh) {
+        final double dataLow = getMin(column);
+        final double dataHigh = getMax(column);
         normalizeRange(column, dataLow, dataHigh, normalizedLow, normalizedHigh);
     }
 
@@ -292,9 +292,9 @@ public class DataSet {
      * @param normalizedLow  The desired low normalized value.
      * @param normalizedHigh The desired high normalized value.
      */
-    public void deNormalizeRange(int column, double dataLow, double dataHigh, double normalizedLow, double normalizedHigh) {
-        for (Object[] obj : this.data) {
-            double x = convertNumeric(obj, column);
+    public void deNormalizeRange(final int column, final double dataLow, final double dataHigh, final double normalizedLow, final double normalizedHigh) {
+        for (final Object[] obj : this.data) {
+            final double x = convertNumeric(obj, column);
 
             obj[column] = ((dataLow - dataHigh) * x - normalizedHigh
                     * dataLow + dataHigh * normalizedLow)
@@ -308,9 +308,9 @@ public class DataSet {
      *
      * @param column The column to encode.
      */
-    public void normalizeReciprocal(int column) {
-        for (Object[] obj : this.data) {
-            double x = convertNumeric(obj, column);
+    public void normalizeReciprocal(final int column) {
+        for (final Object[] obj : this.data) {
+            final double x = convertNumeric(obj, column);
             obj[column] = 1 / x;
         }
     }
@@ -322,7 +322,7 @@ public class DataSet {
      *
      * @param column The column to encode.
      */
-    public void deNormalizeReciprocal(int column) {
+    public void deNormalizeReciprocal(final int column) {
         normalizeReciprocal(column);
     }
 
@@ -332,16 +332,16 @@ public class DataSet {
      * @param column The column to enumerate.
      * @return The numbered set.
      */
-    public Map<String, Integer> enumerateClasses(int column) {
+    public Map<String, Integer> enumerateClasses(final int column) {
         // determine classes
-        Set<String> classes = new HashSet<String>();
-        for (Object[] obj : this.data) {
+        final Set<String> classes = new HashSet<>();
+        for (final Object[] obj : this.data) {
             classes.add(obj[column].toString());
         }
         // assign numeric values to each class
-        Map<String, Integer> result = new HashMap<String, Integer>();
+        final Map<String, Integer> result = new HashMap<>();
         int index = 0;
-        for (String className : classes) {
+        for (final String className : classes) {
             result.put(className, index++);
         }
 
@@ -354,11 +354,11 @@ public class DataSet {
      * @param column The column to encode.
      * @return The mapping from column names to indexes.
      */
-    public Map<String, Integer> encodeNumeric(int column) {
-        Map<String, Integer> classes = enumerateClasses(column);
+    public Map<String, Integer> encodeNumeric(final int column) {
+        final Map<String, Integer> classes = enumerateClasses(column);
 
-        for (Object[] obj : this.data) {
-            int index = classes.get(obj[column].toString());
+        for (final Object[] obj : this.data) {
+            final int index = classes.get(obj[column].toString());
             obj[column] = index;
         }
 
@@ -373,7 +373,7 @@ public class DataSet {
      * @param column The column to use.
      * @return The column to index mapping (the same result as calling enumerateClasses).
      */
-    public Map<String, Integer> encodeOneOfN(int column) {
+    public Map<String, Integer> encodeOneOfN(final int column) {
         return encodeOneOfN(column, 0, 1);
     }
 
@@ -387,18 +387,18 @@ public class DataSet {
      * @param onValue  The on value to use.
      * @return The column to index mapping (the same result as calling enumerateClasses).
      */
-    public Map<String, Integer> encodeOneOfN(int column, double offValue, double onValue) {
+    public Map<String, Integer> encodeOneOfN(final int column, final double offValue, final double onValue) {
         // remember the column name
-        String name = this.headers[column];
+        final String name = this.headers[column];
 
         // make space for it
-        Map<String, Integer> classes = enumerateClasses(column);
+        final Map<String, Integer> classes = enumerateClasses(column);
         insertColumns(column + 1, classes.size() - 1);
 
         // perform the 1 of n encode
-        for (Object[] obj : this.data) {
-            int index = classes.get(obj[column].toString());
-            int classCount = classes.size();
+        for (final Object[] obj : this.data) {
+            final int index = classes.get(obj[column].toString());
+            final int classCount = classes.size();
 
             for (int i = 0; i < classCount; i++) {
                 obj[column + i] = (i == index) ? onValue : offValue;
@@ -421,7 +421,7 @@ public class DataSet {
      * @param column The column to encode.
      * @return The column to index mapping (the same result as calling enumerateClasses).
      */
-    public Map<String, Integer> encodeEquilateral(int column) {
+    public Map<String, Integer> encodeEquilateral(final int column) {
         return encodeEquilateral(column, 0, 1);
     }
 
@@ -435,22 +435,22 @@ public class DataSet {
      * @param onValue  The on value to use.
      * @return The column to index mapping (the same result as calling enumerateClasses).
      */
-    public Map<String, Integer> encodeEquilateral(int column, double offValue, double onValue) {
+    public Map<String, Integer> encodeEquilateral(final int column, final double offValue, final double onValue) {
         // remember the column name
-        String name = this.headers[column];
+        final String name = this.headers[column];
 
         // make space for it
-        Map<String, Integer> classes = enumerateClasses(column);
-        int classCount = classes.size();
+        final Map<String, Integer> classes = enumerateClasses(column);
+        final int classCount = classes.size();
         insertColumns(column + 1, classCount - 1);
 
         // perform the equilateral
-        Equilateral eq = new Equilateral(classCount, offValue, onValue);
+        final Equilateral eq = new Equilateral(classCount, offValue, onValue);
 
-        for (Object[] obj : this.data) {
-            int index = classes.get(obj[column].toString());
+        for (final Object[] obj : this.data) {
+            final int index = classes.get(obj[column].toString());
 
-            double[] encoded = eq.encode(index);
+            final double[] encoded = eq.encode(index);
 
             for (int i = 0; i < classCount - 1; i++) {
                 obj[column + i] = encoded[i];
@@ -477,10 +477,10 @@ public class DataSet {
      *
      * @param count The number of new columns.
      */
-    public void appendColumns(int count) {
+    public void appendColumns(final int count) {
 
         // add the headers
-        String[] newHeaders = new String[getHeaderCount() + count];
+        final String[] newHeaders = new String[getHeaderCount() + count];
         System.arraycopy(this.headers, 0, newHeaders, 0, getHeaderCount());
 
         for (int i = 0; i < count; i++) {
@@ -491,8 +491,8 @@ public class DataSet {
 
         // add the data
         for (int rowIndex = 0; rowIndex < size(); rowIndex++) {
-            Object[] originalRow = this.data.get(rowIndex);
-            Object[] newRow = new Object[getHeaderCount()];
+            final Object[] originalRow = this.data.get(rowIndex);
+            final Object[] newRow = new Object[getHeaderCount()];
             System.arraycopy(originalRow, 0, newRow, 0, originalRow.length);
             for (int i = 0; i < count; i++) {
                 newRow[getHeaderCount() - 1 - i] = (double) 0;
@@ -508,7 +508,7 @@ public class DataSet {
      * @param column      The column to insert BEFORE.
      * @param columnCount The count of columns to insert.
      */
-    public void insertColumns(int column, int columnCount) {
+    public void insertColumns(final int column, final int columnCount) {
         // create space for new columns
         appendColumns(columnCount);
 
@@ -520,7 +520,7 @@ public class DataSet {
             this.headers[column + i] = "new";
         }
 
-        for (Object[] obj : this.data) {
+        for (final Object[] obj : this.data) {
             // insert columns
             System.arraycopy(obj, column + 1 - columnCount, obj, column + 1, getHeaderCount() - 1 - column);
 
@@ -537,12 +537,12 @@ public class DataSet {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(final Object other) {
         if (!(other instanceof DataSet)) {
             return false;
         }
 
-        DataSet otherSet = (DataSet) other;
+        final DataSet otherSet = (DataSet) other;
 
         // do the basic sizes match
 
@@ -563,8 +563,8 @@ public class DataSet {
 
         // does the data match?
         for (int i = 0; i < size(); i++) {
-            Object[] row1 = this.data.get(i);
-            Object[] row2 = ((DataSet) other).getData().get(i);
+            final Object[] row1 = this.data.get(i);
+            final Object[] row2 = ((DataSet) other).getData().get(i);
 
             for (int j = 0; j < getHeaderCount(); j++) {
                 if (!row1[j].equals(row2[j])) {
@@ -584,13 +584,13 @@ public class DataSet {
      * @return The training set.
      */
     public List<BasicData> extractUnsupervisedLabeled(final int labelIndex) {
-        List<BasicData> result = new ArrayList<BasicData>();
+        final List<BasicData> result = new ArrayList<>();
 
-        int dimensions = getHeaderCount() - 1;
+        final int dimensions = getHeaderCount() - 1;
 
         for (int rowIndex = 0; rowIndex < size(); rowIndex++) {
-            Object[] raw = this.data.get(rowIndex);
-            BasicData row = new BasicData(dimensions, 0, raw[labelIndex].toString());
+            final Object[] raw = this.data.get(rowIndex);
+            final BasicData row = new BasicData(dimensions, 0, raw[labelIndex].toString());
 
             int colIndex = 0;
             for (int rawColIndex = 0; rawColIndex < getHeaderCount(); rawColIndex++) {
@@ -614,12 +614,12 @@ public class DataSet {
      * @param idealCount The number of columns for ideal.
      * @return The training set.
      */
-    public List<BasicData> extractSupervised(final int inputBegin, int inputCount, int idealBegin, int idealCount) {
-        List<BasicData> result = new ArrayList<BasicData>();
+    public List<BasicData> extractSupervised(final int inputBegin, final int inputCount, final int idealBegin, final int idealCount) {
+        final List<BasicData> result = new ArrayList<>();
 
         for (int rowIndex = 0; rowIndex < size(); rowIndex++) {
-            Object[] raw = this.data.get(rowIndex);
-            BasicData row = new BasicData(inputCount, idealCount);
+            final Object[] raw = this.data.get(rowIndex);
+            final BasicData row = new BasicData(inputCount, idealCount);
 
             for (int i = 0; i < inputCount; i++) {
                 row.getInput()[i] = convertNumeric(raw, inputBegin + i);
@@ -642,7 +642,7 @@ public class DataSet {
     public void deleteUnknowns() {
         int rowIndex = 0;
         while (rowIndex < this.data.size()) {
-            Object[] row = data.get(rowIndex);
+            final Object[] row = data.get(rowIndex);
             boolean remove = false;
             for (final Object aRow : row) {
                 if (aRow.toString().equals("?")) {
@@ -664,8 +664,8 @@ public class DataSet {
      *
      * @param col The column to delete.
      */
-    public void deleteColumn(int col) {
-        String[] headers2 = new String[headers.length - 1];
+    public void deleteColumn(final int col) {
+        final String[] headers2 = new String[headers.length - 1];
 
         // first, remove the header
         int h2Index = 0;
@@ -678,8 +678,8 @@ public class DataSet {
 
         // now process the data
         int rowIndex = 0;
-        for (Object[] row : this.data) {
-            Object[] row2 = new Object[headers.length];
+        for (final Object[] row : this.data) {
+            final Object[] row2 = new Object[headers.length];
             int r2Index = 0;
             for (int i = 0; i <= headers.length; i++) {
                 if (i != col) {
@@ -699,8 +699,8 @@ public class DataSet {
      * @param others      What to fill in the others with that do not match.
      */
     public void replaceColumn(final int columnIndex, final double searchFor, final double replaceWith, final double others) {
-        for (Object[] row : this.data) {
-            double d = convertNumeric(row, columnIndex);
+        for (final Object[] row : this.data) {
+            final double d = convertNumeric(row, columnIndex);
             if (Math.abs(d - searchFor) < 0.0001) {
                 row[columnIndex] = replaceWith;
             } else {
