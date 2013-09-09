@@ -1,6 +1,7 @@
 .DS_Store
 .gradle
 .idea
+.RData
 
 *.class
 *.jar
@@ -12,3 +13,4 @@
 
 *.py[c|o]
 *.swp
+*.Rout
