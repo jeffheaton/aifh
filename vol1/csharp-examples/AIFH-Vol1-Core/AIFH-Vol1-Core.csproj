@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF7BD188-EE7D-4F0A-BD7B-27C5E24371DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AIFH_Vol1</RootNamespace>
+    <AssemblyName>AIFH-Vol1-Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper">
+      <HintPath>..\packages\CsvHelper.2.2.2\lib\net40-client\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\AIFH.cs" />
+    <Compile Include="Core\AIFHError.cs" />
+    <Compile Include="Core\Discrete\DiscreteAnneal.cs" />
+    <Compile Include="Core\Distance\AbstractDistance.cs" />
+    <Compile Include="Core\Distance\ChebyshevDistance.cs" />
+    <Compile Include="Core\Distance\EuclideanDistance.cs" />
+    <Compile Include="Core\Distance\ICalculateDistance.cs" />
+    <Compile Include="Core\Distance\ManhattanDistance.cs" />
+    <Compile Include="Core\Error\AbstractErrorCalculation.cs" />
+    <Compile Include="Core\Error\ErrorCalculationESS.cs" />
+    <Compile Include="Core\Error\ErrorCalculationMSE.cs" />
+    <Compile Include="Core\Error\ErrorCalculationRMS.cs" />
+    <Compile Include="Core\Error\IErrorCalculation.cs" />
+    <Compile Include="Core\General\Data\BasicData.cs" />
+    <Compile Include="Core\General\Fns\AbstractRBF.cs" />
+    <Compile Include="Core\General\Fns\GaussianFunction.cs" />
+    <Compile Include="Core\General\Fns\IFnRBF.cs" />
+    <Compile Include="Core\General\Fns\IFn.cs" />
+    <Compile Include="Core\General\Fns\InverseMultiquadricFunction.cs" />
+    <Compile Include="Core\General\Fns\MexicanHatFunction.cs" />
+    <Compile Include="Core\General\Fns\MultiquadricFunction.cs" />
+    <Compile Include="Core\General\VectorUtil.cs" />
+    <Compile Include="Core\KMeans\Cluster.cs" />
+    <Compile Include="Core\KMeans\KMeansClustering.cs" />
+    <Compile Include="Core\Normalize\DataSet.cs" />
+    <Compile Include="Core\Normalize\Equilateral.cs" />
+    <Compile Include="Core\Randomize\AbstractBoxMuller.cs" />
+    <Compile Include="Core\Randomize\AbstractGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\BasicGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\IGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\LinearCongruentialRandom.cs" />
+    <Compile Include="Core\Randomize\MersenneTwisterGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\MultiplyWithCarryGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\SecureGenerateRandom.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
