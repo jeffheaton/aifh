@@ -21,21 +21,16 @@ Please use the GitHub pull-request mechanism to submit contributions.
 ### Volume 1: Fundamental Algorithms
 
 
-Chapter 1: Introduction to AI
-Chapter 2: Normalizing Data
-Chapter 3: Distance Metrics
-
-Chapter 4: Random Numbers
-Chapter 5: K-Means
-
-Chapter 6: Error Calculation
-
-Chapter 7: Towards Machine Learning
-
-Chapter 8: Optimization Algorithms
-Chapter 9: Discrete Optimization
-
-Chapter 10: Linear Regression	
+* Chapter 1: Introduction to AI
+* Chapter 2: Normalizing Data
+* Chapter 3: Distance Metrics
+* Chapter 4: Random Numbers
+* Chapter 5: K-Means
+* Chapter 6: Error Calculation
+* Chapter 7: Towards Machine Learning
+* Chapter 8: Optimization Algorithms
+* Chapter 9: Discrete Optimization
+* Chapter 10: Linear Regression	
 
 ## License
 
