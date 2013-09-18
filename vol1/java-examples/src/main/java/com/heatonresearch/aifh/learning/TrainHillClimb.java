@@ -38,7 +38,7 @@ import com.heatonresearch.aifh.learning.score.ScoreFunction;
  * <p/>
  * http://en.wikipedia.org/wiki/Hill_climbing
  */
-public class TrainHillClimb implements LearningAlgorithm {
+public class TrainHillClimb implements LearningMethod {
     /**
      * The machine learning algorithm to optimize.
      */

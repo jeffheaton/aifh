@@ -30,10 +30,10 @@
 package com.heatonresearch.aifh.learning;
 
 /**
- * A learning algorithm is used to train a machine learning algorithm to better classify or perform regression on
+ * A learning method is used to train a machine learning algorithm to better classify or perform regression on
  * input data.
  */
-public interface LearningAlgorithm {
+public interface LearningMethod {
 
     /**
      * Perform one training iteration.

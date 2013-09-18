@@ -39,7 +39,7 @@ import static org.junit.Assert.*;
  */
 public class TestTraining {
 
-    private void performTest(final LearningAlgorithm train) {
+    private void performTest(final LearningMethod train) {
 
         assertFalse(train.done());
 
