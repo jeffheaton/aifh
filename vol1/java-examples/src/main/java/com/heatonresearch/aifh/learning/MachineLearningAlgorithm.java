@@ -33,5 +33,8 @@ package com.heatonresearch.aifh.learning;
  * Interface that describes a basic Machine Learning Algorithm, with long-term memory.
  */
 public interface MachineLearningAlgorithm {
+    /**
+     * @return The long term memory for the algorithm.  This is usually weights or other coefficients.
+     */
     double[] getLongTermMemory();
 }
