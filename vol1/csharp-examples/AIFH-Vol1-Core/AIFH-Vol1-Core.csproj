@@ -61,6 +61,11 @@
     <Compile Include="Core\General\Fns\IFnRBF.cs" />
     <Compile Include="Core\General\Fns\IFn.cs" />
     <Compile Include="Core\General\Fns\InverseMultiquadricFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\IdentityLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\InverseLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\InverseSquaredLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\LogitLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\LogLinkFunction.cs" />
     <Compile Include="Core\General\Fns\MexicanHatFunction.cs" />
     <Compile Include="Core\General\Fns\MultiquadricFunction.cs" />
     <Compile Include="Core\General\VectorUtil.cs" />
