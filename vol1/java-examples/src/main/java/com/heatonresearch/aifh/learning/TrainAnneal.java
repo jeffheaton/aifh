@@ -57,7 +57,7 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
  * <p/>
  * http://en.wikipedia.org/wiki/Simulated_annealing
  */
-public class TrainAnneal implements LearningAlgorithm {
+public class TrainAnneal implements LearningMethod {
     /**
      * The machine learning algorithm to optimize.
      */

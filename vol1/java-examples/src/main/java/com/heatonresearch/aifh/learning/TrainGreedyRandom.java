@@ -40,7 +40,7 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
  * <p/>
  * http://en.wikipedia.org/wiki/Random_walk
  */
-public class TrainGreedyRandom implements LearningAlgorithm {
+public class TrainGreedyRandom implements LearningMethod {
     /**
      * The Machine Learning algorithm to optimize.
      */

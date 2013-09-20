@@ -48,7 +48,7 @@ import com.heatonresearch.aifh.learning.score.ScoreFunction;
  * <p/>
  * http://people.sc.fsu.edu/~jburkardt/c_src/asa047/asa047.c
  */
-public class TrainNelderMead implements LearningAlgorithm {
+public class TrainNelderMead implements LearningMethod {
 
     /**
      * True if the network has converged, and no further training is needed.
@@ -215,7 +215,7 @@ public class TrainNelderMead implements LearningAlgorithm {
             }
             final double ystar = fn(this.pstar);
             /*
-			 * Successful reflection, so extension.
+             * Successful reflection, so extension.
 			 */
             final double y2star;
             if (ystar < ylo) {

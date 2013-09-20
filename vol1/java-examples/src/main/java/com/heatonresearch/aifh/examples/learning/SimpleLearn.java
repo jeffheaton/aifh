@@ -31,7 +31,7 @@ package com.heatonresearch.aifh.examples.learning;
 
 import com.heatonresearch.aifh.general.VectorUtil;
 import com.heatonresearch.aifh.general.data.BasicData;
-import com.heatonresearch.aifh.learning.LearningAlgorithm;
+import com.heatonresearch.aifh.learning.LearningMethod;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 import com.heatonresearch.aifh.normalize.Equilateral;
 
@@ -53,7 +53,7 @@ public class SimpleLearn {
      * @param targetScore    The target score.
      * @param shouldMinimize True, if we should minimize.
      */
-    public void performIterations(final LearningAlgorithm train, final int maxIterations, final double targetScore, final boolean shouldMinimize) {
+    public void performIterations(final LearningMethod train, final int maxIterations, final double targetScore, final boolean shouldMinimize) {
         int iterationNumber = 0;
         boolean done = false;
 
