@@ -61,10 +61,29 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
      * The RBF functions.
      */
     private final FnRBF[] rbf;
+
+    /**
+     * The weights & RBF parameters.  See constructor for layout.
+     */
     private final double[] longTermMemory;
+
+    /**
+     * An index to the input weights in the long term memory.
+     */
     private final int indexInputWeights;
+
+    /**
+     * An index to the output weights in the long term memory.
+     */
     private final int indexOutputWeights;
 
+    /**
+     * Construct the RBF network.
+     *
+     * @param theInputCount  The input count.
+     * @param rbfCount       The number of RBF functions.
+     * @param theOutputCount The output count.
+     */
     public RBFNetwork(final int theInputCount, final int rbfCount, final int theOutputCount) {
 
         this.inputCount = theInputCount;

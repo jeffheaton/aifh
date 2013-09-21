@@ -68,7 +68,7 @@ public class ScoreClassificationData implements ScoreFunction {
             totalCount++;
             final int output = ralgo.computeClassification(aTrainingData.getInput());
 
-            if (output != aTrainingData.getIdeal()[0]) {
+            if (output != (int) aTrainingData.getIdeal()[0]) {
                 incorrectCount++;
             }
         }

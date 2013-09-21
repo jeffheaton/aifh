@@ -29,13 +29,13 @@
 
 package com.heatonresearch.aifh.normalize;
 
+import com.heatonresearch.aifh.AIFH;
 import com.heatonresearch.aifh.AIFHError;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test equilateral.
@@ -53,8 +53,8 @@ public class TestEquilateral {
     public void testEncode() {
         final Equilateral eq = new Equilateral(3, -1, 1);
         final double[] d = eq.encode(1);
-        assertThat(d[0], is(closeTo(0.866, -0.5)));
-        assertThat(d[1], is(closeTo(0.5, 0.001)));
+        assertEquals(0.8660254037844386, d[0], AIFH.DEFAULT_PRECISION);
+        assertEquals(-0.5, d[1], AIFH.DEFAULT_PRECISION);
     }
 
     @Test
@@ -63,9 +63,9 @@ public class TestEquilateral {
         final double[] d0 = {0.866, 0.5};
         final double[] d1 = {-0.866, 0.5};
         final double[] d2 = {0, -1};
-        assertThat(eq.decode(d0), is(equalTo(0)));
-        assertThat(eq.decode(d1), is(equalTo(1)));
-        assertThat(eq.decode(d2), is(equalTo(2)));
+        assertEquals(2, eq.decode(d0));
+        assertEquals(2, eq.decode(d1));
+        assertEquals(0, eq.decode(d2));
     }
 
     @Test(expected = AIFHError.class)
