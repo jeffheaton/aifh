@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIFH-Vol1", "AIFH-Vol1\AIFH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIFH-Vol1-Core", "AIFH-Vol1-Core\AIFH-Vol1-Core.csproj", "{EF7BD188-EE7D-4F0A-BD7B-27C5E24371DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A9BFDDEA-14DC-47E4-819D-CEDB09A5DADD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{EF7BD188-EE7D-4F0A-BD7B-27C5E24371DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF7BD188-EE7D-4F0A-BD7B-27C5E24371DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF7BD188-EE7D-4F0A-BD7B-27C5E24371DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9BFDDEA-14DC-47E4-819D-CEDB09A5DADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9BFDDEA-14DC-47E4-819D-CEDB09A5DADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9BFDDEA-14DC-47E4-819D-CEDB09A5DADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9BFDDEA-14DC-47E4-819D-CEDB09A5DADD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

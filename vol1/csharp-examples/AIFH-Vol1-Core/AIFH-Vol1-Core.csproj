@@ -33,8 +33,15 @@
     <Reference Include="CsvHelper">
       <HintPath>..\packages\CsvHelper.2.2.2\lib\net40-client\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>..\packages\MathNet.Numerics.2.6.1\lib\net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics.IO">
+      <HintPath>..\packages\MathNet.Numerics.2.6.1\lib\net40\MathNet.Numerics.IO.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,11 +68,28 @@
     <Compile Include="Core\General\Fns\IFnRBF.cs" />
     <Compile Include="Core\General\Fns\IFn.cs" />
     <Compile Include="Core\General\Fns\InverseMultiquadricFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\IdentityLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\InverseLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\InverseSquaredLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\LogitLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\LogLinkFunction.cs" />
     <Compile Include="Core\General\Fns\MexicanHatFunction.cs" />
     <Compile Include="Core\General\Fns\MultiquadricFunction.cs" />
     <Compile Include="Core\General\VectorUtil.cs" />
     <Compile Include="Core\KMeans\Cluster.cs" />
     <Compile Include="Core\KMeans\KMeansClustering.cs" />
+    <Compile Include="Core\Learning\IClassificationAlgorithm.cs" />
+    <Compile Include="Core\Learning\ILearningMethod.cs" />
+    <Compile Include="Core\Learning\IMachineLearningAlgorithm.cs" />
+    <Compile Include="Core\Learning\IRegressionAlgorithm.cs" />
+    <Compile Include="Core\Learning\RBFNetwork.cs" />
+    <Compile Include="Core\Learning\Score\IScoreFunction.cs" />
+    <Compile Include="Core\Learning\Score\ScoreClassificationData.cs" />
+    <Compile Include="Core\Learning\Score\ScoreRegressionData.cs" />
+    <Compile Include="Core\Learning\TrainAnneal.cs" />
+    <Compile Include="Core\Learning\TrainGreedyRandom.cs" />
+    <Compile Include="Core\Learning\TrainHillClimb.cs" />
+    <Compile Include="Core\Learning\TrainNelderMead.cs" />
     <Compile Include="Core\Normalize\DataSet.cs" />
     <Compile Include="Core\Normalize\Equilateral.cs" />
     <Compile Include="Core\Randomize\AbstractBoxMuller.cs" />
@@ -76,6 +100,9 @@
     <Compile Include="Core\Randomize\MersenneTwisterGenerateRandom.cs" />
     <Compile Include="Core\Randomize\MultiplyWithCarryGenerateRandom.cs" />
     <Compile Include="Core\Randomize\SecureGenerateRandom.cs" />
+    <Compile Include="Core\Regression\MultipleLinearRegression.cs" />
+    <Compile Include="Core\Regression\TrainLeastSquares.cs" />
+    <Compile Include="Core\Regression\TrainReweightLeastSquares.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
