@@ -26,23 +26,31 @@
 // http://www.heatonresearch.com/copyright
 //
 
-using AIFH_Vol1.Core.Error;
+using AIFH_Vol1.Core;
+using AIFH_Vol1.Core.General.Fns.Link;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests.Core.Error
+namespace UnitTests.Core.General.Fns.Link
 {
     [TestClass]
-    public class TestErrorCalculationMSE
+    public class TestLogLinkFunction
     {
         [TestMethod]
-        public void TestErrorCalc()
+        public void TestEvaluate()
         {
-            IErrorCalculation calc = new ErrorCalculationMSE();
-            double result = ErrorTestingUtil.CalculateError(
-                    calc,
-                    ErrorTestingUtil.Actual,
-                    ErrorTestingUtil.Ideal);
-            Assert.AreEqual(151.6205, result, 0.001);
+            var fn = new LogLinkFunction();
+            double[] x = { 2 };
+            double y = fn.Evaluate(x);
+            Assert.AreEqual(0.6931471805599453, y, AIFH.DefaultPrecision);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AIFHError), "A 2D evaluation was allowed.")]
+        public void TestException()
+        {
+            var fn = new LogLinkFunction();
+            double[] x = { 1, 2 };
+            fn.Evaluate(x);
         }
     }
 }

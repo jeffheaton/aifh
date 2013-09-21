@@ -25,24 +25,42 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
-
-using AIFH_Vol1.Core.Error;
+using AIFH_Vol1.Core.General.Data;
+using AIFH_Vol1.Core.KMeans;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests.Core.Error
+namespace UnitTests.Core.KMeans
 {
     [TestClass]
-    public class TestErrorCalculationMSE
+    public class TestCluster
     {
         [TestMethod]
-        public void TestErrorCalc()
+        public void TestDimensions()
         {
-            IErrorCalculation calc = new ErrorCalculationMSE();
-            double result = ErrorTestingUtil.CalculateError(
-                    calc,
-                    ErrorTestingUtil.Actual,
-                    ErrorTestingUtil.Ideal);
-            Assert.AreEqual(151.6205, result, 0.001);
+            var cluster = new Cluster(3);
+            Assert.AreEqual(true, cluster.ToString().Length > 0);
+            Assert.AreEqual(3, cluster.Dimensions);
+        }
+
+        [TestMethod]
+        public void TestCenter()
+        {
+            var cluster = new Cluster(3);
+            double[] ob1 = { 2.0, 10.0, 100.0 };
+            double[] ob2 = { 4.0, 20.0, 200.0 };
+            double[] ob3 = { 6.0, 30.0, 300.0 };
+
+            cluster.Observations.Add(new BasicData(ob1));
+            cluster.Observations.Add(new BasicData(ob2));
+            cluster.Observations.Add(new BasicData(ob3));
+
+            Assert.AreEqual(3, cluster.Observations.Count);
+
+            cluster.CalculateCenter();
+
+            Assert.AreEqual(4.0, cluster.Center[0], 0.00001);
+            Assert.AreEqual(20.0, cluster.Center[1], 0.00001);
+            Assert.AreEqual(200.0, cluster.Center[2], 0.00001);
         }
     }
 }

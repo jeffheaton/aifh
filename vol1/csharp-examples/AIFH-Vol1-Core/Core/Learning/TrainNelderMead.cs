@@ -44,7 +44,7 @@ namespace AIFH_Vol1.Core.Learning
     ///     (http://people.sc.fsu.edu/~jburkardt/)
     ///     http://people.sc.fsu.edu/~jburkardt/c_src/asa047/asa047.c
     /// </summary>
-    public class TrainNelderMead
+    public class TrainNelderMead:ILearningMethod
     {
         /// <summary>
         ///     Used to calculate the centroid.

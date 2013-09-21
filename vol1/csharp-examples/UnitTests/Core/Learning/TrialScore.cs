@@ -25,24 +25,21 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
+using System;
+using System.Linq;
+using AIFH_Vol1.Core.Learning;
+using AIFH_Vol1.Core.Learning.Score;
 
-using AIFH_Vol1.Core.Error;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace UnitTests.Core.Error
+namespace UnitTests.Core.Learning
 {
-    [TestClass]
-    public class TestErrorCalculationMSE
+    public class TrialScore : IScoreFunction
     {
-        [TestMethod]
-        public void TestErrorCalc()
+
+        public double CalculateScore(IMachineLearningAlgorithm algo)
         {
-            IErrorCalculation calc = new ErrorCalculationMSE();
-            double result = ErrorTestingUtil.CalculateError(
-                    calc,
-                    ErrorTestingUtil.Actual,
-                    ErrorTestingUtil.Ideal);
-            Assert.AreEqual(151.6205, result, 0.001);
+            double sum = algo.LongTermMemory.Sum();
+            sum /= algo.LongTermMemory.Length;
+            return Math.Abs(10 - sum);
         }
     }
 }

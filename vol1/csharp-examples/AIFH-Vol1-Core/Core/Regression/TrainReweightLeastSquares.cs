@@ -123,7 +123,7 @@ namespace AIFH_Vol1.Core.Regression
                     _hessian[i, j] = 0;
             }
 
-            for (int j = 0; j < working.Length; j++)
+            for (int j = 0; j < rowCount; j++)
             {
                 for (int i = 0; i < _gradient.ColumnCount; i++)
                 {

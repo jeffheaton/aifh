@@ -25,24 +25,36 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
+using AIFH_Vol1.Core.Learning;
 
-using AIFH_Vol1.Core.Error;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace UnitTests.Core.Error
+namespace UnitTests.Core.Learning.Score
 {
-    [TestClass]
-    public class TestErrorCalculationMSE
+    public class SimpleAlgo : IRegressionAlgorithm, IClassificationAlgorithm
     {
-        [TestMethod]
-        public void TestErrorCalc()
+        private readonly double[] _cannedResults;
+        private int _currentIndex;
+
+        public SimpleAlgo(double[] theCannedResults)
         {
-            IErrorCalculation calc = new ErrorCalculationMSE();
-            double result = ErrorTestingUtil.CalculateError(
-                    calc,
-                    ErrorTestingUtil.Actual,
-                    ErrorTestingUtil.Ideal);
-            Assert.AreEqual(151.6205, result, 0.001);
+            _cannedResults = theCannedResults;
+        }
+
+        public int ComputeClassification(double[] input)
+        {
+            return (int) _cannedResults[_currentIndex++];
+        }
+
+        public double[] ComputeRegression(double[] input)
+        {
+            var result = new double[1];
+            result[0] = _cannedResults[_currentIndex++];
+            return result;
+        }
+
+        public double[] LongTermMemory
+        {
+            get { return new double[0]; //To change body of implemented methods use File | Settings | File Templates.
+            }
         }
     }
 }

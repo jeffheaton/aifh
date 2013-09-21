@@ -162,7 +162,9 @@ namespace AIFH_Vol1.Core.Randomize
 
         public override long NextLong()
         {
-            return ((long)Next(32) << 32) + Next(32);
+            uint u1 = Next(32);
+            uint u2 = Next(32);
+            return ((long)u1 << 32) + u2;
         }
 
         /// <inheritdoc/>

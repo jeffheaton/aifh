@@ -108,14 +108,14 @@ namespace AIFH_Vol1.Core.General.Fns
             result.Append("[");
             result.Append(GetType().Name);
             result.Append(":width=");
-            result.Append(Width.ToString("{0:0.00}%"));
+            result.Append(Width.ToString("0.00"));
             result.Append(",center=");
             for (var i = 0; i < _dimensions; i++)
             {
                 if (i > 0)
                 {
                     result.Append(",");
-                    result.Append(_prms[_indexCenters + i].ToString("{0:0.00}%"));
+                    result.Append(_prms[_indexCenters + i].ToString("0.00"));
                 }
             }
 
