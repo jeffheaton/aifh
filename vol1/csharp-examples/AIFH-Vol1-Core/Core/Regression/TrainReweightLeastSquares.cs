@@ -30,8 +30,8 @@ using System;
 using System.Collections.Generic;
 using AIFH_Vol1.Core.General.Data;
 using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Double.Factorization;
 using MathNet.Numerics.LinearAlgebra.Generic;
+using MathNet.Numerics.LinearAlgebra.Generic.Factorization;
 
 namespace AIFH_Vol1.Core.Regression
 {
@@ -116,16 +116,16 @@ namespace AIFH_Vol1.Core.Regression
                 weights[i] = y*(1.0 - y);
             }
 
-            for (int i = 0; i < _algorithm.LongTermMemory.Length; i++)
+            for (int i = 0; i < coeffCount; i++)
             {
                 _gradient[i, 0] = 0;
-                for (int j = 0; j < _algorithm.LongTermMemory.Length; j++)
+                for (int j = 0; j < coeffCount; j++)
                     _hessian[i, j] = 0;
             }
 
             for (int j = 0; j < rowCount; j++)
             {
-                for (int i = 0; i < _algorithm.LongTermMemory.Length; i++)
+                for (int i = 0; i < coeffCount; i++)
                 {
                     _gradient[i, 0] += working[j, i]*errors[j];
                 }
@@ -133,22 +133,16 @@ namespace AIFH_Vol1.Core.Regression
 
             for (int k = 0; k < weights.Length; k++)
             {
-                for (int j = 0; j < working.GetUpperBound(1); j++)
+                for (int j = 0; j < coeffCount; j++)
                 {
-                    for (int i = 0; i < working.GetUpperBound(1); i++)
+                    for (int i = 0; i < coeffCount; i++)
                     {
                         _hessian[j, i] += working[k,i]*working[k,j]*weights[k];
                     }
                 }
             }
 
-            LU lu = _hessian.LU();
-
-            for (int i = 0; i < 10; i++)
-            {
-                _gradient[i, 0] = 5;
-            }
-
+            LU<double> lu = _hessian.LU();
 
             Matrix<double> deltas = lu.Solve(_gradient);
 
