@@ -47,7 +47,7 @@ public class LinearRegressionExample extends SimpleLearn {
             final InputStream istream = this.getClass().getResourceAsStream("/abalone.csv");
 
             final DataSet ds = DataSet.load(istream);
-            // The following ranges are setup for the Iris data set.  If you wish to normalize other files you will
+            // The following ranges are setup for the Abalone data set.  If you wish to normalize other files you will
             // need to modify the below function calls other files.
             ds.encodeOneOfN(0, 0, 1);
             istream.close();
