@@ -25,24 +25,34 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
-
-using AIFH_Vol1.Core.Error;
+using AIFH_Vol1.Core;
+using AIFH_Vol1.Core.General.Fns.Link;
+using AIFH_Vol1.Core.Regression;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests.Core.Error
+namespace UnitTests.Core.Regression
 {
     [TestClass]
-    public class TestErrorCalculationMSE
+    public class TestMultipleLinearRegression
     {
         [TestMethod]
-        public void TestErrorCalc()
+        public void TestBasic()
         {
-            IErrorCalculation calc = new ErrorCalculationMSE();
-            double result = ErrorTestingUtil.CalculateError(
-                    calc,
-                    ErrorTestingUtil.Actual,
-                    ErrorTestingUtil.Ideal);
-            Assert.AreEqual(151.6205, result, 0.001);
+            var reg = new MultipleLinearRegression(1);
+
+            Assert.AreEqual(2, reg.LongTermMemory.Length);
+
+            var lnk = new LogLinkFunction();
+            reg.LinkFunction = lnk;
+            Assert.IsTrue(reg.LinkFunction == lnk);
+
+            reg.LongTermMemory[0] = 1;
+            reg.LongTermMemory[1] = 2;
+
+            double[] input = { 1.0 };
+            double[] output = reg.ComputeRegression(input);
+            Assert.AreEqual(1, output.Length);
+            Assert.AreEqual(1.0986122886681098, output[0], AIFH.DefaultPrecision);
         }
     }
 }

@@ -25,24 +25,41 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
-
-using AIFH_Vol1.Core.Error;
+using System.Collections.Generic;
+using AIFH_Vol1.Core;
+using AIFH_Vol1.Core.General.Data;
+using AIFH_Vol1.Core.Learning.Score;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests.Core.Error
+namespace UnitTests.Core.Learning.Score
 {
     [TestClass]
-    public class TestErrorCalculationMSE
+    public class TestScoreClassificationData
     {
+        public static double[][] TestInput = {
+            new [] {0.0, 0.0},
+            new [] {1.0, 0.0},
+            new [] {0.0, 1.0},
+            new [] {1.0, 1.0}
+    };
+
+        public static double[][] TestIdeal = {
+            new [] {0.0},
+            new [] {1.0},
+            new [] {1.0},
+            new [] {0.0}
+    };
+
+
         [TestMethod]
-        public void TestErrorCalc()
+        public void TestClassification()
         {
-            IErrorCalculation calc = new ErrorCalculationMSE();
-            double result = ErrorTestingUtil.CalculateError(
-                    calc,
-                    ErrorTestingUtil.Actual,
-                    ErrorTestingUtil.Ideal);
-            Assert.AreEqual(151.6205, result, 0.001);
+            double[] actual = { 0.0, 1.0, 0.0, 0.0 };
+            IList<BasicData> training = BasicData.ConvertArrays(TestInput, TestIdeal);
+            var score = new ScoreClassificationData(training);
+            var simple = new SimpleAlgo(actual);
+            double s = score.CalculateScore(simple);
+            Assert.AreEqual(0.25, s, AIFH.DefaultPrecision);
         }
     }
 }

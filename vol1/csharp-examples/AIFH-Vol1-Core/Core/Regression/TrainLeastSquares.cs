@@ -33,6 +33,7 @@ using AIFH_Vol1.Core.General.Data;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.LinearAlgebra.Double.Factorization;
 using MathNet.Numerics.LinearAlgebra.Generic;
+using MathNet.Numerics.LinearAlgebra.Generic.Factorization;
 
 namespace AIFH_Vol1.Core.Regression
 {
@@ -126,7 +127,6 @@ namespace AIFH_Vol1.Core.Regression
             }
 
             // Calculate the least squares solution
-
             QR qr = xMatrix.QR();
             Matrix<double> beta = qr.Solve(yMatrix);
 

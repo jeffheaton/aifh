@@ -109,21 +109,29 @@ namespace AIFH_Vol1.Core.Normalize
         /// <returns>The loaded file.</returns>
         public static DataSet Load(StreamReader stream)
         {
-            DataSet result;
+            DataSet result = null;
             using (var csvReader = new CsvReader(stream))
             {
-                int fieldCount = csvReader.FieldHeaders.Count();
-                var headers = new string[fieldCount];
-
-                for (int i = 0; i < fieldCount; i++)
-                {
-                    headers[i] = csvReader.FieldHeaders[i];
-                }
-
-                result = new DataSet(headers);
+                int fieldCount = 0;
 
                 while (csvReader.Read())
                 {
+                    // if we just read the first row, then we need to read
+                    // the headers, they were already grabbed.
+                    if (result == null)
+                    {
+                        fieldCount = csvReader.FieldHeaders.Count();
+                        var headers = new string[fieldCount];
+
+                        for (int i = 0; i < fieldCount; i++)
+                        {
+                            headers[i] = csvReader.FieldHeaders[i];
+                        }
+
+                        result = new DataSet(headers);
+                    }
+
+                    // process each line
                     var obj = new Object[fieldCount];
                     for (int i = 0; i < fieldCount; i++)
                     {
@@ -158,6 +166,14 @@ namespace AIFH_Vol1.Core.Normalize
         {
             using (var writer = new CsvWriter(textWriter))
             {
+                // write the headers
+                foreach (string header in ds.Headers)
+                {
+                    writer.WriteField(header);
+                }
+                writer.NextRecord();
+
+                // write the data
                 foreach (var item in ds.Data)
                 {
                     for (int i = 0; i < ds.HeaderCount; i++)
@@ -506,14 +522,14 @@ namespace AIFH_Vol1.Core.Normalize
             for (int rowIndex = 0; rowIndex < Count; rowIndex++)
             {
                 object[] originalRow = _data[rowIndex];
-                var newRow = new Object[Count];
+                var newRow = new Object[HeaderCount];
                 Array.Copy(originalRow, 0, newRow, 0, originalRow.Length);
                 for (int i = 0; i < count; i++)
                 {
                     newRow[Count - 1 - i] = (double) 0;
                 }
                 _data.RemoveAt(rowIndex);
-                _data[rowIndex] = newRow;
+                _data.Insert(rowIndex, newRow);
             }
         }
 
@@ -701,9 +717,9 @@ namespace AIFH_Vol1.Core.Normalize
             _headers = headers2;
 
             // now process the data
-            int rowIndex = 0;
-            foreach (var row in _data)
+            for(int rowIndex=0;rowIndex<_data.Count;rowIndex++)
             {
+                var row = _data[rowIndex];
                 var row2 = new Object[_headers.Length];
                 int r2Index = 0;
                 for (int i = 0; i <= _headers.Length; i++)
