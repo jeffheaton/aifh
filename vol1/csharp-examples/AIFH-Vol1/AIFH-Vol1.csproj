@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CsvHelper.2.2.2\lib\net20\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,11 +45,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleHolder.cs" />
+    <Compile Include="Examples\Discrete\KnapsackAnneal.cs" />
+    <Compile Include="Examples\Discrete\TravelingSalesmanAnneal.cs" />
+    <Compile Include="Examples\Error\DataHolder.cs" />
+    <Compile Include="Examples\Error\EvaluateErrors.cs" />
+    <Compile Include="Examples\Intro\CSVExample.cs" />
+    <Compile Include="Examples\KMeans\PerformCluster.cs" />
+    <Compile Include="Examples\Learning\LearnIris.cs" />
+    <Compile Include="Examples\Learning\LearnPolynomial.cs" />
+    <Compile Include="Examples\Learning\LearnXOR.cs" />
+    <Compile Include="Examples\Learning\PolynomialFn.cs" />
+    <Compile Include="Examples\Learning\SimpleLearn.cs" />
+    <Compile Include="Examples\Normalize\NormalizeCSVExample.cs" />
+    <Compile Include="Examples\Optimization\LearnIrisAnneal.cs" />
+    <Compile Include="Examples\Optimization\LearnIrisClimb.cs" />
+    <Compile Include="Examples\Optimization\LearnIrisNelderMead.cs" />
+    <Compile Include="Examples\Randomize\EvaluatePI.cs" />
+    <Compile Include="Examples\Regression\GLMExample.cs" />
+    <Compile Include="Examples\Regression\LinearRegressionExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\abalone.csv" />
+    <EmbeddedResource Include="Resources\breast-cancer-wisconsin.csv" />
+    <EmbeddedResource Include="Resources\iris.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AIFH-Vol1-Core\AIFH-Vol1-Core.csproj">
+      <Project>{ef7bd188-ee7d-4f0a-bd7b-27c5e24371dc}</Project>
+      <Name>AIFH-Vol1-Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

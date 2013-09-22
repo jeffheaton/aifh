@@ -526,7 +526,7 @@ namespace AIFH_Vol1.Core.Normalize
                 Array.Copy(originalRow, 0, newRow, 0, originalRow.Length);
                 for (int i = 0; i < count; i++)
                 {
-                    newRow[Count - 1 - i] = (double) 0;
+                    newRow[HeaderCount - 1 - i] = (double) 0;
                 }
                 _data.RemoveAt(rowIndex);
                 _data.Insert(rowIndex, newRow);
