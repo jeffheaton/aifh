@@ -115,7 +115,7 @@ public class TrainReweightLeastSquares {
         }
 
         for (int j = 0; j < working.length; j++) {
-            for (int i = 0; i < gradient.getColumnDimension(); i++) {
+            for (int i = 0; i < gradient.getRowDimension(); i++) {
                 gradient.set(i, 0, gradient.get(i, 0) + working[j][i] * errors[j]);
             }
         }
