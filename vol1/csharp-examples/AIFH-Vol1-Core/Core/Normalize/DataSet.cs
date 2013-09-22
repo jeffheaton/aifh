@@ -729,7 +729,7 @@ namespace AIFH_Vol1.Core.Normalize
                         row2[r2Index++] = row[i];
                     }
                 }
-                _data[rowIndex++] = row2;
+                _data[rowIndex] = row2;
             }
         }
 

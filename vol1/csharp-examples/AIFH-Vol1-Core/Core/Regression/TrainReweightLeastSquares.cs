@@ -54,7 +54,7 @@ namespace AIFH_Vol1.Core.Regression
         /// <summary>
         ///     The Hessian matrix.
         /// </summary>
-        private readonly double[,] _hessian;
+        private readonly Matrix<double> _hessian;
 
         /// <summary>
         ///     The training data.
@@ -76,7 +76,7 @@ namespace AIFH_Vol1.Core.Regression
             _algorithm = theAlgorithm;
             _trainingData = theTrainingData;
             _gradient = new DenseMatrix(theAlgorithm.LongTermMemory.Length, 1);
-            _hessian = new double[theAlgorithm.LongTermMemory.Length, theAlgorithm.LongTermMemory.Length];
+            _hessian = new DenseMatrix(theAlgorithm.LongTermMemory.Length, theAlgorithm.LongTermMemory.Length);
         }
 
         /// <summary>
@@ -116,18 +116,18 @@ namespace AIFH_Vol1.Core.Regression
                 weights[i] = y*(1.0 - y);
             }
 
-            for (int i = 0; i < _gradient.ColumnCount; i++)
+            for (int i = 0; i < _algorithm.LongTermMemory.Length; i++)
             {
-                _gradient[0, i] = 0;
-                for (int j = 0; j < _gradient.ColumnCount; j++)
+                _gradient[i, 0] = 0;
+                for (int j = 0; j < _algorithm.LongTermMemory.Length; j++)
                     _hessian[i, j] = 0;
             }
 
             for (int j = 0; j < rowCount; j++)
             {
-                for (int i = 0; i < _gradient.ColumnCount; i++)
+                for (int i = 0; i < _algorithm.LongTermMemory.Length; i++)
                 {
-                    _gradient[i, 0] = _gradient[i, 0] + working[j, i]*errors[j];
+                    _gradient[i, 0] += working[j, i]*errors[j];
                 }
             }
 
@@ -142,7 +142,13 @@ namespace AIFH_Vol1.Core.Regression
                 }
             }
 
-            LU lu = new DenseMatrix(_hessian).LU();
+            LU lu = _hessian.LU();
+
+            for (int i = 0; i < 10; i++)
+            {
+                _gradient[i, 0] = 5;
+            }
+
 
             Matrix<double> deltas = lu.Solve(_gradient);
 
