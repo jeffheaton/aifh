@@ -43,7 +43,7 @@ import java.util.List;
 public class LearnPolynomial extends SimpleLearn {
 
     public List<BasicData> generateTrainingData() {
-        final List<BasicData> result = new ArrayList<>();
+        final List<BasicData> result = new ArrayList<BasicData>();
 
         for (double x = -50; x < 50; x++) {
             final double y = (2 * Math.pow(x, 2)) + (4 * x) + 6;

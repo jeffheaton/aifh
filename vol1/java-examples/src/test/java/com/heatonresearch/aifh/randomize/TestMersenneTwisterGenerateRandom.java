@@ -192,7 +192,7 @@ public class TestMersenneTwisterGenerateRandom {
         final MersenneTwisterGenerateRandom rnd = new MersenneTwisterGenerateRandom(1);
         for (final long aLONG_TEST : LONG_TEST) {
             final long l = rnd.nextLong();
-            assertEquals(l, aLONG_TEST, AIFH.DEFAULT_PRECISION);
+            assertEquals(l, aLONG_TEST);
         }
     }
 
@@ -219,7 +219,7 @@ public class TestMersenneTwisterGenerateRandom {
         final MersenneTwisterGenerateRandom rnd = new MersenneTwisterGenerateRandom(1);
         for (final int aINT_TEST : INT_TEST) {
             final int g = rnd.nextInt();
-            assertEquals(g, aINT_TEST, AIFH.DEFAULT_PRECISION);
+            assertEquals(g, aINT_TEST);
         }
     }
 

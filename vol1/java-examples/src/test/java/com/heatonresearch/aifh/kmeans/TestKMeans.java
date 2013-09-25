@@ -46,7 +46,7 @@ import static org.junit.Assert.assertEquals;
 public class TestKMeans {
 
     public static List<BasicData> getDataSet() {
-        final List<BasicData> result = new ArrayList<>();
+        final List<BasicData> result = new ArrayList<BasicData>();
         result.add(new BasicData(new double[]{0, 0}, "a"));
         result.add(new BasicData(new double[]{0, 1}, "a"));
         result.add(new BasicData(new double[]{1, 0}, "a"));
@@ -126,14 +126,14 @@ public class TestKMeans {
 
     @Test(expected = AIFHError.class)
     public void testNoObservations() {
-        final List<BasicData> list = new ArrayList<>();
+        final List<BasicData> list = new ArrayList<BasicData>();
         final KMeans kmeans = new KMeans(3);
         kmeans.initForgy(list);
     }
 
     @Test(expected = AIFHError.class)
     public void testNoDimension() {
-        final List<BasicData> list = new ArrayList<>();
+        final List<BasicData> list = new ArrayList<BasicData>();
         list.add(new BasicData(0));
         final KMeans kmeans = new KMeans(3);
         kmeans.initForgy(list);

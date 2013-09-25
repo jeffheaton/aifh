@@ -165,7 +165,7 @@ public class BasicData {
      */
     public static List<BasicData> convertArrays(final double[][] inputData, final double[][] idealData) {
         // create the list
-        final List<BasicData> result = new ArrayList<>();
+        final List<BasicData> result = new ArrayList<BasicData>();
 
         // get the lengths
         final int inputCount = inputData[0].length;
