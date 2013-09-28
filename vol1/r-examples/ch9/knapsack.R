@@ -35,16 +35,24 @@ menu <- c(2.15, 2.75, 3.35, 3.55, 4.20, 5.80)
 # the total amount we want to spend
 maxCost <- 15.05
 
+# score function
+score <- function(contents) {
+  result <- maxCost - sum(menu[1:length(menu)]*contents[1:length(menu)])
+  if( result<0 ) {
+    result <- .Machine$double.maxx
+  }
+  result
+}
 
 # move to neighbor solution, add or remove items so long as under max cost
 moveNeighbor <- function(contents) { 
   repeat {
     currentSum <- sum(menu[1:length(menu)]*contents[1:length(menu)])
     
-    // randomly either add or remove
-    if( runif(1,0,1)>0.5 )
+    # randomly either add or remove, try to remove more often because add is always successful
+    if( runif(1,0,1)>0.25 )
     {
-      // remove an item
+      # remove an item
       target = sample(1:length(menu),1)
       if( contents[target]>0 ) 
       {
@@ -53,20 +61,21 @@ moveNeighbor <- function(contents) {
     }
     else 
     {
-      // add an item
+      # add an item
       target = sample(1:length(menu),1)
       contents[target] = contents[target] + 1  
     }
     
-    // we are done if below max cost
-    if( sum(menu[contents])<maxCost ) {
+    # we are done if below max cost
+
+    if( sum(menu*contents)<maxCost ) {
       break
     }
   }
   contents
 }
- 
-// simulated annealing
+
+# simulated annealing
 result <- optim(rep(0,length(menu)), score, moveNeighbor, method = "SANN",
                 control = list(maxit = 10000, temp = 10, trace = TRUE,
                                REPORT = 500) )
@@ -75,7 +84,6 @@ result <- optim(rep(0,length(menu)), score, moveNeighbor, method = "SANN",
 # get the result quantities
 qty <- result$par
 
-// display results
+# display results
 cbind(menu,qty,menu*qty)
 cat("Total bill: " , sum(menu*qty) )
-
