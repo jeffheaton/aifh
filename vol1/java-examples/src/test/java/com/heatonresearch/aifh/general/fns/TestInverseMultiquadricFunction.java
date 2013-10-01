@@ -54,7 +54,7 @@ public class TestInverseMultiquadricFunction {
         final InverseMultiquadricFunction funct = new InverseMultiquadricFunction(3, params, 0);
         final double[] x = {-1, 0, 1};
         funct.evaluate(x);
-        assertEquals("[InverseMultiquadricFunction:width=5.00,center=,0.00,0.00]", funct.toString());
+        assertEquals("[InverseMultiquadricFunction:width=5.00,center=0.00,0.00,0.00]", funct.toString());
     }
 
     @Test

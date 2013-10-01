@@ -122,8 +122,9 @@ public abstract class AbstractRBF implements FnRBF {
         for (int i = 0; i < this.dimensions; i++) {
             if (i > 0) {
                 result.append(",");
-                result.append(f.format(this.params[this.indexCenters + i]));
             }
+            result.append(f.format(this.params[this.indexCenters + i]));
+
         }
 
         result.append("]");

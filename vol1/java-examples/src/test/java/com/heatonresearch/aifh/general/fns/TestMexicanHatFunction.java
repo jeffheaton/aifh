@@ -54,7 +54,7 @@ public class TestMexicanHatFunction {
         final MexicanHatFunction funct = new MexicanHatFunction(3, params, 0);
         final double[] x = {-1, 0, 1};
         funct.evaluate(x);
-        assertEquals("[MexicanHatFunction:width=5.00,center=,0.00,0.00]", funct.toString());
+        assertEquals("[MexicanHatFunction:width=5.00,center=0.00,0.00,0.00]", funct.toString());
     }
 
     @Test

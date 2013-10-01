@@ -49,7 +49,7 @@ public class TestRBFNetwork {
         // 2 + 2 + 3 = 7
         assertEquals(7, network.getLongTermMemory().length);
 
-        assertEquals("[RBFNetwork:inputCount=2,outputCount=1,RBFs=[[GaussianFunction:width=0.00,center=,0.00]]]", network.toString());
+        assertEquals("[RBFNetwork:inputCount=2,outputCount=1,RBFs=[[GaussianFunction:width=0.00,center=0.00,0.00]]]", network.toString());
 
     }
 
