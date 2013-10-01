@@ -208,8 +208,8 @@ public class TestLinearCongruentialRandom {
     public void testIntRange() {
         final LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
         for (final int aINT_RANGE_TEST : INT_RANGE_TEST) {
-            final double g = rnd.nextInt(0, 10);
-            assertEquals(g, aINT_RANGE_TEST, AIFH.DEFAULT_PRECISION);
+            final int g = rnd.nextInt(0, 10);
+            assertEquals(g, aINT_RANGE_TEST);
         }
     }
 
@@ -222,20 +222,4 @@ public class TestLinearCongruentialRandom {
         assertEquals(1103515245, rnd.getMultiplier());
     }
 
-
-    /*public static void main(String[] args) {
-        LinearCongruentialRandom rnd = new LinearCongruentialRandom(1);
-        for(int row=0;row<10;row++) {
-            StringBuilder result = new StringBuilder();
-
-            for(int col=0;col<10;col++) {
-                if( col>0 ) {
-                    result.append(",");
-                }
-                result.append(rnd.nextInt(10));
-            }
-            result.append(",");
-            System.out.println(result.toString());
-        }
-    }*/
 }

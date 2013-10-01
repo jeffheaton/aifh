@@ -210,8 +210,8 @@ public class TestBasicGenerateRandom {
     public void testIntRange() {
         final BasicGenerateRandom rnd = new BasicGenerateRandom(1);
         for (final int aINT_RANGE_TEST : INT_RANGE_TEST) {
-            final double g = rnd.nextInt(0, 10);
-            assertEquals(g, aINT_RANGE_TEST, AIFH.DEFAULT_PRECISION);
+            final int g = rnd.nextInt(0, 10);
+            assertEquals(g, aINT_RANGE_TEST);
         }
     }
 
