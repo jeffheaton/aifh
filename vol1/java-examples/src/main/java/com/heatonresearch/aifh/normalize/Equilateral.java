@@ -37,6 +37,8 @@ import java.io.Serializable;
  * Used to produce an array of activations to classify data into groups. This
  * class is provided the number of groups, as well as the range that the
  * activations should fall into.
+ * Guiver, John P., and Klimasauskas, Casimir, C. (1991).
+ * "Applying Neural Networks, Part IV: Improving Performance." PC AI, July/August
  */
 public class Equilateral implements Serializable {
 
