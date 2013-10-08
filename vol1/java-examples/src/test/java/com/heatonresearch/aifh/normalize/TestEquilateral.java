@@ -31,6 +31,8 @@ package com.heatonresearch.aifh.normalize;
 
 import com.heatonresearch.aifh.AIFH;
 import com.heatonresearch.aifh.AIFHError;
+import com.heatonresearch.aifh.distance.CalculateDistance;
+import com.heatonresearch.aifh.distance.EuclideanDistance;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -72,5 +74,31 @@ public class TestEquilateral {
     public void testError() {
         final Equilateral eq = new Equilateral(3, -1, 1);
         eq.encode(10);
+    }
+
+    /**
+     * The idea of equalateral encoding is that every class is equal distant from the others.
+     * This makes sure that is true.
+     */
+    @Test
+    public void testAllEqual() {
+        final Equilateral eq = new Equilateral(10, -1, 1);
+        final CalculateDistance dc = new EuclideanDistance();
+        double compareDist = 0;
+
+        for (int x = 0; x < 10; x++) {
+            double[] baseClass = eq.encode(x);
+            for (int y = 0; y < 10; y++) {
+                if (x != y) {
+                    double[] otherClass = eq.encode(y);
+                    double dist = dc.calculate(baseClass, otherClass);
+                    if (compareDist < AIFH.DEFAULT_PRECISION) {
+                        compareDist = dist;
+                    } else {
+                        assertEquals(compareDist, dist, AIFH.DEFAULT_PRECISION);
+                    }
+                }
+            }
+        }
     }
 }
