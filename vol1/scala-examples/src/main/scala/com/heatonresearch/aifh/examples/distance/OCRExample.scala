@@ -65,11 +65,11 @@ class OCRExample extends JFrame("OCR") {
   /**
    * The letters that have been defined.
    */
-  private val letterListModel: DefaultListModel = new DefaultListModel
+  private val letterListModel = new DefaultListModel
   /**
    * THe downsample button.
    */
-  private val downSample: JButton = new JButton
+  private val downSample = new JButton("D Sample")
   /**
    * The add button.
    */
@@ -119,7 +119,6 @@ class OCRExample extends JFrame("OCR") {
   JLabel1.setBounds(12, 12, 100, 12)
   val JLabel2: JLabel = new JLabel
   JLabel2.setBounds(12, 264, 72, 24)
-  downSample.setText("D Sample")
   downSample.setActionCommand("Down Sample")
   getContentPane.add(downSample)
   downSample.setBounds(252, 180, 120, 24)

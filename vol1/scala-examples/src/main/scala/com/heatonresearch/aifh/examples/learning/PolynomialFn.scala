@@ -48,13 +48,7 @@ class PolynomialFn(polyOrder: Int) extends RegressionAlgorithm {
 
   override def computeRegression(input: Vector[Double]): Vector[Double] = {
     val x: Double = input(0)
-    var y: Double = 0
-
-    for(i <- 0 until longTermMemory.length) {
-      y += longTermMemory(i) * Math.pow(x, i.asInstanceOf[Double])
-    }
-
-    Vector(y)
+    Vector(longTermMemory.zipWithIndex.map { case (value,idx) => value * Math.pow(x,idx.asInstanceOf[Double])}.sum)
   }
 
   override def toString: String = {

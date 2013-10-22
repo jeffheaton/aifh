@@ -38,7 +38,7 @@ object BasicGenerateRandom {
  * A wrapper over Java's built in random number generator.
  * @param rand The underlying random number generator.
  */
-class BasicGenerateRandom private (val rand: Random) extends AbstractGenerateRandom {
+class BasicGenerateRandom private (rand: Random) extends AbstractGenerateRandom {
 
   /**
    * Construct a random number generator with the specified seed.

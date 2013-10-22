@@ -35,6 +35,12 @@ import org.scalatest.Suite
  * Basically validate they do not exception, we cannot test the return values effectively.
  */
 class TestSecureGenerateRandom extends Suite {
+
+  def testDefaultConstructor() {
+    val rnd = new SecureGenerateRandom()
+    rnd.nextBoolean
+  }
+
   def testGenerateBoolean() {
     val rnd = new SecureGenerateRandom(1)
     rnd.nextBoolean

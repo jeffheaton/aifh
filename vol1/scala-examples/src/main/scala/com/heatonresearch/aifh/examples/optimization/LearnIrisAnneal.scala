@@ -35,7 +35,6 @@ import com.heatonresearch.aifh.learning.score.ScoreFunction
 import com.heatonresearch.aifh.learning.score.ScoreRegressionData
 import com.heatonresearch.aifh.normalize.DataSet
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom
-import java.io.InputStream
 
 /**
  * Use a RBF network to learn the Iris data set, trained by hill climbing.

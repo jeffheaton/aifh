@@ -53,7 +53,7 @@ class LinearRegressionExample extends SimpleLearn {
       val train = new TrainLeastSquares(reg, trainingData)
       train.iteration()
       SimpleLearn.query(reg, trainingData)
-      println("Error: s{train.getError}")
+      println(s"Error: ${train.getError}")
     } catch {
       case t: Throwable =>
         t.printStackTrace()
