@@ -92,9 +92,9 @@ class Equilateral(count: Int, low: Double, high: Double) extends Serializable {
    * @return The activations for the specified sets.
    */
   final def encode(set: Int): Vector[Double] = {
-    if (set < 0 || set > matrix.length) {
+    if (set < 0 || set > matrix.length)
       throw new AIFHError("Class out of range for equilateral: " + set)
-    }
+
     matrix(set)
   }
 
@@ -114,6 +114,7 @@ class Equilateral(count: Int, low: Double, high: Double) extends Serializable {
     result(0)(0) = -1
     result(1)(0) = 1.0
     for(k <- 2 until n) {
+      // scale the matrix so far
       r = k
       f = Math.sqrt(r * r - 1.0) / r
       for(i <- 0 until k ;
@@ -129,6 +130,8 @@ class Equilateral(count: Int, low: Double, high: Double) extends Serializable {
       }
       result(k)(k - 1) = 1.0
     }
+
+    // scale it
     for(row <- 0 until result.length ;
         col <- 0 until result(0).length) {
       val min = -1.0

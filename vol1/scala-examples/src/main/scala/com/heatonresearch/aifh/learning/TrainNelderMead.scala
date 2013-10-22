@@ -320,6 +320,7 @@ class TrainNelderMead(private val algorithm: MachineLearningAlgorithm,
    * True if the network has converged, and no further training is needed.
    */
   private var converged: Boolean = false
+
   private var lastError: Double = .0
 
   private[learning] class BreakException extends Exception {}

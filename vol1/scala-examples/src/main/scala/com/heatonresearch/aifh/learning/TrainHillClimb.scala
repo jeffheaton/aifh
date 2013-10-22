@@ -78,14 +78,18 @@ class TrainHillClimb(val shouldMinimize: Boolean,val algorithm: MachineLearningA
 
   override def iteration() {
     val len: Int = algorithm.longTermMemory.length
+
     for(i <- 0 until len) {
       var best: Int = -1
       var bestScore: Double = if (shouldMinimize) Double.PositiveInfinity else Double.NegativeInfinity
+
       for(j <- 0 until candidate.length) {
         algorithm.longTermMemory(i) += stepSize(i) * candidate(j)
         val temp: Double = score.calculateScore(algorithm)
         algorithm.longTermMemory(i) -= stepSize(i) * candidate(j)
-        if (if (temp < bestScore) shouldMinimize else !shouldMinimize) {
+
+        val better = if (temp < bestScore) shouldMinimize else !shouldMinimize
+        if (better) {
           bestScore = temp
           lastError = bestScore
           best = j
