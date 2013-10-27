@@ -65,7 +65,7 @@ class OCRExample extends JFrame("OCR") {
   /**
    * The letters that have been defined.
    */
-  private val letterListModel = new DefaultListModel
+  private val letterListModel: DefaultListModel[SampleData] = new DefaultListModel
   /**
    * THe downsample button.
    */
@@ -85,7 +85,7 @@ class OCRExample extends JFrame("OCR") {
   /**
    * The letters list box
    */
-  private val letters: JList = new JList
+  private val letters: JList[SampleData] = new JList
   /**
    * The delete button
    */
