@@ -40,7 +40,7 @@ class SimpleAlgo(cannedResults: Vector[Double]) extends RegressionAlgorithm with
   private var currentIndex: Int = 0
 
   override def computeClassification(input: Vector[Double]): Int = {
-    val res = cannedResults(currentIndex).asInstanceOf[Int]
+    val res = cannedResults(currentIndex).toInt
     currentIndex +=1
     res
   }

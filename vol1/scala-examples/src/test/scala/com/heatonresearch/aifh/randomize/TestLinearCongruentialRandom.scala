@@ -85,7 +85,7 @@ class TestLinearCongruentialRandom extends Suite with ShouldMatchers {
     val rnd = new LinearCongruentialRandom(1)
     for (aFLOAT_TEST <- FLOAT_TEST) {
       val f: Float = rnd.nextFloat
-      f should be (aFLOAT_TEST plusOrMinus AIFH.DEFAULT_PRECISION.asInstanceOf[Float])
+      f should be (aFLOAT_TEST plusOrMinus AIFH.DEFAULT_PRECISION.toFloat)
     }
   }
 

@@ -59,7 +59,7 @@ class EvaluatePI {
         success += 1
       lastUpdate += 1
       if (lastUpdate >= 1000000) {
-        val pi: Double = 4 * success.asInstanceOf[Double] / tries.asInstanceOf[Double]
+        val pi: Double = 4 * success.toDouble / tries.toDouble
         println(s"Tries=$tries, pi=$pi")
         lastUpdate = 0
       }

@@ -109,18 +109,11 @@ class SimpleLearn {
     do {
       iterationNumber += 1
       train.iteration()
-      if (train.done) {
-        done = true
-      }
-      else if (iterationNumber >= maxIterations) {
-        done = true
-      }
-      else if (shouldMinimize && train.getLastError < targetScore) {
-        done = true
-      }
-      else if (!shouldMinimize && train.getLastError > targetScore) {
-        done = true
-      }
+      done = (train.done 
+        || (iterationNumber >= maxIterations) 
+        || (shouldMinimize && train.getLastError < targetScore) 
+        || (!shouldMinimize && train.getLastError > targetScore))
+
       println(s"Iteration #$iterationNumber, Score=${train.getLastError}, ${train.getStatus}")
     } while (!done)
     train.finishTraining()

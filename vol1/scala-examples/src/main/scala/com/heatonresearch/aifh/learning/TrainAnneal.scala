@@ -91,7 +91,7 @@ class TrainAnneal(algorithm: MachineLearningAlgorithm, val score: ScoreFunction,
    * @return The probability.
    */
   def coolingSchedule: Double = {
-    val ex: Double = k.asInstanceOf[Double] / kMax.asInstanceOf[Double]
+    val ex: Double = k.toDouble / kMax.toDouble
     startingTemperature * Math.pow(endingTemperature / startingTemperature, ex)
   }
 
@@ -105,30 +105,22 @@ class TrainAnneal(algorithm: MachineLearningAlgorithm, val score: ScoreFunction,
       // randomize the method
       performRandomize(algorithm.longTermMemory)
 
-      // did we improve it?  Only keep the new method if it improved (greedy).
+      // did we improve it? Only keep the new method if it improved (greedy).
       val trialError = score.calculateScore(algorithm)
 
-      val keep = if (trialError < currentError) // was this iteration an improvement?  If so, always keep.
-
-        true
-      else {
-        lastProbability = calcProbability(currentError, trialError, currentTemperature)
-        if (lastProbability > rnd.nextDouble)
-          true
-        else
-          false
-      }
-      if (keep) {
+      // keep or reset to previous state
+      if ((trialError < currentError) || calcProbability(currentError, trialError, currentTemperature) > rnd.nextDouble) {
         currentError = trialError
+        
         // better than global error
         if (trialError < globalBestError) {
           globalBestError = trialError
           globalBest = algorithm.longTermMemory.clone()
         }
       }
-      else
-        // reset to the previous state
+      else {
         algorithm.longTermMemory.set(oldState)
+      }
     }
   }
 

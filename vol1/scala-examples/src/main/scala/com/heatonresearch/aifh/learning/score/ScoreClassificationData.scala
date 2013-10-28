@@ -46,11 +46,11 @@ class ScoreClassificationData(theTrainingData: Vector[BasicData]) extends ScoreF
     for (aTrainingData <- theTrainingData) {
       totalCount += 1
       val output: Int = ralgo.computeClassification(aTrainingData.input)
-      if (output != aTrainingData.ideal(0).asInstanceOf[Int]) {
+      if (output != aTrainingData.ideal(0).toInt) {
         incorrectCount += 1
       }
     }
 
-    incorrectCount.asInstanceOf[Double] / totalCount.asInstanceOf[Double]
+    incorrectCount.toDouble / totalCount.toDouble
   }
 }

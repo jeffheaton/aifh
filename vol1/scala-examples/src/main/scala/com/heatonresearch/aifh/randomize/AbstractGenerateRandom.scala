@@ -33,7 +33,7 @@ package com.heatonresearch.aifh.randomize
  * the other types.
  */
 abstract class AbstractGenerateRandom extends GenerateRandom {
-  override def nextInt(low: Int, high: Int): Int = low + (nextDouble() * (high - low)).asInstanceOf[Int]
+  override def nextInt(low: Int, high: Int): Int = low + (nextDouble() * (high - low)).toInt
 
   override def nextDouble(high: Double): Double = nextDouble(0, high)
 

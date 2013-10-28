@@ -29,6 +29,7 @@
 package com.heatonresearch.aifh.general.data
 
 import scala.collection.mutable.ArrayBuffer
+import scala.language.implicitConversions
 
 /**
  * Support class for adding methods to our mutable and immutable vector types.

@@ -59,26 +59,28 @@ class MultiplyWithCarryGenerateRandom private (seeds: Array[Long], carry: Long,i
   private var c: Long = 0L
   private var n: Int = 0
   setR(initialR)
-  private val seed = if (seeds == null || seeds.length == 0) {
+  private val seed = if (seeds == null || seeds.isEmpty) {
     Array[Long](System.currentTimeMillis)
   } else {
-    new Array[Long](r)
+    Array.ofDim[Long](r)
   }
   val rnd = new LinearCongruentialRandom(seeds(0))
   this.c = (carry & 0xFFFFFFFFL) % multiplier
-  (0 until r) foreach { i =>
-    if (i < seeds.length) {
-      this.seed(i) = seeds(i) & 0xFFFFFFFFL
-    }
-    else {
-      this.seed(i) = rnd.nextInt & 0xFFFFFFFFL
-    }
+  for(i <- 0 until r) {
+    this.seed(i) = 
+      if (i < seeds.length) {
+        seeds(i) & 0xFFFFFFFFL
+      }
+      else {
+        rnd.nextInt & 0xFFFFFFFFL
+      }
+      
     if (this.seed(i) == 0xFFFFFFFFL) {
       this.seed(i) = 1L
     }
   }
 
-  def nextDouble(): Double = ((next(26).asInstanceOf[Long] << 27) + next(27)) / (1L << 53).asInstanceOf[Double]
+  def nextDouble(): Double = ((next(26).toLong << 27) + next(27)) / (1L << 53).toDouble
 
   private def next(bits: Int): Int = {
     val t: Long = multiplier * seed(n) + c
@@ -87,7 +89,7 @@ class MultiplyWithCarryGenerateRandom private (seeds: Array[Long], carry: Long,i
     seed(n) = 0xFFFFFFFEL - (t & 0xFFFFFFFFL) - (c - d32 << 32) - c & 0xFFFFFFFFL
     val result: Long = seed(n)
     n = n + 1 & r - 1
-    (result >>> 32 - bits).asInstanceOf[Int]
+    (result >>> 32 - bits).toInt
   }
 
   private def setR(initR: Int) {
@@ -109,11 +111,11 @@ class MultiplyWithCarryGenerateRandom private (seeds: Array[Long], carry: Long,i
     this.r = theR
   }
 
-  override def nextLong: Long = (next(32).asInstanceOf[Long] << 32) + next(32)
+  override def nextLong: Long = (next(32).toLong << 32) + next(32)
 
   override def nextBoolean: Boolean = nextDouble > 0.5
 
-  override def nextFloat: Float = nextDouble().asInstanceOf[Float]
+  override def nextFloat: Float = nextDouble().toFloat
 
-  override def nextInt: Int = nextLong.asInstanceOf[Int]
+  override def nextInt: Int = nextLong.toInt
 }

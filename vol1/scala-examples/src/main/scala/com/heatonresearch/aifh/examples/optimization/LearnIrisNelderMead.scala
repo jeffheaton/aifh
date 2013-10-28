@@ -61,7 +61,6 @@ class LearnIrisNelderMead extends SimpleLearn {
       val trainingData = ds.extractSupervised(0, 4, 4, 2)
       val network: RBFNetwork = new RBFNetwork(4, 4, 2)
       network.reset(new MersenneTwisterGenerateRandom())
-      import scala.collection.JavaConversions._
       val score: ScoreFunction = new ScoreRegressionData(trainingData.toVector)
       val train = new TrainNelderMead(network, score)
       performIterations(train, 1000, 0.01, shouldMinimize = true)

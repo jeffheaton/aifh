@@ -84,7 +84,7 @@ class TestMultiplyWithCarryGenerateRandom extends Suite with ShouldMatchers {
     val rnd = new MultiplyWithCarryGenerateRandom(1)
     for (aFLOAT_TEST <- FLOAT_TEST) {
       val l: Float = rnd.nextFloat
-      l should be (aFLOAT_TEST plusOrMinus AIFH.DEFAULT_PRECISION.asInstanceOf[Float])
+      l should be (aFLOAT_TEST plusOrMinus AIFH.DEFAULT_PRECISION.toFloat)
     }
   }
 

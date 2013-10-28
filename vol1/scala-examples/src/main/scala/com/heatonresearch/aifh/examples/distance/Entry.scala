@@ -69,8 +69,8 @@ class Entry extends JPanel {
       pixelMap = grabber.getPixels.asInstanceOf[Array[Int]]
       findBounds(w, h)
       val data: SampleData = sample.data
-      ratioX = (downSampleRight - downSampleLeft).asInstanceOf[Double] / data.width.asInstanceOf[Double]
-      ratioY = (downSampleBottom - downSampleTop).asInstanceOf[Double] / data.height.asInstanceOf[Double]
+      ratioX = (downSampleRight - downSampleLeft).toDouble / data.width.toDouble
+      ratioY = (downSampleBottom - downSampleTop).toDouble / data.height.toDouble
       for(y <- 0 until data.height ;
           x <- 0 until data.width ) {
         data(x,y) = downSampleRegion(x, y)
@@ -93,10 +93,10 @@ class Entry extends JPanel {
    */
   protected def downSampleRegion(x: Int, y: Int): Boolean = {
     val w: Int = entryImage.getWidth(this)
-    val startX: Int = (downSampleLeft + (x * ratioX)).asInstanceOf[Int]
-    val startY: Int = (downSampleTop + (y * ratioY)).asInstanceOf[Int]
-    val endX: Int = (startX + ratioX).asInstanceOf[Int]
-    val endY: Int = (startY + ratioY).asInstanceOf[Int]
+    val startX: Int = (downSampleLeft + (x * ratioX)).toInt
+    val startY: Int = (downSampleTop + (y * ratioY)).toInt
+    val endX: Int = (startX + ratioX).toInt
+    val endY: Int = (startY + ratioY).toInt
 
     for(yy <- startY to endY ;
         xx <- startX to endX) {
@@ -116,15 +116,14 @@ class Entry extends JPanel {
    * @param h The height of the image
    */
   protected def findBounds(w: Int, h: Int) {
-
-    val hNonEmptyLines = (0 until h).toList.filter { y => hLineClear(y) }
-    if(!hNonEmptyLines.isEmpty) {
+    val hNonEmptyLines = (0 until h) filter { y => hLineClear(y) }
+    if(hNonEmptyLines.nonEmpty) {
       downSampleTop = hNonEmptyLines.head
       downSampleBottom = hNonEmptyLines.last
     }
 
-    val vNonEmptyRows = (0 until w).toList.filter { x=> vLineClear(x) }
-    if(!vNonEmptyRows.isEmpty) {
+    val vNonEmptyRows = (0 until w) filter { x => vLineClear(x) }
+    if(vNonEmptyRows.nonEmpty) {
       downSampleLeft = vNonEmptyRows.head
       downSampleRight = vNonEmptyRows.last
     }

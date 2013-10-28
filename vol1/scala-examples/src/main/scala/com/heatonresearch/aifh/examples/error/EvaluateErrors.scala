@@ -134,9 +134,9 @@ class EvaluateErrors {
     val hugeMSE = hugeErrors.calculateError(calcMSE)
     val hugeRMS = hugeErrors.calculateError(calcRMS)
     println("Type\tESS\t\t\tMSE\t\tRMS")
-    println("Small\t" + smallESS.asInstanceOf[Int] + "\t\t" + nf.format(smallMSE) + "\t" + nf.format(smallRMS))
-    println("Medium\t" + mediumESS.asInstanceOf[Int] + "\t\t" + nf.format(mediumMSE) + "\t" + nf.format(mediumRMS))
-    println("Large\t" + largeESS.asInstanceOf[Int] + "\t\t" + nf.format(largeMSE) + "\t" + nf.format(largeRMS))
-    println("Huge\t" + hugeESS.asInstanceOf[Int] + "\t" + nf.format(hugeMSE) + "\t" + nf.format(hugeRMS))
+    println("Small\t" + smallESS.toInt + "\t\t" + nf.format(smallMSE) + "\t" + nf.format(smallRMS))
+    println("Medium\t" + mediumESS.toInt + "\t\t" + nf.format(mediumMSE) + "\t" + nf.format(mediumRMS))
+    println("Large\t" + largeESS.toInt + "\t\t" + nf.format(largeMSE) + "\t" + nf.format(largeRMS))
+    println("Huge\t" + hugeESS.toInt + "\t" + nf.format(hugeMSE) + "\t" + nf.format(hugeRMS))
   }
 }

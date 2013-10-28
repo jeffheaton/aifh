@@ -5,12 +5,27 @@ version := "1.0"
 
 organization := "com.heatonresearch.aifh"
 
-scalaVersion := "2.10.2"
+scalaVersion := "2.10.3"
 
-libraryDependencies += "net.sf.opencsv" % "opencsv" % "2.3"
+scalacOptions ++= Seq(
+  //"-optimize",
+  "-feature",
+  "-deprecation",
+  "-unchecked",
+  //"-Xlint",
+  "-Ywarn-adapted-args",
+  //"-Ywarn-all",
+  "-Ywarn-dead-code",
+  "-Ywarn-inaccessible",
+  //"-Ywarn-nullary-unit",
+  //"-Ywarn-numeric-widen",
+  //"-Ywarn-value-discard",
+  "-Ywarn-nullary-override"
+)
 
-libraryDependencies += "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
-
-libraryDependencies += "org.hamcrest" % "hamcrest-all" % "1.3" % "test"
-
-libraryDependencies += "gov.nist.math" % "jama" % "1.0.3"
+libraryDependencies ++= Seq(
+  "net.sf.opencsv" % "opencsv" % "2.3",
+  "org.scalatest" % "scalatest_2.10" % "1.9.2" % "test",
+  "org.hamcrest" % "hamcrest-all" % "1.3" % "test",
+  "gov.nist.math" % "jama" % "1.0.3"
+)

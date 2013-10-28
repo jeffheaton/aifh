@@ -73,7 +73,7 @@ class KMeans(val k : Int) {
    * @return The number of dimensions.
    */
   private def findDimensions(theObservations: Vector[BasicData]): Int = {
-    if (theObservations.size == 0) {
+    if (theObservations.isEmpty) {
       throw new AIFHError("No observations provided to cluster, array zero length.")
     }
     if (theObservations.size < k) {
@@ -82,7 +82,7 @@ class KMeans(val k : Int) {
     val dimensions: Int = theObservations(0).input.length
     if (dimensions == 0) {
       throw new AIFHError("Observations have no dimensions.")
-    }
+    }    
     dimensions
   }
 
@@ -97,10 +97,9 @@ class KMeans(val k : Int) {
     for(i <- 0 until k) {
       clusters += new Cluster(dimensions)
     }
-    import scala.collection.JavaConversions._
     for (observation <- theObservations) {
       val clusterIndex: Int = randomGeneration.nextInt(k)
-      val cluster: Cluster = clusters.get(clusterIndex)
+      val cluster: Cluster = clusters(clusterIndex)
       cluster.addObservation(observation)
     }
     for (cluster <- clusters) {
@@ -108,7 +107,7 @@ class KMeans(val k : Int) {
         var done: Boolean = false
         while (!done) {
           val sourceIndex: Int = randomGeneration.nextInt(k)
-          val source: Cluster = clusters.get(sourceIndex)
+          val source: Cluster = clusters(sourceIndex)
           if ((source ne cluster) && source.noObservations > 1) {
             val sourceObservationIndex: Int = randomGeneration.nextInt(source.noObservations)
             val sourceObservation: BasicData = source.getObservation(sourceObservationIndex)
@@ -214,7 +213,7 @@ class KMeans(val k : Int) {
    * @return True, if we are done, no new assignments.
    */
   def iteration: Boolean = {
-    if (clusters.size == 0) {
+    if (clusters.isEmpty) {
       throw new AIFHError("Must call one of the init methods first.")
     }
     val done: Boolean = assignmentStep

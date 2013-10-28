@@ -84,7 +84,7 @@ class LinearCongruentialRandom(val modulus: Long,val multiplier: Long,val increm
    * @param theSeed The seed to use.
    */
   def this(theSeed : Long) {
-    this(Math.pow(LinearCongruentialRandom.DEFAULT_MOD1, LinearCongruentialRandom.DEFAULT_MOD2).asInstanceOf[Long],
+    this(Math.pow(LinearCongruentialRandom.DEFAULT_MOD1, LinearCongruentialRandom.DEFAULT_MOD2).toLong,
       LinearCongruentialRandom.DEFAULT_MULT, LinearCongruentialRandom.DEFAULT_INC, theSeed)
   }
 
@@ -110,7 +110,7 @@ class LinearCongruentialRandom(val modulus: Long,val multiplier: Long,val increm
   /**
    * @return The next random number as a double between 0 and 1.
    */
-  override final def nextDouble(): Double = nextLong.asInstanceOf[Double] / LinearCongruentialRandom.MAX_RAND
+  override final def nextDouble(): Double = nextLong.toDouble / LinearCongruentialRandom.MAX_RAND
 
   /**
    * @return The next random number as a long between 0 and MAX_RAND.
@@ -122,7 +122,7 @@ class LinearCongruentialRandom(val modulus: Long,val multiplier: Long,val increm
 
   override def nextBoolean: Boolean = nextDouble() > 0.5
 
-  override def nextFloat: Float = nextDouble().asInstanceOf[Float]
+  override def nextFloat: Float = nextDouble().toFloat
 
-  override def nextInt: Int = nextLong.asInstanceOf[Int]
+  override def nextInt: Int = nextLong.toInt
 }

@@ -80,7 +80,7 @@ class MersenneTwisterGenerateRandom private (seedInit : Either[Long,Vector[Int]]
   private def setSeed(seed: Long) {
     stateVector = new Array[Int](N)
     mag01 = Array[Int](0x0,MATRIX_A)
-    stateVector(0) = seed.asInstanceOf[Int]
+    stateVector(0) = seed.toInt
 
     mti = 1
     while (mti < N) {
@@ -146,13 +146,13 @@ class MersenneTwisterGenerateRandom private (seedInit : Either[Long,Vector[Int]]
     y >>> (32 - bits)
   }
 
-  override def nextDouble(): Double = ((next(26).asInstanceOf[Long] << 27) + next(27)) / (1L << 53).asInstanceOf[Double]
+  override def nextDouble(): Double = ((next(26).toLong << 27) + next(27)) / (1L << 53).toDouble
 
-  override def nextLong: Long = (next(32).asInstanceOf[Long] << 32) + next(32)
+  override def nextLong: Long = (next(32).toLong << 32) + next(32)
 
   override def nextBoolean: Boolean = nextDouble > 0.5
 
-  override def nextFloat: Float = nextDouble().asInstanceOf[Float]
+  override def nextFloat: Float = nextDouble().toFloat
 
-  override def nextInt: Int = nextLong.asInstanceOf[Int]
+  override def nextInt: Int = nextLong.toInt
 }

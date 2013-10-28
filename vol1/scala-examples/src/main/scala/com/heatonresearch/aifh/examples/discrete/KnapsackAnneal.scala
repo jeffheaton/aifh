@@ -105,8 +105,8 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
    */
   def run() {
     (0 until NUM_ITEMS_TO_CHOOSE) foreach { n=>
-      profit(n) = (Math.random * ITEM_MAX_VALUE).asInstanceOf[Int]
-      weight(n) = (Math.random * ITEM_MAX_WEIGHT).asInstanceOf[Int]
+      profit(n) = (Math.random * ITEM_MAX_VALUE).toInt
+      weight(n) = (Math.random * ITEM_MAX_WEIGHT).toInt
     }
 
     while (!done) {

@@ -78,7 +78,7 @@ class HistoPanel extends JPanel {
     generated += 1
     low = Math.min(low, d)
     high = Math.max(high, d)
-    val boxNumber: Int = ((d * 300.0) + 1000.0).asInstanceOf[Int]
+    val boxNumber: Int = ((d * 300.0) + 1000.0).toInt
     if (boxNumber >= 0 && boxNumber < boxes.length) {
       boxes(boxNumber) += 1
     }
@@ -87,10 +87,10 @@ class HistoPanel extends JPanel {
       evalCount += 1
     }
     if ((currentTime - lastUpdate) > 1000) {
-      runtime = ((currentTime - started) / 1000).asInstanceOf[Int]
+      runtime = ((currentTime - started) / 1000).toInt
       lastUpdate = currentTime
       if (evalCount > 0) {
-        evalRate = (evalCount / evalTime).asInstanceOf[Int]
+        evalRate = (evalCount / evalTime).toInt
       }
       else {
         evalRate = 0
@@ -128,8 +128,8 @@ class HistoPanel extends JPanel {
       barAmount += boxes(boxesIndex)
       boxesIndex += 1
       barAmount /= bar2box
-      val barRatio: Double = barAmount.asInstanceOf[Double] / mode
-      val barHeight: Int = (barRatio * height).asInstanceOf[Int]
+      val barRatio: Double = barAmount.toDouble / mode
+      val barHeight: Int = (barRatio * height).toInt
       g.setColor(Color.CYAN)
       g.fillRect(i * BAR_WIDTH, height - barHeight, BAR_WIDTH, barHeight)
       g.setColor(Color.LIGHT_GRAY)

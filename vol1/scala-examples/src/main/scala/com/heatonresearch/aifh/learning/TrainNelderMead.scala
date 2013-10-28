@@ -193,7 +193,7 @@ class TrainNelderMead(private val algorithm: MachineLearningAlgorithm,
                 l = l + 1
               }
             }
-            if (1 < l) {
+            if (l > 1) {
               p.setFrom(pstar,0,ihi * n,n)
               y(ihi) = ystar
             }
@@ -248,8 +248,8 @@ class TrainNelderMead(private val algorithm: MachineLearningAlgorithm,
             ylo = y(ihi)
             ilo = ihi
           }
-          jcount = jcount - 1
-          if (0 < jcount) {
+          jcount -= 1
+          if (jcount > 0) {
             throw new ContinueException
           }
 

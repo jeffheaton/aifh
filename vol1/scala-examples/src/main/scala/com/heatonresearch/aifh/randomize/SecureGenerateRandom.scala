@@ -50,7 +50,7 @@ class SecureGenerateRandom(rand : SecureRandom) extends AbstractGenerateRandom {
    * @param seed The seed.
    */
   def this(seed : Long) {
-    this(new SecureRandom(Array(seed.asInstanceOf[Byte])))
+    this(new SecureRandom(Array(seed.toByte)))
   }
 
   override def nextInt: Int = rand.nextInt

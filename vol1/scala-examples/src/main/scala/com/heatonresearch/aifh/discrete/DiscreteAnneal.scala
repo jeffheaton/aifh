@@ -44,7 +44,7 @@ abstract class DiscreteAnneal(val kMax: Int,val startingTemperature: Double,val 
    * @return The correct temperature for the current iteration.
    */
   def coolingSchedule: Double = {
-    val ex: Double = k.asInstanceOf[Double] / kMax.asInstanceOf[Double]
+    val ex: Double = k.toDouble / kMax.toDouble
     startingTemperature * Math.pow(endingTemperature / startingTemperature, ex)
   }
 
