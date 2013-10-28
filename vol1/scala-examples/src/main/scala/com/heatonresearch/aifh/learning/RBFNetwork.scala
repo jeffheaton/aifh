@@ -74,7 +74,7 @@ class RBFNetwork(val inputCount: Int, rbfCount: Int,val outputCount: Int) extend
    * The RBF functions.
    */
   private val rbf: Vector[FnRBF] = {
-    val arr = new Array[FnRBF](rbfCount)
+    val arr = Array.ofDim[FnRBF](rbfCount)
     for(i <- 0 until rbfCount) {
       val rbfIndex: Int = inputWeightCount + ((inputCount + 1) * i)
       arr(i) = new GaussianFunction(inputCount, longTermMemory, rbfIndex)

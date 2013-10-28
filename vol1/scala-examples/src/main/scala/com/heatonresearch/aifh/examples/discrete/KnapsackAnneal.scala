@@ -68,11 +68,11 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
   /**
    * The profit for each item.
    */
-  private val profit: Array[Int] = new Array[Int](NUM_ITEMS_TO_CHOOSE + 1)
+  private val profit: Array[Int] = Array.ofDim[Int](NUM_ITEMS_TO_CHOOSE + 1)
   /**
    * The weight for each item.
    */
-  private val weight: Array[Int] = new Array[Int](NUM_ITEMS_TO_CHOOSE + 1)
+  private val weight: Array[Int] = Array.ofDim[Int](NUM_ITEMS_TO_CHOOSE + 1)
   /**
    * A random number generator.
    */
@@ -82,7 +82,7 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
    * The current items taken.
    */
   private val currentTaken = {
-    val arr = new Array[Boolean](NUM_ITEMS_TO_CHOOSE)
+    val arr = Array.ofDim[Boolean](NUM_ITEMS_TO_CHOOSE)
     (0 until arr.length) foreach { i =>
       arr(i) = rnd.nextBoolean
     }
@@ -92,12 +92,12 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
   /**
    * A backup of the items taken, in case we need to revert.
    */
-  private val backupTaken = new Array[Boolean](NUM_ITEMS_TO_CHOOSE)
+  private val backupTaken = Array.ofDim[Boolean](NUM_ITEMS_TO_CHOOSE)
 
   /**
    * The best set of items so far.
    */
-  private val bestTaken = new Array[Boolean](NUM_ITEMS_TO_CHOOSE)
+  private val bestTaken = Array.ofDim[Boolean](NUM_ITEMS_TO_CHOOSE)
   balance()
 
   /**

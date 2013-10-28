@@ -47,7 +47,7 @@ class HistoPanel extends JPanel {
   private var runtime: Int = 0
   private var low: Double = .0
   private var high: Double = .0
-  private val boxes: Array[Int] = new Array[Int](2000)
+  private val boxes: Array[Int] = Array.ofDim[Int](2000)
   var uniformMode: Boolean = false
   private val formatter = new DecimalFormat("#.##")
   private val intFormatter = NumberFormat.getNumberInstance

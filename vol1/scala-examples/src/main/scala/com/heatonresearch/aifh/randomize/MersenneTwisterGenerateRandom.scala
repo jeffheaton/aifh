@@ -78,7 +78,7 @@ class MersenneTwisterGenerateRandom private (seedInit : Either[Long,Vector[Int]]
   }
 
   private def setSeed(seed: Long) {
-    stateVector = new Array[Int](N)
+    stateVector = Array.ofDim[Int](N)
     mag01 = Array[Int](0x0,MATRIX_A)
     stateVector(0) = seed.toInt
 

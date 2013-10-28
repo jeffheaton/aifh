@@ -80,7 +80,7 @@ object DataSet {
           if (nextLine.length != result.getHeaderCount) {
             throw new AIFHError("Found a CSV line with " + nextLine.length + " columns, when expecting " + result.getHeaderCount)
           }
-          val obj = new Array[AnyRef](result.getHeaderCount)
+          val obj = Array.ofDim[AnyRef](result.getHeaderCount)
           System.arraycopy(nextLine, 0, obj, 0, nextLine.length)
           result.add(obj)
         }
@@ -123,7 +123,7 @@ object DataSet {
       val writer: Writer = new OutputStreamWriter(os)
       val csv = new CSVWriter(writer)
       csv.writeNext(ds.getHeaders)
-      val items2 = new Array[String](ds.getHeaderCount)
+      val items2 = Array.ofDim[String](ds.getHeaderCount)
       for (item <- ds.getData) {
         for(i<- 0 until ds.getHeaderCount) {
           items2(i) = item(i).toString
@@ -407,14 +407,14 @@ class DataSet(theHeaders: Array[String]) {
    * @param count The number of new columns.
    */
   def appendColumns(count: Int) {
-    val newHeaders: Array[String] = new Array[String](getHeaderCount + count)
+    val newHeaders: Array[String] = Array.ofDim[String](getHeaderCount + count)
     System.arraycopy(headers, 0, newHeaders, 0, getHeaderCount)
     for(i <- 0 until count)
       newHeaders(i + getHeaderCount) = "new"
     headers = newHeaders
     for(rowIndex <- 0 until size) {
       val originalRow = data(rowIndex)
-      val newRow: Array[AnyRef] = new Array[AnyRef](getHeaderCount)
+      val newRow: Array[AnyRef] = Array.ofDim[AnyRef](getHeaderCount)
       System.arraycopy(originalRow, 0, newRow, 0, originalRow.length)
       for(i <- 0 until count)
         newRow(getHeaderCount - 1 - i) = 0.0.asInstanceOf[Object]
@@ -528,7 +528,7 @@ class DataSet(theHeaders: Array[String]) {
    * @param col The column to delete.
    */
   def deleteColumn(col: Int) {
-    val headers2: Array[String] = new Array[String](headers.length - 1)
+    val headers2: Array[String] = Array.ofDim[String](headers.length - 1)
     var h2Index: Int = 0
     for(i <- 0 until headers.length) {
       if (i != col) {
@@ -539,7 +539,7 @@ class DataSet(theHeaders: Array[String]) {
     headers = headers2
     var rowIndex: Int = 0
     for (row <- data) {
-      val row2: Array[AnyRef] = new Array[AnyRef](headers.length)
+      val row2: Array[AnyRef] = Array.ofDim[AnyRef](headers.length)
       var r2Index: Int = 0
       for(i<- 0 until headers.length) {
         if (i != col) {
