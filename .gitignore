@@ -49,6 +49,9 @@ obj/
 [Bb]in
 [Dd]ebug*/
 [Rr]elease*/
+[Oo]bj/
+x64/
+build/
 Ankh.NoLoad
 
 #MonoDevelop
