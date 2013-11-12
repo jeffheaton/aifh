@@ -36,14 +36,14 @@ int main(int argc, char* argv[])
 
 	for(i=1;i<argc;i++) {
 		if( *argv[i]=='-' ) {
-			if( _strcmpi(argv[i],"-pause") == 0) {
+			if( strcasecmp(argv[i],"-pause") == 0) {
 				pause = 1;
 			} else {
 				printf("Unknown option: %s",argv[i]);
 			}
 		}
 		else {
-			if( _strcmpi(argv[i],"readcsv") == 0 ) {
+			if( strcasecmp(argv[i],"readcsv") == 0 ) {
 				success = 1;
 				ExampleReadCSV(i+1,argc,argv);
 			}

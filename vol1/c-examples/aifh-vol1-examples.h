@@ -37,7 +37,7 @@ extern "C" {
 #include <string.h>
 #include <stdlib.h>	
 #include <errno.h>
-#include <io.h>
+
 
 #include "csv.h"
 
@@ -46,8 +46,12 @@ void ExampleReadCSV(int argIndex, int argc, char **argv);
 
 /* For visual C++ */
 #ifdef _MSC_VER
+#include <io.h>
 #pragma warning(disable : 4996)
 #define F_OK    0       /* Test for existence.  */
+#else
+/* For non-Visual C++ */
+#include <unistd.h>
 #endif
 
 #ifdef __cplusplus
