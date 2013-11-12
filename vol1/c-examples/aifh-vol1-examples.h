@@ -47,6 +47,7 @@ void ExampleReadCSV(int argIndex, int argc, char **argv);
 /* For visual C++ */
 #ifdef _MSC_VER
 #include <io.h>
+#define strcasecmp _strcmpi
 #pragma warning(disable : 4996)
 #define F_OK    0       /* Test for existence.  */
 #else
