@@ -27,12 +27,18 @@
     <ClInclude Include="aifh-vol1-examples.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="csv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIFH-VOL1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ExampleReadCSV.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libcsv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
