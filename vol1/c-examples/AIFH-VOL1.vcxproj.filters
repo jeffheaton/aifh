@@ -24,12 +24,15 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aifh-vol1-examples.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="AIFH-VOL1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AIFH-VOL1.cpp">
+    <ClCompile Include="ExampleReadCSV.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
