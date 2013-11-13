@@ -43,7 +43,7 @@ public class ManhattanDistance extends AbstractDistance {
     @Override
     public double calculate(final double[] position1, final int pos1, final double[] position2, final int pos2, final int length) {
         double sum = 0;
-        for (int i = 0; i < position1.length; i++) {
+        for (int i = 0; i < length; i++) {
             final double d = Math.abs(position1[i] - position2[i]);
             sum += d;
         }
