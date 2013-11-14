@@ -84,14 +84,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aifh-vol1-examples.h" />
+    <ClInclude Include="aifh-vol1.h" />
     <ClInclude Include="csv.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIFH-VOL1.c" />
+    <ClCompile Include="Distance.c" />
+    <ClCompile Include="ExampleDistance.c" />
+    <ClCompile Include="ExampleNormalize.c" />
     <ClCompile Include="ExampleReadCSV.c" />
+    <ClCompile Include="ExampleUtil.c" />
     <ClCompile Include="libcsv.c" />
+    <ClCompile Include="Normalize.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

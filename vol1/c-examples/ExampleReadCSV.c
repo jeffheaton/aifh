@@ -28,35 +28,6 @@
  */
 #include "aifh-vol1-examples.h"
 
-void LocateFile(char *filename, char *resultName, size_t size) {
-	int depth = 0;
-	int done = 0;
-	int i;
-
-	while(!done) {
-		strncpy(resultName,"./",size);
-
-		for(i=0;i<depth;i++) {
-			strncat(resultName,"../",size);
-		}
-
-		if( depth>0 ) {
-			strncat(resultName,"datasets/",size);
-		}
-
-		strncat(resultName,filename,size);
-
-		printf("%s\n", resultName);
-
-		if( access( resultName, F_OK ) != -1 ) {
-			done=1;
-		} else if( depth>10 ) {
-			done=1;
-		}
-
-		depth++;
-	}
-}
 
 struct counts {
 	long unsigned fields;
@@ -65,10 +36,7 @@ struct counts {
 
 void CallbackColumn (void *s, size_t len, void *data) 
 {
-	size_t i;
-	for(i=0;i<len;i++) {
-		printf("Field: \"%s\"\n",s);
-	}
+	printf("Field: \"%s\"\n",s);
 	((struct counts *)data)->fields++; 
 }
 void CallbackRow (int c, void *data) 

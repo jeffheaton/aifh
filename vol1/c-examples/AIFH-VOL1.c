@@ -46,6 +46,12 @@ int main(int argc, char* argv[])
 			if( strcasecmp(argv[i],"readcsv") == 0 ) {
 				success = 1;
 				ExampleReadCSV(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"normalize") == 0 ) {
+				success = 1;
+				ExampleNormalize(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"distance") == 0 ) {
+				success = 1;
+				ExampleDistance(i+1,argc,argv);
 			}
 		}
 	}
@@ -55,6 +61,10 @@ int main(int argc, char* argv[])
 		printf("\nWhere ExampleName is one of:\n");
 		printf("**Chapter 1**\n");
 		printf("readcsv - Read the contents of a CSV file\n");
+		printf("**Chapter 2**\n");
+		printf("normalize - Normalize the iris data set\n");
+		printf("**Chapter 3**\n");
+		printf("distance - Perform several distance calculations\n");
 	}
 
 	if( pause ) {

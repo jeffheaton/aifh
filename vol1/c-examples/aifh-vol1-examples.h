@@ -33,27 +33,19 @@
 extern "C" {
 #endif
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>	
-#include <errno.h>
+#include "aifh-vol1.h"
 
-
-#include "csv.h"
-
-/* Chapter 1 Examples */
+/* Chapter 1 */
 void ExampleReadCSV(int argIndex, int argc, char **argv);
 
-/* For visual C++ */
-#ifdef _MSC_VER
-#include <io.h>
-#define strcasecmp _strcmpi
-#pragma warning(disable : 4996)
-#define F_OK    0       /* Test for existence.  */
-#else
-/* For non-Visual C++ */
-#include <unistd.h>
-#endif
+/* Chapter 2 */
+void ExampleNormalize(int argIndex, int argc, char **argv) ;
+
+/* Chapter 3 */
+void ExampleDistance(int argIndex, int argc, char **argv);
+
+/* Utility */
+void LocateFile(char *filename, char *resultName, size_t size);
 
 #ifdef __cplusplus
 }

@@ -30,6 +30,9 @@
     <ClInclude Include="csv.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aifh-vol1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIFH-VOL1.c">
@@ -39,6 +42,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="libcsv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExampleDistance.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Distance.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExampleNormalize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExampleUtil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Normalize.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
