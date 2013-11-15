@@ -18,8 +18,6 @@ void LocateFile(char *filename, char *resultName, size_t size) {
 
 		strncat(resultName,filename,size);
 
-		printf("%s\n", resultName);
-
 		if( access( resultName, F_OK ) != -1 ) {
 			done=1;
 		} else if( depth>10 ) {

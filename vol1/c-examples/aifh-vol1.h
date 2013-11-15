@@ -41,6 +41,10 @@ extern "C" {
 
 #include "csv.h"
 
+#define NORM_TYPE_RANGE 0
+#define NORM_CLASS_ONEOFN 1
+#define NORM_CLASS_EQUILATERAL 2
+
 #ifndef MAX
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
@@ -86,6 +90,8 @@ typedef struct NORM_DATA_ITEM {
 	double actualLow;
 	double targetHigh;
 	double targetLow;
+	char *name;
+	int type;
 	struct NORM_DATA_ITEM *next;
 } NORM_DATA_ITEM;
 
@@ -108,6 +114,7 @@ typedef struct DATA_SET
 NORM_DATA *NormCreate();
 void NormDelete(NORM_DATA *norm);
 void NormDefRange(NORM_DATA *norm, double low, double high);
+void NormDefClass(NORM_DATA *norm, int type, double low, double high);
 void NormProcess(NORM_DATA *data, char *filename, int inputCount, int outputCount);
 
 #ifdef __cplusplus
