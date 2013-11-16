@@ -3,6 +3,7 @@
 typedef struct _PROCESS_PAIR {
 	NORM_DATA *norm;
 	DATA_SET *data;
+	int rowCount;
 } _PROCESS_PAIR;
 
 static void _AppendUniqueClass(NORM_DATA_ITEM *item, char *className) {
@@ -97,7 +98,6 @@ static void _AnalyzeCallbackColumn (void *s, size_t len, void *data)
 static void _AnalyzeCallbackRow (int c, void *data) 
 {
 	NORM_DATA *norm;
-
 	norm = (NORM_DATA *)data;
 	norm->_currentColumn = 0;
 	norm->rowCount++;
@@ -108,10 +108,15 @@ static void _ProcessCallbackColumn (void *s, size_t len, void *data)
 	_PROCESS_PAIR *pair;
 	NORM_DATA *norm;
 	NORM_DATA_ITEM *col;
-	int colNum;
+	int colNum,i;
+	double x;
 
 	pair = (_PROCESS_PAIR*)data;
 	norm = pair->norm;
+
+	if( pair->rowCount==0) {
+		return;
+	}
 
 	/* Find the column definition */
 	col = norm->firstItem;
@@ -132,8 +137,12 @@ static void _ProcessCallbackColumn (void *s, size_t len, void *data)
 	/* normalize the column */
 	switch(col->type) {
 		case NORM_TYPE_RANGE:
+			x = atof((char*)s);
+			*(pair->data->cursor++) = NormRange(col->actualLow, col->actualHigh, col->targetLow, col->targetHigh, x);
 			break;
 		case NORM_CLASS_ONEOFN:
+			NormOneOfN(col->firstClass,col->targetLow,col->targetHigh,(char*)s,pair->data->cursor);
+			pair->data->cursor+=col->classCount;
 			break;
 	}
 }
@@ -141,14 +150,76 @@ static void _ProcessCallbackColumn (void *s, size_t len, void *data)
 static void _ProcessCallbackRow (int c, void *data) 
 {
 	_PROCESS_PAIR *pair;
-	
-	pair = (_PROCESS_PAIR*)data;
+	int sz;
 
+	pair = (_PROCESS_PAIR*)data;
+	pair->rowCount++;
 	pair->norm->_currentColumn = 0;
+	sz = pair->data->cursor - pair->data->data;
+	printf("%i\n",sz);
 }
 
 NORM_DATA *NormCreate() {
 	NORM_DATA *result = (NORM_DATA *)calloc(1,sizeof(NORM_DATA));
+	return result;
+}
+
+double NormRange(double dataLow, double dataHigh, double normalizedLow, double normalizedHigh, double x) {
+	return ((x - dataLow) 
+				/ (dataHigh - dataLow))
+				* (normalizedHigh - normalizedLow) + normalizedLow;
+}
+
+double DeNormRange(double dataLow, double dataHigh, double normalizedLow, double normalizedHigh, double x) {
+	return ((dataLow - dataHigh) * x - normalizedHigh
+				* dataLow + dataHigh * normalizedLow)
+				/ (normalizedLow - normalizedHigh);
+}
+
+double NormReciprocal(double x) {
+	return 1/x;
+}
+
+double DeNormReciprocal(double x) {
+	return 1/x;
+}
+
+void NormOneOfN(NORM_DATA_CLASS *first, double normalizedLow, double normalizedHigh, char *classX, double *dataOut) {
+	NORM_DATA_CLASS *current;
+	double *currentOut;
+
+	current = first;
+	currentOut = dataOut;
+	while(current!=NULL) {
+		if(!strcmp(current->name,classX) ) {
+			*(currentOut++) = normalizedHigh;
+		} else {
+			*(currentOut++) = normalizedLow;
+		}
+		current = current->next;
+	}
+}
+
+char* DeNormOneOfN(NORM_DATA_CLASS *first, double normalizedLow, double normalizedHigh, double *dataOut) {
+	NORM_DATA_CLASS *current;
+	char * result;
+	double maxResult;
+	int dataIndex;
+
+	current = first;
+	result = NULL;
+	dataIndex = 0;
+
+	while(current!=NULL) {
+		if( result==NULL || dataOut[dataIndex]>maxResult ) {
+			maxResult = dataOut[dataIndex];
+			result = current->name;
+		}
+
+		current = current->next;
+		dataIndex++;
+	}
+
 	return result;
 }
 
@@ -306,18 +377,21 @@ DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outpu
 	size_t bytes_read;
 	DATA_SET *result = NULL;
 	_PROCESS_PAIR pair;
+	int allocSize;
 
 	/* Allocate the data set */
 	result = (DATA_SET*)calloc(1,sizeof(DATA_SET));
     result->inputCount = NormCalculateActualCount(norm,0,inputCount);
     result->idealCount = NormCalculateActualCount(norm,inputCount,outputCount);
 	result->recordCount = norm->rowCount;
-	result->data = (double*)calloc(norm->rowCount*(inputCount+outputCount+1),sizeof(double));
+	allocSize = norm->rowCount*(result->inputCount+result->idealCount);
+	result->data = (double*)calloc(allocSize,sizeof(double));
     result->cursor = result->data;
 
 	/* Construct the process_pair, to pass to callbacks */
 	pair.norm = norm;
 	pair.data = result;
+	pair.rowCount = 0;
 
 	/* Read and normalize file */
 	if (csv_init(&p, CSV_APPEND_NULL) != 0) exit(EXIT_FAILURE);

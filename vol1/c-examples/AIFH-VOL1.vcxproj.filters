@@ -62,5 +62,11 @@
     <ClCompile Include="Data.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExampleAnalyze.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Equilateral.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

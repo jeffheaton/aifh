@@ -39,7 +39,8 @@ extern "C" {
 void ExampleReadCSV(int argIndex, int argc, char **argv);
 
 /* Chapter 2 */
-void ExampleNormalize(int argIndex, int argc, char **argv) ;
+void ExampleAnalyze(int argIndex, int argc, char **argv);
+void ExampleNormalize(int argIndex, int argc, char **argv);
 
 /* Chapter 3 */
 void ExampleDistance(int argIndex, int argc, char **argv);

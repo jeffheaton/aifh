@@ -129,6 +129,12 @@ void NormDefClass(NORM_DATA *norm, int type, double low, double high);
 void NormAnalyze(NORM_DATA *data, char *filename);
 DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outputCount);
 int NormCalculateActualCount(NORM_DATA *norm,int start, int size);
+double NormRange(double dataLow, double dataHigh, double normalizedLow, double normalizedHigh, double x);
+void NormOneOfN(NORM_DATA_CLASS *first, double normalizedLow, double normalizedHigh, char *classX, double *dataOut);
+double DeNormRange(double dataLow, double dataHigh, double normalizedLow, double normalizedHigh, double x);
+double NormReciprocal(double x);
+double DeNormReciprocal(double x);
+char* DeNormOneOfN(NORM_DATA_CLASS *first, double normalizedLow, double normalizedHigh, double *dataOut);
 
 /* Data.c */
 double *DataGetInput(DATA_SET *data, unsigned int index);

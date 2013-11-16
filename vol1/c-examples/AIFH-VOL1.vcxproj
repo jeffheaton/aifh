@@ -93,6 +93,8 @@
     <ClCompile Include="AIFH-VOL1.c" />
     <ClCompile Include="Data.c" />
     <ClCompile Include="Distance.c" />
+    <ClCompile Include="Equilateral.c" />
+    <ClCompile Include="ExampleAnalyze.c" />
     <ClCompile Include="ExampleDistance.c" />
     <ClCompile Include="ExampleNormalize.c" />
     <ClCompile Include="ExampleReadCSV.c" />
