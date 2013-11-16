@@ -85,6 +85,12 @@ double DistanceChebyshev(
 	int pos2, 
 	int length);
 
+
+typedef struct NORM_DATA_CLASS {
+	char *name;
+	struct NORM_DATA_CLASS *next;
+} NORM_DATA_CLASS;
+
 typedef struct NORM_DATA_ITEM {
 	double actualHigh;
 	double actualLow;
@@ -92,7 +98,9 @@ typedef struct NORM_DATA_ITEM {
 	double targetLow;
 	char *name;
 	int type;
+	int classCount;
 	struct NORM_DATA_ITEM *next;
+	NORM_DATA_CLASS *firstClass;
 } NORM_DATA_ITEM;
 
 typedef struct NORM_DATA {
@@ -109,13 +117,16 @@ typedef struct DATA_SET
     unsigned long recordCount;
 	double *cursor;
     double *data;
+	NORM_DATA_CLASS * firstClass;
 } DATA_SET;
 
 NORM_DATA *NormCreate();
 void NormDelete(NORM_DATA *norm);
 void NormDefRange(NORM_DATA *norm, double low, double high);
 void NormDefClass(NORM_DATA *norm, int type, double low, double high);
-void NormProcess(NORM_DATA *data, char *filename, int inputCount, int outputCount);
+void NormAnalyze(NORM_DATA *data, char *filename);
+DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outputCount);
+int CalculateActualCount(NORM_DATA *norm,int start, int size);
 
 #ifdef __cplusplus
 }
