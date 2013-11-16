@@ -41,6 +41,6 @@ void ExampleNormalize(int argIndex, int argc, char **argv) {
 	printf("Actual input count: %i\n", data->inputCount);
 	printf("Actual output count: %i\n", data->idealCount);
 
-
+	DataCSVSave(stdout,norm,data);
 	NormDelete(norm);
 }

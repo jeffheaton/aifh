@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIFH-VOL1.c" />
+    <ClCompile Include="Data.c" />
     <ClCompile Include="Distance.c" />
     <ClCompile Include="ExampleDistance.c" />
     <ClCompile Include="ExampleNormalize.c" />

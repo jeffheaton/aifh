@@ -267,7 +267,7 @@ void NormAnalyze(NORM_DATA *norm, char *filename) {
 	norm->rowCount--;
 }
 
-int CalculateActualCount(NORM_DATA *norm,int start, int size) {
+int NormCalculateActualCount(NORM_DATA *norm,int start, int size) {
 	NORM_DATA_ITEM *item;
 	int result;
 	int columnIndex;
@@ -309,8 +309,8 @@ DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outpu
 
 	/* Allocate the data set */
 	result = (DATA_SET*)calloc(1,sizeof(DATA_SET));
-    result->inputCount = CalculateActualCount(norm,0,inputCount);
-    result->idealCount = CalculateActualCount(norm,inputCount,outputCount);
+    result->inputCount = NormCalculateActualCount(norm,0,inputCount);
+    result->idealCount = NormCalculateActualCount(norm,inputCount,outputCount);
 	result->recordCount = norm->rowCount;
 	result->data = (double*)calloc(norm->rowCount*(inputCount+outputCount+1),sizeof(double));
     result->cursor = result->data;

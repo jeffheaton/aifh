@@ -45,6 +45,8 @@ extern "C" {
 #define NORM_CLASS_ONEOFN 1
 #define NORM_CLASS_EQUILATERAL 2
 
+#define MAX_STR 256
+
 #ifndef MAX
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
@@ -126,7 +128,12 @@ void NormDefRange(NORM_DATA *norm, double low, double high);
 void NormDefClass(NORM_DATA *norm, int type, double low, double high);
 void NormAnalyze(NORM_DATA *data, char *filename);
 DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outputCount);
-int CalculateActualCount(NORM_DATA *norm,int start, int size);
+int NormCalculateActualCount(NORM_DATA *norm,int start, int size);
+
+/* Data.c */
+double *DataGetInput(DATA_SET *data, unsigned int index);
+double *DataGetIdeal(DATA_SET *data, unsigned int index);
+void DataCSVSave(FILE *fp,NORM_DATA *norm, DATA_SET *data);
 
 #ifdef __cplusplus
 }
