@@ -16,7 +16,7 @@ double *DataGetIdeal(DATA_SET *data, unsigned int index)
 
 void DataCSVSave(FILE *fp,NORM_DATA *norm, DATA_SET *data)
 {
-    unsigned int i,j,len,outputIndex;
+    unsigned int i,j,len;
     double *input, *ideal;
     NORM_DATA_ITEM *item;
 

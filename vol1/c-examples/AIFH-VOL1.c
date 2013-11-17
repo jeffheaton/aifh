@@ -49,6 +49,9 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"normalize") == 0 ) {
 				success = 1;
 				ExampleNormalize(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"simple-normalize") == 0 ) {
+				success = 1;
+				ExampleSimpleNormalize(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"analyze") == 0 ) {
 				success = 1;
 				ExampleAnalyze(i+1,argc,argv);
@@ -65,6 +68,7 @@ int main(int argc, char* argv[])
 		printf("**Chapter 1**\n");
 		printf("readcsv - Read the contents of a CSV file\n");
 		printf("**Chapter 2**\n");
+		printf("simple-normalize - Normalize and denormalize numbers outside of .CSV files\n");
 		printf("analyze - Analyze the iris data set\n");
 		printf("normalize - Normalize the iris data set\n");
 		printf("**Chapter 3**\n");

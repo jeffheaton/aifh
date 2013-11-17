@@ -68,5 +68,8 @@
     <ClCompile Include="Equilateral.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExampleSimpleNormalize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

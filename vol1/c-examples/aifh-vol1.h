@@ -42,8 +42,9 @@ extern "C" {
 #include "csv.h"
 
 #define NORM_TYPE_RANGE 0
-#define NORM_CLASS_ONEOFN 1
-#define NORM_CLASS_EQUILATERAL 2
+#define NORM_TYPE_RECIPROCAL 1
+#define NORM_CLASS_ONEOFN 2
+#define NORM_CLASS_EQUILATERAL 3
 
 #define MAX_STR 256
 
@@ -101,6 +102,7 @@ typedef struct NORM_DATA_ITEM {
 	char *name;
 	int type;
 	int classCount;
+	double *equilateral;
 	struct NORM_DATA_ITEM *next;
 	NORM_DATA_CLASS *firstClass;
 } NORM_DATA_ITEM;
@@ -135,11 +137,20 @@ double DeNormRange(double dataLow, double dataHigh, double normalizedLow, double
 double NormReciprocal(double x);
 double DeNormReciprocal(double x);
 char* DeNormOneOfN(NORM_DATA_CLASS *first, double normalizedLow, double normalizedHigh, double *dataOut);
+void NormEquilateral(NORM_DATA_CLASS *first, double *equilat, double normalizedLow, double normalizedHigh, char *classX, double *dataOut);
 
 /* Data.c */
 double *DataGetInput(DATA_SET *data, unsigned int index);
 double *DataGetIdeal(DATA_SET *data, unsigned int index);
 void DataCSVSave(FILE *fp,NORM_DATA *norm, DATA_SET *data);
+
+/* Equilateral.c */
+void Equilat (
+   int classCount,
+   double low,
+   double high,
+   double *outputMatrix
+   );
 
 #ifdef __cplusplus
 }

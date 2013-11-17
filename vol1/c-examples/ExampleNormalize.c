@@ -5,8 +5,6 @@ void ExampleNormalize(int argIndex, int argc, char **argv) {
 	char filename[FILENAME_MAX];
 	NORM_DATA *norm;
 	DATA_SET *data;
-	NORM_DATA_ITEM *col;
-	NORM_DATA_CLASS *currentClass;
 
 	LocateFile("iris.csv",filename,FILENAME_MAX);
 	norm = NormCreate();
@@ -14,7 +12,7 @@ void ExampleNormalize(int argIndex, int argc, char **argv) {
 	NormDefRange(norm,0,1);
 	NormDefRange(norm,0,1);
 	NormDefRange(norm,0,1);
-	NormDefClass(norm,NORM_CLASS_ONEOFN,0,1);
+	NormDefClass(norm,NORM_CLASS_EQUILATERAL,0,1);
 
 	NormAnalyze(norm,filename);
 	data = NormProcess(norm,filename,4,1);

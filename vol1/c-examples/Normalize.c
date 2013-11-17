@@ -108,7 +108,7 @@ static void _ProcessCallbackColumn (void *s, size_t len, void *data)
 	_PROCESS_PAIR *pair;
 	NORM_DATA *norm;
 	NORM_DATA_ITEM *col;
-	int colNum,i;
+	int colNum;
 	double x;
 
 	pair = (_PROCESS_PAIR*)data;
@@ -144,6 +144,10 @@ static void _ProcessCallbackColumn (void *s, size_t len, void *data)
 			NormOneOfN(col->firstClass,col->targetLow,col->targetHigh,(char*)s,pair->data->cursor);
 			pair->data->cursor+=col->classCount;
 			break;
+		case NORM_CLASS_EQUILATERAL:
+			NormEquilateral(col->firstClass,col->equilateral,col->targetLow,col->targetHigh,(char*)s,pair->data->cursor);
+			pair->data->cursor+=col->classCount-1;
+			break;
 	}
 }
 
@@ -157,6 +161,21 @@ static void _ProcessCallbackRow (int c, void *data)
 	pair->norm->_currentColumn = 0;
 	sz = pair->data->cursor - pair->data->data;
 	printf("%i\n",sz);
+}
+
+static void _InitEquilateral(NORM_DATA *norm) {
+	NORM_DATA_ITEM *current = norm->firstItem;
+
+	while(current!=NULL) {
+		if( current->type==NORM_CLASS_EQUILATERAL ) {
+			if( current->equilateral !=NULL ) {
+				free(current->equilateral);
+			}
+			current->equilateral = (double*)calloc(current->classCount * (current->classCount-1),sizeof(double));
+			Equilat(current->classCount,current->targetLow,current->targetHigh,current->equilateral);
+		}
+		current = current->next;
+	}
 }
 
 NORM_DATA *NormCreate() {
@@ -200,6 +219,57 @@ void NormOneOfN(NORM_DATA_CLASS *first, double normalizedLow, double normalizedH
 	}
 }
 
+void NormEquilateral(NORM_DATA_CLASS *first, double *equilat, double normalizedLow, double normalizedHigh, char *classX, double *dataOut) {
+	NORM_DATA_CLASS *current;
+	int itemIndex = -1;
+	int classCount = 0;
+	int rowSize;
+
+	/* find the item index */
+	current = first;
+	while(current!=NULL) {
+		if(!strcmp(current->name,classX) ) {
+			itemIndex = classCount;
+		}
+		classCount++;
+		current = current->next;
+	}
+
+	/* did we find an index */
+	if( itemIndex==-1 ) {
+		printf("Invalid column label: %s\n", classX );
+	}
+
+	/* copy the correct equilat values */
+	rowSize = classCount-1;
+	memcpy(dataOut,equilat+(rowSize*itemIndex*sizeof(double)),rowSize*sizeof(double));
+}
+
+char* DeNormEquilateral(NORM_DATA_CLASS *first, double *equilat, int classCount, double normalizedLow, double normalizedHigh, double *dataOut) {
+	NORM_DATA_CLASS *current;
+	char * result;
+	double maxResult;
+	int dataIndex;
+	double dist;
+
+	current = first;
+	result = NULL;
+	dataIndex = 0;
+
+	while(current!=NULL) {
+		dist = DistanceEuclidean(equilat,0,dataOut,0,classCount);
+		if( result==NULL || dataOut[dataIndex]>maxResult ) {
+			maxResult = dataOut[dataIndex];
+			result = current->name;
+		}
+
+		current = current->next;
+		dataIndex++;
+	}
+
+	return result;
+}
+
 char* DeNormOneOfN(NORM_DATA_CLASS *first, double normalizedLow, double normalizedHigh, double *dataOut) {
 	NORM_DATA_CLASS *current;
 	char * result;
@@ -239,6 +309,12 @@ void NormDelete(NORM_DATA *norm) {
 			cl = tcl;
 		}
 
+		/* free the equilateral structure, if it exists */
+		if( item->equilateral ) {
+			free(item->equilateral);
+		}
+
+		/* free the actual item and its name */
 		free(item->name);
 		free(item);
 		item = t;
@@ -370,6 +446,8 @@ int NormCalculateActualCount(NORM_DATA *norm,int start, int size) {
 	return result;
 }
 
+
+
 DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outputCount) {
 	FILE *fp;
 	struct csv_parser p;
@@ -378,6 +456,8 @@ DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outpu
 	DATA_SET *result = NULL;
 	_PROCESS_PAIR pair;
 	int allocSize;
+
+	_InitEquilateral(norm);
 
 	/* Allocate the data set */
 	result = (DATA_SET*)calloc(1,sizeof(DATA_SET));

@@ -98,6 +98,7 @@
     <ClCompile Include="ExampleDistance.c" />
     <ClCompile Include="ExampleNormalize.c" />
     <ClCompile Include="ExampleReadCSV.c" />
+    <ClCompile Include="ExampleSimpleNormalize.c" />
     <ClCompile Include="ExampleUtil.c" />
     <ClCompile Include="libcsv.c" />
     <ClCompile Include="Normalize.c" />
