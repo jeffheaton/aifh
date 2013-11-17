@@ -138,6 +138,7 @@ double NormReciprocal(double x);
 double DeNormReciprocal(double x);
 char* DeNormOneOfN(NORM_DATA_CLASS *first, double normalizedLow, double normalizedHigh, double *dataOut);
 void NormEquilateral(NORM_DATA_CLASS *first, double *equilat, double normalizedLow, double normalizedHigh, char *classX, double *dataOut);
+char* DeNormEquilateral(NORM_DATA_CLASS *first, double *equilat, int classCount, double normalizedLow, double normalizedHigh, double *dataOut);
 
 /* Data.c */
 double *DataGetInput(DATA_SET *data, unsigned int index);

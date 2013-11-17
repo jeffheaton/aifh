@@ -140,6 +140,10 @@ static void _ProcessCallbackColumn (void *s, size_t len, void *data)
 			x = atof((char*)s);
 			*(pair->data->cursor++) = NormRange(col->actualLow, col->actualHigh, col->targetLow, col->targetHigh, x);
 			break;
+		case NORM_TYPE_RECIPROCAL:
+			x = atof((char*)s);
+			*(pair->data->cursor++) = NormReciprocal(x);
+			break;
 		case NORM_CLASS_ONEOFN:
 			NormOneOfN(col->firstClass,col->targetLow,col->targetHigh,(char*)s,pair->data->cursor);
 			pair->data->cursor+=col->classCount;
@@ -242,28 +246,31 @@ void NormEquilateral(NORM_DATA_CLASS *first, double *equilat, double normalizedL
 
 	/* copy the correct equilat values */
 	rowSize = classCount-1;
-	memcpy(dataOut,equilat+(rowSize*itemIndex*sizeof(double)),rowSize*sizeof(double));
+	memcpy(dataOut,equilat+(rowSize*itemIndex),rowSize*sizeof(double));
 }
 
 char* DeNormEquilateral(NORM_DATA_CLASS *first, double *equilat, int classCount, double normalizedLow, double normalizedHigh, double *dataOut) {
 	NORM_DATA_CLASS *current;
 	char * result;
-	double maxResult;
+	double minResult;
 	int dataIndex;
 	double dist;
+	double *currentRow;
 
 	current = first;
 	result = NULL;
 	dataIndex = 0;
+	currentRow = equilat;
 
 	while(current!=NULL) {
-		dist = DistanceEuclidean(equilat,0,dataOut,0,classCount);
-		if( result==NULL || dataOut[dataIndex]>maxResult ) {
-			maxResult = dataOut[dataIndex];
+		dist = DistanceEuclidean(currentRow,0,dataOut,0,classCount);
+		if( result==NULL || dist<minResult ) {
+			minResult = dist;
 			result = current->name;
 		}
 
 		current = current->next;
+		currentRow+=(classCount-1);
 		dataIndex++;
 	}
 
@@ -339,6 +346,31 @@ void NormDefRange(NORM_DATA *norm, double low, double high) {
 	newItem->type = NORM_TYPE_RANGE;
 	newItem->targetHigh = high;
 	newItem->targetLow = low;
+	newItem->next = NULL;
+
+	/* Link the new item */
+	if( last==NULL ) {
+		/* Are we adding the first item */
+		norm->firstItem = newItem;
+	} else {
+		/* Link to the end of the chain */
+		last->next = (NORM_DATA_ITEM *)newItem;
+	}
+}
+
+void NormDefReciprocal(NORM_DATA *norm) {
+	NORM_DATA_ITEM *last = norm->firstItem;
+	NORM_DATA_ITEM *newItem;
+
+	/* Find the last item */ 
+
+	while( last!=NULL && last->next != NULL ) {
+		last = (NORM_DATA_ITEM *)last->next;
+	}
+
+	/* Create the new item */
+	newItem = (NORM_DATA_ITEM*)calloc(1,sizeof(NORM_DATA_ITEM));
+	newItem->type = NORM_TYPE_RECIPROCAL;
 	newItem->next = NULL;
 
 	/* Link the new item */

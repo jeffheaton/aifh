@@ -55,6 +55,9 @@ void ExampleSimpleNormalize(int argIndex, int argc, char **argv) {
 	double x,y;
 	NORM_DATA_CLASS *items;
 	double dataVec[5];
+	char *s;
+	double matrix[20];
+	int i;
 
 	printf("***Range***\n");
 	/* Range normalize */
@@ -73,6 +76,7 @@ void ExampleSimpleNormalize(int argIndex, int argc, char **argv) {
 	printf("%f reciprocal denormalized is %f\n",x,y);
 
 	printf("***One-of-N***\n");
+	/* One-of-N */
 	items = NULL;
 	NormConcatClassItem(&items,"red");
 	NormConcatClassItem(&items,"green");
@@ -80,5 +84,30 @@ void ExampleSimpleNormalize(int argIndex, int argc, char **argv) {
 	NormConcatClassItem(&items,"yellow");
 	NormConcatClassItem(&items,"purple");
 	NormOneOfN(items,TARGET_LOW,TARGET_HIGH,"yellow",dataVec);
+	printf("yellow normalizes one-of-n to ");
 	DisplayDoubleVector(dataVec,5);
+	printf("\n");
+	DisplayDoubleVector(dataVec,5);
+	s = DeNormOneOfN(items,TARGET_LOW,TARGET_HIGH,dataVec);
+	printf(" denormalizes one-of-n to %s\n",s);
+
+	/* Construct Equilateral */
+	printf("***Equalateral Matrix***\n");
+	Equilat(5,-1,1,matrix);
+	for(i=0;i<5;i++) {
+		printf("%i:",i);
+		DisplayDoubleVector(matrix+(i*4),4);
+		printf("\n");
+	}
+
+
+	printf("***Equalateral***\n");
+	/* Equilateral */
+	NormEquilateral(items,matrix,TARGET_LOW,TARGET_HIGH,"yellow",dataVec);
+	printf("yellow equilateral one-of-n to ");
+	DisplayDoubleVector(dataVec,4);
+	printf("\n");
+	DisplayDoubleVector(dataVec,5);
+	s = DeNormEquilateral(items,matrix,5, TARGET_LOW,TARGET_HIGH,dataVec);
+	printf(" denormalizes equilateral to %s\n",s);
 }
