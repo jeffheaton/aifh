@@ -38,6 +38,8 @@ extern "C" {
 #include <stdlib.h>	
 #include <errno.h>
 #include <math.h>
+#include <time.h>
+#include <omp.h>
 
 #include "csv.h"
 
@@ -45,6 +47,10 @@ extern "C" {
 #define NORM_TYPE_RECIPROCAL 1
 #define NORM_CLASS_ONEOFN 2
 #define NORM_CLASS_EQUILATERAL 3
+
+
+#define TYPE_RANDOM_C 0
+#define TYPE_RANDOM_LCG 1
 
 #define MAX_STR 256
 
@@ -124,6 +130,21 @@ typedef struct DATA_SET
 	NORM_DATA_CLASS * firstClass;
 } DATA_SET;
 
+typedef struct RANDOM_GENERATE {
+	int type;
+	unsigned int seed;
+	int useLast;
+	double y2;
+} RANDOM_GENERATE;
+
+typedef struct RANDOM_GENERATE_LCG {
+	RANDOM_GENERATE base;
+    unsigned int modulus;
+    unsigned int multiplier;
+    unsigned int increment;
+} RANDOM_GENERATE_LCG;
+
+
 NORM_DATA *NormCreate();
 void NormDelete(NORM_DATA *norm);
 void NormDefRange(NORM_DATA *norm, double low, double high);
@@ -152,6 +173,13 @@ void Equilat (
    double high,
    double *outputMatrix
    );
+
+/* Random.c */
+RANDOM_GENERATE *RandCreate(int type, long seed);
+void RandDelete(RANDOM_GENERATE *gen);
+int RandNextInt(RANDOM_GENERATE *gen);
+double RandNextDouble(RANDOM_GENERATE *gen);
+double RandNextGaussian(RANDOM_GENERATE *gen);
 
 #ifdef __cplusplus
 }

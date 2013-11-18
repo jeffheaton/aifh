@@ -71,5 +71,11 @@
     <ClCompile Include="ExampleSimpleNormalize.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Random.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExampleRandom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

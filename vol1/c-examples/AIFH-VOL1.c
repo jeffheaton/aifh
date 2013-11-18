@@ -58,6 +58,9 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"distance") == 0 ) {
 				success = 1;
 				ExampleDistance(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"random") == 0 ) {
+				success = 1;
+				ExampleRandom(i+1,argc,argv);
 			}
 		}
 	}
@@ -73,6 +76,8 @@ int main(int argc, char* argv[])
 		printf("normalize - Normalize the iris data set\n");
 		printf("**Chapter 3**\n");
 		printf("distance - Perform several distance calculations\n");
+		printf("**Chapter 4**\n");
+		printf("random - Display histogram and timings for several PRNG's.\n");
 	}
 
 	if( pause ) {

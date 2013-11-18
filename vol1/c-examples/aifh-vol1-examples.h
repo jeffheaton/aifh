@@ -46,6 +46,9 @@ void ExampleNormalize(int argIndex, int argc, char **argv);
 /* Chapter 3 */
 void ExampleDistance(int argIndex, int argc, char **argv);
 
+/* Chapter 4 */
+void ExampleRandom(int argIndex, int argc, char **argv);
+
 /* Utility */
 void LocateFile(char *filename, char *resultName, size_t size);
 
