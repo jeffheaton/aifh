@@ -40,7 +40,8 @@ extern "C" {
 #include <math.h>
 #include <time.h>
 #include <omp.h>
-
+#include <stdint.h>
+ 
 #include "csv.h"
 
 #define NORM_TYPE_RANGE 0
@@ -51,6 +52,8 @@ extern "C" {
 
 #define TYPE_RANDOM_C 0
 #define TYPE_RANDOM_LCG 1
+#define TYPE_RANDOM_MWC 2
+#define TYPE_RANDOM_MT 3
 
 #define MAX_STR 256
 
@@ -144,6 +147,31 @@ typedef struct RANDOM_GENERATE_LCG {
     unsigned int increment;
 } RANDOM_GENERATE_LCG;
 
+typedef struct RANDOM_GENERATE_MWC {
+	RANDOM_GENERATE base;
+    uint32_t Q[4096]; 
+	uint32_t c;
+	int idx;
+} RANDOM_GENERATE_MWC;
+
+typedef struct CLUSTER_ITEM {
+	double *features;
+	char *label;
+	struct CLUSTER_ITEM *next;
+	double data;
+} CLUSTER_ITEM;
+
+typedef struct CLUSTER {
+	double *centroid;
+	struct CLUSTER_ITEM *firstItem;
+} CLUSTER;
+
+typedef struct CLUSTER_ALOG {
+	int k;
+	int featureCount;
+	RANDOM_GENERATE *rnd;
+	CLUSTER *clusters;
+} CLUSTER_ALOG;
 
 NORM_DATA *NormCreate();
 void NormDelete(NORM_DATA *norm);
@@ -180,6 +208,11 @@ void RandDelete(RANDOM_GENERATE *gen);
 int RandNextInt(RANDOM_GENERATE *gen);
 double RandNextDouble(RANDOM_GENERATE *gen);
 double RandNextGaussian(RANDOM_GENERATE *gen);
+int RandNextIntRange(RANDOM_GENERATE *gen, int low, int high);
+
+/* mt19937ar.c */
+void init_genrand(unsigned long s);
+unsigned long genrand_int32(void);
 
 #ifdef __cplusplus
 }

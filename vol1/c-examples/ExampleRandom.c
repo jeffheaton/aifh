@@ -39,7 +39,7 @@ static void UniformHisto(RANDOM_GENERATE *prng) {
 			done = current>5;
 		}
 	}
-	printf("Random numbers generated: %ld\n",total);
+	printf("Random numbers generated: %ldK\n",total/1000);
 	printf("Max random number: %f\n",maxResult);
 	printf("Min random number: %f\n",minResult);
 
@@ -105,7 +105,7 @@ static void NormalHisto(RANDOM_GENERATE *prng) {
 		}
 	}
 
-	printf("Random numbers generated: %ld\n",total);
+	printf("Random numbers generated: %ldK\n",total/1000);
 	printf("Max random number: %f\n",maxResult);
 	printf("Min random number: %f\n",minResult);
 
@@ -132,13 +132,18 @@ void ExampleRandom(int argIndex, int argc, char **argv) {
 	RANDOM_GENERATE *prng;
 
 	if( argc-argIndex != 2 ) {
-		prng = RandCreate(TYPE_RANDOM_LCG,(long)time(NULL));
+		printf("Usage: \nrandom [prng] [dist]\nWhere prng = mt, mwc, c or lcg\nand dist = uniform or random\ni.e. random mt normal\n");
+		prng = RandCreate(TYPE_RANDOM_MT,(long)time(NULL));
 		UniformHisto(prng);
 	} else {
 		if(!strcmpi(argv[argIndex],"c") ) {
 			prng = RandCreate(TYPE_RANDOM_C,(long)time(NULL));
 		} else if(!strcmpi(argv[argIndex],"lcg") ) {
 			prng = RandCreate(TYPE_RANDOM_LCG,(long)time(NULL));
+		} else if(!strcmpi(argv[argIndex],"mwc") ) {
+			prng = RandCreate(TYPE_RANDOM_MWC,(long)time(NULL));
+		} else if(!strcmpi(argv[argIndex],"mt") ) {
+			prng = RandCreate(TYPE_RANDOM_MT,(long)time(NULL));
 		} else {
 			printf("Unknown PRNG: %s\n",argv[argIndex]);
 			exit(1);
@@ -157,8 +162,4 @@ void ExampleRandom(int argIndex, int argc, char **argv) {
 	
 
 	printf("%i\n",sizeof(int));
-
-	 
-
-	
 }

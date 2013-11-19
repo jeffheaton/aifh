@@ -61,6 +61,9 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"random") == 0 ) {
 				success = 1;
 				ExampleRandom(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"pi") == 0 ) {
+				success = 1;
+				ExamplePI(i+1,argc,argv);
 			}
 		}
 	}
@@ -78,6 +81,7 @@ int main(int argc, char* argv[])
 		printf("distance - Perform several distance calculations\n");
 		printf("**Chapter 4**\n");
 		printf("random - Display histogram and timings for several PRNG's.\n");
+		printf("pi - Calculate PI using Monte Carlo.\n");
 	}
 
 	if( pause ) {

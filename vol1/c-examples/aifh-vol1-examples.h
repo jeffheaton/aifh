@@ -47,6 +47,7 @@ void ExampleNormalize(int argIndex, int argc, char **argv);
 void ExampleDistance(int argIndex, int argc, char **argv);
 
 /* Chapter 4 */
+void ExamplePI(int argIndex, int argc, char **argv);
 void ExampleRandom(int argIndex, int argc, char **argv);
 
 /* Utility */

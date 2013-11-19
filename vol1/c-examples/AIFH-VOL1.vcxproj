@@ -101,9 +101,12 @@
     <ClCompile Include="ExampleReadCSV.c" />
     <ClCompile Include="ExampleSimpleNormalize.c" />
     <ClCompile Include="ExampleUtil.c" />
+    <ClCompile Include="KMeans.c" />
     <ClCompile Include="libcsv.c" />
+    <ClCompile Include="mt19937ar.c" />
     <ClCompile Include="Normalize.c" />
     <ClCompile Include="Random.c" />
+    <ClCompile Include="ExamplePI.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -77,5 +77,14 @@
     <ClCompile Include="ExampleRandom.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mt19937ar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KMeans.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExamplePI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
