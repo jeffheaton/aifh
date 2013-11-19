@@ -64,6 +64,12 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"pi") == 0 ) {
 				success = 1;
 				ExamplePI(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"kmeans") == 0 ) {
+				success = 1;
+				ExampleKMeans(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"test") == 0 ) {
+				success = 1;
+				ExampleTest(i+1,argc,argv);
 			}
 		}
 	}
@@ -82,6 +88,8 @@ int main(int argc, char* argv[])
 		printf("**Chapter 4**\n");
 		printf("random - Display histogram and timings for several PRNG's.\n");
 		printf("pi - Calculate PI using Monte Carlo.\n");
+		printf("**Chapter 5**\n");
+		printf("kmeans - KMeans cluster on Iris data set.\n");
 	}
 
 	if( pause ) {

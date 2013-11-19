@@ -35,6 +35,8 @@ extern "C" {
 
 #include "aifh-vol1.h"
 
+void ExampleTest(int argIndex, int argc, char **argv);
+
 /* Chapter 1 */
 void ExampleReadCSV(int argIndex, int argc, char **argv);
 
@@ -49,6 +51,9 @@ void ExampleDistance(int argIndex, int argc, char **argv);
 /* Chapter 4 */
 void ExamplePI(int argIndex, int argc, char **argv);
 void ExampleRandom(int argIndex, int argc, char **argv);
+
+/* Chapter 5 */
+void ExampleKMeans(int argIndex, int argc, char **argv);
 
 /* Utility */
 void LocateFile(char *filename, char *resultName, size_t size);

@@ -12,7 +12,7 @@ double DistanceEuclidean(
 		int i;
         
 		for (i = 0; i < length; i++) {
-            d = position1[i + pos1] - position2[i + pos1];
+            d = position1[i + pos1] - position2[i + pos2];
             sum += d * d;
         }
         return sqrt(sum);
@@ -28,7 +28,7 @@ double DistanceManhattan(
 		int i;
 
         for (i = 0; i < length; i++) {
-            d = fabs(position1[i] - position2[i]);
+            d = fabs(position1[i+pos1] - position2[i+pos2]);
             sum += d;
         }
         return sum;

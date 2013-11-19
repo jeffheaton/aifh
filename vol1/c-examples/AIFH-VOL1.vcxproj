@@ -96,10 +96,12 @@
     <ClCompile Include="Equilateral.c" />
     <ClCompile Include="ExampleAnalyze.c" />
     <ClCompile Include="ExampleDistance.c" />
+    <ClCompile Include="ExampleKMeans.c" />
     <ClCompile Include="ExampleNormalize.c" />
     <ClCompile Include="ExampleRandom.c" />
     <ClCompile Include="ExampleReadCSV.c" />
     <ClCompile Include="ExampleSimpleNormalize.c" />
+    <ClCompile Include="ExampleTest.c" />
     <ClCompile Include="ExampleUtil.c" />
     <ClCompile Include="KMeans.c" />
     <ClCompile Include="libcsv.c" />

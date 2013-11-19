@@ -211,7 +211,7 @@ void Equilat (
 /* Random.c */
 RANDOM_GENERATE *RandCreate(int type, long seed);
 void RandDelete(RANDOM_GENERATE *gen);
-int RandNextInt(RANDOM_GENERATE *gen);
+long RandNextInt(RANDOM_GENERATE *gen);
 double RandNextDouble(RANDOM_GENERATE *gen);
 double RandNextGaussian(RANDOM_GENERATE *gen);
 int RandNextIntRange(RANDOM_GENERATE *gen, int low, int high);
@@ -223,6 +223,9 @@ unsigned long genrand_int32(void);
 /* KMeans.c */
 CLUSTER_ITEM *CreateClusterItem(int featureCount, char *label);
 void DeleteClusterItem(CLUSTER_ITEM *item);
+void DeleteKMeansList(CLUSTER_ITEM *first);
+void DeleteKMeansItem(CLUSTER_ITEM *first);
+void DeleteKMeans(CLUSTER_ALOG *alog);
 CLUSTER_ALOG *CreateKMeans(int k,int featureCount);
 int KMeansCountItems(CLUSTER_ITEM *first);
 CLUSTER_ITEM *KMeansFindItem(CLUSTER_ITEM *first, int index);
@@ -233,8 +236,9 @@ void KMeansInitForgy(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *items);
 void KMeansUpdateStep(CLUSTER_ALOG *kmeans);
 int KMeansAssignStep(CLUSTER_ALOG *kmeans);
 int KMeansIteration(CLUSTER_ALOG *kmeans);
-CLUSTER_ITEM* KMeansLoadCSV(char *filename, int labelColumn, int startColumn, int endColumn);
-void KMeansDumpList(FILE *out, CLUSTER_ITEM *first);
+CLUSTER_ITEM* KMeansLoadCSV(char *filename, int labelColumn, int startColumn, int featureCount);
+void KMeansDumpList(FILE *out, CLUSTER_ITEM *first, int featureCount);
+void KMeansDump(FILE *out, CLUSTER_ALOG *alog);
 
 #ifdef __cplusplus
 }

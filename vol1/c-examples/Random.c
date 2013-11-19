@@ -97,7 +97,7 @@ RANDOM_GENERATE *RandCreate(int type, long seed) {
 			break;
 		case TYPE_RANDOM_MT:
 			result = (RANDOM_GENERATE *)calloc(1,sizeof(RANDOM_GENERATE));
-			result->type = TYPE_RANDOM_C;
+			result->type = TYPE_RANDOM_MT;
 			init_genrand(seed);
 			break;
 		default:
@@ -115,7 +115,7 @@ void RandDelete(RANDOM_GENERATE *gen) {
 	free(gen);
 }
 
-int RandNextInt(RANDOM_GENERATE *gen) {
+long RandNextInt(RANDOM_GENERATE *gen) {
 	switch(gen->type) {
 	case TYPE_RANDOM_C:
 		return rand();
@@ -172,5 +172,5 @@ double RandNextGaussian(RANDOM_GENERATE *gen) {
 }
  
 int RandNextIntRange(RANDOM_GENERATE *gen, int low, int high) {
-	return ((int)RandNextDouble(gen)*(high-low))+low;
+	return ((int)(RandNextDouble(gen)*(high-low)))+low;
 }
