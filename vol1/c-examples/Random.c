@@ -125,6 +125,9 @@ int RandNextInt(RANDOM_GENERATE *gen) {
 		return _RandMWC((RANDOM_GENERATE_MWC*)gen);
 	case TYPE_RANDOM_MT:
 		return genrand_int32();
+	default:
+		printf("Invalid PRNG\n");
+		exit(1);
 	}	
 }
 
@@ -139,6 +142,9 @@ double RandNextDouble(RANDOM_GENERATE *gen) {
 		return (double)RandNextInt(gen)/(double)0x7fffffff;
 	case TYPE_RANDOM_MT:
 		return (double)RandNextInt(gen)/(double)0x7fffffff;
+	default:
+		printf("Invalid PRNG\n");
+		exit(1);
 	}
 }
 

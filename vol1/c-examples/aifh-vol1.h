@@ -75,6 +75,11 @@ extern "C" {
 
 	
 /* Distance.c */
+typedef double(*DISTANCE_FUNCTION)(double *position1, 
+	int pos1, 
+	double *position2, 
+	int pos2, 
+	int length);
 
 double DistanceEuclidean(
 	double *position1, 
@@ -170,6 +175,7 @@ typedef struct CLUSTER_ALOG {
 	int k;
 	int featureCount;
 	RANDOM_GENERATE *rnd;
+	DISTANCE_FUNCTION dist;
 	CLUSTER *clusters;
 } CLUSTER_ALOG;
 
@@ -213,6 +219,22 @@ int RandNextIntRange(RANDOM_GENERATE *gen, int low, int high);
 /* mt19937ar.c */
 void init_genrand(unsigned long s);
 unsigned long genrand_int32(void);
+
+/* KMeans.c */
+CLUSTER_ITEM *CreateClusterItem(int featureCount, char *label);
+void DeleteClusterItem(CLUSTER_ITEM *item);
+CLUSTER_ALOG *CreateKMeans(int k,int featureCount);
+int KMeansCountItems(CLUSTER_ITEM *first);
+CLUSTER_ITEM *KMeansFindItem(CLUSTER_ITEM *first, int index);
+void KMeansRemoveItem(CLUSTER_ITEM **first, CLUSTER_ITEM *targetItem);
+void KMeansInitRandom(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *items);
+CLUSTER *KMeansFindNearestCluster(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *item);
+void KMeansInitForgy(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *items);
+void KMeansUpdateStep(CLUSTER_ALOG *kmeans);
+int KMeansAssignStep(CLUSTER_ALOG *kmeans);
+int KMeansIteration(CLUSTER_ALOG *kmeans);
+CLUSTER_ITEM* KMeansLoadCSV(char *filename, int labelColumn, int startColumn, int endColumn);
+void KMeansDumpList(FILE *out, CLUSTER_ITEM *first);
 
 #ifdef __cplusplus
 }
