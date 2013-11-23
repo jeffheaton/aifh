@@ -3,11 +3,10 @@ __author__ = 'jheaton'
 import os
 import sys
 
-# Import for the library that we're testing here
-distance_dir = os.path.dirname(__file__) + os.sep + ".." + \
-  os.sep + "lib" + os.sep + "aifh"
-sys.path.append(distance_dir)
-print(os.path.abspath(distance_dir))
+# Find the AIFH core files
+aifh_dir = os.path.dirname(os.path.abspath(__file__))
+aifh_dir = os.path.abspath(aifh_dir + os.sep + ".." + os.sep + "lib" + os.sep + "aifh")                           
+sys.path.append(aifh_dir)
 
 from normalize import Normalize
 
