@@ -1,21 +1,16 @@
 #!/usr/bin/env python
 # Programmer: Chris Bunch (shatterednirvana@gmail.com)
 
-
 # General-purpose Python library imports
 import os
 import sys
 import unittest
 
+# Find the AIFH core files
+aifh_dir = os.path.dirname(os.path.abspath(__file__))
+aifh_dir = os.path.abspath(aifh_dir + os.sep + ".." + os.sep + ".." + os.sep + "lib" + os.sep + "aifh")
+sys.path.append(aifh_dir)
 
-# Third party libraries
-from flexmock import flexmock
-
-
-# Import for the library that we're testing here
-distance_dir = os.path.dirname(__file__) + os.sep + ".." + os.sep + ".." + \
-  os.sep + "lib" + os.sep + "distance"
-sys.path.append(distance_dir)
 from euclidean_distance import EuclideanDistance
 
 

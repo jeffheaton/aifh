@@ -15,18 +15,22 @@ from normalize import Normalize
 irisFile = os.path.dirname(os.path.realpath(__file__))
 irisFile = os.path.abspath(irisFile + "../../datasets/iris.csv")
 
+# Read the Iris data set.
 print('Reading CSV file: ' + irisFile)
-
 norm = Normalize()
-
 result = norm.load_csv(irisFile)
+
+# Setup the first four fields to "range normalize" between -1 and 1.
 for i in range(0, 4):
-    norm.make_numeric(result, i)
-    norm.norm_range(result, i, -1, 1)
+    norm.make_col_numeric(result, i)
+    norm.norm_col_range(result, i, -1, 1)
 
+# Discover all of the classes for column #4, the iris species.
 classes = norm.build_class_map(result, 4)
-norm.norm_one_of_n(result, 4, classes)
-norm.display_data(result)
 
-print(classes)
+# Normalize iris species as one-of-n
+norm.norm_col_equilateral(result, 4, classes, -1, 1)
+
+# Display the resulting data
+norm.display_data(result)
 
