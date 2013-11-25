@@ -14,9 +14,10 @@ sys.path.append(aifh_dir)
 from equilateral import Equilateral
 from scipy.spatial import distance
 
+
 class TestEquilateral(unittest.TestCase):
     def test_equilateral(self):
-        eq = Equilateral(3,-1,1)
+        eq = Equilateral(3, -1, 1)
         d = eq.encode(1);
         self.assertAlmostEqual(0.8660254037844386, d[0], 7)
         self.assertAlmostEqual(-0.5, d[1], 7)
@@ -34,14 +35,14 @@ class TestEquilateral(unittest.TestCase):
         eq = Equilateral(10, -1, 1)
         compare_dist = -1
 
-        for x in range(0,10) :
+        for x in range(0, 10):
             base_class = eq.encode(x)
-            for y in range(0,10) :
-                if x != y :
+            for y in range(0, 10):
+                if x != y:
                     otherClass = eq.encode(y)
                     dist = distance.euclidean(base_class, otherClass)
-                    if compare_dist<0 :
+                    if compare_dist < 0:
                         compare_dist = dist
                     else:
-                        self.assertAlmostEqual(dist,compare_dist,7)
+                        self.assertAlmostEqual(dist, compare_dist, 7)
 
