@@ -15,7 +15,7 @@ from rbf import RbfMexicanHat
 from rbf import RbfMultiquadric
 from rbf import RbfInverseMultiquadric
 
-class TestError(unittest.TestCase):
+class TestRBF(unittest.TestCase):
 
     def test_gaussian(self):
         params = [5, 0, 0, 0]
