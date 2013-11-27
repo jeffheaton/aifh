@@ -10,8 +10,6 @@ aifh_dir = os.path.dirname(os.path.abspath(__file__))
 aifh_dir = os.path.abspath(aifh_dir + os.sep + ".." + os.sep + ".." + os.sep + "lib" + os.sep + "aifh")
 sys.path.append(aifh_dir)
 
-from equilateral import Equilateral
-from scipy.spatial import distance
 from error import ErrorCalculation
 
 
