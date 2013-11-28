@@ -64,7 +64,7 @@ namespace UnitTests.Core.Regression
 
             double[] input = { 0 };
             double[] output = regression.ComputeRegression(input);
-            Assert.AreEqual(0.6630762084733353, output[0], AIFH.DefaultPrecision);
+            Assert.AreEqual(0.883301730269988, output[0], AIFH.DefaultPrecision);
         }
     }
 }

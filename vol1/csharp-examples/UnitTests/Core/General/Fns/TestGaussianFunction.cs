@@ -53,7 +53,7 @@ namespace UnitTests.Core.General.Fns
             var funct = new GaussianFunction(3, ps, 0);
             double[] x = { -1, 0, 1 };
             funct.Evaluate(x);
-            Assert.AreEqual("[GaussianFunction:width=5.00,center=,0.00,0.00]", funct.ToString());
+            Assert.AreEqual("[GaussianFunction:width=5.00,center=0.00,0.00,0.00]", funct.ToString());
         }
 
         [TestMethod]

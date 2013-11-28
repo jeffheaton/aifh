@@ -56,7 +56,7 @@
     <Compile Include="Core\Distance\TestEuclideanDistance.cs" />
     <Compile Include="Core\Distance\TestManhattanDistance.cs" />
     <Compile Include="Core\Error\ErrorTestingUtil.cs" />
-    <Compile Include="Core\Error\TestErrorCalculationESS.cs" />
+    <Compile Include="Core\Error\TestErrorCalculationSSE.cs" />
     <Compile Include="Core\Error\TestErrorCalculationMSE.cs" />
     <Compile Include="Core\Error\TestErrorCalculationRMS.cs" />
     <Compile Include="Core\General\Data\TestBasicData.cs" />

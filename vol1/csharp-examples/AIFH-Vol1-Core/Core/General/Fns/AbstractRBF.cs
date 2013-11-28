@@ -115,8 +115,8 @@ namespace AIFH_Vol1.Core.General.Fns
                 if (i > 0)
                 {
                     result.Append(",");
-                    result.Append(_prms[_indexCenters + i].ToString("0.00"));
                 }
+                result.Append(_prms[_indexCenters + i].ToString("0.00"));
             }
 
             result.Append("]");

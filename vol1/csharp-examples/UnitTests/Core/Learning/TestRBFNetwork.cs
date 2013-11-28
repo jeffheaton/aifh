@@ -46,7 +46,7 @@ namespace UnitTests.Core.Learning
             // 2 + 2 + 3 = 7
             Assert.AreEqual(7, network.LongTermMemory.Length);
 
-            Assert.AreEqual("[RBFNetwork:inputCount=2,outputCount=1,RBFs=[GaussianFunction:width=0.00,center=,0.00],]", network.ToString());
+            Assert.AreEqual("[RBFNetwork:inputCount=2,outputCount=1,RBFs=[GaussianFunction:width=0.00,center=0.00,0.00],]", network.ToString());
 
         }
 
