@@ -32,7 +32,7 @@ package com.heatonresearch.aifh.regression;
 import Jama.Matrix;
 import Jama.QRDecomposition;
 import com.heatonresearch.aifh.error.ErrorCalculation;
-import com.heatonresearch.aifh.error.ErrorCalculationMSE;
+import com.heatonresearch.aifh.error.ErrorCalculationSSE;
 import com.heatonresearch.aifh.general.data.BasicData;
 
 import java.util.List;
@@ -69,7 +69,7 @@ public class TrainLeastSquares {
     /**
      * An error calculation method.
      */
-    private final ErrorCalculation errorCalculation = new ErrorCalculationMSE();
+    private final ErrorCalculation errorCalculation = new ErrorCalculationSSE();
 
     /**
      * The last error.

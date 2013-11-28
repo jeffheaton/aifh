@@ -30,13 +30,13 @@
 package com.heatonresearch.aifh.error;
 
 /**
- * The sum of squares method (ESS) measures the error as the sum of the squared difference of each vector element.
+ * The sum of squares method (SSE) measures the error as the sum of the squared difference of each vector element.
  * <p/>
  * http://www.heatonresearch.com/wiki/Sum_of_Squares_Error
  */
-public class ErrorCalculationESS extends AbstractErrorCalculation {
+public class ErrorCalculationSSE extends AbstractErrorCalculation {
     /**
-     * Calculate the error with ESS.
+     * Calculate the error with SSE.
      *
      * @return The current error.
      */
@@ -45,7 +45,7 @@ public class ErrorCalculationESS extends AbstractErrorCalculation {
         if (this.setSize == 0) {
             return Double.POSITIVE_INFINITY;
         }
-        return this.globalError / 2;
+        return this.globalError;
 
     }
 }

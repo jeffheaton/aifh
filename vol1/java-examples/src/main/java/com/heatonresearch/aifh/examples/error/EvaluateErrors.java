@@ -30,9 +30,9 @@
 package com.heatonresearch.aifh.examples.error;
 
 import com.heatonresearch.aifh.error.ErrorCalculation;
-import com.heatonresearch.aifh.error.ErrorCalculationESS;
 import com.heatonresearch.aifh.error.ErrorCalculationMSE;
 import com.heatonresearch.aifh.error.ErrorCalculationRMS;
+import com.heatonresearch.aifh.error.ErrorCalculationSSE;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
@@ -111,7 +111,7 @@ public class EvaluateErrors {
 
         final NumberFormat nf = NumberFormat.getInstance();
 
-        final ErrorCalculation calcESS = new ErrorCalculationESS();
+        final ErrorCalculation calcESS = new ErrorCalculationSSE();
         final ErrorCalculation calcMSE = new ErrorCalculationMSE();
         final ErrorCalculation calcRMS = new ErrorCalculationRMS();
 
@@ -136,7 +136,7 @@ public class EvaluateErrors {
         final double hugeMSE = hugeErrors.calculateError(calcMSE);
         final double hugeRMS = hugeErrors.calculateError(calcRMS);
 
-        System.out.println("Type\tESS\t\t\tMSE\t\tRMS");
+        System.out.println("Type\tSSE\t\t\tMSE\t\tRMS");
         System.out.println("Small\t" + (int) smallESS + "\t\t" + nf.format(smallMSE) + "\t" + nf.format(smallRMS));
         System.out.println("Medium\t" + (int) mediumESS + "\t\t" + nf.format(mediumMSE) + "\t" + nf.format(mediumRMS));
         System.out.println("Large\t" + (int) largeESS + "\t\t" + nf.format(largeMSE) + "\t" + nf.format(largeRMS));

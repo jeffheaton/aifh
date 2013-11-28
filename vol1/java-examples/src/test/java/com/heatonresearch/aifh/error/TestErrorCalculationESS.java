@@ -40,11 +40,11 @@ public class TestErrorCalculationESS {
 
     @Test
     public void testErrorCalc() {
-        final ErrorCalculation calc = new ErrorCalculationESS();
+        final ErrorCalculation calc = new ErrorCalculationSSE();
         final double result = ErrorTestingUtil.calculateError(
                 calc,
                 ErrorTestingUtil.ACTUAL,
                 ErrorTestingUtil.IDEAL);
-        assertEquals(1516.205, result, 0.001);
+        assertEquals(3032.41, result, 0.001);
     }
 }

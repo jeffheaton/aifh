@@ -70,6 +70,6 @@ public class TestTrainReweightLeastSquares {
 
         final double[] input = {0};
         final double[] output = regression.computeRegression(input);
-        assertEquals(0.6630762084733353, output[0], AIFH.DEFAULT_PRECISION);
+        assertEquals(0.8833017302699877, output[0], AIFH.DEFAULT_PRECISION);
     }
 }

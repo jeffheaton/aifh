@@ -31,7 +31,7 @@ package com.heatonresearch.aifh.learning.score;
 
 import com.heatonresearch.aifh.AIFH;
 import com.heatonresearch.aifh.error.ErrorCalculation;
-import com.heatonresearch.aifh.error.ErrorCalculationMSE;
+import com.heatonresearch.aifh.error.ErrorCalculationSSE;
 import com.heatonresearch.aifh.general.data.BasicData;
 import org.junit.Test;
 
@@ -62,7 +62,7 @@ public class TestScoreRegressionData {
     public void testGeneral() {
         final List<BasicData> training = BasicData.convertArrays(TEST_INPUT, TEST_IDEAL);
         final ScoreRegressionData score = new ScoreRegressionData(training);
-        final ErrorCalculation ec = new ErrorCalculationMSE();
+        final ErrorCalculation ec = new ErrorCalculationSSE();
         score.setErrorCalc(ec);
         assertEquals(ec, score.getErrorCalc());
     }
@@ -75,6 +75,6 @@ public class TestScoreRegressionData {
         final SimpleAlgo simple = new SimpleAlgo(ACTUAL);
         final double s = score.calculateScore(simple);
         assertEquals(training, score.getTrainingData());
-        assertEquals(0.25, s, AIFH.DEFAULT_PRECISION);
+        assertEquals(1.0, s, AIFH.DEFAULT_PRECISION);
     }
 }
