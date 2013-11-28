@@ -45,7 +45,7 @@ namespace AIFH_Vol1.Core.Distance
             double sum = 0;
             for (int i = 0; i < position1.Length; i++)
             {
-                double d = Math.Abs(position1[i] - position2[i]);
+                double d = Math.Abs(position1[pos1+i] - position2[pos2+i]);
                 sum += d;
             }
             return sum;
