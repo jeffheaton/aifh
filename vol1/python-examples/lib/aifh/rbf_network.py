@@ -27,7 +27,7 @@ class RbfNetwork(object):
             self.rbf[i] = RbfGaussian(inputCount, self.longTermMemory, rbfIndex)
 
 
-    def computeRegression(self,input):
+    def compute_regression(self,input):
         # first, compute the output values of each of the RBFs
         # Add in one additional RBF output for bias (always set to one).
         rbfOutput = [0] * (len(self.rbf)+1)
@@ -63,7 +63,7 @@ class RbfNetwork(object):
             self.longTermMemory[i] = np.random.uniform(0,1)
 
     def compure_classification(self,input):
-        output = self.computeRegression(input)
+        output = self.compute_regression(input)
         return output.index(max(output))
 
     def copy_memory(self,source):

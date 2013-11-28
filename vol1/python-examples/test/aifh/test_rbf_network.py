@@ -54,7 +54,7 @@ class TestRbfNetwork(unittest.TestCase):
 
         x = [1, 2]
 
-        y = network.computeRegression(x)[0]
+        y = network.compute_regression(x)[0]
 
         # Inputs: (2*1) + (2*2) = 6
         # RBF: Gaussian(6) = 1
@@ -77,7 +77,7 @@ class TestRbfNetwork(unittest.TestCase):
 
         x = [1, 2]
 
-        y = network.computeRegression(x)
+        y = network.compute_regression(x)
 
         # Inputs: (2*1) + (2*2) = 6
         # RBF: Gaussian(6) = 1
