@@ -290,8 +290,8 @@ namespace UnitTests.Core.Randomize
             var rnd = new LinearCongruentialRandom(1);
             foreach (int aIntRangeTest in IntRangeTest)
             {
-                double g = rnd.NextInt(0, 10);
-                Assert.AreEqual(g, aIntRangeTest, AIFH.DefaultPrecision);
+                int g = rnd.NextInt(0, 10);
+                Assert.AreEqual(g, aIntRangeTest);
             }
         }
 
