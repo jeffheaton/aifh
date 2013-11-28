@@ -25,24 +25,28 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
-
-using AIFH_Vol1.Core.Error;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace UnitTests.Core.Error
+namespace AIFH_Vol1.Core.Error
 {
-    [TestClass]
-    public class TestErrorCalculationESS
+    /// <summary>
+    /// The sum of squares method (SSE) measures the error as the sum of the squared difference of each 
+    /// vector element.
+    ///
+    /// http://www.heatonresearch.com/wiki/Sum_of_Squares_Error
+    /// </summary>
+    public class ErrorCalculationSSE : AbstractErrorCalculation
     {
-        [TestMethod]
-        public void TestErrorCalc()
+        /// <summary>
+        /// Calculate the error with ESS.
+        /// </summary>
+        /// <returns>The current error.</returns>
+        public override double Calculate()
         {
-            IErrorCalculation calc = new ErrorCalculationSSE();
-            double result = ErrorTestingUtil.CalculateError(
-                    calc,
-                    ErrorTestingUtil.Actual,
-                    ErrorTestingUtil.Ideal);
-            Assert.AreEqual(1516.205, result, 0.001);
+            if (SetSize == 0)
+            {
+                return double.PositiveInfinity;
+            }
+            return GlobalError;
+
         }
     }
 }

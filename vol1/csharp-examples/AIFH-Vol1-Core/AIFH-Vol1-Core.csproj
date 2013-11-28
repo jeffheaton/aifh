@@ -58,7 +58,7 @@
     <Compile Include="Core\Distance\ICalculateDistance.cs" />
     <Compile Include="Core\Distance\ManhattanDistance.cs" />
     <Compile Include="Core\Error\AbstractErrorCalculation.cs" />
-    <Compile Include="Core\Error\ErrorCalculationESS.cs" />
+    <Compile Include="Core\Error\ErrorCalculationSSE.cs" />
     <Compile Include="Core\Error\ErrorCalculationMSE.cs" />
     <Compile Include="Core\Error\ErrorCalculationRMS.cs" />
     <Compile Include="Core\Error\IErrorCalculation.cs" />

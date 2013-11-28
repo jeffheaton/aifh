@@ -92,7 +92,7 @@ namespace AIFH_Vol1.Examples.Error
         public void Process()
         {
 
-            IErrorCalculation calcEss = new ErrorCalculationESS();
+            IErrorCalculation calcEss = new ErrorCalculationSSE();
             IErrorCalculation calcMse = new ErrorCalculationMSE();
             IErrorCalculation calcRms = new ErrorCalculationRMS();
 
