@@ -31,7 +31,6 @@ __author__ = 'jheaton'
 import os
 import sys
 import numpy as np
-from scipy.spatial import distance
 
 # Find the AIFH core files
 aifh_dir = os.path.dirname(os.path.abspath(__file__))

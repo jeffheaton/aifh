@@ -33,6 +33,7 @@ import sys
 from aifh_error import AIFHError
 from equilateral import Equilateral
 
+
 class Normalize(object):
     """ This class is used handle both nomalization and denormalization. The data is typically loaded in from a CSV
         file. Methods are provided to also normalize and denormalize individual numbers.
@@ -114,7 +115,7 @@ class Normalize(object):
         # Iterate over all rows and perform the normalization.
         for row in data_set:
             row[col] = ((row[col] - data_low) / (data_high - data_low)) \
-                * (normalized_high - normalized_low) + normalized_low
+                       * (normalized_high - normalized_low) + normalized_low
 
     def build_class_map(self, data_set, col):
         """ Build a class map.  Return a dictionary that contains a mapping between each unique class in the specified
@@ -146,20 +147,35 @@ class Normalize(object):
                 else:
                     row.insert(col + i, 0)
 
+    def denorm_one_of_n(self, data):
+        """ Denormalize a single value, using one-of-n.
+        @param data: The data to denormalize.
+        @return: The index of the highest value
+        """
+        max_value = 0
+        max_index = -1
+
+        for i in xrange(0, len(data)):
+            if max_index == -1 or data[i] > max_value:
+                max_value = data[i]
+                max_index = i
+
+        return max_index
+
     def norm_col_equilateral(self, data_set, col, classes, normalized_low, normalized_high):
         """ Normalize a column using equilateral.  The classes parameter contains a map of the unique items in the
             specified column.  Typically this value is obtained by calling build_class_map.
         """
         col = self.resolve_column(col)
-        eq = Equilateral(len(classes),normalized_low, normalized_high)
+        eq = Equilateral(len(classes), normalized_low, normalized_high)
 
         for row in data_set:
             key = row[col]
             value = classes[key]
             row.pop(col)
             vec = eq.encode(value)
-            for i in range(0,len(vec)):
-                row.insert(col+i,vec[i])
+            for i in range(0, len(vec)):
+                row.insert(col + i, vec[i])
 
     def resolve_column(self, col):
         """ Resolve a column to an index.  If the value is numeric then this value will be checked to make sure it is
@@ -169,23 +185,23 @@ class Normalize(object):
         if type(col) is int:
             # Handle an integer index.
             if col < 0 or col >= len(self.column_map):
-                raise AIFHError("Column index out of range: " + str(col) )
+                raise AIFHError("Column index out of range: " + str(col))
             return col
         else:
             # Handle a string column name.
             if col not in self.column_map:
-                raise AIFHError("Undefined column: " + col  )
+                raise AIFHError("Undefined column: " + col)
             else:
                 return self.column_map[col]
 
-    def col_delete(self,data_set,col):
+    def col_delete(self, data_set, col):
         """ Delete the specified column.
         """
         col = self.resolve_column(col)
         for row in data_set:
             row.pop(col)
 
-    def col_extract(self,data_set,col):
+    def col_extract(self, data_set, col):
         result = []
         col = self.resolve_column(col)
         for row in data_set:
