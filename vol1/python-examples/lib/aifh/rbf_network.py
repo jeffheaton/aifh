@@ -31,7 +31,7 @@ class RbfNetwork(object):
         # first, compute the output values of each of the RBFs
         # Add in one additional RBF output for bias (always set to one).
         rbfOutput = [0] * (len(self.rbf)+1)
-        rbfOutput[len(rbfOutput) - 1] = 1; # bias
+        rbfOutput[len(rbfOutput) - 1] = 1.0; # bias
 
         for rbfIndex in xrange(0,len(self.rbf)):
             # weight the input

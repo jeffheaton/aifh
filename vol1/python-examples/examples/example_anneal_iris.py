@@ -51,7 +51,7 @@ training_ideal = training[:, 4:7]
 # There are also five RBF functions used internally.
 # You can experiment with different numbers of internal RBF functions.
 # However, the input and output must match the data set.
-network = RbfNetwork(4, 5, 3)
+network = RbfNetwork(4, 4, 3)
 network.reset()
 
 best_score = sys.float_info.max
@@ -81,9 +81,10 @@ print(score_funct(x0))
 #                          upper=2, dwell=50, disp=True)
 
 train = TrainAnneal()
+train.display_iteration = True
 train.train(x0,score_funct)
 
-#print(score_funct(res.x))
+#print(training_ideal)
 
 # Display the final validation.  We show all of the iris data as well as the predicted species.
 for i in xrange(0, len(training_input)):

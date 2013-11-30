@@ -39,12 +39,12 @@ class TrainGreedRandom(Train):
 
     def train(self, x0, funct):
         iteration_number = 1
-        self.position = x0[:]
+        self.position = list(x0)
         self.best_score = funct(self.position)
 
         while self.should_stop(iteration_number, self.best_score) == False:
             # Clone current position, create a new array of same size.
-            trial_position = self.position[:]
+            trial_position = list(self.position)
             # Randomize trial position.
             self.perform_randomization(trial_position)
             # Obtain new trial score.
@@ -74,7 +74,7 @@ class TrainHillClimb(Train):
 
     def train(self, x0, funct, acceleration=1.2, step_size=1.0):
         iteration_number = 1
-        self.position = x0[:]
+        self.position = list(x0)
         self.best_score = funct(self.position)
 
         step_size = [step_size] * len(x0)
@@ -88,7 +88,7 @@ class TrainHillClimb(Train):
 
         while self.should_stop(iteration_number, self.best_score) == False:
             # Clone current position, create a new array of same size.
-            trial_position = self.position[:]
+            trial_position = list(self.position)
 
             if self.goal_minimize:
                 best_step_score = sys.float_info.max
@@ -124,40 +124,52 @@ class TrainHillClimb(Train):
 
 
 class TrainAnneal(Train):
-    def __init__(self, max_iterations = 1000, start_temperature=400, ending_temperature = 0.0001):
+    def __init__(self, max_iterations = 100, starting_temperature=400, ending_temperature = 0.0001):
         Train.__init__(self, True)
         self.max_iterations = max_iterations
-        self.start_temperature = start_temperature
+        self.starting_temperature = starting_temperature
         self.ending_temperature = ending_temperature
         self.cycles = 100
 
     def train(self, x0, funct):
         iteration_number = 1
-        self.position = x0[:]
+        self.position = list(x0)
         self.best_score = funct(self.position)
+        current_score = self.best_score
+        current_position = list(x0)
 
         while self.should_stop(iteration_number, self.best_score) == False:
             # Clone current position, create a new array of same size.
-            trial_position = self.position[:]
-            # Randomize trial position.
-            self.perform_randomization(trial_position)
-            # Obtain new trial score.
-            trial_score = funct(trial_position)
+            current_temperature = self.cooling_schedule(iteration_number)
 
-            keep = False
-            current_temperature = self.cooling_schedule(current_temperature)
+            for c in xrange(0,self.cycles) :
+                trial_position = list(current_position)
+                # Randomize trial position.
+                self.perform_randomization(trial_position)
+                # Obtain new trial score.
+                trial_score = funct(trial_position)
 
-            if self.better_than(trial_score, self.best_score):
-                keep = True
-            else:
-                self.last_probability = self.calc_probability(self.best_score,trial_score,current_temperature)
-                if self.last_probability > np.random.uniform() :
-                    self.best_score = trial_score
-                    self.position = trial_position
+                keep = False
+                if self.better_than(trial_score, current_score):
+                    keep = True
+                else:
+                    self.last_probability = self.calc_probability(current_score,trial_score,current_temperature)
+                    if self.last_probability > np.random.uniform() :
+                        keep = True
+
+                if keep:
+                    current_score = trial_score
+                    current_position = list(trial_position)
+                    if self.better_than(current_score,self.best_score) :
+                        self.best_score = current_score
+                        self.position = list(current_position)
 
             if self.display_iteration:
-                print("Iteration #" + str(iteration_number) + ", Score: " + str(self.best_score))
-            iteration_number += 1
+                print("Iteration #" + str(iteration_number) + ", Score: " + str(self.best_score)
+                        + ",k=" + str(iteration_number)
+                        + ",kMax="+ str(self.max_iterations)
+                        + ",t=" + str(current_temperature) + ",prob=" + str(self.last_probability) + "," + str(current_score))
+                iteration_number += 1
 
         if self.display_final:
             print("Finished after " + str(iteration_number) + " iterations, final score is " + str(self.best_score))
@@ -171,8 +183,9 @@ class TrainAnneal(Train):
 
     def cooling_schedule(self, current_iteration):
         ex = float(current_iteration) / float(self.max_iterations)
-        return self.startingTemperature * (self.endingTemperature / self.startingTemperature) ** ex
+        return self.starting_temperature * (self.ending_temperature / self.starting_temperature) ** ex
 
     def perform_randomization(self, vec):
         for i in xrange(0, len(vec)):
-            d = np.random.normal() * 3
+            d = np.random.randn() /10
+            vec[i]+=d
