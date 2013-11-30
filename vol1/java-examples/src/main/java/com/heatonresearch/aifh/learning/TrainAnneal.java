@@ -131,7 +131,7 @@ public class TrainAnneal implements LearningMethod {
      * @param theScore     The score function.
      */
     public TrainAnneal(final MachineLearningAlgorithm theAlgorithm, final ScoreFunction theScore) {
-        this(theAlgorithm, theScore, 1000, 400, 0.0001);
+        this(theAlgorithm, theScore, 100, 400, 0.0001);
     }
 
     /**
@@ -183,7 +183,7 @@ public class TrainAnneal implements LearningMethod {
             // randomize the method
             performRandomize(this.algorithm.getLongTermMemory());
 
-            // did we improve it?  Only keep the new method if it improved (greedy).
+            // did we improve it?
             final double trialError = score.calculateScore(this.algorithm);
 
             // was this iteration an improvement?  If so, always keep.
@@ -220,7 +220,7 @@ public class TrainAnneal implements LearningMethod {
      */
     public void performRandomize(final double[] memory) {
         for (int i = 0; i < memory.length; i++) {
-            final double d = this.rnd.nextGaussian() * 3;
+            final double d = this.rnd.nextGaussian() / 10;
             memory[i] += d;
         }
     }
