@@ -30,7 +30,7 @@
 package com.heatonresearch.aifh.learning.score;
 
 import com.heatonresearch.aifh.error.ErrorCalculation;
-import com.heatonresearch.aifh.error.ErrorCalculationSSE;
+import com.heatonresearch.aifh.error.ErrorCalculationMSE;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.learning.MachineLearningAlgorithm;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
@@ -45,7 +45,7 @@ public class ScoreRegressionData implements ScoreFunction {
     /**
      * The error calculator.
      */
-    private ErrorCalculation errorCalc = new ErrorCalculationSSE();
+    private ErrorCalculation errorCalc = new ErrorCalculationMSE();
 
     /**
      * The training data.
