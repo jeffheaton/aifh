@@ -86,6 +86,7 @@ coeff = multi_linear_regression(training_input, training_ideal)
 
 print("Solution coefficients: " + coeff)
 
+# Evaluate.
 for i in range(0, len(training_input)):
     row = training_input[i]
     y = calc_linear_regression(coeff, row)

@@ -33,6 +33,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Determine if we are requested to plot normal or uniform.
 if len(sys.argv) != 2 or sys.argv[1] == 'normal':
     plt.title("Normal Random Numbers")
     x = np.random.randn(1000000)

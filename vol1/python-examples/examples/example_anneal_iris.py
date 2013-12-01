@@ -64,13 +64,12 @@ for i in range(0, 4):
 classes = norm.build_class_map(iris_work, 4)
 inv_classes = {v: k for k, v in classes.items()}
 
-# Normalize iris species using one-of-n
+# Normalize iris species using one-of-n.
+# We could have used equilateral as well.  For an example of equilateral, see the example_nm_iris example.
 norm.norm_col_one_of_n(iris_work, 4, classes, 0, 1)
 
 
-# Display the resulting data
-#norm.display_data(result)
-
+# Prepare training data.  Separate into input and ideal.
 training = np.array(iris_work)
 training_input = training[:, 0:4]
 training_ideal = training[:, 4:7]
@@ -86,16 +85,24 @@ best_score = sys.float_info.max
 
 
 def score_funct(x):
+    """
+    The score function for Iris anneal.
+    @param x:
+    @return:
+    """
     global best_score
     global input_data
     global output_data
+    # Update the network's long term memory to the vector we need to score.
     network.copy_memory(x)
+    # Loop over the training set and calculate the output for each.
     actual_output = []
     for input_data in training_input:
         output_data = network.compute_regression(input_data)
         actual_output.append(output_data)
-
+    # Calculate the error with MSE.
     result = ErrorCalculation.mse(np.array(actual_output), training_ideal)
+    # If we improved the score, then report it.
     if result < best_score:
         best_score = result
         print("Score: " + str(result))
@@ -103,18 +110,11 @@ def score_funct(x):
 
 
 x0 = network.longTermMemory[:]
-print(score_funct(x0))
-#res = minimize(score_funct, x0, method='anneal', options={'disp': True})
 
-#res = anneal(score_funct, x0, args=(), schedule='fast',
-#                          full_output=True, maxiter=5000, lower=-2,
-#                          upper=2, dwell=50, disp=True)
-
+# Perform the annealing
 train = TrainAnneal()
 train.display_iteration = True
 train.train(x0, score_funct)
-
-#print(training_ideal)
 
 # Display the final validation.  We show all of the iris data as well as the predicted species.
 for i in xrange(0, len(training_input)):

@@ -43,10 +43,20 @@ from error import ErrorCalculation
 
 
 def poly(coeff, x):
+    """
+    Polynomial function.  Calculate y given the specified x and coefficient values.
+    @param coeff: The coefficients to use.
+    @param x: The x values to use.
+    @return: The function result y,
+    """
     return [(coeff[2] * (x ** 2)) + (coeff[1] * x) + coeff[0]]
 
 
 def build_training_set():
+    """
+    Build a training set for the polynomial.  Generate between -50 and 50.
+    @return: The training set.
+    """
     result_input = []
     result_ideal = []
     coeff = [6, 4, 2]
@@ -60,6 +70,10 @@ def build_training_set():
 
 
 def print_poly(coeff):
+    """
+    Display The polynomial formula.
+    @param coeff: The coefficients.
+    """
     result = ""
 
     for i in xrange(0, len(coeff)):
@@ -80,16 +94,23 @@ def print_poly(coeff):
 
 
 def score_funct(coeff):
+    """
+    Calculate the score with the specified coefficients.  Use MSE error calculation.
+    @param coeff: The coefficients.
+    @return: The score.  We are trying to minimize this score.
+    """
     global best_score
     global input_data
     global output_data
 
+    # Calculate the actual output of the polynomial with the specified coefficients.
     actual_output = []
     for input_data in training_input:
         x = input_data[0]
         output_data = poly(coeff, x)
         actual_output.append(output_data)
 
+    # evaluate the difference between actual output and ideal expected output.
     result = ErrorCalculation.mse(np.array(actual_output), training_ideal)
     if result < best_score:
         best_score = result
@@ -99,16 +120,21 @@ def score_funct(coeff):
 
 best_score = sys.float_info.max
 
+# Build the training set.
 training_input, training_ideal = build_training_set()
 
+# Extract the input and ideal training.
 training_input = np.array(training_input)
 training_ideal = np.array(training_ideal)
 
+# Starting point for coefficients.
 x0 = [0, 0, 0]
 
+# Perform the train.
 train = TrainGreedRandom(-10, 10)
 train.stop_score = 100
-train.train(x0, score_funct)
+result = train.train(x0, score_funct)
 
+# Evaluate the polynomial.
 print("Final polynomial")
-print_poly(train.position)
+print_poly(result)

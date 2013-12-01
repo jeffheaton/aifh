@@ -116,7 +116,7 @@ class Normalize(object):
         # Iterate over all rows and perform the normalization.
         for row in data_set:
             row[col] = ((row[col] - data_low) / (data_high - data_low)) \
-                       * (normalized_high - normalized_low) + normalized_low
+                * (normalized_high - normalized_low) + normalized_low
 
     def build_class_map(self, data_set, col):
         """ Build a class map.  Return a dictionary that contains a mapping between each unique class in the specified
@@ -133,7 +133,7 @@ class Normalize(object):
         return result
 
     def norm_col_one_of_n(self, data_set, col, classes, normalized_low, normalized_high):
-        """ Normalize a column using one-of-n.  The classes paramater contains a map of the unique items in the
+        """ Normalize a column using one-of-n.  The classes parameter contains a map of the unique items in the
             specified column.  Typically this value is obtained by calling build_class_map.
         """
         col = self.resolve_column(col)
@@ -144,9 +144,9 @@ class Normalize(object):
             row.pop(col)
             for i in range(0, len(classes)):
                 if i == value:
-                    row.insert(col + i, 1)
+                    row.insert(col + i, normalized_high)
                 else:
-                    row.insert(col + i, 0)
+                    row.insert(col + i, normalized_low)
 
     def denorm_one_of_n(self, data):
         """ Denormalize a single value, using one-of-n.
@@ -195,13 +195,6 @@ class Normalize(object):
             else:
                 return self.column_map[col]
 
-    def col_delete(self, data_set, col):
-        """ Delete the specified column.
-        """
-        col = self.resolve_column(col)
-        for row in data_set:
-            row.pop(col)
-
     def col_extract(self, data_set, col):
         result = []
         col = self.resolve_column(col)
@@ -209,7 +202,10 @@ class Normalize(object):
             result.append(row[col])
         return result
 
-    def delete_unknowns(selfself, data_set):
+    def delete_unknowns(self, data_set):
+        """ Delete unknown data, any row that has one or more ? columns.
+        @param data_set: The data set.
+        """
         i = 0
         while i < len(data_set):
             row = data_set[i]
@@ -220,11 +216,22 @@ class Normalize(object):
             i += 1
 
     def col_delete(self, data_set, col):
+        """ Delete the specified column.
+        @param data_set: The data set to delete from.
+        @param col: The column to delete.
+        """
         col = self.resolve_column(col)
         for row in data_set:
             del row[col]
 
     def col_replace(self, data_set, col, search_for, replace_with, others):
+        """ Replace values in the specified column.
+        @param data_set: The data set.
+        @param col: The column to replace.
+        @param search_for: The value we seek to replace.
+        @param replace_with: What to replace the specified value with.
+        @param others: What to set other values to.
+        """
         for row in data_set:
             d = float(row[col])
             if np.abs(d - search_for) < 0.0001:

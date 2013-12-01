@@ -43,19 +43,35 @@ from train import TrainAnneal
 
 
 class AnnealTSP(TrainAnneal):
+    """
+    Use simulated annealing with the Traveling Salesman Problem (TSP).  The cities are placed in a circle, so the
+    ideal path is known.  Because the cities are in a circle they should be visited in order for the absolute
+    optimal path.
+
+    http://en.wikipedia.org/wiki/Traveling_salesman_problem
+    """
     def perform_randomization(self, vec):
+        """
+        Randomize by swapping two cities in the path.
+        @param vec: The path to randomize.
+        """
         # Find two cities to swap.
         while True:
             index1 = np.random.randint(0, CITY_COUNT)
             index2 = np.random.randint(0, CITY_COUNT)
             if index1 != index2:
-                break;
+                break
 
         # Swap the two cities.
         vec[index1], vec[index2] = vec[index2], vec[index1]
 
 
 def score_funct(x):
+    """
+    The score function simply returns the distance covered by that path.
+    @param x: The path to evaluate.
+    @return: The Euclidean distance between each city on the path.
+    """
     result = 0
     for i in xrange(0, CITY_COUNT - 1):
         result += distance.euclidean(x[i], x[i + 1])
@@ -77,8 +93,7 @@ for i in xrange(0, CITY_COUNT):
 
 
 # Pick a random city order.  Here we are sampling without replacement.  This means choose 50 random integers but
-# do not repeat.
-
+# do not repeat.  We only want to visit a city once.
 current_path = []
 
 while len(current_path) < CITY_COUNT:
@@ -88,11 +103,12 @@ while len(current_path) < CITY_COUNT:
 
 
 # Run the annealing.
-
 train = AnnealTSP()
 train.display_iteration = True
 train.max_iterations = 500
 train.train(current_path, score_funct)
+
+# Display results.
 print("Final distance: " + str(score_funct(train.position)))
 print("Final path: " + str(train.position))
 

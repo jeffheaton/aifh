@@ -38,10 +38,13 @@ aifh_dir = os.path.dirname(os.path.abspath(__file__))
 aifh_dir = os.path.abspath(aifh_dir + os.sep + ".." + os.sep + "lib" + os.sep + "aifh")
 sys.path.append(aifh_dir)
 
+# Create three different positions.
 pos1 = [1.0, 2.0, 3.0]
 pos2 = [4.0, 5.0, 6.0]
 pos3 = [7.0, 8.0, 9.0]
 
+
+# Calculate the distance between the specified points in 3 metrics.
 print("Euclidean Distance")
 print("pos1->pos2: " + str(distance.euclidean(pos1, pos2)))
 print("pos2->pos3: " + str(distance.euclidean(pos2, pos3)))

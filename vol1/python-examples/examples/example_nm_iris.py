@@ -104,7 +104,7 @@ def score_funct(x):
     return result
 
 
-x0 = network.longTermMemory[:]
+x0 = network.long_term_memory[:]
 print(score_funct(x0))
 res = minimize(score_funct, x0, method='nelder-mead', tol=0.0001, options={'disp': True, 'maxiter': 5000})
 print(score_funct(res.x))

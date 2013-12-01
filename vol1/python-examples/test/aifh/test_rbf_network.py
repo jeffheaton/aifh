@@ -46,23 +46,23 @@ class TestRbfNetwork(unittest.TestCase):
 
         # should be 7, (2*1) + (1+(1 bias))*1 + 3 RBF params
         # 2 + 2 + 3 = 7
-        self.assertEquals(7, len(network.longTermMemory))
+        self.assertEquals(7, len(network.long_term_memory))
 
 
     def test_reset_compute(self):
         network = RbfNetwork(2, 1, 1)
         total = 0
 
-        for i in xrange(0, len(network.longTermMemory)):
-            total += network.longTermMemory[i]
+        for i in xrange(0, len(network.long_term_memory)):
+            total += network.long_term_memory[i]
 
         self.assertEquals(0, total)
 
         network.reset()
 
         total = 0
-        for i in xrange(0, len(network.longTermMemory)):
-            total += network.longTermMemory[i]
+        for i in xrange(0, len(network.long_term_memory)):
+            total += network.long_term_memory[i]
 
         self.assertTrue(total > 1)
 

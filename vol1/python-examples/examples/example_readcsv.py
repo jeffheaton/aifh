@@ -38,6 +38,7 @@ irisFile = os.path.abspath(irisFile + "../../datasets/iris.csv")
 
 print('Reading CSV file: ' + irisFile)
 
+# Open the specified file and read row by row.
 with open(irisFile, 'rt') as f:
     reader = csv.reader(f)
     for row in reader:
