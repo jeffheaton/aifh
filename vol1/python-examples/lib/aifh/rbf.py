@@ -1,3 +1,31 @@
+"""
+    Artificial Intelligence for Humans
+    Volume 1: Fundamental Algorithms
+    Python Version
+    http://www.aifh.org
+    http://www.jeffheaton.com
+
+    Code repository:
+    https://github.com/jeffheaton/aifh
+
+    Copyright 2013 by Jeff Heaton
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    For more information on Heaton Research copyrights, licenses
+    and trademarks visit:
+    http://www.heatonresearch.com/copyright
+"""
 __author__ = 'jheaton'
 
 import numpy as np
@@ -34,6 +62,7 @@ class RbfGaussian(RbfFunction):
             value += ((x[i] - center) ** 2) / (2.0 * width * width)
         return np.exp(-value)
 
+
 class RbfMexicanHat(RbfFunction):
     def evaluate(self, x):
         # Calculate the "norm", but don't take square root.
@@ -46,6 +75,7 @@ class RbfMexicanHat(RbfFunction):
         # Calculate the value.
         return (1 - norm) * np.exp(-norm / 2)
 
+
 class RbfMultiquadric(RbfFunction):
     def evaluate(self, x):
         value = 0
@@ -56,6 +86,7 @@ class RbfMultiquadric(RbfFunction):
             value += (x[i] - center) ** 2 + (width * width)
 
         return np.sqrt(value)
+
 
 class RbfInverseMultiquadric(RbfFunction):
     def evaluate(self, x):

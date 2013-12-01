@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
     Artificial Intelligence for Humans
     Volume 1: Fundamental Algorithms
@@ -52,16 +53,16 @@ norm = Normalize()
 iris_data = norm.load_csv(irisFile)
 
 # Prepare the iris data set.
-classes = norm.col_extract(iris_data,4)
-norm.col_delete(iris_data,4)
-for i in range(0,4):
-    norm.make_col_numeric(iris_data,i)
+classes = norm.col_extract(iris_data, 4)
+norm.col_delete(iris_data, 4)
+for i in range(0, 4):
+    norm.make_col_numeric(iris_data, i)
 
 # Cluster the Iris data set.
-res, idx = kmeans2(np.array(iris_data),k)
+res, idx = kmeans2(np.array(iris_data), k)
 
-for cluster_num in range(0,k) :
-    print( "Cluster #" + str(cluster_num+1))
-    for i in range(0,len(idx)) :
-        if idx[i] == cluster_num :
+for cluster_num in range(0, k):
+    print( "Cluster #" + str(cluster_num + 1))
+    for i in range(0, len(idx)):
+        if idx[i] == cluster_num:
             print( str(iris_data[i]) + "," + classes[i])

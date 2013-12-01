@@ -29,7 +29,6 @@
 __author__ = 'jheaton'
 
 
-
 class AIFHError(Exception):
     """An error was raised. This is used for several purposes, see individual error messages."""
 

@@ -68,7 +68,7 @@ class Equilateral(object):
         for row in range(0, len(self.encoded)):
             for col in range(0, len(self.encoded[row])):
                 self.encoded[row][col] = ((self.encoded[row][col] - min_eq) / (max_eq - min_eq)) \
-                    * (normalized_high - normalized_low) + normalized_low
+                                         * (normalized_high - normalized_low) + normalized_low
 
     def encode(self, class_num):
         """ Provide the equilateral encoded vector for the specified class.

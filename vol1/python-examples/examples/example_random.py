@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
     Artificial Intelligence for Humans
     Volume 1: Fundamental Algorithms
@@ -32,7 +33,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
-if len(sys.argv) != 2 or sys.argv[1]=='normal':
+if len(sys.argv) != 2 or sys.argv[1] == 'normal':
     plt.title("Normal Random Numbers")
     x = np.random.randn(1000000)
 else:

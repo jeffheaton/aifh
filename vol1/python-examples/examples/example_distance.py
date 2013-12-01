@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
     Artificial Intelligence for Humans
     Volume 1: Fundamental Algorithms
@@ -37,19 +38,19 @@ aifh_dir = os.path.dirname(os.path.abspath(__file__))
 aifh_dir = os.path.abspath(aifh_dir + os.sep + ".." + os.sep + "lib" + os.sep + "aifh")
 sys.path.append(aifh_dir)
 
-pos1 = [ 1.0, 2.0, 3.0 ]
-pos2 = [ 4.0, 5.0, 6.0 ]
-pos3 = [ 7.0, 8.0, 9.0 ]
+pos1 = [1.0, 2.0, 3.0]
+pos2 = [4.0, 5.0, 6.0]
+pos3 = [7.0, 8.0, 9.0]
 
 print("Euclidean Distance")
-print("pos1->pos2: " + str(distance.euclidean(pos1,pos2)))
-print("pos2->pos3: " + str(distance.euclidean(pos2,pos3)))
-print("pos3->pos1: " + str(distance.euclidean(pos3,pos1)))
+print("pos1->pos2: " + str(distance.euclidean(pos1, pos2)))
+print("pos2->pos3: " + str(distance.euclidean(pos2, pos3)))
+print("pos3->pos1: " + str(distance.euclidean(pos3, pos1)))
 print("\nManhattan (city block) Distance\n")
-print("pos1->pos2: " + str(distance.cityblock(pos1,pos2)))
-print("pos2->pos3: " + str(distance.cityblock(pos2,pos3)))
-print("pos3->pos1: " + str(distance.cityblock(pos3,pos1)))
+print("pos1->pos2: " + str(distance.cityblock(pos1, pos2)))
+print("pos2->pos3: " + str(distance.cityblock(pos2, pos3)))
+print("pos3->pos1: " + str(distance.cityblock(pos3, pos1)))
 print("\nChebyshev Distance\n")
-print("pos1->pos2: " + str(distance.chebyshev(pos1,pos2)))
-print("pos2->pos3: " + str(distance.chebyshev(pos2,pos3)))
-print("pos3->pos1: " + str(distance.chebyshev(pos3,pos1)))
+print("pos1->pos2: " + str(distance.chebyshev(pos1, pos2)))
+print("pos2->pos3: " + str(distance.chebyshev(pos2, pos3)))
+print("pos3->pos1: " + str(distance.chebyshev(pos3, pos1)))

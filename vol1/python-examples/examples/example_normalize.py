@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
     Artificial Intelligence for Humans
     Volume 1: Fundamental Algorithms
@@ -33,7 +34,7 @@ import sys
 
 # Find the AIFH core files
 aifh_dir = os.path.dirname(os.path.abspath(__file__))
-aifh_dir = os.path.abspath(aifh_dir + os.sep + ".." + os.sep + "lib" + os.sep + "aifh")                           
+aifh_dir = os.path.abspath(aifh_dir + os.sep + ".." + os.sep + "lib" + os.sep + "aifh")
 sys.path.append(aifh_dir)
 
 from normalize import Normalize

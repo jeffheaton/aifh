@@ -211,23 +211,23 @@ class Normalize(object):
 
     def delete_unknowns(selfself, data_set):
         i = 0
-        while i <len(data_set) :
+        while i < len(data_set):
             row = data_set[i]
             for col_data in row:
-                if col_data == "?" :
+                if col_data == "?":
                     del data_set[i]
                     break
-            i+=1
+            i += 1
 
     def col_delete(self, data_set, col):
         col = self.resolve_column(col)
         for row in data_set:
             del row[col]
 
-    def col_replace(self, data_set, col, search_for, replace_with, others) :
+    def col_replace(self, data_set, col, search_for, replace_with, others):
         for row in data_set:
             d = float(row[col])
-            if np.abs(d - search_for) < 0.0001 :
+            if np.abs(d - search_for) < 0.0001:
                 row[col] = float(replace_with)
             else:
                 row[col] = float(others)

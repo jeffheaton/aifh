@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
     Artificial Intelligence for Humans
     Volume 1: Fundamental Algorithms

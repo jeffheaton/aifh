@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
     Artificial Intelligence for Humans
     Volume 1: Fundamental Algorithms
@@ -60,27 +61,26 @@ class Application(tk.Frame):
 
 
     def createWidgets(self):
-        l1 = tk.Label(self,text="Draw Here")
-        l1.grid(row=0,column=0)
-        l1 = tk.Label(self,text="Trained Characters")
-        l1.grid(row=0,column=1,columnspan=2)
+        l1 = tk.Label(self, text="Draw Here")
+        l1.grid(row=0, column=0)
+        l1 = tk.Label(self, text="Trained Characters")
+        l1.grid(row=0, column=1, columnspan=2)
         self.canvas_draw = tk.Canvas(self, width=Application.DRAW_AREA, height=Application.DRAW_AREA)
-        self.canvas_draw.grid(row=1,column=0)
+        self.canvas_draw.grid(row=1, column=0)
         self.list_learned = tk.Listbox(self, height=10, )
-        self.list_learned.grid(row=1,column=1,sticky=tk.N+tk.E+tk.S+tk.W,columnspan=2)
+        self.list_learned.grid(row=1, column=1, sticky=tk.N + tk.E + tk.S + tk.W, columnspan=2)
 
         self.button_learn = tk.Button(self, text='Learn:', command=self.learn)
-        self.button_learn.grid(row=2,column=0,sticky=tk.N+tk.E+tk.S+tk.W)
+        self.button_learn.grid(row=2, column=0, sticky=tk.N + tk.E + tk.S + tk.W)
         self.entry_learn_char = tk.Entry(self)
-        self.entry_learn_char.grid(row=2,column=1,sticky=tk.N+tk.E+tk.S+tk.W,columnspan=2)
-
+        self.entry_learn_char.grid(row=2, column=1, sticky=tk.N + tk.E + tk.S + tk.W, columnspan=2)
 
         self.button_recognize = tk.Button(self, text='Recognize', command=self.recognize)
-        self.button_recognize.grid(row=3,column=0,sticky=tk.N+tk.E+tk.S+tk.W)
+        self.button_recognize.grid(row=3, column=0, sticky=tk.N + tk.E + tk.S + tk.W)
         self.button_quit = tk.Button(self, text='Quit', command=self.quit)
-        self.button_quit.grid(row=3,column=1,sticky=tk.N+tk.E+tk.S+tk.W)
+        self.button_quit.grid(row=3, column=1, sticky=tk.N + tk.E + tk.S + tk.W)
         self.button_clear = tk.Button(self, text='Clear', command=self.clear)
-        self.button_clear.grid(row=3,column=2,sticky=tk.N+tk.E+tk.S+tk.W)
+        self.button_clear.grid(row=3, column=2, sticky=tk.N + tk.E + tk.S + tk.W)
 
         self.canvas_draw.bind("<Motion>", self.motion)
         self.canvas_draw.bind("<ButtonPress-1>", self.b1down)

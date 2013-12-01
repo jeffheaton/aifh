@@ -1,7 +1,36 @@
+"""
+    Artificial Intelligence for Humans
+    Volume 1: Fundamental Algorithms
+    Python Version
+    http://www.aifh.org
+    http://www.jeffheaton.com
+
+    Code repository:
+    https://github.com/jeffheaton/aifh
+
+    Copyright 2013 by Jeff Heaton
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    For more information on Heaton Research copyrights, licenses
+    and trademarks visit:
+    http://www.heatonresearch.com/copyright
+"""
 __author__ = 'jheaton'
 
-import numpy as np
 import sys
+
+import numpy as np
 
 
 class Train(object):
@@ -124,7 +153,7 @@ class TrainHillClimb(Train):
 
 
 class TrainAnneal(Train):
-    def __init__(self, max_iterations = 100, starting_temperature=400, ending_temperature = 0.0001):
+    def __init__(self, max_iterations=100, starting_temperature=400, ending_temperature=0.0001):
         Train.__init__(self, True)
         self.max_iterations = max_iterations
         self.starting_temperature = starting_temperature
@@ -142,7 +171,7 @@ class TrainAnneal(Train):
             # Clone current position, create a new array of same size.
             current_temperature = self.cooling_schedule(iteration_number)
 
-            for c in xrange(0,self.cycles) :
+            for c in xrange(0, self.cycles):
                 trial_position = list(current_position)
                 # Randomize trial position.
                 self.perform_randomization(trial_position)
@@ -153,22 +182,23 @@ class TrainAnneal(Train):
                 if self.better_than(trial_score, current_score):
                     keep = True
                 else:
-                    self.last_probability = self.calc_probability(current_score,trial_score,current_temperature)
-                    if self.last_probability > np.random.uniform() :
+                    self.last_probability = self.calc_probability(current_score, trial_score, current_temperature)
+                    if self.last_probability > np.random.uniform():
                         keep = True
 
                 if keep:
                     current_score = trial_score
                     current_position = list(trial_position)
-                    if self.better_than(current_score,self.best_score) :
+                    if self.better_than(current_score, self.best_score):
                         self.best_score = current_score
                         self.position = list(current_position)
 
             if self.display_iteration:
                 print("Iteration #" + str(iteration_number) + ", Score: " + str(self.best_score)
-                        + ",k=" + str(iteration_number)
-                        + ",kMax="+ str(self.max_iterations)
-                        + ",t=" + str(current_temperature) + ",prob=" + str(self.last_probability) + "," + str(current_score))
+                      + ",k=" + str(iteration_number)
+                      + ",kMax=" + str(self.max_iterations)
+                      + ",t=" + str(current_temperature) + ",prob=" + str(self.last_probability) + "," + str(
+                    current_score))
                 iteration_number += 1
 
         if self.display_final:
@@ -183,5 +213,5 @@ class TrainAnneal(Train):
 
     def perform_randomization(self, vec):
         for i in xrange(0, len(vec)):
-            d = np.random.randn() /10
-            vec[i]+=d
+            d = np.random.randn() / 10
+            vec[i] += d
