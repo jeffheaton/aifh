@@ -174,10 +174,6 @@ class TrainAnneal(Train):
         if self.display_final:
             print("Finished after " + str(iteration_number) + " iterations, final score is " + str(self.best_score))
 
-    def perform_randomization(self, vec):
-        for i in xrange(0, len(vec)):
-            vec[i] = np.random.uniform(self.low, self.high)
-
     def calc_probability(self, error_current, error_new, t):
         return np.exp(-(np.abs(error_new - error_current) / t))
 
