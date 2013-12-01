@@ -107,7 +107,7 @@ public class SimpleLearn {
             final Map<String, Integer> items,
             final double high, final double low) {
         // first, we need to invert the items.  Right now it maps from category to index.  We need index to category.
-        final Map<Integer, String> invMap = new HashMap<>();
+        final Map<Integer, String> invMap = new HashMap<Integer,String>();
         for (final Map.Entry<String, Integer> entry : items.entrySet()) {
             invMap.put(entry.getValue(), entry.getKey());
         }
@@ -135,7 +135,7 @@ public class SimpleLearn {
             final List<BasicData> theTrainingData,
             final Map<String, Integer> items) {
         // first, we need to invert the items.  Right now it maps from category to index.  We need index to category.
-        final Map<Integer, String> invMap = new HashMap<>();
+        final Map<Integer, String> invMap = new HashMap<Integer,String>();
         for (final Map.Entry<String, Integer> entry : items.entrySet()) {
             invMap.put(entry.getValue(), entry.getKey());
         }

@@ -64,7 +64,7 @@ public class KMeans {
     /**
      * The clusters.
      */
-    private final List<Cluster> clusters = new ArrayList<>();
+    private final List<Cluster> clusters = new ArrayList<Cluster>();
 
     /**
      * The random number generator to use.
@@ -166,7 +166,7 @@ public class KMeans {
 
         this.clusters.clear();
 
-        final Set<Integer> usedObservations = new HashSet<>();
+        final Set<Integer> usedObservations = new HashSet<Integer>();
 
         for (int i = 0; i < this.k; i++) {
             final Cluster cluster = new Cluster(dimensions);

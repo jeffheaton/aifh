@@ -43,7 +43,7 @@ public class Cluster {
     /**
      * The observations in this cluster.
      */
-    private final List<BasicData> observations = new ArrayList<>();
+    private final List<BasicData> observations = new ArrayList<BasicData>();
 
     /**
      * The center of these observations.

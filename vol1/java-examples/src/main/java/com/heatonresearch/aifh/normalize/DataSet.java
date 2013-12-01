@@ -47,7 +47,7 @@ public class DataSet {
     /**
      * The data loaded from a CSV, or other source.
      */
-    private final List<Object[]> data = new ArrayList<>();
+    private final List<Object[]> data = new ArrayList<Object[]>();
     /**
      * The column headers.
      */
@@ -334,12 +334,12 @@ public class DataSet {
      */
     public Map<String, Integer> enumerateClasses(final int column) {
         // determine classes
-        final Set<String> classes = new HashSet<>();
+        final Set<String> classes = new HashSet<String>();
         for (final Object[] obj : this.data) {
             classes.add(obj[column].toString());
         }
         // assign numeric values to each class
-        final Map<String, Integer> result = new HashMap<>();
+        final Map<String, Integer> result = new HashMap<String,Integer>();
         int index = 0;
         for (final String className : classes) {
             result.put(className, index++);
@@ -584,7 +584,7 @@ public class DataSet {
      * @return The training set.
      */
     public List<BasicData> extractUnsupervisedLabeled(final int labelIndex) {
-        final List<BasicData> result = new ArrayList<>();
+        final List<BasicData> result = new ArrayList<BasicData>();
 
         final int dimensions = getHeaderCount() - 1;
 
@@ -615,7 +615,7 @@ public class DataSet {
      * @return The training set.
      */
     public List<BasicData> extractSupervised(final int inputBegin, final int inputCount, final int idealBegin, final int idealCount) {
-        final List<BasicData> result = new ArrayList<>();
+        final List<BasicData> result = new ArrayList<BasicData>();
 
         for (int rowIndex = 0; rowIndex < size(); rowIndex++) {
             final Object[] raw = this.data.get(rowIndex);

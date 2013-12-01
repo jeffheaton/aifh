@@ -1,0 +1,12 @@
+*.class
+*~
+
+# Package Files #
+.idea
+.idea_modules
+*.jar
+*.war
+*.ear
+target/
+project/target
+src/test/resources/actual/
