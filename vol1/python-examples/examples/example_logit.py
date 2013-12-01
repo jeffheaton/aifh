@@ -3,6 +3,8 @@ __author__ = 'jheaton'
 import os
 import sys
 import numpy as np
+import pandas as pd
+import statsmodels.api as sm
 
 # Find the AIFH core files
 aifh_dir = os.path.dirname(os.path.abspath(__file__))
@@ -12,51 +14,41 @@ sys.path.append(aifh_dir)
 from normalize import Normalize
 
 
-def multi_linear_regression(x,y):
-    x_matrix = np.ones((len(x),len(x[0])+1),dtype=float)
-    x_matrix[:,1:] = x
-    print(y)
-    return np.linalg.lstsq(x_matrix,y)[0]
+# find the Wisconsin breast cancer data set
+dataFile = os.path.dirname(os.path.realpath(__file__))
+dataFile = os.path.abspath(dataFile + "../../datasets/breast-cancer-wisconsin.csv")
 
-def calc_linear_regression(coeff,x):
-    result = 0
-    for i in xrange(1,len(coeff)) :
-        result += x[i - 1] * coeff[i]
-
-    result += coeff[0]
-    return result
-
-
-# find the Iris data set
-abaloneFile = os.path.dirname(os.path.realpath(__file__))
-abaloneFile = os.path.abspath(abaloneFile + "../../datasets/abalone.csv")
-
-# Normalize abalone file.
+# Normalize the Wisconsin file.
 
 norm = Normalize()
-abalone_work = norm.load_csv(abaloneFile)
+data_file_work = norm.load_csv(dataFile)
+norm.delete_unknowns(data_file_work)
+norm.col_delete(data_file_work,0)
+norm.col_replace(data_file_work, 9, 4, 1, 0)
 
-# Make all columns beyond col #1 numeric.
-for i in range(1, 9):
-    norm.make_col_numeric(abalone_work, i)
+for i in xrange(0,9):
+    norm.make_col_numeric(data_file_work,i)
 
-# Discover all of the classes for column #1, the gender.
-classes = norm.build_class_map(abalone_work, 0)
+print(data_file_work)
 
-# Normalize gender one-of-n encoding.
-norm.norm_col_one_of_n(abalone_work, 0, classes, 0, 1)
+#training = np.array(data_file_work)
+#training_input = training[:, 0:9]
+#training_ideal = training[:, 9:10]
 
-# Separate into input and ideal.
+#df = pd.read_csv(dataFile)
+#df = df[df.line_race != 0]
 
-training = np.array(abalone_work)
-training_input = training[:, 0:10]
-training_ideal = training[:, 10:11]
+df = pd.DataFrame(data_file_work)
+df.columns = ["clump_thickness","size_uniformity","shape_uniformity","marginal_adhesion","epithelial_size","bare_nucleoli","bland_chromatin","normal_nucleoli","mitoses","class"]
 
-coeff = multi_linear_regression(training_input,training_ideal)
+print(df)
 
-print("Solution coefficients: " + coeff)
+train_cols = df.columns[0:9]
+print(train_cols)
 
-for i in range(0,len(training_input)) :
-    row = training_input[i]
-    y = calc_linear_regression(coeff,row)
-    print( " -> Actual: " + str(y) + ", Ideal:" + str(training_ideal[i][0]))
+logit = sm.Logit(df['class'], df[train_cols])
+
+# fit the model
+result = logit.fit()
+
+print(result.summary())
