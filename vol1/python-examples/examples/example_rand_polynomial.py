@@ -99,7 +99,6 @@ def score_funct(coeff):
     @param coeff: The coefficients.
     @return: The score.  We are trying to minimize this score.
     """
-    global best_score
     global input_data
     global output_data
 
@@ -109,16 +108,6 @@ def score_funct(coeff):
         x = input_data[0]
         output_data = poly(coeff, x)
         actual_output.append(output_data)
-
-    # evaluate the difference between actual output and ideal expected output.
-    result = ErrorCalculation.mse(np.array(actual_output), training_ideal)
-    if result < best_score:
-        best_score = result
-        print("Score: " + str(result))
-    return result
-
-
-best_score = sys.float_info.max
 
 # Build the training set.
 training_input, training_ideal = build_training_set()
@@ -133,6 +122,7 @@ x0 = [0, 0, 0]
 # Perform the train.
 train = TrainGreedRandom(-10, 10)
 train.stop_score = 100
+train.display_iteration = True
 result = train.train(x0, score_funct)
 
 # Evaluate the polynomial.

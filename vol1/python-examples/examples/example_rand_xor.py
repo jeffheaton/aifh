@@ -86,7 +86,7 @@ x0 = list(network.long_term_memory)
 # Train with greedy random.
 train = TrainGreedRandom(-1, 1)
 train.display_iteration = True
-train.max_iterations = 500000
+train.max_iterations = 100000
 train.stop_score = 0.05
 result = train.train(x0, score_funct)
 
