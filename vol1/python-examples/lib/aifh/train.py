@@ -164,9 +164,6 @@ class TrainHillClimb(Train):
         candidate[4] = acceleration
 
         while not self.should_stop(iteration_number, self.best_score):
-            # Clone current position, create a new array of same size.
-            trial_position = list(self.position)
-
             if self.goal_minimize:
                 best_step_score = sys.float_info.max
             else:
@@ -176,11 +173,11 @@ class TrainHillClimb(Train):
                 best = -1
                 for i in xrange(0, len(candidate)):
                     # Take a step
-                    trial_position[dimension] += candidate[i] * step_size[dimension]
+                    self.position[dimension] += candidate[i] * step_size[dimension]
                     # Obtain new trial score.
-                    trial_score = funct(trial_position)
+                    trial_score = funct(self.position)
                     # Step back, we only want to try movement in one dimension.
-                    trial_position[dimension] -= candidate[i] * step_size[dimension]
+                    self.position[dimension] -= candidate[i] * step_size[dimension]
 
                     # Record best step taken
                     if self.better_than(trial_score, best_step_score):
@@ -189,8 +186,8 @@ class TrainHillClimb(Train):
 
                 if best != -1:
                     self.best_score = best_step_score
-                    trial_position[dimension] += candidate[best] * step_size[dimension]
-                    step_size[dimension] *= candidate[best]
+                    self.position[dimension] += candidate[best] * step_size[dimension]
+                    step_size[dimension] += candidate[best]
 
             if self.display_iteration:
                 print("Iteration #" + str(iteration_number) + ", Score: " + str(self.best_score))

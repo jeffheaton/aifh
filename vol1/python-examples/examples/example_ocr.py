@@ -56,11 +56,11 @@ class Application(tk.Frame):
 
         self.learned_patterns = {}
 
-        self.createWidgets()
+        self.create_widgets()
         self.clear()
 
 
-    def createWidgets(self):
+    def create_widgets(self):
         l1 = tk.Label(self, text="Draw Here")
         l1.grid(row=0, column=0)
         l1 = tk.Label(self, text="Trained Characters")
@@ -95,32 +95,6 @@ class Application(tk.Frame):
         self.x_old = None           # reset the line when you let go of the button
         self.y_old = None
 
-    def plot_line(self, x0, y0, x1, y1):
-        # Make sure points are in order by x.
-        if x1 > x0:
-            # Swap the two points.
-            tx = x0
-            ty = y0
-            x0 = x1
-            x0 = y1
-            x1 = tx
-            y1 = ty
-            # Bresenham's line algorithm
-        # http://en.wikipedia.org/wiki/Bresenham's_line_algorithm
-        deltax = x1 - x0
-        deltay = y1 - y0
-        error = 0.0
-        if deltax == 0:
-            deltax = 1 # vertical line
-        deltaerr = abs(deltay / deltax)
-        y = y0
-        for x in range(x0, x1):
-            self.draw_data[x][y] = True
-            error = error + deltaerr
-            if error >= 0.5:
-                y = y + 1
-                error = error - 1.0
-
     def motion(self, event):
         if self.b1 == "down":
             if self.x_old is not None and self.y_old is not None:
@@ -145,11 +119,11 @@ class Application(tk.Frame):
     def down_sample_region(self, x, y):
         start_x = int(self.clip_left + (x * self.ratioX))
         start_x = int(self.clip_top + (y * self.ratioY))
-        endX = int(start_x + self.ratioX)
-        endY = int(start_x + self.ratioY)
+        end_x = int(start_x + self.ratioX)
+        end_y = int(start_x + self.ratioY)
 
-        for yy in range(start_x, endY + 1):
-            for xx in range(start_x, endX + 1):
+        for yy in range(start_x, end_y + 1):
+            for xx in range(start_x, end_x + 1):
                 if self.draw_data[yy][xx]:
                     return True
 

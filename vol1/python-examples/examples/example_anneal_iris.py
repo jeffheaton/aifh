@@ -81,9 +81,6 @@ training_ideal = training[:, 4:7]
 network = RbfNetwork(4, 4, 3)
 network.reset()
 
-best_score = sys.float_info.max
-
-
 def score_funct(x):
     """
     The score function for Iris anneal.
@@ -102,14 +99,10 @@ def score_funct(x):
         actual_output.append(output_data)
     # Calculate the error with MSE.
     result = ErrorCalculation.mse(np.array(actual_output), training_ideal)
-    # If we improved the score, then report it.
-    if result < best_score:
-        best_score = result
-        print("Score: " + str(result))
     return result
 
-
-x0 = network.longTermMemory[:]
+# Create a copy of the long-term memory.  This becomes the initial state.
+x0 = list(network.long_term_memory)
 
 # Perform the annealing
 train = TrainAnneal()

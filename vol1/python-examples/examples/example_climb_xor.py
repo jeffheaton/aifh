@@ -28,7 +28,6 @@
     http://www.heatonresearch.com/copyright
 """
 __author__ = 'jheaton'
-__author__ = 'jheaton'
 
 import os
 import sys
@@ -69,6 +68,8 @@ def score_funct(x):
     @param x: The long term memory that we are to score.
     @return: The MSE error.
     """
+    global input_data
+    global output_data
     network.copy_memory(x)
     actual_output = []
     for input_data in training_input:
@@ -78,10 +79,9 @@ def score_funct(x):
 
 # Create a copy of the long-term memory.  This becomes the initial state.
 x0 = list(network.long_term_memory)
-print(score_funct(x0))
 
 # Train with hill climbing.
-train = TrainHillClimb(-1, 1)
+train = TrainHillClimb()
 train.display_iteration = True
 train.max_iterations = 100
 train.stop_score = 0.05

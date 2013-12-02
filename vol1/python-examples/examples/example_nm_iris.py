@@ -103,11 +103,11 @@ def score_funct(x):
         print("Score: " + str(result))
     return result
 
+# Initial state is current long term memory.
+x0 = list(network.long_term_memory)
 
-x0 = network.long_term_memory[:]
-print(score_funct(x0))
+# Train the network.
 res = minimize(score_funct, x0, method='nelder-mead', tol=0.0001, options={'disp': True, 'maxiter': 5000})
-print(score_funct(res.x))
 
 # Create an equilateral table for 3 classes (species of iris) and between the range 0 to 1.  This is used
 # to decide the two output nodes into a species number.
@@ -122,5 +122,3 @@ for i in xrange(0, len(training_input)):
     # Decode the two output neurons into a class number.
     class_id = eq.decode(output_data)
     print(str(input_data) + " -> " + inv_classes[class_id] + ", Ideal: " + ideal_species[i])
-
-print(res.x)

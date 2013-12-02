@@ -84,7 +84,7 @@ training_ideal = training[:, 10:11]
 
 coeff = multi_linear_regression(training_input, training_ideal)
 
-print("Solution coefficients: " + coeff)
+print("Solution coefficients: " + str(coeff))
 
 # Evaluate.
 for i in range(0, len(training_input)):

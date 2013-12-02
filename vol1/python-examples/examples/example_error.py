@@ -50,6 +50,17 @@ HIGH = 1
 # Generate ideal and actual values.
 
 def generate(seed, rows, cols, low, high, distort):
+    """
+    Generate random data, this includes a random ideal output and a distorted actual output.  This simulates an a
+    actual model failing to exactly predict the ideal data by the specified distortion factor.
+    @param seed: The seed to use.
+    @param rows: The number of rows to generate.
+    @param cols: The number of columns to generate.
+    @param low: The low value of the random numbers.
+    @param high: The high values of the random numbers.
+    @param distort: The amount to distort by.
+    @return: A dictionary that contains the actual and ideal outputs.
+    """
     result = {}
 
     np.random.seed(seed)
@@ -64,7 +75,7 @@ def generate(seed, rows, cols, low, high, distort):
         for col in xrange(0, cols):
             d = float(np.random.randint(low, high))
             ideal[row][col] = d
-            actual[row][col] = d + ( np.random.normal() * distort)
+            actual[row][col] = d + (np.random.normal() * distort)
 
     return result
 
@@ -90,7 +101,7 @@ huge_sse = ErrorCalculation.sse(hugeErrors['actual'], hugeErrors['ideal'])
 huge_mse = ErrorCalculation.mse(hugeErrors['actual'], hugeErrors['ideal'])
 huge_rms = ErrorCalculation.rms(hugeErrors['actual'], hugeErrors['ideal'])
 
-print("Type\tSSE\t\t\tMSE\t\tRMS");
+print("Type\tSSE\t\t\tMSE\t\tRMS")
 print("Small\t" + str(int(small_sse)) + "\t\t" + "{0:.2f}".format(small_mse) + "\t" + "{0:.2f}".format(small_rms))
 print("Medium\t" + str(int(medium_sse)) + "\t\t" + "{0:.2f}".format(medium_mse) + "\t" + "{0:.2f}".format(medium_rms))
 print("Large\t" + str(int(large_sse)) + "\t\t" + "{0:.2f}".format(large_mse) + "\t" + "{0:.2f}".format(large_rms))

@@ -77,7 +77,7 @@ def score_funct(x):
     return ErrorCalculation.mse(np.array(actual_output), training_ideal)
 
 # Use Nelder Mead to train.
-x0 = network.longTermMemory[:]
+x0 = list(network.long_term_memory)
 res = minimize(score_funct, x0, method='nelder-mead', options={'disp': True, 'maxiter': 10000})
 
 # Display the output for the XOR.  XOR will not be trained perfectly.  You should see that the (0,1) and (1,0) inputs
