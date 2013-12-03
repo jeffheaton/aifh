@@ -2,6 +2,13 @@ cmake_minimum_required(VERSION 2.8)
 
 project(aifh_vol1 C)
 
+# Some code uses OpenMP
+find_package(OpenMP REQUIRED)
+if (OPENMP_FOUND)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+endif()
+
 include_directories(.)
 
 add_executable(aifh_vol1 AIFH-VOL1.c
