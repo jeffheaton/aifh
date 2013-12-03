@@ -26,6 +26,25 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+============================================================================================================
+This example shows how three different distance metrics calculate the same three points.
+
+Euclidean Distance
+pos1->pos2: 5.19615242271
+pos2->pos3: 5.19615242271
+pos3->pos1: 10.3923048454
+
+Manhattan (city block) Distance
+
+pos1->pos2: 9.0
+pos2->pos3: 9.0
+pos3->pos1: 18.0
+
+Chebyshev Distance
+
+pos1->pos2: 3.0
+pos2->pos3: 3.0
+pos3->pos1: 6.0
 """
 __author__ = 'jheaton'
 

@@ -26,6 +26,10 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+============================================================================================================
+This example shows how to chart normal and uniform random numbers.  Simply pass the parameter of "normal"
+or "uniform" to the script.
+
 """
 __author__ = 'jheaton'
 

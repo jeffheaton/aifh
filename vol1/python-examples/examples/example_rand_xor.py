@@ -26,6 +26,37 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+============================================================================================================
+This example makes use of a greedy random trainer to  to fit an RBF network to the XOR data set.  Because it is totally
+random it takes 100k iterations, and can run for awhile.  The sample output below was also only able to train to 0.09.
+The output is shown below.
+
+...
+Iteration #99981, Score: 0.098615887498
+Iteration #99982, Score: 0.098615887498
+Iteration #99983, Score: 0.098615887498
+Iteration #99984, Score: 0.098615887498
+Iteration #99985, Score: 0.098615887498
+Iteration #99986, Score: 0.098615887498
+Iteration #99987, Score: 0.098615887498
+Iteration #99988, Score: 0.098615887498
+Iteration #99989, Score: 0.098615887498
+Iteration #99990, Score: 0.098615887498
+Iteration #99991, Score: 0.098615887498
+Iteration #99992, Score: 0.098615887498
+Iteration #99993, Score: 0.098615887498
+Iteration #99994, Score: 0.098615887498
+Iteration #99995, Score: 0.098615887498
+Iteration #99996, Score: 0.098615887498
+Iteration #99997, Score: 0.098615887498
+Iteration #99998, Score: 0.098615887498
+Iteration #99999, Score: 0.098615887498
+Iteration #100000, Score: 0.098615887498
+Finished after 100001 iterations, final score is 0.098615887498
+[ 0.  0.] -> [0.47032350248938742]
+[ 1.  0.] -> [0.65767372384676726]
+[ 0.  1.] -> [0.91362969255900606]
+[ 1.  1.] -> [0.22048184425450046]
 """
 __author__ = 'jheaton'
 

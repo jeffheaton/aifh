@@ -26,6 +26,21 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+============================================================================================================
+This example uses hill climbing to fit a RBF network to the XOR data set.  Hill climbing will give very mixed results.
+My example below trained below 0.01 in two iterations!  This is because the initial random position of the
+RBF network was pretty good.  Often you will need considerably more iterations for a considerably worse outcome.
+
+It is also important to notice the output does not match the XOR exactly.  For most XOR problems, this will be the
+case.  However, the output is close.  For [0,0] and [1,1] we are much closer to 0 output than [1,0] and [0,1].
+
+Iteration #1, Score: 0.184437854972
+Iteration #2, Score: 0.0140165091783
+Finished after 3 iterations, final score is 0.0140165091783
+[ 0.  0.] -> [0.018693711466584106]
+[ 1.  0.] -> [0.96159220720236505]
+[ 0.  1.] -> [1.0163212099901124]
+[ 1.  1.] -> [0.23232529225575432]
 """
 __author__ = 'jheaton'
 

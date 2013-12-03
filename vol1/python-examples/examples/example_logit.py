@@ -26,7 +26,41 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+============================================================================================================
+This example uses a Generalized Linear Model (GLM), in this case a LOGIT to fit to the Wisconsin Breast Cancer
+data set.  The output is shown below.  The solution coefficients are shown.
+
+
+
+
+Optimization terminated successfully.
+         Current function value: 0.379649
+         Iterations 8
+                           Logit Regression Results
+==============================================================================
+Dep. Variable:                  class   No. Observations:                  683
+Model:                          Logit   Df Residuals:                      674
+Method:                           MLE   Df Model:                            8
+Date:                Tue, 03 Dec 2013   Pseudo R-squ.:                  0.4136
+Time:                        05:58:46   Log-Likelihood:                -259.30
+converged:                       True   LL-Null:                       -442.18
+                                        LLR p-value:                 3.925e-74
+=====================================================================================
+                        coef    std err          z      P>|z|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------
+clump_thickness      -0.3513      0.058     -6.078      0.000        -0.465    -0.238
+size_uniformity       0.9319      0.131      7.116      0.000         0.675     1.189
+shape_uniformity      0.1919      0.109      1.756      0.079        -0.022     0.406
+marginal_adhesion     0.1487      0.076      1.954      0.051        -0.000     0.298
+epithelial_size      -0.7858      0.101     -7.778      0.000        -0.984    -0.588
+bare_nucleoli         0.5434      0.063      8.561      0.000         0.419     0.668
+bland_chromatin      -0.5484      0.092     -5.940      0.000        -0.729    -0.367
+normal_nucleoli       0.3625      0.074      4.929      0.000         0.218     0.507
+mitoses              -0.2531      0.088     -2.869      0.004        -0.426    -0.080
+=====================================================================================
 """
+
+
 __author__ = 'jheaton'
 __author__ = 'jheaton'
 

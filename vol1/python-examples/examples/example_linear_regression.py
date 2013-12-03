@@ -26,6 +26,42 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+
+============================================================================================================
+This example uses linear regression to predict the number of rings from the abalone data set.  Linear regression
+requires a simple linear relationship so it will not fit exactly, however, it is able to find some trends.
+The output is shown here.
+
+Solution coefficients: [[ -3.70992979e+12]
+ [  3.70992979e+12]
+ [  3.70992979e+12]
+ [  3.70992979e+12]
+ [ -4.55322266e-01]
+ [  1.10373535e+01]
+ [  1.07808838e+01]
+ [  8.97070312e+00]
+ [ -1.97780762e+01]
+ [ -1.05693359e+01]
+ [  8.75000000e+00]]
+ -> Actual: [ 9.21191406], Ideal:15.0
+ -> Actual: [ 7.84033203], Ideal:7.0
+ -> Actual: [ 11.15673828], Ideal:9.0
+ -> Actual: [ 9.64404297], Ideal:10.0
+ -> Actual: [ 6.74414062], Ideal:7.0
+ -> Actual: [ 7.82226562], Ideal:8.0
+...
+ -> Actual: [ 9.58837891], Ideal:8.0
+ -> Actual: [ 9.10546875], Ideal:10.0
+ -> Actual: [ 11.17578125], Ideal:10.0
+ -> Actual: [ 10.16894531], Ideal:8.0
+ -> Actual: [ 10.74511719], Ideal:11.0
+ -> Actual: [ 9.98828125], Ideal:10.0
+ -> Actual: [ 10.94140625], Ideal:9.0
+ -> Actual: [ 9.79785156], Ideal:10.0
+ -> Actual: [ 10.98486328], Ideal:12.0
+
+Process finished with exit code 0
+
 """
 __author__ = 'jheaton'
 

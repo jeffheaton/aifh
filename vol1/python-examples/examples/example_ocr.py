@@ -26,6 +26,12 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+============================================================================================================
+This example shows how to do very basic OCR using distance metrics.  To use this program draw
+a character under "Draw Here".  Then input the letter that you drew in the box next to "Learn:".
+Click the "Learn:" button and this character is added to the trained characters.  Repeat this for
+a few characters.  Finally, draw a character and click recognize.  Your previous characters will
+be scanned and the character with the shortest distance is shown.
 """
 __author__ = 'jheaton'
 

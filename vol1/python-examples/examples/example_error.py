@@ -26,6 +26,14 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+============================================================================================================
+This example shows how three different error metrics calculate different data sets.
+
+Type	SSE			MSE		RMS
+Small	2505		0.01	0.10
+Medium	62628		0.25	0.50
+Large	250515		1.00	1.00
+Huge	25051524	100.21	10.01
 """
 __author__ = 'jheaton'
 

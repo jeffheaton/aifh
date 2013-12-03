@@ -26,6 +26,24 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+============================================================================================================
+This example makes use of the scipy minimize function's Nelder Mead optimization to fit an RBF network to
+the XOR data set.  The minimize function does not provide any means of getting iteration updates.  As a result,
+we simply display the score each time the score function finds a new "best score".  This is why we only see score
+output while training.  The output is shown here.
+
+It is also important to notice the output does not match the XOR exactly.  For most XOR problems, this will be the
+case.  However, the output is close.  For [0,0] and [1,1] we are much closer to 0 output than [1,0] and [0,1].
+
+Optimization terminated successfully.
+         Current function value: 0.003416
+         Iterations: 3765
+         Function evaluations: 4879
+[ 0.  0.] -> [0.058260150820555356]
+[ 1.  0.] -> [0.97475248185226793]
+[ 0.  1.] -> [0.90381500730453324]
+[ 1.  1.] -> [0.019476173693234511]
+
 """
 __author__ = 'jheaton'
 import os

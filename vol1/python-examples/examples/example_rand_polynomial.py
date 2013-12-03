@@ -26,6 +26,60 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+============================================================================================================
+This example uses a greedy random trainer to fit the coefficients of a 3rd degree polynomial.  Because it is totally
+random it takes 100k iterations, and can run for awhile.  The output is shown below.
+
+The ideal coefficients would be:
+6+4x+2x^2
+
+However, the final output is reasonably close:
+
+-3.95186312458+4.06501034511x+2.0113298397x^2
+
+
+Iteration #99963, Score: 7397.2097385
+Iteration #99964, Score: 7397.2097385
+Iteration #99965, Score: 7397.2097385
+Iteration #99966, Score: 7397.2097385
+Iteration #99967, Score: 7397.2097385
+Iteration #99968, Score: 7397.2097385
+Iteration #99969, Score: 7397.2097385
+Iteration #99970, Score: 7397.2097385
+Iteration #99971, Score: 7397.2097385
+Iteration #99972, Score: 7397.2097385
+Iteration #99973, Score: 7397.2097385
+Iteration #99974, Score: 7397.2097385
+Iteration #99975, Score: 7397.2097385
+Iteration #99976, Score: 7397.2097385
+Iteration #99977, Score: 7397.2097385
+Iteration #99978, Score: 7397.2097385
+Iteration #99979, Score: 7397.2097385
+Iteration #99980, Score: 7397.2097385
+Iteration #99981, Score: 7397.2097385
+Iteration #99982, Score: 7397.2097385
+Iteration #99983, Score: 7397.2097385
+Iteration #99984, Score: 7397.2097385
+Iteration #99985, Score: 7397.2097385
+Iteration #99986, Score: 7397.2097385
+Iteration #99987, Score: 7397.2097385
+Iteration #99988, Score: 7397.2097385
+Iteration #99989, Score: 7397.2097385
+Iteration #99990, Score: 7397.2097385
+Iteration #99991, Score: 7397.2097385
+Iteration #99992, Score: 7397.2097385
+Iteration #99993, Score: 7397.2097385
+Iteration #99994, Score: 7397.2097385
+Iteration #99995, Score: 7397.2097385
+Iteration #99996, Score: 7397.2097385
+Iteration #99997, Score: 7397.2097385
+Iteration #99998, Score: 7397.2097385
+Iteration #99999, Score: 7397.2097385
+Iteration #100000, Score: 7397.2097385
+Finished after 100001 iterations, final score is 7397.2097385
+Final polynomial
+-3.95186312458+4.06501034511x+2.0113298397x^2
+
 """
 __author__ = 'jheaton'
 
@@ -108,6 +162,7 @@ def score_funct(coeff):
         x = input_data[0]
         output_data = poly(coeff, x)
         actual_output.append(output_data)
+    return ErrorCalculation.sse(np.array(actual_output), training_ideal)
 
 # Build the training set.
 training_input, training_ideal = build_training_set()
