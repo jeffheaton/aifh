@@ -1,3 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+
+project(aifh_vol1 C)
+
 include_directories(.)
 
 add_executable(aifh_vol1 AIFH-VOL1.c
