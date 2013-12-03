@@ -34,7 +34,7 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 /**
- * This example program shows how to use discrete simulated annealing to find solutions to the Kapsack problem.
+ * This example program shows how to use discrete simulated annealing to find solutions to the Knapsack problem.
  * <p/>
  * http://en.wikipedia.org/wiki/Knapsack_problem
  */

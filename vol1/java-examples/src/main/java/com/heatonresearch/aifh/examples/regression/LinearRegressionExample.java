@@ -36,6 +36,7 @@ import com.heatonresearch.aifh.regression.MultipleLinearRegression;
 import com.heatonresearch.aifh.regression.TrainLeastSquares;
 
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,8 +58,8 @@ public class LinearRegressionExample extends SimpleLearn {
             final MultipleLinearRegression reg = new MultipleLinearRegression(10);
             final TrainLeastSquares train = new TrainLeastSquares(reg, trainingData);
             train.iteration();
-
-            query(reg, trainingData);
+            System.out.println(Arrays.toString(reg.getLongTermMemory()));
+            //query(reg, trainingData);
             System.out.println("Error: " + train.getError());
 
 
