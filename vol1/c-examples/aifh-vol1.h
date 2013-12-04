@@ -68,6 +68,8 @@ extern "C" {
 #define strcasecmp _strcmpi
 #pragma warning(disable : 4996)
 #define F_OK    0       /* Test for existence.  */
+#elif __APPLE__
+#include <strings.h>
 #else
 /* For non-Visual C++ */
 #include <unistd.h>
