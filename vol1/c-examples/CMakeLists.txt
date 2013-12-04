@@ -15,8 +15,10 @@ add_executable(aifh_vol1 AIFH-VOL1.c
     Data.c
     Distance.c
     Equilateral.c
+	Error.c
     ExampleAnalyze.c
     ExampleDistance.c
+    ExampleError.c
     ExampleKMeans.c
     ExampleNormalize.c
     ExamplePI.c

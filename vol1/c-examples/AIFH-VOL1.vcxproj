@@ -94,8 +94,10 @@
     <ClCompile Include="Data.c" />
     <ClCompile Include="Distance.c" />
     <ClCompile Include="Equilateral.c" />
+    <ClCompile Include="Error.c" />
     <ClCompile Include="ExampleAnalyze.c" />
     <ClCompile Include="ExampleDistance.c" />
+    <ClCompile Include="ExampleError.c" />
     <ClCompile Include="ExampleKMeans.c" />
     <ClCompile Include="ExampleNormalize.c" />
     <ClCompile Include="ExampleRandom.c" />

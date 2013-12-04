@@ -26,43 +26,10 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-#ifndef __AIFH_VOL1_EXAMPLES_H
-#define __AIFH_VOL1_EXAMPLES_H
+#include "aifh-vol1-examples.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
-#include "aifh-vol1.h"
 
-void ExampleTest(int argIndex, int argc, char **argv);
-
-/* Chapter 1 */
-void ExampleReadCSV(int argIndex, int argc, char **argv);
-
-/* Chapter 2 */
-void ExampleSimpleNormalize(int argIndex, int argc, char **argv);
-void ExampleAnalyze(int argIndex, int argc, char **argv);
-void ExampleNormalize(int argIndex, int argc, char **argv);
-
-/* Chapter 3 */
-void ExampleDistance(int argIndex, int argc, char **argv);
-
-/* Chapter 4 */
-void ExamplePI(int argIndex, int argc, char **argv);
-void ExampleRandom(int argIndex, int argc, char **argv);
-
-/* Chapter 5 */
-void ExampleKMeans(int argIndex, int argc, char **argv);
-
-/* Chapter 6 */
-void ExampleError(int argIndex, int argc, char **argv);
-
-/* Utility */
-void LocateFile(char *filename, char *resultName, size_t size);
-
-#ifdef __cplusplus
+void ExampleError(int argIndex, int argc, char **argv) {
+	printf("Hello World\n");
 }
-#endif
-
-#endif

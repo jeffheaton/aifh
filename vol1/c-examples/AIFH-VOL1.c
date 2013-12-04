@@ -67,6 +67,9 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"kmeans") == 0 ) {
 				success = 1;
 				ExampleKMeans(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"error") == 0 ) {
+				success = 1;
+				ExampleError(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"test") == 0 ) {
 				success = 1;
 				ExampleTest(i+1,argc,argv);

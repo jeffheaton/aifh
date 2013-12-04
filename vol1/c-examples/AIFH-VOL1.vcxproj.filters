@@ -92,5 +92,11 @@
     <ClCompile Include="ExampleTest.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExampleError.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Error.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

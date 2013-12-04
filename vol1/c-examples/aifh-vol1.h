@@ -55,6 +55,10 @@ extern "C" {
 #define TYPE_RANDOM_MWC 2
 #define TYPE_RANDOM_MT 3
 
+#define TYPE_ERROR_SSE 0
+#define TYPE_ERROR_MSE 1
+#define TYPE_ERROR_RMS 2
+
 #define MAX_STR 256
 
 #ifndef MAX
@@ -179,6 +183,12 @@ typedef struct CLUSTER_ALOG {
 	CLUSTER *clusters;
 } CLUSTER_ALOG;
 
+typedef struct ERROR_CALC {
+	int type;
+	int count;
+	double global_error;
+} ERROR_CALC;
+
 NORM_DATA *NormCreate();
 void NormDelete(NORM_DATA *norm);
 void NormDefRange(NORM_DATA *norm, double low, double high);
@@ -207,6 +217,13 @@ void Equilat (
    double high,
    double *outputMatrix
    );
+
+/* Error.c */
+ERROR_CALC *ErrorCreate(int type);
+void ErrorReset(ERROR_CALC *);
+void ErrorUpdateSingle(ERROR_CALC *, double d1, double d2);
+void ErrorUpdate(ERROR_CALC *, double *d1, double *d2, size_t size);
+double ErrorCalculate(ERROR_CALC*);
 
 /* Random.c */
 RANDOM_GENERATE *RandCreate(int type, long seed);
