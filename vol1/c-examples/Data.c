@@ -1,5 +1,25 @@
 #include "aifh-vol1.h"
 
+DATA_SET *DataCreate(int rowCount, int inputCount, int outputCount) {
+	DATA_SET *result = NULL;
+	int allocSize;
+
+	/* Allocate the data set */
+	result = (DATA_SET*)calloc(1,sizeof(DATA_SET));
+    result->inputCount = inputCount;
+    result->idealCount = outputCount;
+	result->recordCount = rowCount;
+	allocSize = rowCount*(result->inputCount+result->idealCount);
+	result->data = (double*)calloc(allocSize,sizeof(double));
+    result->cursor = result->data;
+
+	return result;
+}
+
+void DataDelete(DATA_SET *data) {
+	free(data);
+}
+
 double *DataGetInput(DATA_SET *data, unsigned int index)
 {
     int i;

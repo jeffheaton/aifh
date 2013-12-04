@@ -99,6 +99,7 @@
     <ClCompile Include="ExampleDistance.c" />
     <ClCompile Include="ExampleError.c" />
     <ClCompile Include="ExampleKMeans.c" />
+    <ClCompile Include="ExampleLearnPoly.c" />
     <ClCompile Include="ExampleNormalize.c" />
     <ClCompile Include="ExampleRandom.c" />
     <ClCompile Include="ExampleReadCSV.c" />
@@ -111,6 +112,9 @@
     <ClCompile Include="Normalize.c" />
     <ClCompile Include="Random.c" />
     <ClCompile Include="ExamplePI.c" />
+    <ClCompile Include="RBF.c" />
+    <ClCompile Include="RBFNetwork.c" />
+    <ClCompile Include="Train.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,6 +10,10 @@ ERROR_CALC *ErrorCreate(int type)
 	return result;
 }
 
+void ErrorDelete(ERROR_CALC *calc) {
+	free(calc);
+}
+
 void ErrorReset(ERROR_CALC *calc)
 {
 	calc->count = 0;

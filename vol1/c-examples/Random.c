@@ -174,3 +174,7 @@ double RandNextGaussian(RANDOM_GENERATE *gen) {
 int RandNextIntRange(RANDOM_GENERATE *gen, int low, int high) {
 	return ((int)(RandNextDouble(gen)*(high-low)))+low;
 }
+
+double RandNextDoubleRange(RANDOM_GENERATE *gen, double low, double high) {
+	return ((double)(RandNextDouble(gen)*(high-low)))+low;
+}

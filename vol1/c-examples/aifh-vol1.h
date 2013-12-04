@@ -59,6 +59,11 @@ extern "C" {
 #define TYPE_ERROR_MSE 1
 #define TYPE_ERROR_RMS 2
 
+#define TYPE_TRAIN_GREEDY_RANDOM 0
+#define TYPE_TRAIN_HILL_CLIMB 1
+#define TYPE_TRAIN_ANNEAL 2
+#define TYPE_TRAIN_NELDER_MEAD 3
+
 #define MAX_STR 256
 
 #ifndef MAX
@@ -76,6 +81,10 @@ extern "C" {
 /* For non-Visual C++ */
 #include <unistd.h>
 #endif
+
+typedef double(*SCORE_FUNCTION)(void *position, void *params);
+typedef double(*RBF_FUNCTION)(double *input, int input_position, int input_count, double *params, int params_index);
+
 
 	
 /* Distance.c */
@@ -189,6 +198,36 @@ typedef struct ERROR_CALC {
 	double global_error;
 } ERROR_CALC;
 
+typedef struct RBF_NETWORK {
+	RBF_FUNCTION rbf;
+	int ltm_size;
+    int input_count;
+	int rbf_count;
+    int output_count;
+    double *long_term_memory;
+	double *rbf_output;
+	double *weighted_input;
+	int *rbf_index;
+    int index_input_weights;
+    int index_output_weights;
+} RBF_NETWORK;
+
+typedef struct TRAIN {
+	int type;
+	double low;
+	double high;
+	int position_size;
+	unsigned char *best_position;
+	unsigned char *current_position;
+	unsigned char *trial_position;
+	double best_score;
+	int should_minimize;
+	void *params;
+	SCORE_FUNCTION score_function;
+	RANDOM_GENERATE *random;
+	int max_iterations;
+} TRAIN;
+
 NORM_DATA *NormCreate();
 void NormDelete(NORM_DATA *norm);
 void NormDefRange(NORM_DATA *norm, double low, double high);
@@ -206,6 +245,8 @@ void NormEquilateral(NORM_DATA_CLASS *first, double *equilat, double normalizedL
 char* DeNormEquilateral(NORM_DATA_CLASS *first, double *equilat, int classCount, double normalizedLow, double normalizedHigh, double *dataOut);
 
 /* Data.c */
+DATA_SET *DataCreate(int rowCount, int inputCount, int outputCount);
+void DataDelete(DATA_SET *data);
 double *DataGetInput(DATA_SET *data, unsigned int index);
 double *DataGetIdeal(DATA_SET *data, unsigned int index);
 void DataCSVSave(FILE *fp,NORM_DATA *norm, DATA_SET *data);
@@ -220,6 +261,7 @@ void Equilat (
 
 /* Error.c */
 ERROR_CALC *ErrorCreate(int type);
+void ErrorDelete(ERROR_CALC *calc);
 void ErrorReset(ERROR_CALC *);
 void ErrorUpdateSingle(ERROR_CALC *, double d1, double d2);
 void ErrorUpdate(ERROR_CALC *, double *d1, double *d2, size_t size);
@@ -232,6 +274,7 @@ long RandNextInt(RANDOM_GENERATE *gen);
 double RandNextDouble(RANDOM_GENERATE *gen);
 double RandNextGaussian(RANDOM_GENERATE *gen);
 int RandNextIntRange(RANDOM_GENERATE *gen, int low, int high);
+double RandNextDoubleRange(RANDOM_GENERATE *gen, double low, double high);
 
 /* mt19937ar.c */
 void init_genrand(unsigned long s);
@@ -263,6 +306,12 @@ int KMeansIteration(CLUSTER_ALOG *kmeans);
 CLUSTER_ITEM* KMeansLoadCSV(char *filename, int labelColumn, int startColumn, int featureCount);
 void KMeansDumpList(FILE *out, CLUSTER_ITEM *first, int featureCount);
 void KMeansDump(FILE *out, CLUSTER_ALOG *alog);
+
+/* RBFNetwork.c */
+RBF_NETWORK* RBFNetworkCreate(RBF_FUNCTION rbf, int input_count, int rbf_count, int output_count);
+void RBFNetworkDelete(RBF_NETWORK *network);
+
+/* RBF.c */
 
 #ifdef __cplusplus
 }

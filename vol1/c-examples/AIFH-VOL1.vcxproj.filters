@@ -98,5 +98,17 @@
     <ClCompile Include="Error.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RBFNetwork.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RBF.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExampleLearnPoly.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Train.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
