@@ -124,7 +124,7 @@ long RandNextInt(RANDOM_GENERATE *gen) {
 	case TYPE_RANDOM_MWC:
 		return _RandMWC((RANDOM_GENERATE_MWC*)gen);
 	case TYPE_RANDOM_MT:
-		return genrand_int32();
+		return genrand_int31();
 	default:
 		printf("Invalid PRNG\n");
 		exit(1);
