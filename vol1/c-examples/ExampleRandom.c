@@ -24,7 +24,9 @@ static void UniformHisto(RANDOM_GENERATE *prng) {
 	while(!done) {
 		double d = RandNextDouble(prng);
 		idx = MIN((int)(d*20),19);
-		hist[idx]++;
+		if( idx>=0 && idx<20 ) {
+			hist[idx]++;
+		}
 		total++;
 
 				if( d<minResult ) {

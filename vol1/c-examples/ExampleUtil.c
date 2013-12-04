@@ -5,6 +5,14 @@ void LocateFile(char *filename, char *resultName, size_t size) {
 	int done = 0;
 	int i;
 
+	/* Does it exist in the current directory? */
+	strncpy(resultName,"./datasets/",size);
+	strncat(resultName,filename,size);
+	if( access( resultName, F_OK ) != -1 ) {
+		return;
+	}
+
+	/* Search parent directories */
 	while(!done) {
 		strncpy(resultName,"./",size);
 
