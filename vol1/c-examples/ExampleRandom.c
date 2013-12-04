@@ -132,7 +132,7 @@ void ExampleRandom(int argIndex, int argc, char **argv) {
 	RANDOM_GENERATE *prng;
 
 	if( argc-argIndex != 2 ) {
-		printf("Usage: \nrandom [prng] [dist]\nWhere prng = mt, mwc, c or lcg\nand dist = uniform or random\ni.e. random mt normal\n");
+		printf("Usage: \nrandom [prng] [dist]\nWhere prng = mt, mwc, c or lcg\nand dist = uniform or normal\ni.e. random mt normal\n");
 		prng = RandCreate(TYPE_RANDOM_MT,(long)time(NULL));
 		UniformHisto(prng);
 	} else {
