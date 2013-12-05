@@ -59,9 +59,9 @@ class LearnIris extends SimpleLearn {
       ds.normalizeRange(3, 0, 1)
       val species = ds.encodeEquilateral(4)
       val trainingData = ds.extractSupervised(0, 4, 4, 2)
-      val network: RBFNetwork = new RBFNetwork(4, 4, 2)
+      val network = new RBFNetwork(4, 4, 2)
       val score: ScoreFunction = new ScoreRegressionData(trainingData)
-      val train: TrainGreedyRandom = new TrainGreedyRandom(true, network, score)
+      val train = new TrainGreedyRandom(true, network, score)
       performIterations(train, 100000, 0.01, shouldMinimize = true)
       SimpleLearn.queryEquilateral(network, trainingData, species, 0, 1)
     }

@@ -45,10 +45,10 @@ class MultiquadricFunction(theDimensions: Int, theParams: ArrayBuffer[Double], t
   extends AbstractRBF(theDimensions, theParams, theIndex) {
 
   override def evaluate(x: Vector[Double]): Double = {
-    var value: Double = 0
-    val width: Double = getWidth
+    var value = 0.0
+    val width = getWidth
     for(i <- 0 until getDimensions) {
-      val center: Double = getCenter(i)
+      val center = getCenter(i)
       value += Math.pow(x(i) - center, 2) + (width * width)
     }
     Math.sqrt(value)

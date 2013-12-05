@@ -41,7 +41,7 @@ package com.heatonresearch.aifh.randomize
  * http://www.javaprogrammingforums.com/blogs/helloworld922/11-complimentary-multiply-carry-better-way-generate-pseudo-random-numbers.html
  * http://en.wikipedia.org/wiki/Multiply-with-carry
  */
-class MultiplyWithCarryGenerateRandom private (seeds: Array[Long], carry: Long,initialR: Int,initialMultiplier: Long) extends AbstractBoxMuller {
+class MultiplyWithCarryGenerateRandom private (seeds: Array[Long], carry: Long,initialR: Int,val multiplier: Long) extends AbstractBoxMuller {
 
   def this(seed: Long) {
     this(Array[Long](seed), seed / 2, 64, 987657110L)
@@ -51,14 +51,11 @@ class MultiplyWithCarryGenerateRandom private (seeds: Array[Long], carry: Long,i
     this(Array[Long](System.currentTimeMillis), System.nanoTime, 64, 987657110L)
   }
 
-
   private var r: Int = 0
-  private val multiplier: Long = initialMultiplier
-
-
   private var c: Long = 0L
   private var n: Int = 0
   setR(initialR)
+
   private val seed = if (seeds == null || seeds.isEmpty) {
     Array[Long](System.currentTimeMillis)
   } else {

@@ -35,5 +35,5 @@ object AIFH {
   /**
    * The default precision.
    */
-  val DEFAULT_PRECISION: Double = 0.0000001
+  val DEFAULT_PRECISION = 0.0000001
 }

@@ -40,15 +40,14 @@ import com.heatonresearch.aifh.learning.MachineLearningAlgorithm
 class ScoreClassificationData(theTrainingData: Vector[BasicData]) extends ScoreFunction {
 
   override def calculateScore(algo: MachineLearningAlgorithm): Double = {
-    var incorrectCount: Int = 0
-    var totalCount: Int = 0
+    var incorrectCount = 0
+    var totalCount = 0
     val ralgo: ClassificationAlgorithm = algo.asInstanceOf[ClassificationAlgorithm]
     for (aTrainingData <- theTrainingData) {
       totalCount += 1
-      val output: Int = ralgo.computeClassification(aTrainingData.input)
-      if (output != aTrainingData.ideal(0).toInt) {
+      val output = ralgo.computeClassification(aTrainingData.input)
+      if (output != aTrainingData.ideal(0).toInt)
         incorrectCount += 1
-      }
     }
 
     incorrectCount.toDouble / totalCount.toDouble

@@ -55,11 +55,11 @@ class RBFNetwork(val inputCount: Int, rbfCount: Int,val outputCount: Int) extend
   /**
    * An index to the input weights in the long term memory.
    */
-  private val indexInputWeights: Int = 0
+  private val indexInputWeights = 0
 
-  val inputWeightCount: Int = inputCount * rbfCount
-  val outputWeightCount: Int = (rbfCount + 1) * outputCount
-  val rbfParams: Int = (inputCount + 1) * rbfCount
+  val inputWeightCount = inputCount * rbfCount
+  val outputWeightCount = (rbfCount + 1) * outputCount
+  val rbfParams = (inputCount + 1) * rbfCount
   /**
    * An index to the output weights in the long term memory.
    */
@@ -87,7 +87,7 @@ class RBFNetwork(val inputCount: Int, rbfCount: Int,val outputCount: Int) extend
     rbfOutput(rbfOutput.length - 1) = 1.0
     for(rbfIndex <- 0 until rbf.length) {
       val weightedInput = for(inputIndex <- 0 until input.length) yield {
-        val memoryIndex: Int = indexInputWeights + (rbfIndex * inputCount) + inputIndex
+        val memoryIndex = indexInputWeights + (rbfIndex * inputCount) + inputIndex
         input(inputIndex) * longTermMemory(memoryIndex)
       }
       rbfOutput(rbfIndex) = rbf(rbfIndex).evaluate(weightedInput.toVector)
@@ -96,9 +96,9 @@ class RBFNetwork(val inputCount: Int, rbfCount: Int,val outputCount: Int) extend
 
     val result = ArrayBuffer.fill(outputCount)(0.0)
     for(outputIndex <- 0 until result.length) {
-      var sum: Double = 0
+      var sum = 0.0
       for(rbfIndex <- 0 until rbfOutput.length) {
-        val memoryIndex: Int = indexOutputWeights + (outputIndex * (rbf.length + 1)) + rbfIndex
+        val memoryIndex = indexOutputWeights + (outputIndex * (rbf.length + 1)) + rbfIndex
         sum += rbfOutput(rbfIndex) * longTermMemory(memoryIndex)
       }
       result(outputIndex) = sum

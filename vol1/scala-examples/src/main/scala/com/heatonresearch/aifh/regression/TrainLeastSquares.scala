@@ -58,21 +58,22 @@ class TrainLeastSquares(private val algorithm: MultipleLinearRegression, private
    * Train.  Single iteration.
    */
   def iteration() {
-    val rowCount: Int = trainingData.size
+    val rowCount = trainingData.size
     val inputColCount: Int = trainingData(0).input.length
-    val xMatrix: Matrix = new Matrix(rowCount, inputColCount + 1)
-    val yMatrix: Matrix = new Matrix(rowCount, 1)
+    val xMatrix = new Matrix(rowCount, inputColCount + 1)
+    val yMatrix = new Matrix(rowCount, 1)
     for(row <- 0 until trainingData.size) {
-      val dataRow: BasicData = trainingData(row)
-      val colSize: Int = dataRow.input.length
+      val dataRow = trainingData(row)
+      val colSize = dataRow.input.length
       xMatrix.set(row, 0, 1)
       for(col <- 0 until colSize) {
         xMatrix.set(row, col + 1, dataRow.input(col))
       }
       yMatrix.set(row, 0, dataRow.ideal(0))
     }
-    val qr: QRDecomposition = new QRDecomposition(xMatrix)
-    val beta: Matrix = qr.solve(yMatrix)
+    val qr = new QRDecomposition(xMatrix)
+    val beta = qr.solve(yMatrix)
+
     var sum: Double = 0.0
     for(i <- 0 until inputColCount) {
       sum += yMatrix.get(i, 0)

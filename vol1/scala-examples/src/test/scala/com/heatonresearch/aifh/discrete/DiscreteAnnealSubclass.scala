@@ -58,8 +58,8 @@ class DiscreteAnnealSubclass(theKMax: Int, theStartingTemperature: Double, theEn
   }
 
   def moveToNeighbor() {
-    val pt1: Int = rnd.nextInt(current.size)
-    var pt2: Int = 0
+    val pt1 = rnd.nextInt(current.size)
+    var pt2 = 0
     do {
       pt2 = rnd.nextInt(current.size)
     } while (pt1 == pt2)

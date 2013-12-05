@@ -90,11 +90,9 @@ class MersenneTwisterGenerateRandom private (seedInit : Either[Long,Vector[Int]]
   }
 
   private def setSeed(array: Vector[Int]) {
-    var i: Int = 0
-    var j: Int = 0
+    var i = 1
+    var j = 0
     setSeed(19650218)
-    i = 1
-    j = 0
     val kStart = Math.max(N,array.length)
     (kStart to 1 by -1) foreach { k=>
       stateVector(i) = (stateVector(i) ^ ((stateVector(i - 1) ^ (stateVector(i - 1) >>> 30)) * 1664525)) + array(j) + j

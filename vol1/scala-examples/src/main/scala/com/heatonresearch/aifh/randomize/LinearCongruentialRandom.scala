@@ -57,7 +57,7 @@ object LinearCongruentialRandom {
   /**
    * The maximum rand number that the standard GCC based LCG will generate.
    */
-  val MAX_RAND: Long = 4294967295L
+  val MAX_RAND = 4294967295L
 
 }
 

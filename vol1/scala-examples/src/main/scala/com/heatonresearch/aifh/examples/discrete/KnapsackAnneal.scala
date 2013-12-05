@@ -42,19 +42,19 @@ object KnapsackAnneal extends App {
   /**
    * Number of items to choose from.
    */
-  val NUM_ITEMS_TO_CHOOSE: Int = 25
+  val NUM_ITEMS_TO_CHOOSE = 25
   /**
    * The max weight of the knapsack.
    */
-  val KNAPSACK_MAX_WEIGHT: Int = 50
+  val KNAPSACK_MAX_WEIGHT = 50
   /**
    * The max weight for an item.
    */
-  val ITEM_MAX_WEIGHT: Int = 20
+  val ITEM_MAX_WEIGHT = 20
   /**
    * The max value for an item.
    */
-  val ITEM_MAX_VALUE: Int = 1000
+  val ITEM_MAX_VALUE = 1000
 
   // create an start the KnapsackAnneal as an application
   val prg = new KnapsackAnneal
@@ -68,11 +68,11 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
   /**
    * The profit for each item.
    */
-  private val profit: Array[Int] = Array.ofDim[Int](NUM_ITEMS_TO_CHOOSE + 1)
+  private val profit = Array.ofDim[Int](NUM_ITEMS_TO_CHOOSE + 1)
   /**
    * The weight for each item.
    */
-  private val weight: Array[Int] = Array.ofDim[Int](NUM_ITEMS_TO_CHOOSE + 1)
+  private val weight = Array.ofDim[Int](NUM_ITEMS_TO_CHOOSE + 1)
   /**
    * A random number generator.
    */
@@ -81,13 +81,7 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
   /**
    * The current items taken.
    */
-  private val currentTaken = {
-    val arr = Array.ofDim[Boolean](NUM_ITEMS_TO_CHOOSE)
-    (0 until arr.length) foreach { i =>
-      arr(i) = rnd.nextBoolean
-    }
-    arr
-  }
+  private val currentTaken = Array.fill[Boolean](NUM_ITEMS_TO_CHOOSE)(rnd.nextBoolean)
 
   /**
    * A backup of the items taken, in case we need to revert.
@@ -132,10 +126,10 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
   }
 
   override def moveToNeighbor() {
-    val holdingEverythingAlready: Boolean = currentTaken.forall( v => v )
+    val holdingEverythingAlready = currentTaken.forall( v => v )
 
     if (!holdingEverythingAlready) {
-      var pt: Int = rnd.nextInt(currentTaken.length)
+      var pt = rnd.nextInt(currentTaken.length)
       while (currentTaken(pt)) {
         pt = rnd.nextInt(currentTaken.length)
       }
@@ -145,14 +139,13 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
   }
 
   override def evaluate: Double = {
-    if (calculateTotalWeight > KNAPSACK_MAX_WEIGHT) {
+    if (calculateTotalWeight > KNAPSACK_MAX_WEIGHT)
       return 0
-    }
+
     var result: Int = 0
     (0 until currentTaken.length) foreach { i =>
-      if (currentTaken(i)) {
+      if (currentTaken(i))
         result += profit(i)
-      }
     }
     result
   }
@@ -163,9 +156,8 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
   private def calculateTotalWeight: Int = {
     var result: Int = 0
     (0 until currentTaken.length) foreach { i=>
-      if (currentTaken(i)) {
+      if (currentTaken(i))
         result += weight(i)
-      }
     }
     result
   }
@@ -175,7 +167,7 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
    */
   private def balance() {
     while (calculateTotalWeight > KNAPSACK_MAX_WEIGHT) {
-      val remove: Int = rnd.nextInt(currentTaken.length)
+      val remove = rnd.nextInt(currentTaken.length)
       currentTaken(remove) = false
     }
   }

@@ -96,7 +96,6 @@ class BasicData(val input: Vector[Double],val ideal: Vector[Double],val label: S
     this(theInputDimensions, theIdealDimensions, null)
   }
 
-  override def toString: String =
-    s"[BasicData: input:$input, ideal:$ideal, label:$label]"
+  override def toString: String = s"[BasicData: input:$input, ideal:$ideal, label:$label]"
 
 }

@@ -87,8 +87,8 @@ object SimpleLearn {
 
     for (data <- theTrainingData) {
       val output = alg.computeRegression(data.input)
-      val idealIndex: Int = data.ideal.maxIndex
-      val actualIndex: Int = output.maxIndex
+      val idealIndex = data.ideal.maxIndex
+      val actualIndex = output.maxIndex
       println(s"${data.input} -> ${invMap.get(actualIndex)}, Ideal: ${invMap.get(idealIndex)}")
     }
   }
@@ -105,7 +105,7 @@ class SimpleLearn {
    */
   def performIterations(train: LearningMethod, maxIterations: Int, targetScore: Double, shouldMinimize: Boolean) {
     var iterationNumber: Int = 0
-    var done: Boolean = false
+    var done = false
     do {
       iterationNumber += 1
       train.iteration()

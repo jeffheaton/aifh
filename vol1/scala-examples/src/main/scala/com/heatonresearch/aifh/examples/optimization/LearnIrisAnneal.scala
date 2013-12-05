@@ -61,8 +61,8 @@ class LearnIrisAnneal extends SimpleLearn {
       val network = new RBFNetwork(4, 4, 2)
       network.reset(new MersenneTwisterGenerateRandom())
 
-      val score: ScoreFunction = new ScoreRegressionData(trainingData.toVector)
-      val train = new TrainAnneal(network, score)
+      val scoreFn = new ScoreRegressionData(trainingData.toVector)
+      val train = new TrainAnneal(network, scoreFn)
       performIterations(train, 100000, 0.01, shouldMinimize = true)
       SimpleLearn.queryOneOfN(network, trainingData, species)
     }
