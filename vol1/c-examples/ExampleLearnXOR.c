@@ -32,7 +32,7 @@ typedef struct XOR_PARAMS {
 	DATA_SET *training;
 	ERROR_CALC *errorCalc;
 	RBF_NETWORK *network;
-} POLY_PARAMS;
+} XOR_PARAMS;
 
 static DATA_SET *create_xor_training() {
 	DATA_SET *result;
@@ -48,7 +48,7 @@ static DATA_SET *create_xor_training() {
 }
 
 static double score_function(void *m, void *p) {
-	POLY_PARAMS *params;
+	XOR_PARAMS *params;
 	TRAIN *train;
 	double result,*input, *ideal,y;
 	int row;
@@ -73,14 +73,14 @@ void ExampleRandXOR(int argIndex, int argc, char **argv) {
 	TRAIN *train;
 	double *x0;
 
-	params = (POLY_PARAMS*)calloc(1,sizeof(POLY_PARAMS));
+	params = (XOR_PARAMS*)calloc(1,sizeof(XOR_PARAMS));
 	params->training = create_xor_training();
 	params->errorCalc = ErrorCreate(TYPE_ERROR_SSE);
 	params->network = RBFNetworkCreate(RBFGaussian,2,5,1);
 	RBFNetworkReset(params->network);
 
 	x0 = (double*)calloc(params->network->ltm_size,sizeof(double));
-	memcpy(x0,params->network->long_term_memory,(params->network->ltm_size*sizeof(double));
+	memcpy(x0,params->network->long_term_memory,(params->network->ltm_size*sizeof(double)));
 	
 	train = TrainCreate(TYPE_TRAIN_GREEDY_RANDOM,score_function,1,x0,sizeof(double)*3,params);
 	train->low = -10;
