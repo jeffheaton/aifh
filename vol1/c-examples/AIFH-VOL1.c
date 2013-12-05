@@ -43,10 +43,10 @@ int main(int argc, char* argv[])
 			}
 		}
 		else {
-			if( strcasecmp(argv[i],"readcsv") == 0 ) {
+			if( strcasecmp(argv[i],"CSVExample") == 0 ) {
 				success = 1;
 				ExampleReadCSV(i+1,argc,argv);
-			} else if( strcasecmp(argv[i],"normalize") == 0 ) {
+			} else if( strcasecmp(argv[i],"NormalizeCSVExample") == 0 ) {
 				success = 1;
 				ExampleNormalize(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"simple-normalize") == 0 ) {
@@ -73,6 +73,9 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"poly") == 0 ) {
 				success = 1;
 				ExamplePoly(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"rand-xor") == 0 ) {
+				success = 1;
+				ExampleRandXOR(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"test") == 0 ) {
 				success = 1;
 				ExampleTest(i+1,argc,argv);
@@ -83,19 +86,40 @@ int main(int argc, char* argv[])
 	if( !success ) {
 		printf("Usage:\n%s [-pause] ExampleName [arg1] [args2] ...\n",argv[0]);
 		printf("\nWhere ExampleName is one of:\n");
-		printf("**Chapter 1**\n");
-		printf("readcsv - Read the contents of a CSV file\n");
-		printf("**Chapter 2**\n");
-		printf("simple-normalize - Normalize and denormalize numbers outside of .CSV files\n");
-		printf("analyze - Analyze the iris data set\n");
-		printf("normalize - Normalize the iris data set\n");
-		printf("**Chapter 3**\n");
-		printf("distance - Perform several distance calculations\n");
-		printf("**Chapter 4**\n");
-		printf("random - Display histogram and timings for several PRNG's.\n");
-		printf("pi - Calculate PI using Monte Carlo.\n");
-		printf("**Chapter 5**\n");
-		printf("kmeans - KMeans cluster on Iris data set.\n");
+		printf("** Chapter 1: Introduction to AI, Examples:\n");
+		printf("CSVExample : Shows how to use CsvHelper to read a CSV\n");
+		printf("\n");
+		printf("** Chapter 2: Normalizing Data, Examples:\n");
+		printf("NormalizeCSVExample : A simple normalization example for the Iris data set\n");
+		printf("\n");
+		printf("** Chapter 3: Distance Metrics, Examples:\n");
+		printf("\n");
+		printf("** Chapter 4: Random Numbers, Examples:\n");
+		printf("EvaluatePI : Approximate PI by Monte Carlo\n");
+		printf("\n");
+		printf("** Chapter 5: K-Means, Examples:\n");
+		printf("PerformCluster : Attempt to cluster the iris data set\n");
+		printf("\n");
+		printf("** Chapter 6: Error Calculation, Examples:\n");
+		printf("EvaluateErrors : Evaluate several error calculation methods\n");
+		printf("\n");
+		printf("** Chapter 7: Towards Machine Learning, Examples:\n");
+		printf("LearnIris : Learn Iris data using RBF network & Greedy Random algorithm\n");
+		printf("LearnPolynomial : Learn a simple polynomial with the Greedy Random algorithm\n");
+		printf("LearnXOR : Learn the XOR function with a RBF Network trained by Greedy Random\n");
+		printf("\n");
+		printf("** Chapter 8: Optimization Algorithms, Examples:\n");
+		printf("LearnIrisAnneal : Learn the Iris data set w/RBF net & annealing\n");
+		printf("LearnIrisClimb : Learn the Iris data set w/RBF net & hill climbing\n");
+		printf("LearnIrisNelderMead : Learn the Iris data set w/RBF net & Nelder Mead\n");
+		printf("\n");
+		printf("** Chapter 9: Discrete Optimization, Examples:\n");
+		printf("KnapsackAnneal : Knapsack optimization with Simulated Annealing\n");
+		printf("TravelingSalesmanAnneal : Traveling Salesman with Simulated Annealing\n");
+		printf("\n");
+		printf("** Chapter 10: Linear Regression, Examples:\n");
+		printf("GLMExample : Use a GLM to predict the probability of breast cancer\n");
+		printf("LinearRegressionExample : Linear regression on the abalone data set\n");
 	}
 
 	if( pause ) {

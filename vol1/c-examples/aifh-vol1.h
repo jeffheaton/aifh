@@ -41,6 +41,7 @@ extern "C" {
 #include <time.h>
 #include <omp.h>
 #include <stdint.h>
+#include <stdarg.h>
  
 #include "csv.h"
 
@@ -250,6 +251,9 @@ void DataDelete(DATA_SET *data);
 double *DataGetInput(DATA_SET *data, unsigned int index);
 double *DataGetIdeal(DATA_SET *data, unsigned int index);
 void DataCSVSave(FILE *fp,NORM_DATA *norm, DATA_SET *data);
+void DataMoveCursor(DATA_SET *data, int location);
+void DataAddVar(DATA_SET *data, ...);
+
 
 /* Equilateral.c */
 void Equilat (
@@ -310,8 +314,17 @@ void KMeansDump(FILE *out, CLUSTER_ALOG *alog);
 /* RBFNetwork.c */
 RBF_NETWORK* RBFNetworkCreate(RBF_FUNCTION rbf, int input_count, int rbf_count, int output_count);
 void RBFNetworkDelete(RBF_NETWORK *network);
+void RBFNetworkReset(RBF_NETWORK *network);
 
 /* RBF.c */
+double RBFGaussian(double *input, int input_position, int input_count, double *params, int params_index);
+
+/* Train.c */
+TRAIN *TrainCreate(int type, SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, void *params);
+void TrainDelete(TRAIN *train);
+void TrainRun(TRAIN *train, int max_iterations, double target_score, int output);
+void TrainIteration(TRAIN *train);
+int TrainIsBetterThan(TRAIN *train, double is_this, double than_that);
 
 #ifdef __cplusplus
 }

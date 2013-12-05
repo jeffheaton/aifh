@@ -95,3 +95,25 @@ void DataCSVSave(FILE *fp,NORM_DATA *norm, DATA_SET *data)
     }
     fclose(fp);
 }
+
+void DataMoveCursor(DATA_SET *data, int location) {
+	data->cursor = data->data + (location * (data->inputCount+data->idealCount));
+}
+
+void DataAddVar(DATA_SET *data, ...)
+{
+    int i,total;
+    double d = 0.0;
+	va_list arguments;
+
+    va_start ( arguments, data );
+    total = data->inputCount + data->idealCount;
+
+    for(i=0; i<total; i++)
+    {
+        d = (double)va_arg(arguments,double);
+        *(data->cursor++) = d;
+    }
+
+    va_end( arguments );
+}

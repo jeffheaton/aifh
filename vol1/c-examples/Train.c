@@ -1,6 +1,23 @@
 #include "aifh-vol1.h"
 
 void _IterationGreedyRandom(TRAIN *train) {
+	int doubleSize,i;
+	double *trial,trialScore;
+
+	/* Randomize a trial position */
+	doubleSize = train->position_size/sizeof(double);
+	trial = (double*)train->trial_position;
+	for(i=0;i<doubleSize;i++) {
+		trial[i] = RandNextDoubleRange(train->random,train->low,train->high);
+	}
+	trialScore = train->score_function(trial,train);
+
+	/* Did we find a better position? */
+	if( TrainIsBetterThan(train, trialScore, train->best_score) ) {
+		train->best_score = trialScore;
+		memcpy(train->best_position,train->trial_position,train->position_size);
+	}
+
 }
 
 void _IterationHillClimb(TRAIN *train) {
@@ -23,13 +40,14 @@ TRAIN *TrainCreate(int type, SCORE_FUNCTION score_function, int should_minimize,
 	result->current_position = (unsigned char*)calloc(position_size,1);
 	result->trial_position = (unsigned char*)calloc(position_size,1);
 	result->best_position = (unsigned char*)calloc(position_size,1);
-	result->best_score = score_function(result->best_position,result);
 	result->score_function = score_function;
 	result->random = RandCreate(TYPE_RANDOM_MT,(long)time(NULL));
 	result->params = params;
 	result->position_size = position_size;
 	result->max_iterations = 0;
+	result->should_minimize = should_minimize;
 	memcpy(result->current_position,x0,position_size);
+	result->best_score = score_function(result->best_position,result);
 	return result;
 }
 
@@ -48,6 +66,7 @@ void TrainRun(TRAIN *train, int max_iterations, double target_score, int output)
 	do {
 		TrainIteration(train);
 
+		current_iteration++;
 		if( output ) {
 			printf("Iteration #%i: Score: %f\n",current_iteration,train->best_score);
 		}

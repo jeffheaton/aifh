@@ -110,5 +110,8 @@
     <ClCompile Include="Train.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExampleLearnXOR.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

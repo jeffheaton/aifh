@@ -100,6 +100,7 @@
     <ClCompile Include="ExampleError.c" />
     <ClCompile Include="ExampleKMeans.c" />
     <ClCompile Include="ExampleLearnPoly.c" />
+    <ClCompile Include="ExampleLearnXOR.c" />
     <ClCompile Include="ExampleNormalize.c" />
     <ClCompile Include="ExampleRandom.c" />
     <ClCompile Include="ExampleReadCSV.c" />
