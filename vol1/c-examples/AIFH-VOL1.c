@@ -79,6 +79,9 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"LearnIris") == 0 ) {
 				success = 1;
 				ExampleRandIris(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"LearnIrisNelderMead") == 0 ) {
+				success = 1;
+				ExampleNelderMeadIris(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"test") == 0 ) {
 				success = 1;
 				ExampleTest(i+1,argc,argv);

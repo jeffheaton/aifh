@@ -130,8 +130,8 @@ typedef struct NORM_DATA_ITEM {
 	double targetHigh;
 	double targetLow;
 	char *name;
-	int type;
-	int classCount;
+	unsigned int type;
+	unsigned int classCount;
 	double *equilateral;
 	struct NORM_DATA_ITEM *next;
 	NORM_DATA_CLASS *firstClass;
@@ -139,15 +139,15 @@ typedef struct NORM_DATA_ITEM {
 
 typedef struct NORM_DATA {
 	NORM_DATA_ITEM *firstItem;
-	int columnCount;
-	int rowCount;
-	int _currentColumn;
+	unsigned int columnCount;
+	unsigned int rowCount;
+	unsigned int _currentColumn;
 } NORM_DATA;
 
 typedef struct DATA_SET
 {
-    int inputCount;
-    int idealCount;
+    unsigned int inputCount;
+    unsigned int idealCount;
     unsigned long recordCount;
 	double *cursor;
     double *data;
@@ -155,9 +155,9 @@ typedef struct DATA_SET
 } DATA_SET;
 
 typedef struct RANDOM_GENERATE {
-	int type;
+	unsigned int type;
 	unsigned int seed;
-	int useLast;
+	unsigned int useLast;
 	double y2;
 } RANDOM_GENERATE;
 
@@ -172,7 +172,7 @@ typedef struct RANDOM_GENERATE_MWC {
 	RANDOM_GENERATE base;
     uint32_t Q[4096]; 
 	uint32_t c;
-	int idx;
+	unsigned int idx;
 } RANDOM_GENERATE_MWC;
 
 typedef struct CLUSTER_ITEM {
@@ -188,48 +188,49 @@ typedef struct CLUSTER {
 } CLUSTER;
 
 typedef struct CLUSTER_ALOG {
-	int k;
-	int featureCount;
+	unsigned int k;
+	unsigned int featureCount;
 	RANDOM_GENERATE *rnd;
 	DISTANCE_FUNCTION dist;
 	CLUSTER *clusters;
 } CLUSTER_ALOG;
 
 typedef struct ERROR_CALC {
-	int type;
-	int count;
+	unsigned int type;
+	unsigned int count;
 	double global_error;
 } ERROR_CALC;
 
 typedef struct RBF_NETWORK {
 	RBF_FUNCTION rbf;
-	int ltm_size;
-    int input_count;
-	int rbf_count;
-    int output_count;
+	unsigned int ltm_size;
+    unsigned int input_count;
+	unsigned int rbf_count;
+    unsigned int output_count;
     double *long_term_memory;
 	double *rbf_output;
 	double *weighted_input;
-	int *rbf_index;
-    int index_input_weights;
-    int index_output_weights;
+	unsigned int *rbf_index;
+    unsigned int index_input_weights;
+    unsigned int index_output_weights;
 } RBF_NETWORK;
 
 typedef struct TRAIN {
-	int type;
+	unsigned int type;
 	double low;
 	double high;
-	int position_size;
+	unsigned int position_size;
 	unsigned char *best_position;
 	unsigned char *current_position;
 	unsigned char *trial_position;
 	double best_score;
-	int should_minimize;
+	unsigned int should_minimize;
 	void *params;
 	SCORE_FUNCTION score_function;
 	RANDOM_GENERATE *random;
-	int max_iterations;
+	unsigned int max_iterations;
 } TRAIN;
+
 
 NORM_DATA *NormCreate();
 void NormDelete(NORM_DATA *norm);
@@ -330,6 +331,11 @@ void TrainRun(TRAIN *train, int max_iterations, double target_score, int output)
 void TrainIteration(TRAIN *train);
 int TrainIsBetterThan(TRAIN *train, double is_this, double than_that);
 void TrainComplete(TRAIN *train, void *x);
+
+/* asa047.c */
+void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[], 
+  double *ynewlo, double reqmin, double step[], int konvge, int kcount, 
+  int *icount, int *numres, int *ifault );
 
 #ifdef __cplusplus
 }

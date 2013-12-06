@@ -116,5 +116,11 @@
     <ClCompile Include="ExampleLearnIris.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="asa047.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExampleLearnIrisNelderMead.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

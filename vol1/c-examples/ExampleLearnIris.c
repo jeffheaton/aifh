@@ -56,8 +56,8 @@ static double score_function(void *m, void *p) {
 	IRIS_PARAMS *params;
 	RBF_NETWORK *network;
 	TRAIN *train;
-	double result,*input, *ideal,y[3];
-	int row;
+	double *input, *ideal,y[3];
+	unsigned int row;
 	double *memory;
 	
 	memory = (double*)m;
@@ -82,14 +82,14 @@ void ExampleRandIris(int argIndex, int argc, char **argv) {
 	NORM_DATA *norm;
 	TRAIN *train;
 	double *x0, *input, *ideal,y[3];
-	int size,i;
+	unsigned int size,i;
 	NORM_DATA_ITEM *irisSpecies;
 	char *idealSpecies,*actualSpecies;
 
 	params = (IRIS_PARAMS*)calloc(1,sizeof(IRIS_PARAMS));
 	norm = NormCreate();
 	params->training = create_iris_training(norm);
-	params->errorCalc = ErrorCreate(TYPE_ERROR_SSE);
+	params->errorCalc = ErrorCreate(TYPE_ERROR_MSE);
 	params->network = RBFNetworkCreate(RBFGaussian,4,5,3);
 	RBFNetworkReset(params->network);
 
@@ -101,8 +101,8 @@ void ExampleRandIris(int argIndex, int argc, char **argv) {
 	irisSpecies = NormGetColumnItem(norm, 4);
 	
 	train = TrainCreate(TYPE_TRAIN_GREEDY_RANDOM,score_function,1,x0,size,params);
-	train->low = -10;
-	train->high = 10;
+	train->low = -1;
+	train->high = 1;
 	TrainRun(train,500000,0.01,1);
 	TrainComplete(train,params->network->long_term_memory);
 

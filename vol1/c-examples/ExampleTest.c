@@ -2,12 +2,21 @@
 
 
 void ExampleTest(int argIndex, int argc, char **argv) {	
-	RANDOM_GENERATE *prng;
-	int i;
+	RBF_NETWORK *net;
+	double input[2] = { 1.0, 2.0 };
+	double output;
 
-	prng = RandCreate(TYPE_RANDOM_MT,(unsigned)time(NULL));
+	net = RBFNetworkCreate(RBFGaussian,2,1,1);
+	net->long_term_memory[0] = 2.0;
+	net->long_term_memory[1] = 2.0;
+	net->long_term_memory[2] = 5.0;
+	net->long_term_memory[3] = 2.0;
+	net->long_term_memory[4] = 4.0;
+	net->long_term_memory[5] = 3.0;
+	net->long_term_memory[6] = 4.0;
 
-	for(i=0;i<10;i++) {
-		printf("%ld\n",RandNextInt(prng));
-	}
+	RBFNetworkComputeRegression(net,input,&output);
+	printf("%f\n",output);
+
+	printf("done");
 }

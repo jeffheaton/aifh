@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIFH-VOL1.c" />
+    <ClCompile Include="asa047.c" />
     <ClCompile Include="Data.c" />
     <ClCompile Include="Distance.c" />
     <ClCompile Include="Equilateral.c" />
@@ -109,6 +110,7 @@
     <ClCompile Include="ExampleTest.c" />
     <ClCompile Include="ExampleUtil.c" />
     <ClCompile Include="KMeans.c" />
+    <ClCompile Include="ExampleLearnIrisNelderMead.c" />
     <ClCompile Include="libcsv.c" />
     <ClCompile Include="mt19937ar.c" />
     <ClCompile Include="Normalize.c" />

@@ -55,8 +55,8 @@ static DATA_SET *create_poly_training() {
 static double score_function(void *m, void *p) {
 	POLY_PARAMS *params;
 	TRAIN *train;
-	double result,*input, *ideal,y;
-	int row;
+	double *input, *ideal,y;
+	unsigned int row;
 	double *memory;
 	
 	memory = (double*)m;

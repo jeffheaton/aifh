@@ -7,7 +7,7 @@ double RBFGaussian(double *input, int input_position, int input_count, double *p
 
 	for (i = 0; i < input_count; i++) {
 		center = params[1+params_index+i];
-		value += pow(input[i] - center, 2) / (2.0 * width * width);
+		value += pow(input[input_position+i] - center, 2) / (2.0 * width * width);
 	}
 	return exp(-value);
 }
