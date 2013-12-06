@@ -246,6 +246,7 @@ double DeNormReciprocal(double x);
 char* DeNormOneOfN(NORM_DATA_CLASS *first, double normalizedLow, double normalizedHigh, double *dataOut);
 void NormEquilateral(NORM_DATA_CLASS *first, double *equilat, double normalizedLow, double normalizedHigh, char *classX, double *dataOut);
 char* DeNormEquilateral(NORM_DATA_CLASS *first, double *equilat, int classCount, double normalizedLow, double normalizedHigh, double *dataOut);
+NORM_DATA_ITEM *NormGetColumnItem(NORM_DATA *norm, int colIndex);
 
 /* Data.c */
 DATA_SET *DataCreate(int rowCount, int inputCount, int outputCount);
@@ -315,6 +316,7 @@ void KMeansDump(FILE *out, CLUSTER_ALOG *alog);
 
 /* RBFNetwork.c */
 RBF_NETWORK* RBFNetworkCreate(RBF_FUNCTION rbf, int input_count, int rbf_count, int output_count);
+void RBFNetworkComputeRegression(RBF_NETWORK *network, double *input, double *output);
 void RBFNetworkDelete(RBF_NETWORK *network);
 void RBFNetworkReset(RBF_NETWORK *network);
 
@@ -327,6 +329,7 @@ void TrainDelete(TRAIN *train);
 void TrainRun(TRAIN *train, int max_iterations, double target_score, int output);
 void TrainIteration(TRAIN *train);
 int TrainIsBetterThan(TRAIN *train, double is_this, double than_that);
+void TrainComplete(TRAIN *train, void *x);
 
 #ifdef __cplusplus
 }

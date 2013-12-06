@@ -28,36 +28,41 @@
  */
 #include "aifh-vol1-examples.h"
 
-typedef struct XOR_PARAMS {
+typedef struct IRIS_PARAMS {
 	DATA_SET *training;
 	ERROR_CALC *errorCalc;
 	RBF_NETWORK *network;
-} XOR_PARAMS;
+} IRIS_PARAMS;
 
-static DATA_SET *create_xor_training() {
-	DATA_SET *result;
+static DATA_SET *create_iris_training(NORM_DATA *norm) {
+	char filename[FILENAME_MAX];
+	
+	DATA_SET *data;
 
-	result = DataCreate(4,2,1);
-	DataMoveCursor(result,0);
-	DataAddVar(result,0.0,0.0,0.0);
-	DataAddVar(result,1.0,0.0,1.0);
-	DataAddVar(result,0.0,1.0,1.0);
-	DataAddVar(result,1.0,1.0,0.0);
+	LocateFile("iris.csv",filename,FILENAME_MAX);
+	
+	NormDefRange(norm,0,1);
+	NormDefRange(norm,0,1);
+	NormDefRange(norm,0,1);
+	NormDefRange(norm,0,1);
+	NormDefClass(norm,NORM_CLASS_ONEOFN,0,1);
 
-	return result;
+	NormAnalyze(norm,filename);
+	data = NormProcess(norm,filename,4,1);	
+	return data;
 }
 
 static double score_function(void *m, void *p) {
-	XOR_PARAMS *params;
+	IRIS_PARAMS *params;
 	RBF_NETWORK *network;
 	TRAIN *train;
-	double result,*input, *ideal,y;
+	double result,*input, *ideal,y[3];
 	int row;
 	double *memory;
 	
 	memory = (double*)m;
 	train = (TRAIN*)p;
-	params = (XOR_PARAMS *)train->params;
+	params = (IRIS_PARAMS *)train->params;
 	network = params->network;
 
 	memcpy(network->long_term_memory,m,sizeof(double)*network->ltm_size);
@@ -66,45 +71,55 @@ static double score_function(void *m, void *p) {
 	for(row=0;row<params->training->recordCount;row++) {
 		input = DataGetInput(params->training,row);
 		ideal = DataGetIdeal(params->training,row);
-		RBFNetworkComputeRegression(network, input, &y);
-		ErrorUpdate(params->errorCalc,&y,ideal,1);
+		RBFNetworkComputeRegression(network, input, y);
+		ErrorUpdate(params->errorCalc,y,ideal,3);
 	}
 	return ErrorCalculate(params->errorCalc);
 }
 
-void ExampleRandXOR(int argIndex, int argc, char **argv) {
-	XOR_PARAMS *params;
+void ExampleRandIris(int argIndex, int argc, char **argv) {
+	IRIS_PARAMS *params;
+	NORM_DATA *norm;
 	TRAIN *train;
-	double *x0, *input, *ideal,y;
+	double *x0, *input, *ideal,y[3];
 	int size,i;
+	NORM_DATA_ITEM *irisSpecies;
+	char *idealSpecies,*actualSpecies;
 
-	params = (XOR_PARAMS*)calloc(1,sizeof(XOR_PARAMS));
-	params->training = create_xor_training();
+	params = (IRIS_PARAMS*)calloc(1,sizeof(IRIS_PARAMS));
+	norm = NormCreate();
+	params->training = create_iris_training(norm);
 	params->errorCalc = ErrorCreate(TYPE_ERROR_SSE);
-	params->network = RBFNetworkCreate(RBFGaussian,2,5,1);
+	params->network = RBFNetworkCreate(RBFGaussian,4,5,3);
 	RBFNetworkReset(params->network);
 
 	size = params->network->ltm_size*sizeof(double);
 	x0 = (double*)calloc(size,1);
 	memcpy(x0,params->network->long_term_memory,size);
+
+	/* Extract the species definition */
+	irisSpecies = NormGetColumnItem(norm, 4);
 	
 	train = TrainCreate(TYPE_TRAIN_GREEDY_RANDOM,score_function,1,x0,size,params);
 	train->low = -10;
 	train->high = 10;
-	TrainRun(train,1000000,0.01,1);
+	TrainRun(train,500000,0.01,1);
 	TrainComplete(train,params->network->long_term_memory);
 
 	/* Perform the evaluation */
-	for(i=0;i<4;i++) {
+	for(i=0;i<params->training->recordCount;i++) {
 		input = DataGetInput(params->training,i);
 		ideal = DataGetIdeal(params->training,i);
-		RBFNetworkComputeRegression(params->network, input, &y);
-		printf("[%.2f,%.2f] -> Actual: [%.2f], Ideal: [%.2f]\n",
-			input[0],input[1],y,ideal[0]);
+		RBFNetworkComputeRegression(params->network, input, y);
+		idealSpecies = DeNormOneOfN(irisSpecies->firstClass,irisSpecies->targetLow,irisSpecies->targetLow,ideal);
+		actualSpecies = DeNormOneOfN(irisSpecies->firstClass,irisSpecies->targetLow,irisSpecies->targetLow,y);
+		printf("[%.2f,%.2f,%.2f,%.2f] -> Actual: [%s], Ideal: [%s]\n",
+			input[0],input[1],input[2],input[3],actualSpecies,idealSpecies);
 	}
 	
 	DataDelete(params->training);
 	ErrorDelete(params->errorCalc);
 	RBFNetworkDelete(params->network);
+	NormDelete(norm);
 	free(params);
 }

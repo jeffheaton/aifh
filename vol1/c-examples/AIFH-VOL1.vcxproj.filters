@@ -113,5 +113,8 @@
     <ClCompile Include="ExampleLearnXOR.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExampleLearnIris.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

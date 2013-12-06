@@ -533,5 +533,19 @@ DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outpu
 
 	/* return the data set */
 	return result;
+}
 
+NORM_DATA_ITEM *NormGetColumnItem(NORM_DATA *norm, int colIndex) {
+	NORM_DATA_ITEM *result;
+
+	result = norm->firstItem;
+
+	while(colIndex>0) {
+		if( result!=NULL ) {
+			result = result->next;
+		}
+		colIndex--;
+	}
+
+	return result;
 }

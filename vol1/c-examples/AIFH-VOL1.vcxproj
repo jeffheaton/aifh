@@ -99,6 +99,7 @@
     <ClCompile Include="ExampleDistance.c" />
     <ClCompile Include="ExampleError.c" />
     <ClCompile Include="ExampleKMeans.c" />
+    <ClCompile Include="ExampleLearnIris.c" />
     <ClCompile Include="ExampleLearnPoly.c" />
     <ClCompile Include="ExampleLearnXOR.c" />
     <ClCompile Include="ExampleNormalize.c" />

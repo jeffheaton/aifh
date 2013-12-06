@@ -47,6 +47,7 @@ TRAIN *TrainCreate(int type, SCORE_FUNCTION score_function, int should_minimize,
 	result->max_iterations = 0;
 	result->should_minimize = should_minimize;
 	memcpy(result->current_position,x0,position_size);
+	memcpy(result->best_position,x0,position_size);
 	result->best_score = score_function(result->best_position,result);
 	return result;
 }
@@ -56,6 +57,10 @@ void TrainDelete(TRAIN *train) {
 	free(train->trial_position);
 	free(train->best_position);
 	free(train);
+}
+
+void TrainComplete(TRAIN *train, void *x) {
+	memcpy(x,train->best_position,train->position_size);
 }
 
 void TrainRun(TRAIN *train, int max_iterations, double target_score, int output) {

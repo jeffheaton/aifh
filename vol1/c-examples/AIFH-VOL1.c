@@ -49,33 +49,36 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"NormalizeCSVExample") == 0 ) {
 				success = 1;
 				ExampleNormalize(i+1,argc,argv);
-			} else if( strcasecmp(argv[i],"simple-normalize") == 0 ) {
+			} else if( strcasecmp(argv[i],"SimpleNormalize") == 0 ) {
 				success = 1;
 				ExampleSimpleNormalize(i+1,argc,argv);
-			} else if( strcasecmp(argv[i],"analyze") == 0 ) {
+			} else if( strcasecmp(argv[i],"Analyze") == 0 ) {
 				success = 1;
 				ExampleAnalyze(i+1,argc,argv);
-			} else if( strcasecmp(argv[i],"distance") == 0 ) {
+			} else if( strcasecmp(argv[i],"Distance") == 0 ) {
 				success = 1;
 				ExampleDistance(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"random") == 0 ) {
 				success = 1;
 				ExampleRandom(i+1,argc,argv);
-			} else if( strcasecmp(argv[i],"pi") == 0 ) {
+			} else if( strcasecmp(argv[i],"EvaluatePI") == 0 ) {
 				success = 1;
 				ExamplePI(i+1,argc,argv);
-			} else if( strcasecmp(argv[i],"kmeans") == 0 ) {
+			} else if( strcasecmp(argv[i],"PerformCluster") == 0 ) {
 				success = 1;
 				ExampleKMeans(i+1,argc,argv);
-			} else if( strcasecmp(argv[i],"error") == 0 ) {
+			} else if( strcasecmp(argv[i],"EvaluateErrors") == 0 ) {
 				success = 1;
 				ExampleError(i+1,argc,argv);
-			} else if( strcasecmp(argv[i],"poly") == 0 ) {
+			} else if( strcasecmp(argv[i],"LearnPolynomial") == 0 ) {
 				success = 1;
 				ExamplePoly(i+1,argc,argv);
-			} else if( strcasecmp(argv[i],"rand-xor") == 0 ) {
+			} else if( strcasecmp(argv[i],"LearnXOR") == 0 ) {
 				success = 1;
 				ExampleRandXOR(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"LearnIris") == 0 ) {
+				success = 1;
+				ExampleRandIris(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"test") == 0 ) {
 				success = 1;
 				ExampleTest(i+1,argc,argv);
@@ -91,10 +94,14 @@ int main(int argc, char* argv[])
 		printf("\n");
 		printf("** Chapter 2: Normalizing Data, Examples:\n");
 		printf("NormalizeCSVExample : A simple normalization example for the Iris data set\n");
+		printf("SimpleNormalize : Perform a few very basic normalizations\n");
+		printf("Analyze : Analyze the Iris data set\n");
 		printf("\n");
 		printf("** Chapter 3: Distance Metrics, Examples:\n");
+		printf("Distance : See various distance metrics\n");
 		printf("\n");
 		printf("** Chapter 4: Random Numbers, Examples:\n");
+		printf("Random : Compare PRNG's and distributions\n");
 		printf("EvaluatePI : Approximate PI by Monte Carlo\n");
 		printf("\n");
 		printf("** Chapter 5: K-Means, Examples:\n");
