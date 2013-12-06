@@ -35,7 +35,7 @@ class AIFHError(msg : String,throwable : Throwable) extends Error(msg,throwable)
   /**
    * Wrap a throwable.
    *
-   * @param t The throable.
+   * @param t The throwable.
    */
   def this(t: Throwable) {
     this(null,t)

@@ -72,7 +72,7 @@ object DataSet {
     try {
       val reader = new InputStreamReader(is)
       val csv = new CSVReader(reader)
-      val headers: Array[String] = csv.readNext
+      val headers = csv.readNext
       val result = new DataSet(headers)
       var nextLine: Array[String] = null
       while ( { nextLine = csv.readNext; nextLine } != null) {
@@ -102,11 +102,10 @@ object DataSet {
    */
   def save(filename: File, ds: DataSet) {
     try {
-      val fos: FileOutputStream = new FileOutputStream(filename)
+      val fos = new FileOutputStream(filename)
       save(fos, ds)
       fos.close()
-    }
-    catch {
+    } catch {
       case ex: IOException =>
         throw new AIFHError(ex)
     }
@@ -251,8 +250,8 @@ class DataSet(theHeaders: Array[String]) {
    * @param normalizedHigh The desired high normalized value.
    */
   def normalizeRange(column: Int, normalizedLow: Double, normalizedHigh: Double) {
-    val dataLow: Double = getMin(column)
-    val dataHigh: Double = getMax(column)
+    val dataLow = getMin(column)
+    val dataHigh = getMax(column)
     normalizeRange(column, dataLow, dataHigh, normalizedLow, normalizedHigh)
   }
 
@@ -268,7 +267,7 @@ class DataSet(theHeaders: Array[String]) {
    */
   def deNormalizeRange(column: Int, dataLow: Double, dataHigh: Double, normalizedLow: Double, normalizedHigh: Double) {
     for (obj <- data) {
-      val x: Double = convertNumeric(obj, column)
+      val x = convertNumeric(obj, column)
       obj(column) = (((dataLow - dataHigh) * x - normalizedHigh * dataLow + dataHigh * normalizedLow) / (normalizedLow - normalizedHigh)).asInstanceOf[Object]
     }
   }
@@ -342,12 +341,12 @@ class DataSet(theHeaders: Array[String]) {
    * @return The column to index mapping (the same result as calling enumerateClasses).
    */
   def encodeOneOfN(column: Int, offValue: Double, onValue: Double): Map[String, Int] = {
-    val name: String = headers(column)
+    val name = headers(column)
     val classes = enumerateClasses(column)
     insertColumns(column + 1, classes.size - 1)
     for (obj <- data) {
-      val index: Int = classes(obj(column).toString)
-      val classCount: Int = classes.size
+      val index = classes(obj(column).toString)
+      val classCount = classes.size
       for(i <- 0 until classCount)
         obj(column + i) = (if (i == index) onValue else offValue).asInstanceOf[Object]
     }
@@ -378,14 +377,14 @@ class DataSet(theHeaders: Array[String]) {
    * @return The column to index mapping (the same result as calling enumerateClasses).
    */
   def encodeEquilateral(column: Int, offValue: Double, onValue: Double): Map[String, Int] = {
-    val name: String = headers(column)
+    val name = headers(column)
     val classes  = enumerateClasses(column)
-    val classCount: Int = classes.size
+    val classCount = classes.size
     insertColumns(column + 1, classCount - 1)
     val eq = new Equilateral(classCount, offValue, onValue)
     for (obj <- data) {
-      val key : String = obj(column).toString
-      val index: Int = classes(key)
+      val key = obj(column).toString
+      val index = classes(key)
       val encoded = eq.encode(index)
       for(i <- 0 until (classCount - 1))
         obj(column + i) = encoded(i).asInstanceOf[Object]
@@ -407,14 +406,14 @@ class DataSet(theHeaders: Array[String]) {
    * @param count The number of new columns.
    */
   def appendColumns(count: Int) {
-    val newHeaders: Array[String] = Array.ofDim[String](getHeaderCount + count)
+    val newHeaders = Array.ofDim[String](getHeaderCount + count)
     System.arraycopy(headers, 0, newHeaders, 0, getHeaderCount)
     for(i <- 0 until count)
       newHeaders(i + getHeaderCount) = "new"
     headers = newHeaders
     for(rowIndex <- 0 until size) {
       val originalRow = data(rowIndex)
-      val newRow: Array[AnyRef] = Array.ofDim[AnyRef](getHeaderCount)
+      val newRow = Array.ofDim[AnyRef](getHeaderCount)
       System.arraycopy(originalRow, 0, newRow, 0, originalRow.length)
       for(i <- 0 until count)
         newRow(getHeaderCount - 1 - i) = 0.0.asInstanceOf[Object]
@@ -528,8 +527,8 @@ class DataSet(theHeaders: Array[String]) {
    * @param col The column to delete.
    */
   def deleteColumn(col: Int) {
-    val headers2: Array[String] = Array.ofDim[String](headers.length - 1)
-    var h2Index: Int = 0
+    val headers2 = Array.ofDim[String](headers.length - 1)
+    var h2Index = 0
     for(i <- 0 until headers.length) {
       if (i != col) {
         headers2(h2Index) = headers(i)
@@ -539,7 +538,7 @@ class DataSet(theHeaders: Array[String]) {
     headers = headers2
     var rowIndex: Int = 0
     for (row <- data) {
-      val row2: Array[AnyRef] = Array.ofDim[AnyRef](headers.length)
+      val row2 = Array.ofDim[AnyRef](headers.length)
       var r2Index: Int = 0
       for(i<- 0 until headers.length) {
         if (i != col) {

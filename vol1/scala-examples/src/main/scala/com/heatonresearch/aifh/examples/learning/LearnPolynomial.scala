@@ -43,7 +43,7 @@ object LearnPolynomial extends App {
 class LearnPolynomial extends SimpleLearn {
   def generateTrainingData: Vector[BasicData] = {
     ((-50 until 50) map { x =>
-      val y: Double = (2 * Math.pow(x, 2)) + (4 * x) + 6
+      val y = (2 * Math.pow(x, 2)) + (4 * x) + 6
       new BasicData(Vector(x.toDouble), Vector(y),null)
     }).toVector
   }
@@ -54,8 +54,8 @@ class LearnPolynomial extends SimpleLearn {
   def process() {
     val trainingData = generateTrainingData
     val poly = new PolynomialFn(3)
-    val score: ScoreFunction = new ScoreRegressionData(trainingData)
-    val train = new TrainGreedyRandom(true, poly, score)
+    val scoreFn = new ScoreRegressionData(trainingData)
+    val train = new TrainGreedyRandom(true, poly, scoreFn)
     performIterations(train, 1000000, 0.01, shouldMinimize = true)
     println(poly.toString)
   }

@@ -37,7 +37,7 @@ import java.text.NumberFormat
  * A histogram panel.
  */
 class HistoPanel extends JPanel {
-  val BAR_WIDTH: Int = 10
+  val BAR_WIDTH = 10
   private var evalCount: Long = 0L
   private var evalTime: Long = 0L
   private var evalRate: Int = 0
@@ -100,13 +100,12 @@ class HistoPanel extends JPanel {
   }
 
   override def paint(g: Graphics) {
-    val height: Int = getHeight
-    val width: Int = getWidth
+    val height = getHeight
+    val width = getWidth
     g.clearRect(0, 0, width, height)
-    var gen: Long = generated
-    gen /= 1024
-    val h: Int = g.getFontMetrics.getHeight
-    val barCount: Int = width / BAR_WIDTH
+    val gen: Long = generated / 1024
+    val h = g.getFontMetrics.getHeight
+    val barCount = width / BAR_WIDTH
     var mode: Int = 0
     for (boxe <- boxes) {
       mode = Math.max(mode, boxe)
@@ -137,7 +136,7 @@ class HistoPanel extends JPanel {
     }
 
     NumberFormat.getNumberInstance.format(35634646)
-    var y: Int = h
+    var y = h
     g.setColor(Color.BLACK)
     g.drawString("Running for: " + intFormatter.format(runtime) + " seconds", 0, y)
     y += h

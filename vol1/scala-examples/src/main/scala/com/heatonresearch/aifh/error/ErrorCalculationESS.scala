@@ -39,7 +39,7 @@ class ErrorCalculationESS extends AbstractErrorCalculation {
    *
    * @return The current error.
    */
-  def calculate: Double = {
+  override def calculate: Double = {
     if (setSize == 0)
       Double.PositiveInfinity
     else

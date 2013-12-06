@@ -58,8 +58,8 @@ class GaussianFunction(theDimensions: Int, theParams: ArrayBuffer[Double], theIn
   override def evaluate(x: Vector[Double]): Double = {
     var value = 0.0
     val width = getWidth
-    for(i <- 0 until getDimensions) {
-      val center = this.getCenter(i)
+    for(i <- 0 until getDimensions ;
+        center = getCenter(i)) {
       value += Math.pow(x(i) - center, 2) / (2.0 * width * width)
     }
 

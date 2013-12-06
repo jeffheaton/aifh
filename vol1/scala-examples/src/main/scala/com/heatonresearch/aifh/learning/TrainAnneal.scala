@@ -91,7 +91,7 @@ class TrainAnneal(algorithm: MachineLearningAlgorithm, val score: ScoreFunction,
    * @return The probability.
    */
   def coolingSchedule: Double = {
-    val ex: Double = k.toDouble / kMax.toDouble
+    val ex = k.toDouble / kMax.toDouble
     startingTemperature * Math.pow(endingTemperature / startingTemperature, ex)
   }
 

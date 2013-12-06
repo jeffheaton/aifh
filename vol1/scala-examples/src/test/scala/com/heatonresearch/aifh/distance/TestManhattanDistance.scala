@@ -36,7 +36,7 @@ import org.scalatest.matchers.ShouldMatchers
  */
 class TestManhattanDistance extends Suite with ShouldMatchers {
   def testDistanceCalc() {
-    val calc: CalculateDistance = new ManhattanDistance
+    val calc = new ManhattanDistance
     val pos1 = Vector(0.5, 1.0, 2.5)
     val pos2 = Vector(0.1, 2.0, -2.5)
     calc.calculate(pos1, pos2) should be (6.4 plusOrMinus 0.001)

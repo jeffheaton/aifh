@@ -61,7 +61,7 @@ class TravelingSalesmanAnneal extends DiscreteAnneal(1000, 400, 0.001) {
    * The city coordinates.
    */
   private val cities: IndexedSeq[Vector[Double]] = {
-    val ratio: Double = (2 * Math.PI) / CITY_COUNT
+    val ratio = (2 * Math.PI) / CITY_COUNT
     for(cityNumber <- 0 until CITY_COUNT) yield {
       val v1 = (Math.cos(ratio * cityNumber) * (MAP_SIZE / 2) + (MAP_SIZE / 2)).toInt
       val v2 = (Math.sin(ratio * cityNumber) * (MAP_SIZE / 2) + (MAP_SIZE / 2)).toInt

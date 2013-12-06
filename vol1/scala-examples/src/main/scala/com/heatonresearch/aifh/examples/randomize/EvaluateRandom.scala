@@ -54,12 +54,12 @@ class EvaluateRandom extends JFrame with ActionListener with Runnable {
   /**
    * The stop button.
    */
-  private val buttonStop: JButton = new JButton("Stop")
+  private val buttonStop = new JButton("Stop")
   /**
    * Have we been requested to stop.
    */
   @volatile
-  private var requestStop: Boolean = false
+  private var requestStop = false
 
 
   val distributions: Array[Object] = Array("Uniform", "Normal")
@@ -80,7 +80,7 @@ class EvaluateRandom extends JFrame with ActionListener with Runnable {
   /**
    * The method to use.
    */
-  private val comboGenerator: JComboBox[Object] = new JComboBox(generators)
+  private val comboGenerator = new JComboBox(generators)
 
   controlPanel.add(comboGenerator)
   controlPanel.add(new JLabel("Normal Distribution"))
@@ -88,7 +88,7 @@ class EvaluateRandom extends JFrame with ActionListener with Runnable {
   /**
    * Uniform or normal.
    */
-  private val comboNormal: JComboBox[Object] = new JComboBox(distributions)
+  private val comboNormal = new JComboBox(distributions)
 
   controlPanel.add(comboNormal)
   controlPanel.add(buttonStart)
@@ -100,7 +100,7 @@ class EvaluateRandom extends JFrame with ActionListener with Runnable {
     if (actionEvent.getSource eq buttonStart) {
       buttonStart.setEnabled(false)
       buttonStop.setEnabled(false)
-      val t: Thread = new Thread(this)
+      val t = new Thread(this)
       t.start()
     }
     else {

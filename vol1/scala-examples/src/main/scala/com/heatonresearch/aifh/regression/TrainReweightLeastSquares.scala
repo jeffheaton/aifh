@@ -66,14 +66,13 @@ class TrainReweightLeastSquares(private val algorithm: MultipleLinearRegression,
    * Perform one iteration of training.
    */
   def iteration() {
-    val rowCount: Int = trainingData.size
-    val coeffCount: Int = algorithm.longTermMemory.length
+    val rowCount = trainingData.size
+    val coeffCount = algorithm.longTermMemory.length
     val working: Vector[ArrayBuffer[Double]] = (for(i <- 0 until rowCount) yield ArrayBuffer.fill(coeffCount)(0.0)).toVector
     val errors = ArrayBuffer.fill(rowCount)(0.0)
     val weights = ArrayBuffer.fill(rowCount)(0.0)
-    var deltas: Matrix = null
     for(i <- 0 until rowCount) {
-      val element: BasicData = trainingData(i)
+      val element = trainingData(i)
       working(i)(0) = 1
       for(j <- 0 until element.input.length) {
         working(i)(j + 1) = element.input(j)
@@ -103,8 +102,9 @@ class TrainReweightLeastSquares(private val algorithm: MultipleLinearRegression,
       }
     }
     val lu = new LUDecomposition(new Matrix(hessian))
-    if (lu.isNonsingular)
-      deltas = lu.solve(gradient)
+
+    val deltas: Matrix = if (lu.isNonsingular)
+      lu.solve(gradient)
     else
       throw new AIFHError("Matrix Non singular")
 

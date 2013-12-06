@@ -31,9 +31,9 @@ package com.heatonresearch.aifh.examples.distance
 import com.heatonresearch.aifh.distance.{CalculateDistance, EuclideanDistance}
 import javax.swing._
 import java.awt._
-import java.awt.event.ActionEvent
+import java.awt.event.{ActionListener, ActionEvent}
 import java.io._
-import javax.swing.event.ListSelectionEvent
+import javax.swing.event.{ListSelectionListener, ListSelectionEvent}
 
 /**
  * OCR: Main form that allows the user to interact with the OCR application.
@@ -85,22 +85,22 @@ class OCRExample extends JFrame("OCR") {
   /**
    * The letters list box
    */
-  private val letters: JList[SampleData] = new JList
+  private val letters = new JList[SampleData]
   /**
    * The delete button
    */
-  private val del: JButton = new JButton("Delete")
+  private val del = new JButton("Delete")
   /**
    * The load button
    */
-  private val load: JButton = new JButton("Load")
+  private val load = new JButton("Load")
   /**
    * The save button
    */
   private val save = new JButton("Save")
-  private val JLabel3: JLabel = new JLabel
-  private val JLabel8: JLabel = new JLabel
-  private val JLabel5: JLabel = new JLabel("Draw Letters Here")
+  private val JLabel3 = new JLabel
+  private val JLabel8 = new JLabel
+  private val JLabel5 = new JLabel("Draw Letters Here")
   private val distanceCalc: CalculateDistance = new EuclideanDistance
 
   getContentPane.setLayout(null)
@@ -175,10 +175,10 @@ class OCRExample extends JFrame("OCR") {
    * Called to add the current image to the training set
    */
   private[distance] def add_actionPerformed() {
-    val letter: String = JOptionPane.showInputDialog("Please enter a letter you would like to assign this sample to.")
-    if (letter == null) {
+    val letter = JOptionPane.showInputDialog("Please enter a letter you would like to assign this sample to.")
+    if (letter == null)
       return
-    }
+
     if (letter.length > 1) {
       JOptionPane.showMessageDialog(this, "Please enter only a single letter.", "Error", JOptionPane.ERROR_MESSAGE)
       return
@@ -187,12 +187,12 @@ class OCRExample extends JFrame("OCR") {
 
     val sampleData: SampleData = sample.data.cloneInstance(letter.charAt(0))
     for(i <- 0 until letterListModel.size) {
-      val str: String = "" + letterListModel.getElementAt(i).asInstanceOf[SampleData].letter
+      val str = "" + letterListModel.getElementAt(i).letter
       if (str == letter) {
         JOptionPane.showMessageDialog(this, "That letter is already defined, delete it first!", "Error", JOptionPane.ERROR_MESSAGE)
         return
       }
-      val l: String = "" + sampleData.letter
+      val l = "" + sampleData.letter
       if (str.compareTo(l) > 0) {
         letterListModel.add(i, sampleData)
         return
@@ -217,7 +217,7 @@ class OCRExample extends JFrame("OCR") {
    * Called when the del button is pressed.
    */
   private[distance] def del_actionPerformed() {
-    val i: Int = letters.getSelectedIndex
+    val i = letters.getSelectedIndex
     if (i == -1) {
       JOptionPane.showMessageDialog(this, "Please select a letter to delete.", "Error", JOptionPane.ERROR_MESSAGE)
       return
@@ -235,23 +235,22 @@ class OCRExample extends JFrame("OCR") {
   /**
    * Called when a letter is selected from the list box.
    */
-  private[distance] def letters_valueChanged() {
-    if (letters.getSelectedIndex == -1) {
-      return
+  private def letters_valueChanged() {
+    if (letters.getSelectedIndex != -1) {
+      val selected = letterListModel.getElementAt(letters.getSelectedIndex)
+      sample.data = selected.cloneInstance()
+      sample.repaint()
+      entry.clear()
     }
-    val selected: SampleData = letterListModel.getElementAt(letters.getSelectedIndex).asInstanceOf[SampleData]
-    sample.data = selected.cloneInstance()
-    sample.repaint()
-    entry.clear()
   }
 
   /**
    * Called when the load button is pressed.
    */
-  private[distance] def load_actionPerformed() {
+  private def load_actionPerformed() {
     try {
-      val f: FileReader = new FileReader(new File("./sample.dat"))
-      val r: BufferedReader = new BufferedReader(f)
+      val f = new FileReader(new File("./sample.dat"))
+      val r = new BufferedReader(f)
 
       var line: String = null
       var i: Int = 0
@@ -284,13 +283,13 @@ class OCRExample extends JFrame("OCR") {
   /**
    * Called when the recognize button is pressed.
    */
-  private[distance] def recognize_actionPerformed() {
+  private def recognize_actionPerformed() {
     entry.downSample()
     var bestPosition: Double = Double.PositiveInfinity
     var letter: String = "?"
     val letterToRecognize: Vector[Double] = sample.data.getPosition
     (0 until letterListModel.size) foreach { i =>
-      val ds: SampleData = letterListModel.getElementAt(i).asInstanceOf[SampleData]
+      val ds = letterListModel.getElementAt(i)
       val dist: Double = distanceCalc.calculate(letterToRecognize, ds.getPosition)
       if (dist < bestPosition) {
         bestPosition = dist
@@ -304,12 +303,12 @@ class OCRExample extends JFrame("OCR") {
   /**
    * Called when the save button is clicked.
    */
-  private[distance] def save_actionPerformed() {
+  private def save_actionPerformed() {
     try {
       val os: OutputStream = new FileOutputStream("./sample.dat", false)
       val ps: PrintStream = new PrintStream(os)
       (0 until letterListModel.size) foreach { i =>
-        val ds: SampleData = letterListModel.elementAt(i).asInstanceOf[SampleData]
+        val ds = letterListModel.elementAt(i)
         ps.print(ds.letter + ":")
         (0 until ds.height) foreach { y =>
           (0 until ds.width) foreach { x =>
@@ -331,32 +330,25 @@ class OCRExample extends JFrame("OCR") {
     }
   }
 
-
-  private[distance] class SymAction extends java.awt.event.ActionListener {
+  private[distance] class SymAction extends ActionListener {
     def actionPerformed(event: ActionEvent) {
-      val obj: AnyRef = event.getSource
-      if (obj == downSample)
-        downSample_actionPerformed()
-      else if (obj == clear)
-        clear_actionPerformed()
-      else if (obj == add)
-        add_actionPerformed()
-      else if (obj == del)
-        del_actionPerformed()
-      else if (obj == save)
-        save_actionPerformed()
-      else if (obj == load)
-        load_actionPerformed()
-      else if (obj == recognize)
-        recognize_actionPerformed()
+      event.getSource match {
+        case `downSample` => downSample_actionPerformed()
+        case `clear` =>      clear_actionPerformed()
+        case `add` =>        add_actionPerformed()
+        case `del` =>        del_actionPerformed()
+        case `save` =>       save_actionPerformed()
+        case `load` =>       load_actionPerformed()
+        case `recognize` =>  recognize_actionPerformed()
+        case _ =>
+      }
     }
   }
 
-  private[distance] class SymListSelection extends javax.swing.event.ListSelectionListener {
+  private[distance] class SymListSelection extends ListSelectionListener {
     override def valueChanged(event: ListSelectionEvent) {
       if (event.getSource == letters)
         letters_valueChanged()
     }
   }
-
 }

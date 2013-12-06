@@ -41,9 +41,9 @@ class ErrorCalculationMSE extends AbstractErrorCalculation {
    * @return The current error.
    */
   override final def calculate: Double = {
-    if (setSize == 0) {
+    if (setSize == 0)
       Double.PositiveInfinity
-    } else
+    else
       globalError / setSize
   }
 }

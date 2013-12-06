@@ -49,7 +49,7 @@ class NormalizeCSVExample {
       ds.normalizeRange(2, 0, 1)
       ds.normalizeRange(3, 0, 1)
       ds.encodeEquilateral(4)
-      val outputFile: File = new File("normalized.csv")
+      val outputFile = new File("normalized.csv")
       DataSet.save(outputFile, ds)
       println(s"Output written to: ${outputFile.getAbsolutePath}")
     } catch {

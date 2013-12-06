@@ -58,7 +58,8 @@ class MultipleLinearRegression(theInputCount: Int) extends RegressionAlgorithm {
   var linkFunction: Fn = new IdentityLinkFunction
 
   override def computeRegression(input: Vector[Double]): Vector[Double] = {
-    var sum: Double = 0
+    var sum = 0.0
+
     for(i<- 1 until longTermMemory.length) {
       sum += input(i - 1) * longTermMemory(i)
     }

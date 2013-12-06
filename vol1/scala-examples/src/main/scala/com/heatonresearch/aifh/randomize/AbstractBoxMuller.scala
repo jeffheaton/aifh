@@ -35,11 +35,11 @@ object AbstractBoxMuller {
   /**
    * The mean.
    */
-  val MU: Double = 0
+  val MU = 0.0
   /**
    * The standard deviation.
    */
-  val SIGMA: Double = 1
+  val SIGMA = 1.0
 }
 
 abstract class AbstractBoxMuller extends AbstractGenerateRandom {
@@ -49,6 +49,7 @@ abstract class AbstractBoxMuller extends AbstractGenerateRandom {
     var x2: Double = .0
     var w: Double = .0
     var y1: Double = .0
+
     if (this.useLast) {
       y1 = this.y2
       this.useLast = false

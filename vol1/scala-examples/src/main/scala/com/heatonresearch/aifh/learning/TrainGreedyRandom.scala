@@ -61,11 +61,11 @@ class TrainGreedyRandom(shouldMinimize: Boolean, algorithm: MachineLearningAlgor
   /**
    * The low range for random number selection.
    */
-  var lowRange: Double = -10
+  var lowRange = -10.0
   /**
    * The high range for random number selection.
    */
-  var highRange: Double = 10
+  var highRange = 10.0
 
   override def iteration() {
     // backup current state
@@ -75,7 +75,7 @@ class TrainGreedyRandom(shouldMinimize: Boolean, algorithm: MachineLearningAlgor
     performRandomize(algorithm.longTermMemory)
 
     // did we improve it?  Only keep the new method if it improved (greedy).
-    val currentError: Double = score.calculateScore(algorithm)
+    val currentError = score.calculateScore(algorithm)
     if (if (currentError < lastError) shouldMinimize else !shouldMinimize) {
       lastError = currentError
     }

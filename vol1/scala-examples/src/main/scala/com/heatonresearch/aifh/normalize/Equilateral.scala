@@ -63,7 +63,7 @@ class Equilateral(count: Int, low: Double, high: Double) extends Serializable {
   /**
    * The matrix of values that was generated.
    */
-  private val matrix: Vector[Vector[Double]] = equilat(count, low, high)
+  private val matrix = equilat(count, low, high)
 
   /**
    * Decode a set of activations and see which set it has the lowest Euclidean
@@ -73,7 +73,7 @@ class Equilateral(count: Int, low: Double, high: Double) extends Serializable {
    * @return The set that these activations were closest too.
    */
   final def decode(activations: Vector[Double]): Int = {
-    var minValue: Double = Double.PositiveInfinity
+    var minValue = Double.PositiveInfinity
     var minSet: Int = -1
     for(i <- 0 until matrix.length) {
       val dist = getDistance(activations, i)
@@ -149,7 +149,7 @@ class Equilateral(count: Int, low: Double, high: Double) extends Serializable {
    * @return The distance.
    */
   final def getDistance(data: Vector[Double], set: Int): Double = {
-    var result: Double = 0
+    var result = 0.0
     for(i<- 0 until data.length) {
       result += Math.pow(data(i) - matrix(set)(i), 2)
     }

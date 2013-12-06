@@ -44,7 +44,7 @@ abstract class DiscreteAnneal(val kMax: Int,val startingTemperature: Double,val 
    * @return The correct temperature for the current iteration.
    */
   def coolingSchedule: Double = {
-    val ex: Double = k.toDouble / kMax.toDouble
+    val ex = k.toDouble / kMax.toDouble
     startingTemperature * Math.pow(endingTemperature / startingTemperature, ex)
   }
 
@@ -63,16 +63,14 @@ abstract class DiscreteAnneal(val kMax: Int,val startingTemperature: Double,val 
     for(cycle <- 0 until cycles) {
       backupState()
       moveToNeighbor()
-      val trialScore: Double = evaluate
-      var keep: Boolean = false
-      if (trialScore < currentScore) {
+      val trialScore = evaluate
+      var keep = false
+      if (trialScore < currentScore)
         keep = true
-      }
       else {
         lastProbability = calcProbability(currentScore, trialScore, currentTemperature)
-        if (lastProbability > rnd.nextDouble) {
+        if (lastProbability > rnd.nextDouble)
           keep = true
-        }
       }
       if (keep) {
         currentScore = trialScore

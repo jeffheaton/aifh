@@ -44,14 +44,14 @@ abstract class AbstractErrorCalculation extends ErrorCalculation {
 
   override def updateError(actual: Vector[Double], ideal: Vector[Double], significance: Double) {
     for(i <- 0 until actual.length) {
-      val delta: Double = (ideal(i) - actual(i)) * significance
+      val delta = (ideal(i) - actual(i)) * significance
       globalError += delta * delta
     }
     setSize += ideal.length
   }
 
   override def updateError(actual: Double, ideal: Double) {
-    val delta: Double = ideal - actual
+    val delta = ideal - actual
     globalError += delta * delta
     setSize += 1
   }

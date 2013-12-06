@@ -59,10 +59,10 @@ class LearnIrisNelderMead extends SimpleLearn {
       val species = ds.encodeEquilateral(4)
       istream.close()
       val trainingData = ds.extractSupervised(0, 4, 4, 2)
-      val network: RBFNetwork = new RBFNetwork(4, 4, 2)
+      val network = new RBFNetwork(4, 4, 2)
       network.reset(new MersenneTwisterGenerateRandom())
-      val score: ScoreFunction = new ScoreRegressionData(trainingData.toVector)
-      val train = new TrainNelderMead(network, score)
+      val scoreFn = new ScoreRegressionData(trainingData.toVector)
+      val train = new TrainNelderMead(network, scoreFn)
       performIterations(train, 1000, 0.01, shouldMinimize = true)
       SimpleLearn.queryEquilateral(network, trainingData, species, 0, 1)
     } catch {

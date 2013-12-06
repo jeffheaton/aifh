@@ -46,20 +46,19 @@ class EvaluatePI {
   private val rnd = new MersenneTwisterGenerateRandom()
 
   def process() {
-    var tries: Long = 0
-    var success: Int = 0
-    var lastUpdate: Int = 0
-    var x: Double = .0
-    var y: Double = .0
+    var tries = 0L
+    var success = 0
+    var lastUpdate = 0
+
     (0 until 1000000000) foreach { i =>
-      x = rnd.nextDouble()
-      y = rnd.nextDouble()
+      val x = rnd.nextDouble
+      val y = rnd.nextDouble
       tries += 1
       if (x * x + y * y <= 1)
         success += 1
       lastUpdate += 1
       if (lastUpdate >= 1000000) {
-        val pi: Double = 4 * success.toDouble / tries.toDouble
+        val pi = 4 * success.toDouble / tries.toDouble
         println(s"Tries=$tries, pi=$pi")
         lastUpdate = 0
       }

@@ -54,10 +54,10 @@ object TrainNelderMead {
   /**
    * Used to calculate the centroid.
    */
-  val CCOEFF: Double = 0.5
-  val ECOEFF: Double = 2.0
-  val EPS: Double = 0.001
-  val RCOEFF: Double = 1.0
+  val CCOEFF = 0.5
+  val ECOEFF = 2.0
+  val EPS = 0.001
+  val RCOEFF = 1.0
 }
 
 class TrainNelderMead(private val algorithm: MachineLearningAlgorithm,

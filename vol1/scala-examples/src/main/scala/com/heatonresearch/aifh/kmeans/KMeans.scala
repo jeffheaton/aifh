@@ -93,24 +93,24 @@ class KMeans(val k : Int) {
    * @param theObservations The observations to cluster.
    */
   def initRandom(theObservations: Vector[BasicData]) {
-    val dimensions: Int = findDimensions(theObservations)
+    val dimensions = findDimensions(theObservations)
     for(i <- 0 until k) {
       clusters += new Cluster(dimensions)
     }
     for (observation <- theObservations) {
-      val clusterIndex: Int = randomGeneration.nextInt(k)
-      val cluster: Cluster = clusters(clusterIndex)
+      val clusterIndex = randomGeneration.nextInt(k)
+      val cluster = clusters(clusterIndex)
       cluster.addObservation(observation)
     }
     for (cluster <- clusters) {
       if (cluster.noObservations == 0) {
-        var done: Boolean = false
+        var done = false
         while (!done) {
-          val sourceIndex: Int = randomGeneration.nextInt(k)
-          val source: Cluster = clusters(sourceIndex)
-          if ((source ne cluster) && source.noObservations > 1) {
-            val sourceObservationIndex: Int = randomGeneration.nextInt(source.noObservations)
-            val sourceObservation: BasicData = source.getObservation(sourceObservationIndex)
+          val sourceIndex = randomGeneration.nextInt(k)
+          val source = clusters(sourceIndex)
+          if ((source != cluster) && source.noObservations > 1) {
+            val sourceObservationIndex = randomGeneration.nextInt(source.noObservations)
+            val sourceObservation = source.getObservation(sourceObservationIndex)
             source.removeObservation(sourceObservationIndex)
             cluster.addObservation(sourceObservation)
             done = true
