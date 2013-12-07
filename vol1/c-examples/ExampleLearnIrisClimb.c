@@ -77,7 +77,7 @@ static double score_function(void *m, void *p) {
 	return ErrorCalculate(params->errorCalc);
 }
 
-void ExampleRandIris(int argIndex, int argc, char **argv) {
+void ExampleHillClimbIris(int argIndex, int argc, char **argv) {
 	IRIS_PARAMS *params;
 	NORM_DATA *norm;
 	TRAIN *train;
@@ -100,8 +100,8 @@ void ExampleRandIris(int argIndex, int argc, char **argv) {
 	/* Extract the species definition */
 	irisSpecies = NormGetColumnItem(norm, 4);
 	
-	train = TrainCreateGreedyRandom(score_function,1,x0,size,params,-1,1);
-	TrainRun(train,500000,0.01,1);
+	train = TrainCreateHillClimb(score_function,1,x0,size,1.2,1.0,params);
+	TrainRun(train,100,0.01,1);
 	TrainComplete(train,params->network->long_term_memory);
 
 	/* Perform the evaluation */

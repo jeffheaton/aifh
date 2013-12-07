@@ -109,9 +109,7 @@ void ExamplePoly(int argIndex, int argc, char **argv) {
 	params->training = create_poly_training();
 	params->errorCalc = ErrorCreate(TYPE_ERROR_SSE);
 	
-	train = TrainCreate(TYPE_TRAIN_GREEDY_RANDOM,score_function,1,test,sizeof(double)*3,params);
-	train->low = -10;
-	train->high = 10;
+	train = TrainCreateGreedyRandom(score_function,1,test,sizeof(double)*3,params,-10,10);
 	TrainRun(train,1000000,0.01,1);
 	
 	DataDelete(params->training);

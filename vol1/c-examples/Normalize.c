@@ -164,7 +164,6 @@ static void _ProcessCallbackRow (int c, void *data)
 	pair->rowCount++;
 	pair->norm->_currentColumn = 0;
 	sz = pair->data->cursor - pair->data->data;
-	printf("%i\n",sz);
 }
 
 static void _InitEquilateral(NORM_DATA *norm) {

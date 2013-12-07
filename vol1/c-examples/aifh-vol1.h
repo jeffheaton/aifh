@@ -85,8 +85,11 @@ extern "C" {
 #include <unistd.h>
 #endif
 
-typedef double(*SCORE_FUNCTION)(void *position, void *params);
+typedef double(*SCORE_FUNCTION)(void *position, void *score);
 typedef double(*RBF_FUNCTION)(double *input, int input_position, int input_count, double *params, int params_index);
+typedef double (*ANNEAL_COOLING)(void *anneal);
+typedef void (*ANNEAL_RANDOMIZE)(void *anneal);
+typedef double (*ANNEAL_PROBABILITY)(double ecurrent, double enew, double t);
 
 
 	
@@ -217,8 +220,6 @@ typedef struct RBF_NETWORK {
 
 typedef struct TRAIN {
 	unsigned int type;
-	double low;
-	double high;
 	unsigned int position_size;
 	unsigned char *best_position;
 	unsigned char *current_position;
@@ -230,6 +231,35 @@ typedef struct TRAIN {
 	RANDOM_GENERATE *random;
 	unsigned int max_iterations;
 } TRAIN;
+
+typedef struct TRAIN_GREEDY {
+	TRAIN train;
+	double low;
+	double high;
+} TRAIN_GREEDY;
+
+
+typedef struct TRAIN_HILL_CLIMB {
+	TRAIN train;
+	double *step_size;
+	double candidate[5];
+} TRAIN_HILL_CLIMB;
+
+
+typedef struct TRAIN_ANNEAL {
+	TRAIN train;
+    double starting_temperature;
+	double ending_temperature;
+	double current_temperature;
+	double current_score;
+	unsigned int cycles;
+	double lastProbability;
+	unsigned int k;
+	ANNEAL_COOLING anneal_cooling;
+	ANNEAL_RANDOMIZE anneal_randomize;
+	ANNEAL_PROBABILITY anneal_probability;
+} TRAIN_ANNEAL;
+
 
 
 NORM_DATA *NormCreate();
@@ -325,12 +355,17 @@ void RBFNetworkReset(RBF_NETWORK *network);
 double RBFGaussian(double *input, int input_position, int input_count, double *params, int params_index);
 
 /* Train.c */
-TRAIN *TrainCreate(int type, SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, void *params);
+TRAIN *TrainCreateGreedyRandom(SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, void *params,double low,double high);
+TRAIN *TrainCreateHillClimb(SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, double acceleration, double stepSize, void *params);
+TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, double start_temperature, double stop_temperature, unsigned int cycles, unsigned int iterations, void *params);
 void TrainDelete(TRAIN *train);
 void TrainRun(TRAIN *train, int max_iterations, double target_score, int output);
 void TrainIteration(TRAIN *train);
 int TrainIsBetterThan(TRAIN *train, double is_this, double than_that);
 void TrainComplete(TRAIN *train, void *x);
+double AnnealCoolingSchedule(void *anneal);
+void AnnealDoubleRandomize(void *anneal);
+double AnnealCalcProbability(double ecurrent, double enew, double t);
 
 /* asa047.c */
 void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[], 

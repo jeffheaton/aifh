@@ -101,6 +101,8 @@
     <ClCompile Include="ExampleError.c" />
     <ClCompile Include="ExampleKMeans.c" />
     <ClCompile Include="ExampleLearnIris.c" />
+    <ClCompile Include="ExampleLearnIrisAnneal.c" />
+    <ClCompile Include="ExampleLearnIrisClimb.c" />
     <ClCompile Include="ExampleLearnPoly.c" />
     <ClCompile Include="ExampleLearnXOR.c" />
     <ClCompile Include="ExampleNormalize.c" />
