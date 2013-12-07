@@ -85,7 +85,7 @@ void ExampleAnnealIris(int argIndex, int argc, char **argv) {
 	unsigned int size,i;
 	NORM_DATA_ITEM *irisSpecies;
 	char *idealSpecies,*actualSpecies;
-	const int kMax = 100000;
+	const int kMax = 2000;
 
 	params = (IRIS_PARAMS*)calloc(1,sizeof(IRIS_PARAMS));
 	norm = NormCreate();
