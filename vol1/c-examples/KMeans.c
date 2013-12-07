@@ -3,9 +3,9 @@
 struct _KMeansStructCSV {
 	long unsigned col;
 	long unsigned row;
-	int labelCol;
-	int featureCount;
-	int startCol;
+	unsigned int labelCol;
+	unsigned int featureCount;
+	unsigned int startCol;
 	double *features;
 	CLUSTER_ITEM *item;
 	CLUSTER_ITEM *prevItem;
@@ -45,7 +45,7 @@ static void _KMeansCallbackColumn (void *s, size_t len, void *data)
 static void _KMeansCallbackRow (int c, void *data) 
 {
 	struct _KMeansStructCSV *csv;
-	int i;
+	unsigned int i;
 
 	csv = (struct _KMeansStructCSV*)data;	
 	csv->col= 0;
@@ -153,13 +153,13 @@ void KMeansRemoveItem(CLUSTER_ITEM **first, CLUSTER_ITEM *targetItem) {
 void KMeansInitRandom(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *items) {
 	CLUSTER *currentCluster;
 	CLUSTER *sourceCluster;
-	int currentClusterIndex;
+	unsigned int currentClusterIndex;
 	CLUSTER_ITEM *currentItem;
 	CLUSTER_ITEM *nextItem;
 	CLUSTER_ITEM *sourceItem;
-	int sourceClusterIndex;
-	int sourceClusterCount;
-	int sourceItemIndex;
+	unsigned int sourceClusterIndex;
+	unsigned int sourceClusterCount;
+	unsigned int sourceItemIndex;
 
 	/* First, assign all items to a random cluster */
 	currentItem = items;
@@ -197,7 +197,7 @@ void KMeansInitRandom(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *items) {
 CLUSTER *KMeansFindNearestCluster(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *item) {
 	CLUSTER *currentCluster;
 	CLUSTER *result;
-	int currentClusterIndex;
+	unsigned int currentClusterIndex;
 	double minDist, dist;
 
 	/* Loop over all clusters and check the centroid of each to the passed in item */
@@ -217,10 +217,10 @@ CLUSTER *KMeansFindNearestCluster(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *item) {
 }
 
 void KMeansInitForgy(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *items) {
-	int currentClusterIndex;
+	unsigned int currentClusterIndex;
 	CLUSTER *currentCluster;
-	int itemCount;
-	int selectedItemIndex;
+	unsigned int itemCount;
+	unsigned int selectedItemIndex;
 	CLUSTER_ITEM *selectedItem;
 	CLUSTER_ITEM *currentItem;
 	CLUSTER_ITEM *nextItem;
@@ -260,11 +260,11 @@ void KMeansInitForgy(CLUSTER_ALOG *kmeans, CLUSTER_ITEM *items) {
 }
 
 void KMeansUpdateStep(CLUSTER_ALOG *kmeans) {
-	int currentClusterIndex;
+	unsigned int currentClusterIndex;
 	CLUSTER *currentCluster;
 	CLUSTER_ITEM *currentItem;
-	int i;
-	int itemCount;
+	unsigned int i;
+	unsigned int itemCount;
 
 	/* Loop over every cluster */
 	for(currentClusterIndex=0;currentClusterIndex<kmeans->k;currentClusterIndex++) {
@@ -296,12 +296,12 @@ void KMeansUpdateStep(CLUSTER_ALOG *kmeans) {
 
 int KMeansAssignStep(CLUSTER_ALOG *kmeans) {
 	CLUSTER_ITEM *unassignedItems;
-	int currentClusterIndex;
+	unsigned int currentClusterIndex;
 	CLUSTER *currentCluster;
 	CLUSTER *nearestCluster;
 	CLUSTER_ITEM *currentItem,*nextItem;
-	int done;
-	int clusterCount;
+	unsigned int done;
+	unsigned int clusterCount;
 
 	/* Loop over every cluster */
 	done = 1;
@@ -414,7 +414,7 @@ void KMeansDumpList(FILE *out, CLUSTER_ITEM *first, int featureCount) {
 
 void KMeansDump(FILE *out, CLUSTER_ALOG *alog) {
 	CLUSTER *cluster;
-	int i,j;
+	unsigned int i,j;
 
 	for(i=0;i<alog->k;i++) {
 		cluster = &alog->clusters[i];
@@ -450,7 +450,7 @@ void DeleteKMeansItem(CLUSTER_ITEM *item) {
 
 void DeleteKMeans(CLUSTER_ALOG *alog) {
 	CLUSTER *cluster;
-	int i,j;
+	unsigned int i;
 
 	for(i=0;i<alog->k;i++) {
 		cluster = &alog->clusters[i];

@@ -1,12 +1,4 @@
-# include <cstdlib>
-# include <iostream>
-# include <iomanip>
-# include <ctime>
-# include <cmath>
-
-using namespace std;
-
-# include "asa047.hpp"
+#include "aifh-vol1.h"
 
 //****************************************************************************80
 
@@ -153,11 +145,11 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
     return;
   }
 
-  p = new double[n*(n+1)];
-  pstar = new double[n];
-  p2star = new double[n];
-  pbar = new double[n];
-  y = new double[n+1];
+  p = (double*)calloc(n*(n+1),sizeof(double));
+  pstar = (double*)calloc(n,sizeof(double));
+  p2star = (double*)calloc(n,sizeof(double));
+  pbar = (double*)calloc(n,sizeof(double));
+  y = (double*)calloc(n+1,sizeof(double));
 
   *icount = 0;
   *numres = 0;
@@ -484,59 +476,11 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
     del = eps;
     *numres = *numres + 1;
   }
-  delete [] p;
-  delete [] pstar;
-  delete [] p2star;
-  delete [] pbar;
-  delete [] y;
+  free(p);
+  free(pstar);
+  free(p2star);
+  free(pbar);
+  free(y);
 
   return;
-}
-//****************************************************************************80
-
-void timestamp ( void )
-
-//****************************************************************************80
-//
-//  Purpose:
-//
-//    TIMESTAMP prints the current YMDHMS date as a time stamp.
-//
-//  Example:
-//
-//    31 May 2001 09:45:54 AM
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license. 
-//
-//  Modified:
-//
-//    24 September 2003
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    None
-//
-{
-# define TIME_SIZE 40
-
-  static char time_buffer[TIME_SIZE];
-  const struct tm *tm;
-  size_t len;
-  time_t now;
-
-  now = time ( NULL );
-  tm = localtime ( &now );
-
-  len = strftime ( time_buffer, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm );
-
-  cout << time_buffer << "\n";
-
-  return;
-# undef TIME_SIZE
 }

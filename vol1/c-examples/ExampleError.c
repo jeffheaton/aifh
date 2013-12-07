@@ -79,7 +79,7 @@ double *generate(int seed, int rows, int cols, double low, double high, double d
 double calculate_error(double *data, int rows, int cols, int type) {
 	ERROR_CALC *calc;
 	double result,*current_row;
-	int row, col;
+	int row;
 	
 	calc = ErrorCreate(type);
 

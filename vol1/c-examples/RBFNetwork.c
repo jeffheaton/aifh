@@ -3,7 +3,7 @@
 
 RBF_NETWORK* RBFNetworkCreate(RBF_FUNCTION rbf, int input_count, int rbf_count, int output_count) {
 	RBF_NETWORK *result;
-	int i,rbfIndex;
+	int i;
 
 	/* calculate input and output weight counts
 	   add 1 to output to account for an extra bias node */
@@ -17,7 +17,7 @@ RBF_NETWORK* RBFNetworkCreate(RBF_FUNCTION rbf, int input_count, int rbf_count, 
 	result->rbf_count = rbf_count;
 	result->rbf = rbf;
 	result->output_count = output_count;
-	result->rbf_index = (int*)calloc(rbf_count,sizeof(int));
+	result->rbf_index = (unsigned int*)calloc(rbf_count,sizeof(int));
 	result->rbf_output = (double*)calloc(rbf_count+1,sizeof(double));
 	result->weighted_input = (double*)calloc(input_count,sizeof(double));
 
@@ -42,7 +42,7 @@ void RBFNetworkDelete(RBF_NETWORK *network) {
 }
 
 void RBFNetworkReset(RBF_NETWORK *network) {
-	int i;
+	unsigned int i;
 	RANDOM_GENERATE *prng;
 
 	prng = RandCreate(TYPE_RANDOM_MT,(long)time(NULL));
@@ -55,7 +55,7 @@ void RBFNetworkReset(RBF_NETWORK *network) {
 
 
 void RBFNetworkComputeRegression(RBF_NETWORK *network, double *input, double *output) {
-	int inputIndex, outputIndex, rbfIndex, memoryIndex;
+	unsigned int inputIndex, outputIndex, rbfIndex, memoryIndex;
 	double sum;
 
 	/* first, compute the output values of each of the RBFs

@@ -63,6 +63,11 @@ void ExamplePoly(int argIndex, int argc, char **argv);
 void ExampleRandXOR(int argIndex, int argc, char **argv);
 void ExampleRandIris(int argIndex, int argc, char **argv);
 
+/* Chapter 8 */
+void ExampleNelderMeadIris(int argIndex, int argc, char **argv);
+void ExampleHillClimbIris(int argIndex, int argc, char **argv);
+void ExampleAnnealIris(int argIndex, int argc, char **argv);
+
 /* Utility */
 void LocateFile(char *filename, char *resultName, size_t size);
 

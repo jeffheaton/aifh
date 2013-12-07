@@ -77,7 +77,7 @@ static double score_function(void *m, void *p) {
 	return ErrorCalculate(params->errorCalc);
 }
 
-void ExampleRandIris(int argIndex, int argc, char **argv) {
+void ExampleAnnealIris(int argIndex, int argc, char **argv) {
 	IRIS_PARAMS *params;
 	NORM_DATA *norm;
 	TRAIN *train;
@@ -85,6 +85,7 @@ void ExampleRandIris(int argIndex, int argc, char **argv) {
 	unsigned int size,i;
 	NORM_DATA_ITEM *irisSpecies;
 	char *idealSpecies,*actualSpecies;
+	const int kMax = 100000;
 
 	params = (IRIS_PARAMS*)calloc(1,sizeof(IRIS_PARAMS));
 	norm = NormCreate();
@@ -100,8 +101,8 @@ void ExampleRandIris(int argIndex, int argc, char **argv) {
 	/* Extract the species definition */
 	irisSpecies = NormGetColumnItem(norm, 4);
 	
-	train = TrainCreateGreedyRandom(score_function,1,x0,size,params,-1,1);
-	TrainRun(train,500000,0.01,1);
+	train = TrainCreateAnneal(score_function,1,x0,size,400,0.0001,100,kMax,params);
+	TrainRun(train,kMax,0.01,1);
 	TrainComplete(train,params->network->long_term_memory);
 
 	/* Perform the evaluation */

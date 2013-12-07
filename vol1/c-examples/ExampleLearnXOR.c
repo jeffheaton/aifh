@@ -51,8 +51,8 @@ static double score_function(void *m, void *p) {
 	XOR_PARAMS *params;
 	RBF_NETWORK *network;
 	TRAIN *train;
-	double result,*input, *ideal,y;
-	int row;
+	double *input, *ideal,y;
+	unsigned int row;
 	double *memory;
 	
 	memory = (double*)m;
@@ -74,7 +74,7 @@ static double score_function(void *m, void *p) {
 
 void ExampleRandXOR(int argIndex, int argc, char **argv) {
 	XOR_PARAMS *params;
-	TRAIN *train;
+	TRAIN_GREEDY *train;
 	double *x0, *input, *ideal,y;
 	int size,i;
 
@@ -88,11 +88,9 @@ void ExampleRandXOR(int argIndex, int argc, char **argv) {
 	x0 = (double*)calloc(size,1);
 	memcpy(x0,params->network->long_term_memory,size);
 	
-	train = TrainCreate(TYPE_TRAIN_GREEDY_RANDOM,score_function,1,x0,size,params);
-	train->low = -10;
-	train->high = 10;
-	TrainRun(train,1000000,0.01,1);
-	TrainComplete(train,params->network->long_term_memory);
+	train = (TRAIN_GREEDY*)TrainCreateGreedyRandom(score_function,1,x0,size,params,-10,10);
+	TrainRun((TRAIN*)train,1000000,0.01,1);
+	TrainComplete((TRAIN*)train,params->network->long_term_memory);
 
 	/* Perform the evaluation */
 	for(i=0;i<4;i++) {
