@@ -2,7 +2,7 @@
 
 //****************************************************************************80
 
-void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[], 
+void nelmin ( SCORE_FUNCTION fn, void *params, int n, double start[], double xmin[], 
   double *ynewlo, double reqmin, double step[], int konvge, int kcount, 
   int *icount, int *numres, int *ifault )
 
@@ -169,7 +169,7 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
     { 
       p[i+n*n] = start[i];
     }
-    y[n] = fn ( start );
+    y[n] = fn ( start, params );
     *icount = *icount + 1;
 
     for ( j = 0; j < n; j++ )
@@ -180,7 +180,7 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
       {
         p[i+j*n] = start[i];
       }
-      y[j] = fn ( start );
+      y[j] = fn ( start, params );
       *icount = *icount + 1;
       start[j] = x;
     }
@@ -242,7 +242,7 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
       {
         pstar[i] = pbar[i] + rcoeff * ( pbar[i] - p[i+ihi*n] );
       }
-      ystar = fn ( pstar );
+      ystar = fn ( pstar, params );
       *icount = *icount + 1;
 //
 //  Successful reflection, so extension.
@@ -253,7 +253,7 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
         {
           p2star[i] = pbar[i] + ecoeff * ( pstar[i] - pbar[i] );
         }
-        y2star = fn ( p2star );
+        y2star = fn ( p2star, params );
         *icount = *icount + 1;
 //
 //  Check extension.
@@ -309,7 +309,7 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
           {
             p2star[i] = pbar[i] + ccoeff * ( p[i+ihi*n] - pbar[i] );
           }
-          y2star = fn ( p2star );
+          y2star = fn ( p2star, params );
           *icount = *icount + 1;
 //
 //  Contract the whole simplex.
@@ -323,7 +323,7 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
                 p[i+j*n] = ( p[i+j*n] + p[i+ilo*n] ) * 0.5;
                 xmin[i] = p[i+j*n];
               }
-              y[j] = fn ( xmin );
+              y[j] = fn ( xmin, params );
               *icount = *icount + 1;
             }
             ylo = y[0];
@@ -360,7 +360,7 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
           {
             p2star[i] = pbar[i] + ccoeff * ( pstar[i] - pbar[i] );
           }
-          y2star = fn ( p2star );
+          y2star = fn ( p2star, params );
           *icount = *icount + 1;
 //
 //  Retain reflection?
@@ -444,7 +444,7 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
     {
       del = step[i] * eps;
       xmin[i] = xmin[i] + del;
-      z = fn ( xmin );
+	  z = fn ( xmin, params );
       *icount = *icount + 1;
       if ( z < *ynewlo )
       {
@@ -452,7 +452,7 @@ void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[],
         break;
       }
       xmin[i] = xmin[i] - del - del;
-      z = fn ( xmin );
+	  z = fn ( xmin, params );
       *icount = *icount + 1;
       if ( z < *ynewlo )
       {

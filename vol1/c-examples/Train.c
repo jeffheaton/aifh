@@ -99,24 +99,28 @@ void _IterationAnneal(TRAIN_ANNEAL *train) {
         }
 }
 
-double fn ( double x[] ) {
-}
-
 void _IterationNelderMead(TRAIN_NELDER_MEAD *train) {
 	int n, konvge, kcount;
 	double *start,*xmin, *step;
 	double ynewlo, reqmin;
+	int icount,numres,ifault,i;
 
-	n = train->train.position_size;
+	n = train->train.position_size/sizeof(double);
 	start = (double*)train->train.current_position;
 	xmin = (double*)train->train.best_position;
 	step = train->step;
-	reqmin = 0;
-	konvge = 0;
-	kcount = 1000;
+	reqmin = train->reqmin;
+	konvge = train->konvge;
+	kcount = train->kcount;
 
-	nelmin ( fn, n, start, xmin, &ynewlo, reqmin, step, konvge, kcount, 
-  int *icount, int *numres, int *ifault )	
+	for (i = 0; i < n; i++) {
+		train->step[i] = train->stepValue;
+    }
+
+	nelmin ( train->train.score_function, train, n, start, xmin, &ynewlo, reqmin, step, konvge, kcount, &icount, &numres, &ifault );
+	memcpy(train->train.best_position,xmin,train->train.position_size);
+	memcpy(train->train.current_position,xmin,train->train.position_size);
+	train->train.best_score = ynewlo;
 }
 
 
@@ -221,7 +225,8 @@ TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, void *x0, int position_s
 	return result;
 }
 
-TRAIN *TrainCreateNelderMead(SCORE_FUNCTION score_function, void *x0, int position_size, double stepValue, void *params) {
+TRAIN *TrainCreateNelderMead(SCORE_FUNCTION score_function, void *x0, int position_size, 
+	int konvge, int kcount, double reqmin, double stepValue, void *params) {
 	TRAIN *result = NULL;
 	TRAIN_NELDER_MEAD *trainNM = NULL;
 	unsigned int n, i;
@@ -243,28 +248,13 @@ TRAIN *TrainCreateNelderMead(SCORE_FUNCTION score_function, void *x0, int positi
 	memcpy(result->best_position,x0,position_size);
 	result->best_score = score_function(result->best_position,result);
 
-	trainNM->start = (double*)calloc(result->position_size,1);
-	trainNM->trainedWeights = (double*)calloc(result->position_size,1);
-	memcpy(trainNM->start,x0,result->position_size);
-
 	n = result->position_size/sizeof(double);
         
-    trainNM->p = (double*)calloc(n * (n + 1),sizeof(double));
-    trainNM->pstar = (double*)calloc(n,sizeof(double));
-    trainNM->p2star = (double*)calloc(n,sizeof(double));
-    trainNM->pbar = (double*)calloc(n,sizeof(double));
-    trainNM->y = (double*)calloc(n + 1,sizeof(double));
-
-    trainNM->nn = n + 1;
-    trainNM->del = 1.0;
-    trainNM->rq = 0.000001 * n;
-
+	trainNM->konvge = konvge;
+	trainNM->kcount = kcount;
+	trainNM->reqmin = reqmin;
+	trainNM->stepValue = stepValue;
     trainNM->step = (double*)calloc(n,sizeof(double));
-    trainNM->jcount = trainNM->konvge = 500;
-    for (i = 0; i < n; i++) {
-		trainNM->step[i] = stepValue;
-    }
-
 	return result;
 }
 
@@ -280,11 +270,6 @@ void TrainDelete(TRAIN *train) {
 			free(((TRAIN_HILL_CLIMB*)train)->step_size);
 			break;
 		case TYPE_TRAIN_NELDER_MEAD:
-			free(((TRAIN_NELDER_MEAD*)train)->p);
-			free(((TRAIN_NELDER_MEAD*)train)->pstar);
-			free(((TRAIN_NELDER_MEAD*)train)->p2star);
-			free(((TRAIN_NELDER_MEAD*)train)->pbar);
-			free(((TRAIN_NELDER_MEAD*)train)->y);
 			free(((TRAIN_NELDER_MEAD*)train)->step);
 			break;
 	}
@@ -329,7 +314,7 @@ void TrainIteration(TRAIN *train) {
 			_IterationAnneal((TRAIN_ANNEAL*)train);
 			break;
 		case TYPE_TRAIN_NELDER_MEAD:
-			_IterationNelderMead(train);
+			_IterationNelderMead((TRAIN_NELDER_MEAD*)train);
 			break;
 	}
 }

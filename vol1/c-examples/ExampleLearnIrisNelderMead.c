@@ -99,9 +99,9 @@ void ExampleNelderMeadIris(int argIndex, int argc, char **argv) {
 
 	/* Extract the species definition */
 	irisSpecies = NormGetColumnItem(norm, 4);
-	
-	train = TrainCreateGreedyRandom(score_function,1,x0,size,params,0,0);
-	TrainRun(train,500000,0.01,1);
+
+	train = TrainCreateNelderMead(score_function,x0,size,100,5000,0.0001,10,params);
+	TrainRun(train,500000,0.02,1);
 	TrainComplete(train,params->network->long_term_memory);
 
 	/* Perform the evaluation */

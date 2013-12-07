@@ -262,20 +262,11 @@ typedef struct TRAIN_ANNEAL {
 
 typedef struct TRAIN_NELDER_MEAD {
 	TRAIN train;
-	double del;
-    unsigned int jcount;
-    unsigned int nn;
-    double *p;
-    double *p2star;
-    double *pbar;
-    double *pstar;
-    double rq;
-    double *y;
-    double *start;
-    double *trainedWeights;
     double *step;
-    unsigned int konvge;
-    double lastError;
+	int konvge;
+	int kcount;
+	double reqmin;
+	double stepValue;
 } TRAIN_NELDER_MEAD;
 
 NORM_DATA *NormCreate();
@@ -374,6 +365,8 @@ double RBFGaussian(double *input, int input_position, int input_count, double *p
 TRAIN *TrainCreateGreedyRandom(SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, void *params,double low,double high);
 TRAIN *TrainCreateHillClimb(SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, double acceleration, double stepSize, void *params);
 TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, void *x0, int position_size, double start_temperature, double stop_temperature, unsigned int cycles, unsigned int iterations, void *params);
+TRAIN *TrainCreateNelderMead(SCORE_FUNCTION score_function, void *x0, int position_size, 
+	int konvge, int kcount, double reqmin, double stepValue, void *params);
 void TrainDelete(TRAIN *train);
 void TrainRun(TRAIN *train, int max_iterations, double target_score, int output);
 void TrainIteration(TRAIN *train);
@@ -384,7 +377,7 @@ void AnnealDoubleRandomize(void *anneal);
 double AnnealCalcProbability(double ecurrent, double enew, double t);
 
 /* asa047.c */
-void nelmin ( double fn ( double x[] ), int n, double start[], double xmin[], 
+void nelmin ( SCORE_FUNCTION fn, void *params, int n, double start[], double xmin[], 
   double *ynewlo, double reqmin, double step[], int konvge, int kcount, 
   int *icount, int *numres, int *ifault );
 
