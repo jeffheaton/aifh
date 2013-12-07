@@ -1,5 +1,11 @@
 #include "aifh-vol1.h"
 
+const double NM_CCOEFF = 0.5;
+const double NM_ECOEFF = 2.0;
+const double NM_EPS = 0.001;
+const double NM_RCOEFF = 1.0;
+
+
 void _IterationGreedyRandom(TRAIN_GREEDY *train) {
 	int doubleSize,i;
 	double *trial,trialScore;
@@ -197,6 +203,32 @@ TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, int should_minimize, voi
 
 	return result;
 }
+
+TRAIN *TrainCreateNelderMead(SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, void *params,double low, double high) {
+	TRAIN *result = NULL;
+	TRAIN_GREEDY *trainGreedy = NULL;
+
+	trainGreedy = (TRAIN_GREEDY*)calloc(1,sizeof(TRAIN_GREEDY));
+	result = (TRAIN*)trainGreedy;
+	trainGreedy->low = low;
+	trainGreedy->high = high;
+
+	result->type = TYPE_TRAIN_GREEDY_RANDOM;
+	result->current_position = (unsigned char*)calloc(position_size,1);
+	result->trial_position = (unsigned char*)calloc(position_size,1);
+	result->best_position = (unsigned char*)calloc(position_size,1);
+	result->score_function = score_function;
+	result->random = RandCreate(TYPE_RANDOM_MT,(long)time(NULL));
+	result->params = params;
+	result->position_size = position_size;
+	result->max_iterations = 0;
+	result->should_minimize = should_minimize;
+	memcpy(result->current_position,x0,position_size);
+	memcpy(result->best_position,x0,position_size);
+	result->best_score = score_function(result->best_position,result);
+	return result;
+}
+
 
 
 void TrainDelete(TRAIN *train) {
