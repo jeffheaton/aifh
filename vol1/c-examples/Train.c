@@ -99,7 +99,24 @@ void _IterationAnneal(TRAIN_ANNEAL *train) {
         }
 }
 
-void _IterationNelderMead(TRAIN *train) {
+double fn ( double x[] ) {
+}
+
+void _IterationNelderMead(TRAIN_NELDER_MEAD *train) {
+	int n, konvge, kcount;
+	double *start,*xmin, *step;
+	double ynewlo, reqmin;
+
+	n = train->train.position_size;
+	start = (double*)train->train.current_position;
+	xmin = (double*)train->train.best_position;
+	step = train->step;
+	reqmin = 0;
+	konvge = 0;
+	kcount = 1000;
+
+	nelmin ( fn, n, start, xmin, &ynewlo, reqmin, step, konvge, kcount, 
+  int *icount, int *numres, int *ifault )	
 }
 
 
@@ -204,16 +221,15 @@ TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, void *x0, int position_s
 	return result;
 }
 
-TRAIN *TrainCreateNelderMead(SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, void *params,double low, double high) {
+TRAIN *TrainCreateNelderMead(SCORE_FUNCTION score_function, void *x0, int position_size, double stepValue, void *params) {
 	TRAIN *result = NULL;
-	TRAIN_GREEDY *trainGreedy = NULL;
+	TRAIN_NELDER_MEAD *trainNM = NULL;
+	unsigned int n, i;
 
-	trainGreedy = (TRAIN_GREEDY*)calloc(1,sizeof(TRAIN_GREEDY));
-	result = (TRAIN*)trainGreedy;
-	trainGreedy->low = low;
-	trainGreedy->high = high;
-
-	result->type = TYPE_TRAIN_GREEDY_RANDOM;
+	trainNM = (TRAIN_NELDER_MEAD*)calloc(1,sizeof(TRAIN_GREEDY));
+	result = (TRAIN*)trainNM;
+	
+	result->type = TYPE_TRAIN_NELDER_MEAD;
 	result->current_position = (unsigned char*)calloc(position_size,1);
 	result->trial_position = (unsigned char*)calloc(position_size,1);
 	result->best_position = (unsigned char*)calloc(position_size,1);
@@ -222,10 +238,33 @@ TRAIN *TrainCreateNelderMead(SCORE_FUNCTION score_function, int should_minimize,
 	result->params = params;
 	result->position_size = position_size;
 	result->max_iterations = 0;
-	result->should_minimize = should_minimize;
+	result->should_minimize = 1;
 	memcpy(result->current_position,x0,position_size);
 	memcpy(result->best_position,x0,position_size);
 	result->best_score = score_function(result->best_position,result);
+
+	trainNM->start = (double*)calloc(result->position_size,1);
+	trainNM->trainedWeights = (double*)calloc(result->position_size,1);
+	memcpy(trainNM->start,x0,result->position_size);
+
+	n = result->position_size/sizeof(double);
+        
+    trainNM->p = (double*)calloc(n * (n + 1),sizeof(double));
+    trainNM->pstar = (double*)calloc(n,sizeof(double));
+    trainNM->p2star = (double*)calloc(n,sizeof(double));
+    trainNM->pbar = (double*)calloc(n,sizeof(double));
+    trainNM->y = (double*)calloc(n + 1,sizeof(double));
+
+    trainNM->nn = n + 1;
+    trainNM->del = 1.0;
+    trainNM->rq = 0.000001 * n;
+
+    trainNM->step = (double*)calloc(n,sizeof(double));
+    trainNM->jcount = trainNM->konvge = 500;
+    for (i = 0; i < n; i++) {
+		trainNM->step[i] = stepValue;
+    }
+
 	return result;
 }
 
@@ -239,7 +278,15 @@ void TrainDelete(TRAIN *train) {
 	switch(train->type) {
 		case TYPE_TRAIN_HILL_CLIMB:
 			free(((TRAIN_HILL_CLIMB*)train)->step_size);
-		break;
+			break;
+		case TYPE_TRAIN_NELDER_MEAD:
+			free(((TRAIN_NELDER_MEAD*)train)->p);
+			free(((TRAIN_NELDER_MEAD*)train)->pstar);
+			free(((TRAIN_NELDER_MEAD*)train)->p2star);
+			free(((TRAIN_NELDER_MEAD*)train)->pbar);
+			free(((TRAIN_NELDER_MEAD*)train)->y);
+			free(((TRAIN_NELDER_MEAD*)train)->step);
+			break;
 	}
 
 	free(train);
