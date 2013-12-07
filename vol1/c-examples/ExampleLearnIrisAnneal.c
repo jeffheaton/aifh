@@ -85,7 +85,7 @@ void ExampleAnnealIris(int argIndex, int argc, char **argv) {
 	unsigned int size,i;
 	NORM_DATA_ITEM *irisSpecies;
 	char *idealSpecies,*actualSpecies;
-	const int kMax = 100000;
+	const int kMax = 2000;
 
 	params = (IRIS_PARAMS*)calloc(1,sizeof(IRIS_PARAMS));
 	norm = NormCreate();
@@ -101,7 +101,7 @@ void ExampleAnnealIris(int argIndex, int argc, char **argv) {
 	/* Extract the species definition */
 	irisSpecies = NormGetColumnItem(norm, 4);
 	
-	train = TrainCreateAnneal(score_function,1,x0,size,400,0.0001,100,kMax,params);
+	train = TrainCreateAnneal(score_function,x0,size,400,0.0001,100,kMax,params);
 	TrainRun(train,kMax,0.01,1);
 	TrainComplete(train,params->network->long_term_memory);
 

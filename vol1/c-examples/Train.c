@@ -72,7 +72,7 @@ void _IterationAnneal(TRAIN_ANNEAL *train) {
 			train->anneal_randomize(train);
 
             /* did we improve it */
-			trial_error = train->train.score_function(train->train.current_position,train);
+			trial_error = train->train.score_function(train->train.trial_position,train);
 
             /* was this iteration an improvement?  If so, always keep. */
             keep = 0;
@@ -92,12 +92,10 @@ void _IterationAnneal(TRAIN_ANNEAL *train) {
                 // better than global error
 				if (trial_error < train->train.best_score) {
                     train->train.best_score = trial_error;
-					memcpy(train->train.best_position,train->train.trial_position,train->train.position_size);
-					memcpy(train->train.current_position,train->train.trial_position,train->train.position_size);
+					memcpy(train->train.best_position,train->train.trial_position,train->train.position_size);				
                 }
-            } else {
 				memcpy(train->train.current_position,train->train.trial_position,train->train.position_size);
-            }
+            } 
         }
 }
 
@@ -170,8 +168,7 @@ TRAIN *TrainCreateHillClimb(SCORE_FUNCTION score_function, int should_minimize, 
 	return result;
 }
 
-
-TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, double start_temperature, double stop_temperature, int cycles, int iterations, void *params)
+TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, void *x0, int position_size, double start_temperature, double stop_temperature, unsigned int cycles, unsigned int iterations, void *params)
 {
 	TRAIN *result = NULL;
 	TRAIN_ANNEAL *trainAnneal = NULL;
@@ -188,10 +185,11 @@ TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, int should_minimize, voi
 	result->params = params;
 	result->position_size = position_size;
 	result->max_iterations = iterations;
-	result->should_minimize = should_minimize;
+	result->should_minimize = 1;
 	memcpy(result->current_position,x0,position_size);
 	memcpy(result->best_position,x0,position_size);
 	result->best_score = score_function(result->best_position,result);
+	
 
 	trainAnneal->current_temperature = start_temperature;
 	trainAnneal->starting_temperature = start_temperature;
@@ -200,6 +198,8 @@ TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, int should_minimize, voi
 	trainAnneal->anneal_cooling = AnnealCoolingSchedule;
 	trainAnneal->anneal_probability = AnnealCalcProbability;
 	trainAnneal->anneal_randomize = AnnealDoubleRandomize;
+	trainAnneal->current_score = result->best_score;
+	trainAnneal->cycles = cycles;
 
 	return result;
 }
@@ -311,7 +311,7 @@ void AnnealDoubleRandomize(void *a) {
 	double d, *position;
 
 	anneal = (TRAIN_ANNEAL*)a;
-	position = (double*)anneal->train.current_position;
+	position = (double*)anneal->train.trial_position;
 	dimensions = anneal->train.position_size/sizeof(double);
 	for (i = 0; i < dimensions; i++) {
 		d = RandNextGaussian(anneal->train.random) / 10.0;
