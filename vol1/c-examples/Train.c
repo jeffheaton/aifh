@@ -229,7 +229,7 @@ TRAIN *TrainCreateNelderMead(SCORE_FUNCTION score_function, void *x0, int positi
 	int konvge, int kcount, double reqmin, double stepValue, void *params) {
 	TRAIN *result = NULL;
 	TRAIN_NELDER_MEAD *trainNM = NULL;
-	unsigned int n, i;
+	unsigned int n;
 
 	trainNM = (TRAIN_NELDER_MEAD*)calloc(1,sizeof(TRAIN_GREEDY));
 	result = (TRAIN*)trainNM;

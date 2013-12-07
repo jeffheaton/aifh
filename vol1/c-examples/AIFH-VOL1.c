@@ -88,6 +88,9 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"LearnIrisAnneal") == 0 ) {
 				success = 1;
 				ExampleAnnealIris(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"TravelingSalesmanAnneal") == 0 ) {
+				success = 1;
+				ExampleAnnealTSP(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"test") == 0 ) {
 				success = 1;
 				ExampleTest(i+1,argc,argv);

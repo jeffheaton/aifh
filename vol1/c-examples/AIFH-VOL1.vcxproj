@@ -97,6 +97,7 @@
     <ClCompile Include="Equilateral.c" />
     <ClCompile Include="Error.c" />
     <ClCompile Include="ExampleAnalyze.c" />
+    <ClCompile Include="ExampleAnnealTSP.c" />
     <ClCompile Include="ExampleDistance.c" />
     <ClCompile Include="ExampleError.c" />
     <ClCompile Include="ExampleKMeans.c" />

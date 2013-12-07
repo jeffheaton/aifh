@@ -128,5 +128,8 @@
     <ClCompile Include="ExampleLearnIrisAnneal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExampleAnnealTSP.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
