@@ -162,8 +162,7 @@ TRAIN *TrainCreateHillClimb(SCORE_FUNCTION score_function, int should_minimize, 
 	return result;
 }
 
-
-TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, int should_minimize, void *x0, int position_size, double start_temperature, double stop_temperature, int cycles, int iterations, void *params)
+TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, void *x0, int position_size, double start_temperature, double stop_temperature, unsigned int cycles, unsigned int iterations, void *params)
 {
 	TRAIN *result = NULL;
 	TRAIN_ANNEAL *trainAnneal = NULL;
@@ -180,7 +179,7 @@ TRAIN *TrainCreateAnneal(SCORE_FUNCTION score_function, int should_minimize, voi
 	result->params = params;
 	result->position_size = position_size;
 	result->max_iterations = iterations;
-	result->should_minimize = should_minimize;
+	result->should_minimize = 1;
 	memcpy(result->current_position,x0,position_size);
 	memcpy(result->best_position,x0,position_size);
 	result->best_score = score_function(result->best_position,result);
