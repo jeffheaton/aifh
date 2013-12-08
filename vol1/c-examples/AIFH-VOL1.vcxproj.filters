@@ -131,5 +131,8 @@
     <ClCompile Include="ExampleAnnealTSP.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExampleAnnealKnapsack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

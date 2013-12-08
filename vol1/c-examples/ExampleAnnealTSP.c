@@ -32,7 +32,7 @@
 #define CITY_COUNT 50
 #define pi 3.14159265358979323846
 
-typedef struct IRIS_PARAMS {
+typedef struct TSP_PARAMS {
 	double city_x[CITY_COUNT];
 	double city_y[CITY_COUNT];
 	RANDOM_GENERATE *random;
@@ -92,8 +92,7 @@ static double score_function(void *m, void *p) {
 
 static void tsp_randomize(void *a) {
 	TRAIN_ANNEAL *anneal;
-	int dimensions,i;
-	int d, *position, city1,city2;
+	int dimensions, d, *position, city1,city2;
 
 	anneal = (TRAIN_ANNEAL*)a;
 	position = (int*)anneal->train.trial_position;
@@ -114,7 +113,6 @@ void ExampleAnnealTSP(int argIndex, int argc, char **argv) {
 	TRAIN *train;
 	int x0[CITY_COUNT], *x;
 	unsigned int size,i;
-	char *idealSpecies,*actualSpecies;
 	const int kMax = 2000;
 
 	params = CreateTSP();
@@ -128,6 +126,7 @@ void ExampleAnnealTSP(int argIndex, int argc, char **argv) {
 	/* Print out best path. */
 	x = (int*)train->best_position;
 
+	printf("Final Path:\n");
 	for(i=0;i<CITY_COUNT;i++) {
 		printf("%i -> ",x[i]);
 	}
