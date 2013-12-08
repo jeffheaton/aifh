@@ -134,5 +134,14 @@
     <ClCompile Include="ExampleAnnealKnapsack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Regression.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExampleLinearRegression.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

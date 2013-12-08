@@ -28,14 +28,15 @@
  */
 #include "aifh-vol1-examples.h"
 
-#define NUM_ITEMS_TO_CHOOSE 25
+#define NUM_ITEMS_TO_CHOOSE 100
 #define KNAPSACK_MAX_WEIGHT 50
 #define ITEM_MAX_WEIGHT 20
-#define ITEM_MAX_VALUE 1000
+#define ITEM_MAX_VALUE 150
 
 typedef struct KNAPSACK_PARAMS {
 	double profit[NUM_ITEMS_TO_CHOOSE];
 	double weight[NUM_ITEMS_TO_CHOOSE];
+	double max_profit;
 	RANDOM_GENERATE *random;
 } KNAPSACK_PARAMS;
 
@@ -47,9 +48,11 @@ static KNAPSACK_PARAMS *CreateKnapsack() {
 	result->random = RandCreate(TYPE_RANDOM_MT,(long)time(NULL));
 
 	/* Generate a random set of items. */
+	result->max_profit = 0;
 	for (n = 0; n < NUM_ITEMS_TO_CHOOSE; n++) {
 		result->profit[n] = RandNextIntRange(result->random,0, ITEM_MAX_VALUE);
 		result->weight[n] = RandNextIntRange(result->random,0, ITEM_MAX_WEIGHT);
+		result->max_profit+=result->profit[n];
 	}
 
 	return result;
@@ -117,22 +120,22 @@ static double score_function(void *m, void *p) {
 	KNAPSACK_PARAMS *params;
 	unsigned char *memory;
 	unsigned int i;
-	double result = 0;
+	double sum = 0;
 	
 	memory = (unsigned char*)m;
 	train = (TRAIN*)p;
 	params = (KNAPSACK_PARAMS *)train->params;
 
 	if (CalculateTotalWeight(params,memory,train->position_size) > KNAPSACK_MAX_WEIGHT) {
-		return 1000000.0; /* bad socre */
+		return params->max_profit; /* bad socre */
 	}
 
 	for (i = 0; i < train->position_size; i++) {
 		if (memory[i]) {
-			result += params->profit[i];
+			sum += params->profit[i];
 		}
 	}
-	return result;
+	return params->max_profit-sum;
 }
 
 void RandomFill(unsigned char *items) {

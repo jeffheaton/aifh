@@ -116,12 +116,15 @@
     <ClCompile Include="KMeans.c" />
     <ClCompile Include="ExampleLearnIrisNelderMead.c" />
     <ClCompile Include="libcsv.c" />
+    <ClCompile Include="ExampleLinearRegression.c" />
+    <ClCompile Include="matrix.c" />
     <ClCompile Include="mt19937ar.c" />
     <ClCompile Include="Normalize.c" />
     <ClCompile Include="Random.c" />
     <ClCompile Include="ExamplePI.c" />
     <ClCompile Include="RBF.c" />
     <ClCompile Include="RBFNetwork.c" />
+    <ClCompile Include="Regression.c" />
     <ClCompile Include="Train.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

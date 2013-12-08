@@ -94,6 +94,9 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"KnapsackAnneal") == 0 ) {
 				success = 1;
 				ExampleAnnealKnapsack(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"LinearRegressionExample") == 0 ) {
+				success = 1;
+				ExampleLinearRegression(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"test") == 0 ) {
 				success = 1;
 				ExampleTest(i+1,argc,argv);

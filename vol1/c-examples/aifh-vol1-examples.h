@@ -72,6 +72,9 @@ void ExampleAnnealIris(int argIndex, int argc, char **argv);
 void ExampleAnnealTSP(int argIndex, int argc, char **argv);
 void ExampleAnnealKnapsack(int argIndex, int argc, char **argv);
 
+/* Chapter 10 */
+void ExampleLinearRegression(int argIndex, int argc, char **argv);
+
 /* Utility */
 void LocateFile(char *filename, char *resultName, size_t size);
 

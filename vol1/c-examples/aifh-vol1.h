@@ -90,6 +90,7 @@ typedef double(*RBF_FUNCTION)(double *input, int input_position, int input_count
 typedef double (*ANNEAL_COOLING)(void *anneal);
 typedef void (*ANNEAL_RANDOMIZE)(void *anneal);
 typedef double (*ANNEAL_PROBABILITY)(double ecurrent, double enew, double t);
+typedef double (*LINK_FUNCTION)(double x);
 
 
 	
@@ -269,6 +270,18 @@ typedef struct TRAIN_NELDER_MEAD {
 	double stepValue;
 } TRAIN_NELDER_MEAD;
 
+typedef struct {
+	int m, n;
+	double ** v;
+} mat_t, *mat;
+
+typedef struct REGRESSION_MODEL {
+	int count;
+	double *coeff;
+	LINK_FUNCTION link;
+} REGRESSION_MODEL;
+ 
+
 NORM_DATA *NormCreate();
 void NormDelete(NORM_DATA *norm);
 void NormDefRange(NORM_DATA *norm, double low, double high);
@@ -380,6 +393,20 @@ double AnnealCalcProbability(double ecurrent, double enew, double t);
 void nelmin ( SCORE_FUNCTION fn, void *params, int n, double start[], double xmin[], 
   double *ynewlo, double reqmin, double step[], int konvge, int kcount, 
   int *icount, int *numres, int *ifault );
+
+/* matrix.c */
+mat matrix_new(int m, int n);
+void matrix_delete(mat m);
+mat matrix_copy(mat m);
+mat matrix_solve_qr(mat xMatrix, mat yMatrix);
+
+/* Regression.c */
+double LinkLOGIT(double x);
+double LinkLinear(double x);
+REGRESSION_MODEL *RegressionCreate(int inputCount, LINK_FUNCTION link);
+void RegressionDelete(REGRESSION_MODEL *reg);
+double RegressionCalculate(REGRESSION_MODEL *reg, double *x);
+void RegressionFitLeastSquares(REGRESSION_MODEL *reg, DATA_SET *training);
 
 #ifdef __cplusplus
 }
