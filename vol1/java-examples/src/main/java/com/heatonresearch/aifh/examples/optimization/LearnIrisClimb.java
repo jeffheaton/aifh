@@ -52,7 +52,10 @@ public class LearnIrisClimb extends SimpleLearn {
     public void process() {
         try {
             final InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
-
+            if( istream==null ) {
+                System.out.println("Cannot access data set, make sure the resources are available.");
+                System.exit(1);
+            }
             final DataSet ds = DataSet.load(istream);
             // The following ranges are setup for the Iris data set.  If you wish to normalize other files you will
             // need to modify the below function calls other files.

@@ -50,7 +50,10 @@ public class GLMExample extends SimpleLearn {
     public void process() {
         try {
             final InputStream istream = this.getClass().getResourceAsStream("/breast-cancer-wisconsin.csv");
-
+            if( istream==null ) {
+                System.out.println("Cannot access data set, make sure the resources are available.");
+                System.exit(1);
+            }
             final DataSet ds = DataSet.load(istream);
             istream.close();
 

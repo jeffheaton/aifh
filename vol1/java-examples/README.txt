@@ -1,10 +1,7 @@
-This folder contains the Java examples for:
-
-Artificial Intelligence for Humans, Vol 1: Fundamental Algorithms
-
-** Needed Software **
-
-This software was developed using JDK 1.7.  To make use of this software you will need JDK 1.7 or later.
+AIFH Vol1  - Java Code Examples
+====
+This folder contains the Java examples for AIFH Volume 1.  This software was developed using JDK 1.7.  
+To make use of this software you will need JDK 1.7 or later.
 
 Four 3rd party JARs are also used.
 
@@ -17,15 +14,78 @@ Additionally, the following two JAR files are needed for unit tests:
 'org.hamcrest:hamcrest-all:1.3'
 'junit:junit:4.10'
 
-** Running the Examples from the Command Line **
+##Data Files
+
+There are three different data sets used by this book's examples.  All three can be found
+at the UCI machine learning repository. These files are embedded in the Java build as
+resources.
+
+http://archive.ics.uci.edu/ml/
+
+For your convenience these three data sets can be found inside of the datasets folder.
+The Python examples make use of this code to find the data sets.
+
+##Individual Examples
+The individual examples are all located in the example folder.  They are listed here,
+by chapter.
+
+* Chapter 1: Introduction to AI
+```
+    runCSVExample - Chapter 1.  This example reads a CSV file
+```
+* Chapter 2: Normalizing Data
+```
+    runNormalizeCSVExample - Chapter 2:  This example normalizes a CSV file
+```
+* Chapter 3: Distance Metrics
+```	
+    runOCRExample - Chapter 3:  This example performs basic OCR
+```
+* Chapter 4: Random Numbers
+```
+    runEvaluatePI - Chapter 4:  This example approximates Pi using Monte Carlo
+    runEvaluateRandom - Chapter 4:  This example approximates Pi using Monte Carlo
+```
+* Chapter 5: K-Means
+```
+    runPerformCluster - Chapter 5:  This example performs KMeans cluster
+```
+* Chapter 6: Error Calculation
+```
+    runEvaluateErrors - Chapter 6:  This example compares several error metrics
+```
+* Chapter 7: Towards Machine Learning
+```
+    runLearnIris - Chapter 7:  This example learns Iris w/ RBF network & Greedy Random
+    runLearnPolynomial - Chapter 7:  This example learns a Polynomial w/ Greedy Random
+    runLearnXOR - Chapter 7:  This example learns the XOR function w/ RBF network & Greedy Random
+```
+* Chapter 8: Optimization Algorithms
+```
+    runLearnIrisAnneal - Chapter 8:  This example learns the Iris dataset w/ RBF network & Simulated Annealing
+    runLearnIrisClimb - Chapter 8:  This example learns the Iris dataset w/ RBF network & Hill Climbing
+    runLearnIrisNelderMead - Chapter 8:  This example learns the Iris dataset w/ RBF network & Nelder Mead
+```
+* Chapter 9: Discrete Optimization
+```
+    runKnapsackAnneal - Chapter 9:  This example optimizes the Knapsack problem with Simulated Annealing
+    runTravelingSalesmanAnneal - Chapter 9:  This example optimizes the Travelling Salesman problem with Simulated Annealing
+```
+* Chapter 10: Linear Regression	
+```
+    runGLMExample - Chapter 10:  This uses a GLM to predict breast cancer
+    runLinearRegressionExample - Chapter 10:  This uses linear regression for the Iris data set
+```
+
+##Running Examples - Command Line
 
 The easiest means for running the examples is to use the provided Gradle wrapper.  This does not require you to download
 or setup any additional software.  From the directory that contains "gradlew" execute:
-
+```
 gradlew tasks
-
+```
 This should display the following (or similar):
-
+```
     Jeffs-MacBook-Pro:java-examples jheaton$ ./gradlew tasks
     :tasks
 
@@ -105,19 +165,29 @@ This should display the following (or similar):
 
     Total time: 2.781 secs
     Jeffs-MacBook-Pro:java-examples jheaton$
-
+```
 
 You can now choose the example to run.  Notice the "Example Tasks" above.  You can see there is a Gradle task for every
 one of the book's examples.  To run the first example, execute the following command.
-
+```
     gradlew runCSVExample
-
+```
 Of course, remember that on UNIX you must typically prefix with ./
 So the gradle command becomes.
-
+```
     ./gradle
-
-** Running the Examples from the Command Line **
+```
+##Running Examples - IDE
 
 Most IDE's provide the ability to import a Gradle file.  This is the easiest way to setup a project file in your IDE.
-I've used this method to create all of the code in IntelliJ.
+I've used this method to create all of the code in IntelliJ. Make sure that the examples have access to the 
+resource files, as well as the third party JAR files.
+
+One common error occurs when the examples cannot find the data set.  This will usually result in the following error: 
+
+```Cannot access data set, make sure the resources are available.```
+
+If you are getting this error using Intellij, then follow the instructions here to make sure that *.csv resources
+are copied by Intellij.
+
+http://www.jetbrains.com/idea/webhelp/resource-files.html

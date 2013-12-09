@@ -51,6 +51,10 @@ public class NormalizeCSVExample {
     public void run() {
         try {
             final InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
+            if( istream==null ) {
+                System.out.println("Cannot access data set, make sure the resources are available.");
+                System.exit(1);
+            }
             final DataSet ds = DataSet.load(istream);
             istream.close();
 
