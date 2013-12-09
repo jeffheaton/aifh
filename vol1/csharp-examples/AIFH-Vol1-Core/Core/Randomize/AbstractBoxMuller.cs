@@ -95,7 +95,7 @@ namespace AIFH_Vol1.Core.Randomize
         public abstract override bool NextBoolean();
 
         /// <inheritdoc/>
-        public abstract override double NextFloat();
+        public abstract override float NextFloat();
 
         /// <inheritdoc/>
         public abstract override long NextLong();

@@ -61,7 +61,7 @@ namespace AIFH_Vol1.Core.Randomize
         }
 
         /// <inheritdoc/>
-        public override double NextFloat()
+        public override float NextFloat()
         {
             var result = new byte[4];
             _rnd.GetBytes(result);

@@ -64,7 +64,7 @@ namespace AIFH_Vol1.Core.Randomize
         public abstract bool NextBoolean();
 
         /// <inheritdoc/>
-        public abstract double NextFloat();
+        public abstract float NextFloat();
 
         /// <inheritdoc/>
         public abstract double NextGaussian();

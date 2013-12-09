@@ -174,7 +174,7 @@ namespace AIFH_Vol1.Core.Randomize
         }
 
         /// <inheritdoc/>
-        public override double NextFloat()
+        public override float NextFloat()
         {
             return (float)NextDouble();
         }

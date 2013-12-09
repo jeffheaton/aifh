@@ -55,7 +55,7 @@ namespace AIFH_Vol1.Core.Randomize
         /// Generate the next random floating point.
         /// </summary>
         /// <returns>The next random floating point.</returns>
-        double NextFloat();
+        float NextFloat();
 
         /// <summary>
         /// Generate the next random double.
