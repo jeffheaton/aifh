@@ -129,8 +129,8 @@ double RegressionReweightLeastSquares(REGRESSION_MODEL *reg, DATA_SET *training)
 		for (k = 0; k < rowCount; k++) {
 			r = working->v[k];
             
-			for (j = 0; j < rowCount; j++) {
-				for (i = 0; i < rowCount; i++) {
+			for (j = 0; j < coeffCount; j++) {
+				for (i = 0; i < coeffCount; i++) {
                     hessian->v[j][i] += r[i] * r[j] * weights[k];
                 }
             }

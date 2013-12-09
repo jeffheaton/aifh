@@ -6,8 +6,8 @@ void ExampleGLM(int argIndex, int argc, char **argv) {
 	NORM_DATA *norm;
 	DATA_SET *data;
 	REGRESSION_MODEL *reg;
-	double *ideal, actual, *input;
-	unsigned int i;
+	double *ideal, actual, *input, error;
+	unsigned int i, iteration;
 
 	LocateFile("breast-cancer-wisconsin.csv",filename,FILENAME_MAX);
 	norm = NormCreate();
@@ -30,8 +30,15 @@ void ExampleGLM(int argIndex, int argc, char **argv) {
 	printf("Actual output count: %i\n", data->idealCount);
 
 	reg = RegressionCreate(data->inputCount,LinkLOGIT);
-	RegressionReweightLeastSquares(reg,data);
+	
+	iteration = 0;
+    do {
+		iteration++;
+		error = RegressionReweightLeastSquares(reg,data);
+		printf("Iteration #%i, Error: %.8f\n",iteration,error);
+	} while (iteration < 1000 && error > 0.01);
 
+	/* Display results */
 	for(i=0;i<data->recordCount;i++) {
 		ideal = DataGetIdeal(data,i);
 		input = DataGetInput(data,i);
