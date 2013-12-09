@@ -128,7 +128,7 @@ mat matrix_solve_qr(mat xMatrix, mat yMatrix) {
 
 	/* Copy right hand side */
 	nx = yMatrix->n;
-	x = matrix_copy(xMatrix);
+	x = matrix_copy(yMatrix);
 
 	/* Compute Y = transpose(Q)*B */
 	for (k = 0; k < n; k++) {

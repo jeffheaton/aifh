@@ -82,6 +82,7 @@ static void _AnalyzeCallbackColumn (void *s, size_t len, void *data)
 			col->actualLow=d;
 		} else {
 			switch(col->type) {
+			case NORM_TYPE_PASS:
 			case NORM_TYPE_RANGE:
 				col->actualHigh=MAX(col->actualHigh,d);
 				col->actualLow=MIN(col->actualLow,d);
@@ -139,6 +140,10 @@ static void _ProcessCallbackColumn (void *s, size_t len, void *data)
 		case NORM_TYPE_RANGE:
 			x = atof((char*)s);
 			*(pair->data->cursor++) = NormRange(col->actualLow, col->actualHigh, col->targetLow, col->targetHigh, x);
+			break;
+		case NORM_TYPE_PASS:
+			x = atof((char*)s);
+			*(pair->data->cursor++) = x;
 			break;
 		case NORM_TYPE_RECIPROCAL:
 			x = atof((char*)s);
@@ -327,8 +332,35 @@ void NormDelete(NORM_DATA *norm) {
 	}
 
 	free(norm);
-
 }
+
+void NormDefPass(NORM_DATA *norm) {
+	NORM_DATA_ITEM *last = norm->firstItem;
+	NORM_DATA_ITEM *newItem;
+
+	/* Find the last item */ 
+
+	while( last!=NULL && last->next != NULL ) {
+		last = (NORM_DATA_ITEM *)last->next;
+	}
+
+	/* Create the new item */
+	newItem = (NORM_DATA_ITEM*)calloc(1,sizeof(NORM_DATA_ITEM));
+	newItem->type = NORM_TYPE_PASS;
+	newItem->targetHigh = 0;
+	newItem->targetLow = 0;
+	newItem->next = NULL;
+
+	/* Link the new item */
+	if( last==NULL ) {
+		/* Are we adding the first item */
+		norm->firstItem = newItem;
+	} else {
+		/* Link to the end of the chain */
+		last->next = (NORM_DATA_ITEM *)newItem;
+	}
+}
+
 
 void NormDefRange(NORM_DATA *norm, double low, double high) {
 	NORM_DATA_ITEM *last = norm->firstItem;
@@ -458,6 +490,9 @@ int NormCalculateActualCount(NORM_DATA *norm,int start, int size) {
 	while(item!=NULL) {
 		if(columnIndex>=start && columnIndex<(start+size)) {
 			switch(item->type) {
+			case NORM_TYPE_PASS:
+				result+=1;
+				break;
 			case NORM_TYPE_RANGE:
 				result+=1;
 				break;

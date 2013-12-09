@@ -12,14 +12,14 @@ void ExampleLinearRegression(int argIndex, int argc, char **argv) {
 	LocateFile("abalone.csv",filename,FILENAME_MAX);
 	norm = NormCreate();
 	NormDefClass(norm,NORM_CLASS_ONEOFN,0,1);
-	NormDefRange(norm,0,1);
-	NormDefRange(norm,0,1);
-	NormDefRange(norm,0,1);
-	NormDefRange(norm,0,1);
-	NormDefRange(norm,0,1);
-	NormDefRange(norm,0,1);
-	NormDefRange(norm,0,1);
-	NormDefRange(norm,0,1);
+	NormDefPass(norm);
+	NormDefPass(norm);
+	NormDefPass(norm);
+	NormDefPass(norm);
+	NormDefPass(norm);
+	NormDefPass(norm);
+	NormDefPass(norm);
+	NormDefPass(norm);
 
 	NormAnalyze(norm,filename);
 	data = NormProcess(norm,filename,8,1);

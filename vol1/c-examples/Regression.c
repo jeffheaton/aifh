@@ -26,8 +26,12 @@ void RegressionDelete(REGRESSION_MODEL *reg) {
 double RegressionCalculate(REGRESSION_MODEL *reg, double *x) {
 	double sum = 0;
 	int i;
+	double d1,d2,d3;
 
 	for (i = 1; i < reg->count; i++) {
+		d1 = x[i-1];
+		d2 = reg->coeff[i];
+		d3 = d1*d2;
 		sum += x[i - 1] * reg->coeff[i];
 	}
         

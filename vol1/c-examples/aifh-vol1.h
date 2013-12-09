@@ -49,6 +49,7 @@ extern "C" {
 #define NORM_TYPE_RECIPROCAL 1
 #define NORM_CLASS_ONEOFN 2
 #define NORM_CLASS_EQUILATERAL 3
+#define NORM_TYPE_PASS 4
 
 
 #define TYPE_RANDOM_C 0
@@ -286,6 +287,7 @@ NORM_DATA *NormCreate();
 void NormDelete(NORM_DATA *norm);
 void NormDefRange(NORM_DATA *norm, double low, double high);
 void NormDefClass(NORM_DATA *norm, int type, double low, double high);
+void NormDefPass(NORM_DATA *norm);
 void NormAnalyze(NORM_DATA *data, char *filename);
 DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outputCount);
 int NormCalculateActualCount(NORM_DATA *norm,int start, int size);
