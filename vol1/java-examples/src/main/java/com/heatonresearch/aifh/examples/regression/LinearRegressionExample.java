@@ -59,7 +59,7 @@ public class LinearRegressionExample extends SimpleLearn {
             final TrainLeastSquares train = new TrainLeastSquares(reg, trainingData);
             train.iteration();
             System.out.println(Arrays.toString(reg.getLongTermMemory()));
-            //query(reg, trainingData);
+            query(reg, trainingData);
             System.out.println("Error: " + train.getError());
 
 
