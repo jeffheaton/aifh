@@ -30,7 +30,7 @@ void matrix_delete(mat m)
 
 mat matrix_copy(mat m) {
 	mat result;
-	int row, col;
+	unsigned int row, col;
 
 	/* This is probably faster with multiple memcpy's */
 	result = matrix_new(m->m,m->n);
@@ -169,4 +169,8 @@ mat matrix_solve_qr(mat xMatrix, mat yMatrix) {
 
 	/* Return the result */
 	return result;
+}
+
+mat matrix_solve_lu(mat xMatrix, mat yMatrix) {
+	return NULL;
 }

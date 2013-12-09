@@ -109,7 +109,7 @@ static void _ProcessCallbackColumn (void *s, size_t len, void *data)
 	_PROCESS_PAIR *pair;
 	NORM_DATA *norm;
 	NORM_DATA_ITEM *col;
-	int colNum;
+	unsigned int colNum,i;
 	double x;
 
 	pair = (_PROCESS_PAIR*)data;
@@ -141,9 +141,19 @@ static void _ProcessCallbackColumn (void *s, size_t len, void *data)
 			x = atof((char*)s);
 			*(pair->data->cursor++) = NormRange(col->actualLow, col->actualHigh, col->targetLow, col->targetHigh, x);
 			break;
+		case NORM_TYPE_REPLACE:
+			i = (int)atof((char*)s);
+			if( i==col->repSearchFor ) {
+				*(pair->data->cursor++) = col->repReplaceWith;
+			} else {
+				*(pair->data->cursor++) = col->repOthers;
+			}
+			break;
 		case NORM_TYPE_PASS:
 			x = atof((char*)s);
 			*(pair->data->cursor++) = x;
+			break;
+		case NORM_TYPE_IGNORE:
 			break;
 		case NORM_TYPE_RECIPROCAL:
 			x = atof((char*)s);
@@ -361,6 +371,62 @@ void NormDefPass(NORM_DATA *norm) {
 	}
 }
 
+void NormDefIgnore(NORM_DATA *norm) {
+	NORM_DATA_ITEM *last = norm->firstItem;
+	NORM_DATA_ITEM *newItem;
+
+	/* Find the last item */ 
+
+	while( last!=NULL && last->next != NULL ) {
+		last = (NORM_DATA_ITEM *)last->next;
+	}
+
+	/* Create the new item */
+	newItem = (NORM_DATA_ITEM*)calloc(1,sizeof(NORM_DATA_ITEM));
+	newItem->type = NORM_TYPE_IGNORE;
+	newItem->targetHigh = 0;
+	newItem->targetLow = 0;
+	newItem->next = NULL;
+
+	/* Link the new item */
+	if( last==NULL ) {
+		/* Are we adding the first item */
+		norm->firstItem = newItem;
+	} else {
+		/* Link to the end of the chain */
+		last->next = (NORM_DATA_ITEM *)newItem;
+	}
+}
+
+void NormDefReplace(NORM_DATA *norm, int searchFor, int replaceWith, int others) {
+	NORM_DATA_ITEM *last = norm->firstItem;
+	NORM_DATA_ITEM *newItem;
+
+	/* Find the last item */ 
+
+	while( last!=NULL && last->next != NULL ) {
+		last = (NORM_DATA_ITEM *)last->next;
+	}
+
+	/* Create the new item */
+	newItem = (NORM_DATA_ITEM*)calloc(1,sizeof(NORM_DATA_ITEM));
+	newItem->type = NORM_TYPE_REPLACE;
+	newItem->targetHigh = 0;
+	newItem->targetLow = 0;
+	newItem->repOthers = others;
+	newItem->repReplaceWith = replaceWith;
+	newItem->repSearchFor = searchFor;
+	newItem->next = NULL;
+
+	/* Link the new item */
+	if( last==NULL ) {
+		/* Are we adding the first item */
+		norm->firstItem = newItem;
+	} else {
+		/* Link to the end of the chain */
+		last->next = (NORM_DATA_ITEM *)newItem;
+	}
+}
 
 void NormDefRange(NORM_DATA *norm, double low, double high) {
 	NORM_DATA_ITEM *last = norm->firstItem;
@@ -502,11 +568,20 @@ int NormCalculateActualCount(NORM_DATA *norm,int start, int size) {
 			case NORM_CLASS_ONEOFN:
 				result+=item->classCount;
 				break;
+			case NORM_TYPE_IGNORE:
+				break;
+			case NORM_TYPE_REPLACE:
+				result+=1;
+				break;
 			}
 		}
 
+		if( item->type!=NORM_TYPE_IGNORE ) {
+			columnIndex++;
+		}
+
+
 		item=item->next;
-		columnIndex++;
 	}
 
 	return result;

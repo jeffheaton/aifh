@@ -101,6 +101,7 @@
     <ClCompile Include="ExampleAnnealTSP.c" />
     <ClCompile Include="ExampleDistance.c" />
     <ClCompile Include="ExampleError.c" />
+    <ClCompile Include="ExampleGLM.c" />
     <ClCompile Include="ExampleKMeans.c" />
     <ClCompile Include="ExampleLearnIris.c" />
     <ClCompile Include="ExampleLearnIrisAnneal.c" />

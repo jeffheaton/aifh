@@ -74,6 +74,7 @@ void ExampleAnnealKnapsack(int argIndex, int argc, char **argv);
 
 /* Chapter 10 */
 void ExampleLinearRegression(int argIndex, int argc, char **argv);
+void ExampleGLM(int argIndex, int argc, char **argv);
 
 /* Utility */
 void LocateFile(char *filename, char *resultName, size_t size);

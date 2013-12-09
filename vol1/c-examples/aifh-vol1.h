@@ -50,6 +50,8 @@ extern "C" {
 #define NORM_CLASS_ONEOFN 2
 #define NORM_CLASS_EQUILATERAL 3
 #define NORM_TYPE_PASS 4
+#define NORM_TYPE_IGNORE 5
+#define NORM_TYPE_REPLACE 6
 
 
 #define TYPE_RANDOM_C 0
@@ -138,6 +140,9 @@ typedef struct NORM_DATA_ITEM {
 	unsigned int type;
 	unsigned int classCount;
 	double *equilateral;
+	int repSearchFor;
+    int repReplaceWith;
+    int repOthers;  
 	struct NORM_DATA_ITEM *next;
 	NORM_DATA_CLASS *firstClass;
 } NORM_DATA_ITEM;
@@ -272,12 +277,12 @@ typedef struct TRAIN_NELDER_MEAD {
 } TRAIN_NELDER_MEAD;
 
 typedef struct {
-	int m, n;
+	unsigned int m, n;
 	double ** v;
 } mat_t, *mat;
 
 typedef struct REGRESSION_MODEL {
-	int count;
+	unsigned int count;
 	double *coeff;
 	LINK_FUNCTION link;
 } REGRESSION_MODEL;
@@ -288,6 +293,8 @@ void NormDelete(NORM_DATA *norm);
 void NormDefRange(NORM_DATA *norm, double low, double high);
 void NormDefClass(NORM_DATA *norm, int type, double low, double high);
 void NormDefPass(NORM_DATA *norm);
+void NormDefIgnore(NORM_DATA *norm);
+void NormDefReplace(NORM_DATA *norm, int searchFor, int replaceWith, int others);
 void NormAnalyze(NORM_DATA *data, char *filename);
 DATA_SET *NormProcess(NORM_DATA *norm, char *filename, int inputCount, int outputCount);
 int NormCalculateActualCount(NORM_DATA *norm,int start, int size);
@@ -401,6 +408,7 @@ mat matrix_new(int m, int n);
 void matrix_delete(mat m);
 mat matrix_copy(mat m);
 mat matrix_solve_qr(mat xMatrix, mat yMatrix);
+mat matrix_solve_lu(mat xMatrix, mat yMatrix);
 
 /* Regression.c */
 double LinkLOGIT(double x);
@@ -409,6 +417,7 @@ REGRESSION_MODEL *RegressionCreate(int inputCount, LINK_FUNCTION link);
 void RegressionDelete(REGRESSION_MODEL *reg);
 double RegressionCalculate(REGRESSION_MODEL *reg, double *x);
 void RegressionFitLeastSquares(REGRESSION_MODEL *reg, DATA_SET *training);
+double RegressionReweightLeastSquares(REGRESSION_MODEL *reg, DATA_SET *training);
 
 #ifdef __cplusplus
 }

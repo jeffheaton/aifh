@@ -143,5 +143,8 @@
     <ClCompile Include="ExampleLinearRegression.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExampleGLM.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

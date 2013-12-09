@@ -97,6 +97,9 @@ int main(int argc, char* argv[])
 			} else if( strcasecmp(argv[i],"LinearRegressionExample") == 0 ) {
 				success = 1;
 				ExampleLinearRegression(i+1,argc,argv);
+			} else if( strcasecmp(argv[i],"GLMExample") == 0 ) {
+				success = 1;
+				ExampleGLM(i+1,argc,argv);
 			} else if( strcasecmp(argv[i],"test") == 0 ) {
 				success = 1;
 				ExampleTest(i+1,argc,argv);

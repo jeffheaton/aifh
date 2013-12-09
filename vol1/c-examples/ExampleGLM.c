@@ -1,7 +1,7 @@
 #include "aifh-vol1-examples.h"
 
 
-void ExampleLinearRegression(int argIndex, int argc, char **argv) {	
+void ExampleGLM(int argIndex, int argc, char **argv) {	
 	char filename[FILENAME_MAX];
 	NORM_DATA *norm;
 	DATA_SET *data;
@@ -9,9 +9,9 @@ void ExampleLinearRegression(int argIndex, int argc, char **argv) {
 	double *ideal, actual, *input;
 	unsigned int i;
 
-	LocateFile("abalone.csv",filename,FILENAME_MAX);
+	LocateFile("breast-cancer-wisconsin.csv",filename,FILENAME_MAX);
 	norm = NormCreate();
-	NormDefClass(norm,NORM_CLASS_ONEOFN,0,1);
+	NormDefIgnore(norm);
 	NormDefPass(norm);
 	NormDefPass(norm);
 	NormDefPass(norm);
@@ -20,15 +20,17 @@ void ExampleLinearRegression(int argIndex, int argc, char **argv) {
 	NormDefPass(norm);
 	NormDefPass(norm);
 	NormDefPass(norm);
+	NormDefPass(norm);
+	NormDefReplace(norm,4,1,0);
 
 	NormAnalyze(norm,filename);
-	data = NormProcess(norm,filename,8,1);
+	data = NormProcess(norm,filename,9,1);
 	
 	printf("Actual input count: %i\n", data->inputCount);
 	printf("Actual output count: %i\n", data->idealCount);
 
-	reg = RegressionCreate(data->inputCount,LinkLinear);
-	RegressionFitLeastSquares(reg,data);
+	reg = RegressionCreate(data->inputCount,LinkLOGIT);
+	RegressionReweightLeastSquares(reg,data);
 
 	for(i=0;i<data->recordCount;i++) {
 		ideal = DataGetIdeal(data,i);

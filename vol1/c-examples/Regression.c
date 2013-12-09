@@ -25,7 +25,7 @@ void RegressionDelete(REGRESSION_MODEL *reg) {
 
 double RegressionCalculate(REGRESSION_MODEL *reg, double *x) {
 	double sum = 0;
-	int i;
+	unsigned int i;
 	double d1,d2,d3;
 
 	for (i = 1; i < reg->count; i++) {
@@ -40,7 +40,7 @@ double RegressionCalculate(REGRESSION_MODEL *reg, double *x) {
 }
 
 void RegressionFitLeastSquares(REGRESSION_MODEL *reg, DATA_SET *training) {
-	int rowCount, inputColCount, row, col, colSize, i;
+	unsigned int rowCount, inputColCount, row, col, colSize, i;
 	mat xMatrix, yMatrix;
 	double *inputData, *idealData;
 	mat beta;
@@ -78,4 +78,85 @@ void RegressionFitLeastSquares(REGRESSION_MODEL *reg, DATA_SET *training) {
 	for(i=0;i<reg->count;i++) {
 		reg->coeff[i] = beta->v[i][0];
 	}
+}
+
+
+double RegressionReweightLeastSquares(REGRESSION_MODEL *reg, DATA_SET *training) {
+	unsigned int rowCount, coeffCount, i, j, k;
+    mat working, deltas, hessian, gradient;
+    double *errors, *weights,*inputData, *idealData, *r, *prev, max, y, d;
+
+	rowCount = training->recordCount;
+	coeffCount = reg->count;
+
+	working = matrix_new(rowCount,coeffCount);
+    errors = (double*)calloc(rowCount,sizeof(double));
+	weights = (double*)calloc(rowCount,sizeof(double));
+	hessian = matrix_new(coeffCount,coeffCount);
+	gradient = matrix_new(coeffCount,1);
+	prev = (double*)calloc(coeffCount,sizeof(double));
+
+	for (i = 0; i < rowCount; i++) {
+		inputData = DataGetInput(training,i);
+
+		working->v[i][0] = 1;
+			
+		for (j = 0; j < training->inputCount; j++)
+                working->v[i][j + 1] = inputData[j];
+        }
+
+        for (i = 0; i < rowCount; i++) {
+			inputData = DataGetInput(training,i);
+			idealData = DataGetIdeal(training,i);
+
+			y = RegressionCalculate(reg,inputData);
+            errors[i] = y - *idealData;
+            weights[i] = y * (1.0 - y);
+        }
+
+		for (i = 0; i < gradient->n; i++) {
+            gradient->v[0][i] =  0;
+            for (j = 0; j < gradient->n; j++)
+                hessian->v[i][j] = 0;
+        }
+
+		for (j = 0; j < working->m; j++) {
+            for (i = 0; i < gradient->m; i++) {
+                gradient->v[i][0] = gradient->v[i][0] + working->v[j][i] * errors[j];
+            }
+        }
+
+		for (k = 0; k < rowCount; k++) {
+			r = working->v[k];
+            
+			for (j = 0; j < rowCount; j++) {
+				for (i = 0; i < rowCount; i++) {
+                    hessian->v[j][i] += r[i] * r[j] * weights[k];
+                }
+            }
+        }
+
+		deltas = matrix_solve_lu(hessian,gradient);
+		memcpy(prev,reg->coeff,sizeof(double)*coeffCount);
+        
+		for (i = 0; i < coeffCount; i++) {
+			reg->coeff[i] -= deltas->v[i][0];
+		}
+
+        max = 0;
+		for (i = 0; i < deltas->n; i++) {
+			d = (fabs(deltas->v[i][0]) / fabs(prev[i]));
+            max = MAX(d,max);// MAX(fabs(deltas.get(i, 0)) / fabs(prev[i]), max);
+		}
+
+		/* Cleanup */
+		matrix_delete(working);
+		matrix_delete(deltas);
+		matrix_delete(hessian);
+		matrix_delete(gradient);
+
+		free(errors);
+		free(weights);
+		free(prev);
+        return max;
 }
