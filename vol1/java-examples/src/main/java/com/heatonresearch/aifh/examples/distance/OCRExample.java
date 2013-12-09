@@ -240,7 +240,6 @@ public class OCRExample extends JFrame {
             }
         }
         this.letterListModel.add(this.letterListModel.size(), sampleData);
-        this.letters.setSelectedIndex(i);
         this.entry.clear();
         this.sample.repaint();
 
