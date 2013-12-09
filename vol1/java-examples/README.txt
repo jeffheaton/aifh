@@ -133,7 +133,7 @@ This should display the following (or similar):
     runNormalizeCSVExample - Chapter 2:  This example normalizes a CSV file
     runOCRExample - Chapter 3:  This example performs basic OCR
     runPerformCluster - Chapter 5:  This example performs KMeans cluster
-    runTravelingSalesmanAnneal - Chapter 9:  This example optimizes the Traveling Salesman problem with Simulated Annealing
+    runTravelingSalesmanAnneal - Chapter 9:  This example optimizes the Travelling Salesman problem with Simulated Annealing
 
     Help tasks
     ----------
