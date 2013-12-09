@@ -77,7 +77,7 @@ public class BasicGenerateRandom extends AbstractGenerateRandom {
      * {@inheritDoc}
      */
     @Override
-    public double nextFloat() {
+    public float nextFloat() {
         return this.rand.nextFloat();
     }
 

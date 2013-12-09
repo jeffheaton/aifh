@@ -139,7 +139,7 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
      * {@inheritDoc}
      */
     @Override
-    public double nextFloat() {
+    public float nextFloat() {
         return (float) nextDouble();
     }
 

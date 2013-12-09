@@ -53,7 +53,7 @@ public interface GenerateRandom {
     /**
      * @return The next random floating point.
      */
-    double nextFloat();
+    float nextFloat();
 
     /**
      * @return The next random double.
