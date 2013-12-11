@@ -47,6 +47,7 @@ _OBJ = AIFH-VOL1.o ExampleNormalize.o Data.o ExamplePI.o Distance.o ExampleRando
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.c $(DEPS)
+	@mkdir -p $(@D)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 aifh-vol1: $(OBJ)
