@@ -36,7 +36,7 @@ struct counts {
 
 void CallbackColumn (void *s, size_t len, void *data) 
 {
-	printf("Field: \"%s\"\n",s);
+	printf("Field: \"%s\"\n",(char*)s);
 	((struct counts *)data)->fields++; 
 }
 void CallbackRow (int c, void *data) 

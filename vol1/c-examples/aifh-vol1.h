@@ -83,6 +83,7 @@ extern "C" {
 #define F_OK    0       /* Test for existence.  */
 #elif __APPLE__
 #include <strings.h>
+#include <unistd.h>
 #else
 /* For non-Visual C++ */
 #include <unistd.h>
