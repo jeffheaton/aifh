@@ -75,7 +75,7 @@ task(runLearnPolynomial, group: 'examples', description: 'Chapter 7:  This examp
 
 task(runLearnXOR, group: 'examples', description: 'Chapter 7:  This example learns the XOR function w/ RBF network & Greedy Random',
         dependsOn: 'classes', type: JavaExec) {
-    main = 'com.heatonresearch.aifh.examples.learning.LearnPolynomial'
+    main = 'com.heatonresearch.aifh.examples.learning.LearnXOR'
     classpath = sourceSets.main.runtimeClasspath
 }
 

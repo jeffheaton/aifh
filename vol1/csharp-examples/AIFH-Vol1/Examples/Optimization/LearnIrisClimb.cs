@@ -61,7 +61,7 @@ namespace AIFH_Vol1.Examples.Optimization
             network.Reset(new MersenneTwisterGenerateRandom());
             IScoreFunction score = new ScoreRegressionData(trainingData);
             var train = new TrainHillClimb(true, network, score);
-            PerformIterations(train, 100000, 0.01, true);
+            PerformIterations(train, 100, 0.01, true);
             QueryOneOfN(network, trainingData, species);
         }
 
