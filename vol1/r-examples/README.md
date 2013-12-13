@@ -1,6 +1,6 @@
 AIFH Vol1  - R Code Examples
 ====
-This folder contains the Java examples for AIFH Volume 1.  To run one of the R examples, from
+This folder contains the R examples for AIFH Volume 1.  To run one of the R examples, from
 the command line, use the following command.  This would run the readCSV example.
 ```
 r CMD BATCH ./readCSV.R
@@ -12,13 +12,11 @@ cat readCSV.Rout
 ##Data Files
 
 There are three different data sets used by this book's examples.  All three can be found
-at the UCI machine learning repository. These files are embedded in the Java build as
-resources.
+at the UCI machine learning repository. 
 
 http://archive.ics.uci.edu/ml/
 
 For your convenience these three data sets can be found inside of the datasets folder.
-The Python examples make use of this code to find the data sets.
 
 ##Individual Examples
 The individual examples are all located in the example folder.  They are listed here,

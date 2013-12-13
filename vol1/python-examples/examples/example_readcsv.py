@@ -28,7 +28,7 @@
     http://www.heatonresearch.com/copyright
 ============================================================================================================
 This example shows how to simply read a CSV file.  This example reads the iris data set.  The output is
-shown here.  This example can take awhile to run, as it will complete 100k iterations.
+shown here.  
 
 Reading CSV file: /Users/jheaton/projects/aifh/vol1/python-examples/datasets/iris.csv
 ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'class']
