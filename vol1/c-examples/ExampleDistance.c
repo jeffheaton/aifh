@@ -28,6 +28,24 @@
  */
 #include "aifh-vol1-examples.h"
 
+/*
+This example shows how three different distance metrics calculate the same three points.
+
+Euclidean Distance
+pos1->pos2: 5.20
+pos2->pos3: 5.20
+pos3->pos1: 10.39
+
+Manhattan Distance
+pos1->pos2: 9.00
+pos2->pos3: 9.00
+pos3->pos1: 18.00
+
+Chebyshev Distance
+pos1->pos2: 3.00
+pos2->pos3: 3.00
+pos3->pos1: 6.00
+*/
 void ExampleDistance(int argIndex, int argc, char **argv) {
 	double pos1[3] = { 1.0, 2.0, 3.0 };
 	double pos2[3] = { 4.0, 5.0, 6.0 };

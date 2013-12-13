@@ -28,12 +28,16 @@
  */
 #include "aifh-vol1-examples.h"
 
+/* Paramaters for Iris training.  Includes the training data, the error calculation 
+   method, as well as the RBF network model to train. */
 typedef struct IRIS_PARAMS {
 	DATA_SET *training;
 	ERROR_CALC *errorCalc;
 	RBF_NETWORK *network;
 } IRIS_PARAMS;
 
+/* Create the training set, and normalize the Iris data.  If you are using a data set
+   other than Iris, you will need to update the normalization. */
 static DATA_SET *create_iris_training(NORM_DATA *norm) {
 	char filename[FILENAME_MAX];
 	
@@ -52,6 +56,8 @@ static DATA_SET *create_iris_training(NORM_DATA *norm) {
 	return data;
 }
 
+/* The score function uses an error calculation method to provide a score to be minimized.
+    The actual output from the model is compared against the training data. */
 static double score_function(void *m, void *p) {
 	IRIS_PARAMS *params;
 	RBF_NETWORK *network;
@@ -77,6 +83,8 @@ static double score_function(void *m, void *p) {
 	return ErrorCalculate(params->errorCalc);
 }
 
+/* 
+*/
 void ExampleNelderMeadIris(int argIndex, int argc, char **argv) {
 	IRIS_PARAMS *params;
 	NORM_DATA *norm;

@@ -28,6 +28,16 @@
  */
 #include "aifh-vol1-examples.h"
 
+/* This example endlessly uses Montecarlo to approximate pi. 
+
+Tries=767000000, pi=3.1415508318122556
+Tries=768000000, pi=3.1415482447916667
+Tries=769000000, pi=3.1415472509752926
+Tries=770000000, pi=3.1415473090909090
+Tries=771000000, pi=3.1415496238651102
+Tries=772000000, pi=3.1415493523316060
+Tries=773000000, pi=3.1415514152652007
+*/
 void ExamplePI(int argIndex, int argc, char **argv) {	
 	RANDOM_GENERATE *prng;
 	long tries;

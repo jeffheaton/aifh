@@ -28,7 +28,39 @@
  */
 #include "aifh-vol1-examples.h"
 
+/*
+This example uses a Generalized Linear Model (GLM), in this case a LOGIT to fit to the Wisconsin Breast Cancer
+data set.  The output is shown below.  The solution coefficients are shown.
 
+Actual input count: 9
+Actual output count: 1
+Iteration #1, Error: inf
+Iteration #2, Error: 0.63698368
+Iteration #3, Error: 0.37629115
+Iteration #4, Error: 0.24127030
+Iteration #5, Error: 0.12430888
+Iteration #6, Error: 0.03587100
+Iteration #7, Error: 0.00312089
+Ideal: 0.00, Actual: 0.02
+Ideal: 0.00, Actual: 0.91
+Ideal: 0.00, Actual: 0.01
+Ideal: 0.00, Actual: 0.77
+Ideal: 0.00, Actual: 0.02
+Ideal: 1.00, Actual: 1.00
+Ideal: 0.00, Actual: 0.09
+Ideal: 0.00, Actual: 0.01
+Ideal: 0.00, Actual: 0.01
+...
+Ideal: 0.00, Actual: 0.00
+Ideal: 1.00, Actual: 0.94
+Ideal: 0.00, Actual: 0.00
+Ideal: 0.00, Actual: 0.01
+Ideal: 0.00, Actual: 0.00
+Ideal: 0.00, Actual: 0.00
+Ideal: 1.00, Actual: 0.99
+Ideal: 1.00, Actual: 0.95
+Ideal: 1.00, Actual: 0.98
+*/
 void ExampleGLM(int argIndex, int argc, char **argv) {	
 	char filename[FILENAME_MAX];
 	NORM_DATA *norm;
@@ -38,6 +70,9 @@ void ExampleGLM(int argIndex, int argc, char **argv) {
 	unsigned int i, iteration;
 
 	LocateFile("breast-cancer-wisconsin.csv",filename,FILENAME_MAX);
+	
+	/* Normalize the data.  If you use a different data set, this area will need to be
+	   updated. */
 	norm = NormCreate();
 	NormDefIgnore(norm);
 	NormDefPass(norm);

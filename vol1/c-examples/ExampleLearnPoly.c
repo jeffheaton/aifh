@@ -33,6 +33,8 @@ typedef struct POLY_PARAMS {
 	ERROR_CALC *errorCalc;
 } POLY_PARAMS;
 
+/* Create the training data.  We do this by running a range of numbers [-50 to 50]
+   through a known polynomial.  */
 static DATA_SET *create_poly_training() {
 	DATA_SET *result;
 	double *input_data;
@@ -52,6 +54,8 @@ static DATA_SET *create_poly_training() {
 	return result;
 }
 
+/* The score function uses an error calculation method to provide a score to be minimized.
+    The actual output from the model is compared against the training data. */
 static double score_function(void *m, void *p) {
 	POLY_PARAMS *params;
 	TRAIN *train;
@@ -100,6 +104,32 @@ static void print_polynomial(double *coeff, int len) {
 	printf("\n");
 }
 
+/*
+This example uses a greedy random trainer to fit the coefficients of a 3rd degree polynomial.  Because it is totally
+random it takes 100k iterations, and can run for awhile.  The output is shown below.
+
+The ideal coefficients would be:
+6+4x+2x^2
+
+However, the final output is reasonably close:
+
+Iteration #1: Score: 3097906018.729971
+Iteration #2: Score: 3097906018.729971
+Iteration #3: Score: 768008686.518420
+Iteration #4: Score: 768008686.518420
+Iteration #5: Score: 768008686.518420
+Iteration #6: Score: 768008686.518420
+Iteration #7: Score: 580186260.639532
+Iteration #8: Score: 580186260.639532
+Iteration #9: Score: 580186260.639532
+Iteration #10: Score: 580186260.639532
+...
+Iteration #999999: Score: 606.908330
+Iteration #1000000: Score: 606.908330
+Iteration #1000001: Score: 606.908330
+5.160841x^2+4.034914x+5.998574
+
+*/
 void ExamplePoly(int argIndex, int argc, char **argv) {
 	double test[3] = { 0,0,0 };
 	POLY_PARAMS *params;

@@ -34,6 +34,7 @@ typedef struct XOR_PARAMS {
 	RBF_NETWORK *network;
 } XOR_PARAMS;
 
+/* Create training data for the XOR operator */
 static DATA_SET *create_xor_training() {
 	DATA_SET *result;
 
@@ -47,6 +48,8 @@ static DATA_SET *create_xor_training() {
 	return result;
 }
 
+/* The score function uses an error calculation method to provide a score to be minimized.
+    The actual output from the model is compared against the training data. */
 static double score_function(void *m, void *p) {
 	XOR_PARAMS *params;
 	RBF_NETWORK *network;
@@ -72,6 +75,31 @@ static double score_function(void *m, void *p) {
 	return ErrorCalculate(params->errorCalc);
 }
 
+/*
+This example makes use of a greedy random trainer to  to fit an RBF network to the XOR data set.  Because it is totally
+random it takes 100k iterations, and can run for awhile.  The sample output below was also only able to train to 0.08.
+The output is shown below.
+
+Iteration #1: Score: 2.358490
+Iteration #2: Score: 2.358490
+Iteration #3: Score: 2.358490
+Iteration #4: Score: 2.358490
+Iteration #5: Score: 2.358490
+Iteration #6: Score: 2.358490
+Iteration #7: Score: 2.358490
+Iteration #8: Score: 2.358490
+...
+Iteration #999997: Score: 0.080091
+Iteration #999998: Score: 0.080091
+Iteration #999999: Score: 0.080091
+Iteration #1000000: Score: 0.080091
+Iteration #1000001: Score: 0.080091
+[0.00,0.00] -> Actual: [-0.06], Ideal: [0.00]
+[1.00,0.00] -> Actual: [1.06], Ideal: [1.00]
+[0.00,1.00] -> Actual: [0.98], Ideal: [1.00]
+[1.00,1.00] -> Actual: [-0.27], Ideal: [0.00]
+
+*/
 void ExampleRandXOR(int argIndex, int argc, char **argv) {
 	XOR_PARAMS *params;
 	TRAIN_GREEDY *train;

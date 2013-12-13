@@ -53,7 +53,9 @@ const double LOW = -1;
  */
 const double HIGH = 1;
 
-
+/* Generate random actual and ideal data.  The actual data is calculated by distorting
+   the ideal data.  This simulates actual error that real models would produce. 
+   */
 double *generate(int seed, int rows, int cols, double low, double high, double distort) {
         RANDOM_GENERATE *prng;
 		double *result, *row_ptr;
@@ -76,6 +78,7 @@ double *generate(int seed, int rows, int cols, double low, double high, double d
         return result;
 }
 
+/* Calculate the error between the ideal and actual. */
 double calculate_error(double *data, int rows, int cols, int type) {
 	ERROR_CALC *calc;
 	double result,*current_row;
@@ -94,6 +97,15 @@ double calculate_error(double *data, int rows, int cols, int type) {
 	return result;
 }
 
+/*
+This example shows how three different error metrics calculate different data sets.
+
+Type	SSE		MSE		RMS
+Small	2486		0.009945	0.099727
+Medium	62159		0.248637	0.498635
+Large	248636		0.994548	0.997270
+Hughe	24863690	99.454763	9.972701
+*/
 void ExampleError(int argIndex, int argc, char **argv) {
 	double *smallErrors,*mediumErrors,*largeErrors,*hugeErrors;
 	double smallSSE, smallMSE, smallRMS;

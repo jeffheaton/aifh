@@ -45,7 +45,56 @@ void CallbackRow (int c, void *data)
 	((struct counts *)data)->rows++; 
 }
 
+/*
+This example shows how to simply read a CSV file.  This example reads the iris data set.  
+The output is shown here.  
 
+Reading CSV file: ./datasets/iris.csv
+Field: "sepal_length"
+Field: "sepal_width"
+Field: "petal_length"
+Field: "petal_width"
+Field: "class"
+Row done
+Field: "5.1"
+Field: "3.5"
+Field: "1.4"
+Field: "0.2"
+Field: "Iris-setosa"
+Row done
+Field: "4.9"
+Field: "3.0"
+Field: "1.4"
+Field: "0.2"
+Field: "Iris-setosa"
+Row done
+Field: "4.7"
+Field: "3.2"
+Field: "1.3"
+Field: "0.2"
+Field: "Iris-setosa"
+...
+Row done
+Field: "6.5"
+Field: "3.0"
+Field: "5.2"
+Field: "2.0"
+Field: "Iris-virginica"
+Row done
+Field: "6.2"
+Field: "3.4"
+Field: "5.4"
+Field: "2.3"
+Field: "Iris-virginica"
+Row done
+Field: "5.9"
+Field: "3.0"
+Field: "5.1"
+Field: "1.8"
+Field: "Iris-virginica"
+Row done
+755 fields, 151 rows
+*/
 void ExampleReadCSV(int argIndex, int argc, char **argv) {
 	char filename[FILENAME_MAX];
 	FILE *fp;
