@@ -13,6 +13,7 @@ dependencies {
     testCompile 'junit:junit:4.10'
     compile 'net.sf.opencsv:opencsv:2.3'
     compile 'gov.nist.math:jama:1.0.3'
+	compile 'org.lwjgl.lwjgl:lwjgl:2.9.1'
 }
 
 task wrapper(type: Wrapper) {
@@ -22,5 +23,11 @@ task wrapper(type: Wrapper) {
 task(runCSVExample, group: 'examples', description: 'Chapter 1.  This example reads a CSV file',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.intro.CSVExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runMergelife, group: 'examples', description: 'Chapter 10.  Run the merge life explorer.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.vol2.examples.mergelife.viewer.MultiverseViewer'
     classpath = sourceSets.main.runtimeClasspath
 }
