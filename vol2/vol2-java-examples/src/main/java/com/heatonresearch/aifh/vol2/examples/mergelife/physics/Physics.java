@@ -28,21 +28,21 @@
  */
 package com.heatonresearch.aifh.vol2.examples.mergelife.physics;
 
-import java.io.IOException;
-
 import com.heatonresearch.aifh.vol2.examples.mergelife.universe.Universe;
+
+import java.io.IOException;
 
 public interface Physics {
 
-	void copyData(double[] sourceData);
+    void copyData(double[] sourceData);
 
-	double[] getData();
+    double[] getData();
 
-	void load(String filename) throws IOException;
+    void load(String filename) throws IOException;
 
-	void processPixel(Universe outputUniverse, int row, int col);
+    void processPixel(Universe outputUniverse, int row, int col);
 
-	void randomize();
+    void randomize();
 
-	void save(String filename) throws IOException;
+    void save(String filename) throws IOException;
 }

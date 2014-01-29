@@ -28,154 +28,153 @@
  */
 package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
 
+import com.heatonresearch.aifh.vol2.examples.mergelife.physics.Physics;
+
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import com.heatonresearch.aifh.vol2.examples.mergelife.physics.Physics;
-
 public class UniverseRunner {
 
-	/**
-	 * The event used to sync waiting for tasks to stop.
-	 */
-	private final Lock accessLock = new ReentrantLock();
-	private boolean autoKill;
-	private double diff;
-	private int iteration;
-	private final Physics physics;
-	private final Universe tempUniverse;
+    /**
+     * The event used to sync waiting for tasks to stop.
+     */
+    private final Lock accessLock = new ReentrantLock();
+    private boolean autoKill;
+    private double diff;
+    private int iteration;
+    private final Physics physics;
+    private final Universe tempUniverse;
 
-	private final Universe universe;
+    private final Universe universe;
 
-	public UniverseRunner(final Universe theUniverse, final Physics thePhysics) {
-		this.universe = theUniverse;
-		this.tempUniverse = (Universe) theUniverse.clone();
-		this.physics = thePhysics;
-	}
+    public UniverseRunner(final Universe theUniverse, final Physics thePhysics) {
+        this.universe = theUniverse;
+        this.tempUniverse = (Universe) theUniverse.clone();
+        this.physics = thePhysics;
+    }
 
-	public void advance() {
-		final int height = this.universe.getHeight();
-		final int width = this.universe.getWidth();
+    public void advance() {
+        final int height = this.universe.getHeight();
+        final int width = this.universe.getWidth();
 
-		try {
-			this.accessLock.lock();
-			this.tempUniverse.copy(this.universe);
+        try {
+            this.accessLock.lock();
+            this.tempUniverse.copy(this.universe);
 
-			for (int col = 0; col < width; col++) {
-				for (int row = 0; row < height; row++) {
-					this.physics.processPixel(this.tempUniverse, row, col);
-				}
-			}
+            for (int col = 0; col < width; col++) {
+                for (int row = 0; row < height; row++) {
+                    this.physics.processPixel(this.tempUniverse, row, col);
+                }
+            }
 
-			this.diff = this.tempUniverse.compare(this.universe);
+            this.diff = this.tempUniverse.compare(this.universe);
 
-			this.iteration++;
+            this.iteration++;
 
-			this.universe.copy(this.tempUniverse);
+            this.universe.copy(this.tempUniverse);
 
-			if (this.diff < 0.0001 && this.iteration > 5) {
-				if (this.autoKill) {
-					reset();
-				}
-			}
-		} finally {
-			this.accessLock.unlock();
-		}
-	}
+            if (this.diff < 0.0001 && this.iteration > 5) {
+                if (this.autoKill) {
+                    reset();
+                }
+            }
+        } finally {
+            this.accessLock.unlock();
+        }
+    }
 
-	public void crossover(final UniverseRunner crossoverParent1,
-			final UniverseRunner crossoverParent2) {
-		final double[] parent1 = crossoverParent1.getPhysics().getData();
-		final double[] parent2 = crossoverParent2.getPhysics().getData();
-		final double[] child = getPhysics().getData();
-		final int len = parent1.length;
-		final int p1 = (int) (Math.random() * (double)len);
-		final int p2 = (int) (Math.random() * (double)len);
+    public void crossover(final UniverseRunner crossoverParent1,
+                          final UniverseRunner crossoverParent2) {
+        final double[] parent1 = crossoverParent1.getPhysics().getData();
+        final double[] parent2 = crossoverParent2.getPhysics().getData();
+        final double[] child = getPhysics().getData();
+        final int len = parent1.length;
+        final int p1 = (int) (Math.random() * (double) len);
+        final int p2 = (int) (Math.random() * (double) len);
 
-		for (int i = 0; i < getPhysics().getData().length; i++) {
-			if (i < p1) {
-				child[i] = parent1[i];
-			} else if (i >= p1 && i <= p2) {
-				child[i] = parent2[i];
-			} else if (i > p2) {
-				child[i] = parent1[i];
-			}
-		}
-	}
+        for (int i = 0; i < getPhysics().getData().length; i++) {
+            if (i < p1) {
+                child[i] = parent1[i];
+            } else if (i >= p1 && i <= p2) {
+                child[i] = parent2[i];
+            } else if (i > p2) {
+                child[i] = parent1[i];
+            }
+        }
+    }
 
-	public double getDiff() {
-		return this.diff;
-	}
+    public double getDiff() {
+        return this.diff;
+    }
 
-	public int getIterations() {
-		return this.iteration;
-	}
+    public int getIterations() {
+        return this.iteration;
+    }
 
-	public Physics getPhysics() {
-		return this.physics;
-	}
+    public Physics getPhysics() {
+        return this.physics;
+    }
 
-	/**
-	 * @return the autoKill
-	 */
-	public boolean isAutoKill() {
-		return this.autoKill;
-	}
+    /**
+     * @return the autoKill
+     */
+    public boolean isAutoKill() {
+        return this.autoKill;
+    }
 
-	public void mutate(final Physics sourcePhysics, final double probChange,
-			final double perterb) {
-		getPhysics().copyData(sourcePhysics.getData());
+    public void mutate(final Physics sourcePhysics, final double probChange,
+                       final double perterb) {
+        getPhysics().copyData(sourcePhysics.getData());
 
-		for (int i = 0; i < sourcePhysics.getData().length; i++) {
-			if (Math.random() < probChange) {
-				getPhysics().getData()[i] += perterb * (Math.random() * 2 - 1);
-			}
-		}
+        for (int i = 0; i < sourcePhysics.getData().length; i++) {
+            if (Math.random() < probChange) {
+                getPhysics().getData()[i] += perterb * (Math.random() * 2 - 1);
+            }
+        }
 
-	}
+    }
 
-	public void randomize() {
-		this.accessLock.lock();
-		this.universe.randomize();
-		this.iteration = 0;
-		this.accessLock.unlock();
-	}
+    public void randomize() {
+        this.accessLock.lock();
+        this.universe.randomize();
+        this.iteration = 0;
+        this.accessLock.unlock();
+    }
 
-	public void reset() {
-		this.accessLock.lock();
-		this.physics.randomize();
-		this.universe.randomize();
-		this.iteration = 0;
-		this.accessLock.unlock();
-	}
+    public void reset() {
+        this.accessLock.lock();
+        this.physics.randomize();
+        this.universe.randomize();
+        this.iteration = 0;
+        this.accessLock.unlock();
+    }
 
-	public int runToConverge(final int maxIterations) {
-		this.iteration = 0;
-		for (;;) {
-			advance();
+    public int runToConverge(final int maxIterations) {
+        this.iteration = 0;
+        for (; ; ) {
+            advance();
 
-			if (this.iteration > 5 && this.diff < 0.01) {
-				break;
-			}
+            if (this.iteration > 5 && this.diff < 0.01) {
+                break;
+            }
 
-			if (this.iteration > maxIterations) {
-				break;
-			}
-		}
-		return this.iteration;
-	}
+            if (this.iteration > maxIterations) {
+                break;
+            }
+        }
+        return this.iteration;
+    }
 
-	/**
-	 * @param autoKill
-	 *            the autoKill to set
-	 */
-	public void setAutoKill(final boolean autoKill) {
-		this.autoKill = autoKill;
-	}
+    /**
+     * @param autoKill the autoKill to set
+     */
+    public void setAutoKill(final boolean autoKill) {
+        this.autoKill = autoKill;
+    }
 
-	@Override
-	public String toString() {
-		return "Iteration: " + this.iteration + ", Diff=" + this.diff;
-	}
+    @Override
+    public String toString() {
+        return "Iteration: " + this.iteration + ", Diff=" + this.diff;
+    }
 
 }

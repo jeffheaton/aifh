@@ -28,108 +28,106 @@
  */
 package com.heatonresearch.aifh.vol2.examples.mergelife.viewer;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 
 public class PanePopup extends JPopupMenu {
 
     private final int col;
     private final DisplayPanel owner;
-	private final int row;
+    private final int row;
 
     public PanePopup(final DisplayPanel theOwner, final int theRow,
-			final int theCol) {
+                     final int theCol) {
         final JMenuItem saveUniverse;
         add(saveUniverse = new JMenuItem("Save Physics"));
         final JMenuItem loadUniverse;
         add(loadUniverse = new JMenuItem("Load Physics"));
-		addSeparator();
+        addSeparator();
         final JMenuItem killReset;
         add(killReset = new JMenuItem("Kill Universe"));
         final JMenuItem bigBang;
         add(bigBang = new JMenuItem("Big Bang"));
-		addSeparator();
+        addSeparator();
         final JMenuItem mutateAcross;
         add(mutateAcross = new JMenuItem("Mutate Across"));
         final JMenuItem mutateSingle;
         add(mutateSingle = new JMenuItem("Mutate Single"));
         final JMenuItem crossover;
         add(crossover = new JMenuItem("Crossover"));
-		addSeparator();
+        addSeparator();
         final JMenuItem copyPane;
         add(copyPane = new JMenuItem("Copy Pane"));
         final JMenuItem runSingular;
         add(runSingular = new JMenuItem("Run Singular"));
-		this.row = theRow;
-		this.col = theCol;
-		this.owner = theOwner;
+        this.row = theRow;
+        this.col = theCol;
+        this.owner = theOwner;
 
-		killReset.addActionListener(new ActionListener() {
+        killReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 PanePopup.this.owner.reset(PanePopup.this.row,
                         PanePopup.this.col);
             }
         });
-		bigBang.addActionListener(new ActionListener() {
+        bigBang.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 PanePopup.this.owner.randomize(PanePopup.this.row,
                         PanePopup.this.col);
             }
         });
-		saveUniverse.addActionListener(new ActionListener() {
+        saveUniverse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 PanePopup.this.owner.save(PanePopup.this.row,
                         PanePopup.this.col);
             }
         });
-		loadUniverse.addActionListener(new ActionListener() {
+        loadUniverse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 PanePopup.this.owner.load(PanePopup.this.row,
                         PanePopup.this.col);
             }
         });
-		mutateAcross.addActionListener(new ActionListener() {
+        mutateAcross.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 PanePopup.this.owner.mutateAcross(PanePopup.this.row,
                         PanePopup.this.col);
             }
         });
-		crossover.addActionListener(new ActionListener() {
+        crossover.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 PanePopup.this.owner.crossover(PanePopup.this.row,
                         PanePopup.this.col);
             }
         });
-		mutateSingle.addActionListener(new ActionListener() {
+        mutateSingle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 PanePopup.this.owner.mutateSingle(PanePopup.this.row,
                         PanePopup.this.col);
             }
         });
-		copyPane.addActionListener(new ActionListener() {
+        copyPane.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 PanePopup.this.owner.copyPane(PanePopup.this.row,
                         PanePopup.this.col);
             }
         });
-		runSingular.addActionListener(new ActionListener() {
+        runSingular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 PanePopup.this.owner.runSingular(PanePopup.this.row,
                         PanePopup.this.col);
             }
         });
-	}
+    }
 
 }

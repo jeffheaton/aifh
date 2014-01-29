@@ -1,6 +1,6 @@
 /*
  * Artificial Intelligence for Humans
- * Volume 2: Nature Inspired Algorithms
+ * Volume 1: Fundamental Algorithms
  * Java Version
  * http://www.aifh.org
  * http://www.jeffheaton.com
@@ -8,7 +8,7 @@
  * Code repository:
  * https://github.com/jeffheaton/aifh
 
- * Copyright 2014 by Jeff Heaton
+ * Copyright 2013 by Jeff Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,24 +26,28 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
 
-import com.heatonresearch.aifh.vol2.examples.mergelife.viewer.UniversePane;
+package com.heatonresearch.aifh.general.fns.link;
 
-import java.util.concurrent.Callable;
+import com.heatonresearch.aifh.AIFHError;
+import com.heatonresearch.aifh.general.fns.Fn;
 
-public class AdvanceTask implements Callable<AdvanceTask> {
+/**
+ * The inverse link function for a GLM.
+ * <p/>
+ * http://en.wikipedia.org/wiki/Generalized_linear_model
+ */
+public class InverseLinkFunction implements Fn {
 
-    private final UniversePane cell;
-
-    public AdvanceTask(final UniversePane theCell) {
-        this.cell = theCell;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public AdvanceTask call() {
-        this.cell.advance();
-        this.cell.visualize();
-        return null;
+    public double evaluate(final double[] x) {
+        if (x.length > 1) {
+            throw new AIFHError("The inverse link function can only accept one parameter.");
+        }
+
+        return -Math.pow(x[0], -1);
     }
 }

@@ -1,6 +1,6 @@
 /*
  * Artificial Intelligence for Humans
- * Volume 2: Nature Inspired Algorithms
+ * Volume 1: Fundamental Algorithms
  * Java Version
  * http://www.aifh.org
  * http://www.jeffheaton.com
@@ -8,7 +8,7 @@
  * Code repository:
  * https://github.com/jeffheaton/aifh
 
- * Copyright 2014 by Jeff Heaton
+ * Copyright 2013 by Jeff Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,24 +26,18 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
 
-import com.heatonresearch.aifh.vol2.examples.mergelife.viewer.UniversePane;
+package com.heatonresearch.aifh.general.fns;
 
-import java.util.concurrent.Callable;
-
-public class AdvanceTask implements Callable<AdvanceTask> {
-
-    private final UniversePane cell;
-
-    public AdvanceTask(final UniversePane theCell) {
-        this.cell = theCell;
-    }
-
-    @Override
-    public AdvanceTask call() {
-        this.cell.advance();
-        this.cell.visualize();
-        return null;
-    }
+/**
+ * A function.  Returns a single scalar variable, accepts a vector of x.
+ */
+public interface Fn {
+    /**
+     * Evaluate the function.
+     *
+     * @param x A vector input.
+     * @return The output from the function.
+     */
+    double evaluate(double[] x);
 }

@@ -29,100 +29,100 @@
 package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
 
 public class Universe implements Cloneable {
-	private final int cellSize;
-	private final UniverseCell[][] data;
+    private final int cellSize;
+    private final UniverseCell[][] data;
 
-	public Universe(final int height, final int width, final int theSize) {
-		this.cellSize = theSize;
-		this.data = new UniverseCell[height][width];
-		for (int row = 0; row < height; row++) {
-			for (int col = 0; col < width; col++) {
-				this.data[row][col] = new UniverseCell(theSize);
-			}
-		}
-	}
+    public Universe(final int height, final int width, final int theSize) {
+        this.cellSize = theSize;
+        this.data = new UniverseCell[height][width];
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                this.data[row][col] = new UniverseCell(theSize);
+            }
+        }
+    }
 
-	public void add(final int row, final int col, final int i, final double d) {
-		this.data[row][col].add(i, d);
+    public void add(final int row, final int col, final int i, final double d) {
+        this.data[row][col].add(i, d);
 
-	}
+    }
 
-	@Override
-	public Object clone() {
-		final Universe result = new Universe(getHeight(), getWidth(),
-				this.cellSize);
-		result.copy(this);
-		return result;
-	}
+    @Override
+    public Object clone() {
+        final Universe result = new Universe(getHeight(), getWidth(),
+                this.cellSize);
+        result.copy(this);
+        return result;
+    }
 
-	public double compare(final Universe otherUniverse) {
-		int result = 0;
-		int total = 0;
-		for (int row = 0; row < otherUniverse.getHeight(); row++) {
-			for (int col = 0; col < otherUniverse.getWidth(); col++) {
-				final int d1 = Math.abs((int) (255 * get(row, col).getAvg()));
-				final int d2 = Math.abs((int) (255 * otherUniverse
-						.get(row, col).getAvg()));
-				if (Math.abs(d1 - d2) > 10) {
-					result++;
-				}
-				total++;
-			}
-		}
+    public double compare(final Universe otherUniverse) {
+        int result = 0;
+        int total = 0;
+        for (int row = 0; row < otherUniverse.getHeight(); row++) {
+            for (int col = 0; col < otherUniverse.getWidth(); col++) {
+                final int d1 = Math.abs((int) (255 * get(row, col).getAvg()));
+                final int d2 = Math.abs((int) (255 * otherUniverse
+                        .get(row, col).getAvg()));
+                if (Math.abs(d1 - d2) > 10) {
+                    result++;
+                }
+                total++;
+            }
+        }
 
-		return (double) result / (double) total;
-	}
+        return (double) result / (double) total;
+    }
 
-	public void copy(final Universe source) {
-		for (int row = 0; row < getHeight(); row++) {
-			for (int col = 0; col < getWidth(); col++) {
-				for (int i = 0; i < this.cellSize; i++) {
-					this.data[row][col].set(i, source.get(row, col).get(i));
-				}
-			}
-		}
-	}
+    public void copy(final Universe source) {
+        for (int row = 0; row < getHeight(); row++) {
+            for (int col = 0; col < getWidth(); col++) {
+                for (int i = 0; i < this.cellSize; i++) {
+                    this.data[row][col].set(i, source.get(row, col).get(i));
+                }
+            }
+        }
+    }
 
-	public UniverseCell get(final int row, final int col) {
-		return this.data[row][col];
-	}
+    public UniverseCell get(final int row, final int col) {
+        return this.data[row][col];
+    }
 
-	public double get(final int row, final int col, final int i) {
-		return this.data[row][col].get(i);
-	}
+    public double get(final int row, final int col, final int i) {
+        return this.data[row][col].get(i);
+    }
 
-	public int getCellSize() {
-		return this.cellSize;
-	}
+    public int getCellSize() {
+        return this.cellSize;
+    }
 
-	public UniverseCell[][] getData() {
-		return this.data;
-	}
+    public UniverseCell[][] getData() {
+        return this.data;
+    }
 
-	public int getHeight() {
-		return this.data.length;
-	}
+    public int getHeight() {
+        return this.data.length;
+    }
 
-	public int getWidth() {
-		return this.data[0].length;
-	}
+    public int getWidth() {
+        return this.data[0].length;
+    }
 
-	public boolean isValid(final int row, final int col) {
+    public boolean isValid(final int row, final int col) {
         return !(row < 0 || col < 0 || row >= getHeight() || col >= getWidth());
     }
 
-	public UniverseCell newCell() {
-		return new UniverseCell(this.cellSize);
-	}
+    public UniverseCell newCell() {
+        return new UniverseCell(this.cellSize);
+    }
 
-	public void randomize() {
-		for (int row = 0; row < getHeight(); row++) {
-			for (int col = 0; col < getWidth(); col++) {
-				for (int i = 0; i < 3; i++) {
-					this.data[row][col].randomize();
-				}
-			}
-		}
-	}
+    public void randomize() {
+        for (int row = 0; row < getHeight(); row++) {
+            for (int col = 0; col < getWidth(); col++) {
+                for (int i = 0; i < 3; i++) {
+                    this.data[row][col].randomize();
+                }
+            }
+        }
+    }
 
 }

@@ -28,49 +28,49 @@
  */
 package com.heatonresearch.aifh.vol2.examples.mergelife.viewer;
 
-import java.awt.Image;
-
 import com.heatonresearch.aifh.vol2.examples.mergelife.physics.MergePhysics;
 import com.heatonresearch.aifh.vol2.examples.mergelife.physics.Physics;
 import com.heatonresearch.aifh.vol2.examples.mergelife.universe.Universe;
 import com.heatonresearch.aifh.vol2.examples.mergelife.universe.UniverseRunner;
 import com.heatonresearch.aifh.vol2.examples.mergelife.universe.UniverseVisualizer;
 
-public class UniversePane {
-	private Image image;
-    private final UniverseRunner universeRunner;
-	private final UniverseVisualizer visualizer;
+import java.awt.*;
 
-	public UniversePane() {
-		final int width = MultiverseViewer.getConfig().getPaneWidth()
-				/ MultiverseViewer.getConfig().getZoom();
-		final int height = MultiverseViewer.getConfig().getPaneHeight()
-				/ MultiverseViewer.getConfig().getZoom();
+public class UniversePane {
+    private Image image;
+    private final UniverseRunner universeRunner;
+    private final UniverseVisualizer visualizer;
+
+    public UniversePane() {
+        final int width = MultiverseViewer.getConfig().getPaneWidth()
+                / MultiverseViewer.getConfig().getZoom();
+        final int height = MultiverseViewer.getConfig().getPaneHeight()
+                / MultiverseViewer.getConfig().getZoom();
 
         final Universe universe = new Universe(height, width, 3);
         final Physics physics = new MergePhysics(universe);
 
-		universe.randomize();
-		physics.randomize();
+        universe.randomize();
+        physics.randomize();
 
-		this.universeRunner = new UniverseRunner(universe, physics);
-		this.visualizer = new UniverseVisualizer(universe,
-				MultiverseViewer.getConfig().getZoom());
-	}
+        this.universeRunner = new UniverseRunner(universe, physics);
+        this.visualizer = new UniverseVisualizer(universe,
+                MultiverseViewer.getConfig().getZoom());
+    }
 
-	public void advance() {
-		this.universeRunner.advance();
-	}
+    public void advance() {
+        this.universeRunner.advance();
+    }
 
-	public Image getImage() {
-		return this.image;
-	}
+    public Image getImage() {
+        return this.image;
+    }
 
-	public UniverseRunner getUniverseRunner() {
-		return this.universeRunner;
-	}
+    public UniverseRunner getUniverseRunner() {
+        return this.universeRunner;
+    }
 
-	public void visualize() {
-		this.image = this.visualizer.visualize();
-	}
+    public void visualize() {
+        this.image = this.visualizer.visualize();
+    }
 }

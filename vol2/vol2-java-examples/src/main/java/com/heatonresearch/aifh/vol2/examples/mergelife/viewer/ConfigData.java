@@ -32,108 +32,102 @@ import java.io.File;
 import java.io.Serializable;
 
 public class ConfigData implements Serializable {
-	/**
-	 * The version.
-	 */
-	private static final long serialVersionUID = 2L;
+    /**
+     * The version.
+     */
+    private static final long serialVersionUID = 2L;
 
-	private int paneHeight = 200;
-	private int paneWidth = 200;
-	private File saveDirectory = new File(".");
-	private int universePaneColumns = 7;
-	private int universePaneRows = 4;
-	private int zoom = 1;
+    private int paneHeight = 200;
+    private int paneWidth = 200;
+    private File saveDirectory = new File(".");
+    private int universePaneColumns = 7;
+    private int universePaneRows = 4;
+    private int zoom = 1;
 
-	/**
-	 * @return the paneHeight
-	 */
-	public int getPaneHeight() {
-		return this.paneHeight;
-	}
+    /**
+     * @return the paneHeight
+     */
+    public int getPaneHeight() {
+        return this.paneHeight;
+    }
 
-	/**
-	 * @return the paneWidth
-	 */
-	public int getPaneWidth() {
-		return this.paneWidth;
-	}
+    /**
+     * @return the paneWidth
+     */
+    public int getPaneWidth() {
+        return this.paneWidth;
+    }
 
-	/**
-	 * @return the saveDirectory
-	 */
-	public File getSaveDirectory() {
-		return this.saveDirectory;
-	}
+    /**
+     * @return the saveDirectory
+     */
+    public File getSaveDirectory() {
+        return this.saveDirectory;
+    }
 
-	/**
-	 * @return the universePaneColumns
-	 */
-	public int getUniversePaneColumns() {
-		return this.universePaneColumns;
-	}
+    /**
+     * @return the universePaneColumns
+     */
+    public int getUniversePaneColumns() {
+        return this.universePaneColumns;
+    }
 
-	/**
-	 * @return the universePaneRows
-	 */
-	public int getUniversePaneRows() {
-		return this.universePaneRows;
-	}
+    /**
+     * @return the universePaneRows
+     */
+    public int getUniversePaneRows() {
+        return this.universePaneRows;
+    }
 
-	/**
-	 * @return the zoom
-	 */
-	public int getZoom() {
-		if (this.zoom < 1) {
-			this.zoom = 1;
-		}
-		return this.zoom;
-	}
+    /**
+     * @return the zoom
+     */
+    public int getZoom() {
+        if (this.zoom < 1) {
+            this.zoom = 1;
+        }
+        return this.zoom;
+    }
 
-	/**
-	 * @param paneHeight
-	 *            the paneHeight to set
-	 */
-	public void setPaneHeight(final int paneHeight) {
-		this.paneHeight = paneHeight;
-	}
+    /**
+     * @param paneHeight the paneHeight to set
+     */
+    public void setPaneHeight(final int paneHeight) {
+        this.paneHeight = paneHeight;
+    }
 
-	/**
-	 * @param paneWidth
-	 *            the paneWidth to set
-	 */
-	public void setPaneWidth(final int paneWidth) {
-		this.paneWidth = paneWidth;
-	}
+    /**
+     * @param paneWidth the paneWidth to set
+     */
+    public void setPaneWidth(final int paneWidth) {
+        this.paneWidth = paneWidth;
+    }
 
-	/**
-	 * @param saveDirectory
-	 *            the saveDirectory to set
-	 */
-	public void setSaveDirectory(final File saveDirectory) {
-		this.saveDirectory = saveDirectory;
-	}
+    /**
+     * @param saveDirectory the saveDirectory to set
+     */
+    public void setSaveDirectory(final File saveDirectory) {
+        this.saveDirectory = saveDirectory;
+    }
 
-	/**
-	 * @param universePaneColumns
-	 *            the universePaneColumns to set
-	 */
-	public void setUniversePaneColumns(final int universePaneColumns) {
-		this.universePaneColumns = universePaneColumns;
-	}
+    /**
+     * @param universePaneColumns the universePaneColumns to set
+     */
+    public void setUniversePaneColumns(final int universePaneColumns) {
+        this.universePaneColumns = universePaneColumns;
+    }
 
-	/**
-	 * @param universePaneRows
-	 *            the universePaneRows to set
-	 */
-	public void setUniversePaneRows(final int universePaneRows) {
-		this.universePaneRows = universePaneRows;
-	}
+    /**
+     * @param universePaneRows the universePaneRows to set
+     */
+    public void setUniversePaneRows(final int universePaneRows) {
+        this.universePaneRows = universePaneRows;
+    }
 
-	/**
-	 * @param zoom
-	 *            the zoom to set
-	 */
-	public void setZoom(final int zoom) {
-		this.zoom = zoom;
-	}
+    /**
+     * @param zoom the zoom to set
+     */
+    public void setZoom(final int zoom) {
+        this.zoom = zoom;
+    }
 }

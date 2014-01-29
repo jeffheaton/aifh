@@ -1,6 +1,6 @@
 /*
  * Artificial Intelligence for Humans
- * Volume 2: Nature Inspired Algorithms
+ * Volume 1: Fundamental Algorithms
  * Java Version
  * http://www.aifh.org
  * http://www.jeffheaton.com
@@ -8,7 +8,7 @@
  * Code repository:
  * https://github.com/jeffheaton/aifh
 
- * Copyright 2014 by Jeff Heaton
+ * Copyright 2013 by Jeff Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,24 +26,27 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
 
-import com.heatonresearch.aifh.vol2.examples.mergelife.viewer.UniversePane;
+package com.heatonresearch.aifh.distance;
 
-import java.util.concurrent.Callable;
+/**
+ * Chebyshev distance is the maximum absolute difference between any two vector elements.  This can be thought
+ * of as the number of spaces that a king chess piece must travel between two squares in a 2D dimension space.
+ * <p/>
+ * http://www.heatonresearch.com/wiki/Chebyshev_Distance
+ */
+public class ChebyshevDistance extends AbstractDistance {
 
-public class AdvanceTask implements Callable<AdvanceTask> {
-
-    private final UniversePane cell;
-
-    public AdvanceTask(final UniversePane theCell) {
-        this.cell = theCell;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public AdvanceTask call() {
-        this.cell.advance();
-        this.cell.visualize();
-        return null;
+    public double calculate(final double[] position1, final int pos1, final double[] position2, final int pos2, final int length) {
+        double result = 0;
+        for (int i = 0; i < length; i++) {
+            final double d = Math.abs(position1[pos1 + i] - position2[pos2 + i]);
+            result = Math.max(d, result);
+        }
+        return result;
     }
 }

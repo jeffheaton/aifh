@@ -1,6 +1,6 @@
 /*
  * Artificial Intelligence for Humans
- * Volume 2: Nature Inspired Algorithms
+ * Volume 1: Fundamental Algorithms
  * Java Version
  * http://www.aifh.org
  * http://www.jeffheaton.com
@@ -8,7 +8,7 @@
  * Code repository:
  * https://github.com/jeffheaton/aifh
 
- * Copyright 2014 by Jeff Heaton
+ * Copyright 2013 by Jeff Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,24 +26,44 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
 
-import com.heatonresearch.aifh.vol2.examples.mergelife.viewer.UniversePane;
+package com.heatonresearch.aifh.general.fns;
 
-import java.util.concurrent.Callable;
+/**
+ * A function that implements a radial basis function (RBF).
+ */
+public interface FnRBF extends Fn {
 
-public class AdvanceTask implements Callable<AdvanceTask> {
+    /**
+     * Get the center for the specified dimension.
+     *
+     * @param dimension The dimension.
+     * @return The center.
+     */
+    double getCenter(int dimension);
 
-    private final UniversePane cell;
+    /**
+     * Set the center for the specified dimension.
+     *
+     * @param dimension The dimension.
+     * @param value     The value to set the center.
+     */
+    void setCenter(int dimension, double value);
 
-    public AdvanceTask(final UniversePane theCell) {
-        this.cell = theCell;
-    }
+    /**
+     * @return The dimension count.
+     */
+    int getDimensions();
 
-    @Override
-    public AdvanceTask call() {
-        this.cell.advance();
-        this.cell.visualize();
-        return null;
-    }
+    /**
+     * @return The width.
+     */
+    double getWidth();
+
+    /**
+     * Set the width.
+     *
+     * @param theWidth The width.
+     */
+    void setWidth(double theWidth);
 }

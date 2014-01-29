@@ -29,84 +29,84 @@
 package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
 
 public class UniverseCell {
-	private final double[] prop;
+    private final double[] prop;
 
-	public UniverseCell(final int theSize) {
-		this.prop = new double[theSize];
-	}
+    public UniverseCell(final int theSize) {
+        this.prop = new double[theSize];
+    }
 
-	public UniverseCell(final int theSize, final int theIndex, final double[] d) {
-		this(theSize);
+    public UniverseCell(final int theSize, final int theIndex, final double[] d) {
+        this(theSize);
         System.arraycopy(d, theIndex + 0, this.prop, 0, theSize);
-	}
+    }
 
-	public void add(final int i, final double d) {
-		this.prop[i] += d;
-	}
+    public void add(final int i, final double d) {
+        this.prop[i] += d;
+    }
 
-	public void add(final UniverseCell otherCell) {
-		for (int i = 0; i < this.prop.length; i++) {
-			this.prop[i] += otherCell.get(i);
-		}
-	}
+    public void add(final UniverseCell otherCell) {
+        for (int i = 0; i < this.prop.length; i++) {
+            this.prop[i] += otherCell.get(i);
+        }
+    }
 
-	public void clamp(final double low, final int high) {
-		for (int i = 0; i < this.prop.length; i++) {
-			clamp(i, low, high);
-		}
+    public void clamp(final double low, final int high) {
+        for (int i = 0; i < this.prop.length; i++) {
+            clamp(i, low, high);
+        }
 
-	}
+    }
 
-	public void clamp(final int i, final double low, final double high) {
-		if (this.prop[i] < low) {
-			this.prop[i] = low;
-		}
-		if (this.prop[i] > high) {
-			this.prop[i] = high;
-		}
-	}
+    public void clamp(final int i, final double low, final double high) {
+        if (this.prop[i] < low) {
+            this.prop[i] = low;
+        }
+        if (this.prop[i] > high) {
+            this.prop[i] = high;
+        }
+    }
 
-	public double get(final int i) {
-		return this.prop[i];
-	}
+    public double get(final int i) {
+        return this.prop[i];
+    }
 
-	public double getAvg() {
-		double result = 0;
-		for (final double element : this.prop) {
-			result += element;
-		}
-		return result / this.prop.length;
-	}
+    public double getAvg() {
+        double result = 0;
+        for (final double element : this.prop) {
+            result += element;
+        }
+        return result / this.prop.length;
+    }
 
-	public double[] getData() {
-		return this.prop;
-	}
+    public double[] getData() {
+        return this.prop;
+    }
 
-	public void multiply(final UniverseCell otherCell) {
-		for (int i = 0; i < this.prop.length; i++) {
-			this.prop[i] *= otherCell.get(i);
-		}
-	}
+    public void multiply(final UniverseCell otherCell) {
+        for (int i = 0; i < this.prop.length; i++) {
+            this.prop[i] *= otherCell.get(i);
+        }
+    }
 
-	public void randomize() {
-		for (int i = 0; i < this.prop.length; i++) {
-			this.prop[i] = Math.random() * 2.0 - 1;
-		}
+    public void randomize() {
+        for (int i = 0; i < this.prop.length; i++) {
+            this.prop[i] = Math.random() * 2.0 - 1;
+        }
 
-	}
+    }
 
-	public void set(final int i, final double d) {
-		this.prop[i] = d;
+    public void set(final int i, final double d) {
+        this.prop[i] = d;
 
-	}
+    }
 
-	public void set(final UniverseCell otherCell) {
-		for (int i = 0; i < this.prop.length; i++) {
-			this.prop[i] = otherCell.get(i);
-		}
-	}
+    public void set(final UniverseCell otherCell) {
+        for (int i = 0; i < this.prop.length; i++) {
+            this.prop[i] = otherCell.get(i);
+        }
+    }
 
-	public int size() {
-		return this.prop.length;
-	}
+    public int size() {
+        return this.prop.length;
+    }
 }

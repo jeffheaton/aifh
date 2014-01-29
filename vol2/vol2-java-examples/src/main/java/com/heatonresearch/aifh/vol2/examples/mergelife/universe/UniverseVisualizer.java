@@ -28,59 +28,59 @@
  */
 package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
 
-import java.awt.Image;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
 public class UniverseVisualizer {
 
-	private final BufferedImage image;
-	private final WritableRaster raster;
-	private final Universe universe;
-	private final int zoom;
+    private final BufferedImage image;
+    private final WritableRaster raster;
+    private final Universe universe;
+    private final int zoom;
 
-	public UniverseVisualizer(final Universe theUniverse, final int theZoom) {
-		this.universe = theUniverse;
-		final int width = this.universe.getWidth();
-		final int height = this.universe.getHeight();
+    public UniverseVisualizer(final Universe theUniverse, final int theZoom) {
+        this.universe = theUniverse;
+        final int width = this.universe.getWidth();
+        final int height = this.universe.getHeight();
 
-		this.image = new BufferedImage(width * theZoom, height * theZoom,
-				BufferedImage.TYPE_INT_RGB);
-		this.zoom = theZoom;
-		this.raster = this.image.getRaster();
-	}
+        this.image = new BufferedImage(width * theZoom, height * theZoom,
+                BufferedImage.TYPE_INT_RGB);
+        this.zoom = theZoom;
+        this.raster = this.image.getRaster();
+    }
 
-	private Image createImageLabel(final int[] pixels, final int width,
-			final int height) {
-		this.raster.setPixels(0, 0, this.image.getWidth(),
-				this.image.getHeight(), pixels);
-		return this.image;
-	}
+    private Image createImageLabel(final int[] pixels, final int width,
+                                   final int height) {
+        this.raster.setPixels(0, 0, this.image.getWidth(),
+                this.image.getHeight(), pixels);
+        return this.image;
+    }
 
-	public Image visualize() {
-		final int width = this.universe.getWidth();
-		final int height = this.universe.getHeight();
-		final int imageSize = width * height;
+    public Image visualize() {
+        final int width = this.universe.getWidth();
+        final int height = this.universe.getHeight();
+        final int imageSize = width * height;
 
-		final int[] pixels = new int[imageSize * this.zoom * this.zoom * 3];
-		final int rowSize = width * 3 * this.zoom;
+        final int[] pixels = new int[imageSize * this.zoom * this.zoom * 3];
+        final int rowSize = width * 3 * this.zoom;
 
-		for (int row = 0; row < height; row++) {
-			for (int col = 0; col < width; col++) {
-				for (int i = 0; i < 3; i++) {
-					final double d = (this.universe.get(row, col, i) + 1.0) / 2.0;
-					for (int y = 0; y < this.zoom; y++) {
-						for (int x = 0; x < this.zoom; x++) {
-							int idx = (row * this.zoom + y) * rowSize
-									+ (col * this.zoom + x) * 3;
-							pixels[idx + i] = (int) (d * 255.0);
-						}
-					}
-				}
-			}
-		}
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                for (int i = 0; i < 3; i++) {
+                    final double d = (this.universe.get(row, col, i) + 1.0) / 2.0;
+                    for (int y = 0; y < this.zoom; y++) {
+                        for (int x = 0; x < this.zoom; x++) {
+                            int idx = (row * this.zoom + y) * rowSize
+                                    + (col * this.zoom + x) * 3;
+                            pixels[idx + i] = (int) (d * 255.0);
+                        }
+                    }
+                }
+            }
+        }
 
-		return createImageLabel(pixels, width * this.zoom, height * this.zoom);
+        return createImageLabel(pixels, width * this.zoom, height * this.zoom);
 
-	}
+    }
 }

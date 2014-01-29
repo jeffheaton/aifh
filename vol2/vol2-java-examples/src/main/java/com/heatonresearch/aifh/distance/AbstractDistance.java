@@ -1,6 +1,6 @@
 /*
  * Artificial Intelligence for Humans
- * Volume 2: Nature Inspired Algorithms
+ * Volume 1: Fundamental Algorithms
  * Java Version
  * http://www.aifh.org
  * http://www.jeffheaton.com
@@ -8,7 +8,7 @@
  * Code repository:
  * https://github.com/jeffheaton/aifh
 
- * Copyright 2014 by Jeff Heaton
+ * Copyright 2013 by Jeff Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,24 +26,19 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
 
-import com.heatonresearch.aifh.vol2.examples.mergelife.viewer.UniversePane;
+package com.heatonresearch.aifh.distance;
 
-import java.util.concurrent.Callable;
+/**
+ * This distance calculator provides a convenience
+ */
+public abstract class AbstractDistance implements CalculateDistance {
 
-public class AdvanceTask implements Callable<AdvanceTask> {
-
-    private final UniversePane cell;
-
-    public AdvanceTask(final UniversePane theCell) {
-        this.cell = theCell;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public AdvanceTask call() {
-        this.cell.advance();
-        this.cell.visualize();
-        return null;
+    public double calculate(final double[] position1, final double[] position2) {
+        return calculate(position1, 0, position2, 0, position1.length);
     }
 }
