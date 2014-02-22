@@ -33,16 +33,41 @@ import com.heatonresearch.aifh.vol2.examples.mergelife.universe.Universe;
 import java.io.IOException;
 
 public interface Physics {
-
+    /**
+     * Copy the physics constants vector from another array.
+     * @param sourceData The source vector to copy.
+     */
     void copyData(double[] sourceData);
 
+    /**
+     * @return Get the physical constants vector.
+     */
     double[] getData();
 
+    /**
+     * Load the physical constants vector from a text file.
+     * @param filename The filename.
+     * @throws IOException
+     */
     void load(String filename) throws IOException;
 
+    /**
+     * Save the physical constants vector to a text file.
+     * @param filename The filename.
+     * @throws IOException
+     */
+    void save(String filename) throws IOException;
+
+    /**
+     * Perform the actual physics.
+     * @param outputUniverse The new output universe.
+     * @param row The row of the cell we are processing.
+     * @param col The column of the cell we are processing.
+     */
     void processPixel(Universe outputUniverse, int row, int col);
 
+    /**
+     * Randomize the physics to random values.
+     */
     void randomize();
-
-    void save(String filename) throws IOException;
 }

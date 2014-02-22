@@ -35,6 +35,9 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+/**
+ *
+ */
 public class MergePhysics implements Physics {
 
     private final double[][] colorTable = {{-1, -1, -1}, {1, -1, -1},
@@ -96,6 +99,7 @@ public class MergePhysics implements Physics {
     public void processPixel(final Universe outputUniverse, final int row,
                              final int col) {
         double total = 0;
+        int cnt = 0;
 
         for (int dir = 0; dir < this.rowTransform.length; dir++) {
             final int otherRow = row + this.rowTransform[dir];
@@ -104,9 +108,11 @@ public class MergePhysics implements Physics {
                 final UniverseCell otherCell = this.universe.get(otherRow,
                         otherCol);
                 total += otherCell.getAvg();
+                cnt++;
             }
         }
 
+        total/=cnt;
         for (int i = 0; i < this.colorTable.length; i++) {
             final int idx = this.dataOrder[i];
             if (total < this.data[idx * 2]) {
