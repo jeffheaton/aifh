@@ -26,7 +26,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.vol2.examples.mergelife.universe;
+package com.heatonresearch.aifh.examples.alife.mergelife.universe;
 
 public class UniverseCell {
     private final double[] prop;

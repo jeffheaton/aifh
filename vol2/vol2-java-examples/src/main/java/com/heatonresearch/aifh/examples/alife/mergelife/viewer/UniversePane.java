@@ -26,13 +26,13 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.vol2.examples.mergelife.viewer;
+package com.heatonresearch.aifh.examples.alife.mergelife.viewer;
 
-import com.heatonresearch.aifh.vol2.examples.mergelife.physics.MergePhysics;
-import com.heatonresearch.aifh.vol2.examples.mergelife.physics.Physics;
-import com.heatonresearch.aifh.vol2.examples.mergelife.universe.Universe;
-import com.heatonresearch.aifh.vol2.examples.mergelife.universe.UniverseRunner;
-import com.heatonresearch.aifh.vol2.examples.mergelife.universe.UniverseVisualizer;
+import com.heatonresearch.aifh.examples.alife.mergelife.physics.MergePhysics;
+import com.heatonresearch.aifh.examples.alife.mergelife.physics.Physics;
+import com.heatonresearch.aifh.examples.alife.mergelife.universe.Universe;
+import com.heatonresearch.aifh.examples.alife.mergelife.universe.UniverseRunner;
+import com.heatonresearch.aifh.examples.alife.mergelife.universe.UniverseVisualizer;
 
 import java.awt.*;
 

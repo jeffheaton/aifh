@@ -14,10 +14,12 @@ public class WorldPanel extends JPanel {
 
     private boolean[][] primaryGrid;
     private boolean[][] backupGrid;
+    private boolean showGrid;
 
-    public WorldPanel(final int rows, final int cols) {
+    public WorldPanel(final int rows, final int cols, boolean showGrid) {
         this.primaryGrid = new boolean[rows][cols];
         this.backupGrid = new boolean[rows][cols];
+        this.showGrid = showGrid;
     }
 
     public int getRows() {
@@ -50,15 +52,17 @@ public class WorldPanel extends JPanel {
         g.setColor(Color.WHITE);
         g.fillRect(0,0,width,height);
 
-        g.setColor(Color.black);
-        for(int row=0;row<getRows();row++) {
-            int y = (int)(row*cellHeight);
-            g.drawLine(0,y,width,y);
-        }
+        if( this.showGrid ) {
+            g.setColor(Color.black);
+            for(int row=0;row<getRows();row++) {
+                int y = (int)(row*cellHeight);
+                g.drawLine(0,y,width,y);
+            }
 
-        for(int col=0;col<getCols();col++) {
-            int x = (int)(col*cellWidth);
-            g.drawLine(x,0,x,height);
+            for(int col=0;col<getCols();col++) {
+                int x = (int)(col*cellWidth);
+                g.drawLine(x,0,x,height);
+            }
         }
 
         for(int row=0;row<getRows();row++) {

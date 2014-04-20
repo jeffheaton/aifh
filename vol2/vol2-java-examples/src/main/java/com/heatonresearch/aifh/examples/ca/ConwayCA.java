@@ -14,7 +14,7 @@ import java.awt.event.*;
  * Time: 6:22 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ConwayCA extends JFrame implements ActionListener, WindowListener, ItemListener, Runnable {
+public class ConwayCA extends JFrame implements ActionListener, WindowListener, Runnable {
     private JButton iterationButton;
     private JButton startButton;
     private JButton stopButton;
@@ -46,7 +46,7 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
         buttonPanel.add(stopButton = new JButton("Stop"));
         buttonPanel.add(resetButton = new JButton("Reset"));
 
-        this.worldArea = new WorldPanel(ROWS,COLS);
+        this.worldArea = new WorldPanel(ROWS,COLS,true);
         this.scroll = new JScrollPane(this.worldArea);
         c.add(this.scroll, BorderLayout.CENTER);
         iterationButton.addActionListener(this);
@@ -130,23 +130,6 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
 
         this.worldArea.advanceBackupGrid();
 
-
-
-        /*boolean shouldRestart = false;
-
-        if( this.worldRunner!=null && this.worldRunner.isRunning() ) {
-            shouldRestart = true;
-            performStop();
-        }
-
-        Universe universe = new BasicUniverse(this.worldArea.getHeight(),this.worldArea.getWidth(),new BasicCellFactory(1,1));
-        universe.randomize();
-
-        setupUniverse(universe);
-
-        if( shouldRestart ) {
-            performStart();
-        } */
     }
 
     @Override
@@ -215,28 +198,6 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
             ex.printStackTrace();
         }
 
-    }
-
-    @Override
-    public void itemStateChanged(ItemEvent ev) {
-        /*if( ev.getItemSelectable()==this.zoomCombo ) {
-            if( ev.getStateChange()==ItemEvent.SELECTED ) {
-                boolean shouldRestart = false;
-
-                if( this.worldRunner!=null && this.worldRunner.isRunning() ) {
-                    shouldRestart = true;
-                    performStop();
-                }
-
-                String str = ev.getItem().toString();
-                int zoom = Integer.parseInt(str.substring(0, str.length()-1));
-                this.visualizer.setZoom(zoom);
-
-                if( shouldRestart ) {
-                    performStart();
-                }
-            }
-        }   */
     }
 
     @Override

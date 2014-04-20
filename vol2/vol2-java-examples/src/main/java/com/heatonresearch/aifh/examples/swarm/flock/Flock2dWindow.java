@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.vol2.examples.flocking.flock2d;
+package com.heatonresearch.aifh.examples.swarm.flock;
 
 import com.heatonresearch.aifh.distance.CalculateDistance;
 import com.heatonresearch.aifh.distance.EuclideanDistance;

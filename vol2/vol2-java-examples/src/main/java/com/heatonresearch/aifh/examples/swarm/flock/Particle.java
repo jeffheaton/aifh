@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.vol2.examples.flocking.flock2d;
+package com.heatonresearch.aifh.examples.swarm.flock;
 
 public class Particle {
     private double[] location;

@@ -26,7 +26,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.vol2.examples.mergelife.viewer;
+package com.heatonresearch.aifh.examples.alife.mergelife.viewer;
 
 import java.io.File;
 import java.io.Serializable;
