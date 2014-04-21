@@ -1,6 +1,6 @@
 /*
  * Artificial Intelligence for Humans
- * Volume 2: Nature Inspired Algorithms
+ * Volume 1: Fundamental Algorithms
  * Java Version
  * http://www.aifh.org
  * http://www.jeffheaton.com
@@ -8,7 +8,7 @@
  * Code repository:
  * https://github.com/jeffheaton/aifh
 
- * Copyright 2014 by Jeff Heaton
+ * Copyright 2013 by Jeff Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,20 +26,28 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.learning;
+
+package com.heatonresearch.aifh.error;
 
 /**
- * This interface is the base for all Encog Machine Learning methods.  It 
- * defines very little, other than the fact that a subclass is a Machine 
- * Learning Method.  A MLMethod is an algorithm that accepts data and 
- * provides some sort of insight into it.  This could be a neural network, 
- * support vector machine, clustering algorithm, or something else entirely.
- * 
- * Many MLMethods must be trained by a MLTrain object before they are useful.
+ * Calculates the error as the average of the sum of the squared differences between the actual and ideal vectors.
+ * This is the most commonly used error calculation technique in this book.
+ * <p/>
+ * http://www.heatonresearch.com/wiki/Mean_Square_Error
  */
-public interface MLMethod {
+public class ErrorCalculationMSE extends AbstractErrorCalculation {
+
     /**
-     * @return The long term memory for the algorithm.  This is usually weights or other coefficients.
+     * Calculate the error with MSE.
+     *
+     * @return The current error.
      */
-    double[] getLongTermMemory();
+    @Override
+    public final double calculate() {
+        if (this.setSize == 0) {
+            return Double.POSITIVE_INFINITY;
+        }
+        return this.globalError / this.setSize;
+
+    }
 }

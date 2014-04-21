@@ -104,4 +104,13 @@ public class IntegerArrayGenome extends BasicGenome implements ArrayGenome {
 		
 	}
 
+    /**
+     * Not supported.  Integer files are not generally used for model fitting.
+     * @return Nothing.
+     */
+    @Override
+    public double[] getLongTermMemory() {
+        throw new UnsupportedOperationException();
+    }
+
 }

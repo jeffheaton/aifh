@@ -82,6 +82,14 @@ public class DoubleArrayGenome extends BasicGenome implements ArrayGenome {
 	public double[] getData() {
 		return this.data;
 	}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double[] getLongTermMemory() {
+        return this.data;
+    }
 	
 	/**
 	 * {@inheritDoc}

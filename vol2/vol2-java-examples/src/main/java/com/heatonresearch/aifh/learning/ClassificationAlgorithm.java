@@ -1,6 +1,6 @@
 /*
  * Artificial Intelligence for Humans
- * Volume 2: Nature Inspired Algorithms
+ * Volume 1: Fundamental Algorithms
  * Java Version
  * http://www.aifh.org
  * http://www.jeffheaton.com
@@ -8,7 +8,7 @@
  * Code repository:
  * https://github.com/jeffheaton/aifh
 
- * Copyright 2014 by Jeff Heaton
+ * Copyright 2013 by Jeff Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,20 +26,18 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
+
 package com.heatonresearch.aifh.learning;
 
 /**
- * This interface is the base for all Encog Machine Learning methods.  It 
- * defines very little, other than the fact that a subclass is a Machine 
- * Learning Method.  A MLMethod is an algorithm that accepts data and 
- * provides some sort of insight into it.  This could be a neural network, 
- * support vector machine, clustering algorithm, or something else entirely.
- * 
- * Many MLMethods must be trained by a MLTrain object before they are useful.
+ * A classification algorithm is used to classify input data into classes.
  */
-public interface MLMethod {
+public interface ClassificationAlgorithm extends MLMethod {
     /**
-     * @return The long term memory for the algorithm.  This is usually weights or other coefficients.
+     * Classify the specified input into a group.
+     *
+     * @param input The input data.
+     * @return The group the data was classified into.
      */
-    double[] getLongTermMemory();
+    int computeClassification(double[] input);
 }

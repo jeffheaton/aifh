@@ -29,6 +29,8 @@
 
 package com.heatonresearch.aifh.learning.score;
 
+import com.heatonresearch.aifh.learning.MLMethod;
+
 /**
  * A score function evaluates a Machine Learning algorithm.  We will seek to either minimize or maximize the score.
  */
@@ -39,5 +41,5 @@ public interface ScoreFunction {
      * @param algo The algorithm to score.
      * @return The score.
      */
-    double calculateScore(Scorable algo);
+    double calculateScore(MLMethod algo);
 }

@@ -23,7 +23,7 @@ public class GeneticTSPExample {
     public static final int CITIES = 50;
 
     /**
-     * The sice of the population.
+     * The size of the population.
      */
     public static final int POPULATION_SIZE = 1000;
 

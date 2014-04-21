@@ -231,6 +231,16 @@ public class BasicPopulation implements Population,
 		return flatten().size();
 	}
 
+    /**
+     * Not supported, a population cannot be fit by methods that use getLongTermMemory.
+     * The population is made up of many elements.
+     * @return Nothing.
+     */
+    @Override
+    public double[] getLongTermMemory() {
+        throw new UnsupportedOperationException();
+    }
+
 	/**
 	 * Purge any invalid genomes.
 	 */
