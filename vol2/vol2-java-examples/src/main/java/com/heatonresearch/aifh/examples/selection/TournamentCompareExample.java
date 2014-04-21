@@ -10,7 +10,7 @@ import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
 import com.heatonresearch.aifh.evolutionary.train.basic.BasicEA;
 import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenome;
 import com.heatonresearch.aifh.learning.MLMethod;
-import com.heatonresearch.aifh.learning.score.CalculateScore;
+import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
@@ -54,7 +54,7 @@ public class TournamentCompareExample {
         // Create a trainer with a very simple score function.  We do not care
         // about the calculation of the score, as they will never be calculated.
         // We only care that we are maximizing.
-        EvolutionaryAlgorithm train = new BasicEA(pop,new CalculateScore() {
+        EvolutionaryAlgorithm train = new BasicEA(pop,new ScoreFunction() {
             @Override
             public double calculateScore(MLMethod method) {
                 return 0;
@@ -63,11 +63,6 @@ public class TournamentCompareExample {
             @Override
             public boolean shouldMinimize() {
                 return false;
-            }
-
-            @Override
-            public boolean requireSingleThreaded() {
-                return false;  //To change body of implemented methods use File | Settings | File Templates.
             }
         });
 

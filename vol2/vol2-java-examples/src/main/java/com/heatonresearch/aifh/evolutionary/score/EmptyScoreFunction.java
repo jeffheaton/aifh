@@ -31,12 +31,12 @@ package com.heatonresearch.aifh.evolutionary.score;
 import java.io.Serializable;
 
 import com.heatonresearch.aifh.learning.MLMethod;
-import com.heatonresearch.aifh.learning.score.CalculateScore;
+import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
 /**
  * An empty score function.  Simply returns zero as the score, always.
  */
-public class EmptyScoreFunction implements CalculateScore, Serializable {
+public class EmptyScoreFunction implements ScoreFunction, Serializable {
 
 	/**
 	 * Serial ID.
@@ -51,13 +51,6 @@ public class EmptyScoreFunction implements CalculateScore, Serializable {
 		return 0;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean requireSingleThreaded() {
-		return false;
-	}
 
 	/**
 	 * {@inheritDoc}

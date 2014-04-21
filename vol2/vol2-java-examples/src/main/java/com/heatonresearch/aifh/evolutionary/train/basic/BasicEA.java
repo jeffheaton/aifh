@@ -46,7 +46,7 @@ import com.heatonresearch.aifh.evolutionary.species.Species;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
 import com.heatonresearch.aifh.learning.MLContext;
 import com.heatonresearch.aifh.learning.MLMethod;
-import com.heatonresearch.aifh.learning.score.CalculateScore;
+import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import com.heatonresearch.aifh.randomize.MersenneTwisterFactory;
 import com.heatonresearch.aifh.randomize.RandomFactory;
 
@@ -112,7 +112,7 @@ public class BasicEA implements EvolutionaryAlgorithm, Serializable {
 	/**
 	 * The score calculation function.
 	 */
-	private final CalculateScore scoreFunction;
+	private final ScoreFunction scoreFunction;
 
 	/**
 	 * The selection operator.
@@ -222,7 +222,7 @@ public class BasicEA implements EvolutionaryAlgorithm, Serializable {
 	 *            The score function.
 	 */
 	public BasicEA(final Population thePopulation,
-			final CalculateScore theScoreFunction) {
+			final ScoreFunction theScoreFunction) {
 
 		this.population = thePopulation;
 		this.scoreFunction = theScoreFunction;
@@ -482,7 +482,7 @@ public class BasicEA implements EvolutionaryAlgorithm, Serializable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public CalculateScore getScoreFunction() {
+	public ScoreFunction getScoreFunction() {
 		return this.scoreFunction;
 	}
 

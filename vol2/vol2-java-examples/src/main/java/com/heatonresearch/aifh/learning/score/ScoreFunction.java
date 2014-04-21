@@ -42,4 +42,9 @@ public interface ScoreFunction {
      * @return The score.
      */
     double calculateScore(MLMethod algo);
+
+    /**
+     * @return True if the goal is to minimize the score.
+     */
+    boolean shouldMinimize();
 }

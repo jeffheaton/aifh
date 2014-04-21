@@ -99,4 +99,12 @@ public class ScoreRegressionData implements ScoreFunction {
     public List<BasicData> getTrainingData() {
         return trainingData;
     }
+
+    /**
+     * @return True, this scoring method seeks to minimize.
+     */
+    @Override
+    public boolean shouldMinimize() {
+        return true;
+    }
 }

@@ -37,7 +37,7 @@ import com.heatonresearch.aifh.evolutionary.population.Population;
 import com.heatonresearch.aifh.evolutionary.score.AdjustScore;
 import com.heatonresearch.aifh.evolutionary.sort.GenomeComparator;
 import com.heatonresearch.aifh.evolutionary.species.Speciation;
-import com.heatonresearch.aifh.learning.score.CalculateScore;
+import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
 import java.util.List;
 
@@ -146,7 +146,7 @@ public interface EvolutionaryAlgorithm {
 	/**
 	 * @return The score function.
 	 */
-	CalculateScore getScoreFunction();
+	ScoreFunction getScoreFunction();
 
 	/**
 	 * @return The selection operator. Used to choose genomes.

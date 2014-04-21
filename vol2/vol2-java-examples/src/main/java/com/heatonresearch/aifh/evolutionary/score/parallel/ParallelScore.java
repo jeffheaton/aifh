@@ -39,7 +39,8 @@ import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.evolutionary.population.Population;
 import com.heatonresearch.aifh.evolutionary.score.AdjustScore;
 import com.heatonresearch.aifh.evolutionary.species.Species;
-import com.heatonresearch.aifh.learning.score.CalculateScore;
+import com.heatonresearch.aifh.learning.score.ScoreFunction;
+
 /**
  * This class is used to calculate the scores for an entire population. This is
  * typically done when a new population must be scored for the first time.
@@ -58,7 +59,7 @@ public class ParallelScore  {
 	/**
 	 * The scoring function.
 	 */
-	private final CalculateScore scoreFunction;
+	private final ScoreFunction scoreFunction;
 	
 	/**
 	 * The score adjuster.
@@ -84,7 +85,7 @@ public class ParallelScore  {
 	 * @param theThreadCount The requested thread count.
 	 */
 	public ParallelScore(Population thePopulation, GeneticCODEC theCODEC,
-			List<AdjustScore> theAdjusters, CalculateScore theScoreFunction,
+			List<AdjustScore> theAdjusters, ScoreFunction theScoreFunction,
 			int theThreadCount) {
 		this.codec = theCODEC;
 		this.population = thePopulation;
@@ -103,7 +104,7 @@ public class ParallelScore  {
 	/**
 	 * @return the scoreFunction
 	 */
-	public CalculateScore getScoreFunction() {
+	public ScoreFunction getScoreFunction() {
 		return scoreFunction;
 	}
 
@@ -119,9 +120,7 @@ public class ParallelScore  {
 	 */
 	public void process() {
 		// determine thread usage
-		if (this.scoreFunction.requireSingleThreaded()) {
-			this.actualThreads = 1;
-		} else if (threads == 0) {
+		if (threads == 0) {
 			this.actualThreads = Runtime.getRuntime().availableProcessors();
 		} else {
 			this.actualThreads = threads;

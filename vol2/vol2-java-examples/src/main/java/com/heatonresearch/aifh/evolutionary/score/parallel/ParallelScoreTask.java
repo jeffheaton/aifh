@@ -35,7 +35,7 @@ import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.evolutionary.score.AdjustScore;
 import com.heatonresearch.aifh.evolutionary.train.basic.BasicEA;
 import com.heatonresearch.aifh.learning.MLMethod;
-import com.heatonresearch.aifh.learning.score.CalculateScore;
+import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
 /**
  * An individual threadable task for the parallel score calculation.
@@ -51,7 +51,7 @@ public class ParallelScoreTask implements Runnable {
 	/**
 	 * The score function.
 	 */
-	private final CalculateScore scoreFunction;
+	private final ScoreFunction scoreFunction;
 	
 	/**
 	 * The score adjusters.

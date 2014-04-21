@@ -2,9 +2,9 @@ package com.heatonresearch.aifh.examples.ga;
 
 import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenome;
 import com.heatonresearch.aifh.learning.MLMethod;
-import com.heatonresearch.aifh.learning.score.CalculateScore;
+import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
-public class TSPScore implements CalculateScore {
+public class TSPScore implements ScoreFunction {
 
     private City[] cities;
 
@@ -33,11 +33,5 @@ public class TSPScore implements CalculateScore {
     public boolean shouldMinimize() {
         return true;
     }
-
-    @Override
-    public boolean requireSingleThreaded() {
-        return false;
-    }
-
 }
 

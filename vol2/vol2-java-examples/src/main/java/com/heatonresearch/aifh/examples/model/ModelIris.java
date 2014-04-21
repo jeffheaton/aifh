@@ -14,7 +14,6 @@ import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenome;
 import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenomeFactory;
 import com.heatonresearch.aifh.genetic.mutate.MutateShuffle;
 import com.heatonresearch.aifh.learning.RBFNetwork;
-import com.heatonresearch.aifh.learning.score.CalculateScore;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import com.heatonresearch.aifh.learning.score.ScoreRegressionData;
 import com.heatonresearch.aifh.normalize.DataSet;

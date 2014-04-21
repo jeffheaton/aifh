@@ -8,7 +8,7 @@ import com.heatonresearch.aifh.genetic.crossover.SpliceNoRepeat;
 import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenome;
 import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenomeFactory;
 import com.heatonresearch.aifh.genetic.mutate.MutateShuffle;
-import com.heatonresearch.aifh.learning.score.CalculateScore;
+import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
 /**
  * Find the shortest path through several cities with a genetic algorithmn (GA).
@@ -131,7 +131,7 @@ public class GeneticTSPExample {
 
         Population pop = initPopulation();
 
-        CalculateScore score =  new TSPScore(cities);
+        ScoreFunction score =  new TSPScore(cities);
 
         genetic = new BasicEA(pop,score);
 

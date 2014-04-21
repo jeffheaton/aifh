@@ -75,4 +75,13 @@ public class ScoreClassificationData implements ScoreFunction {
 
         return (double) incorrectCount / (double) totalCount;
     }
+
+    /**
+     * @return True, this scoring method seeks to minimize.
+     */
+    @Override
+    public boolean shouldMinimize() {
+        return true;
+    }
+
 }
