@@ -14,6 +14,7 @@ import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenome;
 import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenomeFactory;
 import com.heatonresearch.aifh.genetic.mutate.MutateShuffle;
 import com.heatonresearch.aifh.learning.RBFNetwork;
+import com.heatonresearch.aifh.learning.RBFNetworkGenomeCODEC;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import com.heatonresearch.aifh.learning.score.ScoreRegressionData;
 import com.heatonresearch.aifh.normalize.DataSet;
@@ -83,22 +84,24 @@ public class ModelIris extends SimpleLearn {
             final Map<String, Integer> species = ds.encodeEquilateral(4);
             istream.close();
 
+            final RBFNetworkGenomeCODEC codec = new RBFNetworkGenomeCODEC(4,4,2);
             final List<BasicData> trainingData = ds.extractSupervised(0, 4, 4, 2);
-
-            final RBFNetwork network = new RBFNetwork(4, 4, 2);
 
             Population pop = initPopulation(rnd,4,4,2);
 
-            //CalculateScore score = new ScoreRegressionData(trainingData);
+            ScoreFunction score = new ScoreRegressionData(trainingData);
 
-            //BasicEA genetic = new BasicEA(pop,score);
+            BasicEA genetic = new BasicEA(pop,score);
+            genetic.setCODEC(codec);
+            genetic.addOperation(0.9,new Splice(codec.size()/3));
+            genetic.addOperation(0.1,new MutateShuffle());
 
-            //genetic.addOperation(0.9,new Splice(network.getLongTermMemory().length/3));
-            //genetic.addOperation(0.1,new MutateShuffle());
 
+            performIterations(genetic, 100000, 0.01, true);
 
-//            performIterations(genetic, 100000, 0.01, true);
-//            queryEquilateral(network, trainingData, species, 0, 1);
+            RBFNetwork winner = (RBFNetwork)codec.decode(genetic.getBestGenome());
+
+            queryEquilateral(winner, trainingData, species, 0, 1);
 
 
         } catch (Throwable t) {

@@ -106,7 +106,7 @@ public interface EvolutionaryAlgorithm {
 	 * @return The current score. This value should either be minimized or
 	 *         maximized, depending on the score function.
 	 */
-	double getError();
+	double getLastError();
 
 	/**
 	 * @return The current iteration number. Also sometimes referred to as

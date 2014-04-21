@@ -44,6 +44,7 @@ import com.heatonresearch.aifh.evolutionary.species.SingleSpeciation;
 import com.heatonresearch.aifh.evolutionary.species.Speciation;
 import com.heatonresearch.aifh.evolutionary.species.Species;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
+import com.heatonresearch.aifh.learning.LearningMethod;
 import com.heatonresearch.aifh.learning.MLContext;
 import com.heatonresearch.aifh.learning.MLMethod;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
@@ -62,7 +63,7 @@ import java.util.concurrent.TimeUnit;
  * Provides a basic implementation of a multi-threaded Evolutionary Algorithm.
  * The EA works from a score function.
  */
-public class BasicEA implements EvolutionaryAlgorithm, Serializable {
+public class BasicEA implements EvolutionaryAlgorithm, LearningMethod, Serializable {
 
 	/**
 	 * The serial id.
@@ -399,7 +400,7 @@ public class BasicEA implements EvolutionaryAlgorithm, Serializable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double getError() {
+	public double getLastError() {
 		// do we have a best genome, and does it have an error?
 		if (this.bestGenome != null) {
 			double err = this.bestGenome.getScore();
@@ -617,7 +618,17 @@ public class BasicEA implements EvolutionaryAlgorithm, Serializable {
         this.population.purgeInvalidGenomes();
 	}
 
-	/**
+    @Override
+    public boolean done() {
+        return false;
+    }
+
+    @Override
+    public String getStatus() {
+        return "Best score: "+getLastError();
+    }
+
+    /**
 	 * {@inheritDoc}
 	 */
 	public void performShutdownTask() {

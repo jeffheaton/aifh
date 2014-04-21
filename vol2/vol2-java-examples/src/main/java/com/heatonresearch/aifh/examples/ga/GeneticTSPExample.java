@@ -145,7 +145,7 @@ public class GeneticTSPExample {
         while (sameSolutionCount < MAX_SAME_SOLUTION) {
             genetic.iteration();
 
-            double thisSolution = genetic.getError();
+            double thisSolution = genetic.getLastError();
 
             builder.setLength(0);
             builder.append("Iteration: ");
