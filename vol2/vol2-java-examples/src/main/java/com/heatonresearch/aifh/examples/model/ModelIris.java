@@ -4,14 +4,10 @@ import com.heatonresearch.aifh.evolutionary.population.BasicPopulation;
 import com.heatonresearch.aifh.evolutionary.population.Population;
 import com.heatonresearch.aifh.evolutionary.species.BasicSpecies;
 import com.heatonresearch.aifh.evolutionary.train.basic.BasicEA;
-import com.heatonresearch.aifh.examples.ga.TSPScore;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.genetic.crossover.Splice;
-import com.heatonresearch.aifh.genetic.crossover.SpliceNoRepeat;
 import com.heatonresearch.aifh.genetic.genome.DoubleArrayGenome;
 import com.heatonresearch.aifh.genetic.genome.DoubleArrayGenomeFactory;
-import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenome;
-import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenomeFactory;
 import com.heatonresearch.aifh.genetic.mutate.MutateShuffle;
 import com.heatonresearch.aifh.learning.RBFNetwork;
 import com.heatonresearch.aifh.learning.RBFNetworkGenomeCODEC;
@@ -26,11 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 4/20/14
- * Time: 8:15 PM
- * To change this template use File | Settings | File Templates.
+ * Learn the Iris data set with a RBF network trained by a genetic algorithm.
  */
 public class ModelIris extends SimpleLearn {
 
@@ -39,28 +31,43 @@ public class ModelIris extends SimpleLearn {
      */
     public static final int POPULATION_SIZE = 1000;
 
-
-    public static Population initPopulation(GenerateRandom rnd, int inputCount, int rbfCount, int outputCount) {
-        final RBFNetwork network = new RBFNetwork(inputCount, rbfCount, outputCount);
+    /**
+     * Create an initial population.
+     *
+     * @param rnd   Random number generator.
+     * @param codec The codec, the type of network to use.
+     * @return The population.
+     */
+    public static Population initPopulation(GenerateRandom rnd, RBFNetworkGenomeCODEC codec) {
+        // Create a RBF network to get the length.
+        final RBFNetwork network = new RBFNetwork(codec.getInputCount(), codec.getRbfCount(), codec.getOutputCount());
         int size = network.getLongTermMemory().length;
 
+        // Create a new population, use a single species.
         Population result = new BasicPopulation(POPULATION_SIZE, null);
-
         BasicSpecies defaultSpecies = new BasicSpecies();
         defaultSpecies.setPopulation(result);
+        result.getSpecies().add(defaultSpecies);
+
+        // Create a new population of random networks.
         for (int i = 0; i < POPULATION_SIZE; i++) {
             final DoubleArrayGenome genome = new DoubleArrayGenome(size);
             network.reset(rnd);
-            System.arraycopy(network.getLongTermMemory(),0,genome.getData(),0,size);
+            System.arraycopy(network.getLongTermMemory(), 0, genome.getData(), 0, size);
             defaultSpecies.getMembers().add(genome);
         }
+
+        // Set the genome factory to use the double array genome.
         result.setGenomeFactory(new DoubleArrayGenomeFactory(size));
-        result.getSpecies().add(defaultSpecies);
 
         return result;
 
     }
 
+    public static void main(final String[] args) {
+        final ModelIris prg = new ModelIris();
+        prg.process();
+    }
 
     /**
      * Run the example.
@@ -68,7 +75,7 @@ public class ModelIris extends SimpleLearn {
     public void process() {
         try {
             final InputStream istream = this.getClass().getResourceAsStream("/iris.csv");
-            if( istream==null ) {
+            if (istream == null) {
                 System.out.println("Cannot access data set, make sure the resources are available.");
                 System.exit(1);
             }
@@ -84,22 +91,24 @@ public class ModelIris extends SimpleLearn {
             final Map<String, Integer> species = ds.encodeEquilateral(4);
             istream.close();
 
-            final RBFNetworkGenomeCODEC codec = new RBFNetworkGenomeCODEC(4,4,2);
-            final List<BasicData> trainingData = ds.extractSupervised(0, 4, 4, 2);
+            final RBFNetworkGenomeCODEC codec = new RBFNetworkGenomeCODEC(4, 4, 2);
 
-            Population pop = initPopulation(rnd,4,4,2);
+            final List<BasicData> trainingData = ds.extractSupervised(0,
+                    codec.getInputCount(), codec.getRbfCount(), codec.getOutputCount());
+
+            Population pop = initPopulation(rnd, codec);
 
             ScoreFunction score = new ScoreRegressionData(trainingData);
 
-            BasicEA genetic = new BasicEA(pop,score);
+            BasicEA genetic = new BasicEA(pop, score);
             genetic.setCODEC(codec);
-            genetic.addOperation(0.9,new Splice(codec.size()/3));
-            genetic.addOperation(0.1,new MutateShuffle());
+            genetic.addOperation(0.9, new Splice(codec.size() / 3));
+            genetic.addOperation(0.1, new MutateShuffle());
 
 
             performIterations(genetic, 100000, 0.01, true);
 
-            RBFNetwork winner = (RBFNetwork)codec.decode(genetic.getBestGenome());
+            RBFNetwork winner = (RBFNetwork) codec.decode(genetic.getBestGenome());
 
             queryEquilateral(winner, trainingData, species, 0, 1);
 
@@ -109,10 +118,5 @@ public class ModelIris extends SimpleLearn {
         }
 
 
-    }
-
-    public static void main(final String[] args) {
-        final ModelIris prg = new ModelIris();
-        prg.process();
     }
 }
