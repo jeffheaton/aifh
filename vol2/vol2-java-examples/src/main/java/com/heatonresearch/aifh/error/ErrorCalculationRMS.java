@@ -49,4 +49,13 @@ public class ErrorCalculationRMS extends AbstractErrorCalculation {
         }
         return Math.sqrt(this.globalError / this.setSize);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public ErrorCalculation create() {
+        return new ErrorCalculationMSE();
+    }
+
+
 }

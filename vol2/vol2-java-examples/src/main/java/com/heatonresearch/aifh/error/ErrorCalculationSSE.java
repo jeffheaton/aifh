@@ -48,4 +48,11 @@ public class ErrorCalculationSSE extends AbstractErrorCalculation {
         return this.globalError;
 
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public ErrorCalculation create() {
+        return new ErrorCalculationSSE();
+    }
 }

@@ -94,7 +94,7 @@ public class GeneticTSPExample {
         defaultSpecies.setPopulation(result);
         for (int i = 0; i < POPULATION_SIZE; i++) {
             final IntegerArrayGenome genome = randomGenome();
-            defaultSpecies.getMembers().add(genome);
+            defaultSpecies.add(genome);
         }
         result.setGenomeFactory(new IntegerArrayGenomeFactory(cities.length));
         result.getSpecies().add(defaultSpecies);

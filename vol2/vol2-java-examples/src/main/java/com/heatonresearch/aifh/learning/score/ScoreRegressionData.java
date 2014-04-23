@@ -66,15 +66,17 @@ public class ScoreRegressionData implements ScoreFunction {
      */
     @Override
     public double calculateScore(final MLMethod algo) {
+        ErrorCalculation ec = this.errorCalc.create();
+
         final RegressionAlgorithm ralgo = (RegressionAlgorithm) algo;
         // evaulate
-        errorCalc.clear();
+        ec.clear();
         for (final BasicData pair : this.trainingData) {
             final double[] output = ralgo.computeRegression(pair.getInput());
-            errorCalc.updateError(output, pair.getIdeal(), 1.0);
+            ec.updateError(output, pair.getIdeal(), 1.0);
         }
 
-        return errorCalc.calculate();
+        return ec.calculate();
     }
 
     /**

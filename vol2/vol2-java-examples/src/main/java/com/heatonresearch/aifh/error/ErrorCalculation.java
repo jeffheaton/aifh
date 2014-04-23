@@ -40,6 +40,11 @@ package com.heatonresearch.aifh.error;
 public interface ErrorCalculation {
 
     /**
+     * @return A new instance of this object.
+     */
+    public ErrorCalculation create();
+
+    /**
      * Called to update for each number that should be checked.
      *
      * @param actual The actual number.

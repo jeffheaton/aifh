@@ -8,6 +8,7 @@ import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.genetic.crossover.Splice;
 import com.heatonresearch.aifh.genetic.genome.DoubleArrayGenome;
 import com.heatonresearch.aifh.genetic.genome.DoubleArrayGenomeFactory;
+import com.heatonresearch.aifh.genetic.mutate.MutatePerturb;
 import com.heatonresearch.aifh.genetic.mutate.MutateShuffle;
 import com.heatonresearch.aifh.learning.RBFNetwork;
 import com.heatonresearch.aifh.learning.RBFNetworkGenomeCODEC;
@@ -44,7 +45,7 @@ public class ModelIris extends SimpleLearn {
         int size = network.getLongTermMemory().length;
 
         // Create a new population, use a single species.
-        Population result = new BasicPopulation(POPULATION_SIZE, null);
+        Population result = new BasicPopulation(POPULATION_SIZE, new DoubleArrayGenomeFactory(size));
         BasicSpecies defaultSpecies = new BasicSpecies();
         defaultSpecies.setPopulation(result);
         result.getSpecies().add(defaultSpecies);
@@ -54,7 +55,7 @@ public class ModelIris extends SimpleLearn {
             final DoubleArrayGenome genome = new DoubleArrayGenome(size);
             network.reset(rnd);
             System.arraycopy(network.getLongTermMemory(), 0, genome.getData(), 0, size);
-            defaultSpecies.getMembers().add(genome);
+            defaultSpecies.add(genome);
         }
 
         // Set the genome factory to use the double array genome.
@@ -84,14 +85,14 @@ public class ModelIris extends SimpleLearn {
             final DataSet ds = DataSet.load(istream);
             // The following ranges are setup for the Iris data set.  If you wish to normalize other files you will
             // need to modify the below function calls other files.
-            ds.normalizeRange(0, 0, 1);
-            ds.normalizeRange(1, 0, 1);
-            ds.normalizeRange(2, 0, 1);
-            ds.normalizeRange(3, 0, 1);
-            final Map<String, Integer> species = ds.encodeEquilateral(4);
+            ds.normalizeRange(0, -1, 1);
+            ds.normalizeRange(1, -1, 1);
+            ds.normalizeRange(2, -1, 1);
+            ds.normalizeRange(3, -1, 1);
+            final Map<String, Integer> species = ds.encodeOneOfN(4);
             istream.close();
 
-            final RBFNetworkGenomeCODEC codec = new RBFNetworkGenomeCODEC(4, 4, 2);
+            final RBFNetworkGenomeCODEC codec = new RBFNetworkGenomeCODEC(4, 4, 3);
 
             final List<BasicData> trainingData = ds.extractSupervised(0,
                     codec.getInputCount(), codec.getRbfCount(), codec.getOutputCount());
@@ -102,15 +103,15 @@ public class ModelIris extends SimpleLearn {
 
             BasicEA genetic = new BasicEA(pop, score);
             genetic.setCODEC(codec);
-            genetic.addOperation(0.9, new Splice(codec.size() / 3));
-            genetic.addOperation(0.1, new MutateShuffle());
+            genetic.addOperation(0.7, new Splice(codec.size() / 5));
+            genetic.addOperation(0.3, new MutatePerturb(0.1));
 
 
-            performIterations(genetic, 100000, 0.01, true);
+            performIterations(genetic, 100000, 0.05, true);
 
             RBFNetwork winner = (RBFNetwork) codec.decode(genetic.getBestGenome());
 
-            queryEquilateral(winner, trainingData, species, 0, 1);
+            queryOneOfN(winner, trainingData, species);
 
 
         } catch (Throwable t) {

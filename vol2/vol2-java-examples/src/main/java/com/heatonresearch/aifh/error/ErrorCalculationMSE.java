@@ -50,4 +50,11 @@ public class ErrorCalculationMSE extends AbstractErrorCalculation {
         return this.globalError / this.setSize;
 
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public ErrorCalculation create() {
+        return new ErrorCalculationMSE();
+    }
 }
