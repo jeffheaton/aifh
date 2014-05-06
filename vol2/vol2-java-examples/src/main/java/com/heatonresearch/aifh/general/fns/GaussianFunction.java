@@ -65,7 +65,7 @@ public class GaussianFunction extends AbstractRBF {
     @Override
     public double evaluate(final double[] x) {
         double value = 0;
-        final double width = getWidth();
+        final double width = Math.abs(getWidth());
 
         for (int i = 0; i < getDimensions(); i++) {
             final double center = this.getCenter(i);
