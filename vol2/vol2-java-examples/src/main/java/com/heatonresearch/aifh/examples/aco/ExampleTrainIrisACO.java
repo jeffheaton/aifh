@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.examples.aco.cont;
+package com.heatonresearch.aifh.examples.aco;
 
 import com.heatonresearch.aifh.aco.ContinuousACO;
 import com.heatonresearch.aifh.examples.model.SimpleLearn;

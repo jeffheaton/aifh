@@ -7,12 +7,12 @@ package com.heatonresearch.aifh.aco;
  * Time: 1:32 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ContACOElement implements Comparable<ContACOElement> {
+public class ContinuousAnt implements Comparable<ContinuousAnt> {
     private double score;
     private final double[] params;
     private boolean shouldMinimize;
 
-    public ContACOElement(int n, boolean theShouldMinimize) {
+    public ContinuousAnt(int n, boolean theShouldMinimize) {
         this.params = new double[n];
         this.shouldMinimize = theShouldMinimize;
     }
@@ -30,7 +30,7 @@ public class ContACOElement implements Comparable<ContACOElement> {
     }
 
     @Override
-    public int compareTo(final ContACOElement o) {
+    public int compareTo(final ContinuousAnt o) {
         if( shouldMinimize ) {
             return Double.compare(getScore(),o.getScore());
         } else {

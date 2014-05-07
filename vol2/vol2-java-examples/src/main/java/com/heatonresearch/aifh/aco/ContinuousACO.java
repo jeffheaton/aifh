@@ -20,7 +20,7 @@ public class ContinuousACO implements LearningMethod {
     public static final double CONST_SIGMA = 0.1;
     public static final double CONST_Q = 0.08;
 
-    private final ContACOElement[] population;
+    private final ContinuousAnt[] population;
     private final int populationSize;
     private int paramCount = 0;
     private final double[] weighting;
@@ -38,10 +38,10 @@ public class ContinuousACO implements LearningMethod {
         this.random = new MersenneTwisterGenerateRandom();
         this.paramCount = theAlgorithm.getLongTermMemory().length;
 
-        this.population = new ContACOElement[thePopulationSize * 2];
+        this.population = new ContinuousAnt[thePopulationSize * 2];
         this.weighting = new double[thePopulationSize];
         for (int i = 0; i < this.population.length; i++) {
-            this.population[i] = new ContACOElement(paramCount, score.shouldMinimize());
+            this.population[i] = new ContinuousAnt(paramCount, score.shouldMinimize());
             for (int j = 0; j < paramCount; j++) {
                 this.population[i].getParams()[j] = random.nextDouble(-1, 1);
             }
@@ -57,7 +57,7 @@ public class ContinuousACO implements LearningMethod {
 
     private void updateScore() {
 
-        for (final ContACOElement aPopulation : this.population) {
+        for (final ContinuousAnt aPopulation : this.population) {
             System.arraycopy(aPopulation.getParams(), 0, this.algorithm.getLongTermMemory(), 0, this.paramCount);
             aPopulation.setScore(this.score.calculateScore(this.algorithm));
         }
