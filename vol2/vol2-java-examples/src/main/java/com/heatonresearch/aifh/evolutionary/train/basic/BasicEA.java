@@ -625,7 +625,7 @@ public class BasicEA implements EvolutionaryAlgorithm, LearningMethod, Serializa
 
     @Override
     public String getStatus() {
-        return "Best score: "+getLastError();
+        return "Species Count: " + this.getPopulation().getSpecies().size();
     }
 
     /**
@@ -681,6 +681,14 @@ public class BasicEA implements EvolutionaryAlgorithm, LearningMethod, Serializa
 						.isNaN(this.bestGenome.getScore())));
 
 		getPopulation().setBestGenome(this.bestGenome);
+
+        // make sure each species has a leader
+        for(Species species: this.population.getSpecies()) {
+            if( species.getLeader()==null && species.getMembers().size()>0) {
+                // just pick the first as the leader.
+                species.setLeader(species.getMembers().get(0));
+            }
+        }
 
 		// speciate
 		final List<Genome> genomes = getPopulation().flatten();
