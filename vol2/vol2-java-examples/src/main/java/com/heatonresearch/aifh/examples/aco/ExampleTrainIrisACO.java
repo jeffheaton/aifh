@@ -1,7 +1,7 @@
 package com.heatonresearch.aifh.examples.aco;
 
 import com.heatonresearch.aifh.aco.ContinuousACO;
-import com.heatonresearch.aifh.examples.model.SimpleLearn;
+import com.heatonresearch.aifh.examples.util.SimpleLearn;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.learning.RBFNetwork;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;

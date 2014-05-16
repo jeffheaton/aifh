@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.examples.ga;
+package com.heatonresearch.aifh.examples.ga.tsp;
 
 import com.heatonresearch.aifh.evolutionary.population.BasicPopulation;
 import com.heatonresearch.aifh.evolutionary.population.Population;

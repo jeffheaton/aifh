@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.examples.ga;
+package com.heatonresearch.aifh.examples.ga.tsp;
 
 import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenome;
 import com.heatonresearch.aifh.learning.MLMethod;

@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.examples.model;
+package com.heatonresearch.aifh.examples.util;
 
 import com.heatonresearch.aifh.general.VectorUtil;
 import com.heatonresearch.aifh.general.data.BasicData;

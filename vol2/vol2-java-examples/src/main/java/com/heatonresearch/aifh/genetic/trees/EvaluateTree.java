@@ -2,6 +2,9 @@ package com.heatonresearch.aifh.genetic.trees;
 
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created with IntelliJ IDEA.
  * User: jheaton
@@ -69,4 +72,22 @@ public abstract class EvaluateTree {
             return result;
         }
     }
+
+    public Set<Integer> getLeafSet() {
+        Set<Integer> result = new HashSet<Integer>();
+        for(int i=this.getVarConstOpcode();i<opcodeCount();i++) {
+            result.add(i);
+        }
+        return result;
+    }
+
+    public Set<Integer> getNodeSet() {
+        Set<Integer> result = new HashSet<Integer>();
+        for(int i=0;i<this.getVarConstOpcode();i++) {
+            result.add(i);
+        }
+        return result;
+    }
+
+
 }

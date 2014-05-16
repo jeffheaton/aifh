@@ -2,7 +2,7 @@ package com.heatonresearch.aifh.examples.aco;
 
 import com.heatonresearch.aifh.aco.CostGraph;
 import com.heatonresearch.aifh.aco.DiscreteACO;
-import com.heatonresearch.aifh.examples.ga.City;
+import com.heatonresearch.aifh.examples.ga.tsp.City;
 
 /**
  * Created with IntelliJ IDEA.

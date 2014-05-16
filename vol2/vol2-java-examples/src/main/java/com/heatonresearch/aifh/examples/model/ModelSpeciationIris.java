@@ -4,6 +4,7 @@ import com.heatonresearch.aifh.evolutionary.population.BasicPopulation;
 import com.heatonresearch.aifh.evolutionary.population.Population;
 import com.heatonresearch.aifh.evolutionary.species.BasicSpecies;
 import com.heatonresearch.aifh.evolutionary.train.basic.BasicEA;
+import com.heatonresearch.aifh.examples.util.SimpleLearn;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.genetic.crossover.Splice;
 import com.heatonresearch.aifh.genetic.genome.DoubleArrayGenome;

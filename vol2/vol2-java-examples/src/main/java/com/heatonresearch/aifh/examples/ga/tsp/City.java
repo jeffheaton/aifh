@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.examples.ga;
+package com.heatonresearch.aifh.examples.ga.tsp;
 
 /**
  * City: Holds the location of a city for the traveling salesman problem.
