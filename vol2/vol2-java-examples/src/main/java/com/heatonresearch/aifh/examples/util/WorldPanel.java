@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.examples.ca;
+package com.heatonresearch.aifh.examples.util;
 
 import javax.swing.*;
 import java.awt.*;

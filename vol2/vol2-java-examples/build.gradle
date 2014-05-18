@@ -28,6 +28,6 @@ task(runCSVExample, group: 'examples', description: 'Chapter 1.  This example re
 
 task(runMergelife, group: 'examples', description: 'Chapter 10.  Run the merge life explorer.',
         dependsOn: 'classes', type: JavaExec) {
-    main = 'com.heatonresearch.aifh.examples.alife.mergelife.viewer.MultiverseViewer'
+    main = 'com.heatonresearch.aifh.examples.ca.mergelife.viewer.MultiverseViewer'
     classpath = sourceSets.main.runtimeClasspath
 }

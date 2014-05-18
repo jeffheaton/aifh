@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.examples.model;
+package com.heatonresearch.aifh.examples.ga.iris;
 
 import com.heatonresearch.aifh.evolutionary.population.BasicPopulation;
 import com.heatonresearch.aifh.evolutionary.population.Population;
@@ -10,7 +10,6 @@ import com.heatonresearch.aifh.genetic.crossover.Splice;
 import com.heatonresearch.aifh.genetic.genome.DoubleArrayGenome;
 import com.heatonresearch.aifh.genetic.genome.DoubleArrayGenomeFactory;
 import com.heatonresearch.aifh.genetic.mutate.MutatePerturb;
-import com.heatonresearch.aifh.genetic.species.ArraySpeciation;
 import com.heatonresearch.aifh.learning.RBFNetwork;
 import com.heatonresearch.aifh.learning.RBFNetworkGenomeCODEC;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
@@ -24,13 +23,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/7/14
- * Time: 8:33 PM
- * To change this template use File | Settings | File Templates.
+ * Learn the Iris data set with a RBF network trained by a genetic algorithm.
  */
-public class ModelSpeciationIris extends SimpleLearn {
+public class ModelIris extends SimpleLearn {
+
     /**
      * The size of the population.
      */
@@ -106,7 +102,6 @@ public class ModelSpeciationIris extends SimpleLearn {
             ScoreFunction score = new ScoreRegressionData(trainingData);
 
             BasicEA genetic = new BasicEA(pop, score);
-            genetic.setSpeciation(new ArraySpeciation<DoubleArrayGenome>());
             genetic.setCODEC(codec);
             genetic.addOperation(0.7, new Splice(codec.size() / 5));
             genetic.addOperation(0.3, new MutatePerturb(0.1));

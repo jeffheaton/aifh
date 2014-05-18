@@ -1,5 +1,6 @@
 package com.heatonresearch.aifh.examples.ca;
 
+import com.heatonresearch.aifh.examples.util.WorldPanel;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 

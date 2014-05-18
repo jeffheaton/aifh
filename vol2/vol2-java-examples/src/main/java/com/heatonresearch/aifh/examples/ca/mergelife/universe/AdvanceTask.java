@@ -26,9 +26,9 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.examples.alife.mergelife.universe;
+package com.heatonresearch.aifh.examples.ca.mergelife.universe;
 
-import com.heatonresearch.aifh.examples.alife.mergelife.viewer.UniversePane;
+import com.heatonresearch.aifh.examples.ca.mergelife.viewer.UniversePane;
 
 import java.util.concurrent.Callable;
 
