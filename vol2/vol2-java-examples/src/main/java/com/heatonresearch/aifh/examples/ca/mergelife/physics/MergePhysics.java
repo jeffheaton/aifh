@@ -44,9 +44,10 @@ public class MergePhysics implements Physics {
             {-1, 1, -1}, {1, 1, -1}, {-1, -1, 1}, {1, -1, 1},
             {-1, 1, 1}, {1, 1, 1}};
     private final int[] colTransform = {0, 0, -1, 1, -1, 1, 1, -1};
+    private final int[] rowTransform = {-1, 1, 0, 0, -1, 1, -1, 1};
     private final double[] data;
     private final int[] dataOrder;
-    private final int[] rowTransform = {-1, 1, 0, 0, -1, 1, -1, 1};
+
     private final Universe universe;
 
     public MergePhysics(final Universe theUniverse) {

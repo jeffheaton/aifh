@@ -86,7 +86,6 @@ public class SubmitTitanic {
             System.exit(0);
         }
 
-        for(;;) {
         File dataPath = new File(args[0]);
 
         FitTitanic fit = new FitTitanic();
@@ -96,6 +95,5 @@ public class SubmitTitanic {
 
         SubmitTitanic submit = new SubmitTitanic();
         submit.submit(dataPath,bestNetwork,fit.getCrossvalidation());
-        }
     }
 }
