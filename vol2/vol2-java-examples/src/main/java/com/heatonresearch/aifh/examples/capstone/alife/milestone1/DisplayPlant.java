@@ -4,22 +4,53 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/20/14
- * Time: 6:04 AM
- * To change this template use File | Settings | File Templates.
+ * A panel used to display a plant.
  */
 public class DisplayPlant extends JPanel {
+    /**
+     * The universe that we will render from.
+     */
     private PlantUniverse universe;
+
+    /**
+     * The most green color that a plant can take on.
+     */
     private Color FULL_GREEN = new Color(0, 255, 0);
+
+    /**
+     * The most brown color that a plant can take on.
+     */
     private Color FULL_BROWN = new Color(165, 42, 42);
+
+    /**
+     * The color of the sky.
+     */
     private Color SKY_COLOR = new Color(135, 206, 250);
+
+    /**
+     * The color of the dirt.
+     */
     private Color DIRT_COLOR = new Color(96, 96, 96);
+
+    /**
+     * A gradient of colors between full green and brown.
+     */
     private Color[] gradient;
+
+    /**
+     * The best score, to display.
+     */
     private double bestScore;
+
+    /**
+     * The current generation, for display.
+     */
     private int generation = 0;
 
+
+    /**
+     * The constructor builds the gradient.
+     */
     public DisplayPlant() {
         int gradentRangeRed = FULL_GREEN.getRed() - FULL_BROWN.getRed();
         int gradentRangeGreen = FULL_GREEN.getGreen() - FULL_BROWN.getGreen();

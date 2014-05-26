@@ -38,7 +38,7 @@ public class PlantPhysics {
                 // Collect resources for live cells
                 if( cell.isAlive() ) {
                     // Live cells cause the sunlight to decay (shade)
-                    decay *= PlantUniverse.SUNLIGHT_DECAY * cell.getComposition();
+                    decay *= PlantUniverse.DECAY * cell.getComposition();
 
                     // Set the energy based on sunlight level and composition of the live cell
                     double myEnergy = cell.getCalculatedSunlight()*cell.getComposition();
@@ -55,8 +55,8 @@ public class PlantPhysics {
     }
 
     private void distributeNourishment(PlantUniverse universe) {
-        int rootCount = 0;
-        int surfaceCount = 0;
+        double rootCount = 0;
+        double surfaceCount = 0;
 
         // Distribute sun energy downward
         double[] waterTable = new double[PlantUniverse.UNIVERSE_WIDTH];
@@ -83,7 +83,7 @@ public class PlantPhysics {
                 // Collect resources for live cells
                 if( cell.isAlive() ) {
                     // Live cells cause the water to decay (roots collect)
-                    decay *= PlantUniverse.NOURISHMENT_DECAY;
+                    decay *= PlantUniverse.DECAY;
 
                     // Set the energy based on sunlight level and composition of the live cell
                     double myWater = cell.getCalculatedWater()*cell.getComposition();
@@ -94,11 +94,9 @@ public class PlantPhysics {
 
                     // update the root and surface counts
                     if( row>=PlantUniverse.GROUND_LINE ) {
-                        rootCount++;
+                        rootCount+=cell.getNourishment();
                     } else {
-                        if( cell.getComposition()>0.5 ) {
-                            surfaceCount++;
-                        }
+                        surfaceCount+=cell.getComposition();
                     }
                 }
 

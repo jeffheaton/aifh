@@ -46,21 +46,43 @@ public class PlantUniverse {
      */
     public static final int GENOME_SIZE = CELL_VECTOR_LENGTH * 4;
 
-    public static final double SUNLIGHT_DECAY = 0.1;
-    public static final double NOURISHMENT_DECAY = 0.1;
-    public static final double STEM_TRANSITION = 0.8;
-    public static final double GROWTH_THRESHOLD = 0.25;
-    public static final double MIN_GROWTH_DIST = 0.1;
-    public static final double MIN_LIVING_ENERGY = 0.1;
-    public static final double REQUIRED_ROOT_RATIO = 0.2;
+    /**
+     * The rate that sunlight decays based on shade, or
+     * the rate that nourishment decays based on roots absorbing.
+     */
+    public static final double DECAY = 0.1;
 
+    /**
+     * The rate at which leafy material turns to wooden stem.
+     */
+    public static final double STEM_TRANSITION = 0.8;
+
+    /**
+     * The threshold to allow growth.
+     */
+    public static final double GROWTH_THRESHOLD = 0.25;
+
+
+    /**
+     * The minimum distance to a genome template to execute that instruction.
+     * Used to control how growth happens.
+     */
+    public static final double MIN_GROWTH_DIST = 0.1;
+
+    /**
+     * The minimum energy that a living cell is allowed to drop to.
+     */
+    public static final double MIN_LIVING_ENERGY = 0.1;
+
+    /**
+     * The population size for the genetic algorithm.
+     */
     public static final int POPULATION_SIZE = 1000;
-    public static final int MAX_SAME_SOLUTION = 100;
 
 
     private PlantUniverseCell[][] grid = new PlantUniverseCell[UNIVERSE_HEIGHT][UNIVERSE_WIDTH];
-    private int rootCount;
-    private int surfaceCount;
+    private double rootCount;
+    private double surfaceCount;
 
     public PlantUniverse() {
         for(int row=0;row<grid.length;row++) {
@@ -208,31 +230,71 @@ public class PlantUniverse {
         return result;
     }
 
-    public int getRootCount() {
+    public double getRootCount() {
         return rootCount;
     }
 
-    public void setRootCount(final int rootCount) {
+    public void setRootCount(final double rootCount) {
         this.rootCount = rootCount;
     }
 
-    public int getSurfaceCount() {
+    public double getSurfaceCount() {
         return surfaceCount;
     }
 
-    public void setSurfaceCount(final int surfaceCount) {
+    public void setSurfaceCount(final double surfaceCount) {
         this.surfaceCount = surfaceCount;
+    }
+
+    public int countNeighbors(int row, int col) {
+        int sum = 0;
+
+        if( isAlive(row-1,col) ) {
+            sum++;
+        }
+        if( isAlive(row+1,col) ) {
+            sum++;
+        }
+        if( isAlive(row,col-1) ) {
+            sum++;
+        }
+        if( isAlive(row,col+1) ) {
+            sum++;
+        }
+
+        if( isAlive(row-1,col-1) ) {
+            sum++;
+        }
+        if( isAlive(row+1,col+1) ) {
+            sum++;
+        }
+        if( isAlive(row-1,col+1) ) {
+            sum++;
+        }
+        if( isAlive(row+1,col-1) ) {
+            sum++;
+        }
+
+        return sum;
     }
 
     public boolean canGrow(int row, int col) {
         PlantUniverseCell cell = getCell(row,col);
         if( cell.isAlive() ) {
             if( row>=PlantUniverse.GROUND_LINE ) {
-                return true;
+                return countNeighbors(row,col)<4;
             } else {
                 return cell.getEnergy()>PlantUniverse.GROWTH_THRESHOLD && cell.getNourishment()>PlantUniverse.GROWTH_THRESHOLD;
             }
         }
         return false;
+    }
+
+    public boolean isAlive(final int row, final int col) {
+        if( !isValid(row,col) ) {
+            return false;
+        }
+
+        return(grid[row][col].isAlive());
     }
 }

@@ -37,11 +37,13 @@ public class PlantGrowth {
         if( universe.getSurfaceCount()==0 ) {
             return;
         }
-        double rootRatio = (double)universe.getRootCount()/(double)universe.getSurfaceCount();
-        if( rootRatio < PlantUniverse.REQUIRED_ROOT_RATIO ) {
-            return;
-        }
 
+        // The amount of leafy material per root nourishment.  A higher number indicates
+        // more root nourishment than leafs.
+        double rootRatio = universe.getRootCount()/universe.getSurfaceCount();
+
+        boolean allowRoot = rootRatio<0.5; //rootRatio < 0.1;
+        boolean allowSurface = rootRatio > 0.05;
 
         // Reset the new composition to be the composition of the current universe
         for(int row=0;row<PlantUniverse.UNIVERSE_HEIGHT;row++) {
@@ -75,6 +77,15 @@ public class PlantGrowth {
                     for(int i=0;i<colTransform.length;i++) {
                         int evalCol = col + colTransform[i];
                         int evalRow = row + rowTransform[i];
+
+                        if( !allowRoot && evalRow>=PlantUniverse.GROUND_LINE ) {
+                            continue;
+                        }
+
+                        if( !allowSurface && evalRow<PlantUniverse.GROUND_LINE) {
+                            continue;
+                        }
+
                         if( universe.isValid(evalRow,evalCol) ) {
                             double p = getGrowthPotential(universe,evalRow,evalCol,genome);
                             if( p>0 ) {
@@ -99,9 +110,6 @@ public class PlantGrowth {
         for(int row=0;row<PlantUniverse.UNIVERSE_HEIGHT;row++) {
             for(int col=0;col<PlantUniverse.UNIVERSE_WIDTH;col++) {
                 PlantUniverseCell cell = universe.getCell(row,col);
-
-
-
 
                 if( this.newComposition[row][col]  ) {
                     if( row>=PlantUniverse.GROUND_LINE ) {

@@ -3,7 +3,6 @@ package com.heatonresearch.aifh.examples.capstone.alife.milestone3;
 import com.heatonresearch.aifh.evolutionary.population.BasicPopulation;
 import com.heatonresearch.aifh.evolutionary.population.Population;
 import com.heatonresearch.aifh.evolutionary.species.BasicSpecies;
-import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
 import com.heatonresearch.aifh.evolutionary.train.basic.BasicEA;
 import com.heatonresearch.aifh.examples.capstone.alife.milestone1.DisplayPlant;
 import com.heatonresearch.aifh.examples.capstone.alife.milestone1.PlantUniverse;
@@ -23,6 +22,7 @@ import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.
@@ -132,6 +132,8 @@ public class Milestone3Main extends JFrame implements Runnable {
             this.display.setGeneration(generation);
             this.display.setBestScore(this.genetic.getBestGenome().getScore());
             this.display.repaint();
+
+            System.out.println(Arrays.toString(bestGenome.getLongTermMemory()));
 
         }
     }
