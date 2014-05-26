@@ -14,6 +14,7 @@ import com.heatonresearch.aifh.examples.capstone.alife.milestone1.PlantUniverseC
 public class PlantGrowth {
     private final int[] colTransform = {0, 0, -1, 1, -1, 1, 1, -1};
     private final int[] rowTransform = {-1, 1, 0, 0, -1, 1, -1, 1};
+
     private final EuclideanDistance dist = new EuclideanDistance();
     private final boolean[][] newComposition = new boolean[PlantUniverse.UNIVERSE_HEIGHT][PlantUniverse.UNIVERSE_WIDTH];
 
@@ -22,11 +23,12 @@ public class PlantGrowth {
         double d1 = dist.calculate(cellVec,0,genome,PlantUniverse.CELL_VECTOR_LENGTH*2,PlantUniverse.CELL_VECTOR_LENGTH);
         double d2 = dist.calculate(cellVec,0,genome,PlantUniverse.CELL_VECTOR_LENGTH*3,PlantUniverse.CELL_VECTOR_LENGTH);
 
-        if( d2<d1 ) {
-            return -1;
+        double result = Math.min(d1,d2);
+        if( result<PlantUniverse.MIN_GROWTH_DIST ) {
+            result = -1;
         }
 
-        return d1;
+        return result;
 
     }
 
@@ -65,7 +67,7 @@ public class PlantGrowth {
                 }
 
                 // Evaluate growth into each neighbor cell
-                if( cell.canGrow() ) {
+                if( universe.canGrow(row,col) ) {
                     int growthTargetRow = row;
                     int growthTargetCol = col;
                     double growthTargetScore = Double.POSITIVE_INFINITY;
@@ -98,13 +100,16 @@ public class PlantGrowth {
             for(int col=0;col<PlantUniverse.UNIVERSE_WIDTH;col++) {
                 PlantUniverseCell cell = universe.getCell(row,col);
 
-                // Roots are always 100% stem for transfer.
-                if( row>=PlantUniverse.GROUND_LINE ) {
-                    cell.setComposition(0);
-                }
+
+
 
                 if( this.newComposition[row][col]  ) {
-                    cell.setComposition(1.0);
+                    if( row>=PlantUniverse.GROUND_LINE ) {
+                        // Roots are always 100% stem for transfer.
+                        cell.setComposition(0);
+                    } else {
+                        cell.setComposition(1.0);
+                    }
                     cell.setEnergy(1.0);
                     cell.setNourishment(1.0);
                 }

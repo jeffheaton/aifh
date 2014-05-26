@@ -8,18 +8,51 @@ package com.heatonresearch.aifh.examples.capstone.alife.milestone1;
  * To change this template use File | Settings | File Templates.
  */
 public class PlantUniverse {
+    /**
+     * The width of the universe, in terms of cells.
+     * Any actual "on screen" display is scaled from this.
+     */
     public static final int UNIVERSE_WIDTH = 50;
+
+    /**
+     * The height of the universe, in terms of cells.
+     * Any actual "on screen" display is scaled from this.
+     */
     public static final int UNIVERSE_HEIGHT = 100;
+
+    /**
+     * The location of the ground line.  Anything >= to this is underground.
+     */
     public static final int GROUND_LINE = UNIVERSE_HEIGHT-(UNIVERSE_HEIGHT /3);
+
+    /**
+     * The size of a cell "info vector".  This vector identifies a cell's state, and is used to encode instructions
+     * in the genome.  All of these are normalized to [0,1].  There are currently four elements:
+     * 0: The row that the cell is in.
+     * 1: The amount of sunlight the cell is exposed to.
+     * 2: The degree of crowding, from neighbors.
+     * 3: The amount of nourishment the cell is exposed to.
+     */
     public static final int CELL_VECTOR_LENGTH = 4;
+
+    /**
+     * The size of a GENOME vector.  A genome vector is made up of four "info vectors".  These give instructions
+     * on how to grow a plant.
+     * Vector 0: Growth template #1
+     * Vector 1: Growth template #2
+     * Vector 2: Leaf template
+     * Vector 3: Stem template
+     * For more information on how these are used, refer to the PlantGrowth class.
+     */
     public static final int GENOME_SIZE = CELL_VECTOR_LENGTH * 4;
 
     public static final double SUNLIGHT_DECAY = 0.1;
     public static final double NOURISHMENT_DECAY = 0.1;
     public static final double STEM_TRANSITION = 0.8;
     public static final double GROWTH_THRESHOLD = 0.25;
+    public static final double MIN_GROWTH_DIST = 0.1;
     public static final double MIN_LIVING_ENERGY = 0.1;
-    public static final double REQUIRED_ROOT_RATIO = 0.0;
+    public static final double REQUIRED_ROOT_RATIO = 0.2;
 
     public static final int POPULATION_SIZE = 1000;
     public static final int MAX_SAME_SOLUTION = 100;
@@ -90,7 +123,11 @@ public class PlantUniverse {
         // Height
         result[0] = row/PlantUniverse.UNIVERSE_HEIGHT;
         // Sunlight
-        result[1] = cell.getCalculatedSunlight();
+        if( row<PlantUniverse.GROUND_LINE) {
+            result[1] = cell.getCalculatedSunlight();
+        } else {
+            result[1] = cell.getCalculatedWater();
+        }
         // Crowd
         result[2] = calculateMeanNeighborsCrowd(row,col);
         // Nourishment
@@ -115,7 +152,7 @@ public class PlantUniverse {
         int groundLevel = PlantUniverse.GROUND_LINE;
 
         // root
-        grid[groundLevel][center].setComposition(1);
+        grid[groundLevel][center].setComposition(0);
         grid[groundLevel][center].setNourishment(1);
         grid[groundLevel][center].setEnergy(1);
 
@@ -129,22 +166,6 @@ public class PlantUniverse {
         grid[groundLevel-2][center].setNourishment(1);
         grid[groundLevel-2][center].setEnergy(1);
 
-    }
-
-    public double calculateMaxNeighborsNourishment(final int row, final int col) {
-        double result = 0;
-        result=Math.max(result, calculateNourishment(row - 1, col - 1));
-        result=Math.max(result, calculateNourishment(row - 1, col));
-        result=Math.max(result, calculateNourishment(row - 1, col + 1));
-
-        result=Math.max(result, calculateNourishment(row, col - 1));
-        result=Math.max(result, calculateNourishment(row, col + 1));
-
-        result=Math.max(result, calculateNourishment(row + 1, col - 1));
-        result=Math.max(result, calculateNourishment(row + 1, col));
-        result=Math.max(result, calculateNourishment(row + 1, col + 1));
-
-        return result;
     }
 
     public boolean isValid(final int row, final int col) {
@@ -164,13 +185,6 @@ public class PlantUniverse {
     }
 
     public double calculateEnergy(final int row, final int col) {
-        if( !isValid(row,col) ) {
-            return 0;
-        }
-        return this.grid[row][col].getEnergy();
-    }
-
-    public double calculateWater(final int row, final int col) {
         if( !isValid(row,col) ) {
             return 0;
         }
@@ -208,5 +222,17 @@ public class PlantUniverse {
 
     public void setSurfaceCount(final int surfaceCount) {
         this.surfaceCount = surfaceCount;
+    }
+
+    public boolean canGrow(int row, int col) {
+        PlantUniverseCell cell = getCell(row,col);
+        if( cell.isAlive() ) {
+            if( row>=PlantUniverse.GROUND_LINE ) {
+                return true;
+            } else {
+                return cell.getEnergy()>PlantUniverse.GROWTH_THRESHOLD && cell.getNourishment()>PlantUniverse.GROWTH_THRESHOLD;
+            }
+        }
+        return false;
     }
 }

@@ -63,11 +63,4 @@ public class PlantUniverseCell {
     public void setCalculatedWater(final double calculatedWater) {
         this.calculatedWater = calculatedWater;
     }
-
-    public boolean canGrow() {
-        if( isAlive() ) {
-            return this.energy>PlantUniverse.GROWTH_THRESHOLD && this.nourishment>PlantUniverse.GROWTH_THRESHOLD;
-        }
-        return false;
-    }
 }

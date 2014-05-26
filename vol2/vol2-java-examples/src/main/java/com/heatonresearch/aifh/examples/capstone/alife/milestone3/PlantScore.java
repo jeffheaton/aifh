@@ -36,11 +36,15 @@ public class PlantScore implements ScoreFunction {
         // Count the amount of green.
         int count = 0;
         double sum = 0;
-        for(int row=0;row<PlantUniverse.GROUND_LINE;row++) {
+        for(int row=0;row<PlantUniverse.UNIVERSE_HEIGHT;row++) {
             for(int col=0;col<PlantUniverse.UNIVERSE_WIDTH;col++) {
                 PlantUniverseCell cell = universe.getCell(row,col);
                 if( cell.isAlive() ) {
-                    sum+=cell.getComposition();
+                    if( row>=PlantUniverse.GROUND_LINE) {
+                        sum+=0.5;
+                    } else {
+                        sum+=cell.getComposition();
+                    }
                 }
                 count++;
             }
