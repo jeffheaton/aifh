@@ -89,7 +89,7 @@ class TrainGreedyRandom(shouldMinimize: Boolean, algorithm: MachineLearningAlgor
    * @param memory The long term memory.
    */
   def performRandomize(memory: ArrayBuffer[Double]) {
-    for(i<-0 until memory.length)
+    for(i <- 0 until memory.length)
       memory(i) = rnd.nextDouble(lowRange, highRange)
   }
 

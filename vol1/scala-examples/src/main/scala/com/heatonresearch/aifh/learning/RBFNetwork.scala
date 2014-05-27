@@ -50,7 +50,7 @@ import scala.collection.mutable.ArrayBuffer
  * @param rbfCount       The number of RBF functions.
  * @param outputCount The output count.
  */
-class RBFNetwork(val inputCount: Int, rbfCount: Int,val outputCount: Int) extends RegressionAlgorithm with ClassificationAlgorithm {
+class RBFNetwork(val inputCount: Int, rbfCount: Int, val outputCount: Int) extends RegressionAlgorithm with ClassificationAlgorithm {
 
   /**
    * An index to the input weights in the long term memory.

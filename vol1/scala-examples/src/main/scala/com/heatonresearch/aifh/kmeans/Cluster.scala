@@ -46,15 +46,15 @@ class Cluster(theDimensions: Int) {
   /**
    * The center of these observations.
    */
-  private var center : Vector[Double] = Vector.fill(theDimensions)(0.0)
+  private var center: Vector[Double] = Vector.fill(theDimensions)(0.0)
 
-  def removeObservation(obs : BasicData) {
+  def removeObservation(obs: BasicData) {
     observations = observations.filterNot(_ == obs)
   }
 
   def noObservations = observations.size
 
-  def addObservation(observation : BasicData) {
+  def addObservation(observation: BasicData) {
     observations = observations :+ observation
   }
 
@@ -70,14 +70,14 @@ class Cluster(theDimensions: Int) {
    */
   def getCenter: Vector[Double] = center
 
-  def setCenter(newCenter : Vector[Double]) {
+  def setCenter(newCenter: Vector[Double]) {
     center = newCenter
   }
 
-  def getObservation(index : Int) : BasicData = observations(index)
+  def getObservation(index: Int): BasicData = observations(index)
 
-  def removeObservation(index : Int) : BasicData = {
-    val res = observations.toVector(index)
+  def removeObservation(index: Int): BasicData = {
+    val res = observations(index)
     removeObservation(res)
     res
   }
@@ -91,7 +91,6 @@ class Cluster(theDimensions: Int) {
    * Calculate the center (or mean) of the observations.
    */
   def calculateCenter() {
-
     val newValues = ArrayBuffer.fill(theDimensions)(0.0)
 
     for (observation <- observations) {
@@ -100,9 +99,10 @@ class Cluster(theDimensions: Int) {
       }
     }
 
-    for(i<- 0 until theDimensions) {
+    for(i <- 0 until theDimensions) {
       newValues(i) /= observations.size
     }
+    
     center = newValues.toVector
   }
 

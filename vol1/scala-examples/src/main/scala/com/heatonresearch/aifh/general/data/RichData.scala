@@ -37,11 +37,9 @@ import scala.language.implicitConversions
  */
 object RichData {
 
-  implicit def toRichVector(v : Vector[Double]) : RichVector = {
-    new RichVector(v)
-  }
+  implicit def toRichVector(v: Vector[Double]): RichVector = new RichVector(v)
 
-  implicit  def toRichBuffer[T](b : ArrayBuffer[T]) : RichArrayBuffer[T] = new RichArrayBuffer(b)
+  implicit def toRichBuffer[T](b: ArrayBuffer[T]): RichArrayBuffer[T] = new RichArrayBuffer(b)
 
 }
 
@@ -51,10 +49,10 @@ class RichVector(data :Vector[Double]) {
    *
    * @return The index.
    */
-  def maxIndex : Int = {
+  def maxIndex: Int = {
     var result: Int = -1
     var max = Double.NegativeInfinity
-    (0 until data.length) foreach { i =>
+    for(i <- 0 until data.length) {
       if (data(i) > max) {
         max = data(i)
         result = i
@@ -63,26 +61,26 @@ class RichVector(data :Vector[Double]) {
     result
   }
 
-  def swap(p1 : Int,p2 : Int) : Vector[Double] = {
+  def swap(p1: Int, p2: Int): Vector[Double] = {
     val temp1 = data(p1)
     val temp2 = data(p2)
     data.updated(p1,temp2).updated(p2,temp1)
   }
 }
 
-class RichArrayBuffer[T](buffer : ArrayBuffer[T]) {
+class RichArrayBuffer[T](buffer: ArrayBuffer[T]) {
 
-  def set(values : Seq[T]) {
+  def set(values: Seq[T]) {
     buffer.clear()
     buffer ++= values
   }
 
-  def updateValues(f : (Int,T) => T) {
+  def updateValues(f: (Int, T) => T) {
     for(i <- 0 until buffer.length)
       buffer(i) = f(i,buffer(i))
   }
 
-  def setFrom(other : IndexedSeq[T],otherStart : Int,thisStart : Int,noElements : Int) {
+  def setFrom(other: IndexedSeq[T], otherStart: Int, thisStart: Int, noElements: Int) {
     for(i <- 0 until noElements)
       buffer(thisStart + i) = other(otherStart + i)
   }

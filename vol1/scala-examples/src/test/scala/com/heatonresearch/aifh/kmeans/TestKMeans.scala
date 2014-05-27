@@ -91,7 +91,7 @@ class TestKMeans extends Suite {
   }
 
   def testGeneral() {
-    val kmeans= new KMeans(5)
+    val kmeans = new KMeans(5)
     assert(5 === kmeans.k)
     kmeans.randomGeneration = new BasicGenerateRandom()
     kmeans.distanceMetric = new EuclideanDistance
@@ -100,14 +100,14 @@ class TestKMeans extends Suite {
   }
 
   def testTooManyClusters() {
-    val kmeans= new KMeans(13)
+    val kmeans = new KMeans(13)
     intercept[AIFHError] {
       kmeans.initRandom(getDataSet)
     }
   }
 
   def testEarlyIteration() {
-    val kmeans= new KMeans(3)
+    val kmeans = new KMeans(3)
     intercept[AIFHError] {
       kmeans.iteration
     }
@@ -115,7 +115,7 @@ class TestKMeans extends Suite {
 
   def testNoObservations() {
     val list = Vector[BasicData]()
-    val kmeans= new KMeans(3)
+    val kmeans = new KMeans(3)
     intercept[AIFHError] {
       kmeans.initForgy(list)
     }
@@ -123,7 +123,7 @@ class TestKMeans extends Suite {
 
   def testNoDimension() {
     val list = Vector(new BasicData(0))
-    val kmeans= new KMeans(3)
+    val kmeans = new KMeans(3)
     intercept[AIFHError] {
       kmeans.initForgy(list)
     }

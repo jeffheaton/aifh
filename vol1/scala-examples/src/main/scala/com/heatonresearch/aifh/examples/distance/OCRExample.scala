@@ -255,17 +255,16 @@ class OCRExample extends JFrame("OCR") {
       var line: String = null
       var i: Int = 0
       letterListModel.clear()
-      while ( { line = r.readLine ; line } != null) {
+      while ({ line = r.readLine ; line } != null) {
         val ds: SampleData = new SampleData(line.charAt(0), OCRExample.DOWNSAMPLE_WIDTH, OCRExample.DOWNSAMPLE_HEIGHT)
         letterListModel.add(i, ds)
         i += 1
 
         var idx: Int = 2
-        (0 until ds.height) foreach { y =>
-          (0 until ds.width) foreach { x =>
-            ds.setData(x, y, line.charAt(idx) == '1')
-            idx+=1
-          }
+        for(y <- 0 until ds.height;
+            x <- 0 until ds.width) {
+          ds.setData(x, y, line.charAt(idx) == '1')
+          idx += 1
         }
       }
       r.close()
@@ -288,7 +287,7 @@ class OCRExample extends JFrame("OCR") {
     var bestPosition: Double = Double.PositiveInfinity
     var letter: String = "?"
     val letterToRecognize: Vector[Double] = sample.data.getPosition
-    (0 until letterListModel.size) foreach { i =>
+    for(i <- 0 until letterListModel.size) {
       val ds = letterListModel.getElementAt(i)
       val dist: Double = distanceCalc.calculate(letterToRecognize, ds.getPosition)
       if (dist < bestPosition) {
@@ -307,13 +306,12 @@ class OCRExample extends JFrame("OCR") {
     try {
       val os: OutputStream = new FileOutputStream("./sample.dat", false)
       val ps: PrintStream = new PrintStream(os)
-      (0 until letterListModel.size) foreach { i =>
+      for(i <- 0 until letterListModel.size) {
         val ds = letterListModel.elementAt(i)
         ps.print(ds.letter + ":")
-        (0 until ds.height) foreach { y =>
-          (0 until ds.width) foreach { x =>
-            ps.print(if (ds.getData(x, y)) "1" else "0")
-          }
+        for(y <- 0 until ds.height;
+            x <- 0 until ds.width) {
+          ps.print(if (ds.getData(x, y)) "1" else "0")
         }
         ps.println()
       }

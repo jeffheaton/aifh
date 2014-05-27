@@ -69,7 +69,7 @@ class TravelingSalesmanAnneal extends DiscreteAnneal(1000, 400, 0.001) {
     }
   }
 
-  private def swap[V](vec : Vector[V],pos1 : Int,pos2 : Int) : Vector[V] = {
+  private def swap[V](vec: Vector[V], pos1: Int, pos2: Int): Vector[V] = {
     val temp = vec(pos1)
     vec.updated(pos1,vec(pos2)).updated(pos2,temp)
   }

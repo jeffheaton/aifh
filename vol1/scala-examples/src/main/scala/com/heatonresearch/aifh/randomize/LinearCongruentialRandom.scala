@@ -75,7 +75,7 @@ object LinearCongruentialRandom {
  *                      the same random number sequence each time, whether in Java or
  *                      DotNet.
  */
-class LinearCongruentialRandom(val modulus: Long,val multiplier: Long,val increment: Long,initialSeed: Long) extends AbstractBoxMuller {
+class LinearCongruentialRandom(val modulus: Long, val multiplier: Long, val increment: Long, initialSeed: Long) extends AbstractBoxMuller {
   import LinearCongruentialRandom._
 
   /**
@@ -83,7 +83,7 @@ class LinearCongruentialRandom(val modulus: Long,val multiplier: Long,val increm
    *
    * @param theSeed The seed to use.
    */
-  def this(theSeed : Long) {
+  def this(theSeed: Long) {
     this(Math.pow(LinearCongruentialRandom.DEFAULT_MOD1, LinearCongruentialRandom.DEFAULT_MOD2).toLong,
       LinearCongruentialRandom.DEFAULT_MULT, LinearCongruentialRandom.DEFAULT_INC, theSeed)
   }

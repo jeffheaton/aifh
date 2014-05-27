@@ -65,7 +65,7 @@ import com.heatonresearch.aifh.general.data.RichData._
  * Rather, use something close to zero, like 0.0001.
  */
 class TrainAnneal(algorithm: MachineLearningAlgorithm, val score: ScoreFunction,
-                  val kMax: Int,val startingTemperature: Double,val endingTemperature: Double) extends LearningMethod {
+                  val kMax: Int, val startingTemperature: Double, val endingTemperature: Double) extends LearningMethod {
 
   /**
    * Construct the simulated annealing trainer.  Use 1000 iterations and temperature from 400 to 0.0001.

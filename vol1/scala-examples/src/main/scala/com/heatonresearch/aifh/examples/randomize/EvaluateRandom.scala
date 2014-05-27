@@ -114,7 +114,7 @@ class EvaluateRandom extends JFrame with ActionListener with Runnable {
     requestStop = false
     buttonStart.setEnabled(false)
     buttonStop.setEnabled(true)
-    val rnd : GenerateRandom = comboGenerator.getSelectedIndex match {
+    val rnd: GenerateRandom = comboGenerator.getSelectedIndex match {
       case 0 => new BasicGenerateRandom()
       case 1 => new LinearCongruentialRandom()
       case 2 => new SecureGenerateRandom()

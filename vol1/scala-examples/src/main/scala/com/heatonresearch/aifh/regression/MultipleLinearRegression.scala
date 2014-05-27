@@ -60,7 +60,7 @@ class MultipleLinearRegression(theInputCount: Int) extends RegressionAlgorithm {
   override def computeRegression(input: Vector[Double]): Vector[Double] = {
     var sum = 0.0
 
-    for(i<- 1 until longTermMemory.length) {
+    for(i <- 1 until longTermMemory.length) {
       sum += input(i - 1) * longTermMemory(i)
     }
 

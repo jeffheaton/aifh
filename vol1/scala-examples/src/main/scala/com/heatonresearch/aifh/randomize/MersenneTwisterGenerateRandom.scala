@@ -52,7 +52,7 @@ object MersenneTwisterGenerateRandom {
   private val TEMPERING_MASK_C: Int = 0xefc60000
 }
 
-class MersenneTwisterGenerateRandom private (seedInit : Either[Long,Vector[Int]]) extends AbstractBoxMuller {
+class MersenneTwisterGenerateRandom private (seedInit: Either[Long, Vector[Int]]) extends AbstractBoxMuller {
 
   private var stateVector: Array[Int] = null
   private var mti: Int = 0
@@ -85,7 +85,7 @@ class MersenneTwisterGenerateRandom private (seedInit : Either[Long,Vector[Int]]
     mti = 1
     while (mti < N) {
       stateVector(mti) = 1812433253 * (stateVector(mti - 1) ^ (stateVector(mti - 1) >>> 30)) + mti
-      mti+=1
+      mti += 1
     }
   }
 
@@ -94,7 +94,7 @@ class MersenneTwisterGenerateRandom private (seedInit : Either[Long,Vector[Int]]
     var j = 0
     setSeed(19650218)
     val kStart = Math.max(N,array.length)
-    (kStart to 1 by -1) foreach { k=>
+    for(k <- kStart to 1 by -1) {
       stateVector(i) = (stateVector(i) ^ ((stateVector(i - 1) ^ (stateVector(i - 1) >>> 30)) * 1664525)) + array(j) + j
       i += 1
       j += 1
@@ -106,7 +106,7 @@ class MersenneTwisterGenerateRandom private (seedInit : Either[Long,Vector[Int]]
         j = 0
     }
 
-    (N-1 to 1 by -1) foreach { k =>
+    for(k <- N-1 to 1 by -1) {
       stateVector(i) = (stateVector(i) ^ ((stateVector(i - 1) ^ (stateVector(i - 1) >>> 30)) * 1566083941)) - i
       i += 1
       if (i >= N) {
@@ -124,7 +124,7 @@ class MersenneTwisterGenerateRandom private (seedInit : Either[Long,Vector[Int]]
       while (kk < N - M) {
         y = (stateVector(kk) & UPPER_MASK) | (stateVector(kk + 1) & LOWER_MASK)
         stateVector(kk) = stateVector(kk + M) ^ (y >>> 1) ^ mag01(y & 0x1)
-        kk +=1
+        kk += 1
       }
       while (kk < N - 1) {
         y = (stateVector(kk) & UPPER_MASK) | (stateVector(kk + 1) & LOWER_MASK)

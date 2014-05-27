@@ -56,19 +56,18 @@ class Sample(width: Int, height: Int) extends JPanel {
     g.fillRect(0, 0, getWidth, getHeight)
     g.setColor(Color.black)
 
-    (0 until data.height) foreach { y=>
+    for(y <- 0 until data.height) {
       g.drawLine(0, y * vcell, getWidth, y * vcell)
     }
 
-    (0 until data.width) foreach { x=>
+    for(x <- 0 until data.width) {
       g.drawLine(x * hcell, 0, x * hcell, getHeight)
     }
 
-    (0 until data.height) foreach { y =>
-      (0 until data.width) foreach { x =>
-        if (data.getData(x, y))
-          g.fillRect(x * hcell, y * vcell, hcell, vcell)
-      }
+    for(y <- 0 until data.height;
+        x <- 0 until data.width) {
+      if (data.getData(x, y))
+        g.fillRect(x * hcell, y * vcell, hcell, vcell)
     }
 
     g.setColor(Color.black)

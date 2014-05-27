@@ -150,7 +150,7 @@ class Equilateral(count: Int, low: Double, high: Double) extends Serializable {
    */
   final def getDistance(data: Vector[Double], set: Int): Double = {
     var result = 0.0
-    for(i<- 0 until data.length) {
+    for(i <- 0 until data.length) {
       result += Math.pow(data(i) - matrix(set)(i), 2)
     }
     Math.sqrt(result)

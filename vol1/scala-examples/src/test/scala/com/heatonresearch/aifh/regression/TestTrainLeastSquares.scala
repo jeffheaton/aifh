@@ -49,7 +49,7 @@ class TestTrainLeastSquares extends Suite with ShouldMatchers {
     regression.longTermMemory(2) should be (0.14285 plusOrMinus 0.0001)
     train.getR2 should be (1.0 plusOrMinus 0.0001)
     train.getError should be (0.0 plusOrMinus AIFH.DEFAULT_PRECISION)
-    (0 until x.length) foreach { i=>
+    for(i <- 0 until x.length) {
       val output = regression.computeRegression(x(i))
       y(i)(0) should be (output(0) plusOrMinus 0.0001)
     }

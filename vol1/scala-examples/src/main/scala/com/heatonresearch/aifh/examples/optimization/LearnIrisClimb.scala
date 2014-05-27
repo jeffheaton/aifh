@@ -60,7 +60,7 @@ class LearnIrisClimb extends SimpleLearn {
       val trainingData = ds.extractSupervised(0, 4, 4, 2)
       val network = new RBFNetwork(4, 4, 2)
       network.reset(new MersenneTwisterGenerateRandom())
-      val scoreFn = new ScoreRegressionData(trainingData.toVector)
+      val scoreFn = new ScoreRegressionData(trainingData)
       val train = new TrainHillClimb(true, network, scoreFn)
       performIterations(train, 100000, 0.01, shouldMinimize = true)
       SimpleLearn.queryEquilateral(network, trainingData, species, 0, 1)
