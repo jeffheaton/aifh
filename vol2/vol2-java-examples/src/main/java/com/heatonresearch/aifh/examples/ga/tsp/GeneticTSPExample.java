@@ -11,10 +11,8 @@ import com.heatonresearch.aifh.genetic.mutate.MutateShuffle;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
 /**
- * Find the shortest path through several cities with a genetic algorithmn (GA).
- * This example shows how to use it
- * to find a solution to the Traveling Salesman Problem (TSP).  This
- * example does not use any sort of neural network.
+ * Find the shortest path through several cities with a genetic algorithm (GA).
+ * This example shows how to use it to find a potential solution to the Traveling Salesman Problem (TSP).
  */
 public class GeneticTSPExample {
     /**
@@ -86,6 +84,10 @@ public class GeneticTSPExample {
         return result;
     }
 
+    /**
+     * Create an initial random population of random paths through the cities.
+     * @return The random population.
+     */
     private Population initPopulation()
     {
         Population result = new BasicPopulation(POPULATION_SIZE, null);

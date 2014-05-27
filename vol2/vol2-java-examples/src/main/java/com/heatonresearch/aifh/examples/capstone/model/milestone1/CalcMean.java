@@ -1,21 +1,31 @@
 package com.heatonresearch.aifh.examples.capstone.model.milestone1;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/16/14
- * Time: 6:55 AM
- * To change this template use File | Settings | File Templates.
+ * Calculate the mean of a series of doubles.
  */
 public class CalcMean {
+    /**
+     * How many values have we encountered so far.
+     */
     private int count;
+
+    /**
+     * What is the sum of values.
+     */
     private double sum;
 
+    /**
+     * Update mean for a new value.
+     * @param d The next value.
+     */
     public void update(double d) {
         this.sum+=d;
         this.count++;
     }
 
+    /**
+     * @return The calculated mean.
+     */
     public double calculate() {
         return this.sum/this.count;
     }

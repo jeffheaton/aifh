@@ -32,13 +32,32 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
+/**
+ * Visualize the universe.
+ */
 public class UniverseVisualizer {
-
+    /**
+     * The image.
+     */
     private final BufferedImage image;
+    /**
+     * The raster.
+     */
     private final WritableRaster raster;
+    /**
+     * The universe.
+     */
     private final Universe universe;
+    /**
+     * The zoom.
+     */
     private final int zoom;
 
+    /**
+     * The constructor.
+     * @param theUniverse The universe.
+     * @param theZoom The zoom factor.
+     */
     public UniverseVisualizer(final Universe theUniverse, final int theZoom) {
         this.universe = theUniverse;
         final int width = this.universe.getWidth();
@@ -50,13 +69,23 @@ public class UniverseVisualizer {
         this.raster = this.image.getRaster();
     }
 
-    private Image createImageLabel(final int[] pixels, final int width,
+    /**
+     * Create the image.
+     * @param pixels The pixels.
+     * @param width The width.
+     * @param height The height.
+     * @return The image.
+     */
+    private Image createImage(final int[] pixels, final int width,
                                    final int height) {
         this.raster.setPixels(0, 0, this.image.getWidth(),
                 this.image.getHeight(), pixels);
         return this.image;
     }
 
+    /**
+     * @return The universe rendered to an image.
+     */
     public Image visualize() {
         final int width = this.universe.getWidth();
         final int height = this.universe.getHeight();
@@ -80,7 +109,7 @@ public class UniverseVisualizer {
             }
         }
 
-        return createImageLabel(pixels, width * this.zoom, height * this.zoom);
+        return createImage(pixels, width * this.zoom, height * this.zoom);
 
     }
 }

@@ -4,15 +4,28 @@ import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenome;
 import com.heatonresearch.aifh.learning.MLMethod;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
+/**
+ * Calculate a score for the TSP.
+ */
 public class TSPScore implements ScoreFunction {
 
+    /**
+     * The path of cities to visit.
+     */
     private City[] cities;
 
+    /**
+     * The constructor.
+     * @param cities The cities.
+     */
     public TSPScore(City[] cities)
     {
         this.cities = cities;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double calculateScore(MLMethod phenotype) {
         double result = 0.0;
@@ -30,6 +43,10 @@ public class TSPScore implements ScoreFunction {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean shouldMinimize() {
         return true;
     }

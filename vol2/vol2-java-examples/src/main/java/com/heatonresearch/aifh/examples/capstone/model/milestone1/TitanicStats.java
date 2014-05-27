@@ -1,153 +1,337 @@
 package com.heatonresearch.aifh.examples.capstone.model.milestone1;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/16/14
- * Time: 6:52 AM
- * To change this template use File | Settings | File Templates.
+ * Stats that were collected about the titanic passengers to help with normalization, interpolation
+ * and modeling.
  */
 public class TitanicStats {
+    /**
+     * Passengers with the title "master", mean age.
+     */
     private final CalcMean meanMaster = new CalcMean();
+
+    /**
+     * Passengers with the title "mr", mean age.
+     */
     private final CalcMean meanMr = new CalcMean();
+
+    /**
+     * Passengers with the title "miss", mean age.
+     */
     private final CalcMean meanMiss = new CalcMean();
+
+    /**
+     * Passengers with the title "mrs", mean age.
+     */
     private final CalcMean meanMrs = new CalcMean();
+
+    /**
+     * Passengers with a military title, mean age.
+     */
     private final CalcMean meanMilitary = new CalcMean();
+
+    /**
+     * Passengers with a nobility title, mean age.
+     */
     private final CalcMean meanNobility = new CalcMean();
+
+    /**
+     * Passengers with the title "dr".
+     */
     private final CalcMean meanDr = new CalcMean();
+
+    /**
+     * Passengers with the title "rev".
+     */
     private final CalcMean meanClergy = new CalcMean();
+
+    /**
+     * Total passengers.
+     */
     private final CalcMean meanTotal = new CalcMean();
+
+    /**
+     * Total male passengers.
+     */
     private final CalcMean meanMale = new CalcMean();
+
+    /**
+     * Total female passengers.
+     */
     private final CalcMean meanFemale = new CalcMean();
 
+    /**
+     * Passengers in 1st class, average fare.
+     */
     private final CalcMean meanFare1 = new CalcMean();
+
+    /**
+     * Passengers in 2st class, average fare.
+     */
     private final CalcMean meanFare2 = new CalcMean();
+
+    /**
+     * Passengers in 3rd class, average fare.
+     */
     private final CalcMean meanFare3 = new CalcMean();
 
+    /**
+     * Survival stats for passengers with a title of "master".
+     */
     private final CalcSurvival survivalMaster = new CalcSurvival();
+
+    /**
+     * Survival stats for passengers with a title of "mr".
+     */
     private final CalcSurvival survivalMr = new CalcSurvival();
+
+    /**
+     * Survival stats for passengers with a title of "miss".
+     */
     private final CalcSurvival survivalMiss = new CalcSurvival();
+
+    /**
+     * Survival stats for passengers with a title of "mrs".
+     */
     private final CalcSurvival survivalMrs = new CalcSurvival();
+
+    /**
+     * Survival stats for passengers with a military title.
+     */
     private final CalcSurvival survivalMilitary = new CalcSurvival();
+
+    /**
+     * Survival stats for passengers with a nobility title.
+     */
     private final CalcSurvival survivalNobility = new CalcSurvival();
+
+    /**
+     * Survival stats for passengers with a title of "dr".
+     */
     private final CalcSurvival survivalDr = new CalcSurvival();
+
+    /**
+     * Survival stats for passengers with a title of "rev".
+     */
     private final CalcSurvival survivalClergy = new CalcSurvival();
+
+    /**
+     * Survival stats for all passengers.
+     */
     private final CalcSurvival survivalTotal = new CalcSurvival();
 
+    /**
+     * Survival stats for passengers that embarked from Southampton, England.
+     */
     private final CalcSurvival embarkedS = new CalcSurvival();
+
+    /**
+     * Survival stats for passengers that embarked from Cherbourg, France.
+     */
     private final CalcSurvival embarkedC = new CalcSurvival();
+
+    /**
+     * Survival stats for passengers that embarked from Queenstown, England.
+     */
     private final CalcSurvival embarkedQ = new CalcSurvival();
 
+    /**
+     * Histogram of embark locations.
+     */
     private final CalcHistogram embarkedHisto = new CalcHistogram();
 
+    /**
+     * @return Passengers with the title "master", mean age.
+     */
     public CalcMean getMeanMaster() {
         return meanMaster;
     }
 
+    /**
+     * @return Passengers with the title "mr", mean age.
+     */
     public CalcMean getMeanMr() {
         return meanMr;
     }
 
+    /**
+     * @return Passengers with the title "miss", mean age.
+     */
     public CalcMean getMeanMiss() {
         return meanMiss;
     }
 
+    /**
+     * @return Passengers with the title "mrs", mean age.
+     */
     public CalcMean getMeanMrs() {
         return meanMrs;
     }
 
+    /**
+     * @return Passengers with a military title, mean age.
+     */
     public CalcMean getMeanMilitary() {
         return meanMilitary;
     }
 
+    /**
+     * @return Passengers with a noble title, mean age.
+     */
     public CalcMean getMeanNobility() {
         return meanNobility;
     }
 
+    /**
+     * @return Passengers with the title "dr", mean age.
+     */
     public CalcMean getMeanDr() {
         return meanDr;
     }
 
+    /**
+     * @return Passengers with the title "rev", mean age.
+     */
     public CalcMean getMeanClergy() {
         return meanClergy;
     }
 
+    /**
+     * @return Mean age for all passengers.
+     */
     public CalcMean getMeanTotal() {
         return meanTotal;
     }
 
+    /**
+     * @return Survival stats for passengers with a title of "master".
+     */
     public CalcSurvival getSurvivalMaster() {
         return survivalMaster;
     }
 
+    /**
+     * @return Survival stats for passengers with a title of "mr".
+     */
     public CalcSurvival getSurvivalMr() {
         return survivalMr;
     }
 
+    /**
+     * @return Survival stats for passengers with a title of "miss".
+     */
     public CalcSurvival getSurvivalMiss() {
         return survivalMiss;
     }
 
+    /**
+     * @return Survival stats for passengers with a title of "mrs".
+     */
     public CalcSurvival getSurvivalMrs() {
         return survivalMrs;
     }
 
+    /**
+     * @return Survival stats for passengers with a military title.
+     */
     public CalcSurvival getSurvivalMilitary() {
         return survivalMilitary;
     }
 
+    /**
+     * @return Survival stats for passengers with a noble title.
+     */
     public CalcSurvival getSurvivalNobility() {
         return survivalNobility;
     }
 
+    /**
+     * @return Survival stats for passengers with a title of "dr".
+     */
     public CalcSurvival getSurvivalDr() {
         return survivalDr;
     }
 
+    /**
+     * @return Survival stats for passengers with a title of "clergy".
+     */
     public CalcSurvival getSurvivalClergy() {
         return survivalClergy;
     }
 
+    /**
+     * @return Survival stats on the total number of passengers.
+     */
     public CalcSurvival getSurvivalTotal() {
         return survivalTotal;
     }
 
+    /**
+     * @return Survival stats for passengers that embarked from Southampton, England.
+     */
     public CalcSurvival getEmbarkedS() {
         return embarkedS;
     }
 
+    /**
+     * @return Survival stats for passengers that embarked from Cherbourg, France.
+     */
     public CalcSurvival getEmbarkedC() {
         return embarkedC;
     }
 
+    /**
+     * @return Survival stats for passengers that embarked from Queenstown, England.
+     */
     public CalcSurvival getEmbarkedQ() {
         return embarkedQ;
     }
 
+    /**
+     * @return Histogram of embark locations.
+     */
     public CalcHistogram getEmbarkedHisto() {
         return embarkedHisto;
     }
 
+    /**
+     * @return Mean age for male passengers.
+     */
     public CalcMean getMeanMale() {
         return meanMale;
     }
 
+    /**
+     * @return Mean age for female passengers.
+     */
     public CalcMean getMeanFemale() {
         return meanFemale;
     }
 
+    /**
+     * @return Mean fare for first class.
+     */
     public CalcMean getMeanFare1() {
         return meanFare1;
     }
 
+    /**
+     * @return Mean fare for second class.
+     */
     public CalcMean getMeanFare2() {
         return meanFare2;
     }
 
+    /**
+     * @return Mean fare for second class.
+     */
     public CalcMean getMeanFare3() {
         return meanFare3;
     }
 
+    /**
+     * Dump all stats to stdout.
+     */
     public void dump() {
         System.out.println("Mean Master: Mean Age: " + meanMaster.calculate() + " " + survivalMaster.toString());
         System.out.println("Mr.: Mean Age: " + meanMr.calculate() + " " + survivalMr.toString());

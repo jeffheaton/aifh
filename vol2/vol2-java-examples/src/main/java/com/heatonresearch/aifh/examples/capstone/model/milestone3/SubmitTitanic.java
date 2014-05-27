@@ -18,14 +18,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/18/14
- * Time: 7:21 AM
- * To change this template use File | Settings | File Templates.
+ * The final titanic milestone.  We use the test data from Kaggle and prepare a submission.
  */
 public class SubmitTitanic {
 
+    /**
+     * Prepare a Kaggle submission for Titanic.
+     * @param dataPath The data path.
+     * @param bestNetwork The best network.
+     * @param cross The cross validated data.
+     */
     public void submit(File dataPath, RBFNetwork bestNetwork, CrossValidate cross)  {
         try {
             String now = new SimpleDateFormat("yyyyMMddhhmm").format(new Date());
@@ -80,6 +82,10 @@ public class SubmitTitanic {
 
     }
 
+    /**
+     * The main method.
+     * @param args The path to the data file.
+     */
     public static void main(String[] args) {
         if( args.length!=1 ) {
             System.out.println("Please call this program with a single parameter that specifies your data directory.");

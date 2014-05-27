@@ -36,10 +36,32 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.*;
 
+/**
+ * This example shows how to use a Human Based Genetic Algorithm to evolve a set of physical constants to create
+ * an interesting cellular automation. You are shown a multiverse, with many different running universes. You can
+ * choose universes that look interesting, and experiment with crossover and mutation to create more interesting
+ * universes.
+ *
+ * For complete instructions, refer to the following article.
+ *
+ * http://www.codeproject.com/Articles/730362/Using-an-evolutionary-algorithm-to-create-a-cellul
+ *
+ * Other references.
+ *
+ * http://en.wikipedia.org/wiki/Human-based_genetic_algorithm
+ * http://en.wikipedia.org/wiki/Cellular_automaton
+ */
 public class MultiverseViewer extends JFrame implements ActionListener,
         WindowListener, Runnable {
 
+    /**
+     * Configuration data.
+     */
     private static ConfigData config = new ConfigData();
+
+    /**
+     * The file that holds configuration data.
+     */
     public static final String CONFIG_NAME = ".multiverse_viewer.ser";
 
     /**
@@ -49,6 +71,9 @@ public class MultiverseViewer extends JFrame implements ActionListener,
         return MultiverseViewer.config;
     }
 
+    /**
+     * Load the configuration data.
+     */
     private static void loadConfig() {
         try {
             // find the config file in the home directory
@@ -68,6 +93,10 @@ public class MultiverseViewer extends JFrame implements ActionListener,
         }
     }
 
+    /**
+     * Main entry point.
+     * @param args Not used.
+     */
     public static void main(final String[] args) {
         try {
             final JFrame f = new MultiverseViewer();
@@ -78,6 +107,9 @@ public class MultiverseViewer extends JFrame implements ActionListener,
 
     }
 
+    /**
+     * Save the configuration file.
+     */
     public static void saveConfig() {
         try {
             // find the config file in the home directory
@@ -102,23 +134,59 @@ public class MultiverseViewer extends JFrame implements ActionListener,
         MultiverseViewer.config = config;
     }
 
+    /**
+     * Allow universes to be auto-killed if they stop moving.
+     */
     private final JCheckBox autoKill;
+
+    /**
+     * Open the configuration dialog.
+     */
     private final JButton configButton;
+
+    /**
+     * Deselect any universes.
+     */
     private final JButton deselectButton;
+
+    /**
+     * Simulate a single frame.
+     */
     private final JButton goButton;
 
+    /**
+     * The multiverse view panel.
+     */
     private final DisplayPanel outputPanel;
 
+    /**
+     * Reset all universes.
+     */
     private final JButton resetButton;
 
+    /**
+     * Are the universes running?
+     */
     private boolean running = false;
 
+    /**
+     * Start all universes.
+     */
     private final JButton startButton;
 
+    /**
+     * Stop all universes.
+     */
     private final JButton stopButton;
 
+    /**
+     * Has a stop been requested?
+     */
     private boolean stopRequest = false;
 
+    /**
+     * The constructor.
+     */
     public MultiverseViewer() {
         MultiverseViewer.loadConfig();
         setSize(1024, 768);
@@ -158,6 +226,9 @@ public class MultiverseViewer extends JFrame implements ActionListener,
         addWindowListener(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void actionPerformed(final ActionEvent ev) {
         if (ev.getSource() == this.goButton) {
@@ -177,29 +248,47 @@ public class MultiverseViewer extends JFrame implements ActionListener,
         }
     }
 
+    /**
+     * Allow the deselect button.
+     */
     public void enableDeselect() {
         this.deselectButton.setEnabled(true);
     }
 
+    /**
+     * Set auto kill mode.
+     */
     public void performAutoKill() {
         this.outputPanel.setAutoKill(this.autoKill.isSelected());
     }
 
+    /**
+     * Open the config dialog.
+     */
     private void performConfig() {
         final ConfigDialog dialog = new ConfigDialog();
         dialog.setModal(true);
         dialog.setVisible(true);
     }
 
+    /**
+     * Deselect any selected universe.
+     */
     public void performDeselect() {
         this.outputPanel.deselect();
         this.deselectButton.setEnabled(false);
     }
 
+    /**
+     * Perform a reset of the universe.
+     */
     public void performReset() {
         this.outputPanel.resetAll();
     }
 
+    /**
+     * Start the universes.
+     */
     public void performStart() {
         if (!this.running) {
             final Thread t = new Thread(this);
@@ -207,12 +296,18 @@ public class MultiverseViewer extends JFrame implements ActionListener,
         }
     }
 
+    /**
+     * Stop the universes.
+     */
     public void performStop() {
         if (this.running) {
             this.stopRequest = true;
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
         this.running = true;
@@ -224,44 +319,60 @@ public class MultiverseViewer extends JFrame implements ActionListener,
         this.running = false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowActivated(final WindowEvent arg0) {
         // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowClosed(final WindowEvent arg0) {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowClosing(final WindowEvent arg0) {
         MultiverseViewer.saveConfig();
         System.exit(0);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowDeactivated(final WindowEvent arg0) {
-        // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowDeiconified(final WindowEvent arg0) {
-        // TODO Auto-generated method stub
-
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowIconified(final WindowEvent arg0) {
-        // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowOpened(final WindowEvent arg0) {
-        // TODO Auto-generated method stub
 
     }
 

@@ -152,6 +152,6 @@ public class ContinuousACO implements LearningMethod {
 
     @Override
     public void finishTraining() {
-
+        System.arraycopy(this.population[0].getParams(),0,this.algorithm.getLongTermMemory(),0,this.algorithm.getLongTermMemory().length);
     }
 }

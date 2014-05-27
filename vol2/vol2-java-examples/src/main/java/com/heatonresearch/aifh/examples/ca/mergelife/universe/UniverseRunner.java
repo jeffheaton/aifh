@@ -29,38 +29,77 @@
 package com.heatonresearch.aifh.examples.ca.mergelife.universe;
 
 import com.heatonresearch.aifh.examples.ca.mergelife.physics.Physics;
+import com.heatonresearch.aifh.randomize.GenerateRandom;
+import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Used to run a universe's physics and provide display.
+ */
 public class UniverseRunner {
 
     /**
      * The event used to sync waiting for tasks to stop.
      */
     private final Lock accessLock = new ReentrantLock();
+
+    /**
+     * Should we automatically kill a universe that stabilizes.
+     */
     private boolean autoKill;
+
+    /**
+     * The difference between two frames.
+     */
     private double diff;
+
+    /**
+     * The current iteration.
+     */
     private int iteration;
+
+    /**
+     * The physics calculator.
+     */
     private final Physics physics;
+
+    /**
+     * The universe that is used to generate the next frame.
+     */
     private final Universe tempUniverse;
 
+    /**
+     * The universe.
+     */
     private final Universe universe;
 
+    /**
+     * The constructor.
+     * @param theUniverse The universe.
+     * @param thePhysics The physics calculator.
+     */
     public UniverseRunner(final Universe theUniverse, final Physics thePhysics) {
         this.universe = theUniverse;
         this.tempUniverse = (Universe) theUniverse.clone();
         this.physics = thePhysics;
     }
 
-    public void advance() {
+    /**
+     * Advance one frame.
+     */
+    public void advance(GenerateRandom rnd) {
         final int height = this.universe.getHeight();
         final int width = this.universe.getWidth();
 
         try {
+            // Copy the current universe to the temp universe.
+            // The next frame is rendered into the temp universe.
             this.accessLock.lock();
             this.tempUniverse.copy(this.universe);
 
+            // Run each pixel through the physics calculator.
             for (int col = 0; col < width; col++) {
                 for (int row = 0; row < height; row++) {
                     this.physics.processPixel(this.tempUniverse, row, col);
@@ -71,11 +110,12 @@ public class UniverseRunner {
 
             this.iteration++;
 
+            // Copy the temp universe back into
             this.universe.copy(this.tempUniverse);
 
             if (this.diff < 0.0001 && this.iteration > 5) {
                 if (this.autoKill) {
-                    reset();
+                    reset(rnd);
                 }
             }
         } finally {
@@ -83,14 +123,21 @@ public class UniverseRunner {
         }
     }
 
-    public void crossover(final UniverseRunner crossoverParent1,
+    /**
+     * Perform a genetic crossover between two parent universes.  A new universe will be created with attributes
+     * from the two parents.
+     * @param rnd Random number generator.
+     * @param crossoverParent1 The first parent.
+     * @param crossoverParent2 The second parent.
+     */
+    public void crossover(final GenerateRandom rnd, final UniverseRunner crossoverParent1,
                           final UniverseRunner crossoverParent2) {
         final double[] parent1 = crossoverParent1.getPhysics().getData();
         final double[] parent2 = crossoverParent2.getPhysics().getData();
         final double[] child = getPhysics().getData();
         final int len = parent1.length;
-        final int p1 = (int) (Math.random() * (double) len);
-        final int p2 = (int) (Math.random() * (double) len);
+        final int p1 = (int) (rnd.nextDouble() * (double) len);
+        final int p2 = (int) (rnd.nextDouble() * (double) len);
 
         for (int i = 0; i < getPhysics().getData().length; i++) {
             if (i < p1) {
@@ -103,14 +150,23 @@ public class UniverseRunner {
         }
     }
 
+    /**
+     * @return The difference between the last two frames.
+     */
     public double getDiff() {
         return this.diff;
     }
 
+    /**
+     * @return The total number of iterations.
+     */
     public int getIterations() {
         return this.iteration;
     }
 
+    /**
+     * @return The physics calculator.
+     */
     public Physics getPhysics() {
         return this.physics;
     }
@@ -122,48 +178,49 @@ public class UniverseRunner {
         return this.autoKill;
     }
 
-    public void mutate(final Physics sourcePhysics, final double probChange,
-                       final double perterb) {
+    /**
+     * Perform a mutate on a parent and generate a new child.  The parent is not changed.
+     * @param rnd Random number generator.
+     * @param sourcePhysics The parent object.
+     * @param probChange The probability of changing an individual element.
+     * @param perturb The amount that an object is changed by.
+     */
+    public void mutate(final GenerateRandom rnd,
+                       final Physics sourcePhysics, final double probChange,
+                       final double perturb) {
         getPhysics().copyData(sourcePhysics.getData());
 
         for (int i = 0; i < sourcePhysics.getData().length; i++) {
-            if (Math.random() < probChange) {
-                getPhysics().getData()[i] += perterb * (Math.random() * 2 - 1);
+            if (rnd.nextDouble() < probChange) {
+                getPhysics().getData()[i] += perturb * rnd.nextDouble(-1,1);
             }
         }
 
     }
 
-    public void randomize() {
+    /**
+     * Randomize the universe grid.
+     * @param rnd Random number generator.
+     */
+    public void randomize(GenerateRandom rnd) {
         this.accessLock.lock();
-        this.universe.randomize();
+        this.universe.randomize(rnd);
         this.iteration = 0;
         this.accessLock.unlock();
     }
 
-    public void reset() {
+    /**
+     * Randomize the universe grid and the physics calculator.
+     * @param rnd A random number generator.
+     */
+    public void reset(GenerateRandom rnd) {
         this.accessLock.lock();
         this.physics.randomize();
-        this.universe.randomize();
+        this.universe.randomize(rnd);
         this.iteration = 0;
         this.accessLock.unlock();
     }
 
-    public int runToConverge(final int maxIterations) {
-        this.iteration = 0;
-        for (; ; ) {
-            advance();
-
-            if (this.iteration > 5 && this.diff < 0.01) {
-                break;
-            }
-
-            if (this.iteration > maxIterations) {
-                break;
-            }
-        }
-        return this.iteration;
-    }
 
     /**
      * @param autoKill the autoKill to set
@@ -172,6 +229,9 @@ public class UniverseRunner {
         this.autoKill = autoKill;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "Iteration: " + this.iteration + ", Diff=" + this.diff;

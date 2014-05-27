@@ -28,48 +28,59 @@
  */
 package com.heatonresearch.aifh.examples.ca.mergelife.universe;
 
+import com.heatonresearch.aifh.randomize.GenerateRandom;
+
+/**
+ * An individual universe cell.  Each cell can have multiple properties.  Typically there are three properties,
+ * that represent the three RGB components.
+ */
 public class UniverseCell {
+
+    /**
+     * The properties for this cell.
+     */
     private final double[] prop;
 
+    /**
+     * Construct a universe cell with the specified number of properties.
+     * @param theSize The number of properties.
+     */
     public UniverseCell(final int theSize) {
         this.prop = new double[theSize];
     }
 
-    public UniverseCell(final int theSize, final int theIndex, final double[] d) {
-        this(theSize);
-        System.arraycopy(d, theIndex + 0, this.prop, 0, theSize);
-    }
-
+    /**
+     * Add the specified value to the specified property.
+     * @param i The property index.
+     * @param d The other value to add.
+     */
     public void add(final int i, final double d) {
         this.prop[i] += d;
     }
 
+    /**
+     * Add the properties of another cell to this one.
+     * @param otherCell The other cell.
+     */
     public void add(final UniverseCell otherCell) {
         for (int i = 0; i < this.prop.length; i++) {
             this.prop[i] += otherCell.get(i);
         }
     }
 
-    public void clamp(final double low, final int high) {
-        for (int i = 0; i < this.prop.length; i++) {
-            clamp(i, low, high);
-        }
-
-    }
-
-    public void clamp(final int i, final double low, final double high) {
-        if (this.prop[i] < low) {
-            this.prop[i] = low;
-        }
-        if (this.prop[i] > high) {
-            this.prop[i] = high;
-        }
-    }
-
+    /**
+     * Get a property.
+     * @param i The index of the property.
+     * @return The property value.
+     */
     public double get(final int i) {
         return this.prop[i];
     }
 
+    /**
+     * Get an average of the properties.
+     * @return The propety average.
+     */
     public double getAvg() {
         double result = 0;
         for (final double element : this.prop) {
@@ -78,34 +89,47 @@ public class UniverseCell {
         return result / this.prop.length;
     }
 
+    /**
+     * @return The property array.
+     */
     public double[] getData() {
         return this.prop;
     }
 
-    public void multiply(final UniverseCell otherCell) {
+    /**
+     * Randomize the properties between (-1,1).
+     * @param rnd A random number generator.
+     */
+    public void randomize(GenerateRandom rnd) {
         for (int i = 0; i < this.prop.length; i++) {
-            this.prop[i] *= otherCell.get(i);
-        }
-    }
-
-    public void randomize() {
-        for (int i = 0; i < this.prop.length; i++) {
-            this.prop[i] = Math.random() * 2.0 - 1;
+            this.prop[i] = rnd.nextDouble(-1,1);
         }
 
     }
 
+    /**
+     * Set the specified property.
+     * @param i The index of the property.
+     * @param d The property value.
+     */
     public void set(final int i, final double d) {
         this.prop[i] = d;
 
     }
 
+    /**
+     * Set this cell's properties to another cell.
+     * @param otherCell The other cell.
+     */
     public void set(final UniverseCell otherCell) {
         for (int i = 0; i < this.prop.length; i++) {
             this.prop[i] = otherCell.get(i);
         }
     }
 
+    /**
+     * @return The number of properties.
+     */
     public int size() {
         return this.prop.length;
     }

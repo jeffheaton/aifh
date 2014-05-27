@@ -36,37 +36,83 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
+ * Merge physics determines how cells are to be populated.
  *
+ * For more information on how the physics works see:
+ *
+ * http://www.codeproject.com/Articles/730362/Using-an-evolutionary-algorithm-to-create-a-cellul
  */
 public class MergePhysics implements Physics {
 
+    /**
+     * The color table.
+     */
     private final double[][] colorTable = {{-1, -1, -1}, {1, -1, -1},
             {-1, 1, -1}, {1, 1, -1}, {-1, -1, 1}, {1, -1, 1},
             {-1, 1, 1}, {1, 1, 1}};
+
+
+    /**
+     * Transformations to move from a cell to the 9 neighboring cells.
+     * These are the column values.
+     */
     private final int[] colTransform = {0, 0, -1, 1, -1, 1, 1, -1};
+
+    /**
+     * Transformations to move from a cell to the 9 neighboring cells.
+     * These are the row values.
+     */
     private final int[] rowTransform = {-1, 1, 0, 0, -1, 1, -1, 1};
+
+    /**
+     * The data that defines the physical constants.
+     */
     private final double[] data;
+
+    /**
+     * The data sorted.
+     */
     private final int[] dataOrder;
 
+    /**
+     * The universe.
+     */
     private final Universe universe;
 
+    /**
+     * Construct the merge physics.
+     * @param theUniverse The universe.
+     */
     public MergePhysics(final Universe theUniverse) {
         this.data = new double[2 * this.colorTable.length];
         this.dataOrder = new int[this.colorTable.length];
         this.universe = theUniverse;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void copyData(final double[] sourceData) {
         System.arraycopy(sourceData, 0, this.data, 0, this.data.length);
         sortData();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double[] getData() {
         return this.data;
     }
 
+    /**
+     * Determine if "value" is in the array.
+     * @param list The list.
+     * @param len The length.
+     * @param value The value.
+     * @return True, if value is in the list.
+     */
     private boolean listContains(final int[] list, final int len,
                                  final int value) {
         for (int i = 0; i < len; i++) {
@@ -77,6 +123,9 @@ public class MergePhysics implements Physics {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void load(final String filename) throws IOException {
         final BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -96,6 +145,9 @@ public class MergePhysics implements Physics {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void processPixel(final Universe outputUniverse, final int row,
                              final int col) {
@@ -130,6 +182,9 @@ public class MergePhysics implements Physics {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void randomize() {
         for (int i = 0; i < this.data.length; i++) {
@@ -138,6 +193,9 @@ public class MergePhysics implements Physics {
         sortData();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void save(final String filename) throws IOException {
         final BufferedWriter out = new BufferedWriter(new FileWriter(filename));
@@ -146,6 +204,9 @@ public class MergePhysics implements Physics {
         out.close();
     }
 
+    /**
+     * Sort the physical data for faster lookup.
+     */
     private void sortData() {
         // create the order table
         for (int x = 0; x < this.colorTable.length; x++) {

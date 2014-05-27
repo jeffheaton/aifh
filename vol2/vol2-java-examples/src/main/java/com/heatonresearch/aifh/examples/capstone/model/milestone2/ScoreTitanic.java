@@ -9,11 +9,7 @@ import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/17/14
- * Time: 8:04 PM
- * To change this template use File | Settings | File Templates.
+ * Score the Titanic model. The score is percentage cases predicted correctly.
  */
 public class ScoreTitanic implements ScoreFunction {
 
@@ -31,6 +27,9 @@ public class ScoreTitanic implements ScoreFunction {
         this.trainingData = theTrainingData;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double calculateScore(final MLMethod algo) {
         int incorrectCount = 0;
@@ -51,6 +50,9 @@ public class ScoreTitanic implements ScoreFunction {
         return (double) incorrectCount / (double) totalCount;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean shouldMinimize() {
         return false;

@@ -7,16 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/17/14
- * Time: 2:43 PM
- * To change this template use File | Settings | File Templates.
+ * Used to perform a k-leave out cross validation.
+ * This works by breaking the data set into k (often 5) random subsets.  From this we can create 5 training & validation
+ * sets. Each validation set becomes one of the k random subsets.  For each validation set a corresponding training set
+ * is created by using all data, but leaving out the validation set.
+ *
+ * http://en.wikipedia.org/wiki/Cross-validation_(statistics)
+ *
  */
 public class CrossValidate {
 
+    /**
+     * The folds of the cross validation.
+     */
     private final List<CrossValidateFold> folds = new ArrayList<CrossValidateFold>();
 
+    /**
+     * The constructor.
+     * @param k The number of folds.
+     * @param training The training set.
+     * @param rnd A random number generator.
+     */
     public CrossValidate(int k, List<BasicData> training, GenerateRandom rnd) {
         List<BasicData> temp = new ArrayList < BasicData >();
         temp.addAll(training);
@@ -48,11 +59,16 @@ public class CrossValidate {
         }
     }
 
+    /**
+     * @return The folds.
+     */
     public List<CrossValidateFold> getFolds() {
         return this.folds;
     }
 
-
+    /**
+     * @return The average score over all folds.
+     */
     public double getScore() {
         double sum = 0;
         for(CrossValidateFold fold: this.folds) {
@@ -61,6 +77,9 @@ public class CrossValidate {
         return sum/this.folds.size();
     }
 
+    /**
+     * @return The number of folds.
+     */
     public int size() {
         return this.folds.size();
     }

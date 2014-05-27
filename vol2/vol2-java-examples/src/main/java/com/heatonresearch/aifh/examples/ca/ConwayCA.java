@@ -9,29 +9,81 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 4/19/14
- * Time: 6:22 PM
- * To change this template use File | Settings | File Templates.
+ * Conway's game of life.  A classic cellular automation.
+ *
+ * Rules:
+ * 1. Any live cell with fewer than two live neighbors dies, as if caused by under-population.
+ * 2. Any live cell with two or three live neighbors lives on to the next generation. (not needed)
+ * 3. Any live cell with more than three live neighbors dies, as if by overcrowding.
+ * 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+ *
+ * References:
+ * http://en.wikipedia.org/wiki/Conway's_Game_of_Life
  */
 public class ConwayCA extends JFrame implements ActionListener, WindowListener, Runnable {
+    /**
+     * Perform an iteration.
+     */
     private JButton iterationButton;
+
+    /**
+     * Start running.
+     */
     private JButton startButton;
+
+    /**
+     * Stop running.
+     */
     private JButton stopButton;
+
+    /**
+     * Reset the simulation.
+     */
     private JButton resetButton;
+
+    /**
+     * The background thread.
+     */
     private Thread thread;
+
+    /**
+     * Has a stop been requested.
+     */
     private boolean requestStop;
 
-    private JLabel status;
+    /**
+     * Scroll bar.
+     */
     private JScrollPane scroll;
+
+    /**
+     * The world.
+     */
     private WorldPanel worldArea;
+
+    /**
+     * Used to locate the x coordinate of neighbors.
+     */
     private static final int[] neighborsX = { 0,0,1,-1, -1, 1,-1, 1 };
+
+    /**
+     * Used to locate the y coordinate of neighbors.
+     */
     private static final int[] neighborsY = { 1,-1,0,0, -1,-1, 1, 1 };
 
+    /**
+     * The number of rows.
+     */
     public static final int ROWS = 75;
+
+    /**
+     * The number of columns.
+     */
     public static final int COLS = 75;
 
+    /**
+     * The constructor.
+     */
     public ConwayCA() {
         setSize(500, 500);
         setTitle("Conway's Game of Life");
@@ -41,7 +93,8 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         c.add(buttonPanel, BorderLayout.NORTH);
-        c.add(this.status=new JLabel(), BorderLayout.SOUTH);
+        final JLabel status;
+        c.add(status =new JLabel(), BorderLayout.SOUTH);
         buttonPanel.add(iterationButton = new JButton("Iteration"));
         buttonPanel.add(startButton = new JButton("Start"));
         buttonPanel.add(stopButton = new JButton("Stop"));
@@ -61,6 +114,9 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
         performReset();
     }
 
+    /**
+     * Perform one iteration.
+     */
     public void performIteration() {
         boolean[][] grid = this.worldArea.getPrimaryGrid();
 
@@ -107,6 +163,9 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
         this.worldArea.advanceBackupGrid();
     }
 
+    /**
+     * Start the simulation.
+     */
     public void performStart() {
         this.iterationButton.setEnabled(false);
         this.stopButton.setEnabled(true);
@@ -115,10 +174,16 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
         this.thread.start();
     }
 
+    /**
+     * Request stop.
+     */
     public void performStop() {
         this.requestStop = true;
     }
 
+    /**
+     * Perform a reset.
+     */
     public void performReset() {
         boolean[][] grid = this.worldArea.getBackupGrid();
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
@@ -133,6 +198,9 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void actionPerformed(ActionEvent ev) {
         if (ev.getSource() == iterationButton) {
@@ -148,18 +216,26 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowActivated(WindowEvent arg0) {
-        // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowClosed(WindowEvent arg0) {
 
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowClosing(WindowEvent arg0) {
 
@@ -167,30 +243,43 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowDeactivated(WindowEvent arg0) {
-        // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowDeiconified(WindowEvent arg0) {
-        // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowIconified(WindowEvent arg0) {
-        // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowOpened(WindowEvent arg0) {
         performReset();
     }
 
 
+    /**
+     * Main entry point.
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         try {
             JFrame f = new ConwayCA();
@@ -201,6 +290,9 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
         this.requestStop = false;

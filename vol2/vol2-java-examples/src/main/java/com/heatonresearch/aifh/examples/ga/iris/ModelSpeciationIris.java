@@ -24,11 +24,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/7/14
- * Time: 8:33 PM
- * To change this template use File | Settings | File Templates.
+ * Learn the Iris data set with a RBF network trained by a genetic algorithm.
+ * This example groups genomes into species, and is more efficient than non-species.
  */
 public class ModelSpeciationIris extends SimpleLearn {
     /**

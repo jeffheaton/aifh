@@ -32,14 +32,27 @@ import com.heatonresearch.aifh.examples.ca.mergelife.viewer.UniversePane;
 
 import java.util.concurrent.Callable;
 
+/**
+ * A task to be called each time the universe advances.  This is typically some sort of GUI display.
+ */
 public class AdvanceTask implements Callable<AdvanceTask> {
 
+    /**
+     * The universe display.
+     */
     private final UniversePane cell;
 
+    /**
+     * Constructor.
+     * @param theCell The pane to update.
+     */
     public AdvanceTask(final UniversePane theCell) {
         this.cell = theCell;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AdvanceTask call() {
         this.cell.advance();

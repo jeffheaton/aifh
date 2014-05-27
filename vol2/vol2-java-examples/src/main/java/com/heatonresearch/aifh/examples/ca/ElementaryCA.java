@@ -10,22 +10,50 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 4/19/14
- * Time: 9:05 PM
- * To change this template use File | Settings | File Templates.
+ * This example implements an elementary cellular automation.
+ *
+ * References:
+ * http://mathworld.wolfram.com/ElementaryCellularAutomaton.html
  */
 public class ElementaryCA  extends JFrame implements ActionListener, WindowListener  {
+    /**
+     * The generate button.
+     */
     private JButton generateButton;
+
+    /**
+     * The status.
+     */
     private JLabel status;
+
+    /**
+     * Allow scrolling.
+     */
     private JScrollPane scroll;
+
+    /**
+     * The world area.
+     */
     private WorldPanel worldArea;
+
+    /**
+     * Allow rule # to be entered.
+     */
     private TextField ruleInput;
 
+    /**
+     * The number of rows.
+     */
     public static final int ROWS = 200;
+
+    /**
+     * The number of columns.
+     */
     public static final int COLS = 200;
 
+    /**
+     * The constructor.
+     */
     public ElementaryCA() {
         setSize(500, 500);
         setTitle("Elementary Cellular Automation");
@@ -49,7 +77,9 @@ public class ElementaryCA  extends JFrame implements ActionListener, WindowListe
         this.addWindowListener(this);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void actionPerformed(ActionEvent ev) {
         if (ev.getSource() == generateButton) {
@@ -59,18 +89,27 @@ public class ElementaryCA  extends JFrame implements ActionListener, WindowListe
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowActivated(WindowEvent arg0) {
         // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowClosed(WindowEvent arg0) {
 
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowClosing(WindowEvent arg0) {
 
@@ -78,30 +117,46 @@ public class ElementaryCA  extends JFrame implements ActionListener, WindowListe
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowDeactivated(WindowEvent arg0) {
         // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowDeiconified(WindowEvent arg0) {
         // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowIconified(WindowEvent arg0) {
         // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowOpened(WindowEvent arg0) {
         performGenerate();
     }
 
 
+    /**
+     * The main entry point.
+     * @param args The arguments.
+     */
     public static void main(String[] args) {
         try {
             JFrame f = new ElementaryCA();
@@ -112,6 +167,9 @@ public class ElementaryCA  extends JFrame implements ActionListener, WindowListe
 
     }
 
+    /**
+     * Generate the CA.
+     */
     public void performGenerate() {
         boolean invalid = false;
         boolean[] output = new boolean[8];
@@ -119,6 +177,7 @@ public class ElementaryCA  extends JFrame implements ActionListener, WindowListe
         this.worldArea.getPrimaryGrid()[0][center]=true;
         boolean[][] grid = this.worldArea.getPrimaryGrid();
 
+        // Default to rule 30
         int rule = 30;
 
         try {

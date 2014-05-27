@@ -8,18 +8,33 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 import javax.swing.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/23/14
- * Time: 9:09 AM
- * To change this template use File | Settings | File Templates.
+ * The second milestone produces an animation, where we see a plant follow a genome's plan and grow a seed.
+ * A sample plant is provided.  The numbers for the sample plant's genome were actually produced using
+ * evolution (milestone 3).  However this anachronistic information does provide you with a way to check
+ * your growth and physics algorithms.
  */
 public class Milestone2Main extends JFrame implements Runnable {
+
+    /**
+     * Display the plant.
+     */
     private DisplayPlant display;
+
+    /**
+     * The universe the plant lives in.
+     */
     private PlantUniverse universe;
-    private static final double[] SAMPLE_PLANT = {0.14571628630139233, 0.7197846628513596, 0.7231784466511191, 0.5323520114051941, 0.598996879435396, 0.34274504759458013, 0.8578776058517235, 0.6044269107777535, 0.23325200014592307, 0.9641721808631352, 0.18395062640547966, 0.025616301916038697, 0.29862907359377233, 0.7250040575067441, 0.5866401251651715, 0.6048653467891864};
 
+    /**
+     * A sample plant that we will animate.
+     */
+    private static final double[] SAMPLE_PLANT = {0.08414097456375995, 0.11845586131703176, 0.1868971940834313, 0.4346911204161327,
+            0.024190631402031804, 0.5773526701833149, 0.8997253827355136, 0.9267311086327318, 0.04639229538493471, 0.8190692654645835,
+            0.06531672676605614, 0.026431639742068264, 0.31497914852215286, 1.0276526539348398, 0.03303133293309127, 0.35946010922382937};
 
+    /**
+     * Constructor.
+     */
     public Milestone2Main() {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,17 +53,24 @@ public class Milestone2Main extends JFrame implements Runnable {
         t.start();
     }
 
+    /**
+     * Start the program.
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         Milestone2Main t = new Milestone2Main();
         t.setVisible(true);
     }
 
+    /**
+     * Perform one frame of animation.
+     */
     @Override
     public void run() {
         PlantPhysics physics = new PlantPhysics();
         PlantGrowth growth = new PlantGrowth();
 
-        for(int i=0;i<100;i++) {
+        for(int i=0;i<PlantUniverse.EVALUATION_CYCLES;i++) {
             physics.runPhysics(universe);
             growth.runGrowth(universe,SAMPLE_PLANT);
             this.display.repaint();

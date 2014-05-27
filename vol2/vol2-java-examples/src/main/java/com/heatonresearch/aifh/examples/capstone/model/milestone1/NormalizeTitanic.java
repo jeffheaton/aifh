@@ -31,6 +31,13 @@ import java.util.Map;
  */
 public class NormalizeTitanic extends SimpleLearn {
 
+    /**
+     * Analyze and generate stats for titanic data.
+     * @param stats The stats for titanic.
+     * @param filename The file to analyze.
+     * @return The passenger count.
+     * @throws IOException Errors reading file.
+     */
     public static int analyze(TitanicStats stats, File filename) throws IOException {
         int count = 0;
         Map<String, Integer> headerMap = new HashMap<String, Integer>();
@@ -200,6 +207,15 @@ public class NormalizeTitanic extends SimpleLearn {
         return count;
     }
 
+    /**
+     * Normalize to a range.
+     * @param x The value to normalize.
+     * @param dataLow The low end of the range of the data.
+     * @param dataHigh The high end of the range of the data.
+     * @param normalizedLow The normalized low end of the range of data.
+     * @param normalizedHigh The normalized high end of the range of data.
+     * @return The normalized value.
+     */
     public static double rangeNormalize(double x, double dataLow, double dataHigh, double normalizedLow, double normalizedHigh) {
         return ((x - dataLow)
                 / (dataHigh - dataLow))
@@ -363,6 +379,10 @@ public class NormalizeTitanic extends SimpleLearn {
         return result;
     }
 
+    /**
+     * The main method.
+     * @param args The arguments.
+     */
     public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("Please call this program with a single parameter that specifies your data directory.");

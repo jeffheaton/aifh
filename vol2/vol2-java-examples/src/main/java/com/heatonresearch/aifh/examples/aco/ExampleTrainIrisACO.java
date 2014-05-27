@@ -15,18 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/5/14
- * Time: 4:04 PM
- * To change this template use File | Settings | File Templates.
+ * This example uses continuous ACO to fit an RBF network to the Iris data set.
  */
 public class ExampleTrainIrisACO extends SimpleLearn {
-    /**
-     * The number of particles
-     */
-    public static final int PARTICLE_COUNT = 30;
 
+    /**
+     * Main entry point.
+     * @param args Not used.
+     */
     public static void main(final String[] args) {
         final ExampleTrainIrisACO prg = new ExampleTrainIrisACO();
         prg.process();
@@ -42,8 +38,6 @@ public class ExampleTrainIrisACO extends SimpleLearn {
                 System.out.println("Cannot access data set, make sure the resources are available.");
                 System.exit(1);
             }
-
-            GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
             final DataSet ds = DataSet.load(istream);
             // The following ranges are setup for the Iris data set.  If you wish to normalize other files you will
@@ -65,9 +59,9 @@ public class ExampleTrainIrisACO extends SimpleLearn {
 
             performIterations(train, 100000, 0.05, true);
 
-            //RBFNetwork winner = (RBFNetwork)train.get;
+            train.finishTraining();
 
-            //queryOneOfN(winner, trainingData, species);
+            queryOneOfN(network, trainingData, species);
 
 
         } catch (Throwable t) {

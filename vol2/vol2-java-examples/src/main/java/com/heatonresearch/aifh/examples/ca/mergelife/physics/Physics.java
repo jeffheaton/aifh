@@ -32,6 +32,9 @@ import com.heatonresearch.aifh.examples.ca.mergelife.universe.Universe;
 
 import java.io.IOException;
 
+/**
+ * Defines a set of "physics" rules to control a cellular automation.
+ */
 public interface Physics {
     /**
      * Copy the physics constants vector from another array.

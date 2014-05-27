@@ -31,17 +31,43 @@ package com.heatonresearch.aifh.examples.ca.mergelife.viewer;
 import java.io.File;
 import java.io.Serializable;
 
+/**
+ * Configuration data for the dialog.
+ */
 public class ConfigData implements Serializable {
     /**
      * The version.
      */
     private static final long serialVersionUID = 2L;
 
+    /**
+     * The universe height.
+     */
     private int paneHeight = 200;
+
+    /**
+     * The universe width.
+     */
     private int paneWidth = 200;
+
+    /**
+     * The save directory.
+     */
     private File saveDirectory = new File(".");
+
+    /**
+     * How many universes across.
+     */
     private int universePaneColumns = 7;
+
+    /**
+     * How many universes down.
+     */
     private int universePaneRows = 4;
+
+    /**
+     * The zoom factor.
+     */
     private int zoom = 1;
 
     /**

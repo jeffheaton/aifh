@@ -33,14 +33,38 @@ import com.heatonresearch.aifh.examples.ca.mergelife.physics.Physics;
 import com.heatonresearch.aifh.examples.ca.mergelife.universe.Universe;
 import com.heatonresearch.aifh.examples.ca.mergelife.universe.UniverseRunner;
 import com.heatonresearch.aifh.examples.ca.mergelife.universe.UniverseVisualizer;
+import com.heatonresearch.aifh.randomize.GenerateRandom;
+import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.awt.*;
 
+/**
+ * Universe display pane.
+ */
 public class UniversePane {
+    /**
+     * The universe rendered.
+     */
     private Image image;
+
+    /**
+     * The universe runner.
+     */
     private final UniverseRunner universeRunner;
+
+    /**
+     * The universe visualizer.
+     */
     private final UniverseVisualizer visualizer;
 
+    /**
+     * A random number generator.
+     */
+    private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
+
+    /**
+     * The constructor.
+     */
     public UniversePane() {
         final int width = MultiverseViewer.getConfig().getPaneWidth()
                 / MultiverseViewer.getConfig().getZoom();
@@ -50,7 +74,7 @@ public class UniversePane {
         final Universe universe = new Universe(height, width, 3);
         final Physics physics = new MergePhysics(universe);
 
-        universe.randomize();
+        universe.randomize(rnd);
         physics.randomize();
 
         this.universeRunner = new UniverseRunner(universe, physics);
@@ -58,18 +82,30 @@ public class UniversePane {
                 MultiverseViewer.getConfig().getZoom());
     }
 
+    /**
+     * Advance a frame.
+     */
     public void advance() {
-        this.universeRunner.advance();
+        this.universeRunner.advance(this.rnd);
     }
 
+    /**
+     * @return The universe image.
+     */
     public Image getImage() {
         return this.image;
     }
 
+    /**
+     * @return The universe runner.
+     */
     public UniverseRunner getUniverseRunner() {
         return this.universeRunner;
     }
 
+    /**
+     * Visuzlizr the universe.
+     */
     public void visualize() {
         this.image = this.visualizer.visualize();
     }

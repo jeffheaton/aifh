@@ -31,6 +31,8 @@ package com.heatonresearch.aifh.examples.ca.mergelife.viewer;
 import com.heatonresearch.aifh.examples.ca.mergelife.physics.Physics;
 import com.heatonresearch.aifh.examples.ca.mergelife.universe.AdvanceTask;
 import com.heatonresearch.aifh.examples.ca.mergelife.universe.UniverseRunner;
+import com.heatonresearch.aifh.randomize.GenerateRandom;
+import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,18 +45,72 @@ import java.util.Collection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Display panel for a universe.
+ */
 public class DisplayPanel extends JPanel implements MouseListener {
 
+    /**
+     * The source for a universe copy.
+     */
     private UniverseRunner copySource;
+
+    /**
+     * The first parent for a crossover.
+     */
     private UniverseRunner crossoverParent1;
+
+    /**
+     * The second parent for a crossover.
+     */
     private UniverseRunner crossoverParent2;
+
+    /**
+     * The multiverse grid.
+     */
     private final UniversePane[][] grid;
+
+    /**
+     * A graphics device for off-screen rendering.
+     */
     private final Graphics offscreenGraphics;
+
+    /**
+     * The offscreen image, this reduces flicker.
+     */
     private final BufferedImage offscreenImage;
+
+    /**
+     * The parent frame.
+     */
     private final MultiverseViewer owner;
-    private final int rows, cols;
+
+    /**
+     * The number of rows.
+     */
+    private final int rows;
+
+    /**
+     * The number of columns.
+     */
+    private final int cols;
+
+    /**
+     * The thread pool.
+     */
     private final ExecutorService threadPool;
 
+    /**
+     * Random number generator.
+     */
+    private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
+
+    /**
+     * The constructor.
+     * @param theOwner The parent frame.
+     * @param theRows The number of rows.
+     * @param theCols The number of columns.
+     */
     public DisplayPanel(final MultiverseViewer theOwner, final int theRows,
                         final int theCols) {
         this.rows = theRows;
@@ -80,6 +136,11 @@ public class DisplayPanel extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
+    /**
+     * Begin a copy.
+     * @param row The multiverse row.
+     * @param col The multiverse column.
+     */
     public void copyPane(final int row, final int col) {
         this.copySource = this.grid[row][col].getUniverseRunner();
         this.crossoverParent1 = null;
@@ -87,6 +148,11 @@ public class DisplayPanel extends JPanel implements MouseListener {
         this.owner.enableDeselect();
     }
 
+    /**
+     * Identify the first parent for a crossover.
+     * @param row The multiverse row.
+     * @param col The multiverse column.
+     */
     public void crossover(final int row, final int col) {
         this.crossoverParent1 = this.grid[row][col].getUniverseRunner();
         this.crossoverParent2 = null;
@@ -95,11 +161,18 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     }
 
+    /**
+     * Deselect any selected universes.
+     */
     public void deselect() {
         this.copySource = null;
         this.crossoverParent1 = this.crossoverParent2 = null;
     }
 
+    /**
+     * Show the popup menu.
+     * @param e The mouse event.
+     */
     private void doPop(final MouseEvent e) {
         final int x = e.getX();
         final int y = e.getY();
@@ -109,6 +182,14 @@ public class DisplayPanel extends JPanel implements MouseListener {
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 
+    /**
+     * Draw the status for a universe.
+     * @param g Graphics device.
+     * @param row The multiverse row.
+     * @param col The multiverse column.
+     * @param fm The font metrics.
+     * @param The text.
+     */
     private void drawStatus(final Graphics g, final int row, final int col,
                             final FontMetrics fm, final String s) {
         final int x = col * MultiverseViewer.getConfig().getPaneWidth();
@@ -121,7 +202,12 @@ public class DisplayPanel extends JPanel implements MouseListener {
         g.drawString(s, x, textY);
     }
 
-    public void load(final int row, final int col) {
+    /**
+     * Load a universe.
+     * @param row The multiverse row.
+     * @param col The multiverse column.
+     */
+    public synchronized void load(final int row, final int col) {
         try {
             final JFileChooser fc = new JFileChooser();
             fc.setCurrentDirectory(MultiverseViewer.getConfig()
@@ -132,32 +218,42 @@ public class DisplayPanel extends JPanel implements MouseListener {
                         fc.getSelectedFile().getParentFile());
                 this.grid[row][col].getUniverseRunner().getPhysics()
                         .load(fc.getSelectedFile().toString());
-                this.grid[row][col].getUniverseRunner().randomize();
+                this.grid[row][col].getUniverseRunner().randomize(this.rnd);
             }
         } catch (final IOException ex) {
             ex.printStackTrace();
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mouseClicked(final MouseEvent e) {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mouseEntered(final MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mouseExited(final MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void mousePressed(final MouseEvent e) {
+    public synchronized void mousePressed(final MouseEvent e) {
         if (e.isPopupTrigger()) {
             doPop(e);
         } else {
@@ -171,7 +267,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
                         .getUniverseRunner();
                 target.getPhysics().copyData(
                         this.copySource.getPhysics().getData());
-                target.randomize();
+                target.randomize(this.rnd);
             } else if (this.crossoverParent1 != null
                     && this.crossoverParent2 == null) {
                 this.crossoverParent2 = this.grid[row][col].getUniverseRunner();
@@ -179,12 +275,15 @@ public class DisplayPanel extends JPanel implements MouseListener {
                     && this.crossoverParent2 != null) {
                 final UniverseRunner target = this.grid[row][col]
                         .getUniverseRunner();
-                target.crossover(this.crossoverParent1, this.crossoverParent2);
-                target.randomize();
+                target.crossover(this.rnd, this.crossoverParent1, this.crossoverParent2);
+                target.randomize(this.rnd);
             }
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mouseReleased(final MouseEvent e) {
         if (e.isPopupTrigger()) {
@@ -192,36 +291,59 @@ public class DisplayPanel extends JPanel implements MouseListener {
         }
     }
 
-    public void mutateAcross(final int row, final int col) {
+    /**
+     * Mutate the selected universe across all free multiverse cells.
+     * @param row The row of the universe to generate mutations from.
+     * @param col The column of the universe to generate mutations from.
+     */
+    public synchronized void mutateAcross(final int row, final int col) {
         final Physics sourcePhysics = this.grid[row][col].getUniverseRunner()
                 .getPhysics();
         for (int currentRow = 0; currentRow < this.rows; currentRow++) {
             for (int currentCol = 0; currentCol < this.cols; currentCol++) {
                 if (currentRow != row || currentCol != col) {
                     this.grid[currentRow][currentCol].getUniverseRunner()
-                            .mutate(sourcePhysics, 0.5, 0.2);
+                            .mutate(this.rnd, sourcePhysics, 0.5, 0.2);
                     this.grid[currentRow][currentCol].getUniverseRunner()
-                            .randomize();
+                            .randomize(this.rnd);
                 }
             }
         }
     }
 
-    public void mutateSingle(final int row, final int col) {
+    /**
+     * Mutate a single universe.
+     * @param row The multiverse row.
+     * @param col The multiverse column.
+     */
+    public synchronized void mutateSingle(final int row, final int col) {
         final UniverseRunner target = this.grid[row][col].getUniverseRunner();
-        target.mutate(target.getPhysics(), 0.5, 0.2);
-        target.randomize();
+        target.mutate(this.rnd, target.getPhysics(), 0.5, 0.2);
+        target.randomize(this.rnd);
     }
 
-    public void randomize(final int row, final int col) {
-        this.grid[row][col].getUniverseRunner().randomize();
+    /**
+     * Randomize a universe (both physics and state).
+     * @param row The multiverse row.
+     * @param col The multiverse column.
+     */
+    public synchronized void randomize(final int row, final int col) {
+        this.grid[row][col].getUniverseRunner().randomize(this.rnd);
 
     }
 
-    public void reset(final int row, final int col) {
-        this.grid[row][col].getUniverseRunner().reset();
+    /**
+     * Randomize a universe (not physics, only state).
+     * @param row The multiverse row.
+     * @param col The multiverse column.
+     */
+    public synchronized void reset(final int row, final int col) {
+        this.grid[row][col].getUniverseRunner().reset(this.rnd);
     }
 
+    /**
+     * Reset all universes (state and physics).
+     */
     public void resetAll() {
         for (int row = 0; row < this.rows; row++) {
             for (int col = 0; col < this.cols; col++) {
@@ -230,6 +352,11 @@ public class DisplayPanel extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Run a single universe full screen.
+     * @param row
+     * @param col
+     */
     public void runSingular(final int row, final int col) {
         this.owner.performStop();
         final Physics sourcePhysics = this.grid[row][col].getUniverseRunner()
@@ -239,6 +366,11 @@ public class DisplayPanel extends JPanel implements MouseListener {
         v.setVisible(true);
     }
 
+    /**
+     * Save a universe.
+     * @param row
+     * @param col
+     */
     public void save(final int row, final int col) {
         try {
             final JFileChooser fc = new JFileChooser();
@@ -256,6 +388,10 @@ public class DisplayPanel extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Set, if we should auto-kill universes that "stabilize" to no movement.
+     * @param autoKill True, if autokill is enabled.
+     */
     public void setAutoKill(final boolean autoKill) {
         for (final UniversePane[] element : this.grid) {
             for (final UniversePane anElement : element) {
@@ -264,6 +400,9 @@ public class DisplayPanel extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Update the multiverse on screen.
+     */
     public void update() {
         final Collection<AdvanceTask> tasks = new ArrayList<AdvanceTask>();
 
@@ -279,6 +418,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
             final Graphics g = getGraphics();
             final FontMetrics fm = this.offscreenGraphics.getFontMetrics();
 
+            // Loop over all universes.
             for (int row = 0; row < this.rows; row++) {
                 for (int col = 0; col < this.cols; col++) {
                     final int x = col
@@ -293,6 +433,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
                     final UniverseRunner selected = this.grid[row][col]
                             .getUniverseRunner();
 
+                    // Display any selection information.
                     if (this.copySource != null) {
                         if (this.copySource == selected) {
                             drawStatus(this.offscreenGraphics, row, col, fm,

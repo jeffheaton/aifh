@@ -9,16 +9,14 @@ import com.heatonresearch.aifh.learning.MLMethod;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/24/14
- * Time: 6:14 AM
- * To change this template use File | Settings | File Templates.
+ * This class is used to score the plant.  Plants are scored for how green they are after a specified
+ * number of iterations.
  */
 public class PlantScore implements ScoreFunction {
 
-    public static final int GENERATIONS = 100;
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double calculateScore(final MLMethod algo) {
         DoubleArrayGenome genome = (DoubleArrayGenome)algo;
@@ -28,7 +26,7 @@ public class PlantScore implements ScoreFunction {
         PlantGrowth growth = new PlantGrowth();
 
         // Run the generations.
-        for(int i=0;i<GENERATIONS;i++) {
+        for(int i=0;i<PlantUniverse.EVALUATION_CYCLES;i++) {
             physics.runPhysics(universe);
             growth.runGrowth(universe,genome.getData());
         }
@@ -43,7 +41,7 @@ public class PlantScore implements ScoreFunction {
                     if( row>=PlantUniverse.GROUND_LINE) {
                         sum+=0.5;
                     } else {
-                        sum+=cell.getComposition();
+                        sum+=cell.getLeafyness();
                     }
                 }
                 count++;
@@ -53,6 +51,9 @@ public class PlantScore implements ScoreFunction {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean shouldMinimize() {
         return false;  //To change body of implemented methods use File | Settings | File Templates.

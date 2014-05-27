@@ -15,24 +15,38 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/17/14
- * Time: 2:37 PM
- * To change this template use File | Settings | File Templates.
+ * The second milestone for titanic is to fit and cross validate a model.
  */
 public class FitTitanic {
-
+    /**
+     * The best RBF network.
+     */
     private RBFNetwork bestNetwork;
+
+    /**
+     * The best score.
+     */
     private double bestScore;
+
+    /**
+     * The cross validation folds.
+     */
     private CrossValidate cross;
 
+    /**
+     * Train a fold.
+     * @param k The fold number.
+     * @param fold The fold.
+     */
     public void trainFold(int k, CrossValidateFold fold) {
         int noImprove = 0;
         double localBest = 0;
+
+        // Get the training and cross validation sets.
         List<BasicData> training = fold.getTrainingSet();
         List<BasicData> validation = fold.getValidationSet();
 
+        // Create random particles for the RBF.
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
         RBFNetwork[] particles = new RBFNetwork[TitanicConfig.ParticleCount];
         for(int i=0;i<particles.length;i++) {
@@ -40,14 +54,23 @@ public class FitTitanic {
             particles[i].reset(rnd);
         }
 
+        /**
+         * Construct a network to hold the best network.
+         */
         if( bestNetwork==null ) {
-        bestNetwork = new RBFNetwork(TitanicConfig.InputFeatureCount,TitanicConfig.RBF_COUNT,1);
+            bestNetwork = new RBFNetwork(TitanicConfig.InputFeatureCount,TitanicConfig.RBF_COUNT,1);
         }
 
+        /**
+         * Setup the scoring function.
+         */
         ScoreFunction score = new ScoreTitanic(training);
         ScoreFunction scoreValidate = new ScoreTitanic(validation);
-        boolean done = false;
 
+        /**
+         * Setup particle swarm.
+         */
+        boolean done = false;
         TrainPSO train = new TrainPSO(particles,score);
         int iterationNumber = 0;
         StringBuilder line = new StringBuilder();
@@ -98,32 +121,40 @@ public class FitTitanic {
     }
 
 
-
+    /**
+     * Fit a RBF model to the titanic.
+     * @param dataPath The path that contains the data file.
+     */
     public void process(File dataPath) {
-        File trainingPath = new File(dataPath,"train.csv");
-        File testPath = new File(dataPath,"test.csv");
+        File trainingPath = new File(dataPath,TitanicConfig.TrainingFilename);
+        File testPath = new File(dataPath,TitanicConfig.TestFilename);
 
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
         try {
 
+            // Generate stats on the titanic.
             TitanicStats stats = new TitanicStats();
             NormalizeTitanic.analyze(stats, trainingPath);
             NormalizeTitanic.analyze(stats, testPath);
 
+            // Get the training data for the titanic.
             List<BasicData> training = NormalizeTitanic.normalize(stats, trainingPath, null,
                     TitanicConfig.InputNormalizeLow,
                     TitanicConfig.InputNormalizeHigh,
                     TitanicConfig.PredictSurvive,
                     TitanicConfig.PredictPerish);
+
+            // Fold the data for cross validation.
             this.cross = new CrossValidate(TitanicConfig.FoldCount,training,rnd);
 
-
+            // Train each of the folds.
             for(int k=0;k<cross.size();k++) {
                 System.out.println("Cross validation fold #" + (k+1) + "/" + cross.size());
                 trainFold(k,cross.getFolds().get(k));
             }
 
+            // Show the cross validation summary.
             System.out.println("Crossvalidation summary:");
             int k = 1;
             for(CrossValidateFold fold: cross.getFolds()) {
@@ -138,18 +169,24 @@ public class FitTitanic {
         }
     }
 
+    /**
+     * @return The best network from the folds.
+     */
     public RBFNetwork getBestNetwork() {
         return bestNetwork;
     }
 
-    public double getBestScore() {
-        return bestScore;
-    }
-
+    /**
+     * @return The cross validation folds.
+     */
     public CrossValidate getCrossvalidation() {
         return this.cross;
     }
 
+    /**
+     * Main entry point.
+     * @param args The path to the data file.
+     */
     public static void main(String[] args) {
         if( args.length!=1 ) {
             System.out.println("Please call this program with a single parameter that specifies your data directory.");

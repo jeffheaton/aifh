@@ -25,22 +25,43 @@ import javax.swing.*;
 import java.util.Arrays;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/24/14
- * Time: 6:14 AM
- * To change this template use File | Settings | File Templates.
+ * The third milestone in the project is to evolve genomes that produce green leafy plants.  The genomes
+ * are scored based on how leafy their plants is.
  */
 public class Milestone3Main extends JFrame implements Runnable {
+    /**
+     * The plant display.
+     */
     private DisplayPlant display;
+
+    /**
+     * The universe.
+     */
     private PlantUniverse universe;
 
+    /**
+     * The population.
+     */
     private Population pop;
+
+    /**
+     * The score function.
+     */
     private PlantScore score;
+
+    /**
+     * The genetic training.
+     */
     private BasicEA genetic;
 
+    /**
+     * Random number generator.
+     */
     private MersenneTwisterGenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
+    /**
+     * @return A random genome.
+     */
     private DoubleArrayGenome randomGenome() {
         DoubleArrayGenome genome = new DoubleArrayGenome(PlantUniverse.GENOME_SIZE);
 
@@ -50,6 +71,10 @@ public class Milestone3Main extends JFrame implements Runnable {
         return genome;
     }
 
+    /**
+     * Create the initial random population.
+     * @return
+     */
     private Population initPopulation()
     {
         Population result = new BasicPopulation(PlantUniverse.POPULATION_SIZE, null);
@@ -66,6 +91,9 @@ public class Milestone3Main extends JFrame implements Runnable {
         return result;
     }
 
+    /**
+     * The constructor.
+     */
     public Milestone3Main() {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +139,9 @@ public class Milestone3Main extends JFrame implements Runnable {
         t.setVisible(true);
     }
 
+    /**
+     * Perform the training iterations/generations.
+     */
     @Override
     public void run() {
         int generation = 0;
@@ -124,7 +155,7 @@ public class Milestone3Main extends JFrame implements Runnable {
             PlantGrowth growth = new PlantGrowth();
             PlantPhysics physics = new PlantPhysics();
 
-            for(int i=0;i<100;i++) {
+            for(int i=0;i<PlantUniverse.EVALUATION_CYCLES;i++) {
                 physics.runPhysics(universe);
                 growth.runGrowth(universe,bestGenome.getData());
             }
