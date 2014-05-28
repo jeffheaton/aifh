@@ -38,7 +38,7 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom
  * @param startingTemperature The starting temperature.
  * @param endingTemperature   The ending temperature.
  */
-abstract class DiscreteAnneal(val kMax: Int,val startingTemperature: Double,val endingTemperature: Double) {
+abstract class DiscreteAnneal(val kMax: Int, val startingTemperature: Double, val endingTemperature: Double) {
 
   /**
    * @return The correct temperature for the current iteration.

@@ -59,7 +59,7 @@ class LearnXOR extends SimpleLearn {
     val trainingData = BasicData.convertArrays(XOR_INPUT, XOR_IDEAL)
     val network = new RBFNetwork(2, 5, 1)
 
-    val score = new ScoreRegressionData(trainingData.toVector)
+    val score = new ScoreRegressionData(trainingData)
     val train = new TrainGreedyRandom(true, network, score)
     performIterations(train, 1000000, 0.01, shouldMinimize = true)
     SimpleLearn.query(network, trainingData)

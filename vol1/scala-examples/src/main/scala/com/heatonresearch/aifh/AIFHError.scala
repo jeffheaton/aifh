@@ -31,7 +31,7 @@ package com.heatonresearch.aifh
 /**
  * General exception class.
  */
-class AIFHError(msg : String,throwable : Throwable) extends Error(msg,throwable) {
+class AIFHError(msg: String, throwable: Throwable) extends Error(msg, throwable) {
   /**
    * Wrap a throwable.
    *

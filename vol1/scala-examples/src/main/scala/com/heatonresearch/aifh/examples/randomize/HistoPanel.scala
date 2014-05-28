@@ -64,7 +64,7 @@ class HistoPanel extends JPanel {
     low = Double.PositiveInfinity
     high = Double.NegativeInfinity
     runtime = 0
-    (0 until boxes.length) foreach { i =>
+    for(i <- 0 until boxes.length) {
       boxes(i) = 0
     }
   }
@@ -120,12 +120,12 @@ class HistoPanel extends JPanel {
       bar2box = boxes.length / barCount
     }
 
-    (0 until barCount) foreach { i =>
+    for(i <- 0 until barCount) {
       var barAmount: Int = 0
-      (0 until bar2box) foreach { j =>
+      for(j <- 0 until bar2box) {
+        barAmount += boxes(boxesIndex)
+        boxesIndex += 1
       }
-      barAmount += boxes(boxesIndex)
-      boxesIndex += 1
       barAmount /= bar2box
       val barRatio: Double = barAmount.toDouble / mode
       val barHeight: Int = (barRatio * height).toInt

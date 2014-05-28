@@ -50,12 +50,13 @@ class EvaluatePI {
     var success = 0
     var lastUpdate = 0
 
-    (0 until 1000000000) foreach { i =>
+    for(i <- 0 until 1000000000) {
       val x = rnd.nextDouble
       val y = rnd.nextDouble
       tries += 1
-      if (x * x + y * y <= 1)
+      if (x * x + y * y <= 1) {
         success += 1
+      }
       lastUpdate += 1
       if (lastUpdate >= 1000000) {
         val pi = 4 * success.toDouble / tries.toDouble

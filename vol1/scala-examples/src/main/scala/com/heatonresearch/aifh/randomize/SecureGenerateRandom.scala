@@ -37,7 +37,7 @@ object SecureGenerateRandom {
 /**
  * A wrapper over Java's crypto secure random number generator.
  */
-class SecureGenerateRandom(rand : SecureRandom) extends AbstractGenerateRandom {
+class SecureGenerateRandom(rand: SecureRandom) extends AbstractGenerateRandom {
 
   /**
    * Construct with a time-based seed.
@@ -49,7 +49,7 @@ class SecureGenerateRandom(rand : SecureRandom) extends AbstractGenerateRandom {
    *
    * @param seed The seed.
    */
-  def this(seed : Long) {
+  def this(seed: Long) {
     this(new SecureRandom(Array(seed.toByte)))
   }
 

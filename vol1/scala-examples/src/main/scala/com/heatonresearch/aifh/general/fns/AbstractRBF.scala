@@ -44,7 +44,7 @@ import scala.collection.mutable.ArrayBuffer
  * @param theIndex      The index into the params vector.  You can store multiple RBF's in a vector.
 
  */
-abstract class AbstractRBF(dimensions: Int,params: ArrayBuffer[Double], theIndex: Int) extends FnRBF {
+abstract class AbstractRBF(dimensions: Int, params: ArrayBuffer[Double], theIndex: Int) extends FnRBF {
 
   /**
    * The index to the widths.

@@ -34,7 +34,7 @@ package com.heatonresearch.aifh.examples.distance
  * @param width  The width
  * @param height The height
  */
-class SampleData(val letter: Char,val width: Int,val height: Int) extends Comparable[SampleData] {
+class SampleData(val letter: Char, val width: Int, val height: Int) extends Comparable[SampleData] {
   /**
    * The downsampled data as a grid of booleans.
    */
@@ -55,10 +55,10 @@ class SampleData(val letter: Char,val width: Int,val height: Int) extends Compar
    *
    * @return A copy of this sample
    */
-  def cloneInstance(newLetter : Char = letter) : SampleData = {
+  def cloneInstance(newLetter: Char = letter): SampleData = {
     val obj = new SampleData(newLetter, width, height)
-    for (y <- 0 until height ;
-         x <- 0 until width ) {
+    for (y <- 0 until height;
+         x <- 0 until width) {
       obj.setData(x, y, getData(x, y))
     }
     obj

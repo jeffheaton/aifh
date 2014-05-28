@@ -35,7 +35,7 @@ import com.heatonresearch.aifh.error.ErrorCalculation
  * @param actual The actual data
  * @param ideal The ideal data, what the actual should have been.
  */
-class DataHolder(val actual : Vector[Vector[Double]],ideal: Vector[Vector[Double]]) {
+class DataHolder(val actual: Vector[Vector[Double]], ideal: Vector[Vector[Double]]) {
 
   /**
    * Calculate the error with the specified error calculation.

@@ -56,7 +56,7 @@ trait GenerateRandom {
   /**
    * @return The next random double.
    */
-  def nextDouble() : Double
+  def nextDouble(): Double
 
   /**
    * The next random double up to a non-inclusive range.

@@ -124,7 +124,7 @@ object DataSet {
       csv.writeNext(ds.getHeaders)
       val items2 = Array.ofDim[String](ds.getHeaderCount)
       for (item <- ds.getData) {
-        for(i<- 0 until ds.getHeaderCount) {
+        for(i <- 0 until ds.getHeaderCount) {
           items2(i) = item(i).toString
         }
         csv.writeNext(items2)
@@ -389,7 +389,7 @@ class DataSet(theHeaders: Array[String]) {
       for(i <- 0 until (classCount - 1))
         obj(column + i) = encoded(i).asInstanceOf[Object]
     }
-    for(i<-0 until classes.size)
+    for(i <- 0 until classes.size)
       headers(column + i) = name + "-" + i
 
     classes
@@ -430,19 +430,19 @@ class DataSet(theHeaders: Array[String]) {
   def insertColumns(column: Int, columnCount: Int) {
     appendColumns(columnCount)
     System.arraycopy(headers, column + 1 - columnCount, headers, column + 1, getHeaderCount - 1 - column)
-    for(i<- 0 until columnCount)
+    for(i <- 0 until columnCount)
       headers(column + i) = "new"
 
     for (obj <- data) {
       System.arraycopy(obj, column + 1 - columnCount, obj, column + 1, getHeaderCount - 1 - column)
-      for(i <-0 until columnCount) {
+      for(i <- 0 until columnCount) {
         obj(column + i) = 0.0.asInstanceOf[Object]
       }
     }
   }
 
   override def equals(other: Any): Boolean = other match {
-    case otherSet : DataSet =>
+    case otherSet: DataSet =>
       if (getHeaderCount != otherSet.getHeaderCount) {
         return false
       }
@@ -450,7 +450,7 @@ class DataSet(theHeaders: Array[String]) {
         return false
       }
       for(i <- 0 until getHeaderCount) {
-        if (!(headers(i) == otherSet.getHeaders(i))) {
+        if (headers(i) != otherSet.getHeaders(i)) {
           return false
         }
       }
@@ -459,7 +459,7 @@ class DataSet(theHeaders: Array[String]) {
         val row1 = data(i)
         val row2 = other.asInstanceOf[DataSet].getData(i)
         for(j <- 0 until getHeaderCount) {
-          if (!(row1(j) == row2(j)))
+          if (row1(j) != row2(j))
             return false
         }
       }
@@ -540,14 +540,14 @@ class DataSet(theHeaders: Array[String]) {
     for (row <- data) {
       val row2 = Array.ofDim[AnyRef](headers.length)
       var r2Index: Int = 0
-      for(i<- 0 until headers.length) {
+      for(i <- 0 until headers.length) {
         if (i != col) {
           row2(r2Index) = row(i)
           r2Index += 1
         }
       }
       data = data.updated(rowIndex, row2)
-      rowIndex+=1
+      rowIndex += 1
     }
   }
 

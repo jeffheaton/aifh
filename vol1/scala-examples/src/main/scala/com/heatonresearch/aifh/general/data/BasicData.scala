@@ -52,7 +52,7 @@ object BasicData {
  * @param ideal The ideal data vector.
  * @param label     The label.
  */
-class BasicData(val input: Vector[Double],val ideal: Vector[Double],val label: String = null) {
+class BasicData(val input: Vector[Double], val ideal: Vector[Double], val label: String = null) {
 
   /**
    * Construct an unsupervised element, with a label.

@@ -98,7 +98,7 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
    * Run the example.
    */
   def run() {
-    (0 until NUM_ITEMS_TO_CHOOSE) foreach { n=>
+    for(n <- 0 until NUM_ITEMS_TO_CHOOSE) {
       profit(n) = (Math.random * ITEM_MAX_VALUE).toInt
       weight(n) = (Math.random * ITEM_MAX_WEIGHT).toInt
     }
@@ -108,7 +108,7 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
       println("Iteration #" + getK + ", Best Score=" + getBestScore + "," + getStatus)
     }
     println("item" + "\t" + "profit" + "\t" + "weight" + "\t" + "take")
-    (0 until NUM_ITEMS_TO_CHOOSE) foreach { n =>
+    for(n <- 0 until NUM_ITEMS_TO_CHOOSE) {
       println((n + 1) + "\t" + profit(n) + "\t" + weight(n) + "\t" + bestTaken(n))
     }
   }
@@ -143,7 +143,7 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
       return 0
 
     var result: Int = 0
-    (0 until currentTaken.length) foreach { i =>
+    for(i <- 0 until currentTaken.length) {
       if (currentTaken(i))
         result += profit(i)
     }
@@ -155,7 +155,7 @@ class KnapsackAnneal extends DiscreteAnneal(1000, 40000, 0.001) {
    */
   private def calculateTotalWeight: Int = {
     var result: Int = 0
-    (0 until currentTaken.length) foreach { i=>
+    for(i <- 0 until currentTaken.length) {
       if (currentTaken(i))
         result += weight(i)
     }

@@ -45,7 +45,7 @@ import scala.collection.mutable.ArrayBuffer
  * @param acceleration      The acceleration for step sizes.
  * @param stepSizeVal          The initial step sizes.
  */
-class TrainHillClimb(val shouldMinimize: Boolean,val algorithm: MachineLearningAlgorithm,val score: ScoreFunction, acceleration: Double, stepSizeVal: Double) extends LearningMethod {
+class TrainHillClimb(val shouldMinimize: Boolean, val algorithm: MachineLearningAlgorithm, val score: ScoreFunction, acceleration: Double, stepSizeVal: Double) extends LearningMethod {
   /**
    * The last result from the score function.
    * Set to a really bad value so it will be reset on the first iteration.

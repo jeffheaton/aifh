@@ -60,8 +60,7 @@ object TrainNelderMead {
   val RCOEFF = 1.0
 }
 
-class TrainNelderMead(private val algorithm: MachineLearningAlgorithm,
-                      private val score: ScoreFunction, stepValue: Double=100) extends LearningMethod {
+class TrainNelderMead(algorithm: MachineLearningAlgorithm, score: ScoreFunction, stepValue: Double = 100) extends LearningMethod {
   import TrainNelderMead._
 
   private val start: ArrayBuffer[Double] = algorithm.longTermMemory.clone()

@@ -45,5 +45,5 @@ trait CalculateDistance {
    * @param position2 The second vector.
    * @return The distance.
    */
-  def calculate(position1: Vector[Double], position2: Vector[Double]) : Double
+  def calculate(position1: Vector[Double], position2: Vector[Double]): Double
 }

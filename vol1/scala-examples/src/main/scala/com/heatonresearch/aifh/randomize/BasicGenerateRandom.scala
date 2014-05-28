@@ -45,7 +45,7 @@ class BasicGenerateRandom private (rand: Random) extends AbstractGenerateRandom 
    *
    * @param seed The seed.
    */
-  def this(seed : Long) { this(new Random(seed)) }
+  def this(seed: Long) { this(new Random(seed)) }
 
   /**
    * Construct a random number generator with a time-based seed.

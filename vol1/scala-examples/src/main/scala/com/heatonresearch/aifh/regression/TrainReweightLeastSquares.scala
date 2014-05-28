@@ -45,7 +45,7 @@ import com.heatonresearch.aifh.general.data.RichData.toRichBuffer
  * @param algorithm    The GLM to train.
  * @param trainingData The training data.
  */
-class TrainReweightLeastSquares(private val algorithm: MultipleLinearRegression,private val  trainingData: Vector[BasicData]) {
+class TrainReweightLeastSquares(algorithm: MultipleLinearRegression, trainingData: Vector[BasicData]) {
   /**
    * The gradient matrix.
    */
@@ -59,7 +59,6 @@ class TrainReweightLeastSquares(private val algorithm: MultipleLinearRegression,
    * The Hessian matrix.
    */
   private val hessian = Array.ofDim[Double](algorithm.longTermMemory.length, algorithm.longTermMemory.length)
-
 
 
   /**

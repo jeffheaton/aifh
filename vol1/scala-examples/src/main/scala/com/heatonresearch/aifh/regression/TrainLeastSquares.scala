@@ -47,7 +47,7 @@ import com.heatonresearch.aifh.general.data.BasicData
  * @param algorithm The linear regression object we are training.
  * @param trainingData The training data.
  */
-class TrainLeastSquares(private val algorithm: MultipleLinearRegression, private val trainingData: Vector[BasicData]) {
+class TrainLeastSquares(algorithm: MultipleLinearRegression, trainingData: Vector[BasicData]) {
 
   /**
    * @return The R squared value.  The coefficient of determination.

@@ -50,7 +50,7 @@ import scala.collection.mutable.ListBuffer
 
  * @param k The number of clusters (K).
  */
-class KMeans(val k : Int) {
+class KMeans(val k: Int) {
 
   /**
    * The clusters.
