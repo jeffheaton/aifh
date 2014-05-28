@@ -14,18 +14,68 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * This example plots a flock of particles that exhibit flocking behavior.  This is governed by the following three
+ * simple rules:
+ *
+ * 1. Separation - avoid crowding neighbors (short range repulsion)
+ * 2. Alignment - steer towards average heading of neighbors
+ * 3. Cohesion - steer towards average position of neighbors (long range attraction)
+ *
+ * References:
+ *
+ * http://en.wikipedia.org/wiki/Flocking_(behavior)
+ */
 public class Flock2dWindow extends JFrame implements Runnable, ComponentListener, WindowListener {
 
+    /**
+     * The number of particles.
+     */
     private final int PARTICLE_COUNT = 100;
-    private final double PARTICLE_SIZE = 10;
-    private final List<Particle> particles;
-    private Graphics offscreenGraphics;
-    private BufferedImage offscreenImage;
-    private CalculateDistance distanceCalc = new EuclideanDistance();
-    private double constCohesion = 0.01;//0.01;
-    private double constAlignment = 0.5;//0.5;
-    private double constSeparation = 0.25;//0.25;
 
+    /**
+     * The size of each particle.
+     */
+    private final double PARTICLE_SIZE = 10;
+
+    /**
+     * The particles.
+     */
+    private final List<Particle> particles;
+
+    /**
+     * An off-screen image to render to.
+     */
+    private Graphics offscreenGraphics;
+
+    /**
+     * The off screen image.
+     */
+    private BufferedImage offscreenImage;
+
+    /**
+     * Distance calculation.
+     */
+    private CalculateDistance distanceCalc = new EuclideanDistance();
+
+    /**
+     * The constant for cohesion.
+     */
+    private double constCohesion = 0.01;
+
+    /**
+     * The constant for alignment.
+     */
+    private double constAlignment = 0.5;
+
+    /**
+     * The constant for separation.
+     */
+    private double constSeparation = 0.25;
+
+    /**
+     * The constructor.
+     */
     public Flock2dWindow() {
         setTitle("Flocking in 2D");
         setSize(1024, 768);
@@ -45,21 +95,20 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
         this.addComponentListener(this);
     }
 
+    /**
+     * Main entry point.
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         Flock2dWindow app = new Flock2dWindow();
         app.setVisible(true);
     }
 
-    public static int minIndex(double[] data) {
-        int result = -1;
-        for (int i = 0; i < data.length; i++) {
-            if (result == -1 || data[i] < data[result]) {
-                result = i;
-            }
-        }
-        return result;
-    }
-
+    /**
+     * Find the index that has the max value in a vector.
+     * @param data The vector.
+     * @return The index.
+     */
     public static int maxIndex(double[] data) {
         int result = -1;
         for (int i = 0; i < data.length; i++) {
@@ -70,6 +119,12 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
         return result;
     }
 
+    /**
+     * Get the mean particle location for the specified dimension.
+     * @param particles The particles.
+     * @param dimension The dimension.
+     * @return The mean.
+     */
     public static double particleLocationMean(Collection<Particle> particles, int dimension) {
         double sum = 0;
         int count = 0;
@@ -80,6 +135,12 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
         return sum / count;
     }
 
+    /**
+     * Get the particle velocity mean for the specified dimension.
+     * @param particles The particles.
+     * @param dimension The dimension.
+     * @return The velocity mean.
+     */
     public static double particleVelocityMean(Collection<Particle> particles, int dimension) {
         double sum = 0;
         int count = 0;
@@ -90,6 +151,14 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
         return sum / count;
     }
 
+    /**
+     * Find the nearest neighbor particle.
+     * @param target The particle to look for neighbors to.
+     * @param particles All particles.
+     * @param k The number of particles to find.
+     * @param maxDist The max distance to check.
+     * @return The nearest neighbors.
+     */
     private Collection<Particle> findNearest(Particle target, Collection<Particle> particles, int k, double maxDist) {
         List<Particle> result = new ArrayList<Particle>();
         double[] tempDist = new double[k];
@@ -119,6 +188,9 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
         return result;
     }
 
+    /**
+     * Perform the flocking.
+     */
     private void flock() {
         for (Particle particle : this.particles) {
             ///////////////////////////////////////////////////////////////
@@ -171,6 +243,9 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
 
@@ -241,6 +316,9 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void componentResized(final ComponentEvent e) {
         // create off-screen drawing area
@@ -249,21 +327,30 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
         this.offscreenGraphics = this.offscreenImage.getGraphics();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void componentMoved(final ComponentEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void componentShown(final ComponentEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void componentHidden(final ComponentEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowOpened(final WindowEvent e) {
         // start the thread
@@ -271,33 +358,45 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
         t.start();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowClosing(final WindowEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowClosed(final WindowEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowIconified(final WindowEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowDeiconified(final WindowEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowActivated(final WindowEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void windowDeactivated(final WindowEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -137,6 +137,10 @@ public class MutateExample {
 
     }
 
+    /**
+     * Main entry point for the program.
+     * @param args Not used.
+     */
     public static void main(String[] args) {
         mutateShuffle();
         mutatePeterb();

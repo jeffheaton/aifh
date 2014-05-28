@@ -24,6 +24,10 @@ public class IrisPSOExample extends SimpleLearn {
      */
     public static final int PARTICLE_COUNT = 30;
 
+    /**
+     * Main entry point.
+     * @param args Not used.
+     */
     public static void main(final String[] args) {
         final IrisPSOExample prg = new IrisPSOExample();
         prg.process();

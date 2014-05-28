@@ -22,11 +22,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 4/18/14
- * Time: 9:20 PM
- * To change this template use File | Settings | File Templates.
+ * An example that fits an equation to a data file.  This example uses genetic programming.
  */
 public class FindEquation {
 
@@ -49,6 +45,12 @@ public class FindEquation {
         return result;
     }
 
+    /**
+     * Create an initial random population.
+     * @param rnd A random number generator.
+     * @param eval The expression evaluator.
+     * @return The new population.
+     */
     private Population initPopulation(GenerateRandom rnd, EvaluateExpression eval)
     {
         Population result = new BasicPopulation(POPULATION_SIZE, null);
@@ -65,6 +67,10 @@ public class FindEquation {
         return result;
     }
 
+    /**
+     * Process the specified file.
+     * @param filename The filename to process.
+     */
     public void process(final String filename) {
         InputStream istream = null;
 
@@ -135,6 +141,10 @@ public class FindEquation {
         genetic.finishTraining();
     }
 
+    /**
+     * Main entry point.
+     * @param args The data file to fit.
+     */
     public static void main(String[] args) {
         FindEquation prg = new FindEquation();
         if( args.length==0) {

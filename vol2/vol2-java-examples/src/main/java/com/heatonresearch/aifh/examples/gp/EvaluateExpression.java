@@ -10,26 +10,72 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 import java.util.Locale;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 4/25/14
- * Time: 6:43 AM
- * To change this template use File | Settings | File Templates.
+ * Evaluate expression.  This class shows how to construct a tree evaluator that will evaluate the following
+ * operators:
+ *
+ * add, sub, div, mul, negative, power, sqrt, as well as variables.
+ *
+ * This class could easily be modified to support additional operators.
  */
 public class EvaluateExpression extends EvaluateTree {
-
+    /**
+     * The opcode for add.
+     */
     public static final int OPCODE_ADD = 0;
+
+    /**
+     * The opcode for subtract.
+     */
     public static final int OPCODE_SUB = 1;
+
+    /**
+     * The opcode for divide.
+     */
     public static final int OPCODE_DIV = 2;
+
+    /**
+     * The opcode for multiply.
+     */
     public static final int OPCODE_MUL = 3;
+
+    /**
+     * The opcode for negative.
+     */
     public static final int OPCODE_NEG = 4;
+
+    /**
+     * The opcode for raise to the power.
+     */
     public static final int OPCODE_POWER = 5;
+
+    /**
+     * The opcode for square root.
+     */
     public static final int OPCODE_SQRT = 6;
+
+    /**
+     * The start of the constant and variable opcodes.
+     */
     public static final int OPCODE_VAR_CONST = 7;
 
+    /**
+     * The constant values.
+     */
     private double[] constValues;
+
+    /**
+     * The number of variables.
+     */
     private int varCount;
 
+    /**
+     * The constructor.
+     * @param rnd A random number generator.
+     * @param numConst The number of constants.
+     * @param numVar The number of variables.
+     * @param minConstValue The minimum amount for a constant.
+     * @param maxConstValue The maximum amount for a constant.
+     */
     public EvaluateExpression(GenerateRandom rnd, int numConst, int numVar, double minConstValue, double maxConstValue) {
         this.constValues = new double[numConst];
         this.varCount = numVar;
@@ -39,10 +85,18 @@ public class EvaluateExpression extends EvaluateTree {
         }
     }
 
+    /**
+     * Construct an evaluator with 1 variable, and 100 constants ranging between (-5,5)
+     * @param rnd A random number generator.
+     */
     public EvaluateExpression(GenerateRandom rnd) {
         this(rnd,100,1,-5,5);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int determineChildCount(int opcode) {
         switch(opcode) {
             case OPCODE_ADD: return 2;
@@ -57,6 +111,11 @@ public class EvaluateExpression extends EvaluateTree {
         }
     }
 
+    /**
+     * Get the text for an opcode.
+     * @param opcode The opcode.
+     * @return The text for the opcode.
+     */
     public String getOpcodeText(int opcode) {
         switch(opcode) {
             case OPCODE_NEG:
@@ -86,6 +145,12 @@ public class EvaluateExpression extends EvaluateTree {
         }
     }
 
+
+    /**
+     * Display an expression as LISP (the programming language)
+     * @param node The root node.
+     * @return The LISP for the expression.
+     */
     public String displayExpressionLISP(TreeGenomeNode node) {
         StringBuilder result = new StringBuilder();
 
@@ -104,6 +169,12 @@ public class EvaluateExpression extends EvaluateTree {
         return result.toString();
     }
 
+
+    /**
+     * Display an expression as normal infix.
+     * @param node The root node.
+     * @return The infix string.
+     */
     public String displayExpressionNormal(TreeGenomeNode node) {
         StringBuilder result = new StringBuilder();
 
@@ -150,21 +221,33 @@ public class EvaluateExpression extends EvaluateTree {
         return result.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getVarConstOpcode() {
         return OPCODE_VAR_CONST;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getNumConst() {
         return this.constValues.length;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getNumVar() {
         return this.varCount;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double evaluate(TreeGenomeNode node, double[] varValues) {
         switch(node.getOpcode()) {
