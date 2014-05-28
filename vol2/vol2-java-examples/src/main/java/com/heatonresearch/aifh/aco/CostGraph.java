@@ -1,13 +1,19 @@
 package com.heatonresearch.aifh.aco;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/7/14
- * Time: 4:42 AM
- * To change this template use File | Settings | File Templates.
+ * Defines the cost structure between nodes in a graph.  Costs are assigned at the edges, between nodes.
  */
 public interface CostGraph {
+    /**
+     * Get the cost between two nodes.
+     * @param sourceNode The source node.
+     * @param targetNode The target node.
+     * @return The cost between two nodes.
+     */
     double cost(int sourceNode, int targetNode);
+
+    /**
+     * @return The size of the graph, in nodes.
+     */
     int graphSize();
 }

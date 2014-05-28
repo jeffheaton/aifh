@@ -7,27 +7,84 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/7/14
- * Time: 4:40 AM
- * To change this template use File | Settings | File Templates.
+ * The ant colony optimization (ACO) algorithm finds an optimal path through a graph.  It works by establishing
+ * pheromone trails between the graph nodes.  The pheromone trails increase in strength as ants travel over the
+ * edges of the graph.  The pheromone trails decrease over time.  The discrete version of ACO arranges a path
+ * to visit the nodes of a graph, that minimizes cost.
+ *
+ * References:
+ *
+ * http://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
+ *
+ * M. Dorigo, Optimization, Learning and Natural Algorithms, PhD thesis, Politecnico di Milano, Italy, 1992.
+ *
  */
 public class DiscreteACO {
-
+    /**
+     * The pheromone trails between graph segments.
+     */
     private final double[][] pheromone;
+
+    /**
+     * A graph of costs.
+     */
     private final CostGraph graph;
+
+    /**
+     * The ants.
+     */
     private final List<DiscreteAnt> ants = new ArrayList<DiscreteAnt>();
-    private double c = 1.0;
+
+    /**
+     * The initial value of the pheromone trails.
+     */
+    public static double INITIAL_PHEROMONE = 1.0;
+
+    /**
+     * Constant that defines the attractiveness of the pheromone trail.
+     */
     private double alpha = 1;
+
+    /**
+     * Constant that defines the attractiveness of better state transitions (from one node to another).
+     */
     private double beta = 5;
+
+    /**
+     * Constant that defines how quickly the pheromone path evaporates.
+     */
     private double evaporation = 0.5;
-    private double Q = 500;
+
+    /**
+     * The amount of pheromone that the nodes of a path share for a trip.
+     */
+    private double q = 500;
+
+    /**
+     * The base probability.
+     */
     private double pr = 0.01;
+
+    /**
+     * A random number generator.
+     */
     private GenerateRandom random = new MersenneTwisterGenerateRandom();
+
+    /**
+     * The current best path.
+     */
     private final int[] bestPath;
+
+    /**
+     * The cost of the best path.  We are trying to minimize this.
+     */
     private double bestCost;
 
+    /**
+     * The constructor.
+     * @param theGraph The graph that we are seeking a minimal path through.
+     * @param theAntCount The number of ants to use.
+     */
     public DiscreteACO(CostGraph theGraph, int theAntCount) {
         int len = theGraph.graphSize();
         this.graph = theGraph;
@@ -37,7 +94,7 @@ public class DiscreteACO {
 
         for (int i = 0; i < len; i++) {
             for (int j = 0; j < len; j++) {
-                this.pheromone[i][j] = c;
+                this.pheromone[i][j] = INITIAL_PHEROMONE;
             }
         }
 
@@ -47,6 +104,12 @@ public class DiscreteACO {
 
     }
 
+    /**
+     * Calculate the probability of a given ant moving to any of the next nodes.
+     * @param currentIndex The index into the path.
+     * @param ant The ant.
+     * @return The probability of moving to the next node.
+     */
     private double[] calculateProbability(int currentIndex, DiscreteAnt ant) {
         double[] result = new double[this.graph.graphSize()];
         int i = ant.getPath()[currentIndex-1];
@@ -71,6 +134,12 @@ public class DiscreteACO {
 
     }
 
+    /**
+     * Choose the next node for an ant to visit.  This is based on probability.
+     * @param currentIndex The step we are at in the path.
+     * @param ant The ant being evaluated.
+     * @return The node we will move into.
+     */
     private int pickNextNode(int currentIndex, DiscreteAnt ant) {
         if (currentIndex==0 || this.random.nextDouble() < pr) {
             int index;
@@ -93,6 +162,9 @@ public class DiscreteACO {
         return -1;
     }
 
+    /**
+     * Update the pheromone levels both for ants traveling and evaporation.
+     */
     private void updatePheromone() {
         // Cause evaporation.
         for (int i = 0; i < this.pheromone.length; i++)
@@ -101,7 +173,7 @@ public class DiscreteACO {
 
         // Adjust for ants.
         for (DiscreteAnt a : ants) {
-            double d = Q / a.calculateCost(this.graph.graphSize(), this.graph);
+            double d = q / a.calculateCost(this.graph.graphSize(), this.graph);
             for (int i = 0; i < this.graph.graphSize() - 1; i++) {
                 this.pheromone[a.getPath()[i]][a.getPath()[i + 1]] += d;
             }
@@ -109,6 +181,9 @@ public class DiscreteACO {
         }
     }
 
+    /**
+     * Move the ants forward on their path.
+     */
     private void march() {
         for(int currentIndex = 0;currentIndex<this.graph.graphSize();currentIndex++) {
             for(DiscreteAnt a: this.ants) {
@@ -118,12 +193,18 @@ public class DiscreteACO {
         }
     }
 
+    /**
+     * Reset the ants.
+     */
     private void setupAnts() {
         for(DiscreteAnt a: this.ants) {
             a.clear();
         }
     }
 
+    /**
+     * Update the best path.
+     */
     private void updateBest() {
         int[] bestPathFound = null;
 
@@ -141,6 +222,9 @@ public class DiscreteACO {
     }
 
 
+    /**
+     * Perform one iteration.
+     */
     public void iteration() {
         setupAnts();
         march();
@@ -148,6 +232,9 @@ public class DiscreteACO {
         updateBest();
     }
 
+    /**
+     * @return The random number generator.
+     */
     public GenerateRandom getRandom() {
         return random;
     }
@@ -156,6 +243,9 @@ public class DiscreteACO {
         this.random = random;
     }
 
+    /**
+     * @return The the best tour/path.
+     */
     public int[] getBestTour() {
         return bestPath;
     }
@@ -163,4 +253,108 @@ public class DiscreteACO {
     public double getBestCost() {
         return this.bestCost;
     }
+
+    /**
+     * @return The pheromone levels.
+     */
+    public double[][] getPheromone() {
+        return pheromone;
+    }
+
+    /**
+     * @return The cost graph.
+     */
+    public CostGraph getGraph() {
+        return graph;
+    }
+
+    /**
+     * @return The ants.
+     */
+    public List<DiscreteAnt> getAnts() {
+        return ants;
+    }
+
+    /**
+     * @return Constant that defines the attractiveness of the pheromone trail.
+     */
+    public double getAlpha() {
+        return alpha;
+    }
+
+    /**
+     * Set the constant that defines the attractiveness of the pheromone trail.
+     * @param alpha The constant that defines the attractiveness of the pheromone trail.
+     */
+    public void setAlpha(final double alpha) {
+        this.alpha = alpha;
+    }
+
+    /**
+     * @return Constant that defines the attractiveness of better state transitions (from one node to another).
+     */
+    public double getBeta() {
+        return beta;
+    }
+
+    /**
+     * Constant that defines the attractiveness of better state transitions (from one node to another).
+     * @param beta The constant that defines the attractiveness of better state transitions (from one node to another).
+     */
+    public void setBeta(final double beta) {
+        this.beta = beta;
+    }
+
+    /**
+     * @return The pheromone evaporation level.
+     */
+    public double getEvaporation() {
+        return evaporation;
+    }
+
+    /**
+     * Set the pheromone evaporation level.
+     * @param evaporation The pheromone evaporation level.
+     */
+    public void setEvaporation(final double evaporation) {
+        this.evaporation = evaporation;
+    }
+
+    /**
+     * @return The amount of pheromone that the nodes of a path share for a trip.
+     */
+    public double getQ() {
+        return q;
+    }
+
+    /**
+     * Set the amount of pheromone that the nodes of a path share for a trip.
+     * @param q The amount of pheromone that the nodes of a path share for a trip.
+     */
+    public void setQ(final double q) {
+        this.q = q;
+    }
+
+    /**
+     * @return The base probability.
+     */
+    public double getPr() {
+        return pr;
+    }
+
+    /**
+     * Set the base probability.
+     * @param pr The base probability.
+     */
+    public void setPr(final double pr) {
+        this.pr = pr;
+    }
+
+    /**
+     * @return The best path.
+     */
+    public int[] getBestPath() {
+        return bestPath;
+    }
+
 }
