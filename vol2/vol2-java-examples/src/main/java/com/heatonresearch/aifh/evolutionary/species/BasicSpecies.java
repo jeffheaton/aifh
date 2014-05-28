@@ -7,7 +7,7 @@
  *
  * Code repository:
  * https://github.com/jeffheaton/aifh
-
+ *
  * Copyright 2014 by Jeff Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
