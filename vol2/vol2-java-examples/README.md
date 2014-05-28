@@ -1,7 +1,7 @@
 AIFH Vol2  - Java Code Examples
 ====
 This folder contains the Java examples for AIFH Volume 2.  This software was developed using JDK 1.7.  
-To make use of this software you will need JDK 1.7 or later.
+To make use of this software you will need JDK 1.7 or later.  Examples have been tested with JDK 1.8.
 
 Four 3rd party JARs are also used.
 
@@ -32,7 +32,7 @@ by chapter.
 * Chapter 1: Introduction to AI
 ```
     runCSVExample - Chapter 1.  This example reads a CSV file
-
+```
 
 ##Running Examples - Command Line
 

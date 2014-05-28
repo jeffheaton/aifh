@@ -4,7 +4,6 @@ import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 import com.heatonresearch.aifh.examples.capstone.model.TitanicConfig;
 import com.heatonresearch.aifh.examples.util.FormatNumeric;
-import com.heatonresearch.aifh.examples.util.SimpleLearn;
 import com.heatonresearch.aifh.general.data.BasicData;
 
 import java.io.*;
@@ -29,7 +28,7 @@ import java.util.Map;
  * <p/>
  * [age,sex-male,pclass,sibsp,parch,fare,embarked-c,embarked-q,embarked-s,name-mil,name-nobility,name-dr,name-clergy]
  */
-public class NormalizeTitanic extends SimpleLearn {
+public class NormalizeTitanic {
 
     /**
      * Analyze and generate stats for titanic data.
