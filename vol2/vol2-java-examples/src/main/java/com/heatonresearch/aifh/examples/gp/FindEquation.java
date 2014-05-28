@@ -75,18 +75,18 @@ public class FindEquation {
 
     /**
      * Create an initial random population.
-     * @param rnd A random number generator.
+     *
+     * @param rnd  A random number generator.
      * @param eval The expression evaluator.
      * @return The new population.
      */
-    private Population initPopulation(GenerateRandom rnd, EvaluateExpression eval)
-    {
+    private Population initPopulation(GenerateRandom rnd, EvaluateExpression eval) {
         Population result = new BasicPopulation(POPULATION_SIZE, null);
 
         BasicSpecies defaultSpecies = new BasicSpecies();
         defaultSpecies.setPopulation(result);
         for (int i = 0; i < POPULATION_SIZE; i++) {
-            final TreeGenome genome = randomGenome(rnd,eval);
+            final TreeGenome genome = randomGenome(rnd, eval);
             defaultSpecies.add(genome);
         }
         result.setGenomeFactory(new TreeGenomeFactory(eval));
@@ -97,6 +97,7 @@ public class FindEquation {
 
     /**
      * Process the specified file.
+     *
      * @param filename The filename to process.
      */
     public void process(final String filename) {
@@ -127,12 +128,12 @@ public class FindEquation {
 
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
         EvaluateExpression eval = new EvaluateExpression(rnd);
-        Population pop = initPopulation(rnd,eval);
+        Population pop = initPopulation(rnd, eval);
         ScoreFunction score = new ScoreRegressionData(training);
 
-        EvolutionaryAlgorithm genetic = new BasicEA(pop,score);
-        genetic.addOperation(0.3,new MutateTree(3));
-        genetic.addOperation(0.7,new CrossoverTree());
+        EvolutionaryAlgorithm genetic = new BasicEA(pop, score);
+        genetic.addOperation(0.3, new MutateTree(3));
+        genetic.addOperation(0.7, new CrossoverTree());
         genetic.setShouldIgnoreExceptions(false);
 
 
@@ -164,20 +165,21 @@ public class FindEquation {
         }
 
         System.out.println("Good solution found:");
-        TreeGenome best = (TreeGenome)genetic.getBestGenome();
+        TreeGenome best = (TreeGenome) genetic.getBestGenome();
         System.out.println(eval.displayExpressionNormal(best.getRoot()));
         genetic.finishTraining();
     }
 
     /**
      * Main entry point.
+     *
      * @param args The data file to fit.
      */
     public static void main(String[] args) {
         FindEquation prg = new FindEquation();
-        if( args.length==0) {
+        if (args.length == 0) {
             prg.process(null);
-        } else if( args.length==1) {
+        } else if (args.length == 1) {
             prg.process(args[0]);
         } else {
             System.out.println("Specify a filename to fit, or no filename to use a built in simple polynomial.");

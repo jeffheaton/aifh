@@ -36,36 +36,36 @@ import java.io.Serializable;
  * Use this comparator to maximize the score.
  */
 public class MaximizeScoreComp extends AbstractGenomeComparator implements
-		Serializable {
-	
-	/**
-	 * The serial ID.
-	 */
-	private static final long serialVersionUID = 1L;
+        Serializable {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int compare(final Genome p1, final Genome p2) {
-		return Double.compare(p2.getScore(), p1.getScore());
-	}
+    /**
+     * The serial ID.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isBetterThan(final Genome prg, final Genome betterThan) {
-		return isBetterThan(prg.getAdjustedScore(),
-				betterThan.getAdjustedScore());
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compare(final Genome p1, final Genome p2) {
+        return Double.compare(p2.getScore(), p1.getScore());
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean shouldMinimize() {
-		return false;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isBetterThan(final Genome prg, final Genome betterThan) {
+        return isBetterThan(prg.getAdjustedScore(),
+                betterThan.getAdjustedScore());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean shouldMinimize() {
+        return false;
+    }
 
 }

@@ -30,63 +30,64 @@ package com.heatonresearch.aifh.genetic.genome;
 
 import com.heatonresearch.aifh.evolutionary.genome.BasicGenome;
 import com.heatonresearch.aifh.evolutionary.genome.Genome;
-import com.heatonresearch.aifh.genetic.genome.ArrayGenome;
 
 /**
  * A genome made up of continuous doubles.
  */
 public class DoubleArrayGenome extends BasicGenome implements ArrayGenome {
-	
-	/**
-	 * The serial id.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The data.
-	 */
-	private double[] data;
-	
-	/**
-	 * Construct a genome of a specific size.
-	 * @param size The size.
-	 */
-	public DoubleArrayGenome(int size) {
-		this.data = new double[size];
-	}
-	
-	/**
-	 * Construct a genome based on another genome.
-	 * @param other
-	 */
-	public DoubleArrayGenome(DoubleArrayGenome other) {
-		this.data = other.getData().clone();
-	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int size() {
-		return this.data.length;
-	}
+    /**
+     * The serial id.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void copy(ArrayGenome source, int sourceIndex, int targetIndex) {
-		DoubleArrayGenome sourceInt = (DoubleArrayGenome)source;
-		this.data[targetIndex] = sourceInt.data[sourceIndex];
-		
-	}
-	
-	/**
-	 * @return The data.
-	 */
-	public double[] getData() {
-		return this.data;
-	}
+    /**
+     * The data.
+     */
+    private double[] data;
+
+    /**
+     * Construct a genome of a specific size.
+     *
+     * @param size The size.
+     */
+    public DoubleArrayGenome(int size) {
+        this.data = new double[size];
+    }
+
+    /**
+     * Construct a genome based on another genome.
+     *
+     * @param other The other genome.
+     */
+    public DoubleArrayGenome(DoubleArrayGenome other) {
+        this.data = other.getData().clone();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int size() {
+        return this.data.length;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void copy(ArrayGenome source, int sourceIndex, int targetIndex) {
+        DoubleArrayGenome sourceInt = (DoubleArrayGenome) source;
+        this.data[targetIndex] = sourceInt.data[sourceIndex];
+
+    }
+
+    /**
+     * @return The data.
+     */
+    public double[] getData() {
+        return this.data;
+    }
 
     /**
      * {@inheritDoc}
@@ -95,28 +96,28 @@ public class DoubleArrayGenome extends BasicGenome implements ArrayGenome {
     public double[] getLongTermMemory() {
         return this.data;
     }
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void copy(Genome source) {
-		DoubleArrayGenome sourceDouble = (DoubleArrayGenome)source;
-        System.arraycopy(sourceDouble.data, 0, this.data, 0, this.data.length);
-		setScore(source.getScore());
-		setAdjustedScore(source.getAdjustedScore());
-		
-	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void swap(int iswap1, int iswap2) {
-		double temp = this.data[iswap1];
-		this.data[iswap1] = this.data[iswap2];
-		this.data[iswap2] = temp;
-		
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void copy(Genome source) {
+        DoubleArrayGenome sourceDouble = (DoubleArrayGenome) source;
+        System.arraycopy(sourceDouble.data, 0, this.data, 0, this.data.length);
+        setScore(source.getScore());
+        setAdjustedScore(source.getAdjustedScore());
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void swap(int iswap1, int iswap2) {
+        double temp = this.data[iswap1];
+        this.data[iswap1] = this.data[iswap2];
+        this.data[iswap2] = temp;
+
+    }
 
 }

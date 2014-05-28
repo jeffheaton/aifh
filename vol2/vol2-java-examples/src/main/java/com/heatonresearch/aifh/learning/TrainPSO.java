@@ -36,12 +36,12 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 /**
  * Iteratively trains a population by applying
  * particle swarm optimisation (PSO).
- *
+ * <p/>
  * Based on Encog contribution by:
  * Geoffroy Noel, https://github.com/goffer-looney
- *
+ * <p/>
  * References:
- *  James Kennedy and Russell C. Eberhart, Particle swarm optimization,
+ * James Kennedy and Russell C. Eberhart, Particle swarm optimization,
  * Proceedings of the IEEE International Conference on Neural Networks,
  * 1995, pp. 1942-1948
  *
@@ -57,11 +57,6 @@ public class TrainPSO implements LearningMethod {
      * The random number generator to use.
      */
     private final GenerateRandom rnd = new MersenneTwisterGenerateRandom();
-
-    /**
-     * The current best solution ever found.
-     */
-    private final double[] globalBest;
 
     /**
      * The current error.
@@ -127,7 +122,7 @@ public class TrainPSO implements LearningMethod {
     protected double inertiaWeight = 0.4;
 
     public TrainPSO(final MLMethod[] theParticles,
-                     final ScoreFunction theCalculateScore) {
+                    final ScoreFunction theCalculateScore) {
         this.particles = theParticles;
         this.score = theCalculateScore;
         int vectorSize = theParticles[0].getLongTermMemory().length;
@@ -136,13 +131,13 @@ public class TrainPSO implements LearningMethod {
         this.bestVectors = new double[particleCount][vectorSize];
         this.velocities = new double[particleCount][vectorSize];
         this.bestScores = new double[particleCount];
-        this.globalBest = new double[particleCount];
+
         this.bestVectorIndex = -1;
 
         this.bestVector = new double[vectorSize];
 
-        for(int i=0;i<this.velocities.length;i++) {
-            VectorAlgebra.randomise(this.rnd, this.velocities[i], this.maxVelocity);
+        for (final double[] velocity : this.velocities) {
+            VectorAlgebra.randomise(this.rnd, velocity, this.maxVelocity);
         }
     }
 
@@ -150,7 +145,7 @@ public class TrainPSO implements LearningMethod {
      * Update the velocity, position and personal
      * best position of a particle
      *
-     * @param particleIndex     index of the particle in the swarm
+     * @param particleIndex index of the particle in the swarm
      */
     protected void updateParticle(int particleIndex) {
 
@@ -159,14 +154,14 @@ public class TrainPSO implements LearningMethod {
 
         updateVelocity(particleIndex);
 
-            // velocity clamping
-            VectorAlgebra.clampComponents(velocities[particleIndex], maxVelocity);
+        // velocity clamping
+        VectorAlgebra.clampComponents(velocities[particleIndex], maxVelocity);
 
-            // new position (Xt = Xt-1 + Vt)
+        // new position (Xt = Xt-1 + Vt)
         VectorAlgebra.add(particlePosition, velocities[particleIndex]);
 
-            // pin the particle against the boundary of the search space.
-            // (only for the components exceeding maxPosition)
+        // pin the particle against the boundary of the search space.
+        // (only for the components exceeding maxPosition)
         VectorAlgebra.clampComponents(particlePosition, maxPosition);
 
         updatePersonalBestPosition(particleIndex, particlePosition);
@@ -175,7 +170,7 @@ public class TrainPSO implements LearningMethod {
     /**
      * Update the velocity of a particle
      *
-     * @param particleIndex     index of the particle in the swarm
+     * @param particleIndex index of the particle in the swarm
      */
     protected void updateVelocity(int particleIndex) {
         double[] particlePosition = this.particles[particleIndex].getLongTermMemory();
@@ -205,8 +200,8 @@ public class TrainPSO implements LearningMethod {
     /**
      * Update the personal best position of a particle.
      *
-     * @param particleIndex     index of the particle in the swarm
-     * @param particlePosition  the particle current position vector
+     * @param particleIndex    index of the particle in the swarm
+     * @param particlePosition the particle current position vector
      */
     protected void updatePersonalBestPosition(int particleIndex, double[] particlePosition) {
         // set the network weights and biases from the vector
@@ -232,16 +227,16 @@ public class TrainPSO implements LearningMethod {
         }
         if (bestUpdated) {
             VectorAlgebra.copy(bestVector, bestVectors[bestVectorIndex]);
-            this.bestScore =  bestScores[bestVectorIndex];
+            this.bestScore = bestScores[bestVectorIndex];
         }
     }
 
     /**
      * Compares two scores.
      *
-     * @param score1    a score
-     * @param score2    a score
-     * @return  true if score1 is better than score2
+     * @param score1 a score
+     * @param score2 a score
+     * @return true if score1 is better than score2
      */
     boolean isScoreBetter(double score1, double score2) {
         return ((this.score.shouldMinimize() && (score1 < score2)) || ((!this.score.shouldMinimize()) && (score1 > score2)));
@@ -253,7 +248,7 @@ public class TrainPSO implements LearningMethod {
      */
     @Override
     public void iteration() {
-        for(int i=0;i<this.particles.length;i++) {
+        for (int i = 0; i < this.particles.length; i++) {
             updateParticle(i);
         }
 
@@ -306,7 +301,7 @@ public class TrainPSO implements LearningMethod {
     }
 
     public MLMethod getBestParticle() {
-        VectorAlgebra.copy(this.particles[bestVectorIndex].getLongTermMemory(),this.bestVector);
+        VectorAlgebra.copy(this.particles[bestVectorIndex].getLongTermMemory(), this.bestVector);
         return this.particles[this.bestVectorIndex];
     }
 }

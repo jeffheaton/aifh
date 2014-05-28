@@ -34,17 +34,20 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  * Conway's game of life.  A classic cellular automation.
- *
+ * <p/>
  * Rules:
  * 1. Any live cell with fewer than two live neighbors dies, as if caused by under-population.
  * 2. Any live cell with two or three live neighbors lives on to the next generation. (not needed)
  * 3. Any live cell with more than three live neighbors dies, as if by overcrowding.
  * 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
- *
+ * <p/>
  * References:
  * http://en.wikipedia.org/wiki/Conway's_Game_of_Life
  */
@@ -70,19 +73,9 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
     private JButton resetButton;
 
     /**
-     * The background thread.
-     */
-    private Thread thread;
-
-    /**
      * Has a stop been requested.
      */
     private boolean requestStop;
-
-    /**
-     * Scroll bar.
-     */
-    private JScrollPane scroll;
 
     /**
      * The world.
@@ -92,12 +85,12 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
     /**
      * Used to locate the x coordinate of neighbors.
      */
-    private static final int[] neighborsX = { 0,0,1,-1, -1, 1,-1, 1 };
+    private static final int[] neighborsX = {0, 0, 1, -1, -1, 1, -1, 1};
 
     /**
      * Used to locate the y coordinate of neighbors.
      */
-    private static final int[] neighborsY = { 1,-1,0,0, -1,-1, 1, 1 };
+    private static final int[] neighborsY = {1, -1, 0, 0, -1, -1, 1, 1};
 
     /**
      * The number of rows.
@@ -121,16 +114,17 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         c.add(buttonPanel, BorderLayout.NORTH);
-        final JLabel status;
-        c.add(status =new JLabel(), BorderLayout.SOUTH);
         buttonPanel.add(iterationButton = new JButton("Iteration"));
         buttonPanel.add(startButton = new JButton("Start"));
         buttonPanel.add(stopButton = new JButton("Stop"));
         buttonPanel.add(resetButton = new JButton("Reset"));
 
-        this.worldArea = new WorldPanel(ROWS,COLS,true);
-        this.scroll = new JScrollPane(this.worldArea);
-        c.add(this.scroll, BorderLayout.CENTER);
+        this.worldArea = new WorldPanel(ROWS, COLS, true);
+        /*
+      Scroll bar.
+     */
+        final JScrollPane scroll = new JScrollPane(this.worldArea);
+        c.add(scroll, BorderLayout.CENTER);
         iterationButton.addActionListener(this);
         startButton.addActionListener(this);
         stopButton.addActionListener(this);
@@ -148,16 +142,16 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
     public void performIteration() {
         boolean[][] grid = this.worldArea.getPrimaryGrid();
 
-        for(int row=0;row<grid.length;row++) {
-            for(int col=0;col<grid[row].length;col++) {
+        for (int row = 0; row < grid.length; row++) {
+            for (int col = 0; col < grid[row].length; col++) {
                 int total = 0;
 
-                for(int i=0;i<neighborsX.length;i++) {
-                    int nCol = col+neighborsX[i];
-                    int nRow = row+neighborsY[i];
-                    if( nCol>=0 && nCol<this.worldArea.getCols()) {
-                        if( nRow>=0 && nRow<this.worldArea.getRows()) {
-                            if( grid[nRow][nCol] ) {
+                for (int i = 0; i < neighborsX.length; i++) {
+                    int nCol = col + neighborsX[i];
+                    int nRow = row + neighborsY[i];
+                    if (nCol >= 0 && nCol < this.worldArea.getCols()) {
+                        if (nRow >= 0 && nRow < this.worldArea.getRows()) {
+                            if (grid[nRow][nCol]) {
                                 total++;
                             }
                         }
@@ -167,19 +161,19 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
 
                 boolean alive = grid[row][col];
 
-                if( alive  ) {
+                if (alive) {
                     // 1. Any live cell with fewer than two live neighbors dies, as if caused by under-population.
-                    if( total<2 ) {
+                    if (total < 2) {
                         alive = false;
                     }
                     // 2. Any live cell with two or three live neighbors lives on to the next generation. (not needed)
                     // 3. Any live cell with more than three live neighbors dies, as if by overcrowding.
-                    if( alive && total>3 ) {
+                    if (alive && total > 3) {
                         alive = false;
                     }
                 } else {
                     // 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
-                    if( total==3 ) {
+                    if (total == 3) {
                         alive = true;
                     }
                 }
@@ -198,8 +192,11 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
         this.iterationButton.setEnabled(false);
         this.stopButton.setEnabled(true);
         this.startButton.setEnabled(false);
-        this.thread = new Thread(this);
-        this.thread.start();
+        /*
+      The background thread.
+     */
+        final Thread thread = new Thread(this);
+        thread.start();
     }
 
     /**
@@ -216,8 +213,8 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
         boolean[][] grid = this.worldArea.getBackupGrid();
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
-        for(int row = 0;row<this.worldArea.getRows();row++) {
-            for(int col=0;col<this.worldArea.getCols();col++) {
+        for (int row = 0; row < this.worldArea.getRows(); row++) {
+            for (int col = 0; col < this.worldArea.getCols(); col++) {
                 grid[row][col] = rnd.nextBoolean();
             }
         }
@@ -306,6 +303,7 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
 
     /**
      * Main entry point.
+     *
      * @param args Not used.
      */
     public static void main(String[] args) {
@@ -324,7 +322,7 @@ public class ConwayCA extends JFrame implements ActionListener, WindowListener, 
     @Override
     public void run() {
         this.requestStop = false;
-        while(!this.requestStop) {
+        while (!this.requestStop) {
             performIteration();
             this.repaint();
             try {

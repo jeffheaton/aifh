@@ -46,9 +46,9 @@ import java.util.Arrays;
 /**
  * This example demonstrates crossover using a splice operator.  Both the repeat and non-repeat
  * variants are shown.
- *
+ * <p/>
  * Sample output:
- *
+ * <p/>
  * Crossover Splice
  * Parent 1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
  * Parent 2: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
@@ -59,7 +59,6 @@ import java.util.Arrays;
  * Parent 2: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
  * Offspring 1: [1, 8, 9, 7, 6, 5, 4, 3, 2, 10]
  * Offspring 2: [10, 3, 2, 4, 5, 6, 7, 8, 9, 1]
- *
  */
 public class CrossoverExample {
     /**
@@ -78,7 +77,7 @@ public class CrossoverExample {
 
         // Create a trainer with a very simple score function.  We do not care
         // about the calculation of the score, as they will never be calculated.
-        EvolutionaryAlgorithm train = new BasicEA(pop,new ScoreFunction() {
+        EvolutionaryAlgorithm train = new BasicEA(pop, new ScoreFunction() {
             @Override
             public double calculateScore(MLMethod method) {
                 return 0;
@@ -92,23 +91,23 @@ public class CrossoverExample {
 
         // Create a splice operator, length = 5.  Use it 1.0 (100%) of the time.
         Splice opp = new Splice(5);
-        train.addOperation(1.0,opp);
+        train.addOperation(1.0, opp);
 
         // Create two parents, the genes are set to 1,2,3,4,5,7,8,9,10
         // and 10,9,8,7,6,5,4,3,2,1.
         IntegerArrayGenome[] parents = new IntegerArrayGenome[2];
         parents[0] = (IntegerArrayGenome) pop.getGenomeFactory().factor();
         parents[1] = (IntegerArrayGenome) pop.getGenomeFactory().factor();
-        for(int i=1;i<=10;i++) {
-            parents[0].getData()[i-1] = i;
-            parents[1].getData()[i-1] = 11-i;
+        for (int i = 1; i <= 10; i++) {
+            parents[0].getData()[i - 1] = i;
+            parents[1].getData()[i - 1] = 11 - i;
         }
 
         // Create an array to hold the offspring.
         IntegerArrayGenome[] offspring = new IntegerArrayGenome[2];
 
         // Perform the operation
-        opp.performOperation(rnd,parents,0,offspring,0);
+        opp.performOperation(rnd, parents, 0, offspring, 0);
 
         // Display the results
         System.out.println("Parent 1: " + Arrays.toString(parents[0].getData()));
@@ -134,7 +133,7 @@ public class CrossoverExample {
 
         // Create a trainer with a very simple score function.  We do not care
         // about the calculation of the score, as they will never be calculated.
-        EvolutionaryAlgorithm train = new BasicEA(pop,new ScoreFunction() {
+        EvolutionaryAlgorithm train = new BasicEA(pop, new ScoreFunction() {
             @Override
             public double calculateScore(MLMethod method) {
                 return 0;
@@ -148,23 +147,23 @@ public class CrossoverExample {
 
         // Create a splice (no repeat) operator, length = 5.  Use it 1.0 (100%) of the time.
         SpliceNoRepeat opp = new SpliceNoRepeat(5);
-        train.addOperation(1.0,opp);
+        train.addOperation(1.0, opp);
 
         // Create two parents, the genes are set to 1,2,3,4,5,7,8,9,10
         // and 10,9,8,7,6,5,4,3,2,1.
         IntegerArrayGenome[] parents = new IntegerArrayGenome[2];
         parents[0] = (IntegerArrayGenome) pop.getGenomeFactory().factor();
         parents[1] = (IntegerArrayGenome) pop.getGenomeFactory().factor();
-        for(int i=1;i<=10;i++) {
-            parents[0].getData()[i-1] = i;
-            parents[1].getData()[i-1] = 11-i;
+        for (int i = 1; i <= 10; i++) {
+            parents[0].getData()[i - 1] = i;
+            parents[1].getData()[i - 1] = 11 - i;
         }
 
         // Create an array to hold the offspring.
         IntegerArrayGenome[] offspring = new IntegerArrayGenome[2];
 
         // Perform the operation
-        opp.performOperation(rnd,parents,0,offspring,0);
+        opp.performOperation(rnd, parents, 0, offspring, 0);
 
         // Display the results
         System.out.println("Parent 1: " + Arrays.toString(parents[0].getData()));
@@ -176,6 +175,7 @@ public class CrossoverExample {
 
     /**
      * Main entry point.
+     *
      * @param args Not used.
      */
     public static void main(String[] args) {

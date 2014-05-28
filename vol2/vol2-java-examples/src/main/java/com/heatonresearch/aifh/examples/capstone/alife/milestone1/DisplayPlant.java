@@ -103,6 +103,7 @@ public class DisplayPlant extends JPanel {
 
     /**
      * Paint the plant.
+     *
      * @param g The graphics object.
      */
     public void paint(Graphics g) {
@@ -116,7 +117,7 @@ public class DisplayPlant extends JPanel {
         // Loop over all cells.
         for (int row = 0; row < PlantUniverse.UNIVERSE_HEIGHT; row++) {
             for (int col = 0; col < PlantUniverse.UNIVERSE_WIDTH; col++) {
-                PlantUniverseCell cell = this.getUniverse().getCell(row,col);
+                PlantUniverseCell cell = this.getUniverse().getCell(row, col);
 
                 // For empty cells display either the ground or sky color.
                 // Roots are always white.
@@ -128,7 +129,7 @@ public class DisplayPlant extends JPanel {
                     }
                 } else {
                     if (cell.isAlive()) {
-                        int idx = (int)((this.gradient.length-1) * cell.getLeafyness());
+                        int idx = (int) ((this.gradient.length - 1) * cell.getLeafyness());
                         g.setColor(this.gradient[idx]);
                     } else {
                         g.setColor(SKY_COLOR);
@@ -143,16 +144,16 @@ public class DisplayPlant extends JPanel {
         }
 
         // Display the stats at the bottom.
-        if( generation>0 ) {
+        if (generation > 0) {
             int y = cellHeight * PlantUniverse.UNIVERSE_HEIGHT;
             g.setColor(Color.white);
-            g.fillRect(0,y,height,width);
+            g.fillRect(0, y, width, height);
             FontMetrics fm = g.getFontMetrics();
-            y+=fm.getHeight();
+            y += fm.getHeight();
             g.setColor(Color.black);
-            g.drawString("Generation: " + this.generation,0,y);
-            y+=fm.getHeight();
-            g.drawString("Best Score:  " + this.bestScore,0,y);
+            g.drawString("Generation: " + this.generation, 0, y);
+            y += fm.getHeight();
+            g.drawString("Best Score:  " + this.bestScore, 0, y);
         }
 
 
@@ -167,6 +168,7 @@ public class DisplayPlant extends JPanel {
 
     /**
      * Set the universe to display.
+     *
      * @param universe The universe to display.
      */
     public void setUniverse(final PlantUniverse universe) {
@@ -182,7 +184,8 @@ public class DisplayPlant extends JPanel {
 
     /**
      * Set the best score.
-     * @param bestScore
+     *
+     * @param bestScore The best score.
      */
     public void setBestScore(final double bestScore) {
         this.bestScore = bestScore;
@@ -197,6 +200,7 @@ public class DisplayPlant extends JPanel {
 
     /**
      * Set the current generation.
+     *
      * @param generation The generation.
      */
     public void setGeneration(final int generation) {

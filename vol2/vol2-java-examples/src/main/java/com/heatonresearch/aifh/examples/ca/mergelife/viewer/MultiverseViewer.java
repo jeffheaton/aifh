@@ -41,13 +41,13 @@ import java.io.*;
  * an interesting cellular automation. You are shown a multiverse, with many different running universes. You can
  * choose universes that look interesting, and experiment with crossover and mutation to create more interesting
  * universes.
- *
+ * <p/>
  * For complete instructions, refer to the following article.
- *
+ * <p/>
  * http://www.codeproject.com/Articles/730362/Using-an-evolutionary-algorithm-to-create-a-cellul
- *
+ * <p/>
  * Other references.
- *
+ * <p/>
  * http://en.wikipedia.org/wiki/Human-based_genetic_algorithm
  * http://en.wikipedia.org/wiki/Cellular_automaton
  */
@@ -95,6 +95,7 @@ public class MultiverseViewer extends JFrame implements ActionListener,
 
     /**
      * Main entry point.
+     *
      * @param args Not used.
      */
     public static void main(final String[] args) {

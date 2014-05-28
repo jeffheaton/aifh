@@ -39,16 +39,16 @@ import java.util.Arrays;
 
 /**
  * This class implements continuous ant colony optimization (CACO)
- *
+ * <p/>
  * References:
- *
+ * <p/>
  * Training Neural Networks with Ant Colony Optimization,
  * Arun Pandian, Spring, 2013
- *
+ * <p/>
  * Krzysztof Socha and Christian Blum. “An ant colony optimization algorithm for
  * continuous optimization: application to feed-forward neural network training”, in
  * Springer London (2007).
- *
+ * <p/>
  * M.Dorigo, V.Maniezzo, and A.Colorni. “Ant System: Optimization by a colony of
  * cooperating agents”, in IEEE Transactions on Systems, Man, and Cybernetics,
  * 1996.
@@ -112,8 +112,9 @@ public class ContinuousACO implements LearningMethod {
 
     /**
      * The constructor.
-     * @param theAlgorithm The algorithm to fit.
-     * @param theScore The score function.
+     *
+     * @param theAlgorithm      The algorithm to fit.
+     * @param theScore          The score function.
      * @param thePopulationSize The population size.
      */
     public ContinuousACO(final MLMethod theAlgorithm, final ScoreFunction theScore, final int thePopulationSize) {
@@ -166,6 +167,7 @@ public class ContinuousACO implements LearningMethod {
 
     /**
      * Compute the standard deviation.
+     *
      * @param x The parameter to compute for.
      * @param l The population member.
      * @return The standard deviation.
@@ -183,6 +185,7 @@ public class ContinuousACO implements LearningMethod {
 
     /**
      * Select a probability distribution function (PDF).
+     *
      * @return The PDF index.
      */
     private int selectPDF() {
@@ -224,7 +227,8 @@ public class ContinuousACO implements LearningMethod {
 
     /**
      * Set epsilon, the learning rate.
-     * @param epsilon
+     *
+     * @param epsilon The epsilon value.
      */
     public void setEpsilon(final double epsilon) {
         this.epsilon = epsilon;
@@ -281,6 +285,6 @@ public class ContinuousACO implements LearningMethod {
      */
     @Override
     public void finishTraining() {
-        System.arraycopy(this.population[0].getParams(),0,this.algorithm.getLongTermMemory(),0,this.algorithm.getLongTermMemory().length);
+        System.arraycopy(this.population[0].getParams(), 0, this.algorithm.getLongTermMemory(), 0, this.algorithm.getLongTermMemory().length);
     }
 }

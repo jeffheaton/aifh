@@ -29,15 +29,14 @@
 package com.heatonresearch.aifh.learning;
 
 /**
- * Defines a MLMethod that can hold context.  This allows the context to be 
- * cleared.  Examples of MLMethod objects that support this are NEAT, 
+ * Defines a MLMethod that can hold context.  This allows the context to be
+ * cleared.  Examples of MLMethod objects that support this are NEAT,
  * Elmann and Jordan.
- *
  */
 public interface MLContext extends MLMethod {
-	
-	/**
-	 * Clear the context.
-	 */
-	void clearContext();
+
+    /**
+     * Clear the context.
+     */
+    void clearContext();
 }

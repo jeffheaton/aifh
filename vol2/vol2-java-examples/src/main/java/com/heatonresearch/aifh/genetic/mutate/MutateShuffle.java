@@ -28,8 +28,6 @@
  */
 package com.heatonresearch.aifh.genetic.mutate;
 
-import java.util.Random;
-
 import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.evolutionary.opp.EvolutionaryOperator;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
@@ -42,73 +40,73 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
  */
 public class MutateShuffle implements EvolutionaryOperator {
 
-	/**
-	 * The owner.
-	 */
-	private EvolutionaryAlgorithm owner;
+    /**
+     * The owner.
+     */
+    private EvolutionaryAlgorithm owner;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void init(final EvolutionaryAlgorithm theOwner) {
-		this.owner = theOwner;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void init(final EvolutionaryAlgorithm theOwner) {
+        this.owner = theOwner;
+    }
 
-	/**
-	 * @return The number of offspring produced, which is 1 for this mutation.
-	 */
-	@Override
-	public int offspringProduced() {
-		return 1;
-	}
+    /**
+     * @return The number of offspring produced, which is 1 for this mutation.
+     */
+    @Override
+    public int offspringProduced() {
+        return 1;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int parentsNeeded() {
-		return 1;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int parentsNeeded() {
+        return 1;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void performOperation(final GenerateRandom rnd, final Genome[] parents,
-			final int parentIndex, final Genome[] offspring,
-			final int offspringIndex) {
-		final ArrayGenome parent = (ArrayGenome) parents[parentIndex];
-		offspring[offspringIndex] = this.owner.getPopulation()
-				.getGenomeFactory().factor();
-		final ArrayGenome child = (ArrayGenome) offspring[offspringIndex];
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void performOperation(final GenerateRandom rnd, final Genome[] parents,
+                                 final int parentIndex, final Genome[] offspring,
+                                 final int offspringIndex) {
+        final ArrayGenome parent = (ArrayGenome) parents[parentIndex];
+        offspring[offspringIndex] = this.owner.getPopulation()
+                .getGenomeFactory().factor();
+        final ArrayGenome child = (ArrayGenome) offspring[offspringIndex];
 
-		child.copy(parent);
+        child.copy(parent);
 
-		final int length = parent.size();
-		int iswap1 = (int) (rnd.nextDouble() * length);
-		int iswap2 = (int) (rnd.nextDouble() * length);
+        final int length = parent.size();
+        int iswap1 = (int) (rnd.nextDouble() * length);
+        int iswap2 = (int) (rnd.nextDouble() * length);
 
-		// can't be equal
-		if (iswap1 == iswap2) {
-			// move to the next, but
-			// don't go out of bounds
-			if (iswap1 > 0) {
-				iswap1--;
-			} else {
-				iswap1++;
-			}
+        // can't be equal
+        if (iswap1 == iswap2) {
+            // move to the next, but
+            // don't go out of bounds
+            if (iswap1 > 0) {
+                iswap1--;
+            } else {
+                iswap1++;
+            }
 
-		}
+        }
 
-		// make sure they are in the right order
-		if (iswap1 > iswap2) {
-			final int temp = iswap1;
-			iswap1 = iswap2;
-			iswap2 = temp;
-		}
+        // make sure they are in the right order
+        if (iswap1 > iswap2) {
+            final int temp = iswap1;
+            iswap1 = iswap2;
+            iswap2 = temp;
+        }
 
-		child.swap(iswap1, iswap2);
-	}
+        child.swap(iswap1, iswap2);
+    }
 
 }

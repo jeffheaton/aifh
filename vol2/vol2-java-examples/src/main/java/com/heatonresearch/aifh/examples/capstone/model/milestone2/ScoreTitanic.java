@@ -29,7 +29,6 @@
 package com.heatonresearch.aifh.examples.capstone.model.milestone2;
 
 import com.heatonresearch.aifh.general.data.BasicData;
-import com.heatonresearch.aifh.learning.ClassificationAlgorithm;
 import com.heatonresearch.aifh.learning.MLMethod;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
@@ -67,10 +66,10 @@ public class ScoreTitanic implements ScoreFunction {
 
         for (final BasicData aTrainingData : this.trainingData) {
             totalCount++;
-            boolean predictSurvive = alg.computeRegression(aTrainingData.getInput())[0]>0.5;
-            boolean idealSurvive = aTrainingData.getIdeal()[0]>0.5;
+            boolean predictSurvive = alg.computeRegression(aTrainingData.getInput())[0] > 0.5;
+            boolean idealSurvive = aTrainingData.getIdeal()[0] > 0.5;
 
-            if (predictSurvive==idealSurvive) {
+            if (predictSurvive == idealSurvive) {
                 incorrectCount++;
             }
         }

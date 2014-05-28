@@ -63,27 +63,27 @@ public class RBFNetworkGenomeCODEC implements GeneticCODEC {
     private int rbfCount;
     private int size;
 
-    public RBFNetworkGenomeCODEC(int inputCount,int rbfCount, int outputCount) {
+    public RBFNetworkGenomeCODEC(int inputCount, int rbfCount, int outputCount) {
         this.inputCount = inputCount;
         this.rbfCount = rbfCount;
         this.outputCount = outputCount;
-        RBFNetwork temp = new RBFNetwork(inputCount,rbfCount,outputCount);
+        RBFNetwork temp = new RBFNetwork(inputCount, rbfCount, outputCount);
         this.size = temp.getLongTermMemory().length;
     }
 
     @Override
     public MLMethod decode(final Genome genome) {
-        RBFNetwork result = new RBFNetwork(inputCount,rbfCount,outputCount);
-        DoubleArrayGenome dag = (DoubleArrayGenome)genome;
-        System.arraycopy(dag.getData(),0,result.getLongTermMemory(),0,size);
+        RBFNetwork result = new RBFNetwork(inputCount, rbfCount, outputCount);
+        DoubleArrayGenome dag = (DoubleArrayGenome) genome;
+        System.arraycopy(dag.getData(), 0, result.getLongTermMemory(), 0, size);
         return result;
     }
 
     @Override
     public Genome encode(final MLMethod phenotype) {
-        RBFNetwork rbfNet = (RBFNetwork)phenotype;
+        RBFNetwork rbfNet = (RBFNetwork) phenotype;
         DoubleArrayGenome result = new DoubleArrayGenome(size());
-        System.arraycopy(rbfNet.getLongTermMemory(),0,result.getData(),0,size);
+        System.arraycopy(rbfNet.getLongTermMemory(), 0, result.getData(), 0, size);
         return result;
     }
 }

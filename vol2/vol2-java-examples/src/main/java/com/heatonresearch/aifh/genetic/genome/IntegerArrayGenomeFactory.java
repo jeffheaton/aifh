@@ -36,33 +36,34 @@ import com.heatonresearch.aifh.evolutionary.genome.GenomeFactory;
  * A factory to create integer genomes of a specific size.
  */
 public class IntegerArrayGenomeFactory implements GenomeFactory {
-	
-	/**
-	 * The size of genome to create.
-	 */
-	private int size;
-	
-	/**
-	 * Create the integer genome of a fixed size.
-	 * @param theSize The size to use.
-	 */
-	public IntegerArrayGenomeFactory(int theSize) {
-		this.size = theSize;
-	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Genome factor() {
-		return new IntegerArrayGenome(this.size);
-	}
+    /**
+     * The size of genome to create.
+     */
+    private int size;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Genome factor(Genome other) {
-		return new IntegerArrayGenome( ((IntegerArrayGenome)other));
-	}
+    /**
+     * Create the integer genome of a fixed size.
+     *
+     * @param theSize The size to use.
+     */
+    public IntegerArrayGenomeFactory(int theSize) {
+        this.size = theSize;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Genome factor() {
+        return new IntegerArrayGenome(this.size);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Genome factor(Genome other) {
+        return new IntegerArrayGenome(((IntegerArrayGenome) other));
+    }
 }

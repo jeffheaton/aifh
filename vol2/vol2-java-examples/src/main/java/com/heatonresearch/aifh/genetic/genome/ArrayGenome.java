@@ -36,19 +36,21 @@ import com.heatonresearch.aifh.evolutionary.genome.Genome;
  */
 public interface ArrayGenome extends Genome {
 
-	/**
-	 * Copy elements from another array genome into this one.
-	 * @param source The source genome.
-	 * @param sourceIndex The source index.
-	 * @param targetIndex The target index.
-	 */
-	void copy(ArrayGenome source, int sourceIndex, int targetIndex);
+    /**
+     * Copy elements from another array genome into this one.
+     *
+     * @param source      The source genome.
+     * @param sourceIndex The source index.
+     * @param targetIndex The target index.
+     */
+    void copy(ArrayGenome source, int sourceIndex, int targetIndex);
 
-	/**
-	 * Swap two elements in this genome.
-	 * @param iswap1 The first element index to swap.
-	 * @param iswap2 The second element index to swap.
-	 */
-	void swap(int iswap1, int iswap2);
+    /**
+     * Swap two elements in this genome.
+     *
+     * @param iswap1 The first element index to swap.
+     * @param iswap2 The second element index to swap.
+     */
+    void swap(int iswap1, int iswap2);
 
 }

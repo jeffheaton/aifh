@@ -37,20 +37,20 @@ import com.heatonresearch.aifh.learning.MLMethod;
  */
 public class GenomeAsPhenomeCODEC implements GeneticCODEC {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public MLMethod decode(final Genome genome) {
-		return genome;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MLMethod decode(final Genome genome) {
+        return genome;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Genome encode(final MLMethod phenotype) {
-		return (Genome) phenotype;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Genome encode(final MLMethod phenotype) {
+        return (Genome) phenotype;
+    }
 
 }

@@ -39,9 +39,8 @@ import java.util.List;
  * This works by breaking the data set into k (often 5) random subsets.  From this we can create 5 training & validation
  * sets. Each validation set becomes one of the k random subsets.  For each validation set a corresponding training set
  * is created by using all data, but leaving out the validation set.
- *
+ * <p/>
  * http://en.wikipedia.org/wiki/Cross-validation_(statistics)
- *
  */
 public class CrossValidate {
 
@@ -52,36 +51,37 @@ public class CrossValidate {
 
     /**
      * The constructor.
-     * @param k The number of folds.
+     *
+     * @param k        The number of folds.
      * @param training The training set.
-     * @param rnd A random number generator.
+     * @param rnd      A random number generator.
      */
     public CrossValidate(int k, List<BasicData> training, GenerateRandom rnd) {
-        List<BasicData> temp = new ArrayList < BasicData >();
+        List<BasicData> temp = new ArrayList<BasicData>();
         temp.addAll(training);
 
         // Setup k validation sets.
-        for(int i=0;i<k;i++) {
+        for (int i = 0; i < k; i++) {
             folds.add(new CrossValidateFold());
         }
 
         // Divide over the k sets.
         int leaveOutSet = 0;
 
-        while(temp.size()>0) {
+        while (temp.size() > 0) {
             int idx = rnd.nextInt(temp.size());
             BasicData item = temp.get(idx);
             temp.remove(idx);
 
             this.folds.get(leaveOutSet).getValidationSet().add(item);
-            for(int includeSet = 0; includeSet <this.folds.size();includeSet++) {
-                if( includeSet!=leaveOutSet ) {
+            for (int includeSet = 0; includeSet < this.folds.size(); includeSet++) {
+                if (includeSet != leaveOutSet) {
                     this.folds.get(includeSet).getTrainingSet().add(item);
                 }
             }
 
             leaveOutSet++;
-            if( leaveOutSet>=k ) {
+            if (leaveOutSet >= k) {
                 leaveOutSet = 0;
             }
         }
@@ -99,10 +99,10 @@ public class CrossValidate {
      */
     public double getScore() {
         double sum = 0;
-        for(CrossValidateFold fold: this.folds) {
-            sum+=fold.getScore();
+        for (CrossValidateFold fold : this.folds) {
+            sum += fold.getScore();
         }
-        return sum/this.folds.size();
+        return sum / this.folds.size();
     }
 
     /**

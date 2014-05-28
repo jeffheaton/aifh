@@ -36,12 +36,12 @@ import java.io.Serializable;
  * Generate random choices unevenly.  This class is used to select random
  * choices from a list, with a probability weight places on each item
  * in the list.
- *
+ * <p/>
  * This is often called a Roulette Wheel in Machine Learning texts.  How it differs from
  * a Roulette Wheel that you might find in Las Vegas or Monte Carlo is that the
  * areas that can be selected are not of uniform size.  However, you can be sure
  * that one will be picked.
- *
+ * <p/>
  * http://en.wikipedia.org/wiki/Fitness_proportionate_selection
  */
 public class RandomChoice implements Serializable {
@@ -52,6 +52,7 @@ public class RandomChoice implements Serializable {
 
     /**
      * Construct a list of probabilities.
+     *
      * @param theProbabilities The probability of each item in the list.
      */
     public RandomChoice(double[] theProbabilities) {
@@ -59,8 +60,8 @@ public class RandomChoice implements Serializable {
         this.probabilities = theProbabilities.clone();
 
         double total = 0;
-        for (int i = 0; i < probabilities.length; i++) {
-            total += probabilities[i];
+        for (final double probability : probabilities) {
+            total += probability;
         }
 
         if (total == 0.0) {
@@ -88,6 +89,7 @@ public class RandomChoice implements Serializable {
 
     /**
      * Generate a random choice, based on the probabilities provided to the constructor.
+     *
      * @return The random choice.
      */
     public int generate(GenerateRandom theGenerator) {
@@ -112,6 +114,7 @@ public class RandomChoice implements Serializable {
 
     /**
      * Generate a random choice, but skip one of the choices.
+     *
      * @param skip The choice to skip.
      * @return The random choice.
      */

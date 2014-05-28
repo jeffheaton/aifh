@@ -45,13 +45,13 @@ import java.util.List;
 /**
  * This example plots a flock of particles that exhibit flocking behavior.  This is governed by the following three
  * simple rules:
- *
+ * <p/>
  * 1. Separation - avoid crowding neighbors (short range repulsion)
  * 2. Alignment - steer towards average heading of neighbors
  * 3. Cohesion - steer towards average position of neighbors (long range attraction)
- *
+ * <p/>
  * References:
- *
+ * <p/>
  * http://en.wikipedia.org/wiki/Flocking_(behavior)
  */
 public class Flock2dWindow extends JFrame implements Runnable, ComponentListener, WindowListener {
@@ -125,6 +125,7 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
 
     /**
      * Main entry point.
+     *
      * @param args Not used.
      */
     public static void main(String[] args) {
@@ -134,6 +135,7 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
 
     /**
      * Find the index that has the max value in a vector.
+     *
      * @param data The vector.
      * @return The index.
      */
@@ -149,6 +151,7 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
 
     /**
      * Get the mean particle location for the specified dimension.
+     *
      * @param particles The particles.
      * @param dimension The dimension.
      * @return The mean.
@@ -165,6 +168,7 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
 
     /**
      * Get the particle velocity mean for the specified dimension.
+     *
      * @param particles The particles.
      * @param dimension The dimension.
      * @return The velocity mean.
@@ -181,10 +185,11 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
 
     /**
      * Find the nearest neighbor particle.
-     * @param target The particle to look for neighbors to.
+     *
+     * @param target    The particle to look for neighbors to.
      * @param particles All particles.
-     * @param k The number of particles to find.
-     * @param maxDist The max distance to check.
+     * @param k         The number of particles to find.
+     * @param maxDist   The max distance to check.
      * @return The nearest neighbors.
      */
     private Collection<Particle> findNearest(Particle target, Collection<Particle> particles, int k, double maxDist) {
@@ -224,8 +229,6 @@ public class Flock2dWindow extends JFrame implements Runnable, ComponentListener
             ///////////////////////////////////////////////////////////////
             // Begin implementation of three very basic laws of flocking.
             ///////////////////////////////////////////////////////////////
-            double targetAngle = 0;
-
             Collection<Particle> neighbors = findNearest(particle, this.particles, 5, Double.POSITIVE_INFINITY);
             Collection<Particle> nearest = findNearest(particle, this.particles, 5, 10);
 

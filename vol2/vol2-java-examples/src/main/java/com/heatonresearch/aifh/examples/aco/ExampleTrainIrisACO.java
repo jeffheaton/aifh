@@ -35,8 +35,6 @@ import com.heatonresearch.aifh.learning.RBFNetwork;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import com.heatonresearch.aifh.learning.score.ScoreRegressionData;
 import com.heatonresearch.aifh.normalize.DataSet;
-import com.heatonresearch.aifh.randomize.GenerateRandom;
-import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.io.InputStream;
 import java.util.List;
@@ -49,6 +47,7 @@ public class ExampleTrainIrisACO extends SimpleLearn {
 
     /**
      * Main entry point.
+     *
      * @param args Not used.
      */
     public static void main(final String[] args) {
@@ -77,13 +76,13 @@ public class ExampleTrainIrisACO extends SimpleLearn {
             final Map<String, Integer> species = ds.encodeOneOfN(4);
             istream.close();
 
-            RBFNetwork network = new RBFNetwork(4,4,3);
+            RBFNetwork network = new RBFNetwork(4, 4, 3);
 
             final List<BasicData> trainingData = ds.extractSupervised(0, 4, 4, 3);
 
             ScoreFunction score = new ScoreRegressionData(trainingData);
 
-            ContinuousACO train = new ContinuousACO(network,score,30);
+            ContinuousACO train = new ContinuousACO(network, score, 30);
 
             performIterations(train, 100000, 0.05, true);
 

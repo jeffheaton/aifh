@@ -32,7 +32,7 @@ package com.heatonresearch.aifh.examples.capstone.alife.milestone1;
  * This class holds the grid that is the universe that a single plant grows in.  Each plant has its
  * own universe.  Each cell in the grid is either alive or dead.  An alive cell has an energy above
  * the specified threshold.
- *
+ * <p/>
  * This class will be used in each of the milestones.  There are several helper functions that provide
  * information about the universe.
  */
@@ -52,7 +52,7 @@ public class PlantUniverse {
     /**
      * The location of the ground line.  Anything >= to this is underground.
      */
-    public static final int GROUND_LINE = UNIVERSE_HEIGHT-(UNIVERSE_HEIGHT /3);
+    public static final int GROUND_LINE = UNIVERSE_HEIGHT - (UNIVERSE_HEIGHT / 3);
 
     /**
      * The size of a cell "info vector".  This vector identifies a cell's state, and is used to encode instructions
@@ -139,8 +139,8 @@ public class PlantUniverse {
      * Construct the universe and create the grid.
      */
     public PlantUniverse() {
-        for(int row=0;row<grid.length;row++) {
-            for(int col=0;col<grid[row].length;col++) {
+        for (int row = 0; row < grid.length; row++) {
+            for (int col = 0; col < grid[row].length; col++) {
                 this.grid[row][col] = new PlantUniverseCell();
             }
         }
@@ -148,6 +148,7 @@ public class PlantUniverse {
 
     /**
      * Get a cell, using row and column index.
+     *
      * @param row The row.
      * @param col The column.
      * @return The cell.
@@ -159,17 +160,18 @@ public class PlantUniverse {
     /**
      * Calculate the degree of crowding in a cell. Leafy cells
      * produce more crowding than stem.
+     *
      * @param row The row.
      * @param col The column.
      * @return The crowd imposed by this cell.
      */
     public double calculateCrowd(int row, int col) {
-        if(!isValid(row,col))
+        if (!isValid(row, col))
             return 0;
 
         PlantUniverseCell cell = getCell(row, col);
 
-        if( !cell.isAlive() ) {
+        if (!cell.isAlive()) {
             return 0;
         }
 
@@ -179,30 +181,31 @@ public class PlantUniverse {
     /**
      * Calculate the degree of crowding around a cell.
      * This is the mean crowding of the
+     *
      * @param row The row.
      * @param col The column.
      * @return The mean crowdedness of the cell.
      */
     public double calculateMeanNeighborsCrowd(int row, int col) {
         double sum = 0;
-        sum+=calculateCrowd(row - 1, col - 1);
-        sum+=calculateCrowd(row - 1, col);
-        sum+=calculateCrowd(row - 1, col + 1);
+        sum += calculateCrowd(row - 1, col - 1);
+        sum += calculateCrowd(row - 1, col);
+        sum += calculateCrowd(row - 1, col + 1);
 
-        sum+=calculateCrowd(row, col - 1);
-        sum+=calculateCrowd(row, col + 1);
+        sum += calculateCrowd(row, col - 1);
+        sum += calculateCrowd(row, col + 1);
 
-        sum+=calculateCrowd(row + 1, col - 1);
-        sum+=calculateCrowd(row + 1, col);
-        sum+=calculateCrowd(row + 1, col + 1);
+        sum += calculateCrowd(row + 1, col - 1);
+        sum += calculateCrowd(row + 1, col);
+        sum += calculateCrowd(row + 1, col + 1);
 
-        return sum/8.0;
+        return sum / 8.0;
     }
 
     /**
      * Return an info vector about a cell.  This allows cells to be identified by instructions in the genome.
      * The vector contains four doubles.  All doubles range from [0,1].
-     *
+     * <p/>
      * Element 0: The height of the cell. 1.0 for the last row and 0.0 for the first row.
      * Element 1: The amount of sunlight (for surface cells) or water (for underground cells) exposure for this cell.
      * Element 2: Crowding by neighbors.
@@ -214,12 +217,12 @@ public class PlantUniverse {
      */
     public double[] getCellInfoVector(int row, int col) {
         double[] result = new double[CELL_VECTOR_LENGTH];
-        PlantUniverseCell cell = getCell(row,col);
+        PlantUniverseCell cell = getCell(row, col);
 
         // Height
-        result[0] = row/PlantUniverse.UNIVERSE_HEIGHT;
+        result[0] = row / PlantUniverse.UNIVERSE_HEIGHT;
         // Sunlight
-        if( row<PlantUniverse.GROUND_LINE) {
+        if (row < PlantUniverse.GROUND_LINE) {
             result[1] = cell.getCalculatedSunlight();
         } else {
             result[1] = cell.getCalculatedWater();
@@ -238,16 +241,15 @@ public class PlantUniverse {
      * Reset the entire grid to a single seed.
      */
     public void reset() {
-        for(int row=0;row<grid.length;row++) {
-            for(int col=0;col<grid[row].length;col++) {
-                PlantUniverseCell cell = this.grid[row][col];
+        for (final PlantUniverseCell[] aGrid : grid) {
+            for (PlantUniverseCell cell : aGrid) {
                 cell.setLeafyness(0);
                 cell.setEnergy(0);
                 cell.setNourishment(0);
             }
         }
 
-        int center = PlantUniverse.UNIVERSE_WIDTH/2;
+        int center = PlantUniverse.UNIVERSE_WIDTH / 2;
         int groundLevel = PlantUniverse.GROUND_LINE;
 
         // root
@@ -256,33 +258,34 @@ public class PlantUniverse {
         grid[groundLevel][center].setEnergy(1);
 
         // stem
-        grid[groundLevel-1][center].setLeafyness(0.5);
-        grid[groundLevel-1][center].setNourishment(1);
-        grid[groundLevel-1][center].setEnergy(1);
+        grid[groundLevel - 1][center].setLeafyness(0.5);
+        grid[groundLevel - 1][center].setNourishment(1);
+        grid[groundLevel - 1][center].setEnergy(1);
 
         // leaf
-        grid[groundLevel-2][center].setLeafyness(1);
-        grid[groundLevel-2][center].setNourishment(1);
-        grid[groundLevel-2][center].setEnergy(1);
+        grid[groundLevel - 2][center].setLeafyness(1);
+        grid[groundLevel - 2][center].setNourishment(1);
+        grid[groundLevel - 2][center].setEnergy(1);
 
     }
 
     /**
      * Returns true if a cell is valid. Invalid cells are off the bounds of a grid.
+     *
      * @param row The row.
      * @param col The column.
-     * @return
+     * @return True, if valid.
      */
     public boolean isValid(final int row, final int col) {
-        if( row<0 || col<0 ) {
+        if (row < 0 || col < 0) {
             return false;
         }
 
-        if( row>=this.grid.length ) {
+        if (row >= this.grid.length) {
             return false;
         }
 
-        if( col>=this.grid[row].length ) {
+        if (col >= this.grid[row].length) {
             return false;
         }
 
@@ -291,12 +294,13 @@ public class PlantUniverse {
 
     /**
      * Calculate the energy for a cell.
+     *
      * @param row The row.
      * @param col The column.
      * @return The info vector.
      */
     public double calculateEnergy(final int row, final int col) {
-        if( !isValid(row,col) ) {
+        if (!isValid(row, col)) {
             return 0;
         }
         return this.grid[row][col].getEnergy();
@@ -304,29 +308,31 @@ public class PlantUniverse {
 
     /**
      * Calculate the transfer energy for a cell.  This is the amount of energy transferred into a cell.
+     *
      * @param row The row.
      * @param col The column.
      * @return The amount of energy transferred in.
      */
     public double calculateTransferEnergy(final int row, final int col) {
         double result = 0;
-        result=Math.max(result, calculateEnergy(row - 1, col - 1));
-        result=Math.max(result, calculateEnergy(row - 1, col));
-        result=Math.max(result, calculateEnergy(row - 1, col + 1));
+        result = Math.max(result, calculateEnergy(row - 1, col - 1));
+        result = Math.max(result, calculateEnergy(row - 1, col));
+        result = Math.max(result, calculateEnergy(row - 1, col + 1));
         return result;
     }
 
     /**
      * Calculate the transfer nourishment for a cell.  This is the amount of nourishment transferred into a cell.
+     *
      * @param row The row.
      * @param col The column.
      * @return The amount of energy transferred in.
      */
     public double calculateTransferNourishment(final int row, final int col) {
         double result = 0;
-        result=Math.max(result, calculateEnergy(row + 1, col - 1));
-        result=Math.max(result, calculateEnergy(row + 1, col));
-        result=Math.max(result, calculateEnergy(row + 1, col + 1));
+        result = Math.max(result, calculateEnergy(row + 1, col - 1));
+        result = Math.max(result, calculateEnergy(row + 1, col));
+        result = Math.max(result, calculateEnergy(row + 1, col + 1));
         return result;
     }
 
@@ -339,6 +345,7 @@ public class PlantUniverse {
 
     /**
      * Set the amount of nourishment in the roots.
+     *
      * @param rootCount The root count.
      */
     public void setRootCount(final double rootCount) {
@@ -354,6 +361,7 @@ public class PlantUniverse {
 
     /**
      * Set the amount of leafy material above the surface.
+     *
      * @param surfaceCount The surface count.
      */
     public void setSurfaceCount(final double surfaceCount) {
@@ -362,6 +370,7 @@ public class PlantUniverse {
 
     /**
      * Count the number of live cells as neighbors to a cell.
+     *
      * @param row The row.
      * @param col The column.
      * @return The neighbor count.
@@ -369,29 +378,29 @@ public class PlantUniverse {
     public int countNeighbors(int row, int col) {
         int sum = 0;
 
-        if( isAlive(row-1,col) ) {
+        if (isAlive(row - 1, col)) {
             sum++;
         }
-        if( isAlive(row+1,col) ) {
+        if (isAlive(row + 1, col)) {
             sum++;
         }
-        if( isAlive(row,col-1) ) {
+        if (isAlive(row, col - 1)) {
             sum++;
         }
-        if( isAlive(row,col+1) ) {
+        if (isAlive(row, col + 1)) {
             sum++;
         }
 
-        if( isAlive(row-1,col-1) ) {
+        if (isAlive(row - 1, col - 1)) {
             sum++;
         }
-        if( isAlive(row+1,col+1) ) {
+        if (isAlive(row + 1, col + 1)) {
             sum++;
         }
-        if( isAlive(row-1,col+1) ) {
+        if (isAlive(row - 1, col + 1)) {
             sum++;
         }
-        if( isAlive(row+1,col-1) ) {
+        if (isAlive(row + 1, col - 1)) {
             sum++;
         }
 
@@ -400,17 +409,18 @@ public class PlantUniverse {
 
     /**
      * Returns true, if the specified cell can grow.
+     *
      * @param row The row.
      * @param col The column.
      * @return True, if the specified cell is allowed to grow.
      */
     public boolean canGrow(int row, int col) {
-        PlantUniverseCell cell = getCell(row,col);
-        if( cell.isAlive() ) {
-            if( row>=PlantUniverse.GROUND_LINE ) {
-                return countNeighbors(row,col)<4;
+        PlantUniverseCell cell = getCell(row, col);
+        if (cell.isAlive()) {
+            if (row >= PlantUniverse.GROUND_LINE) {
+                return countNeighbors(row, col) < 4;
             } else {
-                return cell.getEnergy()>PlantUniverse.GROWTH_THRESHOLD && cell.getNourishment()>PlantUniverse.GROWTH_THRESHOLD;
+                return cell.getEnergy() > PlantUniverse.GROWTH_THRESHOLD && cell.getNourishment() > PlantUniverse.GROWTH_THRESHOLD;
             }
         }
         return false;
@@ -418,15 +428,13 @@ public class PlantUniverse {
 
     /**
      * Returns true, if the specified cell is alive. Alive cells have energy.
+     *
      * @param row The row.
      * @param col The column.
      * @return True, if the specified cell is alive to grow.
      */
     public boolean isAlive(final int row, final int col) {
-        if( !isValid(row,col) ) {
-            return false;
-        }
+        return isValid(row, col) && (grid[row][col].isAlive());
 
-        return(grid[row][col].isAlive());
     }
 }

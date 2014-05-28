@@ -39,31 +39,32 @@ import java.util.Comparator;
  */
 public class SortGenomesForSpecies implements Comparator<Genome> {
 
-	/**
-	 * The trainer.
-	 */
-	private final EvolutionaryAlgorithm train;
+    /**
+     * The trainer.
+     */
+    private final EvolutionaryAlgorithm train;
 
-	/**
-	 * Construct the comparator.
-	 * @param theTrain The trainer.
-	 */
-	public SortGenomesForSpecies(final EvolutionaryAlgorithm theTrain) {
-		this.train = theTrain;
-	}
+    /**
+     * Construct the comparator.
+     *
+     * @param theTrain The trainer.
+     */
+    public SortGenomesForSpecies(final EvolutionaryAlgorithm theTrain) {
+        this.train = theTrain;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int compare(Genome g1, Genome g2) {
-		final int result = this.train.getSelectionComparator().compare(g1, g2);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compare(Genome g1, Genome g2) {
+        final int result = this.train.getSelectionComparator().compare(g1, g2);
 
-		if (result != 0) {
-			return result;
-		}
+        if (result != 0) {
+            return result;
+        }
 
-		return g2.getBirthGeneration() - g1.getBirthGeneration();
-	}
+        return g2.getBirthGeneration() - g1.getBirthGeneration();
+    }
 
 }

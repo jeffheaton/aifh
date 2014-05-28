@@ -37,9 +37,9 @@ import java.util.StringTokenizer;
 
 /**
  * Merge physics determines how cells are to be populated.
- *
+ * <p/>
  * For more information on how the physics works see:
- *
+ * <p/>
  * http://www.codeproject.com/Articles/730362/Using-an-evolutionary-algorithm-to-create-a-cellul
  */
 public class MergePhysics implements Physics {
@@ -81,6 +81,7 @@ public class MergePhysics implements Physics {
 
     /**
      * Construct the merge physics.
+     *
      * @param theUniverse The universe.
      */
     public MergePhysics(final Universe theUniverse) {
@@ -108,8 +109,9 @@ public class MergePhysics implements Physics {
 
     /**
      * Determine if "value" is in the array.
-     * @param list The list.
-     * @param len The length.
+     *
+     * @param list  The list.
+     * @param len   The length.
      * @param value The value.
      * @return True, if value is in the list.
      */
@@ -165,7 +167,7 @@ public class MergePhysics implements Physics {
             }
         }
 
-        total/=cnt;
+        total /= cnt;
         for (int i = 0; i < this.colorTable.length; i++) {
             final int idx = this.dataOrder[i];
             if (total < this.data[idx * 2]) {

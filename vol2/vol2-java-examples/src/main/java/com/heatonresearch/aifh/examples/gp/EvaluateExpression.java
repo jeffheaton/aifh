@@ -30,19 +30,17 @@ package com.heatonresearch.aifh.examples.gp;
 
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.genetic.trees.EvaluateTree;
-import com.heatonresearch.aifh.genetic.trees.RandomNodeResult;
 import com.heatonresearch.aifh.genetic.trees.TreeGenomeNode;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
-import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.util.Locale;
 
 /**
  * Evaluate expression.  This class shows how to construct a tree evaluator that will evaluate the following
  * operators:
- *
+ * <p/>
  * add, sub, div, mul, negative, power, sqrt, as well as variables.
- *
+ * <p/>
  * This class could easily be modified to support additional operators.
  */
 public class EvaluateExpression extends EvaluateTree {
@@ -98,9 +96,10 @@ public class EvaluateExpression extends EvaluateTree {
 
     /**
      * The constructor.
-     * @param rnd A random number generator.
-     * @param numConst The number of constants.
-     * @param numVar The number of variables.
+     *
+     * @param rnd           A random number generator.
+     * @param numConst      The number of constants.
+     * @param numVar        The number of variables.
      * @param minConstValue The minimum amount for a constant.
      * @param maxConstValue The maximum amount for a constant.
      */
@@ -108,17 +107,18 @@ public class EvaluateExpression extends EvaluateTree {
         this.constValues = new double[numConst];
         this.varCount = numVar;
 
-        for(int i=0;i<this.constValues.length;i++) {
-            this.constValues[i] = rnd.nextDouble(minConstValue,maxConstValue);
+        for (int i = 0; i < this.constValues.length; i++) {
+            this.constValues[i] = rnd.nextDouble(minConstValue, maxConstValue);
         }
     }
 
     /**
      * Construct an evaluator with 1 variable, and 100 constants ranging between (-5,5)
+     *
      * @param rnd A random number generator.
      */
     public EvaluateExpression(GenerateRandom rnd) {
-        this(rnd,100,1,-5,5);
+        this(rnd, 100, 1, -5, 5);
     }
 
     /**
@@ -126,14 +126,21 @@ public class EvaluateExpression extends EvaluateTree {
      */
     @Override
     public int determineChildCount(int opcode) {
-        switch(opcode) {
-            case OPCODE_ADD: return 2;
-            case OPCODE_SUB: return 2;
-            case OPCODE_DIV: return 2;
-            case OPCODE_MUL: return 2;
-            case OPCODE_NEG: return 1;
-            case OPCODE_POWER: return 2;
-            case OPCODE_SQRT: return 1;
+        switch (opcode) {
+            case OPCODE_ADD:
+                return 2;
+            case OPCODE_SUB:
+                return 2;
+            case OPCODE_DIV:
+                return 2;
+            case OPCODE_MUL:
+                return 2;
+            case OPCODE_NEG:
+                return 1;
+            case OPCODE_POWER:
+                return 2;
+            case OPCODE_SQRT:
+                return 1;
             default:
                 return 0;
         }
@@ -141,11 +148,12 @@ public class EvaluateExpression extends EvaluateTree {
 
     /**
      * Get the text for an opcode.
+     *
      * @param opcode The opcode.
      * @return The text for the opcode.
      */
     public String getOpcodeText(int opcode) {
-        switch(opcode) {
+        switch (opcode) {
             case OPCODE_NEG:
                 return "-";
             case OPCODE_ADD:
@@ -162,13 +170,13 @@ public class EvaluateExpression extends EvaluateTree {
                 return "sqrt";
             default:
                 int index = opcode - OPCODE_VAR_CONST;
-                if( index>=(this.constValues.length+varCount) ) {
+                if (index >= (this.constValues.length + varCount)) {
                     throw new AIFHError("Invalid opcode: " + opcode);
                 }
-                if( index<this.varCount) {
-                    return ""+((char)('a'+index));
+                if (index < this.varCount) {
+                    return "" + ((char) ('a' + index));
                 } else {
-                    return String.format(Locale.US, "%.8f", this.constValues[index-varCount]);
+                    return String.format(Locale.US, "%.8f", this.constValues[index - varCount]);
                 }
         }
     }
@@ -176,18 +184,19 @@ public class EvaluateExpression extends EvaluateTree {
 
     /**
      * Display an expression as LISP (the programming language)
+     *
      * @param node The root node.
      * @return The LISP for the expression.
      */
     public String displayExpressionLISP(TreeGenomeNode node) {
         StringBuilder result = new StringBuilder();
 
-        if( determineChildCount(node.getOpcode())==0 ) {
+        if (determineChildCount(node.getOpcode()) == 0) {
             result.append(getOpcodeText(node.getOpcode()));
         } else {
             result.append("(");
             result.append(getOpcodeText(node.getOpcode()));
-            for(TreeGenomeNode child: node.getChildren()) {
+            for (TreeGenomeNode child : node.getChildren()) {
                 result.append(" ");
                 result.append(displayExpressionLISP(child));
             }
@@ -200,28 +209,29 @@ public class EvaluateExpression extends EvaluateTree {
 
     /**
      * Display an expression as normal infix.
+     *
      * @param node The root node.
      * @return The infix string.
      */
     public String displayExpressionNormal(TreeGenomeNode node) {
         StringBuilder result = new StringBuilder();
 
-        if( determineChildCount(node.getOpcode())==0 ) {
+        if (determineChildCount(node.getOpcode()) == 0) {
             result.append(getOpcodeText(node.getOpcode()));
         } else {
             int childCount = determineChildCount(node.getOpcode());
 
-            if( childCount==0  ) {
+            if (childCount == 0) {
                 result.append(getOpcodeText(node.getOpcode()));
             } else {
                 String name = getOpcodeText(node.getOpcode());
 
-                if( name.length()>1 ) {
+                if (name.length() > 1) {
                     result.append(name);
                     result.append("(");
                     boolean first = true;
-                    for(TreeGenomeNode child: node.getChildren()) {
-                        if( !first ) {
+                    for (TreeGenomeNode child : node.getChildren()) {
+                        if (!first) {
                             result.append(",");
                         }
                         result.append(displayExpressionNormal(child));
@@ -230,7 +240,7 @@ public class EvaluateExpression extends EvaluateTree {
                     result.append(")");
                 } else {
                     result.append("(");
-                    if( childCount==2 ) {
+                    if (childCount == 2) {
                         result.append(displayExpressionNormal(node.getChildren().get(0)));
                         result.append(name);
                         result.append(displayExpressionNormal(node.getChildren().get(1)));
@@ -278,30 +288,30 @@ public class EvaluateExpression extends EvaluateTree {
      */
     @Override
     public double evaluate(TreeGenomeNode node, double[] varValues) {
-        switch(node.getOpcode()) {
+        switch (node.getOpcode()) {
             case OPCODE_NEG:
                 return -(evaluate(node.getChildren().get(0), varValues));
             case OPCODE_ADD:
-                return evaluate(node.getChildren().get(0),varValues) + evaluate(node.getChildren().get(1),varValues);
+                return evaluate(node.getChildren().get(0), varValues) + evaluate(node.getChildren().get(1), varValues);
             case OPCODE_SUB:
-                return evaluate(node.getChildren().get(0),varValues) - evaluate(node.getChildren().get(1),varValues);
+                return evaluate(node.getChildren().get(0), varValues) - evaluate(node.getChildren().get(1), varValues);
             case OPCODE_DIV:
-                return evaluate(node.getChildren().get(0),varValues) / evaluate(node.getChildren().get(1),varValues);
+                return evaluate(node.getChildren().get(0), varValues) / evaluate(node.getChildren().get(1), varValues);
             case OPCODE_MUL:
-                return evaluate(node.getChildren().get(0),varValues) * evaluate(node.getChildren().get(1),varValues);
+                return evaluate(node.getChildren().get(0), varValues) * evaluate(node.getChildren().get(1), varValues);
             case OPCODE_POWER:
-                return Math.pow(evaluate(node.getChildren().get(0),varValues), evaluate(node.getChildren().get(1),varValues));
+                return Math.pow(evaluate(node.getChildren().get(0), varValues), evaluate(node.getChildren().get(1), varValues));
             case OPCODE_SQRT:
-                return Math.sqrt(evaluate(node.getChildren().get(0),varValues));
+                return Math.sqrt(evaluate(node.getChildren().get(0), varValues));
             default:
                 int index = node.getOpcode() - OPCODE_VAR_CONST;
-                if( index>=(this.constValues.length+varCount) ) {
+                if (index >= (this.constValues.length + varCount)) {
                     throw new AIFHError("Invalid opcode: " + node.getOpcode());
                 }
-                if( index<this.varCount) {
+                if (index < this.varCount) {
                     return varValues[index];
                 } else {
-                    return this.constValues[index-this.varCount];
+                    return this.constValues[index - this.varCount];
                 }
         }
 

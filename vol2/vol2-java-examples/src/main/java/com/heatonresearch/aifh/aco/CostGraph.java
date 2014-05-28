@@ -34,6 +34,7 @@ package com.heatonresearch.aifh.aco;
 public interface CostGraph {
     /**
      * Get the cost between two nodes.
+     *
      * @param sourceNode The source node.
      * @param targetNode The target node.
      * @return The cost between two nodes.

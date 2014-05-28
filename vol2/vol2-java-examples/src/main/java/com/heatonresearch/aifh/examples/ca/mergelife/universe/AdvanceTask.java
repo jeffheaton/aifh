@@ -44,6 +44,7 @@ public class AdvanceTask implements Callable<AdvanceTask> {
 
     /**
      * Constructor.
+     *
      * @param theCell The pane to update.
      */
     public AdvanceTask(final UniversePane theCell) {

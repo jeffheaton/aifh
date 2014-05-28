@@ -33,84 +33,86 @@ import com.heatonresearch.aifh.evolutionary.genome.Genome;
 
 /**
  * A genome that is an array of discrete integer values.
- *
  */
 public class IntegerArrayGenome extends BasicGenome implements ArrayGenome {
-	
-	
-	/**
-	 * The serial id.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The genome data.
-	 */
-	private int[] data;
-	
-	/**
-	 * Construct the genome.
-	 * @param size The size of the genome.
-	 */
-	public IntegerArrayGenome(int size) {
-		this.data = new int[size];
-	}
-	
-	/**
-	 * Construct the genome by copying another.
-	 * @param other The other genome.
-	 */
-	public IntegerArrayGenome(IntegerArrayGenome other) {
-		this.data = other.getData().clone();
-	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int size() {
-		return this.data.length;
-	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void copy(ArrayGenome source, int sourceIndex, int targetIndex) {
-		IntegerArrayGenome sourceInt = (IntegerArrayGenome)source;
-		this.data[targetIndex] = sourceInt.data[sourceIndex];
-		
-	}
-	
-	public int[] getData() {
-		return this.data;
-	}
+    /**
+     * The serial id.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void copy(Genome source) {
-		IntegerArrayGenome sourceInt = (IntegerArrayGenome)source;
+    /**
+     * The genome data.
+     */
+    private int[] data;
+
+    /**
+     * Construct the genome.
+     *
+     * @param size The size of the genome.
+     */
+    public IntegerArrayGenome(int size) {
+        this.data = new int[size];
+    }
+
+    /**
+     * Construct the genome by copying another.
+     *
+     * @param other The other genome.
+     */
+    public IntegerArrayGenome(IntegerArrayGenome other) {
+        this.data = other.getData().clone();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int size() {
+        return this.data.length;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void copy(ArrayGenome source, int sourceIndex, int targetIndex) {
+        IntegerArrayGenome sourceInt = (IntegerArrayGenome) source;
+        this.data[targetIndex] = sourceInt.data[sourceIndex];
+
+    }
+
+    public int[] getData() {
+        return this.data;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void copy(Genome source) {
+        IntegerArrayGenome sourceInt = (IntegerArrayGenome) source;
         System.arraycopy(sourceInt.data, 0, this.data, 0, this.data.length);
-		this.setScore(source.getScore());
-		this.setAdjustedScore(source.getAdjustedScore());
-		
-	}
+        this.setScore(source.getScore());
+        this.setAdjustedScore(source.getAdjustedScore());
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void swap(int iswap1, int iswap2) {
-		int temp = this.data[iswap1];
-		this.data[iswap1] = this.data[iswap2];
-		this.data[iswap2] = temp;
-		
-	}
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void swap(int iswap1, int iswap2) {
+        int temp = this.data[iswap1];
+        this.data[iswap1] = this.data[iswap2];
+        this.data[iswap2] = temp;
+
+    }
 
     /**
      * Not supported.  Integer files are not generally used for model fitting.
+     *
      * @return Nothing.
      */
     @Override

@@ -55,8 +55,9 @@ public class UniverseVisualizer {
 
     /**
      * The constructor.
+     *
      * @param theUniverse The universe.
-     * @param theZoom The zoom factor.
+     * @param theZoom     The zoom factor.
      */
     public UniverseVisualizer(final Universe theUniverse, final int theZoom) {
         this.universe = theUniverse;
@@ -71,13 +72,14 @@ public class UniverseVisualizer {
 
     /**
      * Create the image.
+     *
      * @param pixels The pixels.
-     * @param width The width.
+     * @param width  The width.
      * @param height The height.
      * @return The image.
      */
     private Image createImage(final int[] pixels, final int width,
-                                   final int height) {
+                              final int height) {
         this.raster.setPixels(0, 0, this.image.getWidth(),
                 this.image.getHeight(), pixels);
         return this.image;

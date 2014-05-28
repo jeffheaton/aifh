@@ -54,6 +54,7 @@ public class IrisPSOExample extends SimpleLearn {
 
     /**
      * Main entry point.
+     *
      * @param args Not used.
      */
     public static void main(final String[] args) {
@@ -85,8 +86,8 @@ public class IrisPSOExample extends SimpleLearn {
             istream.close();
 
             RBFNetwork[] particles = new RBFNetwork[PARTICLE_COUNT];
-            for(int i=0;i<particles.length;i++) {
-                particles[i] = new RBFNetwork(4,4,3);
+            for (int i = 0; i < particles.length; i++) {
+                particles[i] = new RBFNetwork(4, 4, 3);
                 particles[i].reset(rnd);
             }
 
@@ -94,11 +95,11 @@ public class IrisPSOExample extends SimpleLearn {
 
             ScoreFunction score = new ScoreRegressionData(trainingData);
 
-            TrainPSO train = new TrainPSO(particles,score);
+            TrainPSO train = new TrainPSO(particles, score);
 
             performIterations(train, 100000, 0.05, true);
 
-            RBFNetwork winner = (RBFNetwork)train.getBestParticle();
+            RBFNetwork winner = (RBFNetwork) train.getBestParticle();
 
             queryOneOfN(winner, trainingData, species);
 

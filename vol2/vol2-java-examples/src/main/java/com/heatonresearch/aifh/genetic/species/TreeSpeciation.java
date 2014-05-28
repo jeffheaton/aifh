@@ -46,8 +46,8 @@ public class TreeSpeciation extends ThresholdSpeciation {
      * Compare two nodes.
      *
      * @param result The result of previous comparisons.
-     * @param node1 The first node to compare.
-     * @param node2 The second node to compare.
+     * @param node1  The first node to compare.
+     * @param node2  The second node to compare.
      * @return The result.
      */
     private double compareNode(final double result, final TreeGenomeNode node1,
@@ -73,7 +73,7 @@ public class TreeSpeciation extends ThresholdSpeciation {
 
     @Override
     public double getCompatibilityScore(final Genome genome1, final Genome genome2) {
-        return compareNode(0, ((TreeGenome)genome1).getRoot(),
-                ((TreeGenome)genome2).getRoot());
+        return compareNode(0, ((TreeGenome) genome1).getRoot(),
+                ((TreeGenome) genome2).getRoot());
     }
 }

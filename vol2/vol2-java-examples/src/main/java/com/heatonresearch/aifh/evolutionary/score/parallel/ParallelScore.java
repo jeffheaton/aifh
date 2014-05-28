@@ -28,11 +28,6 @@
  */
 package com.heatonresearch.aifh.evolutionary.score.parallel;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.evolutionary.codec.GeneticCODEC;
 import com.heatonresearch.aifh.evolutionary.genome.Genome;
@@ -41,132 +36,138 @@ import com.heatonresearch.aifh.evolutionary.score.AdjustScore;
 import com.heatonresearch.aifh.evolutionary.species.Species;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
 
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 /**
  * This class is used to calculate the scores for an entire population. This is
  * typically done when a new population must be scored for the first time.
  */
-public class ParallelScore  {
-	/**
-	 * The population to score.
-	 */
-	private final Population population;
-	
-	/**
-	 * The CODEC used to create genomes.
-	 */
-	private final GeneticCODEC codec;
-	
-	/**
-	 * The scoring function.
-	 */
-	private final ScoreFunction scoreFunction;
-	
-	/**
-	 * The score adjuster.
-	 */
-	private final List<AdjustScore> adjusters;
-	
-	/**
-	 * The number of requested threads.
-	 */
-	private int threads;
-	
-	/**
-	 * The actual number of threads.
-	 */
-	private int actualThreads;
+public class ParallelScore {
+    /**
+     * The population to score.
+     */
+    private final Population population;
 
-	/**
-	 * Construct the parallel score calculation object.
-	 * @param thePopulation The population to score.
-	 * @param theCODEC The CODEC to use.
-	 * @param theAdjusters The score adjusters to use.
-	 * @param theScoreFunction The score function.
-	 * @param theThreadCount The requested thread count.
-	 */
-	public ParallelScore(Population thePopulation, GeneticCODEC theCODEC,
-			List<AdjustScore> theAdjusters, ScoreFunction theScoreFunction,
-			int theThreadCount) {
-		this.codec = theCODEC;
-		this.population = thePopulation;
-		this.scoreFunction = theScoreFunction;
-		this.adjusters = theAdjusters;
-		this.actualThreads = 0;
-	}
+    /**
+     * The CODEC used to create genomes.
+     */
+    private final GeneticCODEC codec;
 
-	/**
-	 * @return the population
-	 */
-	public Population getPopulation() {
-		return population;
-	}
+    /**
+     * The scoring function.
+     */
+    private final ScoreFunction scoreFunction;
 
-	/**
-	 * @return the scoreFunction
-	 */
-	public ScoreFunction getScoreFunction() {
-		return scoreFunction;
-	}
+    /**
+     * The score adjuster.
+     */
+    private final List<AdjustScore> adjusters;
 
-	/**
-	 * @return the codec
-	 */
-	public GeneticCODEC getCodec() {
-		return codec;
-	}
+    /**
+     * The number of requested threads.
+     */
+    private int threads;
 
-	/**
-	 * Calculate the scores.
-	 */
-	public void process() {
-		// determine thread usage
-		if (threads == 0) {
-			this.actualThreads = Runtime.getRuntime().availableProcessors();
-		} else {
-			this.actualThreads = threads;
-		}
+    /**
+     * The actual number of threads.
+     */
+    private int actualThreads;
 
-		// start up
-		ExecutorService taskExecutor = null;
+    /**
+     * Construct the parallel score calculation object.
+     *
+     * @param thePopulation    The population to score.
+     * @param theCODEC         The CODEC to use.
+     * @param theAdjusters     The score adjusters to use.
+     * @param theScoreFunction The score function.
+     * @param theThreadCount   The requested thread count.
+     */
+    public ParallelScore(Population thePopulation, GeneticCODEC theCODEC,
+                         List<AdjustScore> theAdjusters, ScoreFunction theScoreFunction,
+                         int theThreadCount) {
+        this.codec = theCODEC;
+        this.population = thePopulation;
+        this.scoreFunction = theScoreFunction;
+        this.adjusters = theAdjusters;
+        this.actualThreads = 0;
+    }
 
-		if (this.threads == 1) {
-			taskExecutor = Executors.newSingleThreadScheduledExecutor();
-		} else {
-			taskExecutor = Executors.newFixedThreadPool(this.actualThreads);
-		}
+    /**
+     * @return the population
+     */
+    public Population getPopulation() {
+        return population;
+    }
 
-		for (Species species : this.population.getSpecies()) {
-			for (Genome genome : species.getMembers()) {
-				taskExecutor.execute(new ParallelScoreTask(genome, this));
-			}
-		}
+    /**
+     * @return the scoreFunction
+     */
+    public ScoreFunction getScoreFunction() {
+        return scoreFunction;
+    }
 
-		taskExecutor.shutdown();
-		try {
-			taskExecutor.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES);
-		} catch (InterruptedException e) {
-			throw new AIFHError(e);
-		}
-	}
+    /**
+     * @return the codec
+     */
+    public GeneticCODEC getCodec() {
+        return codec;
+    }
 
-	/**
-	 * @return The score adjusters.
-	 */
-	public List<AdjustScore> getAdjusters() {
-		return this.adjusters;
-	}
+    /**
+     * Calculate the scores.
+     */
+    public void process() {
+        // determine thread usage
+        if (threads == 0) {
+            this.actualThreads = Runtime.getRuntime().availableProcessors();
+        } else {
+            this.actualThreads = threads;
+        }
 
-	/**
-	 * @return The desired number of threads.
-	 */
-	public int getThreadCount() {
-		return this.threads;
-	}
+        // start up
+        ExecutorService taskExecutor;
 
-	/**
-	 * @param numThreads The desired thread count.
-	 */
-	public void setThreadCount(int numThreads) {
-		this.threads = numThreads;
-	}
+        if (this.threads == 1) {
+            taskExecutor = Executors.newSingleThreadScheduledExecutor();
+        } else {
+            taskExecutor = Executors.newFixedThreadPool(this.actualThreads);
+        }
+
+        for (Species species : this.population.getSpecies()) {
+            for (Genome genome : species.getMembers()) {
+                taskExecutor.execute(new ParallelScoreTask(genome, this));
+            }
+        }
+
+        taskExecutor.shutdown();
+        try {
+            taskExecutor.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            throw new AIFHError(e);
+        }
+    }
+
+    /**
+     * @return The score adjusters.
+     */
+    public List<AdjustScore> getAdjusters() {
+        return this.adjusters;
+    }
+
+    /**
+     * @return The desired number of threads.
+     */
+    public int getThreadCount() {
+        return this.threads;
+    }
+
+    /**
+     * @param numThreads The desired thread count.
+     */
+    public void setThreadCount(int numThreads) {
+        this.threads = numThreads;
+    }
 }

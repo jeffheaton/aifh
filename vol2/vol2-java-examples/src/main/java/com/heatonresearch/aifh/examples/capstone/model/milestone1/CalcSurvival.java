@@ -54,17 +54,18 @@ public class CalcSurvival {
 
     /**
      * Update for a passenger.
-     * @param male True, if passenger was male.
+     *
+     * @param male     True, if passenger was male.
      * @param survived True, if passenger survived.
      */
     public void update(boolean male, boolean survived) {
-        if( male ) {
+        if (male) {
             countMale++;
         } else {
             countFemale++;
         }
-        if( survived ) {
-            if( male ) {
+        if (survived) {
+            if (male) {
                 this.maleSurvive++;
             } else {
                 this.femaleSurvive++;
@@ -90,7 +91,7 @@ public class CalcSurvival {
      * @return The total count of passengers.
      */
     public int getCount() {
-        return this.countFemale+this.countMale;
+        return this.countFemale + this.countMale;
     }
 
     /**
@@ -118,20 +119,20 @@ public class CalcSurvival {
         result.append("Count: ");
         result.append(getCount());
 
-        if( getCount()>0 ) {
-            double pct = (double)(this.femaleSurvive+this.maleSurvive)/getCount();
+        if (getCount() > 0) {
+            double pct = (double) (this.femaleSurvive + this.maleSurvive) / getCount();
             result.append(", survived: ");
             result.append(pct);
         }
 
-        if( getCountMale()>0 ) {
-            double pct = (double)(this.maleSurvive)/(this.countMale);
+        if (getCountMale() > 0) {
+            double pct = (double) (this.maleSurvive) / (this.countMale);
             result.append(", male.survived: ");
             result.append(pct);
         }
 
-        if( getCountFemale()>0 ) {
-            double pct = (double)(this.femaleSurvive)/(this.countFemale);
+        if (getCountFemale() > 0) {
+            double pct = (double) (this.femaleSurvive) / (this.countFemale);
             result.append(", female.survived: ");
             result.append(pct);
         }

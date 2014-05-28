@@ -86,8 +86,9 @@ public class SingularUniverseViewer extends JFrame implements
 
     /**
      * The constructor.
+     *
      * @param thePhysics The physics calculator to use.
-     * @param theZoom The zoom factor.
+     * @param theZoom    The zoom factor.
      */
     public SingularUniverseViewer(final Physics thePhysics, final int theZoom) {
         this.sourceData = thePhysics.getData().clone();

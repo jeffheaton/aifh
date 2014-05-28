@@ -37,35 +37,35 @@ import java.io.Serializable;
  * Use this comparator to minimize the adjusted score.
  */
 public class MinimizeAdjustedScoreComp extends AbstractGenomeComparator
-		implements Serializable {
-	
-	/**
-	 * The serial ID.
-	 */
-	private static final long serialVersionUID = 1L;
+        implements Serializable {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int compare(final Genome p1, final Genome p2) {
-		return Double.compare(p1.getAdjustedScore(), p2.getAdjustedScore());
-	}
+    /**
+     * The serial ID.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isBetterThan(final Genome prg, final Genome betterThan) {
-		return isBetterThan(prg.getAdjustedScore(),
-				betterThan.getAdjustedScore());
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compare(final Genome p1, final Genome p2) {
+        return Double.compare(p1.getAdjustedScore(), p2.getAdjustedScore());
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean shouldMinimize() {
-		return true;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isBetterThan(final Genome prg, final Genome betterThan) {
+        return isBetterThan(prg.getAdjustedScore(),
+                betterThan.getAdjustedScore());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean shouldMinimize() {
+        return true;
+    }
 }

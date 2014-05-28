@@ -107,9 +107,10 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * The constructor.
+     *
      * @param theOwner The parent frame.
-     * @param theRows The number of rows.
-     * @param theCols The number of columns.
+     * @param theRows  The number of rows.
+     * @param theCols  The number of columns.
      */
     public DisplayPanel(final MultiverseViewer theOwner, final int theRows,
                         final int theCols) {
@@ -138,6 +139,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Begin a copy.
+     *
      * @param row The multiverse row.
      * @param col The multiverse column.
      */
@@ -150,6 +152,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Identify the first parent for a crossover.
+     *
      * @param row The multiverse row.
      * @param col The multiverse column.
      */
@@ -171,6 +174,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Show the popup menu.
+     *
      * @param e The mouse event.
      */
     private void doPop(final MouseEvent e) {
@@ -184,11 +188,12 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Draw the status for a universe.
-     * @param g Graphics device.
+     *
+     * @param g   Graphics device.
      * @param row The multiverse row.
      * @param col The multiverse column.
-     * @param fm The font metrics.
-     * @param The text.
+     * @param fm  The font metrics.
+     * @param s The text.
      */
     private void drawStatus(final Graphics g, final int row, final int col,
                             final FontMetrics fm, final String s) {
@@ -204,6 +209,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Load a universe.
+     *
      * @param row The multiverse row.
      * @param col The multiverse column.
      */
@@ -271,8 +277,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
             } else if (this.crossoverParent1 != null
                     && this.crossoverParent2 == null) {
                 this.crossoverParent2 = this.grid[row][col].getUniverseRunner();
-            } else if (this.crossoverParent1 != null
-                    && this.crossoverParent2 != null) {
+            } else  {
                 final UniverseRunner target = this.grid[row][col]
                         .getUniverseRunner();
                 target.crossover(this.rnd, this.crossoverParent1, this.crossoverParent2);
@@ -293,6 +298,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Mutate the selected universe across all free multiverse cells.
+     *
      * @param row The row of the universe to generate mutations from.
      * @param col The column of the universe to generate mutations from.
      */
@@ -313,6 +319,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Mutate a single universe.
+     *
      * @param row The multiverse row.
      * @param col The multiverse column.
      */
@@ -324,6 +331,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Randomize a universe (both physics and state).
+     *
      * @param row The multiverse row.
      * @param col The multiverse column.
      */
@@ -334,6 +342,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Randomize a universe (not physics, only state).
+     *
      * @param row The multiverse row.
      * @param col The multiverse column.
      */
@@ -354,8 +363,9 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Run a single universe full screen.
-     * @param row
-     * @param col
+     *
+     * @param row The row.
+     * @param col The column.
      */
     public void runSingular(final int row, final int col) {
         this.owner.performStop();
@@ -368,8 +378,9 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Save a universe.
-     * @param row
-     * @param col
+     *
+     * @param row The row.
+     * @param col The column.
      */
     public void save(final int row, final int col) {
         try {
@@ -390,6 +401,7 @@ public class DisplayPanel extends JPanel implements MouseListener {
 
     /**
      * Set, if we should auto-kill universes that "stabilize" to no movement.
+     *
      * @param autoKill True, if autokill is enabled.
      */
     public void setAutoKill(final boolean autoKill) {

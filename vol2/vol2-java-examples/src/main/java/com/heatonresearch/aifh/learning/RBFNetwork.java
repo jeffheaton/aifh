@@ -174,10 +174,10 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
     @Override
     public int computeClassification(final double[] input) {
         final double[] output = computeRegression(input);
-        if( output.length>1) {
+        if (output.length > 1) {
             return VectorUtil.maxIndex(output);
         } else {
-            return (int)output[0];
+            return (int) output[0];
         }
     }
 

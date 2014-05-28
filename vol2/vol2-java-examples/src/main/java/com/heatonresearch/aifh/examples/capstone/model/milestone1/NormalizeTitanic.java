@@ -60,7 +60,8 @@ public class NormalizeTitanic {
 
     /**
      * Analyze and generate stats for titanic data.
-     * @param stats The stats for titanic.
+     *
+     * @param stats    The stats for titanic.
      * @param filename The file to analyze.
      * @return The passenger count.
      * @throws IOException Errors reading file.
@@ -127,7 +128,7 @@ public class NormalizeTitanic {
 
 
             boolean isMale = sexStr.equalsIgnoreCase("male");
-            double age = -1;
+            double age;
 
             // Only compute survival stats on training data
             if (survivedIndex != -1) {
@@ -148,21 +149,21 @@ public class NormalizeTitanic {
             }
 
             if (survivedIndex != -1) {
-                if (name.indexOf("Master.") != -1) {
+                if (name.contains("Master.")) {
                     stats.getSurvivalMaster().update(isMale, survived);
-                } else if (name.indexOf("Mr.") != -1) {
+                } else if (name.contains("Mr.")) {
                     stats.getSurvivalMr().update(isMale, survived);
-                } else if (name.indexOf("Miss.") != -1 || name.indexOf("Mlle.") != -1) {
+                } else if (name.contains("Miss.") || name.contains("Mlle.")) {
                     stats.getSurvivalMiss().update(isMale, survived);
-                } else if (name.indexOf("Mrs.") != -1 || name.indexOf("Mme.") != -1) {
+                } else if (name.contains("Mrs.") || name.contains("Mme.")) {
                     stats.getSurvivalMrs().update(isMale, survived);
-                } else if (name.indexOf("Col.") != -1 || name.indexOf("Capt.") != -1 || name.indexOf("Major.") != -1) {
+                } else if (name.contains("Col.") || name.contains("Capt.") || name.contains("Major.")) {
                     stats.getSurvivalMilitary().update(isMale, survived);
-                } else if (name.indexOf("Countess.") != -1 || name.indexOf("Lady.") != -1 || name.indexOf("Sir.") != -1 || name.indexOf("Don.") != -1 || name.indexOf("Dona.") != -1 || name.indexOf("Jonkheer.") != -1) {
+                } else if (name.contains("Countess.") || name.contains("Lady.") || name.contains("Sir.") || name.contains("Don.") || name.contains("Dona.") || name.contains("Jonkheer.")) {
                     stats.getSurvivalNobility().update(isMale, survived);
-                } else if (name.indexOf("Dr.") != -1) {
+                } else if (name.contains("Dr.")) {
                     stats.getSurvivalDr().update(isMale, survived);
-                } else if (name.indexOf("Rev.") != -1) {
+                } else if (name.contains("Rev.")) {
                     stats.getSurvivalClergy().update(isMale, survived);
                 }
             }
@@ -180,49 +181,49 @@ public class NormalizeTitanic {
                 // Update the total average age
                 stats.getMeanTotal().update(age);
 
-                if (name.indexOf("Master.") != -1) {
+                if (name.contains("Master.")) {
                     stats.getMeanMaster().update(age);
                     // Only compute survival stats on training data.
                     if (survivedIndex != -1) {
                         stats.getSurvivalMaster().update(isMale, survived);
                     }
-                } else if (name.indexOf("Mr.") != -1) {
+                } else if (name.contains("Mr.")) {
                     stats.getMeanMr().update(age);
                     // Only compute survival stats on training data.
                     if (survivedIndex != -1) {
                         stats.getSurvivalMr().update(isMale, survived);
                     }
-                } else if (name.indexOf("Miss.") != -1 || name.indexOf("Mlle.") != -1) {
+                } else if (name.contains("Miss.") || name.contains("Mlle.")) {
                     stats.getMeanMiss().update(age);
                     // Only compute survival stats on training data.
                     if (survivedIndex != -1) {
                         stats.getSurvivalMiss().update(isMale, survived);
                     }
-                } else if (name.indexOf("Mrs.") != -1 || name.indexOf("Mme.") != -1) {
+                } else if (name.contains("Mrs.") || name.contains("Mme.")) {
                     stats.getMeanMrs().update(age);
                     // Only compute survival stats on training data.
                     if (survivedIndex != -1) {
                         stats.getSurvivalMrs().update(isMale, survived);
                     }
-                } else if (name.indexOf("Col.") != -1 || name.indexOf("Capt.") != -1 || name.indexOf("Major.") != -1) {
+                } else if (name.contains("Col.") || name.contains("Capt.") || name.contains("Major.")) {
                     stats.getMeanMilitary().update(age);
                     // Only compute survival stats on training data.
                     if (survivedIndex != -1) {
                         stats.getSurvivalMilitary().update(isMale, survived);
                     }
-                } else if (name.indexOf("Countess.") != -1 || name.indexOf("Lady.") != -1 || name.indexOf("Sir.") != -1 || name.indexOf("Don.") != -1 || name.indexOf("Dona.") != -1 || name.indexOf("Jonkheer.") != -1) {
+                } else if (name.contains("Countess.") || name.contains("Lady.") || name.contains("Sir.") || name.contains("Don.") || name.contains("Dona.") || name.contains("Jonkheer.")) {
                     stats.getMeanNobility().update(age);
                     // Only compute survival stats on training data.
                     if (survivedIndex != -1) {
                         stats.getSurvivalNobility().update(isMale, survived);
                     }
-                } else if (name.indexOf("Dr.") != -1) {
+                } else if (name.contains("Dr.")) {
                     stats.getMeanDr().update(age);
                     // Only compute survival stats on training data.
                     if (survivedIndex != -1) {
                         stats.getSurvivalDr().update(isMale, survived);
                     }
-                } else if (name.indexOf("Rev.") != -1) {
+                } else if (name.contains("Rev.")) {
                     stats.getMeanClergy().update(age);
                     // Only compute survival stats on training data.
                     if (survivedIndex != -1) {
@@ -236,10 +237,11 @@ public class NormalizeTitanic {
 
     /**
      * Normalize to a range.
-     * @param x The value to normalize.
-     * @param dataLow The low end of the range of the data.
-     * @param dataHigh The high end of the range of the data.
-     * @param normalizedLow The normalized low end of the range of data.
+     *
+     * @param x              The value to normalize.
+     * @param dataLow        The low end of the range of the data.
+     * @param dataHigh       The high end of the range of the data.
+     * @param normalizedLow  The normalized low end of the range of data.
      * @param normalizedHigh The normalized high end of the range of data.
      * @return The normalized value.
      */
@@ -298,28 +300,27 @@ public class NormalizeTitanic {
             boolean isMale = sex.equalsIgnoreCase("male");
 
 
-
             // age
             double age;
 
             // do we have an age for this person?
             if (nextLine[ageIndex].length() == 0) {
                 // age is missing, interpolate using name
-                if (name.indexOf("Master.") != -1) {
+                if (name.contains("Master.")) {
                     age = stats.getMeanMaster().calculate();
-                } else if (name.indexOf("Mr.") != -1) {
+                } else if (name.contains("Mr.")) {
                     age = stats.getMeanMr().calculate();
-                } else if (name.indexOf("Miss.") != -1 || name.indexOf("Mlle.") != -1) {
+                } else if (name.contains("Miss.") || name.contains("Mlle.")) {
                     age = stats.getMeanMiss().calculate();
-                } else if (name.indexOf("Mrs.") != -1 || name.indexOf("Mme.") != -1) {
+                } else if (name.contains("Mrs.") || name.contains("Mme.")) {
                     age = stats.getMeanMrs().calculate();
-                } else if (name.indexOf("Col.") != -1 || name.indexOf("Capt.") != -1 || name.indexOf("Major.") != -1) {
+                } else if (name.contains("Col.") || name.contains("Capt.") || name.contains("Major.")) {
                     age = stats.getMeanMiss().calculate();
-                } else if (name.indexOf("Countess.") != -1 || name.indexOf("Lady.") != -1 || name.indexOf("Sir.") != -1 || name.indexOf("Don.") != -1 || name.indexOf("Dona.") != -1 || name.indexOf("Jonkheer.") != -1) {
+                } else if (name.contains("Countess.") || name.contains("Lady.") || name.contains("Sir.") || name.contains("Don.") || name.contains("Dona.") || name.contains("Jonkheer.")) {
                     age = stats.getMeanNobility().calculate();
-                } else if (name.indexOf("Dr.") != -1) {
+                } else if (name.contains("Dr.")) {
                     age = stats.getMeanDr().calculate();
-                } else if (name.indexOf("Rev.") != -1) {
+                } else if (name.contains("Rev.")) {
                     age = stats.getMeanClergy().calculate();
                 } else {
                     if (isMale) {
@@ -353,12 +354,12 @@ public class NormalizeTitanic {
             String strFare = nextLine[indexFare];
             double fare;
 
-            if( strFare.length()==0) {
-                if( ((int)pclass)==1) {
+            if (strFare.length() == 0) {
+                if (((int) pclass) == 1) {
                     fare = stats.getMeanFare1().calculate();
-                } else if( ((int)pclass)==2) {
+                } else if (((int) pclass) == 2) {
                     fare = stats.getMeanFare2().calculate();
-                } else if( ((int)pclass)==3) {
+                } else if (((int) pclass) == 3) {
                     fare = stats.getMeanFare3().calculate();
                 } else {
                     // should not happen, we would have a class other than 1,2,3.
@@ -380,17 +381,17 @@ public class NormalizeTitanic {
             data.getInput()[8] = embarked.trim().equalsIgnoreCase("s") ? inputHigh : inputLow;
 
             // name-mil
-            data.getInput()[9] = (name.indexOf("Col.") != -1 || name.indexOf("Capt.") != -1 || name.indexOf("Major.") != -1) ? inputHigh : inputLow;
+            data.getInput()[9] = (name.contains("Col.") || name.contains("Capt.") || name.contains("Major.")) ? inputHigh : inputLow;
 
             // name-nobility
-            data.getInput()[10] = (name.indexOf("Countess.") != -1 || name.indexOf("Lady.") != -1 || name.indexOf("Sir.") != -1 || name.indexOf("Don.") != -1 || name.indexOf("Dona.") != -1 || name.indexOf("Jonkheer.") != -1) ? inputHigh : inputLow;
+            data.getInput()[10] = (name.contains("Countess.") || name.contains("Lady.") || name.contains("Sir.") || name.contains("Don.") || name.contains("Dona.") || name.contains("Jonkheer.")) ? inputHigh : inputLow;
 
             // name-dr
-            data.getInput()[11] = (name.indexOf("Dr.") != -1) ? inputHigh : inputLow;
+            data.getInput()[11] = (name.contains("Dr.")) ? inputHigh : inputLow;
 
 
             // name-clergy
-            data.getInput()[12] = (name.indexOf("Rev.") != -1) ? inputHigh : inputLow;
+            data.getInput()[12] = (name.contains("Rev.")) ? inputHigh : inputLow;
 
             // add the new row
             result.add(data);
@@ -398,7 +399,7 @@ public class NormalizeTitanic {
             // add survived, if it exists
             if (survivedIndex != -1) {
                 int survived = Integer.parseInt(nextLine[survivedIndex]);
-                data.getIdeal()[0] = (survived==1) ? predictSurvive : predictPerish;
+                data.getIdeal()[0] = (survived == 1) ? predictSurvive : predictPerish;
             }
 
         }
@@ -408,6 +409,7 @@ public class NormalizeTitanic {
 
     /**
      * The main method.
+     *
      * @param args The arguments.
      */
     public static void main(String[] args) {
@@ -440,14 +442,14 @@ public class NormalizeTitanic {
             FileOutputStream fos = new FileOutputStream(normalizePath);
             CSVWriter csv = new CSVWriter(new OutputStreamWriter(fos));
 
-            csv.writeNext(new String[] {
+            csv.writeNext(new String[]{
                     "id",
-                    "age","sex-male","pclass","sibsp","parch","fare",
-                    "embarked-c","embarked-q","embarked-s","name-mil","name-nobility","name-dr","name-clergy"
+                    "age", "sex-male", "pclass", "sibsp", "parch", "fare",
+                    "embarked-c", "embarked-q", "embarked-s", "name-mil", "name-nobility", "name-dr", "name-clergy"
             });
 
             int idx = 0;
-            for(BasicData data: training) {
+            for (BasicData data : training) {
                 String[] line = {
                         ids.get(idx++),
                         FormatNumeric.formatDouble(data.getInput()[0], 5),

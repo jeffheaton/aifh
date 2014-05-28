@@ -39,17 +39,17 @@ public class CalcHistogram {
     /**
      * The counters for each unique value.
      */
-    private Map<String,Integer> histogram = new HashMap<String,Integer>();
+    private Map<String, Integer> histogram = new HashMap<String, Integer>();
 
     public void update(String key) {
 
         // See if we already have an entry
-        if( this.histogram.containsKey(key) ) {
+        if (this.histogram.containsKey(key)) {
             int count = this.histogram.get(key);
-            this.histogram.put(key,count+1);
+            this.histogram.put(key, count + 1);
         } else {
             // no entry, so create one at 1.
-            this.histogram.put(key,1);
+            this.histogram.put(key, 1);
         }
     }
 
@@ -60,9 +60,9 @@ public class CalcHistogram {
         int maxCount = 0;
         String result = null;
 
-        for(String key:this.histogram.keySet()) {
+        for (String key : this.histogram.keySet()) {
             int count = this.histogram.get(key);
-            if( (result==null) || (maxCount<count) || (maxCount==count && result.compareTo(key)<0)) {
+            if ((result == null) || (maxCount < count) || (maxCount == count && result.compareTo(key) < 0)) {
                 result = key;
                 maxCount = count;
             }
@@ -77,9 +77,9 @@ public class CalcHistogram {
         int maxCount = 0;
         String result = null;
 
-        for(String key:this.histogram.keySet()) {
+        for (String key : this.histogram.keySet()) {
             int count = this.histogram.get(key);
-            if( (result==null) || (maxCount>count) || (maxCount==count && result.compareTo(key)>0)) {
+            if ((result == null) || (maxCount > count) || (maxCount == count && result.compareTo(key) > 0)) {
                 result = key;
                 maxCount = count;
             }
@@ -90,7 +90,7 @@ public class CalcHistogram {
     /**
      * @return The histogram map.
      */
-    public Map<String,Integer> getHistogram() {
+    public Map<String, Integer> getHistogram() {
         return this.histogram;
     }
 }

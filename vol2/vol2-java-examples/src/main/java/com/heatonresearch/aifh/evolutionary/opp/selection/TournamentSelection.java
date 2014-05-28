@@ -28,140 +28,140 @@
  */
 package com.heatonresearch.aifh.evolutionary.opp.selection;
 
-import java.io.Serializable;
-import java.util.Random;
-
 import com.heatonresearch.aifh.evolutionary.genome.Genome;
-import com.heatonresearch.aifh.evolutionary.opp.selection.SelectionOperator;
 import com.heatonresearch.aifh.evolutionary.species.Species;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
 import com.heatonresearch.aifh.evolutionary.train.basic.BasicEA;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
+
+import java.io.Serializable;
 
 /**
  * Tournament select can be used to select a fit (or unfit) genome from a
  * species. The selection is run a set number of rounds. Each round two random
  * participants are chosen. The more fit participant continues to the next
  * round.
- * 
+ * <p/>
  * http://en.wikipedia.org/wiki/Tournament_selection
- * 
  */
 public class TournamentSelection implements SelectionOperator, Serializable {
-	
-	/**
-	 * The serial id.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The trainer being used.
-	 */
-	private EvolutionaryAlgorithm trainer;
 
-	/**
-	 * The number of rounds.
-	 */
-	private int rounds;
+    /**
+     * The serial id.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Construct a tournament selection.
-	 * @param theTrainer The trainer.
-	 * @param theRounds The number of rounds to use.
-	 */
-	public TournamentSelection(final EvolutionaryAlgorithm theTrainer,
-			final int theRounds) {
-		this.trainer = theTrainer;
-		this.rounds = theRounds;
-	}
+    /**
+     * The trainer being used.
+     */
+    private EvolutionaryAlgorithm trainer;
 
-	/**
-	 * @return The number of rounds.
-	 */
-	public int getRounds() {
-		return this.rounds;
-	}
+    /**
+     * The number of rounds.
+     */
+    private int rounds;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public EvolutionaryAlgorithm getTrainer() {
-		return this.trainer;
-	}
+    /**
+     * Construct a tournament selection.
+     *
+     * @param theTrainer The trainer.
+     * @param theRounds  The number of rounds to use.
+     */
+    public TournamentSelection(final EvolutionaryAlgorithm theTrainer,
+                               final int theRounds) {
+        this.trainer = theTrainer;
+        this.rounds = theRounds;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int performAntiSelection(final GenerateRandom rnd, final Species species) {
-		int worstIndex = rnd.nextInt(species.getMembers().size());
-		Genome worst = species.getMembers().get(worstIndex);
-		BasicEA.calculateScoreAdjustment(worst,
-				this.trainer.getScoreAdjusters());
+    /**
+     * @return The number of rounds.
+     */
+    public int getRounds() {
+        return this.rounds;
+    }
 
-		for (int i = 0; i < this.rounds; i++) {
-			final int competitorIndex = rnd.nextInt(species.getMembers().size());
-			final Genome competitor = species.getMembers().get(competitorIndex);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public EvolutionaryAlgorithm getTrainer() {
+        return this.trainer;
+    }
 
-			// force an invalid genome to lose
-			if (Double.isInfinite(competitor.getAdjustedScore())
-					|| Double.isNaN(competitor.getAdjustedScore())) {
-				return competitorIndex;
-			}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int performAntiSelection(final GenerateRandom rnd, final Species species) {
+        int worstIndex = rnd.nextInt(species.getMembers().size());
+        Genome worst = species.getMembers().get(worstIndex);
+        BasicEA.calculateScoreAdjustment(worst,
+                this.trainer.getScoreAdjusters());
 
-			BasicEA.calculateScoreAdjustment(competitor,
-					this.trainer.getScoreAdjusters());
-			if (!this.trainer.getSelectionComparator().isBetterThan(competitor,
-					worst)) {
-				worst = competitor;
-				worstIndex = competitorIndex;
-			}
-		}
-		return worstIndex;
-	}
+        for (int i = 0; i < this.rounds; i++) {
+            final int competitorIndex = rnd.nextInt(species.getMembers().size());
+            final Genome competitor = species.getMembers().get(competitorIndex);
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int performSelection(final GenerateRandom rnd, final Species species) {
-		int bestIndex = rnd.nextInt(species.getMembers().size());
-		Genome best = species.getMembers().get(bestIndex);
-		BasicEA.calculateScoreAdjustment(best, this.trainer.getScoreAdjusters());
+            // force an invalid genome to lose
+            if (Double.isInfinite(competitor.getAdjustedScore())
+                    || Double.isNaN(competitor.getAdjustedScore())) {
+                return competitorIndex;
+            }
 
-		for (int i = 0; i < this.rounds; i++) {
-			final int competitorIndex = rnd.nextInt(species.getMembers().size());
-			final Genome competitor = species.getMembers().get(competitorIndex);
+            BasicEA.calculateScoreAdjustment(competitor,
+                    this.trainer.getScoreAdjusters());
+            if (!this.trainer.getSelectionComparator().isBetterThan(competitor,
+                    worst)) {
+                worst = competitor;
+                worstIndex = competitorIndex;
+            }
+        }
+        return worstIndex;
+    }
 
-			// only evaluate valid genomes
-			if (!Double.isInfinite(competitor.getAdjustedScore())
-					&& !Double.isNaN(competitor.getAdjustedScore())) {
-				BasicEA.calculateScoreAdjustment(competitor,
-						this.trainer.getScoreAdjusters());
-				if (this.trainer.getSelectionComparator().isBetterThan(
-						competitor, best)) {
-					best = competitor;
-					bestIndex = competitorIndex;
-				}
-			}
-		}
-		return bestIndex;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int performSelection(final GenerateRandom rnd, final Species species) {
+        int bestIndex = rnd.nextInt(species.getMembers().size());
+        Genome best = species.getMembers().get(bestIndex);
+        BasicEA.calculateScoreAdjustment(best, this.trainer.getScoreAdjusters());
 
-	/**
-	 * Set the number of rounds.
-	 * @param rounds The number of rounds.
-	 */
-	public void setRounds(final int rounds) {
-		this.rounds = rounds;
-	}
+        for (int i = 0; i < this.rounds; i++) {
+            final int competitorIndex = rnd.nextInt(species.getMembers().size());
+            final Genome competitor = species.getMembers().get(competitorIndex);
 
-	/**
-	 * Set the trainer.
-	 * @param trainer The trainer.
-	 */
-	public void setTrainer(final EvolutionaryAlgorithm trainer) {
-		this.trainer = trainer;
-	}
+            // only evaluate valid genomes
+            if (!Double.isInfinite(competitor.getAdjustedScore())
+                    && !Double.isNaN(competitor.getAdjustedScore())) {
+                BasicEA.calculateScoreAdjustment(competitor,
+                        this.trainer.getScoreAdjusters());
+                if (this.trainer.getSelectionComparator().isBetterThan(
+                        competitor, best)) {
+                    best = competitor;
+                    bestIndex = competitorIndex;
+                }
+            }
+        }
+        return bestIndex;
+    }
+
+    /**
+     * Set the number of rounds.
+     *
+     * @param rounds The number of rounds.
+     */
+    public void setRounds(final int rounds) {
+        this.rounds = rounds;
+    }
+
+    /**
+     * Set the trainer.
+     *
+     * @param trainer The trainer.
+     */
+    public void setTrainer(final EvolutionaryAlgorithm trainer) {
+        this.trainer = trainer;
+    }
 }

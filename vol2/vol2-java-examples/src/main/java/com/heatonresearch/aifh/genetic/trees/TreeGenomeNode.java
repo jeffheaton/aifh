@@ -56,7 +56,7 @@ public class TreeGenomeNode {
 
     public TreeGenomeNode copy() {
         TreeGenomeNode result = new TreeGenomeNode(opcode);
-        for(TreeGenomeNode child: this.children) {
+        for (TreeGenomeNode child : this.children) {
             result.getChildren().add(child.copy());
         }
         return result;
@@ -64,8 +64,8 @@ public class TreeGenomeNode {
 
     public int size() {
         int result = 1;
-        for(TreeGenomeNode child: this.children) {
-            result+=child.size();
+        for (TreeGenomeNode child : this.children) {
+            result += child.size();
         }
         return result;
     }

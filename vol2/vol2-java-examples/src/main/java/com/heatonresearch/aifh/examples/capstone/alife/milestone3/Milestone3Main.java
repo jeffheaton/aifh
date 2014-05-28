@@ -36,17 +36,11 @@ import com.heatonresearch.aifh.examples.capstone.alife.milestone1.DisplayPlant;
 import com.heatonresearch.aifh.examples.capstone.alife.milestone1.PlantUniverse;
 import com.heatonresearch.aifh.examples.capstone.alife.milestone2.PlantGrowth;
 import com.heatonresearch.aifh.examples.capstone.alife.milestone2.PlantPhysics;
-import com.heatonresearch.aifh.examples.ga.tsp.TSPScore;
 import com.heatonresearch.aifh.genetic.crossover.Splice;
-import com.heatonresearch.aifh.genetic.crossover.SpliceNoRepeat;
 import com.heatonresearch.aifh.genetic.genome.DoubleArrayGenome;
 import com.heatonresearch.aifh.genetic.genome.DoubleArrayGenomeFactory;
-import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenome;
-import com.heatonresearch.aifh.genetic.genome.IntegerArrayGenomeFactory;
 import com.heatonresearch.aifh.genetic.mutate.MutatePerturb;
-import com.heatonresearch.aifh.genetic.mutate.MutateShuffle;
 import com.heatonresearch.aifh.genetic.species.ArraySpeciation;
-import com.heatonresearch.aifh.learning.score.ScoreFunction;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import javax.swing.*;
@@ -93,18 +87,18 @@ public class Milestone3Main extends JFrame implements Runnable {
     private DoubleArrayGenome randomGenome() {
         DoubleArrayGenome genome = new DoubleArrayGenome(PlantUniverse.GENOME_SIZE);
 
-        for(int i=0;i<genome.size();i++) {
-            genome.getData()[i] = rnd.nextDouble(0,1);
+        for (int i = 0; i < genome.size(); i++) {
+            genome.getData()[i] = rnd.nextDouble(0, 1);
         }
         return genome;
     }
 
     /**
      * Create the initial random population.
-     * @return
+     *
+     * @return The population.
      */
-    private Population initPopulation()
-    {
+    private Population initPopulation() {
         Population result = new BasicPopulation(PlantUniverse.POPULATION_SIZE, null);
 
         BasicSpecies defaultSpecies = new BasicSpecies();
@@ -126,15 +120,14 @@ public class Milestone3Main extends JFrame implements Runnable {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-
         this.pop = initPopulation();
-        this.score =  new PlantScore();
-        this.genetic = new BasicEA(pop,score);
+        this.score = new PlantScore();
+        this.genetic = new BasicEA(pop, score);
 
         this.genetic.setSpeciation(new ArraySpeciation<DoubleArrayGenome>());
 
-        genetic.addOperation(0.9,new Splice(PlantUniverse.GENOME_SIZE/3));
-        genetic.addOperation(0.1,new MutatePerturb(0.1));
+        genetic.addOperation(0.9, new Splice(PlantUniverse.GENOME_SIZE / 3));
+        genetic.addOperation(0.1, new MutatePerturb(0.1));
 
         // Display
 
@@ -142,13 +135,13 @@ public class Milestone3Main extends JFrame implements Runnable {
         this.universe.reset();
 
 
-        DoubleArrayGenome bestGenome = (DoubleArrayGenome)genetic.getBestGenome();
+        DoubleArrayGenome bestGenome = (DoubleArrayGenome) genetic.getBestGenome();
         PlantPhysics physics = new PlantPhysics();
         PlantGrowth growth = new PlantGrowth();
 
-        for(int i=0;i<100;i++) {
+        for (int i = 0; i < 100; i++) {
             physics.runPhysics(universe);
-            growth.runGrowth(universe,bestGenome.getData());
+            growth.runGrowth(universe, bestGenome.getData());
         }
 
         this.display = new DisplayPlant();
@@ -173,19 +166,19 @@ public class Milestone3Main extends JFrame implements Runnable {
     @Override
     public void run() {
         int generation = 0;
-        for(;;) {
+        for (; ; ) {
             generation++;
             this.genetic.iteration();
 
             this.universe.reset();
 
-            DoubleArrayGenome bestGenome = (DoubleArrayGenome)this.genetic.getBestGenome();
+            DoubleArrayGenome bestGenome = (DoubleArrayGenome) this.genetic.getBestGenome();
             PlantGrowth growth = new PlantGrowth();
             PlantPhysics physics = new PlantPhysics();
 
-            for(int i=0;i<PlantUniverse.EVALUATION_CYCLES;i++) {
+            for (int i = 0; i < PlantUniverse.EVALUATION_CYCLES; i++) {
                 physics.runPhysics(universe);
-                growth.runGrowth(universe,bestGenome.getData());
+                growth.runGrowth(universe, bestGenome.getData());
             }
 
             this.display.setGeneration(generation);

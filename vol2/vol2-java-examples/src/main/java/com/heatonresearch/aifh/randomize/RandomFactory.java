@@ -33,5 +33,6 @@ package com.heatonresearch.aifh.randomize;
  */
 public interface RandomFactory {
     GenerateRandom factor();
+
     RandomFactory factorFactory();
 }

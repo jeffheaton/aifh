@@ -32,7 +32,7 @@ import javax.swing.*;
 
 /**
  * This is the first milestone for the plants artificial life capstone.
- *
+ * <p/>
  * For this milestone, we would like to just display a "seed".  The seed is the physical starting
  * point for a plant.  Physics imposes limits on seed growth.  The plant genome provides instructions
  * for growth.

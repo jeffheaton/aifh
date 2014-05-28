@@ -38,23 +38,21 @@ import com.heatonresearch.aifh.learning.MLMethod;
  */
 public interface GeneticCODEC {
 
-	/**
-	 * Decode the specified genome into a phenome. A phenome is an actual
-	 * instance of a genome that you can query.
-	 *
-	 * @param genome
-	 *            The genome to decode.
-	 * @return The phenome.
-	 */
-	MLMethod decode(Genome genome);
+    /**
+     * Decode the specified genome into a phenome. A phenome is an actual
+     * instance of a genome that you can query.
+     *
+     * @param genome The genome to decode.
+     * @return The phenome.
+     */
+    MLMethod decode(Genome genome);
 
-	/**
-	 * Attempt to build a genome from a phenome. Note: not all CODEC's support
-	 * this. If it is unsupported, an exception will be thrown.
-	 * 
-	 * @param phenotype
-	 *            The phenotype.
-	 * @return The genome.
-	 */
-	Genome encode(MLMethod phenotype);
+    /**
+     * Attempt to build a genome from a phenome. Note: not all CODEC's support
+     * this. If it is unsupported, an exception will be thrown.
+     *
+     * @param phenotype The phenotype.
+     * @return The genome.
+     */
+    Genome encode(MLMethod phenotype);
 }

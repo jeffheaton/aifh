@@ -36,20 +36,19 @@ import java.util.Random;
  * Generate a random population.
  */
 public interface PopulationGenerator {
-	/**
-	 * Generate a random genome.
-	 * @param rnd A random number generator.
-	 * @return A random genome.
-	 */
-	Genome generate(Random rnd);
+    /**
+     * Generate a random genome.
+     *
+     * @param rnd A random number generator.
+     * @return A random genome.
+     */
+    Genome generate(Random rnd);
 
-	/**
-	 * Generate a random population.
-	 * 
-	 * @param rnd
-	 *            Random number generator.
-	 * @param pop
-	 *            The population to generate into.
-	 */
-	void generate(Random rnd, Population pop);
+    /**
+     * Generate a random population.
+     *
+     * @param rnd Random number generator.
+     * @param pop The population to generate into.
+     */
+    void generate(Random rnd, Population pop);
 }

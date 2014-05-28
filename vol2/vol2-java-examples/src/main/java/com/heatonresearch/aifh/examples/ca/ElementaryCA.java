@@ -39,25 +39,15 @@ import java.awt.event.WindowListener;
 
 /**
  * This example implements an elementary cellular automation.
- *
+ * <p/>
  * References:
  * http://mathworld.wolfram.com/ElementaryCellularAutomaton.html
  */
-public class ElementaryCA  extends JFrame implements ActionListener, WindowListener  {
+public class ElementaryCA extends JFrame implements ActionListener, WindowListener {
     /**
      * The generate button.
      */
     private JButton generateButton;
-
-    /**
-     * The status.
-     */
-    private JLabel status;
-
-    /**
-     * Allow scrolling.
-     */
-    private JScrollPane scroll;
 
     /**
      * The world area.
@@ -91,15 +81,18 @@ public class ElementaryCA  extends JFrame implements ActionListener, WindowListe
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         c.add(buttonPanel, BorderLayout.NORTH);
-        c.add(this.status=new JLabel(), BorderLayout.SOUTH);
+
         buttonPanel.add(new Label("Rule (0-255):"));
         buttonPanel.add(this.ruleInput = new TextField(5));
         this.ruleInput.setText("30");
         buttonPanel.add(generateButton = new JButton("Generate"));
 
-        this.worldArea = new WorldPanel(ROWS,COLS,false);
-        this.scroll = new JScrollPane(this.worldArea);
-        c.add(this.scroll, BorderLayout.CENTER);
+        this.worldArea = new WorldPanel(ROWS, COLS, false);
+        /*
+      Allow scrolling.
+     */
+        final JScrollPane scroll = new JScrollPane(this.worldArea);
+        c.add(scroll, BorderLayout.CENTER);
         generateButton.addActionListener(this);
 
         this.addWindowListener(this);
@@ -183,6 +176,7 @@ public class ElementaryCA  extends JFrame implements ActionListener, WindowListe
 
     /**
      * The main entry point.
+     *
      * @param args The arguments.
      */
     public static void main(String[] args) {
@@ -201,69 +195,62 @@ public class ElementaryCA  extends JFrame implements ActionListener, WindowListe
     public void performGenerate() {
         boolean invalid = false;
         boolean[] output = new boolean[8];
-        int center = this.worldArea.getCols()/2;
-        this.worldArea.getPrimaryGrid()[0][center]=true;
+        int center = this.worldArea.getCols() / 2;
+        this.worldArea.getPrimaryGrid()[0][center] = true;
         boolean[][] grid = this.worldArea.getPrimaryGrid();
 
         // Default to rule 30
         int rule = 30;
 
         try {
-          rule = Integer.parseInt(this.ruleInput.getText());
-            if( rule<0 || rule>255 ) {
+            rule = Integer.parseInt(this.ruleInput.getText());
+            if (rule < 0 || rule > 255) {
                 invalid = true;
             }
-        } catch(NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             invalid = true;
         }
 
-        if(invalid) {
-            JOptionPane.showMessageDialog(null,"Invalid rule number, must be between 0 and 255.");
+        if (invalid) {
+            JOptionPane.showMessageDialog(null, "Invalid rule number, must be between 0 and 255.");
             return;
         }
 
         int cx = 1;
         int idx = 7;
-        while( idx>0) {
-            output[idx--] = (rule & cx)!=0;
-            cx*=2;
+        while (idx > 0) {
+            output[idx--] = (rule & cx) != 0;
+            cx *= 2;
         }
 
-        for(int row=1;row<this.worldArea.getRows();row++) {
-            int prevRow = row-1;
+        for (int row = 1; row < this.worldArea.getRows(); row++) {
+            int prevRow = row - 1;
 
-            for(int i=0;i<this.worldArea.getCols()-2;i++) {
+            for (int i = 0; i < this.worldArea.getCols() - 2; i++) {
                 boolean result = false;
                 boolean a = grid[prevRow][i];
-                boolean b = grid[prevRow][i+1];
-                boolean c = grid[prevRow][i+2];
+                boolean b = grid[prevRow][i + 1];
+                boolean c = grid[prevRow][i + 2];
 
-                if( a && b && c ) {
+                if (a && b && c) {
                     result = output[0];
-                }
-                else if( a && b && !c ) {
+                } else if (a && b && !c) {
                     result = output[1];
-                }
-                else if( a && !b && c ) {
+                } else if (a && !b && c) {
                     result = output[2];
-                }
-                else if( a && !b && !c ) {
+                } else if (a && !b && !c) {
                     result = output[3];
-                }
-                else if( !a && b && c ) {
+                } else if (!a && b && c) {
                     result = output[4];
-                }
-                else if( !a && b && !c ) {
+                } else if (!a && b && !c) {
                     result = output[5];
-                }
-                else if(! a && !b && c ) {
+                } else if (!a && !b && c) {
                     result = output[6];
-                }
-                else if( !a && !b && !c ) {
+                } else if (!a && !b && !c) {
                     result = output[7];
                 }
 
-                grid[row][i+1] = result;
+                grid[row][i + 1] = result;
             }
         }
 

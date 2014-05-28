@@ -44,10 +44,11 @@ public class CalcMean {
 
     /**
      * Update mean for a new value.
+     *
      * @param d The next value.
      */
     public void update(double d) {
-        this.sum+=d;
+        this.sum += d;
         this.count++;
     }
 
@@ -55,6 +56,6 @@ public class CalcMean {
      * @return The calculated mean.
      */
     public double calculate() {
-        return this.sum/this.count;
+        return this.sum / this.count;
     }
 }

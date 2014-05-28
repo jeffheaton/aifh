@@ -37,6 +37,7 @@ import java.util.List;
 
 /**
  * This class is used to choose between several objects with a specified probability.
+ *
  * @param <T> The type of object to choose from.
  */
 public class ChooseObject<T> implements Serializable {
@@ -55,7 +56,7 @@ public class ChooseObject<T> implements Serializable {
      */
     public void finalizeStructure() {
         double[] d = new double[size()];
-        for(int i=0;i<size();i++) {
+        for (int i = 0; i < size(); i++) {
             d[i] = list.get(i).getProbability();
         }
 
@@ -64,11 +65,12 @@ public class ChooseObject<T> implements Serializable {
 
     /**
      * Add an object.
+     *
      * @param probability The probability to choose this object.
-     * @param opp The object to add.
+     * @param opp         The object to add.
      */
     public void add(double probability, T opp) {
-        list.add(new ObjectHolder<T>(opp,probability));
+        list.add(new ObjectHolder<T>(opp, probability));
     }
 
     /**
@@ -80,7 +82,8 @@ public class ChooseObject<T> implements Serializable {
 
     /**
      * Choose a random object.
-     * @param theGenerator
+     *
+     * @param theGenerator  Random number generator.
      * @return The random choice.
      */
     public T pick(GenerateRandom theGenerator) {

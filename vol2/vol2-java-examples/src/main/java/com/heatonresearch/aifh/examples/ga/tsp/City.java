@@ -47,10 +47,8 @@ public class City {
     /**
      * Constructor.
      *
-     * @param x
-     *            The city's x position
-     * @param y
-     *            The city's y position.
+     * @param x The city's x position
+     * @param y The city's y position.
      */
     public City(final int x, final int y) {
         this.xpos = x;
@@ -78,8 +76,7 @@ public class City {
     /**
      * Returns how close the city is to another city.
      *
-     * @param cother
-     *            The other city.
+     * @param cother The other city.
      * @return A distance.
      */
     public int proximity(final City cother) {
@@ -90,10 +87,8 @@ public class City {
      * Returns how far this city is from a a specific point. This method uses
      * the pythagorean theorem to calculate the distance.
      *
-     * @param x
-     *            The x coordinate
-     * @param y
-     *            The y coordinate
+     * @param x The x coordinate
+     * @param y The y coordinate
      * @return The distance.
      */
     int proximity(final int x, final int y) {

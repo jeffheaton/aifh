@@ -28,70 +28,69 @@
  */
 package com.heatonresearch.aifh.evolutionary.species;
 
-import java.util.Collections;
-import java.util.List;
-
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.evolutionary.sort.SortGenomesForSpecies;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * This speciation strategy simply creates a single species that contains the
  * entire population. Use this speciation strategy if you do not wish to use
  * species.
- * 
  */
 public class SingleSpeciation implements Speciation {
 
-	/**
-	 * The trainer.
-	 */
-	private EvolutionaryAlgorithm owner;
+    /**
+     * The trainer.
+     */
+    private EvolutionaryAlgorithm owner;
 
-	/**
-	 * The method used to sort the genomes in the species. More desirable
-	 * genomes should come first for later selection.
-	 */
-	private SortGenomesForSpecies sortGenomes;
+    /**
+     * The method used to sort the genomes in the species. More desirable
+     * genomes should come first for later selection.
+     */
+    private SortGenomesForSpecies sortGenomes;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void init(final EvolutionaryAlgorithm theOwner) {
-		this.owner = theOwner;
-		this.sortGenomes = new SortGenomesForSpecies(this.owner);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void init(final EvolutionaryAlgorithm theOwner) {
+        this.owner = theOwner;
+        this.sortGenomes = new SortGenomesForSpecies(this.owner);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void performSpeciation(final List<Genome> genomeList) {
-		updateShare();
-		final Species species = this.owner.getPopulation().getSpecies().get(0);
-		species.getMembers().clear();
-		species.getMembers().addAll(genomeList);
-		Collections.sort(species.getMembers(), this.sortGenomes);
-		species.setLeader(species.getMembers().get(0));
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void performSpeciation(final List<Genome> genomeList) {
+        updateShare();
+        final Species species = this.owner.getPopulation().getSpecies().get(0);
+        species.getMembers().clear();
+        species.getMembers().addAll(genomeList);
+        Collections.sort(species.getMembers(), this.sortGenomes);
+        species.setLeader(species.getMembers().get(0));
 
-	}
+    }
 
-	/**
-	 * Update the species share of the next population.
-	 */
-	private void updateShare() {
-		final int speciesCount = this.owner.getPopulation().getSpecies().size();
-		if (speciesCount != 1) {
-			throw new AIFHError(
-					"SingleSpeciation can only be used with a species count of 1, species count is "
-							+ speciesCount);
-		}
+    /**
+     * Update the species share of the next population.
+     */
+    private void updateShare() {
+        final int speciesCount = this.owner.getPopulation().getSpecies().size();
+        if (speciesCount != 1) {
+            throw new AIFHError(
+                    "SingleSpeciation can only be used with a species count of 1, species count is "
+                            + speciesCount);
+        }
 
-		final Species species = this.owner.getPopulation().getSpecies().get(0);
-		species.setOffspringCount(this.owner.getPopulation()
-				.getPopulationSize());
-	}
+        final Species species = this.owner.getPopulation().getSpecies().get(0);
+        species.setOffspringCount(this.owner.getPopulation()
+                .getPopulationSize());
+    }
 
 }

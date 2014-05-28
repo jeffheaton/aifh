@@ -53,8 +53,9 @@ public class WorldPanel extends JPanel {
 
     /**
      * The world panel constructor.
-     * @param rows The number of rows in the grid.
-     * @param cols The number of columns in the grid.
+     *
+     * @param rows     The number of rows in the grid.
+     * @param cols     The number of columns in the grid.
      * @param showGrid True, if the grid is to be shown.
      */
     public WorldPanel(final int rows, final int cols, boolean showGrid) {
@@ -96,40 +97,39 @@ public class WorldPanel extends JPanel {
      * {@inheritDoc}
      */
     @Override
-    public void paint(Graphics g)
-    {
+    public void paint(Graphics g) {
         super.paint(g);
 
         int width = this.getWidth();
         int height = this.getHeight();
 
-        double cellWidth = ((double)width/(double)getCols());
-        double cellHeight = ((double)height/(double)getRows());
+        double cellWidth = ((double) width / (double) getCols());
+        double cellHeight = ((double) height / (double) getRows());
 
         g.setColor(Color.WHITE);
-        g.fillRect(0,0,width,height);
+        g.fillRect(0, 0, width, height);
 
-        if( this.showGrid ) {
+        if (this.showGrid) {
             g.setColor(Color.black);
-            for(int row=0;row<getRows();row++) {
-                int y = (int)(row*cellHeight);
-                g.drawLine(0,y,width,y);
+            for (int row = 0; row < getRows(); row++) {
+                int y = (int) (row * cellHeight);
+                g.drawLine(0, y, width, y);
             }
 
-            for(int col=0;col<getCols();col++) {
-                int x = (int)(col*cellWidth);
-                g.drawLine(x,0,x,height);
+            for (int col = 0; col < getCols(); col++) {
+                int x = (int) (col * cellWidth);
+                g.drawLine(x, 0, x, height);
             }
         }
 
-        for(int row=0;row<getRows();row++) {
-            for(int col=0;col<getCols();col++) {
-                int x = (int)(col*cellWidth);
-                int y = (int)(row*cellHeight);
+        for (int row = 0; row < getRows(); row++) {
+            for (int col = 0; col < getCols(); col++) {
+                int x = (int) (col * cellWidth);
+                int y = (int) (row * cellHeight);
 
-                if( this.primaryGrid[row][col] ) {
+                if (this.primaryGrid[row][col]) {
                     g.setColor(Color.black);
-                    g.fillRect(x,y,(int)cellWidth,(int)cellHeight);
+                    g.fillRect(x, y, (int) cellWidth, (int) cellHeight);
                 }
             }
         }
@@ -139,13 +139,10 @@ public class WorldPanel extends JPanel {
      * Advance backup grid to primary.
      */
     public void advanceBackupGrid() {
-        for(int row=0;row<getRows();row++) {
-            for(int col=0;col<getCols();col++) {
-                this.primaryGrid[row][col] = this.backupGrid[row][col];
-            }
+        for (int row = 0; row < getRows(); row++) {
+            System.arraycopy(this.backupGrid[row], 0, this.primaryGrid[row], 0, getCols());
         }
     }
-
 
 
 }

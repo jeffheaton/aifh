@@ -28,7 +28,6 @@
  */
 package com.heatonresearch.aifh.examples.selection;
 
-import com.heatonresearch.aifh.evolutionary.genome.BasicGenome;
 import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.evolutionary.opp.selection.TournamentSelection;
 import com.heatonresearch.aifh.evolutionary.population.BasicPopulation;
@@ -48,9 +47,9 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
  * score between 0 and 999.  There is one genome for each score.  Round counts are tried between one and ten.
  * The average score over 100k selections is reported.  As the number of rounds increases, so does the average
  * score selected.
- *
+ * <p/>
  * Sample output is shown here:
- *
+ * <p/>
  * Rounds: 1, Avg Score: 665
  * Rounds: 2, Avg Score: 749
  * Rounds: 3, Avg Score: 800
@@ -70,7 +69,7 @@ public class TournamentCompareExample {
         Species species = pop.createSpecies();
 
         // Create 1000 genomes, assign the score to be the index number.
-        for(int i=0;i<1000;i++) {
+        for (int i = 0; i < 1000; i++) {
             Genome genome = new IntegerArrayGenome(1);
             genome.setScore(i);
             genome.setAdjustedScore(i);
@@ -82,7 +81,7 @@ public class TournamentCompareExample {
         // Create a trainer with a very simple score function.  We do not care
         // about the calculation of the score, as they will never be calculated.
         // We only care that we are maximizing.
-        EvolutionaryAlgorithm train = new BasicEA(pop,new ScoreFunction() {
+        EvolutionaryAlgorithm train = new BasicEA(pop, new ScoreFunction() {
             @Override
             public double calculateScore(MLMethod method) {
                 return 0;
@@ -95,17 +94,17 @@ public class TournamentCompareExample {
         });
 
         // Perform the test for round counts between 1 and 10.
-        for(int roundCount=1;roundCount<=10;roundCount++) {
-            TournamentSelection selection = new TournamentSelection(train,roundCount);
+        for (int roundCount = 1; roundCount <= 10; roundCount++) {
+            TournamentSelection selection = new TournamentSelection(train, roundCount);
             int sum = 0;
             int count = 0;
-            for(int i=0;i<100000;i++) {
-                int genomeID = selection.performSelection(rnd,species);
+            for (int i = 0; i < 100000; i++) {
+                int genomeID = selection.performSelection(rnd, species);
                 Genome genome = species.getMembers().get(genomeID);
-                sum+=genome.getAdjustedScore();
+                sum += genome.getAdjustedScore();
                 count++;
             }
-            sum/=count;
+            sum /= count;
             System.out.println("Rounds: " + roundCount + ", Avg Score: " + sum);
         }
     }

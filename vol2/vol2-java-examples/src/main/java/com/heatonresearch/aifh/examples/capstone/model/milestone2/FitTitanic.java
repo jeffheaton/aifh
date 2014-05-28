@@ -63,7 +63,8 @@ public class FitTitanic {
 
     /**
      * Train a fold.
-     * @param k The fold number.
+     *
+     * @param k    The fold number.
      * @param fold The fold.
      */
     public void trainFold(int k, CrossValidateFold fold) {
@@ -77,16 +78,16 @@ public class FitTitanic {
         // Create random particles for the RBF.
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
         RBFNetwork[] particles = new RBFNetwork[TitanicConfig.ParticleCount];
-        for(int i=0;i<particles.length;i++) {
-            particles[i] = new RBFNetwork(TitanicConfig.InputFeatureCount,TitanicConfig.RBF_COUNT,1);
+        for (int i = 0; i < particles.length; i++) {
+            particles[i] = new RBFNetwork(TitanicConfig.InputFeatureCount, TitanicConfig.RBF_COUNT, 1);
             particles[i].reset(rnd);
         }
 
         /**
          * Construct a network to hold the best network.
          */
-        if( bestNetwork==null ) {
-            bestNetwork = new RBFNetwork(TitanicConfig.InputFeatureCount,TitanicConfig.RBF_COUNT,1);
+        if (bestNetwork == null) {
+            bestNetwork = new RBFNetwork(TitanicConfig.InputFeatureCount, TitanicConfig.RBF_COUNT, 1);
         }
 
         /**
@@ -99,7 +100,7 @@ public class FitTitanic {
          * Setup particle swarm.
          */
         boolean done = false;
-        TrainPSO train = new TrainPSO(particles,score);
+        TrainPSO train = new TrainPSO(particles, score);
         int iterationNumber = 0;
         StringBuilder line = new StringBuilder();
 
@@ -108,18 +109,18 @@ public class FitTitanic {
 
             train.iteration();
 
-            RBFNetwork best = (RBFNetwork)train.getBestParticle();
+            RBFNetwork best = (RBFNetwork) train.getBestParticle();
             best.getLongTermMemory().clone();
 
             double trainingScore = train.getLastError();
             double validationScore = scoreValidate.calculateScore(best);
 
-            if( validationScore>bestScore ) {
-                System.arraycopy(best.getLongTermMemory(),0,this.bestNetwork.getLongTermMemory(),0,best.getLongTermMemory().length);
+            if (validationScore > bestScore) {
+                System.arraycopy(best.getLongTermMemory(), 0, this.bestNetwork.getLongTermMemory(), 0, best.getLongTermMemory().length);
                 this.bestScore = validationScore;
             }
 
-            if( validationScore>localBest ) {
+            if (validationScore > localBest) {
                 noImprove = 0;
                 localBest = validationScore;
             } else {
@@ -128,7 +129,7 @@ public class FitTitanic {
 
             line.setLength(0);
             line.append("Fold #");
-            line.append(k+1);
+            line.append(k + 1);
             line.append(", Iteration #");
             line.append(iterationNumber);
             line.append(": training correct: ");
@@ -138,7 +139,7 @@ public class FitTitanic {
             line.append(", no improvement: ");
             line.append(noImprove);
 
-            if( noImprove>TitanicConfig.AllowNoImprovement ) {
+            if (noImprove > TitanicConfig.AllowNoImprovement) {
                 done = true;
             }
 
@@ -151,11 +152,12 @@ public class FitTitanic {
 
     /**
      * Fit a RBF model to the titanic.
+     *
      * @param dataPath The path that contains the data file.
      */
     public void process(File dataPath) {
-        File trainingPath = new File(dataPath,TitanicConfig.TrainingFilename);
-        File testPath = new File(dataPath,TitanicConfig.TestFilename);
+        File trainingPath = new File(dataPath, TitanicConfig.TrainingFilename);
+        File testPath = new File(dataPath, TitanicConfig.TestFilename);
 
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
@@ -174,25 +176,25 @@ public class FitTitanic {
                     TitanicConfig.PredictPerish);
 
             // Fold the data for cross validation.
-            this.cross = new CrossValidate(TitanicConfig.FoldCount,training,rnd);
+            this.cross = new CrossValidate(TitanicConfig.FoldCount, training, rnd);
 
             // Train each of the folds.
-            for(int k=0;k<cross.size();k++) {
-                System.out.println("Cross validation fold #" + (k+1) + "/" + cross.size());
-                trainFold(k,cross.getFolds().get(k));
+            for (int k = 0; k < cross.size(); k++) {
+                System.out.println("Cross validation fold #" + (k + 1) + "/" + cross.size());
+                trainFold(k, cross.getFolds().get(k));
             }
 
             // Show the cross validation summary.
             System.out.println("Crossvalidation summary:");
             int k = 1;
-            for(CrossValidateFold fold: cross.getFolds()) {
+            for (CrossValidateFold fold : cross.getFolds()) {
                 System.out.println("Fold #" + k + ": " + fold.getScore());
                 k++;
             }
 
-            System.out.print("Final, crossvalidated score:" +  cross.getScore());
+            System.out.print("Final, crossvalidated score:" + cross.getScore());
 
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
@@ -213,10 +215,11 @@ public class FitTitanic {
 
     /**
      * Main entry point.
+     *
      * @param args The path to the data file.
      */
     public static void main(String[] args) {
-        if( args.length!=1 ) {
+        if (args.length != 1) {
             System.out.println("Please call this program with a single parameter that specifies your data directory.");
             System.exit(0);
         }

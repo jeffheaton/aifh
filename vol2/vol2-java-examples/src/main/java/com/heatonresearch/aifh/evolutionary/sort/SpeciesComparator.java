@@ -28,10 +28,10 @@
  */
 package com.heatonresearch.aifh.evolutionary.sort;
 
-import java.util.Comparator;
-
 import com.heatonresearch.aifh.evolutionary.species.Species;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
+
+import java.util.Comparator;
 
 /**
  * This comparator is used to compare two species. This is done by comparing the
@@ -39,28 +39,27 @@ import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
  */
 public class SpeciesComparator implements Comparator<Species> {
 
-	/**
-	 * The training method.
-	 */
-	private EvolutionaryAlgorithm training;
+    /**
+     * The training method.
+     */
+    private EvolutionaryAlgorithm training;
 
-	/**
-	 * Create a species comparator.
-	 * 
-	 * @param theTraining
-	 *            The trainer.
-	 */
-	public SpeciesComparator(EvolutionaryAlgorithm theTraining) {
-		this.training = theTraining;
-	}
+    /**
+     * Create a species comparator.
+     *
+     * @param theTraining The trainer.
+     */
+    public SpeciesComparator(EvolutionaryAlgorithm theTraining) {
+        this.training = theTraining;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int compare(Species sp1, Species sp2) {
-		return training.getBestComparator().compare(sp1.getLeader(),
-				sp2.getLeader());
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compare(Species sp1, Species sp2) {
+        return training.getBestComparator().compare(sp1.getLeader(),
+                sp2.getLeader());
+    }
 
 }

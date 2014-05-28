@@ -30,7 +30,6 @@ package com.heatonresearch.aifh.examples.ca.mergelife.universe;
 
 import com.heatonresearch.aifh.examples.ca.mergelife.physics.Physics;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
-import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -77,8 +76,9 @@ public class UniverseRunner {
 
     /**
      * The constructor.
+     *
      * @param theUniverse The universe.
-     * @param thePhysics The physics calculator.
+     * @param thePhysics  The physics calculator.
      */
     public UniverseRunner(final Universe theUniverse, final Physics thePhysics) {
         this.universe = theUniverse;
@@ -126,7 +126,8 @@ public class UniverseRunner {
     /**
      * Perform a genetic crossover between two parent universes.  A new universe will be created with attributes
      * from the two parents.
-     * @param rnd Random number generator.
+     *
+     * @param rnd              Random number generator.
      * @param crossoverParent1 The first parent.
      * @param crossoverParent2 The second parent.
      */
@@ -180,10 +181,11 @@ public class UniverseRunner {
 
     /**
      * Perform a mutate on a parent and generate a new child.  The parent is not changed.
-     * @param rnd Random number generator.
+     *
+     * @param rnd           Random number generator.
      * @param sourcePhysics The parent object.
-     * @param probChange The probability of changing an individual element.
-     * @param perturb The amount that an object is changed by.
+     * @param probChange    The probability of changing an individual element.
+     * @param perturb       The amount that an object is changed by.
      */
     public void mutate(final GenerateRandom rnd,
                        final Physics sourcePhysics, final double probChange,
@@ -192,7 +194,7 @@ public class UniverseRunner {
 
         for (int i = 0; i < sourcePhysics.getData().length; i++) {
             if (rnd.nextDouble() < probChange) {
-                getPhysics().getData()[i] += perturb * rnd.nextDouble(-1,1);
+                getPhysics().getData()[i] += perturb * rnd.nextDouble(-1, 1);
             }
         }
 
@@ -200,6 +202,7 @@ public class UniverseRunner {
 
     /**
      * Randomize the universe grid.
+     *
      * @param rnd Random number generator.
      */
     public void randomize(GenerateRandom rnd) {
@@ -211,6 +214,7 @@ public class UniverseRunner {
 
     /**
      * Randomize the universe grid and the physics calculator.
+     *
      * @param rnd A random number generator.
      */
     public void reset(GenerateRandom rnd) {

@@ -26,5 +26,5 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package org.encog.ml.ea.population;
+package com.heatonresearch.aifh.evolutionary.population;
 

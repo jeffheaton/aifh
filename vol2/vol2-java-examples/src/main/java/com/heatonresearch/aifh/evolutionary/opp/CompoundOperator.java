@@ -28,8 +28,6 @@
  */
 package com.heatonresearch.aifh.evolutionary.opp;
 
-import java.util.Random;
-
 import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
 import com.heatonresearch.aifh.general.collections.ObjectHolder;
@@ -41,67 +39,67 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
  */
 public class CompoundOperator implements EvolutionaryOperator {
 
-	/**
-	 * The owner of this operator.
-	 */
-	private EvolutionaryAlgorithm owner;
+    /**
+     * The owner of this operator.
+     */
+    private EvolutionaryAlgorithm owner;
 
-	/**
-	 * The sub-operators that make up this compound operator.
-	 */
-	private final OperationList components = new OperationList();
+    /**
+     * The sub-operators that make up this compound operator.
+     */
+    private final OperationList components = new OperationList();
 
-	/**
-	 * @return the components
-	 */
-	public OperationList getComponents() {
-		return this.components;
-	}
+    /**
+     * @return the components
+     */
+    public OperationList getComponents() {
+        return this.components;
+    }
 
-	/**
-	 * @return the owner
-	 */
-	public EvolutionaryAlgorithm getOwner() {
-		return this.owner;
-	}
+    /**
+     * @return the owner
+     */
+    public EvolutionaryAlgorithm getOwner() {
+        return this.owner;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void init(final EvolutionaryAlgorithm theOwner) {
-		this.owner = theOwner;
-		for (final ObjectHolder<EvolutionaryOperator> obj : this.components
-				.getList()) {
-			obj.getObj().init(theOwner);
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void init(final EvolutionaryAlgorithm theOwner) {
+        this.owner = theOwner;
+        for (final ObjectHolder<EvolutionaryOperator> obj : this.components
+                .getList()) {
+            obj.getObj().init(theOwner);
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int offspringProduced() {
-		return this.components.maxOffspring();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int offspringProduced() {
+        return this.components.maxOffspring();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int parentsNeeded() {
-		return this.components.maxOffspring();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int parentsNeeded() {
+        return this.components.maxOffspring();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void performOperation(final GenerateRandom rnd, final Genome[] parents,
-			final int parentIndex, final Genome[] offspring,
-			final int offspringIndex) {
-		final EvolutionaryOperator opp = this.components.pick(rnd);
-		opp.performOperation(rnd, parents, parentIndex, offspring,
-				offspringIndex);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void performOperation(final GenerateRandom rnd, final Genome[] parents,
+                                 final int parentIndex, final Genome[] offspring,
+                                 final int offspringIndex) {
+        final EvolutionaryOperator opp = this.components.pick(rnd);
+        opp.performOperation(rnd, parents, parentIndex, offspring,
+                offspringIndex);
+    }
 }

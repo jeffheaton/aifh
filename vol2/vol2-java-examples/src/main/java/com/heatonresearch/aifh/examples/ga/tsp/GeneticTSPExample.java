@@ -114,10 +114,10 @@ public class GeneticTSPExample {
 
     /**
      * Create an initial random population of random paths through the cities.
+     *
      * @return The random population.
      */
-    private Population initPopulation()
-    {
+    private Population initPopulation() {
         Population result = new BasicPopulation(POPULATION_SIZE, null);
 
         BasicSpecies defaultSpecies = new BasicSpecies();
@@ -141,10 +141,10 @@ public class GeneticTSPExample {
         boolean first = true;
         int[] path = solution.getData();
 
-        for(int i=0;i<path.length;i++) {
-            if( !first )
+        for (final int aPath : path) {
+            if (!first)
                 System.out.print(">");
-            System.out.print( ""+ path[i]);
+            System.out.print("" + aPath);
             first = false;
         }
 
@@ -161,12 +161,12 @@ public class GeneticTSPExample {
 
         Population pop = initPopulation();
 
-        ScoreFunction score =  new TSPScore(cities);
+        ScoreFunction score = new TSPScore(cities);
 
-        genetic = new BasicEA(pop,score);
+        genetic = new BasicEA(pop, score);
 
-        genetic.addOperation(0.9,new SpliceNoRepeat(CITIES/3));
-        genetic.addOperation(0.1,new MutateShuffle());
+        genetic.addOperation(0.9, new SpliceNoRepeat(CITIES / 3));
+        genetic.addOperation(0.1, new MutateShuffle());
 
         int sameSolutionCount = 0;
         int iteration = 1;
@@ -195,7 +195,7 @@ public class GeneticTSPExample {
         }
 
         System.out.println("Good solution found:");
-        IntegerArrayGenome best = (IntegerArrayGenome)genetic.getBestGenome();
+        IntegerArrayGenome best = (IntegerArrayGenome) genetic.getBestGenome();
         displaySolution(best);
         genetic.finishTraining();
 
@@ -203,6 +203,7 @@ public class GeneticTSPExample {
 
     /**
      * Program entry point.
+     *
      * @param args Not used.
      */
     public static void main(String args[]) {

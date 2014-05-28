@@ -30,7 +30,6 @@ package com.heatonresearch.aifh.examples.capstone.alife.milestone2;
 
 import com.heatonresearch.aifh.examples.capstone.alife.milestone1.DisplayPlant;
 import com.heatonresearch.aifh.examples.capstone.alife.milestone1.PlantUniverse;
-import com.heatonresearch.aifh.randomize.MersenneTwisterFactory;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import javax.swing.*;
@@ -69,8 +68,6 @@ public class Milestone2Main extends JFrame implements Runnable {
         this.universe = new PlantUniverse();
         this.universe.reset();
 
-        MersenneTwisterGenerateRandom rnd = new MersenneTwisterGenerateRandom();
-
         this.display = new DisplayPlant();
         this.display.setUniverse(this.universe);
         this.getContentPane().add(this.display);
@@ -83,6 +80,7 @@ public class Milestone2Main extends JFrame implements Runnable {
 
     /**
      * Start the program.
+     *
      * @param args Not used.
      */
     public static void main(String[] args) {
@@ -98,9 +96,9 @@ public class Milestone2Main extends JFrame implements Runnable {
         PlantPhysics physics = new PlantPhysics();
         PlantGrowth growth = new PlantGrowth();
 
-        for(int i=0;i<PlantUniverse.EVALUATION_CYCLES;i++) {
+        for (int i = 0; i < PlantUniverse.EVALUATION_CYCLES; i++) {
             physics.runPhysics(universe);
-            growth.runGrowth(universe,SAMPLE_PLANT);
+            growth.runGrowth(universe, SAMPLE_PLANT);
             this.display.repaint();
             try {
                 Thread.sleep(100);

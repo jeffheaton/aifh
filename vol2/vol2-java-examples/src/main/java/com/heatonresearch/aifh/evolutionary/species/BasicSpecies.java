@@ -40,263 +40,261 @@ import java.util.List;
  */
 public class BasicSpecies implements Serializable, Species {
 
-	/**
-	 * Serial id.
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * Serial id.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * The age of this species.
-	 */
-	private int age;
+    /**
+     * The age of this species.
+     */
+    private int age;
 
-	/**
-	 * The best score.
-	 */
-	private double bestScore;
+    /**
+     * The best score.
+     */
+    private double bestScore;
 
-	/**
-	 * The number of generations with no improvement.
-	 */
-	private int gensNoImprovement;
+    /**
+     * The number of generations with no improvement.
+     */
+    private int gensNoImprovement;
 
-	/**
-	 * The leader.
-	 */
-	private Genome leader;
+    /**
+     * The leader.
+     */
+    private Genome leader;
 
-	/**
-	 * The list of genomes.
-	 */
-	private final List<Genome> members = new ArrayList<Genome>();
+    /**
+     * The list of genomes.
+     */
+    private final List<Genome> members = new ArrayList<Genome>();
 
-	/**
-	 * The owner class.
-	 */
-	private Population population;
+    /**
+     * The owner class.
+     */
+    private Population population;
 
-	/**
-	 * The offspring count.
-	 */
-	private transient int offspringCount;
-	
-	/**
-	 * The offpsring share (percent).
-	 */
-	private transient double offspringShare;
+    /**
+     * The offspring count.
+     */
+    private transient int offspringCount;
 
-	/**
-	 * Default constructor, used mainly for persistence.
-	 */
-	public BasicSpecies() {
+    /**
+     * The offpsring share (percent).
+     */
+    private transient double offspringShare;
 
-	}
+    /**
+     * Default constructor, used mainly for persistence.
+     */
+    public BasicSpecies() {
 
-	/**
-	 * Construct a species.
-	 * 
-	 * @param thePopulation
-	 *            The population the species belongs to.
-	 * @param theFirst
-	 *            The first genome in the species.
-	 */
-	public BasicSpecies(final Population thePopulation, final Genome theFirst) {
-		this.population = thePopulation;
-		this.bestScore = theFirst.getScore();
-		this.gensNoImprovement = 0;
-		this.age = 0;
-		this.leader = theFirst;
-		this.members.add(theFirst);
-	}
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void add(final Genome genome) {
-		genome.setPopulation(this.population);
-		this.members.add(genome);
-	}
+    /**
+     * Construct a species.
+     *
+     * @param thePopulation The population the species belongs to.
+     * @param theFirst      The first genome in the species.
+     */
+    public BasicSpecies(final Population thePopulation, final Genome theFirst) {
+        this.population = thePopulation;
+        this.bestScore = theFirst.getScore();
+        this.gensNoImprovement = 0;
+        this.age = 0;
+        this.leader = theFirst;
+        this.members.add(theFirst);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public double calculateShare(final boolean shouldMinimize,
-			final double maxScore) {
-		double total = 0;
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void add(final Genome genome) {
+        genome.setPopulation(this.population);
+        this.members.add(genome);
+    }
 
-		int count = 0;
-		for (final Genome genome : this.members) {
-			if (!Double.isNaN(genome.getAdjustedScore())
-					&& !Double.isInfinite(genome.getAdjustedScore())) {
-				double s;
-				if (shouldMinimize) {
-					s = maxScore - genome.getAdjustedScore();
-				} else {
-					s = genome.getAdjustedScore();
-				}
-				total += s;
-				count++;
-			}
-		}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double calculateShare(final boolean shouldMinimize,
+                                 final double maxScore) {
+        double total = 0;
 
-		if (count == 0) {
-			this.offspringShare = 0;
-		} else {
-			this.offspringShare = total / count;
-		}
+        int count = 0;
+        for (final Genome genome : this.members) {
+            if (!Double.isNaN(genome.getAdjustedScore())
+                    && !Double.isInfinite(genome.getAdjustedScore())) {
+                double s;
+                if (shouldMinimize) {
+                    s = maxScore - genome.getAdjustedScore();
+                } else {
+                    s = genome.getAdjustedScore();
+                }
+                total += s;
+                count++;
+            }
+        }
 
-		return this.offspringShare;
-	}
+        if (count == 0) {
+            this.offspringShare = 0;
+        } else {
+            this.offspringShare = total / count;
+        }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getAge() {
-		return this.age;
-	}
+        return this.offspringShare;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public double getBestScore() {
-		return this.bestScore;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getAge() {
+        return this.age;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getGensNoImprovement() {
-		return this.gensNoImprovement;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getBestScore() {
+        return this.bestScore;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Genome getLeader() {
-		return this.leader;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getGensNoImprovement() {
+        return this.gensNoImprovement;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<Genome> getMembers() {
-		return this.members;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Genome getLeader() {
+        return this.leader;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getOffspringCount() {
-		return this.offspringCount;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Genome> getMembers() {
+        return this.members;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public double getOffspringShare() {
-		return this.offspringShare;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getOffspringCount() {
+        return this.offspringCount;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Population getPopulation() {
-		return this.population;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getOffspringShare() {
+        return this.offspringShare;
+    }
 
-	/**
-	 * Purge all members, increase age by one and count the number of
-	 * generations with no improvement.
-	 */
-	public void purge() {
-		this.members.clear();
-		if (this.leader != null) {
-			this.members.add(this.leader);
-		}
-		this.age++;
-		this.gensNoImprovement++;
-		this.offspringCount = 0;
-		this.offspringShare = 0;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Population getPopulation() {
+        return this.population;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setAge(final int theAge) {
-		this.age = theAge;
-	}
+    /**
+     * Purge all members, increase age by one and count the number of
+     * generations with no improvement.
+     */
+    public void purge() {
+        this.members.clear();
+        if (this.leader != null) {
+            this.members.add(this.leader);
+        }
+        this.age++;
+        this.gensNoImprovement++;
+        this.offspringCount = 0;
+        this.offspringShare = 0;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setBestScore(final double theBestScore) {
-		this.bestScore = theBestScore;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setAge(final int theAge) {
+        this.age = theAge;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setGensNoImprovement(final int theGensNoImprovement) {
-		this.gensNoImprovement = theGensNoImprovement;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setBestScore(final double theBestScore) {
+        this.bestScore = theBestScore;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setLeader(final Genome theLeader) {
-		this.leader = theLeader;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setGensNoImprovement(final int theGensNoImprovement) {
+        this.gensNoImprovement = theGensNoImprovement;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setOffspringCount(final int offspringCount) {
-		this.offspringCount = offspringCount;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setLeader(final Genome theLeader) {
+        this.leader = theLeader;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setPopulation(final Population thePopulation) {
-		this.population = thePopulation;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setOffspringCount(final int offspringCount) {
+        this.offspringCount = offspringCount;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String toString() {
-		final StringBuilder result = new StringBuilder();
-		result.append("[BasicSpecies: score=");
-		result.append(getBestScore());
-		result.append(", members=");
-		result.append(this.members.size());
-		result.append(", age=");
-		result.append(this.age);
-		result.append(", no_improv=");
-		result.append(this.gensNoImprovement);
-		result.append(", share=");
-		result.append(this.offspringShare);
-		result.append(", offspring count=");
-		result.append(this.offspringShare);
-		result.append("]");
-		return result.toString();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPopulation(final Population thePopulation) {
+        this.population = thePopulation;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        final StringBuilder result = new StringBuilder();
+        result.append("[BasicSpecies: score=");
+        result.append(getBestScore());
+        result.append(", members=");
+        result.append(this.members.size());
+        result.append(", age=");
+        result.append(this.age);
+        result.append(", no_improv=");
+        result.append(this.gensNoImprovement);
+        result.append(", share=");
+        result.append(this.offspringShare);
+        result.append(", offspring count=");
+        result.append(this.offspringShare);
+        result.append("]");
+        return result.toString();
+    }
 
 }

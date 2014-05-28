@@ -28,36 +28,36 @@
  */
 package com.heatonresearch.aifh.evolutionary.score;
 
-import java.io.Serializable;
-
 import com.heatonresearch.aifh.learning.MLMethod;
 import com.heatonresearch.aifh.learning.score.ScoreFunction;
+
+import java.io.Serializable;
 
 /**
  * An empty score function.  Simply returns zero as the score, always.
  */
 public class EmptyScoreFunction implements ScoreFunction, Serializable {
 
-	/**
-	 * Serial ID.
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * Serial ID.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public double calculateScore(final MLMethod phenotype) {
-		return 0;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double calculateScore(final MLMethod phenotype) {
+        return 0;
+    }
 
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean shouldMinimize() {
-		return true;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean shouldMinimize() {
+        return true;
+    }
 
 }

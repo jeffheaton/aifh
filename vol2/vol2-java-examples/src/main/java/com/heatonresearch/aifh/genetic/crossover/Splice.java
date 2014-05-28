@@ -28,8 +28,6 @@
  */
 package com.heatonresearch.aifh.genetic.crossover;
 
-import java.util.Random;
-
 import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.evolutionary.opp.EvolutionaryOperator;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
@@ -42,84 +40,85 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
  */
 public class Splice implements EvolutionaryOperator {
 
-	/**
-	 * The cut length.
-	 */
-	private final int cutLength;
-	
-	/**
-	 * The owner.
-	 */
-	private EvolutionaryAlgorithm owner;
+    /**
+     * The cut length.
+     */
+    private final int cutLength;
 
-	/**
-	 * Create a slice crossover with the specified cut length.
-	 * @param theCutLength The cut length.
-	 */
-	public Splice(final int theCutLength) {
-		this.cutLength = theCutLength;
-	}
+    /**
+     * The owner.
+     */
+    private EvolutionaryAlgorithm owner;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void performOperation(GenerateRandom rnd, Genome[] parents, int parentIndex,
-			Genome[] offspring, int offspringIndex) {
-		
-		ArrayGenome mother = (ArrayGenome)parents[parentIndex];
-		ArrayGenome father = (ArrayGenome)parents[parentIndex+1];
-		ArrayGenome offspring1 = (ArrayGenome)this.owner.getPopulation().getGenomeFactory().factor();
-		ArrayGenome offspring2 = (ArrayGenome)this.owner.getPopulation().getGenomeFactory().factor();
-		
-		offspring[offspringIndex] = offspring1;
-		offspring[offspringIndex+1] = offspring2;
-		
-		final int geneLength = mother.size();
+    /**
+     * Create a slice crossover with the specified cut length.
+     *
+     * @param theCutLength The cut length.
+     */
+    public Splice(final int theCutLength) {
+        this.cutLength = theCutLength;
+    }
 
-		// the chromosome must be cut at two positions, determine them
-		final int cutpoint1 = (int) (rnd.nextInt(geneLength - this.cutLength));
-		final int cutpoint2 = cutpoint1 + this.cutLength;
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void performOperation(GenerateRandom rnd, Genome[] parents, int parentIndex,
+                                 Genome[] offspring, int offspringIndex) {
 
-		// handle cut section
-		for (int i = 0; i < geneLength; i++) {
-			if (!((i < cutpoint1) || (i > cutpoint2))) {
-				offspring1.copy(father,i,i);
-				offspring2.copy(mother,i,i);
-			}
-		}
+        ArrayGenome mother = (ArrayGenome) parents[parentIndex];
+        ArrayGenome father = (ArrayGenome) parents[parentIndex + 1];
+        ArrayGenome offspring1 = (ArrayGenome) this.owner.getPopulation().getGenomeFactory().factor();
+        ArrayGenome offspring2 = (ArrayGenome) this.owner.getPopulation().getGenomeFactory().factor();
 
-		// handle outer sections
-		for (int i = 0; i < geneLength; i++) {
-			if ((i < cutpoint1) || (i > cutpoint2)) {
-				offspring1.copy(mother,i,i);
-				offspring2.copy(father,i,i);
-			}
-		}
-	}
+        offspring[offspringIndex] = offspring1;
+        offspring[offspringIndex + 1] = offspring2;
 
-	/**
-	 * @return The number of offspring produced, which is 2 for splice crossover.
-	 */
-	@Override
-	public int offspringProduced() {
-		return 2;
-	}
+        final int geneLength = mother.size();
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int parentsNeeded() {
-		return 2;
-	}
+        // the chromosome must be cut at two positions, determine them
+        final int cutpoint1 = rnd.nextInt(geneLength - this.cutLength);
+        final int cutpoint2 = cutpoint1 + this.cutLength;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void init(EvolutionaryAlgorithm theOwner) {
-		this.owner = theOwner;
-		
-	}
+        // handle cut section
+        for (int i = 0; i < geneLength; i++) {
+            if (!((i < cutpoint1) || (i > cutpoint2))) {
+                offspring1.copy(father, i, i);
+                offspring2.copy(mother, i, i);
+            }
+        }
+
+        // handle outer sections
+        for (int i = 0; i < geneLength; i++) {
+            if ((i < cutpoint1) || (i > cutpoint2)) {
+                offspring1.copy(mother, i, i);
+                offspring2.copy(father, i, i);
+            }
+        }
+    }
+
+    /**
+     * @return The number of offspring produced, which is 2 for splice crossover.
+     */
+    @Override
+    public int offspringProduced() {
+        return 2;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int parentsNeeded() {
+        return 2;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void init(EvolutionaryAlgorithm theOwner) {
+        this.owner = theOwner;
+
+    }
 }

@@ -76,6 +76,7 @@ public class CrossValidateFold {
 
     /**
      * Set the score.
+     *
      * @param d The score.
      */
     public void setScore(double d) {

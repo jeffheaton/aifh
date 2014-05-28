@@ -39,13 +39,12 @@ import java.util.List;
  * pheromone trails between the graph nodes.  The pheromone trails increase in strength as ants travel over the
  * edges of the graph.  The pheromone trails decrease over time.  The discrete version of ACO arranges a path
  * to visit the nodes of a graph, that minimizes cost.
- *
+ * <p/>
  * References:
- *
+ * <p/>
  * http://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
- *
+ * <p/>
  * M. Dorigo, Optimization, Learning and Natural Algorithms, PhD thesis, Politecnico di Milano, Italy, 1992.
- *
  */
 public class DiscreteACO {
     /**
@@ -110,7 +109,8 @@ public class DiscreteACO {
 
     /**
      * The constructor.
-     * @param theGraph The graph that we are seeking a minimal path through.
+     *
+     * @param theGraph    The graph that we are seeking a minimal path through.
      * @param theAntCount The number of ants to use.
      */
     public DiscreteACO(CostGraph theGraph, int theAntCount) {
@@ -126,7 +126,7 @@ public class DiscreteACO {
             }
         }
 
-        for(int i=0;i<theAntCount;i++) {
+        for (int i = 0; i < theAntCount; i++) {
             ants.add(new DiscreteAnt(len));
         }
 
@@ -134,19 +134,20 @@ public class DiscreteACO {
 
     /**
      * Calculate the probability of a given ant moving to any of the next nodes.
+     *
      * @param currentIndex The index into the path.
-     * @param ant The ant.
+     * @param ant          The ant.
      * @return The probability of moving to the next node.
      */
     private double[] calculateProbability(int currentIndex, DiscreteAnt ant) {
         double[] result = new double[this.graph.graphSize()];
-        int i = ant.getPath()[currentIndex-1];
+        int i = ant.getPath()[currentIndex - 1];
 
         double d = 0.0;
         for (int l = 0; l < this.graph.graphSize(); l++)
             if (!ant.wasVisited(l))
                 d += Math.pow(this.pheromone[i][l], alpha)
-                        * Math.pow(1.0 / this.graph.cost(i,l), beta);
+                        * Math.pow(1.0 / this.graph.cost(i, l), beta);
 
 
         for (int j = 0; j < this.graph.graphSize(); j++) {
@@ -154,7 +155,7 @@ public class DiscreteACO {
                 result[j] = 0.0;
             } else {
                 double n = Math.pow(this.pheromone[i][j], alpha)
-                        * Math.pow(1.0 / this.graph.cost(i,j), beta);
+                        * Math.pow(1.0 / this.graph.cost(i, j), beta);
                 result[j] = n / d;
             }
         }
@@ -164,20 +165,21 @@ public class DiscreteACO {
 
     /**
      * Choose the next node for an ant to visit.  This is based on probability.
+     *
      * @param currentIndex The step we are at in the path.
-     * @param ant The ant being evaluated.
+     * @param ant          The ant being evaluated.
      * @return The node we will move into.
      */
     private int pickNextNode(int currentIndex, DiscreteAnt ant) {
-        if (currentIndex==0 || this.random.nextDouble() < pr) {
+        if (currentIndex == 0 || this.random.nextDouble() < pr) {
             int index;
             do {
-                index = this.random.nextInt(0,this.graph.graphSize());
-            } while(ant.wasVisited(index));
+                index = this.random.nextInt(0, this.graph.graphSize());
+            } while (ant.wasVisited(index));
             return index;
         }
 
-        double[] prob = calculateProbability(currentIndex,ant);
+        double[] prob = calculateProbability(currentIndex, ant);
 
         double r = this.random.nextDouble();
         double sum = 0;
@@ -213,9 +215,9 @@ public class DiscreteACO {
      * Move the ants forward on their path.
      */
     private void march() {
-        for(int currentIndex = 0;currentIndex<this.graph.graphSize();currentIndex++) {
-            for(DiscreteAnt a: this.ants) {
-                int next = pickNextNode(currentIndex,a);
+        for (int currentIndex = 0; currentIndex < this.graph.graphSize(); currentIndex++) {
+            for (DiscreteAnt a : this.ants) {
+                int next = pickNextNode(currentIndex, a);
                 a.visit(currentIndex, next);
             }
         }
@@ -225,7 +227,7 @@ public class DiscreteACO {
      * Reset the ants.
      */
     private void setupAnts() {
-        for(DiscreteAnt a: this.ants) {
+        for (DiscreteAnt a : this.ants) {
             a.clear();
         }
     }
@@ -236,16 +238,16 @@ public class DiscreteACO {
     private void updateBest() {
         int[] bestPathFound = null;
 
-        for(DiscreteAnt a: this.ants) {
+        for (DiscreteAnt a : this.ants) {
             double cost = a.calculateCost(this.graph.graphSize(), this.graph);
-            if( cost<this.bestCost ) {
+            if (cost < this.bestCost) {
                 bestPathFound = a.getPath();
                 this.bestCost = cost;
             }
         }
 
-        if( bestPathFound!=null ) {
-            System.arraycopy(bestPathFound,0,this.bestPath,0,this.bestPath.length);
+        if (bestPathFound != null) {
+            System.arraycopy(bestPathFound, 0, this.bestPath, 0, this.bestPath.length);
         }
     }
 
@@ -312,6 +314,7 @@ public class DiscreteACO {
 
     /**
      * Set the constant that defines the attractiveness of the pheromone trail.
+     *
      * @param alpha The constant that defines the attractiveness of the pheromone trail.
      */
     public void setAlpha(final double alpha) {
@@ -327,6 +330,7 @@ public class DiscreteACO {
 
     /**
      * Constant that defines the attractiveness of better state transitions (from one node to another).
+     *
      * @param beta The constant that defines the attractiveness of better state transitions (from one node to another).
      */
     public void setBeta(final double beta) {
@@ -342,6 +346,7 @@ public class DiscreteACO {
 
     /**
      * Set the pheromone evaporation level.
+     *
      * @param evaporation The pheromone evaporation level.
      */
     public void setEvaporation(final double evaporation) {
@@ -357,6 +362,7 @@ public class DiscreteACO {
 
     /**
      * Set the amount of pheromone that the nodes of a path share for a trip.
+     *
      * @param q The amount of pheromone that the nodes of a path share for a trip.
      */
     public void setQ(final double q) {
@@ -372,6 +378,7 @@ public class DiscreteACO {
 
     /**
      * Set the base probability.
+     *
      * @param pr The base probability.
      */
     public void setPr(final double pr) {

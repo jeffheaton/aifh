@@ -63,7 +63,7 @@ public class PlantUniverseCell {
      * @return True, if this cell is alive.
      */
     public boolean isAlive() {
-        return this.energy>AIFH.DEFAULT_PRECISION;
+        return this.energy > AIFH.DEFAULT_PRECISION;
     }
 
     /**
@@ -75,7 +75,8 @@ public class PlantUniverseCell {
 
     /**
      * Set the leafyness for the cell.
-     * @param leafyness
+     *
+     * @param leafyness How leafy the cell is.
      */
     public void setLeafyness(final double leafyness) {
         this.leafyness = leafyness;
@@ -90,7 +91,8 @@ public class PlantUniverseCell {
 
     /**
      * Set the energy
-     * @param energy
+     *
+     * @param energy The energy.
      */
     public void setEnergy(final double energy) {
         this.energy = energy;
@@ -105,6 +107,7 @@ public class PlantUniverseCell {
 
     /**
      * Set the nourishment for a cell.
+     *
      * @param nourishment The nourishment.
      */
     public void setNourishment(final double nourishment) {
@@ -120,6 +123,7 @@ public class PlantUniverseCell {
 
     /**
      * Set the calculated sunlight for a cell.
+     *
      * @param calculatedSunlight The calculated sunlight.
      */
     public void setCalculatedSunlight(final double calculatedSunlight) {
@@ -135,7 +139,8 @@ public class PlantUniverseCell {
 
     /**
      * Set the calculated water for a cell.
-     * @param calculatedWater
+     *
+     * @param calculatedWater The calculated water.
      */
     public void setCalculatedWater(final double calculatedWater) {
         this.calculatedWater = calculatedWater;

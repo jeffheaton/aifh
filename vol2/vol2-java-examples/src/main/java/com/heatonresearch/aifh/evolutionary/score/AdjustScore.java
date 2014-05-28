@@ -35,10 +35,11 @@ import com.heatonresearch.aifh.evolutionary.genome.Genome;
  * is stored in the genome's adjusted score.
  */
 public interface AdjustScore {
-	/**
-	 * Calculate the score adjustment.
-	 * @param genome The genome.
-	 * @return The adjusted score.
-	 */
-	double calculateAdjustment(Genome genome);
+    /**
+     * Calculate the score adjustment.
+     *
+     * @param genome The genome.
+     * @return The adjusted score.
+     */
+    double calculateAdjustment(Genome genome);
 }

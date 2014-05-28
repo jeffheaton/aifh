@@ -28,8 +28,6 @@
  */
 package com.heatonresearch.aifh.genetic.mutate;
 
-import java.util.Random;
-
 import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.evolutionary.opp.EvolutionaryOperator;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
@@ -41,57 +39,58 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
  */
 public class MutatePerturb implements EvolutionaryOperator {
 
-	/**
-	 * The amount to perturb by.
-	 */
-	private final double perturbAmount;
+    /**
+     * The amount to perturb by.
+     */
+    private final double perturbAmount;
 
-	/**
-	 * Construct a perturb mutation.
-	 * @param thePerturbAmount The amount to mutate by(percent).
-	 */
-	public MutatePerturb(final double thePerturbAmount) {
-		this.perturbAmount = thePerturbAmount;
-	}
+    /**
+     * Construct a perturb mutation.
+     *
+     * @param thePerturbAmount The amount to mutate by(percent).
+     */
+    public MutatePerturb(final double thePerturbAmount) {
+        this.perturbAmount = thePerturbAmount;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void performOperation(GenerateRandom rnd, Genome[] parents, int parentIndex,
-			Genome[] offspring, int offspringIndex) {
-		DoubleArrayGenome parent = (DoubleArrayGenome)parents[parentIndex];
-		offspring[offspringIndex] = parent.getPopulation().getGenomeFactory().factor();
-		DoubleArrayGenome child = (DoubleArrayGenome)offspring[offspringIndex];
-		
-		for(int i=0;i<parent.size();i++) {
-			double value = parent.getData()[i];
-			value += value * (perturbAmount - (rnd.nextDouble() * perturbAmount * 2));
-			child.getData()[i] = value;
-		}
-	}
-	
-	/**
-	 * @return The number of offspring produced, which is 1 for this mutation.
-	 */
-	@Override
-	public int offspringProduced() {
-		return 1;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void performOperation(GenerateRandom rnd, Genome[] parents, int parentIndex,
+                                 Genome[] offspring, int offspringIndex) {
+        DoubleArrayGenome parent = (DoubleArrayGenome) parents[parentIndex];
+        offspring[offspringIndex] = parent.getPopulation().getGenomeFactory().factor();
+        DoubleArrayGenome child = (DoubleArrayGenome) offspring[offspringIndex];
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int parentsNeeded() {
-		return 1;
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void init(EvolutionaryAlgorithm theOwner) {
-		// not needed
-	}
+        for (int i = 0; i < parent.size(); i++) {
+            double value = parent.getData()[i];
+            value += value * (perturbAmount - (rnd.nextDouble() * perturbAmount * 2));
+            child.getData()[i] = value;
+        }
+    }
+
+    /**
+     * @return The number of offspring produced, which is 1 for this mutation.
+     */
+    @Override
+    public int offspringProduced() {
+        return 1;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int parentsNeeded() {
+        return 1;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void init(EvolutionaryAlgorithm theOwner) {
+        // not needed
+    }
 }

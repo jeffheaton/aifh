@@ -32,17 +32,16 @@ package com.heatonresearch.aifh.evolutionary.genome;
  * Defines a factory that produces genomes.
  */
 public interface GenomeFactory {
-	/**
-	 * @return The newly created genome.
-	 */
-	Genome factor();
+    /**
+     * @return The newly created genome.
+     */
+    Genome factor();
 
-	/**
-	 * Create a clone of the other genome.
-	 * 
-	 * @param other
-	 *            The other genome.
-	 * @return The newly created clone.
-	 */
-	Genome factor(Genome other);
+    /**
+     * Create a clone of the other genome.
+     *
+     * @param other The other genome.
+     * @return The newly created clone.
+     */
+    Genome factor(Genome other);
 }

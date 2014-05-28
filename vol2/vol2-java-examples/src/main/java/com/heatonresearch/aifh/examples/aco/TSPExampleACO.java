@@ -85,10 +85,10 @@ public class TSPExampleACO implements CostGraph {
 
         boolean first = true;
 
-        for(int i=0;i<path.length;i++) {
-            if( !first )
+        for (final int aPath : path) {
+            if (!first)
                 System.out.print(">");
-            System.out.print( ""+ path[i]);
+            System.out.print("" + aPath);
             first = false;
         }
 
@@ -102,7 +102,7 @@ public class TSPExampleACO implements CostGraph {
         StringBuilder builder = new StringBuilder();
 
         initCities();
-        DiscreteACO aco = new DiscreteACO(this,50);
+        DiscreteACO aco = new DiscreteACO(this, 50);
 
         int sameSolutionCount = 0;
         int iteration = 1;
@@ -137,6 +137,7 @@ public class TSPExampleACO implements CostGraph {
 
     /**
      * Program entry point.
+     *
      * @param args Not used.
      */
     public static void main(String args[]) {

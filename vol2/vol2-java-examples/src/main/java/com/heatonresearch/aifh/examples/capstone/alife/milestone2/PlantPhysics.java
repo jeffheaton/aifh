@@ -34,7 +34,7 @@ import com.heatonresearch.aifh.examples.capstone.alife.milestone1.PlantUniverseC
 /**
  * The physics class defines limits on the growth that the genome wants to implement.  Specifically, the physics
  * determines how sunlight is absorbed and nourishment is distributed in the plant.
- *
+ * <p/>
  * Sunlight comes from above and stops at the ground level. More leafy material absorbs sunlight and reduces it
  * because of shade.  Water comes from below and is absorbed by the roots.
  */
@@ -42,21 +42,22 @@ public class PlantPhysics {
 
     /**
      * Distribute the sunlight energy in the universe.
+     *
      * @param universe The universe.
      */
     private void distributeEnergy(PlantUniverse universe) {
         // Distribute sun energy downward
         double[] sunlight = new double[PlantUniverse.UNIVERSE_WIDTH];
-        for(int i=0;i<sunlight.length;i++) {
+        for (int i = 0; i < sunlight.length; i++) {
             sunlight[i] = 1.0;
         }
 
-        for(int row=0;row<PlantUniverse.UNIVERSE_HEIGHT;row++) {
-            for(int col=0;col<PlantUniverse.UNIVERSE_WIDTH;col++) {
+        for (int row = 0; row < PlantUniverse.UNIVERSE_HEIGHT; row++) {
+            for (int col = 0; col < PlantUniverse.UNIVERSE_WIDTH; col++) {
                 double decay;
 
                 // no sun underground
-                if( row>=PlantUniverse.GROUND_LINE ) {
+                if (row >= PlantUniverse.GROUND_LINE) {
                     // blocked
                     decay = 0;
                 } else {
@@ -64,23 +65,23 @@ public class PlantPhysics {
                     decay = 1;
                 }
 
-                PlantUniverseCell cell = universe.getCell(row,col);
+                PlantUniverseCell cell = universe.getCell(row, col);
                 cell.setCalculatedSunlight(sunlight[col]);
 
                 // Collect resources for live cells
-                if( cell.isAlive() ) {
+                if (cell.isAlive()) {
                     // Live cells cause the sunlight to decay (shade)
                     decay *= PlantUniverse.DECAY * cell.getLeafyness();
 
                     // Set the energy based on sunlight level and composition of the live cell
-                    double myEnergy = cell.getCalculatedSunlight()*cell.getLeafyness();
-                    double transEnergy = universe.calculateTransferEnergy(row,col) * (1.0 - cell.getLeafyness());
-                    double e = Math.max(myEnergy,transEnergy);
-                    e = Math.max(PlantUniverse.MIN_LIVING_ENERGY,e);
+                    double myEnergy = cell.getCalculatedSunlight() * cell.getLeafyness();
+                    double transEnergy = universe.calculateTransferEnergy(row, col) * (1.0 - cell.getLeafyness());
+                    double e = Math.max(myEnergy, transEnergy);
+                    e = Math.max(PlantUniverse.MIN_LIVING_ENERGY, e);
                     cell.setEnergy(e);
                 }
 
-                sunlight[col]*=decay;
+                sunlight[col] *= decay;
 
             }
         }
@@ -88,6 +89,7 @@ public class PlantPhysics {
 
     /**
      * Distribute nourishment in the universe.
+     *
      * @param universe The universe.
      */
     private void distributeNourishment(PlantUniverse universe) {
@@ -96,16 +98,16 @@ public class PlantPhysics {
 
         // Distribute sun energy downward
         double[] waterTable = new double[PlantUniverse.UNIVERSE_WIDTH];
-        for(int i=0;i<waterTable.length;i++) {
+        for (int i = 0; i < waterTable.length; i++) {
             waterTable[i] = 1.0;
         }
 
-        for(int row=PlantUniverse.UNIVERSE_HEIGHT-1;row>=0;row--) {
-            for(int col=0;col<PlantUniverse.UNIVERSE_WIDTH;col++) {
+        for (int row = PlantUniverse.UNIVERSE_HEIGHT - 1; row >= 0; row--) {
+            for (int col = 0; col < PlantUniverse.UNIVERSE_WIDTH; col++) {
                 double decay;
 
                 // no water above ground
-                if( row<PlantUniverse.GROUND_LINE ) {
+                if (row < PlantUniverse.GROUND_LINE) {
                     // blocked
                     decay = 0;
                 } else {
@@ -113,30 +115,30 @@ public class PlantPhysics {
                     decay = 1;
                 }
 
-                PlantUniverseCell cell = universe.getCell(row,col);
+                PlantUniverseCell cell = universe.getCell(row, col);
                 cell.setCalculatedWater(waterTable[col]);
 
                 // Collect resources for live cells
-                if( cell.isAlive() ) {
+                if (cell.isAlive()) {
                     // Live cells cause the water to decay (roots collect)
                     decay *= PlantUniverse.DECAY;
 
                     // Set the energy based on sunlight level and composition of the live cell
-                    double myWater = cell.getCalculatedWater()*cell.getLeafyness();
+                    double myWater = cell.getCalculatedWater() * cell.getLeafyness();
                     double transWater = universe.calculateTransferNourishment(row, col) * (1.0 - cell.getLeafyness());
-                    double n = Math.max(myWater,transWater);
-                    n = Math.max(PlantUniverse.MIN_LIVING_ENERGY,n);
+                    double n = Math.max(myWater, transWater);
+                    n = Math.max(PlantUniverse.MIN_LIVING_ENERGY, n);
                     cell.setNourishment(n);
 
                     // update the root and surface counts
-                    if( row>=PlantUniverse.GROUND_LINE ) {
-                        rootCount+=cell.getNourishment();
+                    if (row >= PlantUniverse.GROUND_LINE) {
+                        rootCount += cell.getNourishment();
                     } else {
-                        surfaceCount+=cell.getLeafyness();
+                        surfaceCount += cell.getLeafyness();
                     }
                 }
 
-                waterTable[col]*=decay;
+                waterTable[col] *= decay;
 
             }
         }

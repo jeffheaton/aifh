@@ -28,8 +28,6 @@
  */
 package com.heatonresearch.aifh.genetic.trees;
 
-import com.heatonresearch.aifh.genetic.trees.TreeGenomeNode;
-
 /**
  * Created with IntelliJ IDEA.
  * User: jheaton

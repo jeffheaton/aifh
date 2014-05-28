@@ -51,7 +51,7 @@ public class TreeGenome extends BasicGenome implements RegressionAlgorithm {
 
     @Override
     public void copy(final Genome source) {
-        this.root = ((TreeGenome)source).getRoot().copy();
+        this.root = ((TreeGenome) source).getRoot().copy();
     }
 
     @Override
@@ -79,7 +79,7 @@ public class TreeGenome extends BasicGenome implements RegressionAlgorithm {
     @Override
     public double[] computeRegression(final double[] input) {
         double[] result = new double[1];
-        result[0] =  evaluator.evaluate(this.root,input);
+        result[0] = evaluator.evaluate(this.root, input);
         return result;
     }
 }

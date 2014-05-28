@@ -38,6 +38,7 @@ import java.io.IOException;
 public interface Physics {
     /**
      * Copy the physics constants vector from another array.
+     *
      * @param sourceData The source vector to copy.
      */
     void copyData(double[] sourceData);
@@ -49,6 +50,7 @@ public interface Physics {
 
     /**
      * Load the physical constants vector from a text file.
+     *
      * @param filename The filename.
      * @throws IOException
      */
@@ -56,6 +58,7 @@ public interface Physics {
 
     /**
      * Save the physical constants vector to a text file.
+     *
      * @param filename The filename.
      * @throws IOException
      */
@@ -63,9 +66,10 @@ public interface Physics {
 
     /**
      * Perform the actual physics.
+     *
      * @param outputUniverse The new output universe.
-     * @param row The row of the cell we are processing.
-     * @param col The column of the cell we are processing.
+     * @param row            The row of the cell we are processing.
+     * @param col            The column of the cell we are processing.
      */
     void processPixel(Universe outputUniverse, int row, int col);
 

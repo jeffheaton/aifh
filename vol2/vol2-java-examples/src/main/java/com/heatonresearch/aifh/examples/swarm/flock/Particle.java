@@ -43,6 +43,7 @@ public class Particle {
 
     /**
      * The constructor.
+     *
      * @param dimensions The dimensions.
      */
     public Particle(int dimensions) {

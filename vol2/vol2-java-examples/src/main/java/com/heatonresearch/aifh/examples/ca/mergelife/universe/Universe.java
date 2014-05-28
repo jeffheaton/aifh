@@ -43,8 +43,9 @@ public class Universe implements Cloneable {
 
     /**
      * The constructor.
-     * @param height The universe height.
-     * @param width The universe width.
+     *
+     * @param height  The universe height.
+     * @param width   The universe width.
      * @param theSize The number of dimensions in a universe cell.
      */
     public Universe(final int height, final int width, final int theSize) {
@@ -59,10 +60,11 @@ public class Universe implements Cloneable {
 
     /**
      * Add the specified value to the specified dimension of the specified cell.
+     *
      * @param row The cell's row.
      * @param col The cell's column.
-     * @param i The index of the dimension to add to.
-     * @param d The value to add to the cell.
+     * @param i   The index of the dimension to add to.
+     * @param d   The value to add to the cell.
      */
     public void add(final int row, final int col, final int i, final double d) {
         this.data[row][col].add(i, d);
@@ -83,6 +85,7 @@ public class Universe implements Cloneable {
     /**
      * Compare this universe to another and return the difference.  A value of zero indicates an identical universe.
      * The lower the value, the more similar.
+     *
      * @param otherUniverse The other universe.
      * @return The difference between the universes.
      */
@@ -106,6 +109,7 @@ public class Universe implements Cloneable {
 
     /**
      * Copy another universe into this one.
+     *
      * @param source The source universe.
      */
     public void copy(final Universe source) {
@@ -120,6 +124,7 @@ public class Universe implements Cloneable {
 
     /**
      * Get the universe cell for the specified row and column.
+     *
      * @param row The row.
      * @param col The column.
      * @return The universe cell.
@@ -130,9 +135,10 @@ public class Universe implements Cloneable {
 
     /**
      * Get the universe cell for the specified row, column and index.
+     *
      * @param row The row of the cell.
      * @param col The column of the cell.
-     * @param i The index (dimension) inside the cell.
+     * @param i   The index (dimension) inside the cell.
      * @return The value.
      */
     public double get(final int row, final int col, final int i) {
@@ -141,6 +147,7 @@ public class Universe implements Cloneable {
 
     /**
      * The number of dimensions inside a cell.
+     *
      * @return The size of a cell.
      */
     public int getCellSize() {
@@ -170,6 +177,7 @@ public class Universe implements Cloneable {
 
     /**
      * Determine if row and col are valid.  Both must be above zero and within the height and width.
+     *
      * @param row The row.
      * @param col The column.
      * @return True, if valid.
@@ -180,6 +188,7 @@ public class Universe implements Cloneable {
 
     /**
      * Randomize the universe.
+     *
      * @param rnd A random number generator.
      */
     public void randomize(GenerateRandom rnd) {

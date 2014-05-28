@@ -43,6 +43,7 @@ public class UniverseCell {
 
     /**
      * Construct a universe cell with the specified number of properties.
+     *
      * @param theSize The number of properties.
      */
     public UniverseCell(final int theSize) {
@@ -51,6 +52,7 @@ public class UniverseCell {
 
     /**
      * Add the specified value to the specified property.
+     *
      * @param i The property index.
      * @param d The other value to add.
      */
@@ -60,6 +62,7 @@ public class UniverseCell {
 
     /**
      * Add the properties of another cell to this one.
+     *
      * @param otherCell The other cell.
      */
     public void add(final UniverseCell otherCell) {
@@ -70,6 +73,7 @@ public class UniverseCell {
 
     /**
      * Get a property.
+     *
      * @param i The index of the property.
      * @return The property value.
      */
@@ -79,6 +83,7 @@ public class UniverseCell {
 
     /**
      * Get an average of the properties.
+     *
      * @return The propety average.
      */
     public double getAvg() {
@@ -98,17 +103,19 @@ public class UniverseCell {
 
     /**
      * Randomize the properties between (-1,1).
+     *
      * @param rnd A random number generator.
      */
     public void randomize(GenerateRandom rnd) {
         for (int i = 0; i < this.prop.length; i++) {
-            this.prop[i] = rnd.nextDouble(-1,1);
+            this.prop[i] = rnd.nextDouble(-1, 1);
         }
 
     }
 
     /**
      * Set the specified property.
+     *
      * @param i The index of the property.
      * @param d The property value.
      */
@@ -119,6 +126,7 @@ public class UniverseCell {
 
     /**
      * Set this cell's properties to another cell.
+     *
      * @param otherCell The other cell.
      */
     public void set(final UniverseCell otherCell) {

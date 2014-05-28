@@ -28,73 +28,71 @@
  */
 package com.heatonresearch.aifh.evolutionary.opp.selection;
 
-import java.io.Serializable;
-import java.util.Random;
-
-import com.heatonresearch.aifh.evolutionary.opp.selection.SelectionOperator;
 import com.heatonresearch.aifh.evolutionary.species.Species;
 import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
+import java.io.Serializable;
+
 /**
  * Truncation selection chooses a random genome from the top genomes in the
  * population. A percent determines how large this group of top genomes is.
- * 
+ * <p/>
  * http://en.wikipedia.org/wiki/Truncation_selection
  */
 public class TruncationSelection implements SelectionOperator, Serializable {
 
-	/**
-	 * The serial id.
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * The serial id.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * The trainer.
-	 */
-	private EvolutionaryAlgorithm trainer;
+    /**
+     * The trainer.
+     */
+    private EvolutionaryAlgorithm trainer;
 
-	/**
-	 * The percent to select from.
-	 */
-	private double percent;
+    /**
+     * The percent to select from.
+     */
+    private double percent;
 
-	/**
-	 * Construct the truncation selector.
-	 * @param theTrainer The trainer.
-	 * @param thePercent The top percent to select from.
-	 */
-	public TruncationSelection(EvolutionaryAlgorithm theTrainer,
-			double thePercent) {
-		this.trainer = theTrainer;
-		this.percent = thePercent;
-	}
+    /**
+     * Construct the truncation selector.
+     *
+     * @param theTrainer The trainer.
+     * @param thePercent The top percent to select from.
+     */
+    public TruncationSelection(EvolutionaryAlgorithm theTrainer,
+                               double thePercent) {
+        this.trainer = theTrainer;
+        this.percent = thePercent;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int performSelection(GenerateRandom rnd, Species species) {
-		int top = Math.max((int) (species.getMembers().size() * this.percent),
-				1);
-		int result = rnd.nextInt(top);
-		return result;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int performSelection(GenerateRandom rnd, Species species) {
+        int top = Math.max((int) (species.getMembers().size() * this.percent),
+                1);
+        return rnd.nextInt(top);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int performAntiSelection(GenerateRandom rnd, Species species) {
-		return species.getMembers().size() - performSelection(rnd, species);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int performAntiSelection(GenerateRandom rnd, Species species) {
+        return species.getMembers().size() - performSelection(rnd, species);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public EvolutionaryAlgorithm getTrainer() {
-		return this.trainer;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public EvolutionaryAlgorithm getTrainer() {
+        return this.trainer;
+    }
 
 }

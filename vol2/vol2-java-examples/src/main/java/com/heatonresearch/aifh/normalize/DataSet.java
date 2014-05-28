@@ -338,7 +338,7 @@ public class DataSet {
             classes.add(obj[column].toString());
         }
         // assign numeric values to each class
-        final Map<String, Integer> result = new HashMap<String,Integer>();
+        final Map<String, Integer> result = new HashMap<String, Integer>();
         int index = 0;
         for (final String className : classes) {
             result.put(className, index++);

@@ -50,7 +50,8 @@ public class ContinuousAnt implements Comparable<ContinuousAnt> {
 
     /**
      * The constructor.
-     * @param n The number of parameters (dimensions).
+     *
+     * @param n                 The number of parameters (dimensions).
      * @param theShouldMinimize True, if we are minimizing.
      */
     public ContinuousAnt(int n, boolean theShouldMinimize) {
@@ -67,6 +68,7 @@ public class ContinuousAnt implements Comparable<ContinuousAnt> {
 
     /**
      * Set the score for this ant.
+     *
      * @param score The score.
      */
     public void setScore(final double score) {
@@ -85,10 +87,10 @@ public class ContinuousAnt implements Comparable<ContinuousAnt> {
      */
     @Override
     public int compareTo(final ContinuousAnt o) {
-        if( shouldMinimize ) {
-            return Double.compare(getScore(),o.getScore());
+        if (shouldMinimize) {
+            return Double.compare(getScore(), o.getScore());
         } else {
-            return Double.compare(o.getScore(),getScore());
+            return Double.compare(o.getScore(), getScore());
         }
     }
 }

@@ -45,6 +45,7 @@ public class DiscreteAnt {
 
     /**
      * The constructor.
+     *
      * @param theLength The path length.
      */
     public DiscreteAnt(int theLength) {
@@ -54,8 +55,9 @@ public class DiscreteAnt {
 
     /**
      * Visit the specified node, and record.
+     *
      * @param currentIndex The current index.
-     * @param node The node visited.
+     * @param node         The node visited.
      */
     public void visit(int currentIndex, int node) {
         path[currentIndex] = node;
@@ -64,6 +66,7 @@ public class DiscreteAnt {
 
     /**
      * Was the specified node visited.
+     *
      * @param i The node index.
      * @return True, if visited.
      */
@@ -73,14 +76,15 @@ public class DiscreteAnt {
 
     /**
      * Calculate the cost, up to the current point.
+     *
      * @param currentIndex The current point.
-     * @param graph The cost graph.
+     * @param graph        The cost graph.
      * @return The current cost.
      */
     public double calculateCost(int currentIndex, CostGraph graph) {
-        double length = graph.cost(path[currentIndex - 1],path[0]);
+        double length = graph.cost(path[currentIndex - 1], path[0]);
         for (int i = 0; i < currentIndex - 1; i++) {
-            length += graph.cost(path[i],path[i + 1]);
+            length += graph.cost(path[i], path[i + 1]);
         }
         return length;
     }

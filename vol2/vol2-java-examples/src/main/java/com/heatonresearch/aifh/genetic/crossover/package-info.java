@@ -26,5 +26,5 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package org.encog.ml.genetic.crossover;
+package com.heatonresearch.aifh.genetic.crossover;
 
