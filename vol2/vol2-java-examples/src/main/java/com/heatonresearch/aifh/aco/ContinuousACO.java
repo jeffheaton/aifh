@@ -10,27 +10,84 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 import java.util.Arrays;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/5/14
- * Time: 3:14 PM
- * To change this template use File | Settings | File Templates.
+ * This class implements continuous ant colony optimization (CACO)
+ *
+ * References:
+ *
+ * Training Neural Networks with Ant Colony Optimization,
+ * Arun Pandian, Spring, 2013
+ *
+ * Krzysztof Socha and Christian Blum. “An ant colony optimization algorithm for
+ * continuous optimization: application to feed-forward neural network training”, in
+ * Springer London (2007).
+ *
+ * M.Dorigo, V.Maniezzo, and A.Colorni. “Ant System: Optimization by a colony of
+ * cooperating agents”, in IEEE Transactions on Systems, Man, and Cybernetics,
+ * 1996.
  */
 public class ContinuousACO implements LearningMethod {
+    /**
+     * Sigma constant. Minimum standard deviation.
+     */
     public static final double CONST_SIGMA = 0.1;
+
+    /**
+     * Q constant.  Weighting exponent factor.
+     */
     public static final double CONST_Q = 0.08;
 
+    /**
+     * The population of ants.
+     */
     private final ContinuousAnt[] population;
+
+    /**
+     * The population size.
+     */
     private final int populationSize;
+
+    /**
+     * The parameter count.
+     */
     private int paramCount = 0;
+
+    /**
+     * The weighting of each ant.
+     */
     private final double[] weighting;
+
+    /**
+     * The sum of the weighting.
+     */
     private double sumWeighting = 0;
+
+
+    /**
+     * Epsilon, learning rate.
+     */
     private double epsilon = .75;
+
+    /**
+     * Random number generation.
+     */
     private GenerateRandom random;
 
+    /**
+     * The algorithm that we are fitting.
+     */
     private MLMethod algorithm;
+
+    /**
+     * The score function.
+     */
     private ScoreFunction score;
 
+    /**
+     * The constructor.
+     * @param theAlgorithm The algorithm to fit.
+     * @param theScore The score function.
+     * @param thePopulationSize The population size.
+     */
     public ContinuousACO(final MLMethod theAlgorithm, final ScoreFunction theScore, final int thePopulationSize) {
         this.algorithm = theAlgorithm;
         this.populationSize = thePopulationSize;
@@ -55,6 +112,9 @@ public class ContinuousACO implements LearningMethod {
 
     }
 
+    /**
+     * Update the score.
+     */
     private void updateScore() {
 
         for (final ContinuousAnt aPopulation : this.population) {
@@ -63,6 +123,9 @@ public class ContinuousACO implements LearningMethod {
         }
     }
 
+    /**
+     * Compute the weighting for each ant.
+     */
     private void computeWeighting() {
         sumWeighting = 0;
         for (int i = 0; i < this.populationSize; i++) {
@@ -73,6 +136,12 @@ public class ContinuousACO implements LearningMethod {
         }
     }
 
+    /**
+     * Compute the standard deviation.
+     * @param x The parameter to compute for.
+     * @param l The population member.
+     * @return The standard deviation.
+     */
     private double computeSD(int x, int l) {
         double sum = 0.0;
         for (int i = 0; i < this.populationSize; i++) {
@@ -84,6 +153,10 @@ public class ContinuousACO implements LearningMethod {
         return (epsilon * sum);
     }
 
+    /**
+     * Select a probability distribution function (PDF).
+     * @return The PDF index.
+     */
     private int selectPDF() {
         int l = 0;
         double temp = 0;
@@ -99,6 +172,9 @@ public class ContinuousACO implements LearningMethod {
         return l;
     }
 
+    /**
+     * Sample new parameters.
+     */
     private void sampleSolutions() {
         for (int i = this.populationSize; i < this.population.length; i++) {
             int pdf = selectPDF();
@@ -111,14 +187,24 @@ public class ContinuousACO implements LearningMethod {
         }
     }
 
+    /**
+     * @return The value for epsilon, the learning rate.
+     */
     public double getEpsilon() {
         return epsilon;
     }
 
+    /**
+     * Set epsilon, the learning rate.
+     * @param epsilon
+     */
     public void setEpsilon(final double epsilon) {
         this.epsilon = epsilon;
     }
 
+    /**
+     * @return Random number generator.
+     */
     public GenerateRandom getRandom() {
         return random;
     }
@@ -127,6 +213,9 @@ public class ContinuousACO implements LearningMethod {
         this.random = random;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void iteration() {
         computeWeighting();
@@ -135,16 +224,25 @@ public class ContinuousACO implements LearningMethod {
         Arrays.sort(this.population);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getLastError() {
         return this.population[0].getScore();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean done() {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getStatus() {
         return "";

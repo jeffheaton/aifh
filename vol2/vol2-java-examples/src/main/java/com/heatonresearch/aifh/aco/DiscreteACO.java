@@ -140,6 +140,7 @@ public class DiscreteACO {
         }
     }
 
+
     public void iteration() {
         setupAnts();
         march();
