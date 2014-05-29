@@ -95,7 +95,7 @@ public class ModelSpeciationIris extends SimpleLearn {
     }
 
     public static void main(final String[] args) {
-        final ModelIris prg = new ModelIris();
+        final ModelSpeciationIris prg = new ModelSpeciationIris();
         prg.process();
     }
 

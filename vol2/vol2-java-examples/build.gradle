@@ -130,6 +130,9 @@ task(runCapstonePlants3, group: 'examples', description: 'Chapter 9. Plants Caps
 
 task(runCapstoneTitanic1, group: 'examples', description: 'Chapter 10. Titanic Capstone Project. Milestone 1',
         dependsOn: 'classes', type: JavaExec) {
+    if( project.hasProperty("data_path") ) {
+    	args = [project.getProperty("data_path")]
+    }
     main = 'com.heatonresearch.aifh.examples.capstone.model.milestone1.NormalizeTitanic'
     classpath = sourceSets.main.runtimeClasspath
 }
@@ -137,12 +140,18 @@ task(runCapstoneTitanic1, group: 'examples', description: 'Chapter 10. Titanic C
 
 task(runCapstoneTitanic2, group: 'examples', description: 'Chapter 10. Titanic Capstone Project. Milestone 2',
         dependsOn: 'classes', type: JavaExec) {
+	if( project.hasProperty("data_path") ) {
+    	args = [project.getProperty("data_path")]
+    }
     main = 'com.heatonresearch.aifh.examples.capstone.model.milestone2.FitTitanic'
     classpath = sourceSets.main.runtimeClasspath
 }
 
 task(runCapstoneTitanic3, group: 'examples', description: 'Chapter 10. Titanic Capstone Project. Milestone 3',
         dependsOn: 'classes', type: JavaExec) {
+    if( project.hasProperty("data_path") ) {
+    	args = [project.getProperty("data_path")]
+    }
     main = 'com.heatonresearch.aifh.examples.capstone.model.milestone3.SubmitTitanic'
     classpath = sourceSets.main.runtimeClasspath
 }

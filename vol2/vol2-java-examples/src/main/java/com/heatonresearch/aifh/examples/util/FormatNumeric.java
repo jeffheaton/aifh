@@ -43,7 +43,7 @@ public class FormatNumeric {
      * @return The formatted number.
      */
     public static String formatDouble(double d, int places) {
-        String fmt = "%." + places;
+        String fmt = "%." + places + "f";
         return String.format(Locale.ENGLISH, fmt, d);
     }
 }

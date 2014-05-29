@@ -29,9 +29,73 @@ The Python examples make use of this code to find the data sets.
 The individual examples are all located in the example folder.  They are listed here,
 by chapter.
 
-* Chapter 1: Introduction to AI
+* Introduction
 ```
-    runCSVExample - Chapter 1.  This example reads a CSV file
+    runCSVExample - Introduction.  This example reads a CSV file
+```
+
+* Chapter 1: Population and Scoring
+```
+runTournamentCompare - Chapter 1.  Compare selection methods
+```
+
+* Chapter 2: Crossover and Mutation 
+```
+runCrossover - Chapter 2.  Crossover example
+runMutate - Chapter 2.  Mutate example
+```
+
+* Chapter 3: Genetic Algorithms  
+```
+runGAIris - Chapter 3.  Model the iris data set with a genetic algorithm (single species)
+runGATSP - Chapter 3.  Use a genetic algorithm (GA) for the Travelling Salesman Problem (TSP)
+```
+
+* Chapter 4: Genetic Programming 
+```
+runFindEquation - Chapter 4.  Genetic programming
+```
+
+* Chapter 5: Speciation 
+```
+runGASpeciesIris - Chapter 5.  Model the iris data set with a genetic algorithm (multi species)
+```
+
+* Chapter 6: Particle Swarm Optimization 
+```
+runFlock - Chapter 6.  Flocking
+runIrisPSO - Chapter 6.  Model the iris data set with particle swarm optimization(PSO)
+```
+
+* Chapter 7: Ant Colony Optimization 
+```
+runACOTSP - Chapter 7.  Use a ant colony optimization(ACO) for the Travelling Salesman Problem (TSP)
+runIrisACO - Chapter 7.  Model the iris data set with ant colony optimization (ACO)
+```
+
+* Chapter 8: Cellular Automation
+```
+runConway - Chapter 8.  Run Conways game of life.
+runECA - Chapter 8.  Run an Elementary cellular automation.
+runMergelife - Chapter 8.  Run the merge life explorer.
+```
+
+* Chapter 9: Artificial Life
+```
+runCapstonePlants1 - Chapter 9. Plants Capstone Project. Milestone 1
+runCapstonePlants2 - Chapter 9. Plants Capstone Project. Milestone 2
+runCapstonePlants3 - Chapter 9. Plants Capstone Project. Milestone 3
+```
+
+* Chapter 10: Modeling Problems
+```
+runCapstoneTitanic1 - Chapter 10. Titanic Capstone Project. Milestone 1
+runCapstoneTitanic2 - Chapter 10. Titanic Capstone Project. Milestone 2
+runCapstoneTitanic3 - Chapter 10. Titanic Capstone Project. Milestone 3
+```
+Note, for Titanic, you must specify your data directory.  For example:
+```
+./gradlew runCapstoneTitanic1 -Pdata_path="/users/jheaton/data/titanic"
 ```
 
 ##Running Examples - Command Line

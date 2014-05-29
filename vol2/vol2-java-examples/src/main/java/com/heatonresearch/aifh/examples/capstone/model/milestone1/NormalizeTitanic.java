@@ -413,12 +413,21 @@ public class NormalizeTitanic {
      * @param args The arguments.
      */
     public static void main(String[] args) {
+        String filename;
+
         if (args.length != 1) {
-            System.out.println("Please call this program with a single parameter that specifies your data directory.");
-            System.exit(0);
+            filename = System.getProperty("FILENAME");
+            if( filename==null ) {
+                System.out.println("Please call this program with a single parameter that specifies your data directory.\n" +
+                        "If you are calling with gradle, consider:\n" +
+                "gradle runCapstoneTitanic1 -Pdata_path=[path to your data directory]\n");
+                System.exit(0);
+            }
+        } else {
+            filename = args[0];
         }
 
-        File dataPath = new File(args[0]);
+        File dataPath = new File(filename);
         File trainingPath = new File(dataPath, TitanicConfig.TrainingFilename);
         File testPath = new File(dataPath, TitanicConfig.TestFilename);
         File normalizePath = new File(dataPath, TitanicConfig.NormDumpFilename);
