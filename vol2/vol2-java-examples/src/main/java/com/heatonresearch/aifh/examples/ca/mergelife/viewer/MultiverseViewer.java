@@ -217,7 +217,6 @@ public class MultiverseViewer extends JFrame implements ActionListener,
         this.resetButton.addActionListener(this);
         this.configButton.addActionListener(this);
         this.autoKill.addActionListener(this);
-        this.configButton.addActionListener(this);
         this.deselectButton.addActionListener(this);
 
         this.outputPanel.setAutoKill(true);
