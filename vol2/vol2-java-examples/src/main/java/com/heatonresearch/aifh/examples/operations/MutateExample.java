@@ -116,7 +116,7 @@ public class MutateExample {
      * gene.
      */
     public static void mutatePeterb() {
-        System.out.println("Mutate peterb");
+        System.out.println("Mutate Perturb");
 
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
