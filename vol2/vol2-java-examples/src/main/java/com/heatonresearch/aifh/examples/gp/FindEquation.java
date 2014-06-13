@@ -129,7 +129,7 @@ public class FindEquation {
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
         EvaluateExpression eval = new EvaluateExpression(rnd);
         Population pop = initPopulation(rnd, eval);
-        ScoreFunction score = new ScoreRegressionData(training);
+        ScoreFunction score = new ScoreSmallExpression(training);
 
         EvolutionaryAlgorithm genetic = new BasicEA(pop, score);
         genetic.addOperation(0.3, new MutateTree(3));
@@ -142,7 +142,7 @@ public class FindEquation {
         double lastSolution = Double.MAX_VALUE;
         StringBuilder builder = new StringBuilder();
 
-        while (sameSolutionCount < MAX_SAME_SOLUTION) {
+        while (sameSolutionCount < MAX_SAME_SOLUTION && iteration<1000) {
             genetic.iteration();
 
             double thisSolution = genetic.getLastError();
@@ -150,8 +150,10 @@ public class FindEquation {
             builder.setLength(0);
             builder.append("Iteration: ");
             builder.append(iteration++);
-            builder.append(", Best Path Length = ");
+            builder.append(", Current error = ");
             builder.append(thisSolution);
+            builder.append(", Best Solution Length = ");
+            builder.append(genetic.getBestGenome().size());
 
             System.out.println(builder.toString());
 

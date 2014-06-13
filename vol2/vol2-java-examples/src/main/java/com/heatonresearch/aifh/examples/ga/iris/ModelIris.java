@@ -60,6 +60,12 @@ public class ModelIris extends SimpleLearn {
      */
     public static final int POPULATION_SIZE = 1000;
 
+
+    /**
+     * The number of RBF functions to use in the network.
+     */
+    public static final int RBF_COUNT = 5;
+
     /**
      * Create an initial population.
      *
@@ -120,10 +126,10 @@ public class ModelIris extends SimpleLearn {
             final Map<String, Integer> species = ds.encodeOneOfN(4);
             istream.close();
 
-            final RBFNetworkGenomeCODEC codec = new RBFNetworkGenomeCODEC(4, 4, 3);
+            final RBFNetworkGenomeCODEC codec = new RBFNetworkGenomeCODEC(4, RBF_COUNT, 3);
 
             final List<BasicData> trainingData = ds.extractSupervised(0,
-                    codec.getInputCount(), codec.getRbfCount(), codec.getOutputCount());
+                    codec.getInputCount(), 4, codec.getOutputCount());
 
             Population pop = initPopulation(rnd, codec);
 
@@ -131,7 +137,7 @@ public class ModelIris extends SimpleLearn {
 
             BasicEA genetic = new BasicEA(pop, score);
             genetic.setCODEC(codec);
-            genetic.addOperation(0.7, new Splice(codec.size() / 5));
+            genetic.addOperation(0.7, new Splice(codec.size() / 3));
             genetic.addOperation(0.3, new MutatePerturb(0.1));
 
 
