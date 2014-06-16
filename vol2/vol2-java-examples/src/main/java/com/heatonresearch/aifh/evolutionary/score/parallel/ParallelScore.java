@@ -92,7 +92,7 @@ public class ParallelScore {
         this.population = thePopulation;
         this.scoreFunction = theScoreFunction;
         this.adjusters = theAdjusters;
-        this.actualThreads = 0;
+        this.actualThreads = theThreadCount;
     }
 
     /**
