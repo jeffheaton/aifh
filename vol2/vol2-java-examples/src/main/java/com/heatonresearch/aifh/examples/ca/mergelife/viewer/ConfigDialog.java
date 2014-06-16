@@ -92,6 +92,7 @@ public class ConfigDialog extends JDialog implements ActionListener {
                     Integer.parseInt(this.textZoom.getText()));
             MultiverseViewer.saveConfig();
             dispose();
+            JOptionPane.showMessageDialog(null,"Please restart the application to switch to your new configuration settings.");
         } else if (e.getSource() == this.buttonDefaults) {
             MultiverseViewer.setConfig(new ConfigData());
             setFields();
