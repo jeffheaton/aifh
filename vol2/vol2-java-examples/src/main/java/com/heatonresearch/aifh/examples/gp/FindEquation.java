@@ -129,7 +129,7 @@ public class FindEquation {
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
         EvaluateExpression eval = new EvaluateExpression(rnd);
         Population pop = initPopulation(rnd, eval);
-        ScoreFunction score = new ScoreSmallExpression(training);
+        ScoreFunction score = new ScoreSmallExpression(training,30);
 
         EvolutionaryAlgorithm genetic = new BasicEA(pop, score);
         genetic.addOperation(0.3, new MutateTree(3));
