@@ -16,6 +16,6 @@ namespace AIFH_Vol2.Core.Learning
         /// </summary>
         /// <param name="input">The input data.</param>
         /// <returns>The group the data was classified into.</returns>
-        public int ComputeClassification(double[] input);
+        int ComputeClassification(double[] input);
     }
 }

@@ -72,7 +72,9 @@
     <Compile Include="Core\Learning\IClassificationAlgorithm.cs" />
     <Compile Include="Core\Learning\IMLContext.cs" />
     <Compile Include="Core\Learning\IMLMethod.cs" />
+    <Compile Include="Core\Learning\ILearningMethod.cs" />
     <Compile Include="Core\Learning\IRegressionAlgorithm.cs" />
+    <Compile Include="Core\Learning\RBFNetwork.cs" />
     <Compile Include="Core\Normalize\DataSet.cs" />
     <Compile Include="Core\Normalize\Equilateral.cs" />
     <Compile Include="Core\Randomize\AbstractBoxMuller.cs" />
