@@ -7,7 +7,7 @@
     <ProjectGuid>{BD1F5D28-B748-468A-B6F3-EBF779AD886F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AIFH_Vol2_Core</RootNamespace>
+    <RootNamespace>AIFH_Vol2</RootNamespace>
     <AssemblyName>AIFH-Vol2-Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper">
+      <HintPath>..\packages\CsvHelper.2.7.0\lib\net20\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +43,53 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Core\AIFH.cs" />
+    <Compile Include="Core\AIFHError.cs" />
+    <Compile Include="Core\Distance\AbstractDistance.cs" />
+    <Compile Include="Core\Distance\ChebyshevDistance.cs" />
+    <Compile Include="Core\Distance\EuclideanDistance.cs" />
+    <Compile Include="Core\Distance\ICalculateDistance.cs" />
+    <Compile Include="Core\Distance\ManhattanDistance.cs" />
+    <Compile Include="Core\Error\AbstractErrorCalculation.cs" />
+    <Compile Include="Core\Error\ErrorCalculationMSE.cs" />
+    <Compile Include="Core\Error\ErrorCalculationRMS.cs" />
+    <Compile Include="Core\Error\ErrorCalculationSSE.cs" />
+    <Compile Include="Core\Error\IErrorCalculation.cs" />
+    <Compile Include="Core\General\Data\BasicData.cs" />
+    <Compile Include="Core\General\Fns\AbstractRBF.cs" />
+    <Compile Include="Core\General\Fns\GaussianFunction.cs" />
+    <Compile Include="Core\General\Fns\IFn.cs" />
+    <Compile Include="Core\General\Fns\IFnRBF.cs" />
+    <Compile Include="Core\General\Fns\InverseMultiquadricFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\IdentityLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\InverseLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\InverseSquaredLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\LogitLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\Link\LogLinkFunction.cs" />
+    <Compile Include="Core\General\Fns\MexicanHatFunction.cs" />
+    <Compile Include="Core\General\Fns\MultiquadricFunction.cs" />
+    <Compile Include="Core\General\VectorUtil.cs" />
+    <Compile Include="Core\Learning\IClassificationAlgorithm.cs" />
+    <Compile Include="Core\Learning\IMLContext.cs" />
+    <Compile Include="Core\Learning\IMLMethod.cs" />
+    <Compile Include="Core\Learning\IRegressionAlgorithm.cs" />
+    <Compile Include="Core\Normalize\DataSet.cs" />
+    <Compile Include="Core\Normalize\Equilateral.cs" />
+    <Compile Include="Core\Randomize\AbstractBoxMuller.cs" />
+    <Compile Include="Core\Randomize\AbstractGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\BasicGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\IGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\LinearCongruentialRandom.cs" />
+    <Compile Include="Core\Randomize\MersenneTwisterGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\MultiplyWithCarryGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\SecureGenerateRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Learning\Score\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
