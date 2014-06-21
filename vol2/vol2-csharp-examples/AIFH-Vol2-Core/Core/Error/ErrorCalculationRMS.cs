@@ -49,5 +49,11 @@ namespace AIFH_Vol2.Core.Error
             }
             return Math.Sqrt(GlobalError / SetSize);
         }
+
+        /// <inheritdoc/>
+        public override IErrorCalculation Create()
+        {
+            return new ErrorCalculationRMS();
+        }
     }
 }

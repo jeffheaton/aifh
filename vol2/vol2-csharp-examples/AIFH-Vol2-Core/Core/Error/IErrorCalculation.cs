@@ -67,5 +67,11 @@ namespace AIFH_Vol2.Core.Error
         /// The total size of the set (vector size times number of vectors).
         /// </summary>
         int SetSize { get; }
+
+        /// <summary>
+        /// Create a new instance of this object.
+        /// </summary>
+        /// <returns>A new instance of this object.</returns>
+        IErrorCalculation Create();
     }
 }

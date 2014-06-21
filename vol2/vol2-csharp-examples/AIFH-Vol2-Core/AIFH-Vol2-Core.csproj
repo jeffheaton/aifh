@@ -68,6 +68,7 @@
     <Compile Include="Core\General\Fns\Link\LogLinkFunction.cs" />
     <Compile Include="Core\General\Fns\MexicanHatFunction.cs" />
     <Compile Include="Core\General\Fns\MultiquadricFunction.cs" />
+    <Compile Include="Core\General\VectorAlgebra.cs" />
     <Compile Include="Core\General\VectorUtil.cs" />
     <Compile Include="Core\Learning\IClassificationAlgorithm.cs" />
     <Compile Include="Core\Learning\IMLContext.cs" />
@@ -75,6 +76,10 @@
     <Compile Include="Core\Learning\ILearningMethod.cs" />
     <Compile Include="Core\Learning\IRegressionAlgorithm.cs" />
     <Compile Include="Core\Learning\RBFNetwork.cs" />
+    <Compile Include="Core\Learning\Score\IScoreFunction.cs" />
+    <Compile Include="Core\Learning\Score\ScoreClassificationData.cs" />
+    <Compile Include="Core\Learning\Score\ScoreRegressionData.cs" />
+    <Compile Include="Core\Learning\TrainPSO.cs" />
     <Compile Include="Core\Normalize\DataSet.cs" />
     <Compile Include="Core\Normalize\Equilateral.cs" />
     <Compile Include="Core\Randomize\AbstractBoxMuller.cs" />
@@ -90,9 +95,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\Learning\Score\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -48,5 +48,11 @@ namespace AIFH_Vol2.Core.Error
             return GlobalError / SetSize;
 
         }
+
+        /// <inheritdoc/>
+        public override IErrorCalculation Create()
+        {
+            return new ErrorCalculationMSE();
+        }
     }
 }

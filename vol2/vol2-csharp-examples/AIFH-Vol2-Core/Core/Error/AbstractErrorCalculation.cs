@@ -81,5 +81,8 @@ namespace AIFH_Vol2.Core.Error
                 return GlobalSetSize;
             }
         }
+
+        /// <inheritdoc/>
+        public abstract IErrorCalculation Create();
     }
 }
