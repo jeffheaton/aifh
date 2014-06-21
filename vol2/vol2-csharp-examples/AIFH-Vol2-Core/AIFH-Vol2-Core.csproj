@@ -43,6 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Core\ACO\ContinuousACO.cs" />
+    <Compile Include="Core\ACO\ContinuousAnt.cs" />
+    <Compile Include="Core\ACO\DiscreteACO.cs" />
+    <Compile Include="Core\ACO\DiscreteAnt.cs" />
+    <Compile Include="Core\ACO\ICostGraph.cs" />
     <Compile Include="Core\AIFH.cs" />
     <Compile Include="Core\AIFHError.cs" />
     <Compile Include="Core\Distance\AbstractDistance.cs" />
