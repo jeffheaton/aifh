@@ -47,7 +47,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Genome
         /// Return the size of this genome. This size is a relative number
         /// that indicates the complexity of the genome.
         /// </summary>
-        int Count { get; set; }
+        int Count { get; }
 
 
         /// <summary>

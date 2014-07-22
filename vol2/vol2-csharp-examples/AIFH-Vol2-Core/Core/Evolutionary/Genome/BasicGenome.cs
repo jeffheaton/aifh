@@ -64,7 +64,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Genome
         public abstract void Copy(IGenome source);
 
         /// <inheritdoc/>
-        public abstract int Count { get; set; }
+        public abstract int Count { get; }
 
         /// <inheritdoc/>
         public abstract double[] LongTermMemory { get; }
