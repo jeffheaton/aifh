@@ -34,35 +34,55 @@ import com.heatonresearch.aifh.evolutionary.train.EvolutionaryAlgorithm;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/5/14
- * Time: 10:10 AM
- * To change this template use File | Settings | File Templates.
+ * Create a child tree as a mutation of the parent.  Do not modify the parent.
  */
 public class MutateTree implements EvolutionaryOperator {
+
+    /**
+     * The owner.
+     */
     private EvolutionaryAlgorithm owner;
+
+    /**
+     * The maximum length of a branch to graft.
+     */
     private int maxGraftLength;
 
+    /**
+     * Construct the tree mutation object.
+     * @param theMaxGraftLength The maximum graft length.
+     */
     public MutateTree(int theMaxGraftLength) {
         this.maxGraftLength = Math.max(1, theMaxGraftLength);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init(final EvolutionaryAlgorithm theOwner) {
         this.owner = theOwner;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int offspringProduced() {
         return 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int parentsNeeded() {
         return 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void performOperation(final GenerateRandom rnd, final Genome[] parents, final int parentIndex, final Genome[] offspring, final int offspringIndex) {
         TreeGenome parent1 = (TreeGenome) parents[parentIndex];

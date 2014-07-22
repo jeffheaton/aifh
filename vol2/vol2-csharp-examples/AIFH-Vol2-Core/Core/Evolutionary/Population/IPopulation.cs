@@ -59,7 +59,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Population
         /// <summary>
         /// The species that make up the population.
         /// </summary>
-        IList<ISpecies> Species { get; }
+        List<ISpecies> Species { get; }
 
         /// <summary>
         /// The size of the population.

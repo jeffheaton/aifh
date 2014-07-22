@@ -7,15 +7,15 @@ namespace AIFH_Vol2
 {
     public class Program
     {
-        const string Method = "ExampleMain";
-        private IList<ExampleHolder> _examples = new List<ExampleHolder>();
+        private const string Method = "ExampleMain";
+        private readonly IList<ExampleHolder> _examples = new List<ExampleHolder>();
 
         public Program()
         {
-            var exampleTypes = Assembly
-                    .GetExecutingAssembly()
-                    .GetTypes().ToList()
-                    .Where(t => t.Namespace != null && t.Namespace.StartsWith("AIFH_Vol1.Examples")).ToList();
+            List<Type> exampleTypes = Assembly
+                .GetExecutingAssembly()
+                .GetTypes().ToList()
+                .Where(t => t.Namespace != null && t.Namespace.StartsWith("AIFH_Vol1.Examples")).ToList();
 
             exampleTypes
                 .ForEach(e =>
@@ -24,8 +24,8 @@ namespace AIFH_Vol2
                     {
                         FieldInfo fiExampleName = e.GetField("ExampleName");
                         FieldInfo fiExampleChapter = e.GetField("ExampleChapter");
-                        string exampleName = (string)fiExampleName.GetValue(null);
-                        int exampleChapter = (int)fiExampleChapter.GetValue(null);
+                        var exampleName = (string) fiExampleName.GetValue(null);
+                        var exampleChapter = (int) fiExampleChapter.GetValue(null);
                         _examples.Add(new ExampleHolder(exampleChapter, exampleName, e));
                     }
                 });
@@ -40,16 +40,15 @@ namespace AIFH_Vol2
             Console.WriteLine("Available Examples:");
 
             DisplayChapter(1, "Population and Scoring");
-            DisplayChapter(2, "Crossover and Mutation"); 
-            DisplayChapter(3, "Genetic Algorithms");  
-            DisplayChapter(4, "Genetic Programming"); 
-            DisplayChapter(5, "Speciation"); 
-            DisplayChapter(6, "Particle Swarm Optimization"); 
-            DisplayChapter(7, "Ant Colony Optimization"); 
+            DisplayChapter(2, "Crossover and Mutation");
+            DisplayChapter(3, "Genetic Algorithms");
+            DisplayChapter(4, "Genetic Programming");
+            DisplayChapter(5, "Speciation");
+            DisplayChapter(6, "Particle Swarm Optimization");
+            DisplayChapter(7, "Ant Colony Optimization");
             DisplayChapter(8, "Cellular Automation");
             DisplayChapter(9, "Artificial Life");
             DisplayChapter(10, "Modeling Problems");
-
         }
 
         public void DisplayChapter(int chapterNumber, string chapterTitle)
@@ -70,7 +69,7 @@ namespace AIFH_Vol2
                 {
                     var args = new string[0];
                     Console.WriteLine("Running example: " + holder.ExampleType.Name);
-                    holder.ExampleType.GetMethod(Method).Invoke(null, new object[] { args });
+                    holder.ExampleType.GetMethod(Method).Invoke(null, new object[] {args});
                 }
             }
         }
@@ -113,7 +112,7 @@ namespace AIFH_Vol2
             }
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             (new Program()).Run(args);
         }

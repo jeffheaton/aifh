@@ -32,28 +32,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 4/25/14
- * Time: 7:07 AM
- * To change this template use File | Settings | File Templates.
+ * A node in a Genetic Programming tree.
  */
 public class TreeGenomeNode {
+
+    /**
+     * The child nodes.
+     */
     private List<TreeGenomeNode> children = new ArrayList<TreeGenomeNode>();
+
+    /**
+     * The opcode for this node.
+     */
     private int opcode;
 
+    /**
+     * Constructor.
+     * @param theOpcode The opcode for this node.
+     */
     public TreeGenomeNode(int theOpcode) {
         this.opcode = theOpcode;
     }
 
+    /**
+     * @return The opcode for this node.
+     */
     public int getOpcode() {
         return this.opcode;
     }
 
+    /**
+     * @return The children from this node.
+     */
     public List<TreeGenomeNode> getChildren() {
         return this.children;
     }
 
+    /**
+     * Create a copy of this node.
+     * @return A copy (clone) of this node.
+     */
     public TreeGenomeNode copy() {
         TreeGenomeNode result = new TreeGenomeNode(opcode);
         for (TreeGenomeNode child : this.children) {
@@ -62,6 +80,9 @@ public class TreeGenomeNode {
         return result;
     }
 
+    /**
+     * @return The size of this node.
+     */
     public int size() {
         int result = 1;
         for (TreeGenomeNode child : this.children) {

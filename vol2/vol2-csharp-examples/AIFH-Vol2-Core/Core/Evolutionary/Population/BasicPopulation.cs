@@ -20,7 +20,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Population
         /// <summary>
         /// The species that make up the population.
         /// </summary>
-        private IList<ISpecies> _species = new List<ISpecies>();
+        private List<ISpecies> _species = new List<ISpecies>();
 
         /// <summary>
         /// The best genome.
@@ -110,7 +110,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Population
         }
 
         /// <inheritdoc/>
-        public IList<ISpecies> Species
+        public List<ISpecies> Species
         {
             get
             {

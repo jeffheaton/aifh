@@ -34,31 +34,40 @@ import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 4/25/14
- * Time: 7:07 AM
- * To change this template use File | Settings | File Templates.
+ * A tree genome, used for Genetic Programming.
  */
 public class TreeGenome extends BasicGenome implements RegressionAlgorithm {
 
     private EvaluateTree evaluator;
     private TreeGenomeNode root;
 
+    /**
+     * Constructor.
+     * @param theEvaluator The evaluator.
+     */
     public TreeGenome(EvaluateTree theEvaluator) {
         this.evaluator = theEvaluator;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void copy(final Genome source) {
         this.root = ((TreeGenome) source).getRoot().copy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int size() {
         return root.size();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double[] getLongTermMemory() {
         throw new AIFHError("Long term memory not supported, use a genetic trainer.");
@@ -76,6 +85,9 @@ public class TreeGenome extends BasicGenome implements RegressionAlgorithm {
         return this.evaluator;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double[] computeRegression(final double[] input) {
         double[] result = new double[1];

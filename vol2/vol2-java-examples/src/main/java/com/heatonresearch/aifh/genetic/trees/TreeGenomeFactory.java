@@ -32,25 +32,34 @@ import com.heatonresearch.aifh.evolutionary.genome.Genome;
 import com.heatonresearch.aifh.evolutionary.genome.GenomeFactory;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 5/4/14
- * Time: 3:41 PM
- * To change this template use File | Settings | File Templates.
+ * Used to factor tree genomes.
  */
 public class TreeGenomeFactory implements GenomeFactory {
 
+    /**
+     * Evaluate the tree.
+     */
     private EvaluateTree eval;
 
+    /**
+     * Construct a tree factory.
+     * @param theEval The evalator.
+     */
     public TreeGenomeFactory(EvaluateTree theEval) {
         this.eval = theEval;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Genome factor() {
         return new TreeGenome(this.eval);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Genome factor(final Genome other) {
         TreeGenome result = new TreeGenome(this.eval);
