@@ -15,7 +15,7 @@ namespace AIFH_Vol2
             List<Type> exampleTypes = Assembly
                 .GetExecutingAssembly()
                 .GetTypes().ToList()
-                .Where(t => t.Namespace != null && t.Namespace.StartsWith("AIFH_Vol1.Examples")).ToList();
+                .Where(t => t.Namespace != null && t.Namespace.StartsWith("AIFH_Vol2.Examples")).ToList();
 
             exampleTypes
                 .ForEach(e =>

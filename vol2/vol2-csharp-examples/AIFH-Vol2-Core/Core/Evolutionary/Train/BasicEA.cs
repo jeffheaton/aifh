@@ -1,4 +1,8 @@
-﻿using AIFH_Vol2.Core.Evolutionary.CODEC;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AIFH_Vol2.Core.Evolutionary.CODEC;
 using AIFH_Vol2.Core.Evolutionary.Genome;
 using AIFH_Vol2.Core.Evolutionary.Opp;
 using AIFH_Vol2.Core.Evolutionary.Opp.Selection;
@@ -10,11 +14,6 @@ using AIFH_Vol2.Core.Evolutionary.Species;
 using AIFH_Vol2.Core.Learning;
 using AIFH_Vol2.Core.Learning.Score;
 using AIFH_Vol2.Core.Randomize;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AIFH_Vol2.Core.Evolutionary.Train
 {
@@ -23,7 +22,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
     ///     The EA works from a score function.
     /// </summary>
     [Serializable]
-    public class BasicEA: IEvolutionaryAlgorithm
+    public class BasicEA : IEvolutionaryAlgorithm, ILearningMethod
     {
         /// <summary>
         ///     The score adjusters.
@@ -61,7 +60,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
         /// <param name="thePopulation">The population.</param>
         /// <param name="theScoreFunction">The score function.</param>
         public BasicEA(IPopulation thePopulation,
-                       IScoreFunction theScoreFunction)
+            IScoreFunction theScoreFunction)
         {
             RandomNumberFactory = new MersenneTwisterFactory();
             EliteRate = 0.3;
@@ -92,7 +91,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
                 foreach (IGenome genome in species.Members)
                 {
                     IterationNumber = Math.Max(IterationNumber,
-                                               genome.BirthGeneration);
+                        genome.BirthGeneration);
                 }
             }
 
@@ -139,6 +138,11 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
         {
             get { return _oldBestGenome; }
         }
+
+        /// <summary>
+        ///     The desired thread count.
+        /// </summary>
+        public int ThreadCount { get; set; }
 
         /// <summary>
         ///     The genome comparator.
@@ -193,7 +197,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
 
         /// <inheritdoc />
         public void AddOperation(double probability,
-                                 IEvolutionaryOperator opp)
+            IEvolutionaryOperator opp)
         {
             Operators.Add(probability, opp);
             opp.Init(this);
@@ -292,7 +296,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
                 // Add elite genomes directly
                 if (species.Members.Count > 5)
                 {
-                    var idealEliteCount = (int)(species.Members.Count * EliteRate);
+                    var idealEliteCount = (int) (species.Members.Count*EliteRate);
                     int eliteCount = Math.Min(numToSpawn, idealEliteCount);
                     for (int i = 0; i < eliteCount; i++)
                     {
@@ -332,7 +336,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
                 if (BestGenome != null
                     && _oldBestGenome != null
                     && BestComparer.IsBetterThan(_oldBestGenome,
-                                                 BestGenome))
+                        BestGenome))
                 {
                     throw new AIFHError(
                         "The best genome's score got worse, this should never happen!! Went from "
@@ -372,10 +376,12 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
             set { _speciation = value; }
         }
 
-        /// <summary>
-        ///     The desired thread count.
-        /// </summary>
-        public int ThreadCount { get; set; }
+        public string Status { get; private set; }
+
+        public bool Done
+        {
+            get { return false; }
+        }
 
         /// <summary>
         ///     Calculate the score adjustment, based on adjusters.
@@ -383,7 +389,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
         /// <param name="genome">The genome to adjust.</param>
         /// <param name="adjusters">The score adjusters.</param>
         public static void CalculateScoreAdjustment(IGenome genome,
-                                                    IList<IAdjustScore> adjusters)
+            IList<IAdjustScore> adjusters)
         {
             double score = genome.Score;
             double delta = adjusters.Sum(a => a.CalculateAdjustment(genome));
@@ -421,7 +427,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
                     if (!Double.IsInfinity(genome.Score)
                         && !Double.IsNaN(genome.Score)
                         && BestComparer.IsBetterThan(genome,
-                                                     BestGenome))
+                            BestGenome))
                     {
                         BestGenome = genome;
                         Population.BestGenome = BestGenome;
@@ -443,7 +449,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
 
             // score the population
             var pscore = new ParallelScore(Population,
-                                           CODEC, _adjusters, ScoreFunction, ThreadCount);
+                CODEC, _adjusters, ScoreFunction, ThreadCount);
             pscore.Process();
 
             // just pick the first genome with a valid score as best, it will be
@@ -459,7 +465,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Train
                 BestGenome = list[idx++];
             } while (idx < list.Count
                      && (Double.IsInfinity(BestGenome.Score) || Double
-                                                                    .IsNaN(BestGenome.Score)));
+                         .IsNaN(BestGenome.Score)));
 
             Population.BestGenome = BestGenome;
 

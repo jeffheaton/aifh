@@ -133,6 +133,7 @@
     <Compile Include="Core\Learning\ILearningMethod.cs" />
     <Compile Include="Core\Learning\IRegressionAlgorithm.cs" />
     <Compile Include="Core\Learning\RBFNetwork.cs" />
+    <Compile Include="Core\Learning\RBFNetworkGenomeCODEC.cs" />
     <Compile Include="Core\Learning\Score\IScoreFunction.cs" />
     <Compile Include="Core\Learning\Score\ScoreClassificationData.cs" />
     <Compile Include="Core\Learning\Score\ScoreRegressionData.cs" />

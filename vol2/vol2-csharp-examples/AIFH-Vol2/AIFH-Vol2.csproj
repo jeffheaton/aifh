@@ -45,13 +45,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleHolder.cs" />
+    <Compile Include="Examples\GA\Iris\ModelIris.cs" />
+    <Compile Include="Examples\GA\Iris\ModelSpeciationIris.cs" />
+    <Compile Include="Examples\GA\TSP\City.cs" />
+    <Compile Include="Examples\GA\TSP\TSPScore.cs" />
+    <Compile Include="Examples\GA\TSP\GeneticTSPExample.cs" />
+    <Compile Include="Examples\GP\EvaluateExpression.cs" />
+    <Compile Include="Examples\GP\FindEquation.cs" />
+    <Compile Include="Examples\GP\ScoreSmallExpression.cs" />
+    <Compile Include="Examples\Operations\CrossoverExample.cs" />
+    <Compile Include="Examples\Operations\MutateExample.cs" />
+    <Compile Include="Examples\Selection\NullScore.cs" />
+    <Compile Include="Examples\Util\SimpleLearn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Examples\Selection\TournamentCompareExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\iris.csv" />
+    <EmbeddedResource Include="Resources\simple-poly.csv" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AIFH-Vol2-Core\AIFH-Vol2-Core.csproj">
+      <Project>{BD1F5D28-B748-468A-B6F3-EBF779AD886F}</Project>
+      <Name>AIFH-Vol2-Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
