@@ -9,7 +9,7 @@ namespace AIFH_Vol2.Core.ACO
     /// <summary>
     /// An individual ant for continuous ACO.
     /// </summary>
-    public class ContinuousAnt
+    public class ContinuousAnt: IComparable<ContinuousAnt>
     {
         /// <summary>
         /// The score for this ant.

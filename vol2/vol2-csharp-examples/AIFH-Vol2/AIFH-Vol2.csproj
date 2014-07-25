@@ -45,6 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleHolder.cs" />
+    <Compile Include="Examples\ACO\ExampleTrainIrisACO.cs" />
+    <Compile Include="Examples\ACO\TSPExampleACO.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone1\CalcHistogram.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone1\CalcMean.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone1\CalcSurvival.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone1\NormalizeTitanic.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone1\TitanicStats.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone2\CrossValidate.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone2\CrossValidateFold.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone2\FitTitanic.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone2\ScoreTitanic.cs" />
+    <Compile Include="Examples\Capstone\Model\Milestone3\SubmitTitanic.cs" />
+    <Compile Include="Examples\Capstone\Model\TitanicConfig.cs" />
     <Compile Include="Examples\GA\Iris\ModelIris.cs" />
     <Compile Include="Examples\GA\Iris\ModelSpeciationIris.cs" />
     <Compile Include="Examples\GA\TSP\City.cs" />
@@ -56,6 +69,7 @@
     <Compile Include="Examples\Operations\CrossoverExample.cs" />
     <Compile Include="Examples\Operations\MutateExample.cs" />
     <Compile Include="Examples\Selection\NullScore.cs" />
+    <Compile Include="Examples\Swarm\PSO\IrisPSOExample.cs" />
     <Compile Include="Examples\Util\SimpleLearn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

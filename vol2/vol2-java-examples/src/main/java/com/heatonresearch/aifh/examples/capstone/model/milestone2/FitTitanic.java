@@ -110,7 +110,6 @@ public class FitTitanic {
             train.iteration();
 
             RBFNetwork best = (RBFNetwork) train.getBestParticle();
-            best.getLongTermMemory().clone();
 
             double trainingScore = train.getLastError();
             double validationScore = scoreValidate.calculateScore(best);

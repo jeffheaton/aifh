@@ -61,13 +61,12 @@ namespace AIFH_Vol2
             }
         }
 
-        public void RunExample(string name)
+        public void RunExample(string name, string[] args)
         {
             foreach (ExampleHolder holder in _examples)
             {
                 if (holder.ExampleType.Name.Equals(name))
                 {
-                    var args = new string[0];
                     Console.WriteLine("Running example: " + holder.ExampleType.Name);
                     holder.ExampleType.GetMethod(Method).Invoke(null, new object[] {args});
                 }
@@ -103,7 +102,12 @@ namespace AIFH_Vol2
             }
             else
             {
-                RunExample(args[index]);
+                var args2 = new string[args.Length - index-1];
+                for (int i = 0; i < args2.Length; i++)
+                {
+                    args2[i] = args[index + i+1];
+                }
+                RunExample(args[index],args2);
             }
 
             if (pause)
