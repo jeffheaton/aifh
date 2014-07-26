@@ -1,0 +1,13 @@
+﻿<Window x:Class="AIFH_Vol2_ECA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Elementary Cellular Automaton (ECA)" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Background="LightBlue" Orientation="Horizontal"><Label>Rule (0-255):</Label><TextBox x:Name="TextRule" Width="100">30</TextBox><Button x:Name="ButtonGenerate" Height="26" Margin="0,0,0,-0.4" VerticalAlignment="Top" Click="ButtonGenerate_Click">Generate</Button></StackPanel>
+        <Canvas Grid.Row="1" x:Name="CanvasOutput"></Canvas>
+    </Grid>
+</Window>
