@@ -1,0 +1,13 @@
+﻿<Window x:Class="AIFH_Vol2_Capstone_Plants.Milestone3.Milestone3Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Plantbox Capstone 3: Evolve" Height="300" Width="300" Loaded="Window_Loaded_1" Closing="Window_Closing_1">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" x:Name="LabelStatus">...</Label>
+        <Canvas Grid.Row="1" x:Name="CanvasOutput"/>
+    </Grid>
+</Window>

@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AIFH_Vol2_Capstone_Plants.Milestone1;
+using AIFH_Vol2_Capstone_Plants.Milestone2;
+using AIFH_Vol2_Capstone_Plants.Milestone3;
 
 namespace AIFH_Vol2_Capstone_Plants
 {
@@ -27,12 +30,20 @@ namespace AIFH_Vol2_Capstone_Plants
 
         private void Milestone1Seed_Click(object sender, RoutedEventArgs e)
         {
-
+            Milestone1Main prg = new Milestone1Main();
+            prg.Show();
         }
 
         private void Milestone2Grow_Click(object sender, RoutedEventArgs e)
         {
+            Milestone2Main prg = new Milestone2Main();
+            prg.Show();
+        }
 
+        private void Milestone3Evolve_Click(object sender, RoutedEventArgs e)
+        {
+            Milestone3Main prg = new Milestone3Main();
+            prg.Show();
         }
     }
 }

@@ -5,7 +5,7 @@ using AIFH_Vol2.Core.Genetic.Genome;
 
 namespace AIFH_Vol2.Core.Genetic.Species
 {
-    public class ArraySpeciation : ThresholdSpeciation
+    public class ArraySpeciation<T> : ThresholdSpeciation
     {
         public override double GetCompatibilityScore(IGenome genome1, IGenome genome2)
         {

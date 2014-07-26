@@ -65,8 +65,35 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Milestone1\Milestone1Main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Milestone2\Milestone2Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Milestone3\Milestone3Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Milestone1\DisplayPlant.cs" />
+    <Compile Include="Milestone1\Milestone1Main.xaml.cs">
+      <DependentUpon>Milestone1Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Milestone1\PlantUniverse.cs" />
+    <Compile Include="Milestone1\PlantUniverseCell.cs" />
+    <Compile Include="Milestone2\Milestone2Main.xaml.cs">
+      <DependentUpon>Milestone2Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Milestone2\PlantGrowth.cs" />
+    <Compile Include="Milestone2\PlantPhysics.cs" />
+    <Compile Include="Milestone3\Milestone3Main.xaml.cs">
+      <DependentUpon>Milestone3Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Milestone3\PlantScore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +120,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AIFH-Vol2-Core\AIFH-Vol2-Core.csproj">
+      <Project>{BD1F5D28-B748-468A-B6F3-EBF779AD886F}</Project>
+      <Name>AIFH-Vol2-Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

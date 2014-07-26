@@ -10,7 +10,7 @@
         </Grid.RowDefinitions>
         <Button Grid.Row="0" x:Name="Milestone1Seed" Click="Milestone1Seed_Click">Milestone 1: Draw Seed</Button>
         <Button Grid.Row="1" x:Name="Milestone2Grow" Click="Milestone2Grow_Click">Milestone 2: Grow a Plant</Button>
-        <Button Grid.Row="2" x:Name="Milestone3Evolve">Milestone 3: Evolve Plants</Button>
+        <Button Grid.Row="2" x:Name="Milestone3Evolve" Click="Milestone3Evolve_Click">Milestone 3: Evolve Plants</Button>
     </Grid>
     
 </Window>
