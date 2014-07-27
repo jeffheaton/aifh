@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIFH-Vol2-Conway", "AIFH-Vo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIFH-Vol2-Capstone-Plants", "AIFH-Vol2-Capstone-Plants\AIFH-Vol2-Capstone-Plants.csproj", "{C1988580-F39B-4DD3-A259-8D97080357D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIFH-Vol2-MergePhysics", "AIFH-Vol2-MergePhysics\AIFH-Vol2-MergePhysics.csproj", "{50B74BA6-4572-4499-8FED-89CC5FD9FAA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{C1988580-F39B-4DD3-A259-8D97080357D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1988580-F39B-4DD3-A259-8D97080357D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1988580-F39B-4DD3-A259-8D97080357D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50B74BA6-4572-4499-8FED-89CC5FD9FAA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50B74BA6-4572-4499-8FED-89CC5FD9FAA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50B74BA6-4572-4499-8FED-89CC5FD9FAA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50B74BA6-4572-4499-8FED-89CC5FD9FAA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
