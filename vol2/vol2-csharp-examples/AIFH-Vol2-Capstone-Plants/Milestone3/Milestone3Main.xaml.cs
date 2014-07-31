@@ -114,15 +114,7 @@ namespace AIFH_Vol2_Capstone_Plants.Milestone3
                 double bestScore = this.genetic.BestGenome.Score;
                 UpdateStatus("Generation: " + generation + ", Best Score: " + bestScore);
 
-            if (!Dispatcher.CheckAccess())
-            {
-                Dispatcher.Invoke(() => display.Paint(CanvasOutput));
-            }
-            else
-            {
-                display.Paint(CanvasOutput);
-            }
-
+            
 
             //System.out.println(Arrays.toString(bestGenome.getLongTermMemory()));    
             }
@@ -136,7 +128,7 @@ namespace AIFH_Vol2_Capstone_Plants.Milestone3
             }
             else
             {
-                display.Paint(CanvasOutput);
+                LabelStatus.Content = text;
             }
         }
 

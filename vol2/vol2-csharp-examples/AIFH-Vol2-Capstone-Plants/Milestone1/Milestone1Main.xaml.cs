@@ -29,7 +29,7 @@ namespace AIFH_Vol2_Capstone_Plants.Milestone1
             DisplayPlant display = new DisplayPlant(CanvasOutput);
             display.Universe = new PlantUniverse();
             display.Universe.Reset();
-            display.Paint(CanvasOutput);
+            //display.Paint(CanvasOutput);
         }
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="Universe\UniverseHolder.cs" />
     <Compile Include="Universe\UniverseRunner.cs" />
     <Compile Include="Universe\UniverseVisualizer.cs" />
+    <Compile Include="Viewer\UniverseDisplayCell.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -105,6 +106,7 @@
       <Name>AIFH-Vol2-Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

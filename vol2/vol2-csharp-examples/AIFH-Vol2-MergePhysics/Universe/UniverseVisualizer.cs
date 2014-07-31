@@ -1,4 +1,8 @@
-﻿namespace AIFH_Vol2_MergePhysics.Universe
+﻿using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace AIFH_Vol2_MergePhysics.Universe
 {
     /// <summary>
     ///     UniverseVisualizer
@@ -33,7 +37,7 @@
         /// <summary>
         ///     The universe rendered to an image.
         /// </summary>
-        public void Visualize()
+        public void Visualize(Rectangle[][] grid)
         {
             int width = _universe.Width;
             int height = _universe.Height;
@@ -46,21 +50,16 @@
             {
                 for (int col = 0; col < width; col++)
                 {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        double d = (_universe.Get(row, col).Data[i] + 1.0)/2.0;
-                        for (int y = 0; y < _zoom; y++)
-                        {
-                            for (int x = 0; x < _zoom; x++)
-                            {
-                                int idx = (row*_zoom + y)*rowSize
-                                          + (col*_zoom + x)*3;
-                                pixels[idx + i] = (int) (d*255.0);
-                            }
-                        }
-                    }
+                    double r = (_universe.Get(row, col).Data[0] + 1.0) / 2.0;
+                    double g = (_universe.Get(row, col).Data[1] + 1.0) / 2.0;
+                    double b = (_universe.Get(row, col).Data[2] + 1.0) / 2.0;
+
+                    Brush brush = new SolidColorBrush(Color.FromArgb(255, 
+                        (byte)(r * 255.0), (byte)(g * 255.0), (byte)(b * 255.0)));
+
+                    grid[row][col].Fill = brush;                    
                 }
-            }
+            }            
         }
     }
 }
