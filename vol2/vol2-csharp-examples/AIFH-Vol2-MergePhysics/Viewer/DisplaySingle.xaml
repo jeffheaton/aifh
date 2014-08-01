@@ -1,0 +1,6 @@
+﻿<Window x:Class="AIFH_Vol2_MergePhysics.Viewer.DisplaySingle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DisplaySingle" Height="300" Width="300" Closing="Window_Closing_1" SizeChanged="Window_SizeChanged_1">
+    <Canvas x:Name="CanvasOutput"/>
+</Window>

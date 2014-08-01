@@ -1,0 +1,34 @@
+﻿<Window x:Class="AIFH_Vol2_MergePhysics.Viewer.ConfigDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Configure Merge Physics" Height="192.537" Width="300" Loaded="Window_Loaded_1">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0">Universe Pane Height:</Label>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="TextPaneHeight"/>
+        <Label Grid.Row="1" Grid.Column="0">Universe Pane Width:</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextPaneWidth"/>
+        <Label Grid.Row="2" Grid.Column="0">Universe Pane Rows:</Label>
+        <TextBox Grid.Row="2" Grid.Column="1"  x:Name="TextPaneRows"/>
+        <Label Grid.Row="3" Grid.Column="0">Universe Pane Columns:</Label>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextPaneColumns"/>
+        <Label Grid.Row="4" Grid.Column="0">Zoom:</Label>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="TextZoom"/>
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="ButtonOK" Click="ButtonOK_Click">OK</Button>
+            <Button x:Name="ButtonDefaults" Click="ButtonDefaults_Click">Defaults</Button>
+            <Button x:Name="ButtonCancel" Click="ButtonCancel_Click">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

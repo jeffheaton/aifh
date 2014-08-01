@@ -1,8 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using AIFH_Vol2.Core.Randomize;
 using AIFH_Vol2_MergePhysics.Physics;
 using AIFH_Vol2_MergePhysics.Properties;
@@ -15,6 +13,9 @@ namespace AIFH_Vol2_MergePhysics.Viewer
     /// </summary>
     public class UniverseDisplayCell
     {
+        private readonly WriteableBitmap _bitmap;
+        private readonly Label _label;
+
         /// <summary>
         ///     A random number generator.
         /// </summary>
@@ -26,24 +27,21 @@ namespace AIFH_Vol2_MergePhysics.Viewer
         private readonly UniverseRunner _universeRunner;
 
         /// <summary>
-        ///     The universe rendered.
-        /// </summary>
-        private Rectangle[][] _grid;
-
-        /// <summary>
         ///     The universe visualizer.
         /// </summary>
-        private UniverseVisualizer _visualizer;
+        private readonly UniverseVisualizer _visualizer;
 
         /// <summary>
         ///     The constructor.
         /// </summary>
-        public UniverseDisplayCell(Canvas canvas, int xPosition, int yPosition)
+        public UniverseDisplayCell(int paneWidth, int paneHeight, Label label)
         {
-            int width = Settings.Default.PaneWidth
+            int width = paneWidth
                         /Settings.Default.Zoom;
-            int height = Settings.Default.PaneHeight
+            int height = paneHeight
                          /Settings.Default.Zoom;
+
+            _label = label;
 
             var universe = new UniverseHolder(height, width, 3);
             var physics = new MergePhysics(universe);
@@ -55,24 +53,13 @@ namespace AIFH_Vol2_MergePhysics.Viewer
             _visualizer = new UniverseVisualizer(universe,
                 Settings.Default.Zoom);
 
-            for (int row = 0; row < Settings.Default.PaneHeight; row++)
-            {
-                for (int col = 0; col < Settings.Default.PaneWidth; col++)
-                {
-                    int x = xPosition + row;
-                    int y = yPosition + col;
-
-                    var rect = new Rectangle
-                    {
-                        Fill = Brushes.Black,
-                        Width = width,
-                        Height = height,
-                    };
-                    rect.SetValue(Canvas.LeftProperty, x);
-                    rect.SetValue(Canvas.TopProperty, y);
-                    canvas.Children.Add(rect);
-                }   
-            }
+            _bitmap = new WriteableBitmap(
+                paneWidth,
+                paneHeight,
+                96,
+                96,
+                PixelFormats.Bgr32,
+                null);
         }
 
         /// <summary>
@@ -81,6 +68,16 @@ namespace AIFH_Vol2_MergePhysics.Viewer
         public UniverseRunner UniverseRunner
         {
             get { return _universeRunner; }
+        }
+
+        public WriteableBitmap Image
+        {
+            get { return _bitmap; }
+        }
+
+        public Label Caption
+        {
+            get { return _label; }
         }
 
         /// <summary>
@@ -96,7 +93,7 @@ namespace AIFH_Vol2_MergePhysics.Viewer
         /// </summary>
         public void Visualize()
         {
-            _visualizer.Visualize(_grid);
+            _visualizer.Visualize(_bitmap);
         }
     }
 }

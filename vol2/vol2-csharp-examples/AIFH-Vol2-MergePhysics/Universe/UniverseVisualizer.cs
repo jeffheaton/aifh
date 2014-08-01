@@ -1,6 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace AIFH_Vol2_MergePhysics.Universe
 {
@@ -37,29 +36,57 @@ namespace AIFH_Vol2_MergePhysics.Universe
         /// <summary>
         ///     The universe rendered to an image.
         /// </summary>
-        public void Visualize(Rectangle[][] grid)
+        public void Visualize(WriteableBitmap bitmap)
         {
             int width = _universe.Width;
             int height = _universe.Height;
-            int imageSize = width*height;
 
-            var pixels = new int[imageSize*_zoom*_zoom*3];
-            int rowSize = width*3*_zoom;
-
-            for (int row = 0; row < height; row++)
+            // I am usually against unsafe code, but this seems to be the
+            // only way in XAML to render bit-by-bit and get any degree of 
+            // speed.  If anyone knows a better way (that is still reasonably fast), 
+            // let me know. --JHeaton.
+            bitmap.Lock();
+            unsafe
             {
-                for (int col = 0; col < width; col++)
+                for (int row = 0; row < height; row++)
                 {
-                    double r = (_universe.Get(row, col).Data[0] + 1.0) / 2.0;
-                    double g = (_universe.Get(row, col).Data[1] + 1.0) / 2.0;
-                    double b = (_universe.Get(row, col).Data[2] + 1.0) / 2.0;
+                    for (int col = 0; col < width; col++)
+                    {
+                        double dr = (_universe.Get(row, col).Data[0] + 1.0) / 2.0;
+                        double dg = (_universe.Get(row, col).Data[1] + 1.0) / 2.0;
+                        double db = (_universe.Get(row, col).Data[2] + 1.0) / 2.0;
 
-                    Brush brush = new SolidColorBrush(Color.FromArgb(255, 
-                        (byte)(r * 255.0), (byte)(g * 255.0), (byte)(b * 255.0)));
+                        // Compute the pixel's color. 
+                        int color_data = ((byte)(dr * 255.0)) << 16; // R
+                        color_data |= ((byte)(dg * 255.0)) << 8;   // G
+                        color_data |= ((byte)(db * 255.0)) << 0;   // B
 
-                    grid[row][col].Fill = brush;                    
+
+
+                        for (int y = 0; y < _zoom; y++)
+                        {
+                            for (int x = 0; x < _zoom; x++)
+                            {
+
+                                // Get a pointer to the back buffer. 
+                                int pBackBuffer = (int)bitmap.BackBuffer;
+
+                                // Find the address of the pixel to draw.
+                                pBackBuffer += (row * _zoom + y)
+                                    * bitmap.BackBufferStride
+                                    + (col * _zoom + x) * 4;
+                                // Assign the color data to the pixel.
+                                *((int*)pBackBuffer) = color_data;
+                            }
+                        }
+
+                    }
                 }
-            }            
+            }
+
+            // Specify the area of the bitmap that changed.
+            bitmap.AddDirtyRect(new Int32Rect(0, 0, width*_zoom, height*_zoom));
+            bitmap.Unlock();
         }
     }
 }
