@@ -26,8 +26,6 @@ namespace AIFH_Vol2_MergePhysics.Universe
         public UniverseVisualizer(UniverseHolder theUniverse, int theZoom)
         {
             _universe = theUniverse;
-            int width = _universe.Width;
-            int height = _universe.Height;
 
             _zoom = theZoom;
         }
@@ -52,34 +50,31 @@ namespace AIFH_Vol2_MergePhysics.Universe
                 {
                     for (int col = 0; col < width; col++)
                     {
-                        double dr = (_universe.Get(row, col).Data[0] + 1.0) / 2.0;
-                        double dg = (_universe.Get(row, col).Data[1] + 1.0) / 2.0;
-                        double db = (_universe.Get(row, col).Data[2] + 1.0) / 2.0;
+                        double dr = (_universe.Get(row, col).Data[0] + 1.0)/2.0;
+                        double dg = (_universe.Get(row, col).Data[1] + 1.0)/2.0;
+                        double db = (_universe.Get(row, col).Data[2] + 1.0)/2.0;
 
                         // Compute the pixel's color. 
-                        int color_data = ((byte)(dr * 255.0)) << 16; // R
-                        color_data |= ((byte)(dg * 255.0)) << 8;   // G
-                        color_data |= ((byte)(db * 255.0)) << 0;   // B
-
+                        int colorData = ((byte) (dr*255.0)) << 16; // R
+                        colorData |= ((byte) (dg*255.0)) << 8; // G
+                        colorData |= ((byte) (db*255.0)) << 0; // B
 
 
                         for (int y = 0; y < _zoom; y++)
                         {
                             for (int x = 0; x < _zoom; x++)
                             {
-
                                 // Get a pointer to the back buffer. 
-                                int pBackBuffer = (int)bitmap.BackBuffer;
+                                var pBackBuffer = (int) bitmap.BackBuffer;
 
                                 // Find the address of the pixel to draw.
-                                pBackBuffer += (row * _zoom + y)
-                                    * bitmap.BackBufferStride
-                                    + (col * _zoom + x) * 4;
+                                pBackBuffer += (row*_zoom + y)
+                                               *bitmap.BackBufferStride
+                                               + (col*_zoom + x)*4;
                                 // Assign the color data to the pixel.
-                                *((int*)pBackBuffer) = color_data;
+                                *((int*) pBackBuffer) = colorData;
                             }
                         }
-
                     }
                 }
             }

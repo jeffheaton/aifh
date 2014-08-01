@@ -14,7 +14,7 @@ namespace AIFH_Vol2_Flocking
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         /// <summary>
         /// The number of particles.
@@ -122,7 +122,7 @@ namespace AIFH_Vol2_Flocking
         /// <param name="k">The number of particles to find.</param>
         /// <param name="maxDist">The max distance to check.</param>
         /// <returns>The nearest neighbors.</returns>
-        private IList<Particle> FindNearest(Particle target, IList<Particle> particles, int k, double maxDist)
+        private IList<Particle> FindNearest(Particle target, IEnumerable<Particle> particles, int k, double maxDist)
         {
             IList<Particle> result = new List<Particle>();
             var tempDist = new double[k];
@@ -208,11 +208,13 @@ namespace AIFH_Vol2_Flocking
         public void RenderParticles()
         {
             OutputCanvas.Children.Clear();
-            var rect = new Rectangle();
-            rect.Fill = Brushes.Black;
-            rect.Width = OutputCanvas.ActualWidth;
-            rect.Height = OutputCanvas.ActualHeight;
-            rect.Stroke = Brushes.Black;
+            var rect = new Rectangle
+            {
+                Fill = Brushes.Black,
+                Width = OutputCanvas.ActualWidth,
+                Height = OutputCanvas.ActualHeight,
+                Stroke = Brushes.Black
+            };
             rect.SetValue(Canvas.LeftProperty, 0.0);
             rect.SetValue(Canvas.TopProperty, 0.0);
 
@@ -311,7 +313,7 @@ namespace AIFH_Vol2_Flocking
                 SteerParticles();
                 if (!Dispatcher.CheckAccess())
                 {
-                    Dispatcher.Invoke(() => RenderParticles());
+                    Dispatcher.Invoke(RenderParticles);
                 }
                 else
                 {

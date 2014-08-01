@@ -91,14 +91,12 @@ namespace AIFH_Vol2_MergePhysics.Universe
             _data[row][col].Add(i, d);
         }
 
-        /**
-         * Compare this universe to another and return the difference.  A value of zero indicates an identical universe.
-         * The lower the value, the more similar.
-         *
-         * @param otherUniverse The other universe.
-         * @return The difference between the universes.
-         */
-
+        /// <summary>
+        /// Compare this universe to another and return the difference.  A value of zero indicates an identical universe.
+        /// The lower the value, the more similar.
+        /// </summary>
+        /// <param name="otherUniverse">The other universe.</param>
+        /// <returns>The difference between the universes.</returns>
         public double Compare(UniverseHolder otherUniverse)
         {
             int result = 0;
@@ -120,12 +118,10 @@ namespace AIFH_Vol2_MergePhysics.Universe
             return result/(double) total;
         }
 
-        /**
-         * Copy another universe into this one.
-         *
-         * @param source The source universe.
-         */
-
+        /// <summary>
+        /// Copy another universe into this one.
+        /// </summary>
+        /// <param name="source">The source universe.</param>
         public void Copy(UniverseHolder source)
         {
             for (int row = 0; row < Height; row++)
@@ -140,28 +136,24 @@ namespace AIFH_Vol2_MergePhysics.Universe
             }
         }
 
-        /**
-         * Get the universe cell for the specified row and column.
-         *
-         * @param row The row.
-         * @param col The column.
-         * @return The universe cell.
-         */
-
+        /// <summary>
+        /// Get the universe cell for the specified row and column.
+        /// </summary>
+        /// <param name="row">The row.</param>
+        /// <param name="col">The column.</param>
+        /// <returns>The universe cell.</returns>
         public UniverseCell Get(int row, int col)
         {
             return _data[row][col];
         }
 
-        /**
-         * Get the universe cell for the specified row, column and index.
-         *
-         * @param row The row of the cell.
-         * @param col The column of the cell.
-         * @param i   The index (dimension) inside the cell.
-         * @return The value.
-         */
-
+        /// <summary>
+        /// Get the universe cell for the specified row, column and index.
+        /// </summary>
+        /// <param name="row">The row of the cell.</param>
+        /// <param name="col">The column of the cell.</param>
+        /// <param name="i">The index (dimension) inside the cell.</param>
+        /// <returns>The value.</returns>
         public double Set(int row, int col, int i)
         {
             return _data[row][col].Data[i];

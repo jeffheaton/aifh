@@ -11,37 +11,37 @@ namespace AIFH_Vol2_Conway
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public const int CellSize = 6;
 
         /// <summary>
-        /// Used to locate the x coordinate of neighbors.
+        ///     Used to locate the x coordinate of neighbors.
         /// </summary>
-        private readonly int[] NeighborsX = {0, 0, 1, -1, -1, 1, -1, 1};
+        private readonly int[] _neighborsX = {0, 0, 1, -1, -1, 1, -1, 1};
 
         /// <summary>
-        /// Used to locate the y coordinate of neighbors.
+        ///     Used to locate the y coordinate of neighbors.
         /// </summary>
-        private readonly int[] NeighborsY = {1, -1, 0, 0, -1, -1, 1, 1};
+        private readonly int[] _neighborsY = {1, -1, 0, 0, -1, -1, 1, 1};
 
         /// <summary>
-        /// The current state of the grid.
+        ///     The current state of the grid.
         /// </summary>
         private bool[][] _currentGrid;
 
         /// <summary>
-        /// The grid displayed as XAML objects.
+        ///     The grid displayed as XAML objects.
         /// </summary>
         private Rectangle[][] _grid;
 
         /// <summary>
-        /// The next grid to display.
+        ///     The next grid to display.
         /// </summary>
         private bool[][] _nextGrid;
 
         /// <summary>
-        /// Stop the thread.
+        ///     Stop the thread.
         /// </summary>
         private volatile bool _shouldStop;
 
@@ -108,7 +108,7 @@ namespace AIFH_Vol2_Conway
                 Thread.Sleep(100);
                 if (!Dispatcher.CheckAccess())
                 {
-                    Dispatcher.Invoke(() => LifeStep());
+                    Dispatcher.Invoke(LifeStep);
                 }
                 else
                 {
@@ -125,10 +125,10 @@ namespace AIFH_Vol2_Conway
                 {
                     int total = 0;
 
-                    for (int i = 0; i < NeighborsX.Length; i++)
+                    for (int i = 0; i < _neighborsX.Length; i++)
                     {
-                        int nCol = col + NeighborsX[i];
-                        int nRow = row + NeighborsY[i];
+                        int nCol = col + _neighborsX[i];
+                        int nRow = row + _neighborsY[i];
                         if (nCol >= 0 && nCol < _nextGrid[0].Length)
                         {
                             if (nRow >= 0 && nRow < _nextGrid.Length)

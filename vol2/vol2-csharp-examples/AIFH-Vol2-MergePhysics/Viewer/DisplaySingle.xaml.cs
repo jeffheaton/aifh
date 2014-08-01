@@ -1,31 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using AIFH_Vol2.Core.Randomize;
-using AIFH_Vol2_MergePhysics.Properties;
 using AIFH_Vol2_MergePhysics.Universe;
 
 namespace AIFH_Vol2_MergePhysics.Viewer
 {
     /// <summary>
-    /// Interaction logic for DisplaySingle.xaml
+    ///     Interaction logic for DisplaySingle.xaml
     /// </summary>
-    public partial class DisplaySingle : Window
+    public partial class DisplaySingle
     {
-        private double[] _physics;
+        private readonly double[] _physics;
         private Thread _background;
+        private UniverseDisplayCell _display;
 
         /// <summary>
         ///     Are the universes running?
@@ -37,21 +27,27 @@ namespace AIFH_Vol2_MergePhysics.Viewer
         /// </summary>
         private bool _stopRequest;
 
-        private UniverseDisplayCell _display;
-
+        /// <summary>
+        /// Display a single CA.
+        /// </summary>
+        /// <param name="universeRunner">The runner to use physics from.</param>
         public DisplaySingle(UniverseRunner universeRunner)
         {
             InitializeComponent();
             int len = universeRunner.PhysicsRules.Data.Length;
             _physics = new double[len];
-            Array.Copy(universeRunner.PhysicsRules.Data,_physics,len);
+            Array.Copy(universeRunner.PhysicsRules.Data, _physics, len);
         }
 
+
+        /// <summary>
+        /// Stop the animation.
+        /// </summary>
         private void StopAnimation()
         {
             if (_running)
             {
-                for (; ; )
+                for (;;)
                 {
                     _stopRequest = true;
                     if (_background.Join(100)) // set appropriate timeout
@@ -66,6 +62,9 @@ namespace AIFH_Vol2_MergePhysics.Viewer
             }
         }
 
+        /// <summary>
+        /// The background thread.
+        /// </summary>
         private void DoWork()
         {
             _running = true;
@@ -78,7 +77,7 @@ namespace AIFH_Vol2_MergePhysics.Viewer
                 {
                     if (!Dispatcher.CheckAccess())
                     {
-                        Dispatcher.Invoke(() => UpdateUi());
+                        Dispatcher.Invoke(UpdateUi);
                     }
                     else
                     {
@@ -90,16 +89,29 @@ namespace AIFH_Vol2_MergePhysics.Viewer
             _running = false;
         }
 
+        /// <summary>
+        /// Update the user interface.
+        /// </summary>
         private void UpdateUi()
         {
             _display.Visualize();
         }
 
-        private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
+        /// <summary>
+        /// The window is closing.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
+        private void Window_Closing_1(object sender, CancelEventArgs e)
         {
             StopAnimation();
         }
 
+        /// <summary>
+        /// The window changed size.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void Window_SizeChanged_1(object sender, SizeChangedEventArgs e)
         {
             // Clear out any previous animation
@@ -107,11 +119,11 @@ namespace AIFH_Vol2_MergePhysics.Viewer
             CanvasOutput.Children.Clear();
 
             // Create new animation at correct size.
-            _display = new UniverseDisplayCell((int)e.NewSize.Width, (int)e.NewSize.Height, null);
+            _display = new UniverseDisplayCell((int) e.NewSize.Width, (int) e.NewSize.Height, null);
             _display.UniverseRunner.PhysicsRules.CopyData(_physics);
             _display.Visualize();
             _display.UniverseRunner.AutoKill = false;
-            var img = new Image { Source = _display.Image };
+            var img = new Image {Source = _display.Image};
             img.SetValue(Canvas.LeftProperty, 0.0);
             img.SetValue(Canvas.TopProperty, 0.0);
             CanvasOutput.Children.Add(img);

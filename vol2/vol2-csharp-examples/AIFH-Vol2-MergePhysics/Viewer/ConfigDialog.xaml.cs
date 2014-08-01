@@ -7,13 +7,19 @@ namespace AIFH_Vol2_MergePhysics.Viewer
     /// <summary>
     ///     Interaction logic for ConfigDialog.xaml
     /// </summary>
-    public partial class ConfigDialog : Window
+    public partial class ConfigDialog
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public ConfigDialog()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Copy text to display.
+        /// </summary>
         private void InitDisplay()
         {
             TextZoom.Text = "" + Settings.Default.Zoom;
@@ -23,11 +29,21 @@ namespace AIFH_Vol2_MergePhysics.Viewer
             TextPaneHeight.Text = "" + Settings.Default.PaneHeight;
         }
 
+        /// <summary>
+        /// Load the window.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             InitDisplay();
         }
 
+        /// <summary>
+        /// The okay button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -47,11 +63,21 @@ namespace AIFH_Vol2_MergePhysics.Viewer
             }
         }
 
+        /// <summary>
+        /// The defaults button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void ButtonDefaults_Click(object sender, RoutedEventArgs e)
         {
             Settings.Default.Reset();
         }
 
+        /// <summary>
+        /// The cancel button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();

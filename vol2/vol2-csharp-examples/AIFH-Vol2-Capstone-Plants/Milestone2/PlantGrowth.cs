@@ -211,15 +211,7 @@ namespace AIFH_Vol2_Capstone_Plants.Milestone2
 
                     if (_newComposition[row][col])
                     {
-                        if (row >= PlantUniverse.GroundLine)
-                        {
-                            // Roots are always 100% stem for transfer.
-                            cell.Leafyness = 0;
-                        }
-                        else
-                        {
-                            cell.Leafyness = 1.0;
-                        }
+                        cell.Leafyness = row >= PlantUniverse.GroundLine ? 0 : 1.0;
                         cell.Energy = 1.0;
                         cell.Nourishment = 1.0;
                     }

@@ -8,9 +8,9 @@ namespace AIFH_Vol2_Capstone_Plants.Milestone2
     /// <summary>
     ///     Interaction logic for Milestone2Main.xaml
     /// </summary>
-    public partial class Milestone2Main : Window
+    public partial class Milestone2Main
     {
-        public readonly double[] SAMPLE_PLANT =
+        public readonly double[] SamplePlant =
         {
             0.08414097456375995, 0.11845586131703176, 0.1868971940834313, 0.4346911204161327,
             0.024190631402031804, 0.5773526701833149, 0.8997253827355136, 0.9267311086327318, 0.04639229538493471,
@@ -45,7 +45,7 @@ namespace AIFH_Vol2_Capstone_Plants.Milestone2
             for (int i = 0; i < PlantUniverse.EvaluationCycles && !_done; i++)
             {
                 physics.RunPhysics(universe);
-                growth.RunGrowth(universe, SAMPLE_PLANT);
+                growth.RunGrowth(universe, SamplePlant);
 
                 if (!Dispatcher.CheckAccess())
                 {
@@ -65,7 +65,7 @@ namespace AIFH_Vol2_Capstone_Plants.Milestone2
         {
             if (!Dispatcher.CheckAccess())
             {
-                Dispatcher.Invoke(() => Init());
+                Dispatcher.Invoke(Init);
             }
             else
             {

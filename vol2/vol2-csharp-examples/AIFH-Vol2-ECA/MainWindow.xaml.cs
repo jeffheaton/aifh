@@ -9,7 +9,7 @@ namespace AIFH_Vol2_ECA
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public const double BoxWidth = 7.0;
 
@@ -32,7 +32,7 @@ namespace AIFH_Vol2_ECA
             {
                 rule = int.Parse(TextRule.Text);
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 rule = -1;
             }
@@ -111,11 +111,13 @@ namespace AIFH_Vol2_ECA
                         result = output[7];
                     }
 
-                    var rect = new Rectangle();
-                    rect.Fill = result ? Brushes.Black : Brushes.White;
-                    rect.Width = BoxWidth;
-                    rect.Height = BoxWidth;
-                    rect.Stroke = result ? Brushes.Black : Brushes.White;
+                    var rect = new Rectangle
+                    {
+                        Fill = result ? Brushes.Black : Brushes.White,
+                        Width = BoxWidth,
+                        Height = BoxWidth,
+                        Stroke = result ? Brushes.Black : Brushes.White
+                    };
                     rect.SetValue(Canvas.LeftProperty, x);
                     rect.SetValue(Canvas.TopProperty, y);
                     CanvasOutput.Children.Add(rect);

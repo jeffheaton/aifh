@@ -21,7 +21,7 @@ namespace AIFH_Vol2_MergePhysics
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         /// <summary>
         /// The universe cells in the multiverse.
@@ -89,6 +89,11 @@ namespace AIFH_Vol2_MergePhysics
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Setup after the window loads.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             double univWidth = Settings.Default.PaneWidth;
@@ -106,11 +111,13 @@ namespace AIFH_Vol2_MergePhysics
                     double y = row*univHeight;
 
                     // Label
-                    var lab = new Label();
-                    lab.Foreground = Brushes.Black;
-                    lab.Background = Brushes.LightGray;
-                    lab.FontSize = 10;
-                    lab.Content = "...";
+                    var lab = new Label
+                    {
+                        Foreground = Brushes.Black,
+                        Background = Brushes.LightGray,
+                        FontSize = 10,
+                        Content = "..."
+                    };
                     lab.SetValue(Canvas.LeftProperty, x);
                     lab.SetValue(Canvas.TopProperty, y);
 
@@ -149,19 +156,29 @@ namespace AIFH_Vol2_MergePhysics
             BtnDeselect.IsEnabled = false;
         }
 
+        /// <summary>
+        /// The config button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void BtnConfig_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new ConfigDialog();
             dialog.Show();
         }
 
+        /// <summary>
+        /// The single step button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void BtnSingleStep_Click(object sender, RoutedEventArgs e)
         {
             Parallel.ForEach(_cells, universe => universe.Advance());
 
             if (!Dispatcher.CheckAccess())
             {
-                Dispatcher.Invoke(() => UpdateUi());
+                Dispatcher.Invoke(UpdateUi);
             }
             else
             {
@@ -169,6 +186,9 @@ namespace AIFH_Vol2_MergePhysics
             }
         }
 
+        /// <summary>
+        /// Update the user interface.
+        /// </summary>
         private void UpdateUi()
         {
             if (!_stopRequest)
@@ -179,14 +199,7 @@ namespace AIFH_Vol2_MergePhysics
 
                     if (_copySource != null)
                     {
-                        if (universe.UniverseRunner == _selectedCell.UniverseRunner)
-                        {
-                            universe.Caption.Content = "Source";
-                        }
-                        else
-                        {
-                            universe.Caption.Content = "";
-                        }
+                        universe.Caption.Content = universe.UniverseRunner == _selectedCell.UniverseRunner ? "Source" : "";
                     }
                     else if (_crossoverParent1 != null
                              || _crossoverParent2 != null)
@@ -215,6 +228,9 @@ namespace AIFH_Vol2_MergePhysics
             }
         }
 
+        /// <summary>
+        /// Background thread.
+        /// </summary>
         private void DoWork()
         {
             _running = true;
@@ -227,7 +243,7 @@ namespace AIFH_Vol2_MergePhysics
                 {
                     if (!Dispatcher.CheckAccess())
                     {
-                        Dispatcher.Invoke(() => UpdateUi());
+                        Dispatcher.Invoke(UpdateUi);
                     }
                     else
                     {
@@ -239,6 +255,11 @@ namespace AIFH_Vol2_MergePhysics
             _running = false;
         }
 
+        /// <summary>
+        /// The start button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             if (!_running)
@@ -248,11 +269,22 @@ namespace AIFH_Vol2_MergePhysics
             }
         }
 
+
+        /// <summary>
+        /// The stop button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void BtnStop_Click(object sender, RoutedEventArgs e)
         {
             StopAnimation();
         }
 
+        /// <summary>
+        /// The reset button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
             lock (this)
@@ -269,6 +301,11 @@ namespace AIFH_Vol2_MergePhysics
             }
         }
 
+        /// <summary>
+        /// The deselect button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void BtnDeselect_Click(object sender, RoutedEventArgs e)
         {
             _copySource = null;
@@ -276,6 +313,9 @@ namespace AIFH_Vol2_MergePhysics
             BtnDeselect.IsEnabled = false;
         }
 
+        /// <summary>
+        /// Called to stop the animation.
+        /// </summary>
         private void StopAnimation()
         {
             if (_running)
@@ -295,11 +335,21 @@ namespace AIFH_Vol2_MergePhysics
             }
         }
 
+        /// <summary>
+        /// The window is closing.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void Window_Closing_1(object sender, CancelEventArgs e)
         {
             StopAnimation();
         }
 
+        /// <summary>
+        /// The auto kill button was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void CheckAutoKill_Click(object sender, RoutedEventArgs e)
         {
             foreach (UniverseDisplayCell universe in _cells)
@@ -308,13 +358,14 @@ namespace AIFH_Vol2_MergePhysics
             }
         }
 
+        /// <summary>
+        /// The save popup menu was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void MenuSavePhysics_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new SaveFileDialog();
-
-            dlg.Filter = "All files (*.*)|*.*";
-            dlg.FilterIndex = 2;
-            dlg.RestoreDirectory = true;
+            var dlg = new SaveFileDialog {Filter = "All files (*.*)|*.*", FilterIndex = 2, RestoreDirectory = true};
 
             if (dlg.ShowDialog() == true)
             {
@@ -322,13 +373,14 @@ namespace AIFH_Vol2_MergePhysics
             }
         }
 
+        /// <summary>
+        /// The load popup menu was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void MenuLoadPhysics_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new OpenFileDialog();
-
-            dlg.Filter = "All files (*.*)|*.*";
-            dlg.FilterIndex = 2;
-            dlg.RestoreDirectory = true;
+            var dlg = new OpenFileDialog {Filter = "All files (*.*)|*.*", FilterIndex = 2, RestoreDirectory = true};
 
             if (dlg.ShowDialog() == true)
             {
@@ -336,16 +388,31 @@ namespace AIFH_Vol2_MergePhysics
             }
         }
 
+        /// <summary>
+        /// The kill universe popup menu was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void MenuKillUniverse_Checked(object sender, RoutedEventArgs e)
         {
             _selectedCell.UniverseRunner.Reset(_rnd);
         }
 
+        /// <summary>
+        /// The big bang popup menu was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void MenuBigBang_Click(object sender, RoutedEventArgs e)
         {
             _selectedCell.UniverseRunner.Randomize(_rnd);
         }
 
+        /// <summary>
+        /// The mutate across popup menu was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void MenuMutateAcross_Click(object sender, RoutedEventArgs e)
         {
             int rows = Settings.Default.UniversePaneRows;
@@ -367,6 +434,11 @@ namespace AIFH_Vol2_MergePhysics
             }
         }
 
+        /// <summary>
+        /// The mutate single popup menu was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void MenuMutateSingle_Click(object sender, RoutedEventArgs e)
         {
             UniverseRunner target = _selectedCell.UniverseRunner;
@@ -374,6 +446,11 @@ namespace AIFH_Vol2_MergePhysics
             target.Randomize(_rnd);
         }
 
+        /// <summary>
+        /// The crossover popup menu was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void MenuCrossover_Click(object sender, RoutedEventArgs e)
         {
             _crossoverParent1 = _selectedCell.UniverseRunner;
@@ -382,6 +459,11 @@ namespace AIFH_Vol2_MergePhysics
             BtnDeselect.IsEnabled = true;
         }
 
+        /// <summary>
+        /// The copy popup menu was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void MenuCopyPane_Click(object sender, RoutedEventArgs e)
         {
             _copySource = _selectedCell.UniverseRunner;
@@ -390,6 +472,11 @@ namespace AIFH_Vol2_MergePhysics
             BtnDeselect.IsEnabled = true;
         }
 
+        /// <summary>
+        /// The run singular popup menu was clicked.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void MenuRunSingular_Click(object sender, RoutedEventArgs e)
         {
             StopAnimation();
@@ -397,6 +484,11 @@ namespace AIFH_Vol2_MergePhysics
             window.Show();
         }
 
+        /// <summary>
+        /// The mouse was pressed.
+        /// </summary>
+        /// <param name="sender">The sending object.</param>
+        /// <param name="e">The event.</param>
         private void CanvasOutput_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // update selected cell

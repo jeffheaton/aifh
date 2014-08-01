@@ -70,11 +70,17 @@ namespace AIFH_Vol2_MergePhysics.Viewer
             get { return _universeRunner; }
         }
 
+        /// <summary>
+        /// The image rendered to.
+        /// </summary>
         public WriteableBitmap Image
         {
             get { return _bitmap; }
         }
 
+        /// <summary>
+        /// The text caption.
+        /// </summary>
         public Label Caption
         {
             get { return _label; }
