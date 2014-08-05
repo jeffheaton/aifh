@@ -1,4 +1,4 @@
-﻿// Artificial Intelligence for Humans
+// Artificial Intelligence for Humans
 // Volume 2: Nature-Inspired Algorithms
 // C# Version
 // http://www.aifh.org
@@ -7,7 +7,7 @@
 // Code repository:
 // https://github.com/jeffheaton/aifh
 //
-// Copyright 2013 by Jeff Heaton
+// Copyright 2014 by Jeff Heaton
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.

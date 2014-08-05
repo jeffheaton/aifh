@@ -1,4 +1,4 @@
-﻿// Artificial Intelligence for Humans
+// Artificial Intelligence for Humans
 // Volume 2: Nature-Inspired Algorithms
 // C# Version
 // http://www.aifh.org
@@ -25,7 +25,6 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
-
 using System;
 using System.Security.Cryptography;
 
