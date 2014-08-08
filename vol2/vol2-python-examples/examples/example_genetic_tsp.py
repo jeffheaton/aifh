@@ -128,7 +128,7 @@ pop.selection = TournamentSelection()
 pop.score_function = score_funct
 pop.goal_maximize = False
 
-pop.train(500,10)
+pop.train(pop.species[0],score_funct)
 
 # Display results.
 print("Final distance: " + str(pop.best_genome.score) )

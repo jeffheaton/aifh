@@ -5,11 +5,16 @@ import math
 
 
 class Population:
+    discrete = False
+    allow_repeats = True
     species = []
     goal_maximize = True
     selection = None
-    score_function = None
     best_genome = None
+    display_iteration = True
+    max_gen = 1000000
+    max_stagnant = 10
+
 
     def better_than(self,g1,g2):
         if self.goal_maximize:
@@ -47,23 +52,49 @@ class Population:
 
         self.species[0].members = next_generation
 
-    def train(self,max_gen,max_stagnant):
+    def train(self,x0,score_funct,pop_size=1000,low=1,high=-1):
         generation = 1
         stagnant = 0
         last_best = None
 
-        while generation<=max_gen and stagnant<max_stagnant:
+        if not self.discrete and not self.allow_repeats:
+            raise("Non-discrete (continuous) problems must allow repeats, please set allow_repeats=true.")
+
+        # Do we need to generate a population?
+        if len(self.species[0].members) == 0:
+            for i in range(1,pop_size):
+                genome = Genome()
+
+                if self.discrete:
+                    for j in range(0,len(x0)):
+                        genome.genes.append(randint(low,high))
+                else:
+                    for j in range(0,len(x0)):
+                        genome.genes.append(uniform(low,high))
+
+        # Score the population
+        for genome in self.species[0].members:
+            genome.score = score_funct(genome.genes)
+
+        # Loop through training
+        while generation<=self.max_gen and stagnant<self.max_stagnant:
             self.iteration()
-            print("Generaton #" + str(generation) + ", Score=" + str(self.best_genome.score) + ", stagnant=" + str(stagnant))
+
+            if self.display_iteration:
+                print("Generaton #" + str(generation) + ", Score=" + str(self.best_genome.score) + ", stagnant=" + str(stagnant))
+
             generation = generation + 1
 
-            if last_best <> None and math.fabs(last_best.score-self.best_genome.score)<0.001:
+            if last_best != None and math.fabs(last_best.score-self.best_genome.score)<0.001:
                 stagnant = stagnant + 1
             else:
                 stagnant = 0
 
             last_best = self.best_genome
 
+        # Copy winner
+        for i in range(0,len(x0)-1):
+            x0[i] = self.best_genome.genes[i]
 
 
 class Species:
