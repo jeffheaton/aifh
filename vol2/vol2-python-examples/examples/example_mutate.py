@@ -50,8 +50,6 @@ aifh_dir = os.path.abspath(aifh_dir + os.sep + ".." + os.sep + "lib" + os.sep + 
 sys.path.append(aifh_dir)
 
 from genetic import *
-from genetic import Genome
-from genetic import Species
 
 p1 = [ 1,2,3,4,5,6,7,8,9,10 ]
 off = [0] * 10
