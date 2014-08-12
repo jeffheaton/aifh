@@ -104,31 +104,12 @@ for i in range(0, CITY_COUNT):
 
 # Create a random population
 pop = Population()
-species = Species(pop)
-pop.species.append(species)
-
-for i in range(1,POPULATION_SIZE):
-    g = Genome()
-
-    # Pick a random city order.  Here we are sampling without replacement.  This means choose 50 random integers but
-    # do not repeat.  We only want to visit a city once.
-    current_path = []
-
-    while len(current_path) < CITY_COUNT:
-        city_index = np.random.randint(0, CITY_COUNT)
-        if city_index not in current_path:
-            current_path.append(city_index)
-
-    # copy to genome
-    g.genes = current_path
-    g.score = score_funct(g.genes)
-    species.members.append(g)
-
-pop.selection = TournamentSelection()
-pop.score_function = score_funct
+pop.function_crossover = crossover_splice_no_repeat
+pop.function_mutate = mutate_shuffle
+pop.create_population(CITY_COUNT,1000,0,CITY_COUNT,True,True)
 pop.goal_maximize = False
 
-pop.train(pop.species[0],score_funct)
+pop.train(score_funct)
 
 # Display results.
 print("Final distance: " + str(pop.best_genome.score) )

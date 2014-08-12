@@ -2,19 +2,23 @@ __author__ = 'jheaton'
 
 from random import *
 import math
+from aifh_error import *
 
 
 class Population:
-    discrete = False
-    allow_repeats = True
-    species = []
-    goal_maximize = True
-    selection = None
-    best_genome = None
-    display_iteration = True
-    max_gen = 1000000
-    max_stagnant = 10
-
+    def __init__(self):
+        self.selection = TournamentSelection()
+        self.species = []
+        self.goal_maximize = False
+        self.best_genome = None
+        self.display_iteration = True
+        self.max_gen = 1000000
+        self.max_stagnant = 10
+        self.cut_len = 5
+        self.perturb_amount = 0.1
+        self.function_crossover = crossover_splice
+        self.function_mutate = mutate_perturb
+        self.mutate_percent = .2
 
     def better_than(self,g1,g2):
         if self.goal_maximize:
@@ -31,46 +35,68 @@ class Population:
         if self.best_genome == None or self.better_than(child,self.best_genome):
             self.best_genome = child
 
+    def perform_crossover(self,next_generation,p1,p2):
+        off = [
+            [0] * len(p1.genes),
+            [0] * len(p1.genes)]
+        self.function_crossover(self,p1.genes,p2.genes,off)
+        self.add_child(next_generation,off[0])
+        self.add_child(next_generation,off[1])
+
+    def perform_mutation(self,next_generation,p1):
+        off = [0] * len(p1.genes)
+        self.function_mutate(self,p1.genes,off)
+        self.add_child(next_generation,off)
+
     def iteration(self):
         next_generation = []
 
         while len(next_generation)<len(self.species[0].members):
-            if uniform(0,1) > 0.5:
+            if uniform(0,1) > self.mutate_percent:
                 p1 = self.selection.select(self.species[0])
                 p2 = self.selection.select(self.species[0])
-                off = [
-                    [0] * len(p1.genes),
-                    [0] * len(p1.genes)]
-                crossover_splice_no_repeat(p1.genes,p2.genes,5,off)
-                self.add_child(next_generation,off[0])
-                self.add_child(next_generation,off[1])
+                self.perform_crossover(next_generation,p1,p2)
             else:
                 p1 = self.selection.select(self.species[0])
-                off = [0] * len(p1.genes)
-                mutate_shuffle(p1.genes,off)
-                self.add_child(next_generation,off)
+                self.perform_mutation(next_generation,p1)
 
         self.species[0].members = next_generation
 
-    def train(self,x0,score_funct,pop_size=1000,low=1,high=-1):
+    def create_population(self,size,pop_size=1000,low=-1,high=1,discrete=False,no_repeat=False):
+
+        if not discrete and no_repeat:
+            raise(AIFHError("Can't create a non-discrete (continuous) population without repeats."))
+
+        self.species.append( Species(self))
+        for i in range(0,pop_size):
+            genome = Genome()
+
+            # Generate random genome.
+            if discrete:
+                while len(genome.genes)<size:
+                    r = randint(low,high)
+                    if not no_repeat or r not in genome.genes:
+                        genome.genes.append(r)
+            else:
+                for j in range(0,size):
+                    genome.genes.append(uniform(low,high))
+
+            # Add genome to species.
+            self.species[0].members.append(genome)
+
+
+    def train(self,score_funct):
+        self.score_function = score_funct
         generation = 1
         stagnant = 0
         last_best = None
 
-        if not self.discrete and not self.allow_repeats:
-            raise("Non-discrete (continuous) problems must allow repeats, please set allow_repeats=true.")
-
         # Do we need to generate a population?
-        if len(self.species[0].members) == 0:
-            for i in range(1,pop_size):
-                genome = Genome()
+        if len(self.species) == 0:
+            raise(AIFHError("There are no species."))
 
-                if self.discrete:
-                    for j in range(0,len(x0)):
-                        genome.genes.append(randint(low,high))
-                else:
-                    for j in range(0,len(x0)):
-                        genome.genes.append(uniform(low,high))
+        if len(self.species[0].members) == 0:
+            raise(AIFHError("Population is empty."))
 
         # Score the population
         for genome in self.species[0].members:
@@ -110,8 +136,9 @@ class Genome:
     Some genomes also function as phenomes.
     """
 
-    score = 0
-    genes = []
+    def __init__(self):
+        self.score = 0
+        self.genes = []
 
 class TournamentSelection:
     """
@@ -147,17 +174,17 @@ def get_not_taken(source,taken):
             taken.add(trial)
             return trial
 
-    raise("Ran out of integers to select.")
+    raise(AIFHError("Ran out of integers to select."))
 
 
 
-def crossover_splice(p1,p2,cut_len,off) :
+def crossover_splice(pop,p1,p2,off) :
     off[0] = [0] * len(p1)
     off[1] = [0] * len(p1)
 
     # the chromosome must be cut at two positions, determine them
-    cutpoint1 = randint(0,len(p1) - cut_len)
-    cutpoint2 = cutpoint1 + cut_len
+    cutpoint1 = randint(0,len(p1) - pop.cut_len)
+    cutpoint2 = cutpoint1 + pop.cut_len
 
     # handle cut section
     for i in range(0,len(p1)):
@@ -171,7 +198,7 @@ def crossover_splice(p1,p2,cut_len,off) :
             off[0][i] = p2[i]
             off[1][i] = p1[i]
 
-def crossover_splice_no_repeat(p1,p2,cut_len,off) :
+def crossover_splice_no_repeat(pop,p1,p2,off) :
     off[0] = [0] * len(p1)
     off[1] = [0] * len(p1)
 
@@ -179,8 +206,8 @@ def crossover_splice_no_repeat(p1,p2,cut_len,off) :
     taken2 = set()
 
     # the chromosome must be cut at two positions, determine them
-    cutpoint1 = randint(0,len(p1) - cut_len)
-    cutpoint2 = cutpoint1 + cut_len
+    cutpoint1 = randint(0,len(p1) - pop.cut_len)
+    cutpoint2 = cutpoint1 + pop.cut_len
 
     # handle cut section
     for i in range(0,len(p1)):
@@ -196,7 +223,7 @@ def crossover_splice_no_repeat(p1,p2,cut_len,off) :
             off[0][i] = get_not_taken(p2,taken1)
             off[1][i] = get_not_taken(p1,taken2)
 
-def mutate_shuffle(p1,off):
+def mutate_shuffle(pop,p1,off):
 
     # Clone the parent
     for i in range(0,len(p1)):
@@ -219,10 +246,11 @@ def mutate_shuffle(p1,off):
     off[iswap1] = off[iswap2]
     off[iswap2] = temp
 
-def mutate_perturb(p1,perturb_amount,off):
+def mutate_perturb(pop,p1,off):
 
     # Clone the parent
     for i in range(0,len(p1)):
         value = p1[i]
-        value = value + (value * (perturb_amount - (uniform(0,1) * perturb_amount * 2)))
+        value = value + (value * (pop.perturb_amount - (uniform(0,1) * pop.perturb_amount * 2)))
         off[i] = value
+
