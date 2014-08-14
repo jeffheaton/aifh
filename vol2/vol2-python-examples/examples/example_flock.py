@@ -5,7 +5,7 @@ from Tkinter import *
 import time
 from random import *
 import math
-from scipy.spatial import distance
+import Tkinter
 
 # The number of particles.
 PARTICLE_COUNT = 25
@@ -29,6 +29,7 @@ class Particle:
     def __init__(self):
         self.location = [0] * 2
         self.velocity = [0] * 2
+        self.poly = None
 
 class App():
     """
@@ -43,6 +44,8 @@ class App():
 
         self.particles = []
 
+        self.c.create_rectangle(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT, outline="black", fill="black")
+
         for i in range(0, PARTICLE_COUNT) :
             p = Particle()
             p.location = [0] * 2
@@ -51,6 +54,9 @@ class App():
             p.location[1] = randint(0,CANVAS_HEIGHT)
             p.velocity[0] = 3
             p.velocity[1] = uniform(0,2.0*math.pi)
+
+            p.poly = self.c.create_polygon([0,0,0,0,0,0],fill='white')
+
             self.particles.append(p)
 
         self.update_clock()
@@ -86,7 +92,10 @@ class App():
 
         for particle in particles:
             if particle!=target:
-                d = distance.euclidean(particle.location, target.location)
+                # Euclidean distance
+                d = math.sqrt(
+                    math.pow(particle.location[0] - target.location[0],2) +
+                    math.pow(particle.location[1] - target.location[1],2) )
 
                 if d<=max_dist:
                     if len(result) < k:
@@ -145,9 +154,7 @@ class App():
 
 
     def update_clock(self):
-        # clear the off screen area
-        self.c.delete("all")
-        self.c.create_rectangle(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT, outline="black", fill="black")
+
 
         # render the particles
         points = [0] * 6
@@ -164,7 +171,7 @@ class App():
             points[4] = points[0] - (int) (math.cos(r2) * PARTICLE_SIZE)
             points[5] = points[1] - (int) (math.sin(r2) * PARTICLE_SIZE)
 
-            self.c.create_polygon(points,fill='white')
+            self.c.coords(p.poly,Tkinter._flatten(points))
 
             # move the particle
             dx = math.cos(r)
