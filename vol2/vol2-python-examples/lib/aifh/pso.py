@@ -134,4 +134,5 @@ class TrainPSO:
     def train(self,max_iterations=100):
         for i in range(0,max_iterations):
             self.iteration()
-            print("Iteration #"+str(i) + ", best score=" + str(self.best_scores[self.best_vector_index]))
+            if self.display_iteration:
+                print("Iteration #"+str(i) + ", best score=" + str(self.best_scores[self.best_vector_index]))
