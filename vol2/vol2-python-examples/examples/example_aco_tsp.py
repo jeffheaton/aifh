@@ -104,7 +104,7 @@ for i in range(0, CITY_COUNT):
 
 def calculate_cost(a,b):
     d = distance.euclidean(cities[a], cities[b])
-    #d = max(d,0.0001)
+    d = max(d,0.0001)
     return d
 
 

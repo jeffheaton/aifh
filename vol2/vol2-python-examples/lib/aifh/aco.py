@@ -3,6 +3,7 @@ from random import *
 import math
 import copy
 import operator
+from aifh_error import *
 
 # The initial value of the pheromone trails.
 INITIAL_PHEROMONE = 1.0
@@ -45,6 +46,9 @@ class ContinuousAnt:
 
         # True, if this ant should minimize.  This value should be the same for all ants.
         self.should_minimize = should_minimize
+
+    def get_score(self):
+        return float(self.score)
 
 class DiscreteACO:
     def __init__(self,ant_count,graph_size,cost):
@@ -129,7 +133,7 @@ class DiscreteACO:
                 return i
 
         # should not happen!
-        return -1
+        raise(AIFHError("Could not pick next ACO node."))
 
     def update_pheromone(self):
         # Cause evaporation.
@@ -224,7 +228,7 @@ class ContinuousACO:
         self.max_stagnant = 10
 
         # What we are optimizing
-        self.x0 = []
+        self.x0 = x0
 
 
         for i in range(0,len(self.population)):
@@ -234,10 +238,13 @@ class ContinuousACO:
 
 
         self.update_score()
-        self.population.sort(key=operator.methodcaller("get_score"), reverse=self.goal_minimize)
+        self.perform_sort()
         self.compute_weighting()
         self.sample_solutions()
-        self.population.sort(key=operator.methodcaller("get_score"), reverse=self.goal_minimize)
+        self.perform_sort()
+
+    def perform_sort(self):
+        self.population.sort(key=operator.methodcaller("get_score"), reverse=not self.goal_minimize)
 
     def update_score(self):
         for a in self.population:
@@ -247,15 +254,15 @@ class ContinuousACO:
         self.sum_weighting = 0
 
         for i in range(0,self.population_size):
-            exponent = (i * i) / (2 * CONST_Q * CONST_Q * self.populationSize * self.populationSize)
-            self.weighting[i] = (1 / (0.1 * math.sqrt(2 * math.PI))) * math.pow(math.E, -exponent)
+            exponent = (i * i) / (2 * CONST_Q * CONST_Q * self.population_size * self.population_size)
+            self.weighting[i] = (1 / (0.1 * math.sqrt(2 * math.pi))) * math.pow(math.e, -exponent)
             self.sum_weighting += self.weighting[i]
 
 
     def compute_sd(self,x,l):
         sum = 0.0
         for i in range(0,self.population_size):
-            sum += math.abs(self.population[i].params[x] - self.population[l].params[x]) / (self.population_size - 1)
+            sum += math.fabs(self.population[i].params[x] - self.population[l].params[x]) / (self.population_size - 1)
 
         if sum < 0.00001:
             return CONST_SIGMA
@@ -282,19 +289,37 @@ class ContinuousACO:
             for j in range(0,self.param_count):
                 sigma = self.compute_sd(j, pdf)
                 mu = self.population[pdf].params[j]
-                d = (random.nextGaussian() * sigma) + mu
+                d = (uniform(0,1) * sigma) + mu
                 self.population[i].params[j] = d
 
     def iteration(self):
         self.compute_weighting()
         self.sample_solutions()
         self.update_score()
-        self.population.sort(key=operator.methodcaller("get_score"), reverse=self.goal_minimize)
+        self.perform_sort()
 
     def train(self,max_iterations=100):
+        iteration = 1
         stagnant = 0
+        last_best = None
 
-        for i in range(0,max_iterations):
+        # Loop through training
+        while iteration<=max_iterations and stagnant<self.max_stagnant:
             self.iteration()
+            score = self.population[0].score
+
             if self.display_iteration:
-                print("Iteration #"+str(i) + ", best score=" + str(self.best_scores[self.best_vector_index]))
+                print("Iteration #" + str(iteration) + ", Score=" + str(score) + ", stagnant=" + str(stagnant))
+
+            iteration = iteration + 1
+
+            if last_best != None and math.fabs(last_best-score)<0.001:
+                stagnant = stagnant + 1
+            else:
+                stagnant = 0
+
+            last_best = score
+
+        # Copy back
+        for i in range(0,len(self.x0)):
+            self.x0[i] = self.population[0].params[i]
