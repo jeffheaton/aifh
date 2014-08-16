@@ -260,6 +260,7 @@ from normalize import Normalize
 from rbf_network import RbfNetwork
 from error import ErrorCalculation
 from genetic import *
+from pso import *
 
 # find the Iris data set
 irisFile = os.path.dirname(os.path.realpath(__file__))
@@ -320,14 +321,9 @@ def score_funct(x):
     return result
 
 # Perform the annealing
-train = Population()
-train.cut_len = 5
-train.perturb_amount = 0.1
-train.function_crossover = crossover_splice
-train.function_mutate = mutate_perturb
+train = TrainPSO(30,len(network.long_term_memory),score_funct)
 train.display_iteration = True
-train.create_population(len(network.long_term_memory),1000,-1,1)
-train.train(score_funct)
+train.train()
 
 # Display the final validation.  We show all of the iris data as well as the predicted species.
 for i in range(0, len(training_input)):
