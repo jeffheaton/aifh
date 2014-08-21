@@ -100,7 +100,7 @@ class PlantUniverse:
         if not self.is_valid(row, col):
             return 0
 
-        cell = self.cells[row][col]
+        cell = self.grid[row][col]
 
         if not cell.is_alive():
             return 0
@@ -131,7 +131,7 @@ class PlantUniverse:
         return sum / 8.0
 
 
-    def get_cell_infoVector(self, row, col):
+    def get_cell_info_vector(self, row, col):
         """
         Return an info vector about a cell.  This allows cells to be identified by instructions in the genome.
         The vector contains four doubles.  All doubles range from [0,1].
@@ -144,7 +144,7 @@ class PlantUniverse:
         @return The info vector.
         """
         result = [0] * PlantUniverse.CELL_VECTOR_LENGTH
-        cell = self.cells[row][col]
+        cell = self.grid[row][col]
 
         # Height
         result[0] = row / PlantUniverse.UNIVERSE_HEIGHT
@@ -229,9 +229,9 @@ class PlantUniverse:
         @return The amount of energy transferred in.
         """
         result = 0
-        result = math.max(result, self.calculate_energy(row - 1, col - 1))
-        result = math.max(result, self.calculate_energy(row - 1, col))
-        result = math.max(result, self.calculate_energy(row - 1, col + 1))
+        result = max(result, self.calculate_energy(row - 1, col - 1))
+        result = max(result, self.calculate_energy(row - 1, col))
+        result = max(result, self.calculate_energy(row - 1, col + 1))
         return result
 
 
@@ -243,9 +243,9 @@ class PlantUniverse:
         @return The amount of energy transferred in.
         """
         result = 0
-        result = math.max(result, self.calculate_energy(row + 1, col - 1))
-        result = math.max(result, self.calculate_energy(row + 1, col))
-        result = math.max(result, self.calculate_energy(row + 1, col + 1))
+        result = max(result, self.calculate_energy(row + 1, col - 1))
+        result = max(result, self.calculate_energy(row + 1, col))
+        result = max(result, self.calculate_energy(row + 1, col + 1))
         return result
 
 
@@ -258,28 +258,28 @@ class PlantUniverse:
         """
         sum = 0
 
-        if self.isAlive(row - 1, col):
+        if self.is_alive(row - 1, col):
             sum = sum + 1
 
-        if self.isAlive(row + 1, col):
+        if self.is_alive(row + 1, col):
             sum = sum + 1
 
-        if self.isAlive(row, col - 1):
+        if self.is_alive(row, col - 1):
             sum = sum + 1
 
-        if self.isAlive(row, col + 1):
+        if self.is_alive(row, col + 1):
             sum = sum + 1
 
-        if self.isAlive(row - 1, col - 1):
+        if self.is_alive(row - 1, col - 1):
             sum = sum + 1
 
-        if self.isAlive(row + 1, col + 1):
+        if self.is_alive(row + 1, col + 1):
             sum = sum + 1
 
-        if self.isAlive(row - 1, col + 1):
+        if self.is_alive(row - 1, col + 1):
             sum = sum + 1
 
-        if self.isAlive(row + 1, col - 1):
+        if self.is_alive(row + 1, col - 1):
             sum = sum + 1
 
         return sum;
@@ -404,7 +404,5 @@ class PlantBoxMilestone1:
         self.root = Tk()
         self.display = DisplayPlant(self.root,universe)
         self.display.update()
-
         self.root.mainloop()
 
-app=PlantBoxMilestone1()
