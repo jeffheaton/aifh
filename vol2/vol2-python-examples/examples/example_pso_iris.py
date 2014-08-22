@@ -320,12 +320,13 @@ def score_funct(x):
     result = ErrorCalculation.mse(np.array(actual_output), training_ideal)
     return result
 
-# Perform the annealing
+# Perform the PSO training
 train = TrainPSO(30,len(network.long_term_memory),score_funct)
 train.display_iteration = True
 train.train()
 
 # Display the final validation.  We show all of the iris data as well as the predicted species.
+train.copy_best(network)
 for i in range(0, len(training_input)):
     input_data = training_input[i]
     # Compute the output from the RBF network

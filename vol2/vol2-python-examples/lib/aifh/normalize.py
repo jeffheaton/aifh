@@ -32,7 +32,6 @@ import csv
 import sys
 import numpy as np
 from aifh_error import AIFHError
-from equilateral import Equilateral
 
 
 class Normalize(object):

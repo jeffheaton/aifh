@@ -1,6 +1,6 @@
 """
     Artificial Intelligence for Humans
-    Volume 4: Nature-Inspired Algorithms
+    Volume 2: Nature-Inspired Algorithms
     Python Version
     http://www.aifh.org
     http://www.jeffheaton.com

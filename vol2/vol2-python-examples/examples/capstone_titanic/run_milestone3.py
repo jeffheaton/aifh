@@ -33,6 +33,7 @@ import csv
 
 from titanic_milestone1 import *
 from titanic_milestone2 import *
+from titanic_milestone3 import *
 
 # Find the AIFH core files
 aifh_dir = os.path.dirname(os.path.abspath(__file__))
@@ -55,6 +56,8 @@ test_path = os.path.join(data_path, TitanicConfig.TestFilename)
 normalize_Path = os.path.join(data_path, TitanicConfig.NormDumpFilename)
 
 # Fit the model.
-fit_titanic(training_path, test_path)
+cross = fit_titanic(training_path, test_path)
 
+# Build submit file
 
+submit(data_path, cross.best_network, cross)
