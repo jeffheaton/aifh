@@ -1,5 +1,6 @@
 import csv
 
+
 class TitanicConfig:
     """
     Configuration data for the Titanic project.
@@ -41,6 +42,7 @@ class TitanicConfig:
     # The number of iterations to allow with no improvement.
     AllowNoImprovement = 100
 
+
 class CalcHistogram:
     def __init__(self):
         self.histogram = {}
@@ -59,9 +61,9 @@ class CalcHistogram:
 
         for key in self.histogram.keys():
             count = self.histogram[key]
-        if result == None or max_count > count or (max_count == count and result < key):
-            result = key
-            max_count = count
+            if result == None or max_count < count or (max_count == count and result < key):
+                result = key
+                max_count = count
 
         return result
 
@@ -71,11 +73,12 @@ class CalcHistogram:
 
         for key in self.histogram.keys():
             count = self.histogram[key]
-        if result == None or min_count < count or (min_count == count and result < key):
-            result = key
-            min_count = count
+            if result == None or min_count > count or (min_count == count and result < key):
+                result = key
+                min_count = count
 
         return result
+
 
 class CalcMean:
     def __init__(self):
@@ -100,6 +103,7 @@ class CalcMean:
         @return The calculated mean.
         """
         return self.sum / self.count
+
 
 class CalcSurvival:
     def __init__(self):
@@ -139,27 +143,25 @@ class CalcSurvival:
         result = result + str(count)
 
         if count > 0:
-            pct = (self.femaleSurvive + self.maleSurvive) / float(count)
+            pct = (self.female_survive + self.male_survive) / float(count)
             result = result + ", survived: "
             result = result + str(pct)
 
-
         if self.count_male > 0:
-            pct = self.maleSurvive / float(self.count_male)
+            pct = self.male_survive / float(self.count_male)
             result = result + ", male.survived: "
             result = result + str(pct)
-
 
         if self.count_female > 0:
             pct = self.female_survive / float(self.count_female)
             result = result + ", female.survived: "
-            result = result + pct
+            result = result + str(pct)
 
         result = result + ")"
         return result
 
-class TitanicStats:
 
+class TitanicStats:
     def __init__(self):
         # Passengers with the title "master", mean age.
         self.mean_master = CalcMean()
@@ -246,30 +248,31 @@ class TitanicStats:
         """
         Dump all stats to stdout.
         """
-        print("Mean Master: Mean Age: " + self.mean_master.calculate() + " " + str(self.survival_master))
-        print("Mr.: Mean Age: " + self.mean_mr.calculate() + " " + str(self.survival_mr))
-        print("Miss.: Mean Age: " + self.mean_miss.calculate() + " " + str(self.survival_miss))
-        print("Mrs.: Mean Age: " + self.mean_mrs.calculate() + " " + str(self.survival_mrs))
-        print("Military: Mean Age: " + self.mean_mrs.calculate() + " " + str(self.survival_military))
-        print("Clergy: Mean Age: " + self.mean_clergy.calculate() + " " + str(self.survival_clergy))
-        print("Nobility: Mean Age: " + self.mean_nobility.calculate() + " " + str(self.survival_nobility))
-        print("Dr: Mean Age: " + self.mean_dr.calculate() + " " + str(self.survival_dr))
-        print("Total known survival: Mean Age: " + self.mean_total.calculate() + " " + str(self.survival_total))
-        print()
-        print("Embarked Queenstown: Mean Age: " + str(self.embarkedQ))
-        print("Embarked Southampton: Mean Age: " + str(self.embarkedS))
-        print("Embarked Cherbourg: Mean Age: " + str(self.embarkedC))
-        print("Most common embarked: Mean Age: " + str(self.this.embarkedHisto.max()))
-        print()
-        print("Mean Age Male: " + self.meanMale.calculate());
-        print("Mean Age Female: " + self.meanFemale.calculate());
-        print()
-        print("Mean Fair 1st Class: " + self.meanFare1.calculate())
-        print("Mean Fair 2st Class: " + self.meanFare2.calculate())
-        print("Mean Fair 3st Class: " + self.meanFare3.calculate())
+        print("Mean Master: Mean Age: " + str(self.mean_master.calculate()) + " " + str(self.survival_master))
+        print("Mr.: Mean Age: " + str(self.mean_mr.calculate()) + " " + str(self.survival_mr))
+        print("Miss.: Mean Age: " + str(self.mean_miss.calculate()) + " " + str(self.survival_miss))
+        print("Mrs.: Mean Age: " + str(self.mean_mrs.calculate()) + " " + str(self.survival_mrs))
+        print("Military: Mean Age: " + str(self.mean_mrs.calculate()) + " " + str(self.survival_military))
+        print("Clergy: Mean Age: " + str(self.mean_clergy.calculate()) + " " + str(self.survival_clergy))
+        print("Nobility: Mean Age: " + str(self.mean_nobility.calculate()) + " " + str(self.survival_nobility))
+        print("Dr: Mean Age: " + str(self.mean_dr.calculate()) + " " + str(self.survival_dr))
+        print("Total known survival: Mean Age: " + str(self.mean_total.calculate()) + " " + str(self.survival_total))
+        print("")
+        print("Embarked Queenstown: Mean Age: " + str(self.embarked_q))
+        print("Embarked Southampton: Mean Age: " + str(self.embarked_s))
+        print("Embarked Cherbourg: Mean Age: " + str(self.embarked_c))
+        print("Most common embarked: " + str(self.embarked_histo.get_max()))
+        print("")
+        print("Mean Age Male: " + str(self.mean_male.calculate()))
+        print("Mean Age Female: " + str(self.mean_female.calculate()))
+        print("")
+        print("Mean Fair 1st Class: " + str(self.mean_fare1.calculate()))
+        print("Mean Fair 2st Class: " + str(self.mean_fare2.calculate()))
+        print("Mean Fair 3st Class: " + str(self.mean_fare3.calculate()))
+
 
 class NormalizeTitanic:
-    def analyze(self,stats, filename):
+    def analyze(self, stats, filename):
         """
         Analyze and generate stats for titanic data.
         @param stats    The stats for titanic.
@@ -280,22 +283,21 @@ class NormalizeTitanic:
         count = 0
         headerMap = {}
 
-
         with open(filename, 'rb') as f:
             reader = csv.reader(f)
 
             header_map = {}
             header = reader.next()
 
-            for i in range(0,len(header)):
+            for i in range(0, len(header)):
                 header_map[header[i].lower()] = i
 
-            age_index = headerMap.get("age")
-            name_index = headerMap.get("name")
-            sex_index = headerMap.get("sex")
-            index_embarked = headerMap.get("embarked")
-            index_fare = headerMap.get("fare")
-            index_pclass = headerMap.get("pclass")
+            age_index = header_map["age"]
+            name_index = header_map["name"]
+            sex_index = header_map["sex"]
+            index_embarked = header_map["embarked"]
+            index_fare = header_map["fare"]
+            index_pclass = header_map["pclass"]
 
             survived_index = -1
 
@@ -314,7 +316,7 @@ class NormalizeTitanic:
                 survived = False
                 if survived_index != -1:
                     survived_str = next_line[survived_index]
-                    survived = (survived_str=="1")
+                    survived = (survived_str == "1")
 
                 if index_embarked != -1:
                     embarked_str = next_line[index_embarked]
@@ -328,10 +330,9 @@ class NormalizeTitanic:
                     if pclass == "1":
                         stats.mean_fare1.update(fare)
                     elif pclass == "2":
-                        stats.mean_fare1.update(fare)
+                        stats.mean_fare2.update(fare)
                     elif pclass == "3":
-                        stats.mean_fare1.update(fare)
-
+                        stats.mean_fare3.update(fare)
 
                 is_male = (sex_str == "male")
 
@@ -341,8 +342,8 @@ class NormalizeTitanic:
                         stats.embarked_q.update(is_male, survived)
                     elif embarked_str == "S":
                         stats.embarked_s.update(is_male, survived)
-                    elif embarked_str=="C":
-                        stats.embarked_c().update(is_male, survived)
+                    elif embarked_str == "C":
+                        stats.embarked_c.update(is_male, survived)
 
                 stats.embarked_histo.update(embarked_str)
 
@@ -360,7 +361,7 @@ class NormalizeTitanic:
                     elif "Mrs." in name or "Mme." in name:
                         stats.survival_mrs.update(is_male, survived)
                     elif "Col." in name or "Capt." in name or "Major." in name:
-                        stats.survival_military().update(is_male, survived)
+                        stats.survival_military.update(is_male, survived)
                     elif "Countess." in name or "Lady." in name or "Sir." in name or "Don." in name or "Dona." in name or "Jonkheer." in name:
                         stats.survival_nobility.update(is_male, survived)
                     elif "Dr." in name:
@@ -368,9 +369,8 @@ class NormalizeTitanic:
                     elif "Rev." in name:
                         stats.survival_clergy.update(is_male, survived)
 
-
-                    if len(age_str) > 0:
-                        age = float(age_str)
+                if len(age_str) > 0:
+                    age = float(age_str)
 
                     # Update general mean age for male/female
                     if is_male:
@@ -379,7 +379,7 @@ class NormalizeTitanic:
                         stats.mean_female.update(age)
 
                     # Update the total average age
-                stats.mean_total.update(age)
+                    stats.mean_total.update(age)
 
                 if "Master." in name:
                     stats.mean_master.update(age)
@@ -390,41 +390,41 @@ class NormalizeTitanic:
                     stats.mean_mr.update(age)
                     # Only compute survival stats on training data.
                     if survived_index != -1:
-                        stats.getSurvivalMr().update(is_male, survived)
+                        stats.survival_mr.update(is_male, survived)
                 elif "Miss." in name or "Mlle." in name:
-                    stats.mean_miss().update(age)
+                    stats.mean_miss.update(age)
                     # Only compute survival stats on training data.
                     if survived_index != -1:
-                        stats.survival_miss().update(is_male, survived)
+                        stats.survival_miss.update(is_male, survived)
                 elif "Mrs." in name or "Mme." in name:
-                    stats.mean_mrs().update(age)
+                    stats.mean_mrs.update(age)
                     # Only compute survival stats on training data.
                     if survived_index != -1:
-                        stats.survival_mrs().update(is_male, survived)
+                        stats.survival_mrs.update(is_male, survived)
                 elif "Col." in name or "Capt." in name or "Major." in name:
-                    stats.mean_military().update(age)
+                    stats.mean_military.update(age)
                     # Only compute survival stats on training data.
                     if survived_index != -1:
-                        stats.survival_military().update(is_male, survived)
+                        stats.survival_military.update(is_male, survived)
                 elif "Countess." in name or "Lady." in name or "Sir." in name or "Don." in name or "Dona." in name or "Jonkheer." in name:
                     stats.mean_nobility.update(age)
                     # Only compute survival stats on training data.
                     if survived_index != -1:
-                        stats.survival_nobility().update(is_male, survived)
+                        stats.survival_nobility.update(is_male, survived)
                 elif "Dr." in name:
-                    stats.mean_dr().update(age)
+                    stats.mean_dr.update(age)
                     # Only compute survival stats on training data.
                     if survived_index != -1:
-                        stats.survival_dr().update(is_male, survived);
+                        stats.survival_dr.update(is_male, survived)
                 elif "Rev." in name:
                     stats.mean_clergy.update(age)
                     # Only compute survival stats on training data.
                     if survived_index != -1:
-                        stats.survival_clergy.update(is_male, survived);
+                        stats.survival_clergy.update(is_male, survived)
 
         return count
 
-    def range_normalize(self,x, data_low, data_high, normalized_low, normalized_high):
+    def range_normalize(self, x, data_low, data_high, normalized_low, normalized_high):
         """
         Normalize to a range.
         @param x              The value to normalize.
@@ -436,10 +436,10 @@ class NormalizeTitanic:
         """
         return ((x - data_low)
                 / (data_high - data_low)) \
-                * (normalized_high - normalized_low) + normalized_low
+               * (normalized_high - normalized_low) + normalized_low
 
 
-    def normalize(self,stats, filename, ids, input_low, input_high, predict_survive, predict_perish):
+    def normalize(self, stats, filename, ids, input_low, input_high, predict_survive, predict_perish):
         self.result_input = []
         self.result_ideal = []
 
@@ -451,134 +451,131 @@ class NormalizeTitanic:
             header_map = {}
             header = reader.next()
 
-            for i in range(0,len(header)):
+            for i in range(0, len(header)):
                 header_map[header[i].lower()] = i
 
-        age_index = headerMap["age"]
-        name_index = headerMap["name"]
-        sex_index = headerMap["sex"]
-        index_embarked = headerMap["embarked"]
-        index_pclass = headerMap["pclass"]
-        index_sibsp = headerMap["sibsp"]
-        index_parch = headerMap["parch"]
-        index_fare = headerMap["fare"]
-        index_id = headerMap["passengerid"]
-        survived_index = -1
+            age_index = header_map["age"]
+            name_index = header_map["name"]
+            sex_index = header_map["sex"]
+            index_embarked = header_map["embarked"]
+            index_pclass = header_map["pclass"]
+            index_sibsp = header_map["sibsp"]
+            index_parch = header_map["parch"]
+            index_fare = header_map["fare"]
+            index_id = header_map["passengerid"]
+            survived_index = -1
 
-        # test data does not have survived
-        if "survived" in header_map:
-            survived_index = header_map["survived"]
+            # test data does not have survived
+            if "survived" in header_map:
+                survived_index = header_map["survived"]
 
-        for next_line in reader:
-            name = next_line[name_index]
-            sex = next_line[sex_index]
-            embarked = next_line[index_embarked]
-            id = next_line[index_id]
+            for next_line in reader:
+                name = next_line[name_index]
+                sex = next_line[sex_index]
+                embarked = next_line[index_embarked]
+                id = next_line[index_id]
 
-            # Add record the passenger id, if requested
-            if ids != None:
-                ids.append(id)
+                # Add record the passenger id, if requested
+                if ids != None:
+                    ids.append(id)
 
-            is_male = sex.equalsIgnoreCase("male")
+                is_male = (sex.lower() == "male")
 
-            # do we have an age for this person?
-            if len(next_line[age_index]) == 0:
-                # age is missing, interpolate using name
-                if "Master." in name:
-                    age = stats.mean_master.calculate()
-                elif "Mr." in name:
-                    age = stats.mean_mr.calculate()
-                elif "Miss." in name or "Mlle." in name:
-                    age = stats.mean_miss.calculate()
-                elif "Mrs." in name or "Mme." in name:
-                    age = stats.mean_mrs.calculate()
-                elif "Col." in name or "Capt." in name or "Major." in name:
-                    age = stats.mean_military.calculate()
-                elif "Countess." in name or "Lady." in name or "Sir." in name or "Don." in name or "Dona." in name or "Jonkheer." in name:
-                    age = stats.mean_nobility.calculate()
-                elif "Dr." in name:
-                    age = stats.mean_dr.calculate()
-                elif "Rev." in name:
-                    age = stats.mean_clergy.calculate()
-                else:
-                    if is_male:
-                        age = stats.mean_male.calculate()
+                # do we have an age for this person?
+                if len(next_line[age_index]) == 0:
+                    # age is missing, interpolate using name
+                    if "Master." in name:
+                        age = stats.mean_master.calculate()
+                    elif "Mr." in name:
+                        age = stats.mean_mr.calculate()
+                    elif "Miss." in name or "Mlle." in name:
+                        age = stats.mean_miss.calculate()
+                    elif "Mrs." in name or "Mme." in name:
+                        age = stats.mean_mrs.calculate()
+                    elif "Col." in name or "Capt." in name or "Major." in name:
+                        age = stats.mean_military.calculate()
+                    elif "Countess." in name or "Lady." in name or "Sir." in name or "Don." in name or "Dona." in name or "Jonkheer." in name:
+                        age = stats.mean_nobility.calculate()
+                    elif "Dr." in name:
+                        age = stats.mean_dr.calculate()
+                    elif "Rev." in name:
+                        age = stats.mean_clergy.calculate()
                     else:
-                        age = stats.mean_female.calculate()
-            else:
-                age = float(next_line[age_index])
+                        if is_male:
+                            age = stats.mean_male.calculate()
+                        else:
+                            age = stats.mean_female.calculate()
+                else:
+                    age = float(next_line[age_index])
 
-            input = [0] * TitanicConfig.InputFeatureCount
-            input[0] = self.range_normalize(age, 0, 100, input_low, input_high)
+                input = [0] * TitanicConfig.InputFeatureCount
+                input[0] = self.range_normalize(age, 0, 100, input_low, input_high)
 
-            # sex-male
-            input[1] = input_high if is_male else input_low
+                # sex-male
+                input[1] = input_high if is_male else input_low
 
-            # pclass
-            pclass = float(next_line[index_pclass])
-            input[2] = self.range_normalize(pclass, 1, 3, input_low, input_high)
+                # pclass
+                pclass = float(next_line[index_pclass])
+                input[2] = self.range_normalize(pclass, 1, 3, input_low, input_high)
 
-            # sibsp
-            sibsp = float(next_line[index_sibsp])
-            input[3] = self.range_normalize(sibsp, 0, 10, input_low, input_high)
+                # sibsp
+                sibsp = float(next_line[index_sibsp])
+                input[3] = self.range_normalize(sibsp, 0, 10, input_low, input_high)
 
-            # parch
-            parch = float(next_line[index_parch])
-            input[4] = self.range_normalize(parch, 0, 10, input_low, input_high)
+                # parch
+                parch = float(next_line[index_parch])
+                input[4] = self.range_normalize(parch, 0, 10, input_low, input_high)
 
-            # fare
-            strFare = next_line[index_fare];
-            
-            if (strFare.length() == 0) {
-                if (((int) pclass) == 1) {
-                    fare = stats.getMeanFare1().calculate();
-                } else if (((int) pclass) == 2) {
-                    fare = stats.getMeanFare2().calculate();
-                } else if (((int) pclass) == 3) {
-                    fare = stats.getMeanFare3().calculate();
-                } else {
-                    // should not happen, we would have a class other than 1,2,3.
-                    // however, if that DID happen, use the median class (2).
-                    fare = stats.getMeanFare2().calculate();
-                }
-            } else {
-                fare = Double.parseDouble(nextLine[indexFare]);
-            }
-            data.getInput()[5] = rangeNormalize(fare, 0, 500, inputLow, inputHigh);
+                # fare
+                str_fare = next_line[index_fare]
 
-            // embarked-c
-            data.getInput()[6] = embarked.trim().equalsIgnoreCase("c") ? inputHigh : inputLow;
+                if len(str_fare) == 0:
+                    if int(pclass) == 1:
+                        fare = stats.mean_fare1.calculate()
+                    elif int(pclass) == 2:
+                        fare = stats.getMeanFare2().calculate()
+                    elif int(pclass) == 3:
+                        fare = stats.getMeanFare3().calculate();
+                    else:
+                        # should not happen, we would have a class other than 1,2,3.
+                        # however, if that DID happen, use the median class (2).
+                        fare = stats.mean_Fare2.calculate()
+                else:
+                    fare = float(next_line[index_fare])
 
-            // embarked-q
-            data.getInput()[7] = embarked.trim().equalsIgnoreCase("q") ? inputHigh : inputLow;
+                input[5] = self.range_normalize(fare, 0, 500, input_low, input_high)
 
-            // embarked-s
-            data.getInput()[8] = embarked.trim().equalsIgnoreCase("s") ? inputHigh : inputLow;
+                # embarked-c
+                input[6] = input_high if embarked.strip() == "c" else input_low
 
-            // name-mil
-            data.getInput()[9] = (name.contains("Col.") || name.contains("Capt.") || name.contains("Major.")) ? inputHigh : inputLow;
+                # embarked-q
+                input[7] = input_high if embarked.strip() == "q" else input_low
 
-            // name-nobility
-            data.getInput()[10] = (name.contains("Countess.") || name.contains("Lady.") || name.contains("Sir.") || name.contains("Don.") || name.contains("Dona.") || name.contains("Jonkheer.")) ? inputHigh : inputLow;
+                # embarked-s
+                input[8] = input_high if embarked.strip() == "s" else input_low
 
-            // name-dr
-            data.getInput()[11] = (name.contains("Dr.")) ? inputHigh : inputLow;
+                # name-mil
+                input[9] = input_high if ("Col." in name or "Capt." in name or "Major." in name) else input_low
+
+                # name-nobility
+                input[10] = input_high if (
+                "Countess." in name or "Lady." in name or "Sir." in name or "Don." in name or "Dona." in name or "Jonkheer.") else input_low
+
+                # name-dr
+                input[11] = input_high if ("Dr." in name) else input_low
 
 
-            // name-clergy
-            data.getInput()[12] = (name.contains("Rev.")) ? inputHigh : inputLow;
+                # name-clergy
+                input[12] = input_high if ("Rev." in name) else input_low
 
-            // add the new row
-            result.add(data);
+                # add the new row
+                self.result_input.append(input)
 
-            // add survived, if it exists
-            if (survivedIndex != -1) {
-                int survived = Integer.parseInt(nextLine[survivedIndex]);
-                data.getIdeal()[0] = (survived == 1) ? predictSurvive : predictPerish;
-            }
+                # add survived, if it exists
+                if survived_index != -1:
+                    survived = int(next_line[survived_index])
+                    ideal = [predict_survive if survived == 1 else predict_perish]
+                    self.result_ideal.append(ideal)
 
-        }
 
-        return result;
-    }
 

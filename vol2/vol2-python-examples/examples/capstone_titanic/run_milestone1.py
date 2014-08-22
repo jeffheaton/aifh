@@ -1,83 +1,64 @@
-/**
-     * The main method.
-     *
-     * @param args The arguments.
-     */
-    public static void main(String[] args) {
-        String filename;
+import os
+import sys
+import csv
 
-        if (args.length != 1) {
-            filename = System.getProperty("FILENAME");
-            if( filename==null ) {
-                System.out.println("Please call this program with a single parameter that specifies your data directory.\n" +
-                        "If you are calling with gradle, consider:\n" +
-                "gradle runCapstoneTitanic1 -Pdata_path=[path to your data directory]\n");
-                System.exit(0);
-            }
-        } else {
-            filename = args[0];
-        }
+from titanic_milestone1 import *
 
-        File dataPath = new File(filename);
-        File trainingPath = new File(dataPath, TitanicConfig.TrainingFilename);
-        File testPath = new File(dataPath, TitanicConfig.TestFilename);
-        File normalizePath = new File(dataPath, TitanicConfig.NormDumpFilename);
+# Find the data dir
+if len(sys.argv) != 2:
+    print("Please call this program with a single parameter that specifies your data directory.")
+    sys.exit(1)
+else:
+    filename = sys.argv[1]
 
+data_path = filename
+training_path = os.path.join(data_path, TitanicConfig.TrainingFilename)
+test_path = os.path.join(data_path, TitanicConfig.TestFilename)
+normalize_Path = os.path.join(data_path, TitanicConfig.NormDumpFilename)
 
-        try {
-            TitanicStats stats = new TitanicStats();
-            analyze(stats, trainingPath);
-            analyze(stats, testPath);
-            stats.dump();
+norm = NormalizeTitanic()
+stats = TitanicStats()
 
-            List<String> ids = new ArrayList<String>();
-            List<BasicData> training = normalize(stats, trainingPath, ids,
+norm.analyze(stats, training_path)
+norm.analyze(stats, test_path)
+stats.dump()
+
+ids = []
+norm.normalize(stats, training_path, ids,
                     TitanicConfig.InputNormalizeLow,
                     TitanicConfig.InputNormalizeHigh,
                     TitanicConfig.PredictSurvive,
-                    TitanicConfig.PredictPerish);
+                    TitanicConfig.PredictPerish)
 
-            // Write out the normalized file, mainly so that you can examine it.
-            // This file is not actually used by the program.
-            FileOutputStream fos = new FileOutputStream(normalizePath);
-            CSVWriter csv = new CSVWriter(new OutputStreamWriter(fos));
-
-            csv.writeNext(new String[]{
-                    "id",
-                    "age", "sex-male", "pclass", "sibsp", "parch", "fare",
-                    "embarked-c", "embarked-q", "embarked-s", "name-mil", "name-nobility", "name-dr", "name-clergy"
-            });
-
-            int idx = 0;
-            for (BasicData data : training) {
-                String[] line = {
-                        ids.get(idx++),
-                        FormatNumeric.formatDouble(data.getInput()[0], 5),
-                        FormatNumeric.formatDouble(data.getInput()[1], 5),
-                        FormatNumeric.formatDouble(data.getInput()[2], 5),
-                        FormatNumeric.formatDouble(data.getInput()[3], 5),
-                        FormatNumeric.formatDouble(data.getInput()[4], 5),
-                        FormatNumeric.formatDouble(data.getInput()[5], 5),
-                        FormatNumeric.formatDouble(data.getInput()[6], 5),
-                        FormatNumeric.formatDouble(data.getInput()[7], 5),
-                        FormatNumeric.formatDouble(data.getInput()[8], 5),
-                        FormatNumeric.formatDouble(data.getInput()[9], 5),
-                        FormatNumeric.formatDouble(data.getInput()[10], 5),
-                        FormatNumeric.formatDouble(data.getInput()[11], 5),
-                        FormatNumeric.formatDouble(data.getInput()[12], 5),
-                        FormatNumeric.formatDouble(data.getIdeal()[0], 5)
-
-                };
-
-                csv.writeNext(line);
-            }
-
-            csv.close();
-            fos.close();
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+# Write out the normalized file, mainly so that you can examine it.
+# This file is not actually used by the program.
+with open(normalize_Path, 'wb') as f:
+    writer = csv.writer(f)
+    writer.writerow([
+        "id", "age", "sex-male", "pclass", "sibsp", "parch", "fare",
+        "embarked-c", "embarked-q", "embarked-s", "name-mil", "name-nobility", "name-dr", "name-clergy"
+    ])
 
 
-    }
+    for idx in range(0,len(norm.result_input)):
+        input = norm.result_input[idx]
+        ideal = norm.result_ideal[idx]
+
+        line = [
+            ids[idx],
+            input[0],
+            input[1],
+            input[2],
+            input[3],
+            input[4],
+            input[5],
+            input[6],
+            input[7],
+            input[8],
+            input[9],
+            input[10],
+            input[11],
+            input[12],
+            ideal[0]]
+
+        writer.writerow(line)
