@@ -1,7 +1,5 @@
-AIFH Vol2: Nature Inspired Algorithms (Under construction!)
+AIFH Vol2: Nature Inspired Algorithms
 ====
-> Note: This book is not yet published and the Volume 2 examples are very much
-> **Under Construction**.
 
 This book has the following chapters.
 
@@ -23,6 +21,7 @@ or improve an example, please consider pushing a change via GitHub.
 * vol2-csharp-examples	
 * vol2-java-examples
 * vol2-python-examples
+* vol2-scala-examples
 		
 If you find a language folder, other than those above, the language is likely "under
 construction".  In this case, there should be more information in the language specific
