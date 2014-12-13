@@ -1,0 +1,157 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+targetCompatibility = 1.7
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+    testCompile 'junit:junit:4.10'
+    compile 'net.sf.opencsv:opencsv:2.3'
+    compile 'gov.nist.math:jama:1.0.3'
+    compile 'org.lwjgl.lwjgl:lwjgl:2.9.1'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.7'
+}
+
+task(runCSVExample, group: 'examples', description: 'Introduction.  This example reads a CSV file',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.intro.CSVExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runTournamentCompare, group: 'examples', description: 'Chapter 1.  Compare selection methods',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.selection.TournamentCompareExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runCrossover, group: 'examples', description: 'Chapter 2.  Crossover example',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.operations.CrossoverExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runMutate, group: 'examples', description: 'Chapter 2.  Mutate example',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.operations.MutateExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runGAIris, group: 'examples', description: 'Chapter 3.  Model the iris data set with a genetic algorithm (single species)',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ga.iris.ModelIris'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runGATSP, group: 'examples', description: 'Chapter 3.  Use a genetic algorithm (GA) for the Travelling Salesman Problem (TSP)',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ga.tsp.GeneticTSPExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runFindEquation, group: 'examples', description: 'Chapter 4.  Genetic programming',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.gp.FindEquation'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runGASpeciesIris, group: 'examples', description: 'Chapter 5.  Model the iris data set with a genetic algorithm (multi species)',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ga.iris.ModelSpeciationIris'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runFlock, group: 'examples', description: 'Chapter 6.  Flocking',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.swarm.flock.Flock2dWindow'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runIrisPSO, group: 'examples', description: 'Chapter 6.  Model the iris data set with particle swarm optimization(PSO)',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.swarm.pso.IrisPSOExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runIrisACO, group: 'examples', description: 'Chapter 7.  Model the iris data set with ant colony optimization (ACO)',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.aco.ExampleTrainIrisACO'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runACOTSP, group: 'examples', description: 'Chapter 7.  Use a ant colony optimization(ACO) for the Travelling Salesman Problem (TSP)',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.aco.TSPExampleACO'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runMergelife, group: 'examples', description: 'Chapter 8.  Run the merge life explorer.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ca.mergelife.viewer.MultiverseViewer'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runConway, group: 'examples', description: 'Chapter 8.  Run Conways game of life.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ca.ConwayCA'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runECA, group: 'examples', description: 'Chapter 8.  Run an Elementary cellular automation.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ca.ElementaryCA'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runCapstonePlants1, group: 'examples', description: 'Chapter 9. Plants Capstone Project. Milestone 1',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.capstone.alife.milestone1.Milestone1Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runCapstonePlants2, group: 'examples', description: 'Chapter 9. Plants Capstone Project. Milestone 2',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.capstone.alife.milestone2.Milestone2Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runCapstonePlants3, group: 'examples', description: 'Chapter 9. Plants Capstone Project. Milestone 3',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.capstone.alife.milestone3.Milestone3Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runCapstoneTitanic1, group: 'examples', description: 'Chapter 10. Titanic Capstone Project. Milestone 1',
+        dependsOn: 'classes', type: JavaExec) {
+    if( project.hasProperty("data_path") ) {
+    	args = [project.getProperty("data_path")]
+    }
+    main = 'com.heatonresearch.aifh.examples.capstone.model.milestone1.NormalizeTitanic'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+
+task(runCapstoneTitanic2, group: 'examples', description: 'Chapter 10. Titanic Capstone Project. Milestone 2',
+        dependsOn: 'classes', type: JavaExec) {
+	if( project.hasProperty("data_path") ) {
+    	args = [project.getProperty("data_path")]
+    }
+    main = 'com.heatonresearch.aifh.examples.capstone.model.milestone2.FitTitanic'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runCapstoneTitanic3, group: 'examples', description: 'Chapter 10. Titanic Capstone Project. Milestone 3',
+        dependsOn: 'classes', type: JavaExec) {
+    if( project.hasProperty("data_path") ) {
+    	args = [project.getProperty("data_path")]
+    }
+    main = 'com.heatonresearch.aifh.examples.capstone.model.milestone3.SubmitTitanic'
+    classpath = sourceSets.main.runtimeClasspath
+}
