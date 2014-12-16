@@ -25,3 +25,9 @@ task(runCSVExample, group: 'examples', description: 'Introduction.  This example
     main = 'com.heatonresearch.aifh.examples.intro.CSVExample'
     classpath = sourceSets.main.runtimeClasspath
 }
+
+task(runDBNExample, group: 'examples', description: 'Chapter 10.  Simple deep belief neural network.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.dbn.SimpleDBN'
+    classpath = sourceSets.main.runtimeClasspath
+}
