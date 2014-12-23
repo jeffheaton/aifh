@@ -28,6 +28,7 @@
  */
 package com.heatonresearch.aifh.som;
 
+import Jama.Matrix;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.distance.CalculateDistance;
 import com.heatonresearch.aifh.distance.EuclideanDistance;
@@ -40,7 +41,7 @@ public class SelfOrganizingMap {
      * The weights of the output neurons base on the input from the input
      * neurons.
      */
-    private double[][] weights;
+    private Matrix weights;
 
     private final CalculateDistance calcDist = new EuclideanDistance();
 
@@ -53,7 +54,7 @@ public class SelfOrganizingMap {
      *            Number of output neurons
      */
     public SelfOrganizingMap(final int inputCount, final int outputCount) {
-        this.weights = new double[outputCount][inputCount];
+        this.weights = new Matrix(outputCount,inputCount);
     }
 
 
@@ -87,7 +88,7 @@ public class SelfOrganizingMap {
         int result = -1;
 
         for (int i = 0; i < getOutputCount(); i++) {
-            double dist = calcDist.calculate(input, this.weights[i]);
+            double dist = calcDist.calculate(input, this.weights.getArray()[i]);
             if (dist < minDist) {
                 minDist = dist;
                 result = i;
@@ -101,28 +102,28 @@ public class SelfOrganizingMap {
      * {@inheritDoc}
      */
     public int getInputCount() {
-        return this.weights[0].length;
+        return this.weights.getColumnDimension();
     }
 
     /**
      * {@inheritDoc}
      */
     public int getOutputCount() {
-        return this.weights.length;
+        return this.weights.getRowDimension();
     }
 
     /**
      * @return the weights
      */
-    public double[][] getWeights() {
+    public Matrix getWeights() {
         return this.weights;
     }
 
 
     public void reset(GenerateRandom rnd) {
-        for(int i=0;i<this.weights.length;i++) {
-            for(int j=0;j<this.weights[i].length;j++) {
-                this.weights[i][j] = rnd.nextDouble(-1,1);
+        for(int i=0;i<this.weights.getRowDimension();i++) {
+            for(int j=0;j<this.weights.getColumnDimension();j++) {
+                this.weights.set(i,j,rnd.nextDouble(-1,1));
             }
         }
     }
@@ -137,7 +138,7 @@ public class SelfOrganizingMap {
      * @param weights
      *            the weights to set
      */
-    public void setWeights(final double[][] weights) {
+    public void setWeights(final Matrix weights) {
         this.weights = weights;
     }
 

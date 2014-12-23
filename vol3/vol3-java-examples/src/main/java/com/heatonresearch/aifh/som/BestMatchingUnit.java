@@ -28,6 +28,7 @@
  */
 package com.heatonresearch.aifh.som;
 
+import Jama.Matrix;
 import com.heatonresearch.aifh.AIFHError;
 
 /**
@@ -112,14 +113,14 @@ public class BestMatchingUnit {
      *            The neuron we are calculating the distance for.
      * @return The Euclidean distance.
      */
-    public double calculateEuclideanDistance(final double[][] matrix,
+    public double calculateEuclideanDistance(final Matrix matrix,
                                              final double[] input, final int outputNeuron) {
         double result = 0;
 
         // Loop over all input data.
         for (int i = 0; i < input.length; i++) {
             final double diff = input[i]
-                    - matrix[outputNeuron][i];
+                    - matrix.get(outputNeuron,i);
             result += diff * diff;
         }
         return Math.sqrt(result);

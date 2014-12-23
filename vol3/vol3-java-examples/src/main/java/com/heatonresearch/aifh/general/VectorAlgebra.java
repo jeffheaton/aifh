@@ -28,6 +28,8 @@
  */
 package com.heatonresearch.aifh.general;
 
+import Jama.Matrix;
+import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 /**
@@ -178,5 +180,60 @@ public class VectorAlgebra {
             d += v1[i] * v2[i];
         }
         return Math.sqrt(d);
+    }
+
+    public static boolean isVector(Matrix matrix) {
+        return(matrix.getRowDimension()==1 || matrix.getColumnDimension()==1);
+    }
+
+    /**
+     * Compute the dot product for the two matrixes. To compute the dot product,
+     * both
+     *
+     * @param a
+     *            The first matrix.
+     * @param b
+     *            The second matrix.
+     * @return The dot product.
+     */
+    public static double dotProduct(final Matrix a, final Matrix b) {
+        if (!isVector(a) || !isVector(b)) {
+            throw new AIFHError("To take the dot product, both matrices must be vectors.");
+        }
+
+        final double[][] aArray = a.getArray();
+        final double[][] bArray = b.getArray();
+
+        final int aLength = aArray.length == 1 ? aArray[0].length : aArray.length;
+        final int bLength = bArray.length == 1 ? bArray[0].length : bArray.length;
+
+        if (aLength != bLength) {
+            throw new AIFHError("To take the dot product, both matrices must be of the same length.");
+        }
+
+        double result = 0;
+        if (aArray.length == 1 && bArray.length == 1) {
+            for (int i = 0; i < aLength; i++) {
+                result += aArray[0][i] * bArray[0][i];
+            }
+        }
+        else if (aArray.length == 1 && bArray[0].length == 1) {
+            for (int i = 0; i < aLength; i++) {
+                result += aArray[0][i] * bArray[i][0];
+            }
+        }
+        else if (aArray[0].length == 1 && bArray.length == 1) {
+            for (int i = 0; i < aLength; i++) {
+                result += aArray[i][0] * bArray[0][i];
+            }
+        }
+        else if (aArray[0].length == 1 && bArray[0].length == 1) {
+            for (int i = 0; i < aLength; i++) {
+                result += aArray[i][0] * bArray[i][0];
+            }
+        }
+
+        return result;
+
     }
 }

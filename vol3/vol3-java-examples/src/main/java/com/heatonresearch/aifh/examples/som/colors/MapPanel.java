@@ -23,6 +23,8 @@
  */
 package com.heatonresearch.aifh.examples.som.colors;
 
+import Jama.Matrix;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -38,7 +40,7 @@ public class MapPanel extends JPanel {
     public static final int WIDTH = 50;
     public static final int HEIGHT = 50;
 
-    private double[][] weights;
+    private Matrix weights;
 
     public MapPanel(SomColors som)
     {
@@ -63,9 +65,9 @@ public class MapPanel extends JPanel {
             for(int x = 0; x< WIDTH; x++)
             {
                 int index = (y*WIDTH)+x;
-                int red = convertColor(weights[index][0]);
-                int green = convertColor(weights[index][1]);
-                int blue = convertColor(weights[index][2]);
+                int red = convertColor(weights.get(index,0));
+                int green = convertColor(weights.get(index,1));
+                int blue = convertColor(weights.get(index,2));
                 g.setColor(new Color(red,green,blue));
                 g.fillRect(x*CELL_SIZE, y*CELL_SIZE, CELL_SIZE, CELL_SIZE);
             }

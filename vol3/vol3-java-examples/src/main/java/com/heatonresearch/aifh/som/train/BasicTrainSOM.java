@@ -23,6 +23,7 @@
  */
 package com.heatonresearch.aifh.som.train;
 
+import Jama.Matrix;
 import com.heatonresearch.aifh.general.VectorAlgebra;
 import com.heatonresearch.aifh.som.BestMatchingUnit;
 import com.heatonresearch.aifh.som.SelfOrganizingMap;
@@ -94,7 +95,7 @@ public class BasicTrainSOM  {
     /**
      * Holds the corrections for any matrix being trained.
      */
-    private final double[][] correctionMatrix;
+    private final Matrix correctionMatrix;
 
     /**
      * True is a winner is to be forced, see class description, or forceWinners
@@ -165,7 +166,7 @@ public class BasicTrainSOM  {
         this.error = 0;
 
         // setup the correction matrix
-        this.correctionMatrix = new double[this.outputNeuronCount][this.inputNeuronCount];
+        this.correctionMatrix = new Matrix(this.outputNeuronCount,this.inputNeuronCount);
 
         // create the BMU class
         this.bmuUtil = new BestMatchingUnit(network);
@@ -176,9 +177,10 @@ public class BasicTrainSOM  {
      * determined by this training iteration.
      */
     private void applyCorrection() {
-        for(int row=0;row<this.correctionMatrix.length;row++) {
-            for(int col=0;col<this.correctionMatrix[row].length;col++) {
-                this.network.getWeights()[row][col] = this.correctionMatrix[row][col];
+
+        for(int row=0;row<this.correctionMatrix.getRowDimension();row++) {
+            for(int col=0;col<this.correctionMatrix.getColumnDimension();col++) {
+                this.network.getWeights().set(row,col,this.correctionMatrix.get(row,col));
             }
         }
     }
@@ -210,10 +212,10 @@ public class BasicTrainSOM  {
      * @param input
      *            The input pattern to copy.
      */
-    private void copyInputPattern(final double[][] matrix, final int outputNeuron,
+    private void copyInputPattern(final Matrix matrix, final int outputNeuron,
                                   final double[] input) {
         for (int inputNeuron = 0; inputNeuron < this.inputNeuronCount; inputNeuron++) {
-            matrix[outputNeuron][inputNeuron] = input[inputNeuron];
+            matrix.set(outputNeuron,inputNeuron, input[inputNeuron]);
         }
     }
 
@@ -279,7 +281,7 @@ public class BasicTrainSOM  {
      *            The synapse to modify.
      * @return True if a winner was forced.
      */
-    private boolean forceWinners(final double[][] matrix, final int[] won,
+    private boolean forceWinners(final Matrix matrix, final int[] won,
                                  final double[] leastRepresented) {
 
         double maxActivation = Double.MIN_VALUE;
@@ -485,7 +487,7 @@ public class BasicTrainSOM  {
      * @param input
      *            The input to train for.
      */
-    private void train(final int bmu, final double[][] matrix, final double[] input) {
+    private void train(final int bmu, final Matrix matrix, final double[] input) {
         // adjust the weight for the BMU and its neighborhood
         for (int outputNeuron = 0; outputNeuron < this.outputNeuronCount; outputNeuron++) {
             trainPattern(matrix, input, outputNeuron, bmu);
@@ -504,18 +506,18 @@ public class BasicTrainSOM  {
      * @param bmu
      *            The best matching unit, or winning output neuron.
      */
-    private void trainPattern(final double[][] matrix, final double[] input,
+    private void trainPattern(final Matrix matrix, final double[] input,
                               final int current, final int bmu) {
 
         for (int inputNeuron = 0; inputNeuron < this.inputNeuronCount; inputNeuron++) {
 
-            final double currentWeight = matrix[current][inputNeuron];
+            final double currentWeight = matrix.get(current,inputNeuron);
             final double inputValue = input[inputNeuron];
 
             final double newWeight = determineNewWeight(currentWeight,
                     inputValue, current, bmu);
 
-            this.correctionMatrix[current][inputNeuron] = newWeight;
+            this.correctionMatrix.set(current,inputNeuron,newWeight);
         }
     }
 
@@ -544,9 +546,20 @@ public class BasicTrainSOM  {
         final double[] result = new double[som.getOutputCount()];
 
         for (int i = 0; i < som.getOutputCount(); i++) {
-            final double[] optr = som.getWeights()[i];
-            //final double[][] inputMatrix = Matrix.createRowMatrix(input.getData());
-            //result[i] = VectorAlgebra.dotProduct(inputMatrix, optr);
+            final double[] optr = som.getWeights().getArray()[i];
+
+            final Matrix matrixA = new Matrix(input.length,1);
+            for(int j=0;j<input.length;j++) {
+                matrixA.getArray()[0][j] = input[j];
+            }
+
+
+            final Matrix matrixB = new Matrix(1,input.length);
+            for(int j=0;j<optr.length;j++) {
+                matrixB.getArray()[0][j] = optr[j];
+            }
+
+            result[i] = VectorAlgebra.dotProduct(matrixA, matrixB);
         }
 
         return result;
