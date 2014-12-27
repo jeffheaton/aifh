@@ -21,7 +21,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.examples.som.colors;
+package com.heatonresearch.aifh.examples.classic.som.colors;
 
 import com.heatonresearch.aifh.general.fns.RBFEnum;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
@@ -29,9 +29,6 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 import com.heatonresearch.aifh.som.SelfOrganizingMap;
 import com.heatonresearch.aifh.som.neighborhood.NeighborhoodRBF;
 import com.heatonresearch.aifh.som.train.BasicTrainSOM;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 

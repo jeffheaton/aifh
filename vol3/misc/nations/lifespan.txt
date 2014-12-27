@@ -1,0 +1,1718 @@
+[[Image:Comparison gender life expectancy CIA factbook.svg|thumb|Comparison of male and female life expectancy at birth for countries and territories as defined in the 2013 CIA Factbook, with selected bubbles labelled. The dotted line corresponds to equal female and male life expectancy. The apparent 3D volumes of the bubbles are linearly proportional to their population.<ref name=iuonoa/><ref>{{cite web|url=https://www.cia.gov/library/publications/the-world-factbook/fields/2119.html |title=Central Intelligence Agency Factbook Population|publisher=Cia.gov |accessdate=2013-03-22}}</ref>|398x398px]]
+
+This is a list of countries by [[life expectancy]] at birth.
+
+==Methodology==
+
+Life expectancy equals the average number of years a person born in a given country would live if mortality rates at each age were to remain constant in the future. The life expectancy is shown separately for males and females, as well as a combined figure. Several non-[[Sovereign state|sovereign entities]] are also included in this list.
+
+The figures reflect the quality of healthcare in the countries listed as well as other factors including ongoing wars, obesity, and [[HIV]] infections.{{citation needed|date=November 2014}}
+
+Worldwide, the average life expectancy at birth was 71.0 years (68.5 years for males and 73.5 years for females) over the period 2010–2013 according to United Nations World Population Prospects 2012 Revision,<ref name="WPP2010"/> or 70.7 years (68.2 years for males and 73.2 years for females) for 2009 according to ''[[The World Factbook]]''.<ref name=cia2012>{{cite web|title=The World Factbook Life Expectancy|publisher= Cia.gov|date=2012|url= https://www.cia.gov/library/publications/the-world-factbook/fields/2102.html}}</ref> According to the [[World Health Organization]] (WHO), women on average live longer than men in all countries, with the exception of [[Tuvalu]], [[Tonga]], [[Kuwait]], and [[Qatar]].<ref name=who/>
+
+The countries with the lowest overall life expectancies per the WHO are [[Sierra Leone]], the [[Central African Republic]], the [[Democratic Republic of the Congo]], [[Guinea-Bissau]], [[Lesotho]], [[Somalia]], [[Swaziland]], [[Angola]], [[Chad]], [[Mali]], [[Burundi]], [[Cameroon]], and [[Mozambique]]. Of those countries, only Lesotho, Swaziland, and Mozambique in 2011 were suffering from an [[HIV prevalence]] rate of greater than 10 percent in the 15–49 age group.<ref>{{cite web | title=Prevalence of HIV, total (% of population ages 15–49) | url=http://www.unaids.org/en/regionscountries/countries}}</ref>
+
+==List by the World Health Organization (2012)==
+
+{| class="wikitable sortable"
+|-  style="background:#ececec; vertical-align:top;"
+! Overall<br>rank <ref name=who>{{cite web|url=http://apps.who.int/gho/data/node.main.688?lang=en |title=WHO Life expectancy data by country | publisher=WHO | date=2012|accessdate=1 June 2013}}</ref>!! Country !! Overall life <br>expectancy !! Male life <br>expectancy !! Male <br>rank !! Female life <br>expectancy !! Female <br>rank
+|-
+| 1 || {{flag|Japan}} || 84.6 || 85 || 1 || 87.3 || 2 
+|-
+| 2 || {{flag|Andorra}} || 84.2 || 80.8 || 8 || 87.6 || 1 
+|-
+| 3 || {{flag|Singapore}} || 84 || 82 || 2 || 87 || 3 
+|-
+| 4 || {{flag|Hong Kong}} ({{flag|China}}) || 83.8 || 82 || 2 || 85.6 || 5 
+|-
+| 5 || {{flag|San Marino}} || 83.5 || 82 || 2 || 85 || 11 
+|-
+| 6 || {{flag|Iceland}} || 83.3 || 81.4 || 6 || 85.2 || 9 
+|-
+| 7 || {{flag|Italy}} || 83.1 || 80.4 || 10 || 85.8 || 4 
+|-
+| 8 || {{flag|Sweden}} || 83 || 81.4 || 6 || 84.6 || 13 
+|-
+| 9 || {{flag|Australia}} || 83 || 80.5 || 9 || 85.5 || 6 
+|-
+| 10 || {{flag|Switzerland}} || 82.8 || 80.4 || 10 || 85.4 || 7 
+|-
+| 11 || {{flag|Canada}} || 82.5 || 80.4 || 10 || 84.6 || 13 
+|-
+| 12 || {{flag|Spain}} || 82.5 || 79.5 || 15 || 85 || 11
+|-
+| 13 || {{flag|France}} || 82.3 || 79.4 || 19 || 85.2 || 9 
+|-
+| 14 || {{flag|Israel}} || 82.1 || 80.2 || 13 || 84 || 19 
+|-
+| 15 || {{flag|Luxembourg}} || 82 || 79.5 || 15 || 84.5 || 15 
+|-
+| 16 || {{flag|Norway}} || 81.9 || 80.2 || 13 || 83.6 || 22 
+|-
+| 17 || {{flag|New Zealand}} || 81.7 || 79.4 || 19 || 84 || 19 
+|-
+| 18 || {{flag|Austria}} || 81.5 || 78.5 || 24 || 84.5 || 15 
+|-
+| 19 || {{flag|Netherlands}} || 81.5 || 79.5 || 15 || 83.5 || 25 
+|-
+| 20 || {{flag|Ireland}} || 81.4 || 79.2 || 22 || 83.6 || 22 
+|-
+| 21 || {{flag|Cyprus}} || 81.2 || 79.1 || 23 || 84.3 || 18 
+|-
+| 22 || {{flag|Germany}} || 81 || 78.5 || 24 || 83.5 || 25 
+|-
+| 23 || {{flag|Greece}} || 81 || 78 || 28 || 84 || 19 
+|-
+| 24 || {{flag|Finland}} || 81 ||  78.0 || 28 ||  84 || 19 
+|-
+| 25 || {{flag|South Korea}} || 81 || 77.5 || 30 || 84.5 || 15 
+|-
+| 26 || {{flag|Malta}} || 81 || 79.4 || 19 || 82.6 || 32 
+|-
+| 27 || {{flag|Belgium}} || 81 || 78.5 || 24 || 83.5 || 25 
+|-
+| 28 || {{flag|United Kingdom}} || 81 || 79.5 || 15 || 82.5 || 33 
+|-
+| 29 || {{flag|Liechtenstein}} || 80.7 || 77.8 || 29 || 83.6 || 22 
+|-
+| 30 || {{flag|Taiwan}} || 80.6 || 78 || 28 || 83.2 || 28 
+|-
+| 31 || {{flag|Lebanon}} || 80.5 || 78.9 || 27 || 82.5 || 38
+|-
+| 32 || {{flag|Portugal}} || 80 || 76.9 || 37 || 82.8 || 31 
+|-
+| 33 || {{flag|Slovenia}} || 80 || 77 || 35 || 83 || 30 
+|-
+| 34 || {{flag|Costa Rica}} || 79.8 || 78.3 || 27 || 81.3 || 39 
+|-
+| 35 || {{flag|United States}} || 79.8 || 77.4 || 32 || 82.2 || 35 
+|-
+| 36 || {{flag|Chile}} || 79.5 || 76.5 || 38 || 82.5 || 33 
+|-
+| 37 || {{flag|Denmark}} || 79.5 || 77 || 35 || 82 || 36 
+|-
+| 38 || {{flag|Cuba}} || 79.4 || 77.4 || 32 || 81.4 || 38 
+|-
+| 39 || {{flag|United Arab Emirates}} || 79.2 || 77.2 || 34 || 81.2 || 40 
+|-
+| 40 || {{flag|Brunei }} || 79 || 77.5 || 30 || 80.5 || 46 
+|-
+| 41 || {{flag|Barbados}} || 78.5 || 76.2 || 39 || 80.8 || 45 
+|-
+| 42 || {{flag|Kuwait}} || 78.2 || 75.5 || 41 || 80.5 || 40
+|-
+| 43 || {{flag|Czech Republic}} || 78 || 75 || 42 || 81 || 42 
+|-
+| 44 || {{flag|Panama}} || 77.8 || 74.6 || 44 || 81 || 42 
+|-
+| 45 || {{flag|Poland}} || 77.5 || 73.5 || 51 || 81.5 || 37 
+|-
+| 46 || {{flag|Croatia}} || 77.5 || 74.5 || 45 || 80.5 || 46 
+|-
+| 47 || {{flag|Dominica}} || 77.5 || 75 || 41 || 80 || 52 
+|-
+| 48 || {{flag|Uruguay}} || 77.3 || 74.2 || 48 || 80.4 || 49 
+|-
+| 49 || {{flag|Mexico}} || 77.2 || 74.2 || 49 || 80.2 || 50 
+|-
+| 50 || {{flag|Maldives}} || 77.2 || 76.2 || 39 || 78.2 || 73 
+|-
+| 51 || {{flag|Bahrain}} || 77 || 75 || 41 || 79 || 60 
+|-
+| 52 || {{flag|Algeria}} || 73.12<ref>{{cite web|url=http://www.aps.dz/algerie/3757-situation-d%C3%A9mographique-en-alg%C3%A9rie-l-esp%C3%A9rance-de-vie-est-pass%C3%A9e-%C3%A0-77-ans-ons|title=Situation démographique en Algérie: l'espérance de vie passe à 77 ans (ONS)|publisher=Algerie Presse Service|date=30 March 2014}}</ref>  || 70.12<ref name=cia2012/> || - || 78.72<ref name=cia2012/> || - 
+|-
+| 53 || {{flag|Belize}} || 77 || 74.4 || 46 || 79.4 || 57 
+|-
+| 54 || {{flag|Slovakia}} || 76.3 || 72.9 || ? || 79.61 || ? <ref>http://www.infostat.sk/vdc/data/databoris.files/sheet007.htm</ref>
+|-
+| 55 || {{flag|Morocco}} || 76.51<ref name=cia2012/> || 73.44<ref name=cia2012/>|| - || 79.94<ref name=cia2012/>
+|-
+| 56 || {{flag|Bahamas}} || 76.5 || 73.5 || 51 || 79.5 || 55 
+|-
+| 57 || {{flag|Grenada}} || 76.5 || 73 || 54 || 80 || 52 
+|-
+| 58 || {{flag|Brazil}} || 76.2 || 72.6 || 63 || 79.8 || 54 
+|-
+| 59 || {{flag|Estonia}} || 76.1 || 71 || 91 || 81.2 || 40 
+|-
+| 60 || {{flag|Ecuador}} || 76 || 73 || 54 || 79 || 60 
+|-
+| 61 || {{flag|Argentina}} || 76 || 73 || 54 || 79 || 62 
+|-
+| 62 || {{flag|Saint Vincent and the Grenadines}} || 76 || 73 || 54 || 79 || 62 
+|-
+| 63 || {{flag|Oman}} || 76 || 73 || 54 || 79 || 62 
+|-
+| 64 || {{flag|Bosnia and Herzegovina}} || 76 || 74 || 50 || 78 || 77 
+|-
+| 65 || {{flag|China}} || 76 || 74 || 72 || 77 || 92 
+|-
+| 66 || {{flag|Lithuania}} || 75.9 || 70.8 || 102 || 81 || 42 
+|-
+| 67 || {{flag|Antigua and Barbuda}} || 75.8 || 74.4 || 46 || 77.2 || 91
+|-
+| 68 || {{flag|Malaysia}} || 75.7 || 72.2 || 70 || 79.2 || 59 
+|-
+| - || {{flag|Tunisia}} || 74.6<ref name=cia2012/>|| 72.6<ref name=cia2012/> || - || 78.9<ref name=cia2012/>|| - 
+|-
+| 69 || {{flag|Saint Lucia}} || 75.5 || 71.5 || 82 || 79.5 || 55 
+|-
+| 70 || {{flag|Qatar}} || 75.5 || 73 || 54 || 78 || 77 
+|-
+| 71 || {{flag|Mauritius}} || 75.2 || 71 || 91 || 79.4 || 57 
+|-
+| 72 || {{flag|Saint Kitts and Nevis}} || 75.1 || 72.2 || 70 || 78 || 77 
+|-
+| 73 || {{flag|Vietnam}} || 75 || 73 || 54 || 77 || 92
+|-
+| 74 || {{flag|Hungary}} || 75 || 71 || 91 || 79 || 62 
+|-
+| 75 || {{flag|Venezuela}} || 75 || 71.5 || 82 || 78.5 || 67 
+|-
+| 76 || {{flag|Macedonia}} || 75 || 73 || 54 || 77 || 92 
+|-
+| 77 || {{flag|Syria}} || 75 || 72 || 72 || 78 || 77 
+|-
+| 78 || {{flag|Thailand}} || 74.9 || 71.4 || 88 || 78.4 || 69 
+|-
+| 79 || {{flag|Trinidad and Tobago}} || 74.8 || 71.5 || 82 || 78.1 || 76 
+|-
+| 80 || {{flag|Seychelles}} || 74.7 || 71 || 91 || 78.4 || 69 
+|-
+| 81 || {{flag|Sri Lanka}} || 74.7 || 71.4 || 88 || 78 || 77 
+|-
+| 82 || {{flag|Paraguay}} || 74.7 || 71.6 || 80 || 77.8 || 86 
+|-
+| 83 || {{flag|Peru}} || 74.7 || 71.6 || 80 || 77.8 || 86 
+|-
+| 84 || {{flag|El Salvador}} || 74.6 || 70.8 || 102 || 78.4 || 69 
+|-
+| 85 || {{flag|Jordan}} || 74.6 || 72.4 || 66 || 76.8 || 98 
+|-
+| 86 || {{flag|Colombia}} || 74.6 || 72.4 || 66 || 76.8 || 98 
+|-
+| 87 || {{flag|Tonga}} || 74.5 || 73 || 54 || 76 || 106 
+|-
+| 88 || {{flag|Cape Verde}} || 74.5 || 70.6 || 104 || 78.4 || 69 
+|-
+| 89 || {{flag|Latvia}} || 74.5 || 69.5 || 112 || 78.5 || 67
+|-
+| 90 || {{flag|Nicaragua}} || 74.5 || 71.5 || 82 || 77.5 || 88 
+|-
+| 91 || {{flag|Libya}} || 74.5 || 71 || 91 || 78 || 77 
+|-
+| 92 || {{flag|Georgia}} || 74.5 || 70.2 || 106 || 78.8 || 66 
+|-
+| 93 || {{flag|Montenegro}} || 74.5 || 71.5 || 82 || 77.5 || 88 
+|-
+| 94 || {{flag|Bulgaria}} || 74.5 || 71 || 91 || 78 || 77 
+|-
+| 95 || {{flag|Suriname}} || 74.5 || 72 || 72 || 77 || 92 
+|-
+| 96 || {{flag|Turkey}} || 74.4 || 72.4 || 66 || 76.4 || 103 
+|-
+| 96 || {{flag|Armenia}} || 74.4 || 70.6 || 104 || 78.2 || 73 
+|-
+| 97 || {{flag|Saudi Arabia}} || 74.3 || 72.4 || 66 || 76.2 || 105
+|-
+| 98 || {{flag|Samoa}} || 74 || 71 || 91 || 77 || 92 
+|-
+|-
+| 100 || {{flag|Palau}} || 74 || 70 || 107 || 78 || 77 
+|-
+| 101 || {{flag|Romania}} || 74 || 70 || 107 || 78 || 77 
+|-
+| 102 || {{flag|Honduras}} || 74 || 72 || 72 || 76 || 106 
+|-
+| 103 || {{flag|Albania}} || 74 || 72 || 72 || 76 || 106 
+|-
+| 104 || {{flag|Serbia}} || 74 || 71 || 91 || 77 || 92 
+|-
+| 105 || {{flag|Jamaica}} || 74.8 || 71.5 || 82 || 78.2 || 73 
+|-
+| 106 || {{flag|Iran}} || 73.5 || 72 || 72 || 75 || 115 
+|-
+| 107 || {{flag|Marshall Islands}} || 73.5 || 69 || 116 || 75 || 115 
+|-
+| 109 || {{flag|Egypt}} || 73.2 || 71.2 || 90 || 75.2 || 114 
+|-
+| 110 || {{flag|Dominican Republic}} || 73.2 || 72 || 72 || 74.4 || 123 
+|-
+| 111 || {{flag|Fiji}} || 73 || 70 || 107 || 76 || 106 
+|-
+| 112 || {{flag|Philippines}} || 73 || 70 || 107 || 76 || 106 
+|-
+| 113 || {{flag|Solomon Islands}} || 73 || 71 || 91 || 75 || 115 
+|-
+| 114 || {{flag|Nauru}} || 73 || 70 || 107 || 76 || 106 
+|-
+| 116 || {{flag|Belarus}} || 72.5 || 68.5 || 117 || 77.5 || 88 
+|-
+| 117 || {{flag|Indonesia}} || 72 || 68 || 118 || 76 || 106 
+|-
+| 118 || {{flag|Sao Tome and Principe}} || 72 || 68 || 118 || 76 || 106 
+|-
+| 119 || {{flag|Vanuatu}} || 72 || 71 || 91 || 74 || 124 
+|-
+| 120 || {{flag|Azerbaijan}} || 71.5 || 69.5 || 112 || 74.5 || 122 
+|-
+| 121 || {{flag|Guatemala}} || 71.5 || 68 || 118 || 75 || 115 
+|-
+| 122 || {{flag|Moldova}} || 71 || 67 || 124 || 75 || 115 
+|-
+| 123 || {{flag|Russia}} || 70.5 || 62 || 135 || 76.3 || 104 
+|-
+| 124 || {{flag|Bhutan}} || 70.8 || 69.2 || 115 || 72.4 || 128 
+|-
+| 125 || {{flag|Guyana}} || 70.5 || 67.5 || 123 || 73.5 || 125 
+|-
+| 126 || {{flag|Micronesia}} || 70 || 68 || 118 || 72 || 129 
+|-
+| 127 || {{flag|Bangladesh}} || 70 || 69.5 || 112 || 70.5 || 137 
+|-
+| 128 || {{flag|Kyrgyzstan}} || 69 || 65 || 135  || 72 || 129 
+|-
+| 129 || {{flag|Iraq}} || 68.5 || 65 || 135 || 72 || 129 
+|-
+| 130 || {{flag|North Korea}} || 69 || 66 || 130  || 72 || 129 
+|-
+| 131 || {{flag|Nepal}} || 69 || 68 || 118 || 70 || 138 
+|-
+| 132 || {{flag|Mongolia}} || 69 || 65 || 135 || 73 || 126 
+|-
+| 133 || {{flag|Bolivia}} || 69 || 67 || 124  || 71 || 133 
+|-
+| 134 || {{flag|Uzbekistan}} || 68.5 || 66 || 130 || 71 || 133 
+|-
+| 135 || {{flag|Ukraine}} || 68.25 || 62.37 || 134  || 74.5 || 100
+|-
+| 136 || {{flag|Laos}} || 68 || 66.5 || 128 || 69.5 || 141 
+|-
+| 137 || {{flag|Myanmar}} || 68 || 66 || 130 || 70 || 138 
+|-
+| 138 || {{flag|Kazakhstan}} || 68 || 63 || 146 || 73 || 126 
+|-
+| 139 || {{flag|Comoros}} || 68 || 65 || 135 || 71 || 133 
+|-
+| 140 || {{flag|Kiribati}} || 68 || 65 || 135 || 71 || 133 
+|-
+| 141 || {{flag|Tajikistan}} || 68 || 67 || 124 || 69 || 142 
+|-
+| 142 || {{flag|Papua New Guinea}} || 67.5 || 65 || 135 || 69 || 142 
+|-
+| 143 || {{flag|Namibia}} || 67.2 || 66.2 || 129 || 68.2 || 144 
+|-
+| 144 || {{flag|Pakistan}} || 67 || 66 || 130 || 68 || 145 
+|-
+| 145 || {{flag|Turkmenistan}} || 66.5 || 63 || 146 || 70 || 138 
+|-
+| 146 || {{flag|Cambodia}} || 66 || 64 || 143 || 68 || 145 
+|-
+| 147 || {{flag|Ghana}} || 66 || 64 || 143 || 68 || 145 
+|-
+| 148 || {{flag|Madagascar}} || 66 || 65 || 135 || 68 || 145 
+|-
+| 149 || {{flag|Botswana}} || 66 || 64.5 || 142 || 67.5 || 149 
+|-
+| 150 || {{flag|India}} || 65 || 64 || 143 || 67 || 150 
+|-
+| 151 || {{flag|Gabon}} || 64 || 62 || 150 || 66 || 151 
+|-
+| 152 || {{flag|Yemen}} || 64 || 63 || 146 || 66 || 151 
+|-
+| 153 || {{flag|Timor-Leste}} || 64 || 63 || 146 || 65 || 154 
+|-
+| 154 || {{flag|Senegal}} || 64 || 62 || 150 || 66 || 151 
+|-
+| 155 || {{flag|Haiti}} || 63 || 62 || 150 || 64 || 156 
+|-
+| 156 || {{flag|Sudan}} || 63 || 61 || 152 || 65 || 154 
+|-
+| 157 || {{flag|Eritrea}} || 61.5 || 59 || 154 || 64 || 156 
+|-
+| 158 || {{flag|Cameroon}} || 61.5 || 59 || 154 || 64 || 156 
+|-
+| 159 || {{flag|South Africa}} || 61 || 59 || 154 || 63 || 160 
+|-
+| 160 || {{flag|Djibouti}} || 61 || 59 || 154 || 64 || 156 
+|-
+| 161 || {{flag|Ethiopia}} || 60.5 || 59 || 154 || 62 || 161 
+|-
+| 162 || {{flag|Kenya}} || 60 || 59 || 154 || 61 || 162 
+|-
+| 163 || {{flag|Rwanda}} || 60 || 59 || 154 || 61 || 162 
+|-
+| 164 || {{flag|Afghanistan}} || 60 || 59 || 154 || 61 || 162 
+|-
+| 165 || {{flag|Mauritania}} || 59.5 || 57 || 167 || 61 || 162 
+|-
+| 166 || {{flag|Liberia}} || 59 || 58 || 162 || 60 || 168 
+|-
+| 167 || {{flag|Tanzania}} || 59 || 58 || 162 || 61 || 162 
+|-
+| 168 || {{flag|Benin}} || 59 || 58 || 162 || 60 || 168 
+|-
+| 169 || {{flag|Gambia}} || 59 || 57.5 || 165 || 60.5 || 167 
+|-
+| 170 || {{flag|Malawi}} || 58 || 57.5 || 165 || 58.5 || 171 
+|-
+| 171 || {{flag|Republic of the Congo}} || 58 || 57 || 167 || 59 || 170 
+|-
+| 172 || {{flag|Togo}} || 57 || 55.5 || 169 || 58.5 || 171 
+|-
+| 173 || {{flag|Burkina Faso}} || 56.5 || 54 || 173 || 57 || 175 
+|-
+| 174 || {{flag|Côte d'Ivoire}} || 56.5 || 55 || 170 || 58 || 173 
+|-
+| 175 || {{flag|Uganda}} || 56 || 54.5 || 172 || 57.5 || 174 
+|-
+| 176 || {{flag|Niger}} || 56 || 55 || 170 || 57 || 175 
+|-
+| 177 || {{flag|Zambia}} || 55.5 || 54 || 173 || 56 || 177 
+|-
+| 178 || {{flag|Guinea}} || 55 || 54 || 173 || 56 || 177 
+|-
+| 179 || {{flag|Equatorial Guinea}} || 54 || 53 || 176 || 55 || 179 
+|-
+| 180 || {{flag|Zimbabwe}} || 54 || 53 || 176 || 55 || 179 
+|-
+| 181 || {{flag|Burundi}} || 53 || 52 || 178 || 54 || 181 
+|-
+| 182 || {{flag|Nigeria}} || 53 || 52 || 178 || 54 || 181 
+|-
+| 183 || {{flag|Mozambique}} || 52.5 || 52 || 178 || 53 || 184 
+|-
+| 184 || {{flag|Angola}} || 52 || 51 || 181 || 53 || 184 
+|-
+| 185 || {{flag|Chad}} || 51 || 50.5 || 182 || 53.5 || 183 
+|-
+| 186 || {{flag|Mali}} || 51 || 50 || 183 || 53 || 184 
+|-
+| 187 || {{flag|Lesotho}} || 51 || 50 || 183 || 52 || 187 
+|-
+| 188 || {{flag|Guinea Bissau}} || 50 || 48 || 186 || 52 || 187 
+|-
+| 189 || {{flag|Swaziland}} || 50 || 49 || 185 || 51 || 190 
+|-
+| 190 || {{flag|Somalia}} || 50 || 48 || 186 || 52 || 187 
+|-
+| 191 || {{flag|Democratic Republic of the Congo}} || 49.5 || 48 || 186 || 51 || 190
+|-
+| 192 || {{flag|Central African Republic}} || 48.5 || 47 || 187 || 50 || 192
+|-
+| 193 || {{flag|Sierra Leone}} || 47.5 || 47 || 187 || 48 || 193
+|}
+
+==List by the United Nations, for 2009–2012==
+On 3 May 2011, the Population Division of the [[United Nations Department of Economic and Social Affairs]] (UN DESA), released ''World Population Prospects, The 2010 Revision''.<ref name="WPP2010">{{cite web|url=http://esa.un.org/wpp/Documentation/pdf/WPP2010_Highlights.pdf |title=United Nations World Population Prospects: 2012 revision|author=United Nations Department of Economic and Social Affairs|publisher=UN|date=3 May 2011}}</ref> The following table shows the life expectancy at birth for the period 2009 to 2012.
+
+[[File:Male Life Expectancy.png|thumb|450px|Male life expectancy, 2009.]]
+[[File:Female Life Expectancy.png|thumb|450px|Female life expectancy, 2009.]]
+[[Image:Life Expectancy 2005-2010 UN WPP 2006.PNG|thumb|450px|UN World Population Prospects - The 2006 Revision: 2005-2010 Life Expectancy at birth (years).
+
+{| style="width:100%;"
+|-2013
+
+| valign=top |
+{{legend|#003f00|over 80}}
+{{legend|#006f00|77.5-80.0}}
+{{legend|#00bf00|75.0-77.5}}
+{{legend|#00ff00|72.5-75.0}}
+{{legend|#bfff00|70.0-72.5}}
+{{legend|#ffff00|67.5-70.0}}
+{{legend|#ffcf00|65.0-67.5}}
+| valign=top |
+{{legend|#ff7f00|60-65}}
+{{legend|#ff0000|55-60}}
+{{legend|#cf0000|50-55}}
+{{legend|#7f0000|45-50}}
+{{legend|#3f0000|under 45}}
+{{legend|#afafaf|not available}}
+|}]]
+
+{| class="wikitable sortable"
+|+ Life expectancy at birth (years), UN World Population Prospects 2010
+|-
+!Rank !! [[sovereign state|state]]/territory !! Overall !! Male !! Female
+|-
+| 1 || {{flag|Japan}} || 82.73 || 79.29 || 86.96
+|-
+| 2 || {{flag|Switzerland}} || 81.81 || 79.31 || 84.12 
+|-
+| 3 || {{flag|Hong Kong}} ({{flag|China}}) || 81.61 || 79.04 || 84.30 
+|-
+| 4 || {{flag|Australia}} || 81.44 || 79.12 || 84
+|-
+| 5 || {{flag|Italy}} || 81.37 || 78.58 || 83.98 
+|-
+| 6 || {{flag|Iceland}} || 81.28 || 79.49 || 83.05
+|-
+| 7 || {{flag|France}} ([[metropolitan France|metropol.]]) || 81 || 77.48 || 84.32
+|-
+| 8 || {{flag|Sweden}} || 80.88 || 78.78 || 82.93 
+|-
+| 9 || {{flag|Spain}} || 80.75 || 77.5 || 84
+|-
+| 10 || {{flag|Israel}} || 80.69 || 78.36 || 82.87 
+|-
+| 11 || {{flag|Singapore}} || 80.60 || 78.5 || 83 
+|-
+| 12 || {{flag|Canada}} || 80.50 || 78.5 || 83
+|-
+| 13 || {{flag|Norway}} || 80.45 || 78.12 || 83 
+|-
+| 14 || {{flag|Austria}} || 80.24 || 77.41 || 82.88 
+|-
+| 15 || {{flag|Netherlands}} || 80.20 || 78.5 || 82.19 
+|-
+| 16 || {{flag|New Zealand}} || 80.13 || 78.03 || 82.16 
+|-
+| 17 || {{flag|Martinique}} ({{flag|France}}) || 80.07 || 76.68 || 83.16 
+|-
+| 18 || {{flag|Macau}} ({{flag|China}}) || 80.03 || 77.74 || 82.57 
+|-
+| 19 || {{flag|South Korea}} || 80.00 || 76.48 || 83.25 
+|-
+| 20 || {{flag|Germany}} || 79.85 || 77.20 || 82.39 
+|-
+| 21 || {{flag|Belgium}} || 79.77 || 76.95 || 82.50 
+|-
+| 22 || {{flag|Ireland}} || 79.68 || 77.33 || 82.02 
+|-
+| 23 || {{flag|United Kingdom}} || 79.53 || 77.38 || 81.68
+|-
+| 24 || {{flag|Greece}} || 79.52 || 77.02 || 82.01 
+|-
+| 25 || [[Channel Islands]] ({{flag|UK}}) || 79.51 || 77.32 || 81.63 
+|-
+| 26= || {{flag|Luxembourg}} || 79.39 || 76.70 || 81.98 
+|-
+| 26= || {{flag|Guadeloupe}} ({{flag|France}}) || 79.39 || 75.71 || 82.88 
+|-
+| 28 || {{flag|Finland}} || 79.34 || 75.89 || 82.75 
+|-
+| 29= || {{flag|Cyprus}} || 78.94 || 76.84 || 81.07 
+|-
+| 29= || {{flag|U.S. Virgin Islands}} ({{flag|US}}) || 78.94 || 75.89 || 82.01 
+|-
+| 31 || {{flag|Costa Rica}} || 78.87 || 76.51 || 81.36 
+|-
+| 32 || {{flag|Malta}} || 78.80 || 76.34 || 81.19 
+|-
+| 33 || {{flag|Puerto Rico}} ({{flag|US}}) || 78.70 || 74.69 || 82.67 
+|-
+| 34 || {{flag|Chile}} || 78.65 || 75.54 || 81.68 
+|-
+| 35= || {{flag|Portugal}} || 78.59 || 75.32 || 81.79 
+|-
+| 35= || {{flag|Slovenia}} || 78.59 || 74.97 || 81.99 
+|-
+| 37 || {{flag|Cuba}} || 78.50 || 76.55 || 80.52 
+|-
+| 38 || {{flag|Denmark}} || 78.25 || 75.99 || 80.50 
+|-
+| 39 || {{flag|Taiwan}} || 78.19 || 75.25 || 81.51 
+|-
+| 40 || {{flag|United States}} || 77.97 || 75.35 || 80.51 
+|-
+| 41 || {{flag|Qatar}} || 77.88 || 78.07 || 77.29 
+|-
+| 42 || {{flag|Brunei}} || 77.51 || 75.29 || 79.98 
+|-
+| 43 || {{flag|Réunion}} ({{flag|France}}) || 77.26 || 73.69 || 81.08 
+|-
+| 44 || {{flag|Mayotte}} || 77.14 || 73.69 || 81.08 
+|-
+| 45 || {{flag|Czech Republic}} || 77.01 || 73.78 || 80.15 
+|-
+| 46 || {{flag|Algeria}} || 73.39<ref name=cia2012/> || 70.12<ref name=cia2012/>|| 77.72<ref name=cia2012/>
+|-
+| 46 || {{flag|Albania}} || 76.38 || 73.43 || 79.72 
+|-
+| 47 || {{flag|Uruguay}} || 76.36 || 72.72 || 79.85 
+|-
+| 48 || {{flag|Barbados}} || 76.25 || 73.00 || 79.50 
+|-
+| 49 || {{flag|Mexico}} || 76.19 || 73.73 || 78.63 
+|-
+| 50 || {{flag|Netherlands Antilles}} ({{flag|Netherlands}}) || 76.14 || 72.65 || 79.36
+|-
+| 50 || {{flag|Libya}} || 76.04<ref name=cia2012/> || 74.36<ref name=cia2012/> || 77.82<ref name=cia2012/>
+|-
+| 51 || {{flag|Croatia}} || 76.01 || 72.45 || 79.49 
+|-
+| 52 || {{flag|United Arab Emirates}} || 75.94 || 75.25 || 77.04 
+|-
+| 53 || {{flag|French Guiana}} ({{flag|France}}) || 75.89 || 72.55 || 79.89 
+|-
+| 54 || {{flag|Maldives}} || 75.55 || 74.64 || 76.52 
+|-
+| 55= || {{flag|Poland}} || 75.51 || 71.17 || 79.85 
+|-
+| 55= || {{flag|Panama}} || 75.51 || 72.98 || 78.21
+|-
+| 57= || {{flag|Brazil}} || 75.50 || 71.75 || 79.25  
+|-
+| 58 || {{flag|Tunisia}} || 75.40<ref name=cia2012/> || 72.2 <ref name=cia2012/> || 78.6 <ref name=cia2012/>
+|-
+| 57= || {{flag|Guam}} ({{flag|US}}) || 75.50 || 73.25 || 77.94 
+|-
+| 58= || {{flag|Syrian Arab Republic}} || 75.35 || 73.91 || 76.85 
+|-
+| 58= || {{flag|Grenada}} || 75.35 || 73.71 || 76.79 
+|-
+| 60 || {{flag|Belize}} || 75.34 || 73.93 || 76.80 
+|-
+| 61 || {{flag|New Caledonia}} ({{flag|France}}) || 75.33 || 72.31 || 78.71 
+|-
+| 62 || {{flag|Argentina}} || 75.30 || 71.53 || 79.07
+|-
+| 63 || {{flag|Bosnia and Herzegovina}} || 75.12 || 72.43 || 77.70 
+|-
+| 64 || {{flag|Ecuador}} || 75.03 || 72.14 || 78.06 
+|-
+| 65 || {{flag|Bahamas}} || 74.79 || 71.60 || 77.83 
+|-
+| 66 || {{flag|Aruba}} ({{flag|Netherlands}}) || 74.75 || 72.28 || 77.09 
+|-
+| 67 || {{flag|Slovakia}} || 74.72 || 70.73 || 78.65 
+|-
+| 68 || {{flag|Bahrain}} || 74.60 || 74.03 || 75.37 
+|-
+| 69 || {{flag|French Polynesia}} ({{flag|France}}) || 74.49 || 72.21 || 77.08 
+|-
+| 70 || {{flag|Viet Nam}} || 74.35 || 72.33 || 76.21 
+|-
+| 71 || {{flag|Sri Lanka}} || 74.25 || 71.20 || 77.40 
+|-
+| 72 || {{flag|Macedonia}} || 74.22 || 72.12 || 76.32 
+|-
+| 73 || {{flag|Kuwait}} || 74.17 || 73.47 || 75.19 
+|-
+| 75 || {{flag|Montenegro}} || 74.01 || 71.55 || 76.47 
+|-
+| 76 || {{flag|Serbia}} || 74.00 || 71.70 || 76.34 
+|-
+| 77 || {{flag|Saint Lucia}} || 73.92 || 71.42 || 76.58 
+|-
+| 78 || {{flag|Estonia}} || 73.91 || 68.35 || 79.17 
+|-
+| 80 || {{flag|Venezuela}} || 73.73 || 70.83 || 76.78 
+|-
+| 81 || {{flag|Armenia}} || 73.69 || 70.21 || 76.74 
+|-
+| 82 || {{flag|Hungary}} || 73.64 || 69.54 || 77.64 
+|-
+| 83 || {{flag|Thailand}} || 73.56 || 70.17 || 77.06 
+|-
+| 84 || {{flag|Cape Verde}} || 73.54 || 69.41 || 77.36 
+|-
+| 85 || {{flag|Malaysia}} || 73.38 || 71.24 || 75.72 
+|-
+| 86 || {{flag|Peru}} || 73.18 || 70.57 || 75.90 
+|-
+| 87 || {{flag|Romania}} || 73.16 || 69.57 || 76.83 
+|-
+| 88 || {{flag|Saudi Arabia}} || 73.13 || 72.24 || 74.41 
+|-
+| 89 || {{flag|Georgia}} || 73.05 || 69.36 || 76.50 
+|-
+| 90 || {{flag|Nicaragua}} || 72.98 || 69.91 || 76.12 
+|-
+| 91 || {{flag|Turkey}} || 72.96 || 70.70 || 75.28 
+|-
+| 92 || {{flag|Colombia}} || 72.92 || 69.24 || 76.66 
+|-
+| 93 || {{flag|Jordan}} || 72.91 || 71.65 || 74.29 
+|-
+| 94 || {{flag|Mauritius}} || 72.80 || 69.49 || 76.19 
+|-
+| 95= || {{flag|China}} || 72.71 || 71.10 || 74.45 
+|-
+| 95= || {{flag|Bulgaria}} || 72.71 || 69.21 || 76.35 
+|-
+| 97 || {{flag|Oman}} || 72.58 || 70.88 || 74.83 
+|-
+| 98 || {{flag|Dominican Republic}} || 72.52 || 69.85 || 75.44 
+|-
+| 99= || {{flag|Egypt}} || 72.51 || 71.23 || 75.82 
+|-
+| 101 || {{flag|Latvia}} || 72.27 || 66.88 || 77.45 
+|-
+| 102= || {{flag|Jamaica}} || 72.24 || 69.57 || 74.97 
+|-
+| 104 || {{flag|Palestine}} || 72.17 || 70.60 || 73.81 
+|-
+| 105 || {{flag|Honduras}} || 72.07 || 69.74 || 74.51 
+|-
+| 106 || {{flag|Iran}} || 72.06 || 70.33 || 73.91 
+|-
+| 107 || {{flag|Lebanon}} || 72.00 || 69.86 || 74.18 
+|-
+| 108 || {{flag|Tonga}} || 71.84 || 69.05 || 74.70 
+|-
+| 109 || {{flag|Paraguay}} || 71.73 || 69.67 || 73.90 
+|-
+| 110 || {{flag|Saint Vincent and the Grenadines}} || 71.64 || 69.59 || 73.80 
+|-
+| 111 || {{flag|Samoa}} || 71.54 || 68.62 || 74.89 
+|-
+| 112 || {{flag|El Salvador}} || 71.43 || 66.55 || 76.08 
+|-
+| 113 || {{flag|Lithuania}} || 71.31 || 65.46 || 77.24 
+|-
+| 114 || {{flag|Morocco}} || 71.16 || 68.96 || 73.44 
+|-
+| 115 || {{flag|Guatemala}} || 70.27 || 66.73 || 73.79 
+|-
+| 116 || {{flag|Azerbaijan}} || 70.12 || 67.09 || 73.14 
+|-
+| 117 || {{flag|Vanuatu}} || 69.99 || 68.20 || 72.06 
+|-
+| 118 || {{flag|Suriname}} || 69.65 || 66.42 || 73.11 
+|-
+| 119 || {{flag|Belarus}} || 69.44 || 63.59 || 75.53 
+|-
+| 120 || {{flag|Trinidad and Tobago}} || 69.40 || 65.80 || 72.90 
+|-
+| 121 || {{flag|Fiji}} || 68.80 || 66.09 || 71.90 
+|-
+| 122 || {{flag|Guyana}} || 68.70 || 65.53 || 71.93 
+|-
+| 123 || {{flag|North Korea}} || 68.39 || 64.80 || 71.75 
+|-
+| 124 || {{flag|Federated States of Micronesia}} || 68.35 || 67.56 || 69.11 
+|-
+| 125 || {{flag|Moldova}} || 68.23 || 64.42 || 72.06 
+|-
+| 126 || {{noflag}}{{Background color|#98fb98|'''World average'''}} || 67.88 || 65.71 || 70.14 
+|-
+| 127 || {{flag|Indonesia}} || 67.86 || 66.29 || 69.43 
+|-
+| 128 || {{flag|Bangladesh}} || 67.84 || 67.41 || 68.29 
+|-
+| 129 || {{flag|Philippines}} || 67.80 || 64.54 || 71.29 
+|-
+| 130 || {{flag|Russian Federation}} || 67.68 || 61.56 || 74.03 
+|-
+| 131 || {{flag|Ukraine}} || 67.54 || 61.78 || 73.54 
+|-
+| 132 || {{flag|Uzbekistan}} || 67.44 || 64.33 || 70.66 
+|-
+| 133 || {{flag|Nepal}} || 67.42 || 66.71 || 68.04 
+|-
+| 134= || {{flag|Mongolia}} || 67.32 || 63.40 || 71.47 
+|-
+| 134= || {{flag|Iraq}} || 67.32 || 63.37 || 71.69 
+|-
+| 136 || {{flag|Kyrgyzstan}} || 66.70 || 62.66 || 71.04 
+|-
+| 137 || {{flag|Tajikistan}} || 66.44 || 63.29 || 69.91 
+|-
+| 138 || {{flag|Solomon Islands}} || 66.39 || 65.12 || 67.76 
+|-
+| 139 || {{flag|Laos}} || 66.06 || 64.77 || 67.31 
+|-
+| 140 || {{flag|Western Sahara}} || 65.95 || 64.27 || 68.10 
+|-
+| 141 || {{flag|Bhutan}} || 65.79 || 64.08 || 67.77 
+|-
+| 142 || {{flag|Kazakhstan}} || 65.78 || 60.18 || 71.53 
+|-
+| 143 || {{flag|Madagascar}} || 65.77 || 64.27 || 67.30 
+|-
+| 144 || {{flag|Bolivia}} || 65.56 || 63.43 || 67.70 
+|-
+| 145 || {{flag|Turkmenistan}} || 64.65 || 60.62 || 68.91 
+|-
+| 146 || {{flag|Pakistan}} || 64.57 || 63.78 || 65.42 
+|-
+| 147 || {{flag|India}} || 64.19 || 62.80 || 65.73 
+|-
+| 148 || {{flag|Yemen}} || 63.94 || 62.52 || 65.36 
+|-
+| 149 || {{flag|São Tomé and Príncipe}} || 63.82 || 62.46 || 65.11 
+|-
+| 150 || {{flag|Myanmar}} || 63.54 || 62.08 || 64.98 
+|-
+| 151 || {{flag|Ghana}} || 62.71 || 61.84 || 63.61 
+|-
+| 152 || {{flag|Cambodia}} || 61.54 || 60.21 || 62.61 
+|-
+| 153 || {{flag|Papua New Guinea}} || 61.50 || 59.49 || 63.66 
+|-
+| 154 || {{flag|Gabon}} || 61.28 || 60.24 || 62.35 
+|-
+| 155 || {{flag|Namibia}} || 61.09 || 60.35 || 61.62 
+|-
+| 156 || {{flag|Haiti}} || 60.99 || 59.94 || 62.02 
+|-
+| 157 || {{flag|Timor-Leste}} || 60.80 || 59.94 || 61.68 
+|-
+| 158 || {{flag|Sudan}} || 60.27 || 58.59 || 62.01 
+|-
+| 159 || {{flag|Eritrea}} || 60.03 || 57.61 || 62.23 
+|-
+| 160 || {{flag|Comoros}} || 59.65 || 58.33 || 61.00 
+|-
+| 161 || {{flag|Senegal}} || 58.17 || 57.19 || 59.13 
+|-
+| 162 || {{flag|Mauritania}} || 57.53 || 55.89 || 59.16 
+|-
+| 163 || {{flag|Gambia}} || 57.34 || 56.25 || 58.49 
+|-
+| 164 || {{flag|Ethiopia}} || 57.21 || 55.70 || 58.74 
+|-
+| 165 || {{flag|Djibouti}} || 56.64 || 55.24 || 58.04 
+|-
+| 166 || {{flag|Congo}} || 56.02 || 54.88 || 57.16 
+|-
+| 167 || {{flag|Togo}} || 55.69 || 54.24 || 57.14 
+|-
+| 168 || {{flag|Tanzania}} || 55.44 || 54.62 || 56.19 
+|-
+| 169 || {{flag|Kenya}} || 54.98 || 53.96 || 55.93 
+|-
+| 170 || {{flag|Benin}} || 54.64 || 52.72 || 56.50 
+|-
+| 171 || {{flag|Liberia}} || 54.42 || 53.45 || 55.35 
+|-
+| 172 || {{flag|Rwanda}} || 53.94 || 52.70 || 55.14 
+|-
+| 173 || {{flag|Burkina Faso}} || 53.87 || 52.84 || 54.78 
+|-
+| 174 || {{flag|Botswana}} || 53.33 || 53.80 || 52.54 
+|-
+| 175 || {{flag|Niger}} || 53.08 || 52.66 || 53.55 
+|-
+| 176 || {{flag|Côte d'Ivoire}} || 53.02 || 52.14 || 54.05 
+|-
+| 177 || {{flag|Guinea}} || 52.44 || 50.93 || 54.01 
+|-
+| 178 || {{flag|Uganda}} || 52.24 || 51.68 || 52.73 
+|-
+| 179 || {{flag|Malawi}} || 51.55 || 51.51 || 51.48 
+|-
+| 180 || {{flag|South Africa}} || 51.20 || 50.13 || 52.08 
+|-
+| 181 || {{flag|Nigeria}} || 50.26 || 49.50 || 51.03 
+|-
+| 182 || {{flag|Somalia}} || 50.24 || 48.71 || 51.79 
+|-
+| 183 || {{flag|Equatorial Guinea}} || 50.10 || 48.87 || 51.48 
+|-
+| 184 || {{flag|Mali}} || 49.99 || 48.89 || 50.99 
+|-
+| 185 || {{flag|Cameroon}} || 49.97 || 49.02 || 50.89 
+|-
+| 186 || {{flag|Angola}} || 49.62 || 48.21 || 51.04 
+|-
+| 187 || {{flag|Burundi}} || 48.81 || 47.48 || 50.05 
+|-
+| 188 || {{flag|Mozambique}} || 48.77 || 47.56 || 49.88 
+|-
+| 189 || {{flag|Chad}} || 48.52 || 47.15 || 49.90 
+|-
+| 190 || {{flag|Democratic Republic of the Congo}} || 47.42 || 45.93 || 48.91 
+|-
+| 191 || {{flag|Swaziland}} || 47.36 || 47.56 || 47.04 
+|-
+| 192 || {{flag|Afghanistan}} || 47.32 || 47.19 || 47.47 
+|-
+| 193 || {{flag|Zambia}} || 46.93 || 46.49 || 47.26 
+|-
+| 194 || {{flag|Guinea-Bissau}} || 46.76 || 45.33 || 48.22 
+|-
+| 195 || {{flag|Zimbabwe}} || 46.59 || 47.45 || 45.43 
+|-
+| 196 || {{flag|Sierra Leone}} || 46.26 || 45.65 || 46.88 
+|-
+| 197 || {{flag|Lesotho}} || 46.02 || 46.46 || 45.18 
+|-
+| 198 || {{flag|Central African Republic}} || 45.91 || 44.47 || 47.31 
+|}
+
+==List from the "GBD 2010" study==
+
+The Global Burden of Disease 2010 study published updated figures in 2012,<ref>{{cite journal|last=Das|first=Pamela|author2=Samarasekera, Udani |title=The story of GBD 2010: a "super-human" effort|journal=The Lancet|year=2012|volume=380|issue=9859|pages=2067–2070|doi=10.1016/S0140-6736(12)62174-6|url=http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(12)62174-6/fulltext}}</ref> including recalculations of life expectancies<ref>{{cite journal|last=Wang|first=Haidong|author2=Dwyer-Lindgren, Laura |author3=Lofgren, Katherine T |author4=Rajaratnam, Julie Knoll |author5=Marcus, Jacob R |author6=Levin-Rector, Alison |author7=Levitz, Carly E |author8=Lopez, Alan D |author9= Murray, Christopher JL |displayauthors=9 |title=Age-specific and sex-specific mortality in 187 countries, 1970–2010: a systematic analysis for the Global Burden of Disease Study 2010|journal=The Lancet|year=2012|volume=380|issue=9859|pages=2071–2094|doi=10.1016/S0140-6736(12)61719-X}}</ref> which differ substantially in places from the UN estimates for 2010 (reasons for this are discussed in the [http://www.healthmetricsandevaluation.org/sites/default/files/publication_summary/2012/GBD2010_mortality_paper_webappendix_with_tables_and_figures.pdf freely available appendix to the paper], pages 25–27, currently not available). Although no estimate is given for the sexes combined, for the first time life expectancy estimates have included uncertainty intervals.
+
+{| class="wikitable sortable"
+|+ Life expectancy at birth (years), Global Burden of Disease 2010
+|-
+! [[sovereign state|state]]/territory !! Male !! 95% range !! Female !! 95% range
+|-
+| {{noflag}}{{Background color|#98fb98|'''World average'''}} || 67.50 || (66.90-68.10) || 73.30 || (72.80-73.80)
+|-
+| {{flag|Afghanistan}} || 58.20 || (54.20-62.80) || 57.30 || (52.20-61.70)
+|-
+| {{flag|Albania}} || 72.00 || (69.20-74.90) || 78.10 || (75.90-80.20)
+|-
+| {{flag|Algeria}} || 74.30 || (73.20-75.40) || 76.50 || (75.50-77.50)
+|-
+| {{flag|Andorra}} || 79.80 || (78.80-81.00) || 85.20 || (84.20-86.20)
+|-
+| {{flag|Angola}} || 57.90 || (49.50-66.50) || 63.90 || (56.00-72.00)
+|-
+| {{flag|Antigua and Barbuda}} || 74.10 || (72.20-75.90) || 79.00 || (77.30-80.50)
+|-
+| {{flag|Argentina}} || 72.50 || (72.40-72.60) || 79.30 || (79.20-79.40)
+|-
+| {{flag|Armenia}} || 68.90 || (67.20-70.50) || 78.50 || (77.40-79.60)
+|-
+| {{flag|Australia}} || 79.20 || (79.10-79.30) || 83.80 || (83.70-83.90)
+|-
+| {{flag|Austria}} || 77.70 || (77.50-77.90) || 83.30 || (83.20-83.50)
+|-
+| {{flag|Azerbaijan}} || 68.90 || (67.60-70.20) || 76.20 || (74.90-77.40)
+|-
+| {{flag|Bahrain}} || 76.40 || (74.80-78.20) || 79.10 || (77.50-80.70)
+|-
+| {{flag|Bangladesh}} || 67.20 || (65.60-68.80) || 71.00 || (69.40-72.80)
+|-
+| {{flag|Barbados}} || 74.30 || (72.70-76.00) || 77.00 || (75.60-78.30)
+|-
+| {{flag|Belarus}} || 64.10 || (63.40-64.90) || 76.00 || (75.50-76.50)
+|-
+| {{flag|Belgium}} || 76.70 || (76.40-77.10) || 82.30 || (81.90-82.60)
+|-
+| {{flag|Belize}} || 68.90 || (67.30-70.30) || 73.60 || (72.30-75.00)
+|-
+| {{flag|Benin}} || 60.70 || (57.60-63.50) || 65.90 || (63.20-68.50)
+|-
+| {{flag|Bhutan}} || 67.60 || (60.90-73.30) || 71.70 || (65.70-77.10)
+|-
+| {{flag|Bolivia}} || 69.70 || (67.30-72.50) || 71.70 || (69.50-74.10)
+|-
+| {{flag|Bosnia and Herzegovina}} || 74.10 || (73.90-74.40) || 78.80 || (78.50-79.00)
+|-
+| {{flag|Botswana}} || 68.10 || (63.60-73.60) || 74.00 || (69.20-80.60)
+|-
+| {{flag|Brazil}} || 71.50 || (71.20-71.80) || 79.70 || (79.50-79.90)
+|-
+| {{flag|Brunei}} || 75.50 || (74.30-76.60) || 79.10 || (78.00-80.30)
+|-
+| {{flag|Bulgaria}} || 70.10 || (69.90-70.30) || 77.00 || (76.80-77.20)
+|-
+| {{flag|Burkina Faso}} || 52.80 || (46.60-58.10) || 57.60 || (52.70-62.10)
+|-
+| {{flag|Burma}} || 60.70 || (51.40-69.80) || 67.60 || (60.10-73.60)
+|-
+| {{flag|Burundi}} || 53.00 || (42.70-63.00) || 55.20 || (45.20-64.60)
+|-
+| {{flag|Cambodia}} || 64.60 || (63.30-66.00) || 70.10 || (68.80-71.50)
+|-
+| {{flag|Cameroon}} || 57.10 || (53.50-60.90) || 61.10 || (57.80-64.30)
+|-
+| {{flag|Canada}} || 78.50 || (78.20-78.70) || 82.70 || (82.50-83.00)
+|-
+| {{flag|Cape Verde}} || 70.90 || (66.30-75.50) || 79.10 || (75.30-82.50)
+|-
+| {{flag|Central African Republic}} || 43.60 || (38.40-49.30) || 49.30 || (44.00-54.60)
+|-
+| {{flag|Chad}} || 53.30 || (47.20-58.20) || 57.80 || (53.00-62.30)
+|-
+| {{flag|Chile}} || 75.50 || (75.20-75.90) || 81.50 || (81.20-81.80)
+|-
+| {{flag|China}} || 72.90 || (71.80-74.00) || 79.00 || (78.00-80.00)
+|-
+| {{flag|Colombia}} || 71.70 || (70.20-73.00) || 78.30 || (77.30-79.40)
+|-
+| {{flag|Comoros}} || 61.60 || (56.50-65.80) || 63.90 || (59.10-68.20)
+|-
+| {{flag|Congo}} || 56.30 || (52.30-60.30) || 61.60 || (57.90-65.10)
+|-
+| {{flag|Costa Rica}} || 77.10 || (76.90-77.30) || 81.90 || (81.60-82.10)
+|-
+| {{flag|Côte d'Ivoire}} || 52.80 || (48.20-57.10) || 60.20 || (56.20-63.90)
+|-
+| {{flag|Croatia}} || 73.40 || (73.20-73.60) || 79.90 || (79.70-80.10)
+|-
+| {{flag|Cuba}} || 76.10 || (75.90-76.20) || 79.80 || (79.60-79.90)
+|-
+| {{flag|Cyprus}} || 77.60 || (77.10-78.10) || 82.90 || (82.40-83.40)
+|-
+| {{flag|Czech Republic}} || 74.30 || (74.20-74.50) || 80.70 || (80.50-80.80)
+|-
+| {{flag|Denmark}} || 76.80 || (76.60-77.00) || 81.00 || (80.80-81.30)
+|-
+| {{flag|Djibouti}} || 62.20 || (54.60-69.60) || 64.40 || (55.10-73.70)
+|-
+| {{flag|Dominica}} || 70.10 || (68.60-71.50) || 77.90 || (76.40-79.30)
+|-
+| {{flag|Dominican Republic}} || 71.30 || (70.00-72.80) || 76.30 || (75.10-77.60)
+|-
+| {{flag|DR Congo}} || 52.80 || (49.60-55.90) || 57.70 || (54.70-60.50)
+|-
+| {{flag|Ecuador}} || 74.40 || (73.30-75.40) || 79.80 || (78.90-80.60)
+|-
+| {{flag|Egypt}} || 68.00 || (67.00-69.00) || 73.40 || (72.50-74.20)
+|-
+| {{flag|El Salvador}} || 69.90 || (69.30-70.50) || 78.20 || (77.70-78.60)
+|-
+| {{flag|Equatorial Guinea}} || 54.70 || (43.50-66.20) || 61.80 || (52.90-73.80)
+|-
+| {{flag|Eritrea}} || 59.00 || (54.70-62.90) || 62.00 || (58.20-65.50)
+|-
+| {{flag|Estonia}} || 70.60 || (70.30-71.00) || 80.60 || (80.20-81.00)
+|-
+| {{flag|Ethiopia}} || 59.50 || (57.50-61.30) || 62.30 || (60.50-64.10)
+|-
+| {{flag|Federated States of Micronesia}} || 63.40 || (54.60-71.70) || 68.30 || (60.80-74.70)
+|-
+| {{flag|Fiji}} || 65.60 || (63.90-67.30) || 68.80 || (67.10-70.40)
+|-
+| {{flag|Finland}} || 76.80 || (76.60-77.00) || 83.30 || (83.10-83.60)
+|-
+| {{flag|France}} || 77.50 || (77.20-77.80) || 84.30 || (84.00-84.50)
+|-
+| {{flag|Gabon}} || 55.00 || (50.00-60.00) || 63.30 || (59.50-67.40)
+|-
+| {{flag|Georgia}} || 67.40 || (66.00-68.70) || 77.90 || (76.90-78.90)
+|-
+| {{flag|Germany}} || 77.50 || (77.30-77.70) || 82.80 || (82.60-83.10)
+|-
+| {{flag|Ghana}} || 63.20 || (60.70-65.70) || 66.70 || (64.50-68.90)
+|-
+| {{flag|Greece}} || 77.10 || (76.80-77.40) || 82.10 || (81.90-82.40)
+|-
+| {{flag|Grenada}} || 68.60 || (67.40-69.80) || 73.50 || (72.20-74.70)
+|-
+| {{flag|Guatemala}} || 66.90 || (66.30-67.50) || 74.00 || (73.50-74.50)
+|-
+| {{flag|Guinea-Bissau}} || 54.80 || (46.10-63.40) || 58.60 || (50.80-66.60)
+|-
+| {{flag|Guinea}} || 58.40 || (53.70-62.30) || 60.50 || (56.30-64.00)
+|-
+| {{flag|Guyana}} || 63.10 || (60.50-65.90) || 69.10 || (66.90-71.20)
+|-
+| {{flag|Haiti}} || 32.50 || (19.80-43.10) || 43.60 || (31.10-51.70)
+|-
+| {{flag|Honduras}} || 70.50 || (66.30-74.60) || 73.20 || (69.80-76.50)
+|-
+| {{flag|Hungary}} || 70.40 || (70.30-70.60) || 78.40 || (78.20-78.50)
+|-
+| {{flag|Iceland}} || 80.00 || (79.40-80.60) || 84.40 || (83.70-85.00)
+|-
+| {{flag|India}} || 63.20 || (60.60-65.70) || 67.50 || (65.50-69.90)
+|-
+| {{flag|Indonesia}} || 67.70 || (66.00-69.20) || 71.80 || (70.30-73.30)
+|-
+| {{flag|Iran}} || 71.60 || (68.50-74.60) || 77.80 || (75.30-80.20)
+|-
+| {{flag|Iraq}} || 70.60 || (67.20-73.70) || 71.40 || (68.30-74.40)
+|-
+| {{flag|Ireland}} || 77.60 || (77.40-77.90) || 82.20 || (81.90-82.40)
+|-
+| {{flag|Israel}} || 79.20 || (79.00-79.40) || 82.90 || (82.70-83.10)
+|-
+| {{flag|Italy}} || 78.90 || (78.70-79.10) || 83.90 || (83.70-84.10)
+|-
+| {{flag|Jamaica}} || 73.30 || (69.90-77.30) || 77.30 || (74.30-80.30)
+|-
+| {{flag|Japan}} || 79.30 || (79.30-79.40) || 85.90 || (85.80-85.90)
+|-
+| {{flag|Jordan}} || 75.70 || (73.90-77.50) || 75.10 || (73.20-77.00)
+|-
+| {{flag|Kazakhstan}} || 61.30 || (59.10-63.30) || 72.20 || (70.60-73.70)
+|-
+| {{flag|Kenya}} || 62.70 || (59.90-65.70) || 66.90 || (64.60-69.00)
+|-
+| {{flag|Kiribati}} || 57.80 || (51.30-64.00) || 65.00 || (59.80-69.70)
+|-
+| {{flag|Kuwait}} || 76.10 || (75.80-76.40) || 79.60 || (79.20-79.90)
+|-
+| {{flag|Kyrgyzstan}} || 62.20 || (60.60-63.90) || 71.90 || (70.40-73.20)
+|-
+| {{flag|Laos}} || 62.40 || (54.40-69.70) || 67.10 || (60.20-73.50)
+|-
+| {{flag|Latvia}} || 68.90 || (68.60-69.20) || 78.50 || (78.20-78.70)
+|-
+| {{flag|Lebanon}} || 76.20 || (74.10-77.90) || 78.90 || (77.50-80.40)
+|-
+| {{flag|Lesotho}} || 44.10 || (40.90-48.10) || 50.70 || (47.20-54.80)
+|-
+| {{flag|Liberia}} || 56.50 || (54.10-58.90) || 57.90 || (55.20-60.50)
+|-
+| {{flag|Libya}} || 72.90 || (70.70-75.00) || 76.50 || (74.60-78.50)
+|-
+| {{flag|Lithuania}} || 68.70 || (68.50-68.90) || 79.30 || (79.10-79.60)
+|-
+| {{flag|Luxembourg}} || 78.00 || (77.50-78.60) || 82.20 || (81.70-82.80)
+|-
+| {{flag|Macedonia}} || 72.80 || (72.50-73.00) || 77.20 || (77.00-77.50)
+|-
+| {{flag|Madagascar}} || 62.20 || (58.90-65.60) || 65.10 || (61.80-68.10)
+|-
+| {{flag|Malawi}} || 50.90 || (48.50-53.60) || 54.90 || (52.70-57.50)
+|-
+| {{flag|Malaysia}} || 71.30 || (71.00-71.60) || 76.50 || (76.20-76.80)
+|-
+| {{flag|Maldives}} || 77.50 || (76.70-78.30) || 80.40 || (79.70-81.20)
+|-
+| {{flag|Mali}} || 56.90 || (52.90-60.70) || 57.70 || (53.80-61.20)
+|-
+| {{flag|Malta}} || 77.10 || (76.60-77.60) || 83.00 || (82.40-83.60)
+|-
+| {{flag|Marshall Islands}} || 61.90 || (57.50-66.00) || 66.00 || (61.90-70.00)
+|-
+| {{flag|Mauritania}} || 63.30 || (59.10-67.20) || 65.70 || (61.80-68.80)
+|-
+| {{flag|Mauritius}} || 69.70 || (69.30-70.00) || 76.90 || (76.50-77.30)
+|-
+| {{flag|Mexico}} || 72.50 || (72.30-72.80) || 78.40 || (78.20-78.60)
+|-
+| {{flag|Moldova}} || 65.50 || (65.00-65.80) || 74.60 || (74.20-74.90)
+|-
+| {{flag|Mongolia}} || 60.30 || (58.60-62.20) || 69.30 || (67.80-70.80)
+|-
+| {{flag|Montenegro}} || 73.00 || (72.20-73.60) || 78.20 || (77.50-78.90)
+|-
+| {{flag|Morocco}} || 70.90 || (68.30-73.30) || 74.40 || (72.20-76.10)
+|-
+| {{flag|Mozambique}} || 50.00 || (46.90-53.40) || 54.90 || (51.80-58.30)
+|-
+| {{flag|Namibia}} || 58.40 || (55.20-61.60) || 64.90 || (61.90-67.60)
+|-
+| {{flag|Nepal}} || 67.70 || (65.50-70.10) || 70.60 || (68.60-72.80)
+|-
+| {{flag|Netherlands}} || 78.50 || (78.40-78.60) || 82.60 || (82.40-82.70)
+|-
+| {{flag|New Zealand}} || 78.60 || (78.40-78.80) || 82.70 || (82.50-83.00)
+|-
+| {{flag|Nicaragua}} || 71.50 || (70.60-72.20) || 77.50 || (76.70-78.20)
+|-
+| {{flag|Niger}} || 56.90 || (51.70-61.50) || 58.70 || (54.10-62.60)
+|-
+| {{flag|Nigeria}} || 58.80 || (56.50-61.40) || 60.40 || (58.20-62.90)
+|-
+| {{flag|North Korea}} || 68.00 || (64.90-70.70) || 73.30 || (70.60-75.50)
+|-
+| {{flag|Norway}} || 78.50 || (78.30-78.70) || 83.10 || (82.90-83.40)
+|-
+| {{flag|Oman}} || 73.80 || (72.20-75.40) || 78.90 || (77.50-80.10)
+|-
+| {{flag|Pakistan}} || 63.90 || (60.70-67.10) || 67.80 || (64.80-70.90)
+|-
+| {{flag|Palestine}} || 70.30 || (67.90-72.70) || 76.40 || (74.30-78.30)
+|-
+| {{flag|Panama}} || 73.60 || (72.30-74.90) || 80.20 || (78.90-81.50)
+|-
+| {{flag|Papua New Guinea}} || 57.50 || (48.10-66.50) || 60.30 || (51.90-69.00)
+|-
+| {{flag|Paraguay}} || 71.00 || (69.70-72.40) || 75.60 || (74.70-76.40)
+|-
+| {{flag|Peru}} || 75.20 || (73.80-76.70) || 77.60 || (76.10-79.00)
+|-
+| {{flag|Philippines}} || 66.60 || (65.50-67.80) || 73.80 || (72.80-74.80)
+|-
+| {{flag|Poland}} || 72.10 || (72.00-72.20) || 80.50 || (80.40-80.60)
+|-
+| {{flag|Portugal}} || 76.30 || (76.20-76.50) || 82.30 || (82.20-82.50)
+|-
+| {{flag|Qatar}} || 78.90 || (77.70-80.00) || 82.10 || (81.10-83.20)
+|-
+| {{flag|Romania}} || 70.10 || (70.00-70.20) || 77.60 || (77.40-77.70)
+|-
+| {{flag|Russia}} || 63.10 || (62.80-63.30) || 74.70 || (74.40-74.90)
+|-
+| {{flag|Rwanda}} || 62.00 || (60.10-63.90) || 67.10 || (65.50-69.00)
+|-
+| {{flag|Saint Lucia}} || 70.90 || (68.60-73.40) || 76.50 || (74.50-78.80)
+|-
+| {{flag|Saint Vincent and the Grenadines}} || 69.70 || (68.50-71.00) || 74.50 || (73.10-75.80)
+|-
+| {{flag|Samoa}} || 68.40 || (65.40-70.90) || 73.40 || (70.90-75.80)
+|-
+| {{flag|São Tomé and Príncipe}} || 68.20 || (64.40-71.80) || 72.10 || (69.00-75.20)
+|-
+| {{flag|Saudi Arabia}} || 75.00 || (73.60-76.40) || 79.90 || (78.80-81.00)
+|-
+| {{flag|Senegal}} || 63.50 || (61.10-66.10) || 67.10 || (65.20-69.30)
+|-
+| {{flag|Serbia}} || 74.00 || (73.70-74.20) || 79.50 || (79.20-79.80)
+|-
+| {{flag|Seychelles}} || 61.30 || (60.20-62.40) || 71.80 || (70.70-72.90)
+|-
+| {{flag|Sierra Leone}} || 56.50 || (53.60-59.30) || 60.90 || (58.30-63.10)
+|-
+| {{flag|Singapore}} || 78.80 || (78.60-79.00) || 83.30 || (83.00-83.50)
+|-
+| {{flag|Slovakia}} || 71.60 || (71.40-71.70) || 79.10 || (78.90-79.30)
+|-
+| {{flag|Slovenia}} || 75.90 || (75.60-76.20) || 82.50 || (82.20-82.90)
+|-
+| {{flag|Solomon Islands}} || 60.50 || (52.20-68.10) || 64.00 || (55.40-71.40)
+|-
+| {{flag|Somalia}} || 54.60 || (45.40-62.60) || 57.20 || (47.70-65.60)
+|-
+| {{flag|South Africa}} || 57.40 || (54.80-59.60) || 62.30 || (59.90-64.70)
+|-
+| {{flag|South Korea}} || 76.50 || (76.30-76.70) || 82.70 || (82.60-82.90)
+|-
+| {{flag|Spain}} || 78.40 || (78.20-78.70) || 84.20 || (84.00-84.40)
+|-
+| {{flag|Sri Lanka}} || 71.60 || (70.30-72.80) || 79.80 || (78.70-80.70)
+|-
+| {{flag|Sudan}} || 66.90 || (64.20-69.00) || 70.70 || (68.80-72.90)
+|-
+| {{flag|Suriname}} || 70.10 || (68.20-72.20) || 75.20 || (73.70-76.80)
+|-
+| {{flag|Swaziland}} || 47.40 || (43.50-51.30) || 51.40 || (48.00-55.10)
+|-
+| {{flag|Sweden}} || 79.20 || (79.00-79.40) || 83.50 || (83.40-83.70)
+|-
+| {{flag|Switzerland}} || 79.70 || (79.50-79.80) || 84.50 || (84.30-84.70)
+|-
+| {{flag|Syria}} || 75.10 || (73.50-76.60) || 80.20 || (78.90-81.40)
+|-
+| {{flag|Taiwan}} || 75.90 || (75.80-76.00) || 81.90 || (81.80-82.00)
+|-
+| {{flag|Tajikistan}} || 65.20 || (62.70-67.50) || 71.50 || (69.40-73.60)
+|-
+| {{flag|Tanzania}} || 60.90 || (58.10-63.70) || 62.60 || (60.20-65.20)
+|-
+| {{flag|Thailand}} || 70.90 || (69.10-72.50) || 77.50 || (76.30-78.80)
+|-
+| {{flag|The Bahamas}} || 71.40 || (68.50-74.50) || 80.40 || (76.90-85.50)
+|-
+| {{flag|The Gambia}} || 60.80 || (53.40-69.00) || 64.00 || (55.90-72.40)
+|-
+| {{flag|Timor-Leste}} || 67.80 || (66.30-69.20) || 69.70 || (68.10-71.20)
+|-
+| {{flag|Togo}} || 58.30 || (54.70-61.80) || 62.10 || (58.40-65.60)
+|-
+| {{flag|Tonga}} || 67.30 || (64.70-69.90) || 73.80 || (71.40-76.10)
+|-
+| {{flag|Trinidad and Tobago}} || 66.20 || (65.00-67.40) || 75.30 || (74.10-76.40)
+|-
+| {{flag|Tunisia}} || 74.10 || (70.70-77.60) || 78.90 || (75.70-81.90)
+|-
+| {{flag|Turkey}} || 71.20 || (69.50-73.00) || 77.70 || (75.90-79.30)
+|-
+| {{flag|Turkmenistan}} || 65.40 || (60.70-69.50) || 73.40 || (69.50-77.20)
+|-
+| {{flag|Uganda}} || 58.30 || (55.30-61.40) || 62.50 || (59.80-65.10)
+|-
+| {{flag|UK}} || 77.80 || (77.80-77.90) || 81.90 || (81.80-82.00)
+|-
+| {{flag|Ukraine}} || 64.50 || (63.50-65.30) || 74.90 || (74.20-75.40)
+|-
+| {{flag|United Arab Emirates}} || 75.30 || (73.00-77.60) || 78.60 || (76.50-80.70)
+|-
+| {{flag|Uruguay}} || 72.60 || (72.10-73.10) || 80.40 || (79.90-80.90)
+|-
+| {{flag|USA}} || 75.90 || (75.80-75.90) || 80.50 || (80.50-80.60)
+|-
+| {{flag|Uzbekistan}} || 65.60 || (61.90-68.80) || 72.30 || (69.50-75.30)
+|-
+| {{flag|Vanuatu}} || 62.20 || (54.10-69.50) || 66.90 || (59.80-72.50)
+|-
+| {{flag|Venezuela}} || 70.30 || (68.90-71.50) || 79.20 || (78.40-80.00)
+|-
+| {{flag|Viet Nam}} || 71.60 || (69.30-74.00) || 79.60 || (78.00-81.10)
+|-
+| {{flag|Yemen}} || 65.50 || (59.20-71.40) || 66.30 || (59.30-72.40)
+|-
+| {{flag|Zambia}} || 54.30 || (51.10-57.70) || 57.30 || (54.20-60.30)
+|-
+| {{flag|Zimbabwe}} || 51.10 || (46.60-55.60) || 55.10 || (51.30-59.30)
+|}
+
+==List by the CIA (2012)==
+{{update section|date=November 2014}}
+[[File:Esperanza de vida.PNG|thumb|450px|
+
+2012 life expectancy estimates by the [[CIA World Factbook]].
+{{legend|#0000CD|&gt;&nbsp;80}}
+{{legend|#4169E1|&gt;&nbsp;77.5}}
+{{legend|#00BFFF|&gt;&nbsp;75}}
+{{legend|#3CB371|&gt;&nbsp;72.5}}
+{{legend|#32CD32|&gt;&nbsp;70}}
+{{legend|#ADFF2F|&gt;&nbsp;67.5}}
+{{legend|#FFFF00|&gt;&nbsp;65}}
+{{legend|#FFD700|&gt;&nbsp;60}}
+{{legend|#FF8C00|&gt;&nbsp;55}}
+{{legend|#FF4500|&gt;&nbsp;50}}
+{{legend|#FF0000|&gt;&nbsp;45}}
+{{legend|#800000|&gt;&nbsp;40}}
+{{legend|#000000|&lt;&nbsp;40}}
+]]
+
+The US [[CIA]] published the following life expectancy data in its annual world factbook 2012.<ref name=iuonoa>{{cite web|url=https://www.cia.gov/library/publications/the-world-factbook/rankorder/2102rank.html |title=CIA - The World Factbook Life Expectancy|publisher=Cia.gov |accessdate=2012-03-22}}</ref>
+{| class="wikitable sortable"
+|- style="background:#ececec; vertical-align:top;"
+! Rank  !! Entity !! Overall life expectancy at birth !! Male life expectancy at birth !! Female life expectancy at birth
+|-
+| 1 || {{flag|Monaco}} || 89.73 || 85.77 || 93.69
+|-
+| 2 || {{flag|Macau}} ({{flag|China}}) || 84.41 || 81.45 || 87.52
+|-
+| 3 || {{flag|Japan}} || 83.01 || 80.5 || 85.74
+|-
+| 4 || {{flag|San Marino}} || 82.43 || 80.35 || 84.64
+|-
+| 5 || {{flag|Andorra}} || 82.25 || 78.96 || 85.72
+|-
+| 6 || {{flag|Guernsey}} || 82.16 || 79.5 || 84.95
+|-
+| 7 || {{flag|Singapore}} || 82.14 || 79.53 || 84.96
+|-
+| 8 || {{flag|Hong Kong}} ({{flag|China}}) || 82.04 || 79.32 || 84.97
+|-
+| 9 || {{flag|Australia}} || 81.81 || 79.4 || 84.35
+|-
+| 10 || {{flag|Italy}} || 81.77 || 79.16 || 84.53
+|-
+| 11 || {{flag|France}} ([[metropolitan France|metropolitan]]) || 81.50 || 78.2|| 84.80
+|-
+| 12 || {{flag|Jersey}} || 81.38 || 78.96 || 83.94
+|-
+| 13 || {{flag|Canada}} || 81.38 || 78.81 || 84.1
+|-
+| 14 || {{flag|Spain}} || 81.17 || 78.16 || 84.37
+|-
+| 15 || {{flag|Switzerland}} || 81.07 || 78.24 || 84.05
+|-
+| 16 || {{flag|Sweden}} || 81.07 || 78.78 || 83.51
+|-
+| 17 || {{flag|Israel}} || 80.96 || 78.79 || 83.24
+|-
+| 18 || {{flag|Iceland}} || 80.9 || 78.72 || 83.17
+|-
+| 19 || {{flag|Anguilla}} || 80.87 || 78.32 || 83.51
+|-
+| 20 || {{flag|Cayman Islands}} || 80.68 || 78.02 || 83.39
+|-
+| 21 || {{flag|Bermuda}} || 80.71 || 77.49 || 83.99
+|-
+| 22 || {{flag|Isle of Man}} || 80.64 || 79.09 || 82.32
+|-
+| 23 || {{flag|New Zealand}} || 80.59 || 78.61 || 82.67
+|-
+| 24 || {{flag|Liechtenstein}} || 80.31 || 76.86 || 83.77
+|-
+| 25 || {{flag|Norway}} || 80.2 || 77.53 || 83.02
+|-
+| 26 || {{flag|Ireland}} || 80.19 || 77.96 || 82.55
+|-
+| 27 || {{flag|Germany}} || 80.07 || 77.82 || 82.44
+|-
+| 28 || {{flag|United Kingdom}} || 80.05 || 77.95 || 82.25
+|-
+| 29 || {{flag|Jordan}} || 80.05 || 78.73 || 81.45
+|-
+| 30 || {{flag|Greece}} || 79.92 || 77.36 || 82.65
+|-
+| 31 || {{flag|Saint Pierre and Miquelon}} || 79.87 || 77.61 || 82.26
+|-
+| 32 || {{flag|Austria}} || 79.78 || 76.87 || 82.84
+|-
+| 33 || {{flag|Faroe Islands}} || 79.72 || 77.25 || 82.35
+|-
+| 34 || {{flag|Malta}} || 79.72 || 77.45 || 82.12
+|-
+| 35 || {{flag|Netherlands}} || 79.68 || 77.06 || 82.44
+|-
+| 36 || {{flag|Luxembourg}} || 79.61 || 76.36 || 83.08
+|-
+| 37 || {{flag|Belgium}} || 79.51 || 76.35 || 82.81
+|-
+| 38 || {{flag|Portugal}} || 79.45 || 76.47 || 82.43
+|-
+| 39 || {{flag|Taiwan}} || 79.35 || 76.0 || 82.7
+|-
+| 40 || {{flag|U.S. Virgin Islands}} || 79.33 || 76.29 || 82.55
+|-
+| 41 || {{flag|Finland}} || 79.27 || 75.79 || 82.89
+|-
+| 42 || {{flag|Turks and Caicos Islands}} || 79.11 || 76.39 || 81.97
+|-
+| 43 || {{flag|South Korea}} || 79.05 || 75.84 || 82.49
+|-
+| 44 || {{flag|Wallis and Futuna}} || 78.98 || 76 || 82.11
+|-
+| 45 || {{flag|Puerto Rico}} || 78.92 || 75.31 || 82.71
+|-
+| 46 || {{flag|European Union}} || 78.82 || 75.7 || 82.13
+|-
+| 47 || {{flag|Bosnia and Herzegovina}} || 78.81 || 75.25 || 82.63
+|-
+| 48 || {{flag|Saint Helena, Ascension and Tristan da Cunha}} || 78.76 || 75.83 || 81.83
+|-
+| 49 || {{flag|Gibraltar}} || 78.68 || 75.84 || 81.72
+|-
+| 50 || {{flag|Denmark}} || 78.63 || 76.25 || 81.14
+|-
+| 51 || {{flag|United States}} || 78.37 || 75.92 || 80.93
+|-
+| 52 || {{flag|Bahrain}} || 78.15 || 76.03 || 80.33
+|-
+| 53 || {{flag|Cyprus}} || 77.82 || 75.04 || 80.74
+|-
+| 54 || {{flag|Panama}} || 77.79 || 75.02 || 80.68
+|-
+| 55 || {{flag|Costa Rica}} || 77.72 || 75.10 || 80.46
+|-
+| 56 || {{flag|Chile}} || 77.70 || 74.44 || 81.13
+|-
+| 57 || {{flag|Cuba}} || 77.70 || 75.46 || 80.08
+|-
+| 58 || {{flag|Libya}} || 77.65 || 75.34 || 80.08
+|-
+| 59 || {{flag|British Virgin Islands}} || 77.63 || 76.32 || 78.99
+|-
+| 60 || {{flag|Albania}} || 77.41 || 74.82 || 80.30
+|-
+| 61 || {{flag|Dominican Republic}} || 77.31 || 75.16 || 79.55
+|-
+| 62 || {{flag|Slovenia}} || 77.30 || 73.64 || 81.20
+|-
+| 63 || {{flag|Czech Republic}} || 77.19 || 73.93 || 80.66
+|-
+| 64 || {{flag|Georgia}} || 77.12 || 73.80 || 80.82
+|-
+| 65 || {{flag|French Polynesia}} ({{flag|France}}) || 77.10 || 74.62 || 79.70
+|-
+| 66 || {{flag|Kuwait}} || 77.09 || 75.95 || 78.3
+|-
+| 67 || {{flag|Northern Mariana Islands}} ({{flag|US}}) || 77.08 || 74.45 || 79.87
+|-
+| 68 || {{flag|Argentina}} || 76.95 || 73.71 || 80.36
+|-
+| 69 || {{flag|Saint Lucia}} || 76.84 || 74.15 || 79.68
+|-
+| 70 || {{flag|New Caledonia}} ({{flag|France}}) || 76.75 || 72.67 || 81.03
+|-
+| 71 || {{flag|Netherlands Antilles}} ({{flag|Netherlands}}) || 76.65 || 74.33 || 79.09
+|-
+| 72 || {{flag|United Arab Emirates}} || 76.51 || 73.94 || 79.22
+|-
+| 73 || {{flag|Mexico}} || 76.47 || 73.65 || 79.43
+|-
+| 74 || {{flag|Uruguay}} || 76.35 || 73.1 || 79.72
+|-
+| 75 || {{flag|Saudi Arabia}} || 76.3 || 74.23 || 78.48
+|-
+| 76 || {{flag|Poland}} || 76.28 || 73.12 || 79.44
+|-
+| 77 || {{flag|People's Republic of China}} || 76.04 || 74.79 || 77.3
+|-
+| 78 || {{flag|Tunisia}} || 75.78 || 73.98 || 77.7
+|-
+| 79 || {{flag|Paraguay}} || 75.77 || 73.19 || 78.49
+|-
+| 80 || {{flag|Brunei}} || 75.74 || 73.52 || 78.07
+|-
+| 81 || {{flag|Dominica}} || 75.55 || 72.61 || 78.64
+|-
+| 82 || {{flag|Slovakia}} || 75.4 || 71.47 || 79.53
+|-
+| 83 || {{flag|Brazil}} || 75.35 || 71.52 || 79.38
+|-
+| 83 || {{flag|Croatia}} || 75.35 || 71.72 || 79.18
+|-
+| 84 || {{flag|Qatar}} || 75.35 || 71.66 || 77.14
+|-
+| 85 || {{flag|Ecuador}} || 75.3 || 72.37 || 78.37
+|-
+| 86 || {{flag|Aruba}} ({{flag|Netherlands}}) || 75.28 || 72.25 || 78.38
+|-
+| 87 || {{flag|Sri Lanka}} || 75.14 || 73.08 || 77.28
+|-
+| 88 || {{flag|Lithuania}} || 74.9 || 69.98 || 80.1
+|-
+| 89 || {{flag|Hungary}} || 74.79 || 71.04 || 78.76
+|-
+| 90 || {{flag|Antigua and Barbuda}} || 74.76 || 72.81 || 76.81|
+|-
+| 91 || {{flag|Macedonia}} || 74.68 || 72.18 || 77.38
+|-
+| 92 || {{flag|West Bank}} || 74.54 || 72.54 || 76.65
+|-
+| 93 || {{flag|Cook Islands}} || 74.22 || 71.46 || 77.13
+|-
+| 94 || {{flag|Oman}} || 74.16 || 71.87 || 76.55
+|-
+| 95 || {{flag|Algeria}} || 74.02 || 72.35 || 75.77
+|-
+| 96 || {{flag|Mauritius}} || 74 || 70.53 || 77.65
+|-
+| 97 || {{flag|Maldives}} || 73.97 || 71.78 || 76.28
+|-
+| 98 || {{flag|Barbados}} || 73.94 || 71.65 || 76.26
+|-
+| 99 || {{flag|Serbia}} || 73.9 || 71.09 || 76.89
+|-
+| 100 || {{flag|Suriname}} || 73.73 || 71 || 76.65
+|-
+| 101 || {{flag|American Samoa}} ({{flag|US}}) || 73.72 || 70.8 || 76.82
+|-
+| 102 || {{flag|Solomon Islands}} || 73.69 || 71.14 || 76.37
+|-
+| 103 || {{flag|Lebanon}} || 73.66 || 71.15 || 76.31
+|-
+| 104 || {{flag|Saint Vincent and the Grenadines}} || 73.65 || 71.82 || 75.54
+|-
+| 105 || {{flag|Venezuela}} || 73.61 || 70.54 || 76.83
+|-
+| 106 || {{flag|Jamaica}} || 73.53 || 71.83 || 75.3
+|-
+| 107 || {{flag|Gaza Strip}} || 73.42 || 71.82 || 75.12
+|-
+| 108 || {{flag|Malaysia}} || 73.29 || 70.56 || 76.21
+|-
+| 109 || {{flag|Saint Kitts and Nevis}} || 73.2 || 70.33 || 76.25
+|-
+| 110 || {{flag|Thailand}} || 73.1 || 70.77 || 75.55
+|-
+| 111 || {{flag|Bulgaria}} || 73.09 || 69.48 || 76.91
+|-
+| 112 || {{flag|Seychelles}} || 73.02 || 68.33 || 77.85
+|-
+| 113 || {{flag|Estonia}} || 72.82 || 67.45 || 78.53
+|-
+| 114 || {{flag|Colombia}} || 72.81 || 68.98 || 76.76
+|-
+| 115 || {{flag|Montserrat}} || 72.76 || 74.74 || 70.68
+|-
+| 116 || {{flag|Armenia}} || 72.68 || 69.06 || 76.81
+|-
+| 117 || {{flag|Romania}} || 72.45 || 68.95 || 76.16
+|-
+| 118 || {{flag|El Salvador}} || 72.33 || 68.72 || 76.11
+|-
+| 119 || {{flag|Latvia}} || 72.15 || 66.98 || 77.59
+|-
+| 120 || {{flag|Egypt}} || 72.12 || 69.56 || 74.81
+|-
+| 122 || {{flag|Turkey}} || 71.96 || 70.12 || 73.89
+|-
+| 123 || {{flag|Uzbekistan}} || 71.96 || 68.95 || 75.15
+|-
+| 124 || {{flag|Samoa}} || 71.86 || 69.03 || 74.84
+|-
+| 125 || {{flag|Morocco}} || 71.8 || 69.42 || 74.3
+|-
+| 126 || {{flag|Cape Verde}} || 71.61 || 68.27 || 75.05
+|-
+| 127 || {{flag|Vietnam}} || 71.58 || 68.78 || 74.57
+|-
+| 128 || {{flag|Nicaragua}} || 71.5 || 69.35 || 73.75
+|-
+| 129 || {{flag|Palau}} || 71.22 || 68.08 || 74.54
+|-
+| 130 || {{flag|Marshall Islands}} || 71.19 || 69.15 || 73.34
+|-
+| 131 || {{flag|Syria}} || 71.19 || 69.8 || 72.68
+|-
+| 132 || {{flag|Iran}} || 71.14 || 69.65 || 72.72
+|-
+| 133 || {{flag|Philippines}} || 71.09 || 68.17 || 74.15
+|-
+| 134 || {{flag|Federated States of Micronesia}} || 70.94 || 69.06 || 72.93
+|-
+| 135 || {{flag|Trinidad and Tobago}} || 70.86 || 67.98 || 73.82
+|-
+| 136 || {{flag|Moldova}} || 70.8 || 67.1 || 74.71
+|-
+| 137 || {{flag|Indonesia}} || 70.76 || 68.26 || 73.38
+|-
+| 138 || {{flag|Peru}} || 70.74 || 68.33 || 73.15
+|-
+| 139 || {{flag|Fiji}} || 70.73 || 68.18 || 73.41
+|-
+| 140 || {{flag|Tonga}} || 70.73 || 68.18 || 73.41
+|-
+| 141 || {{flag|Belarus}} || 70.63 || 64.95 || 76.67
+|-
+| 142 || {{flag|Russia}} || 70.3 || 64.3 || 76.4
+|-
+| 144 || {{flag|Guatemala}} || 70.29 || 68.49 || 72.19
+|-
+| 144 || {{flag|Greenland}} ({{flag|Denmark}}) || 70.07 || 67.44 || 72.85
+|-
+| 145 || {{flag|Iraq}} || 69.94 || 68.6 || 71.34
+|-
+| 146 || {{flag|India}} || 69.89 || 67.46 || 72.61
+|-
+| 147 || {{flag|Kyrgyzstan}} || 69.43 || 65.43 || 73.64
+|-
+| 148 || {{flag|Honduras}} || 69.4 || 67.86 || 71.02
+|-
+| 149 || {{flag|Tuvalu}} || 69.29 || 66.99 || 71.7
+|-
+| 150 || {{flag|São Tomé and Príncipe}} || 68.32 || 66.65 || 70.04
+|-
+| 151 || {{flag|Ukraine}} || 68.25 || 62.37 || 74.5
+|-
+| 152 || {{flag|Belize}} || 68.2 || 66.44 || 70.05
+|-
+| 153 || {{flag|Kazakhstan}} || 67.87 || 62.58 || 73.47
+|-
+| 154 || {{flag|Turkmenistan}} || 67.87 || 64.94 || 70.95
+|-
+| 155 || {{flag|Mongolia}} || 67.65 || 65.23 || 70.19
+|-
+| 156 || {{flag|East Timor}} || 67.27 || 64.92 || 69.75
+|-
+| 157 || {{flag|Bolivia}} || 66.89 || 64.2 || 69.72
+|-
+| 158 || {{flag|Guyana}} || 66.68 || 64.09 || 69.4
+|-
+| 159 || {{flag|Azerbaijan}} || 66.66 || 62.53 || 71.34
+|-
+| - || {{noflag}}{{Background color|#98fb98|'''World average'''}} || 66.57 || 64.52 || 68.76
+|-
+| 160 || {{flag|Papua New Guinea}} || 66.34 || 64.08 || 68.72
+|-
+| 161 || {{flag|Bhutan}} || 66.13 || 65.33 || 66.97
+|-
+| 162 || {{flag|Grenada}} || 65.95 || 64.06 || 67.85
+|-
+| 163 || {{flag|The Bahamas}} || 65.78 || 62.63 || 68.98
+|-
+| 164 || {{flag|Nepal}} || 65.46 || 64.3 || 66.67
+|-
+| 165 || {{flag|Tajikistan}} || 65.33 || 62.29 || 68.52
+|-
+|  166 || {{flag|Pakistan}} || 64.49 || 63.4 || 65.64
+|-
+| 167 || {{flag|Nauru}} || 64.2 || 60.58 || 68.01
+|-
+| 168 || {{flag|Vanuatu}} || 63.98 || 62.37 || 65.66
+|-
+| 169 || {{flag|North Korea}} || 63.81 || 61.23 || 66.53
+|-
+| 170 || {{flag|Comoros}} || 63.47 || 61.07 || 65.94
+|-
+| 171 || {{flag|Burma}} || 63.39 || 61.17 || 65.74
+|-
+| 172 || {{flag|Yemen}} || 63.27 || 61.3 || 65.33
+|-
+| 173 || {{flag|Kiribati}} || 63.22 || 60.14 || 66.45
+|-
+| 174 || {{flag|Mayotte}} ({{flag|France}}) || 62.91 || 60.65 || 65.24
+|-
+| 175 || {{flag|Madagascar}} || 62.89 || 60.93 || 64.91
+|-
+| 176 || {{flag|Cambodia}} || 62.1 || 60.03 || 64.27
+|-
+| 177 || {{flag|Botswana}} || 61.85 || 61.72 || 61.99
+|-
+| 178 || {{flag|Eritrea}} || 61.78 || 59.71 || 63.9
+|-
+| 179 || {{flag|Equatorial Guinea}} || 61.61 || 60.71 || 62.54
+|-
+| 180 || {{flag|Haiti}} || 60.78 || 59.13 || 62.48
+|-
+| 181 || {{flag|Mauritania}} || 60.37 || 58.22 || 62.59
+|-
+| 182 || {{flag|Bangladesh}} || 60.25 || 57.57 || 63.03
+|-
+| 183 || {{flag|Ghana}} || 59.85 || 58.98 || 60.75
+|-
+| 184 || {{flag|Benin}} || 59 || 57.83 || 60.23
+|-
+| 185 || {{flag|Senegal}} || 59 || 57.12 || 60.93
+|-
+| 186 || {{flag|Togo}} || 58.69 || 56.56 || 60.88
+|-
+| 187 || {{flag|Kenya}} || 57.86 || 57.49 || 58.24
+|-
+| 188 || {{flag|Guinea}} || 57.09 || 55.63 || 58.6
+|-
+| 189 || {{flag|Laos}} || 56.68 || 54.56 || 58.9
+|-
+| 190 || {{flag|Côte d'Ivoire}} || 55.45 || 54.64 || 56.28
+|-
+| 191 || {{flag|Ethiopia}} || 55.41 || 52.92 || 57.97
+|-
+| 192 || {{flag|The Gambia}} || 55.35 || 53.43 || 57.34
+|-
+| 193 || {{flag|Democratic Republic of the Congo}} || 54.36 || 52.58 || 56.2
+|-
+| 194 || {{flag|Western Sahara}} || 54.32 || 52 || 56.73
+|-
+| 195 || {{flag|Republic of the Congo}} || 54.15 || 52.9 || 55.43
+|-
+| 196 || {{flag|Cameroon}} || 53.69 || 52.89 || 54.52
+|-
+| 197 || {{flag|Gabon}} || 53.11 || 52.19 || 54.05
+|-
+| 198 || {{flag|Burkina Faso}} || 52.95 || 51.04 || 54.91
+|-
+| 199 || {{flag|Uganda}} || 52.72 || 51.66 || 53.81
+|-
+| 200 || {{flag|Niger}} || 52.6 || 51.39 || 53.85
+|-
+| 201 || {{flag|Burundi}} || 52.09 || 51.2 || 53.01
+|-
+| 202 || {{flag|Tanzania}} || 52.01 || 50.56 || 53.51
+|-
+| 203 || {{flag|Sudan}} || 62.57 || 60.58 || 64.67
+|-
+| 204 || {{flag|Namibia}} || 51.24 || 51.61 || 50.86
+|-
+| 205 || {{flag|Rwanda}} || 50.52 || 49.25 || 51.83
+|-
+| 206 || {{flag|Mali}} || 50.35 || 48.38 || 52.38
+|-
+| 207 || {{flag|Afghanistan}} || 50.11 || 48.81 || 51.47
+|-
+| 208 || {{flag|Somalia}} || 49.63 || 47.78 || 51.53
+|-
+| 209 || {{flag|South Africa}} || 48.98 || 49.81 || 48.13
+|-
+| 210 || {{flag|Guinea-Bissau}} || 47.9 || 46.07 || 49.79
+|-
+| 211 || {{flag|Chad}} || 47.7 || 46.67 || 48.77
+|-
+| 212 || {{flag|Nigeria}} || 46.94 || 46.16 || 47.76
+|-
+| 213 || {{flag|Zimbabwe}} || 45.77 || 46.36 || 45.16
+|-
+| 214 || {{flag|Central African Republic}} || 44.47 || 44.4 || 44.54
+|-
+| 215 || {{flag|Malawi}} || 43.82 || 44.07 || 43.57
+|-
+| 216 || {{flag|Djibouti}} || 43.37 || 41.89 || 44.89
+|-
+| 217 || {{flag|Liberia}} || 41.84 || 40.71 || 43
+|-
+| 218 || {{flag|Sierra Leone}} || 41.24 || 38.92 || 43.64
+|-
+| 219 || {{flag|Mozambique}} || 41.18 || 41.83 || 41.53
+|-
+| 220 || {{flag|Lesotho}} || 40.38 || 41.18 || 39.54
+|-
+| 221 || {{flag|Zambia}} || 38.63 || 38.53 || 38.73
+|-
+| 222 || {{flag|Angola}} || 38.2 || 37.24 || 39.22
+|}
+
+==See also==
+*  [[List of countries by hospital beds]]
+*  [[List of countries by intentional death rate]]
+*  [[List of countries by intentional homicide rate]]
+*  [[List of countries by suicide rate]]
+
+==References==
+Figures are from the [[CIA World Factbook]] 2009<ref name=iuonoa/> and from the 2010 revision of the United Nations World Population Prospects report, for 2005–2010,<ref name="WPP2010"/> (data viewable at http://esa.un.org/wpp/Sorting-Tables/tab-sorting_mortality.htm, with equivalent spreadsheets [http://esa.un.org/wpp/Excel-Data/DB01_Period_Indicators/WPP2010_DB1_F05_3_LIFE_EXPECTANCY_0_FEMALE.XLS here], [http://esa.un.org/wpp/Excel-Data/DB01_Period_Indicators/WPP2010_DB1_F05_2_LIFE_EXPECTANCY_0_MALE.XLS here], and [http://esa.un.org/wpp/Excel-Data/DB01_Period_Indicators/WPP2010_DB1_F05_1_LIFE_EXPECTANCY_0_BOTH_SEXES.XLS here]).
+
+Only countries/territories with a population of 100,000 or more in 2010 are included in the United Nations list. 
+WHO database 2013 http://www.who.int/gho/publications/world_health_statistics/EN_WHS2013_Full.pdf
+{{Reflist}}
+
+==External links==
+* [http://www.helpage.org/global-agewatch/population-ageing-data/ Global Agewatch] has the latest internationally comparable statistics on life expectancy from 195 countries.
+*[http://graphs.gapminder.org/world/#$majorMode=chart$is;shi=t;ly=2003;lb=f;il=t;fs=11;al=30;stl=t;st=t;nsl=t;se=t$wst;tts=C$ts;sp=6;ti=2007$zpv;v=0$inc_x;mmid=XCOORDS;iid=phAwcNAVuyj1jiMAkmq1iMg;by=ind$inc_y;mmid=YCOORDS;iid=phAwcNAVuyj2tPLxKvvnNPA;by=ind$inc_s;uniValue=8.21;iid=phAwcNAVuyj0XOoBL_n5tAQ;by=ind$inc_c;uniValue=255;gid=CATID0;by=grp$map_x;scale=log;dataMin=194;dataMax=96846$map_y;scale=lin;dataMin=23;dataMax=86$map_s;sma=49;smi=2.65$cd;bd=0$inds= Life expectancy trends interactive graph]
+* [http://www.statsilk.com/maps/life-expectancy-interactive-world-map Life expectancy interactive world map]
+*[http://www.livescience.com/22005-highest-and-lowest-life-expectancy-at-birth-infographic.html Global Life Expectancy (Infographic) | LiveScience]
+
+{{Population country lists}}
+
+{{DEFAULTSORT:List Of Countries By Life Expectancy}}
+[[Category:Demography]]
+[[Category:Lists of countries|Life expectancy, List of countries by]]
+[[Category:Population]]

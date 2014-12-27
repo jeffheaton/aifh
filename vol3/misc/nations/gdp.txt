@@ -1,0 +1,1828 @@
+{{redirects here|Richest country|other uses|Richest Countries}}
+<!--
+
+PLEASE, NO RANDOM FIGURES
+
+THERE ARE NO FIGURES BASED ON NATIONAL STATISTICS IN THIS ARTICLE.
+
+THE FIRST LIST IS THE UNITED NATIONS FIGURES FOR 2012
+
+THE SECOND LIST IS INTERNATIONAL MONETARY FUND FIGURES FOR 2014
+
+THE THIRD LIST IS WORLD BANK ESTIMATES FOR 2013
+
+THE FOURTH LIST IS CIA WORLD FACTBOOK ESTIMATES FOR 2013
+
+Please update [[List of countries by past GDP (nominal)]] with the historical data.
+
+-->
+[[File:Map of world countries by GDP (nominal) in US$.png|thumb|370px|A map of '''world economies by size of GDP (nominal)''' in [[United States dollar|$US]], ''[[CIA World Factbook]]'', 2012.<ref name="CIA">{{cite web|url=https://www.cia.gov/library/publications/the-world-factbook/fields/2195.html|title=GDP (Official Exchange Rate)|publisher=[[CIA World Factbook]]|accessdate=June 2, 2012}}</ref>]]
+Countries are sorted by nominal [[GDP]] estimates from financial and statistical institutions, which are calculated at market or government official [[exchange rate]]s. Nominal GDP does not take into account differences in the [[cost of living]] in different countries, and the results can vary greatly from one year to another based on fluctuations in the [[exchange rate]]s of the country's [[currency]].<ref>{{cite web | url=http://economics.about.com/cs/money/a/purchasingpower.htm | title=A Beginner's Guide to Purchasing Power Parity Theory | publisher=[[IAC/InterActiveCorp]] | work=[[About.com]] | accessdate=31 May 2014 | author=Moffatt, Mike}}</ref> Such fluctuations may change a country's ranking from one year to the next, even though they often make little or no difference to the standard of living of its population.<ref>{{cite web | url=http://www.nber.org/chapters/c8616.pdf | title=Economic Growth and Real Exchange Rate: An Overview of the Balassa-Samuelson Hypothesis in Asia | publisher=[[National Bureau of Economic Research]] | work=Changes in Exchange Rates in Rapidly Development Countries: Theory, Practice, and Policy Issues | date=January 1999 | accessdate=1 June 2014 | author=[[Takatoshi Ito|Ito, Takatoshi]] et. al.}}</ref> Therefore these figures should be used with caution.
+
+Comparisons of national wealth are also frequently made on the basis of [[purchasing power parity]] (PPP), to adjust for differences in the cost of living in different countries. PPP largely removes the exchange rate problem, but has its own drawbacks; it does not reflect the value of economic output in [[international trade]], and it also requires more estimation than nominal GDP.<ref>{{cite web | url=http://www.imf.org/external/pubs/ft/fandd/basics/ppp.htm | title=Purchasing Power Parity: Weights Matter | publisher=[[International Monetary Fund]] | work=[[Finance & Development]] | date=28 March 2012 | accessdate=30 May 2014 | author=Callen, Tim}}</ref> On the whole, PPP per capita figures are more narrowly spread than nominal GDP per capita figures.<ref>{{cite web | url=http://www.imf.org/external/pubs/ft/fandd/basics/gdp.htm | title=Gross Domestic Product: An Economy’s All | publisher=[[International Monetary Fund]] | work=[[Finance & Development]] | date=28 March 2012 | accessdate=31 May 2014 | author=Callen, Tim}}</ref>
+
+The [[Economy of the United States|United States]] is the world's largest national economy with a GDP of approximately $16.8 trillion, due to [[List of countries by GDP (PPP) per capita|high average incomes]], [[List of countries by population|a large population]],<ref>{{cite web | url=http://www.npr.org/blogs/money/2012/05/30/153950742/the-worlds-richest-countries-and-biggest-economies-in-2-graphics | title=The World's Richest Countries And Biggest Economies, In 2 Graphics | publisher=[[National Public Radio]] | work=[[Planet Money]] | date=30 May 2012 | accessdate=4 June 2014 | author=Vo, Lam Thuy}}</ref> capital investment, moderate [[unemployment rate|unemployment]],<ref>{{cite web | url=http://www.clevelandfed.org/research/trends/2012/0412/01labmar.cfm | title=An Elusive Relation Between Unemployment and GDP Growth: Okun’s Law | publisher=[[Federal Reserve Bank of Cleveland]] | work=Economic Trends | date=5 April 2012 | accessdate=4 June 2014 | author=Burgen, Emily et. al.}}</ref> high consumer spending,<ref>{{cite web | url=http://smallbusiness.chron.com/importance-consumer-spending-3882.html | title=The Importance of Consumer Spending | publisher=[[Hearst Corporation]] | work=[[Houston Chronicle]] | accessdate=4 June 2014 | author=Vitez, Osmond}}</ref> a relatively young population,<ref>{{cite web | url=http://www.blackrockblog.com/2014/05/16/america-youthful-relative-basis/ | title=America The Youthful? Yes, On a Relative Basis | publisher=[[BlackRock]] | date=16 May 2014 | accessdate=4 June 2014 | author=Koesterich, Russ}}</ref> and technological innovation.<ref>{{cite web | url=http://www.bea.gov/about/pdf/measuring_innovations_role_in_gdp_and_productivity_growth.pdf | title=The Multi-Factor Productivity Residual | publisher=[[Bureau of Economic Analysis]] | work=Measuring Innovation’s Role in GDP & Productivity Growth | date=11 February 2008 | accessdate=4 June 2014 | author=Landefeld, J. Steven}}</ref> [[Economy of Tuvalu|Tuvalu]] is the world's smallest national economy with a GDP of about $40 million because of its very small population, a lack of natural resources, reliance on foreign aid, negligible [[capital investment]], demographic problems, and low average incomes.<ref>{{cite web | url=http://ec.europa.eu/europeaid/where/acp/country-cooperation/tuvalu/tuvalu_en.htm | title=Tuvalu | publisher=[[European Commission]] | work=[[Europa (web portal)|Europa]] | date=17 February 2012 | accessdate=4 June 2014}}</ref>
+
+The first list includes data compiled by the [[United Nations Statistics Division]] for 2013, the second list largely includes data (estimate) compiled by the [[International Monetary Fund]]'s [[World Economic Outlook]] for 2013, the third list shows the [[World Bank]]'s 2013 estimates, and the fourth list includes mostly 2013 estimates from the ''[[The World Factbook]]'' by the [[Central Intelligence Agency]]. Several economies which are not considered to be countries (world, international unions, and some [[dependent territories]]) are included in the lists because they appear in the sources. These economies are italicized and not ranked in the charts, but are listed where applicable.
+{{clr}}
+
+== Lists ==
+Click on one of the small triangles in the headings to re-order the list according to that category.<br>
+{{colorbox|#EBFFEB}} International unions.
+
+{| style="font-size:85%;"
+|-
+| style="width:25%; text-align:center;" | '''List by the [[United Nations]] (2012)'''<ref>{{cite web | url=http://unstats.un.org/unsd/snaama/dnltransfer.asp?fID=2 | title=GDP and its breakdown at current prices in US Dollars | publisher=[[United Nations Statistics Division]] | date=December 2013 | accessdate=31 May 2014}}</ref>
+| style="width:25%; text-align:center;" | '''List by the [[International Monetary Fund]] (2013)'''<ref>{{Cite web|url = http://www.imf.org/external/pubs/ft/weo/2014/02/weodata/weorept.aspx?sy=2012&ey=2019&scsm=1&ssd=1&sort=country&ds=.&br=1&pr1.x=41&pr1.y=3&c=512%2C668%2C914%2C672%2C612%2C946%2C614%2C137%2C311%2C962%2C213%2C674%2C911%2C676%2C193%2C548%2C122%2C556%2C912%2C678%2C313%2C181%2C419%2C867%2C513%2C682%2C316%2C684%2C913%2C273%2C124%2C868%2C339%2C921%2C638%2C948%2C514%2C943%2C218%2C686%2C963%2C688%2C616%2C518%2C223%2C728%2C516%2C558%2C918%2C138%2C748%2C196%2C618%2C278%2C624%2C692%2C522%2C694%2C622%2C142%2C156%2C449%2C626%2C564%2C628%2C565%2C228%2C283%2C924%2C853%2C233%2C288%2C632%2C293%2C636%2C566%2C634%2C964%2C238%2C182%2C662%2C453%2C960%2C968%2C423%2C922%2C935%2C714%2C128%2C862%2C611%2C135%2C321%2C716%2C243%2C456%2C248%2C722%2C469%2C942%2C253%2C718%2C642%2C724%2C643%2C576%2C939%2C936%2C644%2C961%2C819%2C813%2C172%2C199%2C132%2C733%2C646%2C184%2C648%2C524%2C915%2C361%2C134%2C362%2C652%2C364%2C174%2C732%2C328%2C366%2C258%2C734%2C656%2C144%2C654%2C146%2C336%2C463%2C263%2C528%2C268%2C923%2C532%2C738%2C944%2C578%2C176%2C537%2C534%2C742%2C536%2C866%2C429%2C369%2C433%2C744%2C178%2C186%2C436%2C925%2C136%2C869%2C343%2C746%2C158%2C926%2C439%2C466%2C916%2C112%2C664%2C111%2C826%2C298%2C542%2C927%2C967%2C846%2C443%2C299%2C917%2C582%2C544%2C474%2C941%2C754%2C446%2C698%2C666&s=NGDPD&grp=0&a=|title = World Economic Outlook Database, October 2014|date = |accessdate = |website = |publisher = |last = |first = }}</ref>
+| style="width:25%; text-align:center;" | '''List by the [[World Bank]] (2013)'''<ref>{{cite web | url=http://data.worldbank.org/indicator/NY.GDP.MKTP.CD | title=GDP (current US$) | publisher=[[World Bank]] | work=[[World Development Indicators]] | accessdate=18 December 2014}}</ref>
+| style="width:25%; text-align:center;" | '''List by the [[The World Factbook|CIA World Factbook]] (2003–2013)'''<ref name="CIA">{{cite web | url=https://www.cia.gov/library/publications/the-world-factbook/fields/2195.html | title=GDP (Official Exchange Rate) | publisher=[[Central Intelligence Agency]] | work=[[The World Factbook]] | accessdate=1 June 2014}}</ref>
+|- valign="top"
+|
+{| class="wikitable sortable" style="margin-left:auto;margin-right:auto"
+|-
+! style="width:2em;" | Rank !! Country/Region !! GDP (Millions of US$)
+|-
+!||{{left}}{{noflag}}'''''[[Gross world product|World]]'''''||{{left}}'''72,689,734'''
+|-
+|1||{{flag|United States}}||{{nts|16244600}}
+|-
+|2||{{flag|China}}||{{nts|8358400}}
+|-
+|3||{{flag|Japan}}||{{nts|5960180}}
+|-
+|4||{{flag|Germany}}||{{nts|3425956}}
+|-
+|5||{{flag|France}}||{{nts|2611221}}
+|-
+|6||{{flag|United Kingdom}}||{{nts|2471600}}
+|-
+|7||{{flag|Brazil}}||{{nts|2254109}}
+|-
+|8||{{flag|Russia}}||{{nts|2029812}}
+|-
+|9||{{flag|Italy}}||{{nts|2013392}}
+|-
+|10||{{flag|India}}||{{nts|1875213}}
+|-
+|11||{{flag|Canada}}||{{nts|1721445}}
+|-
+|12||{{flag|Australia}}||{{nts|1584419}}
+|-
+|13||{{flag|Spain}}||{{nts|1322126}}
+|-
+|14||{{flag|Mexico}}||{{nts|1183655}}
+|-
+|15||{{flag|South Korea}}||{{nts|1129598}}
+|-
+|16||{{flag|Indonesia}}||{{nts|878043}}
+|-
+|17||{{flag|Turkey}}||{{nts|788299}}
+|-
+|18||{{flag|Netherlands}}||{{nts|770067}}
+|-
+|19||{{flag|Saudi Arabia}}||{{nts|711050}}
+|-
+|20||{{flag|Switzerland}}||{{nts|631183}}
+|-
+|21||{{flag|Iran}}||{{nts|551588}}
+|-
+|22||{{flag|Sweden}}||{{nts|523804}}
+|-
+|23||{{flag|Norway}}||{{nts|499667}}
+|-
+|24||{{flag|Poland}}||{{nts|489852}}
+|-
+|25||{{flag|Belgium}}||{{nts|483402}}
+|-
+|26||{{flag|Argentina}}||{{nts|477028}}
+|-
+|27||{{flag|Austria}}||{{nts|394458}}
+|-
+|28||{{flag|Thailand}}||{{nts|385694}}
+|-
+|29||{{flag|South Africa}}||{{nts|384313}}
+|-
+|30||{{flag|United Arab Emirates}}||{{nts|383799}}
+|-
+|31||{{flag|Venezuela}}||{{nts|382424}}
+|-
+|32||{{flag|Colombia}}||{{nts|369813}}
+|-
+|33||{{flag|Denmark}}||{{nts|314889}}
+|-
+|34||{{flag|Malaysia}}||{{nts|304726}}
+|-
+|35||{{flag|Singapore}}||{{nts|276520}}
+|-
+|36||{{flag|Chile}}||{{nts|268314}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Hong Kong}}''||{{nts|263259}}
+|-
+|37||{{flag|Nigeria}}||{{nts|262545}}
+|-
+|38||{{flag|Egypt}}||{{nts|254671}}
+|-
+|39||{{flag|Philippines}}||{{nts|250182}}
+|-
+|40||{{flag|Greece}}||{{nts|248941}}
+|-
+|41||{{flag|Finland}}||{{nts|247389}}
+|-
+|42||{{flag|Israel}}||{{nts|241069}}
+|-
+|43||{{flag|Pakistan}}||{{nts|215117}}
+|-
+|44||{{flag|Portugal}}||{{nts|212139}}
+|-
+|45||{{flag|Ireland}}||{{nts|210638}}
+|-
+|46||{{flag|Algeria}}||{{nts|207021}}
+|-
+|47||{{flag|Peru}}||{{nts|204681}}
+|-
+|48||{{flag|Kazakhstan}}||{{nts|202656}}
+|-
+|49||{{flag|Czech Republic}}||{{nts|196446}}
+|-
+|50||{{flag|Qatar}}||{{nts|192402}}
+|-
+|51||{{flag|Kuwait}}||{{nts|183219}}
+|-
+|52||{{flag|Ukraine}}||{{nts|176309}}
+|-
+|53||{{flag|New Zealand}}||{{nts|171256}}
+|-
+|54||{{flag|Romania}}||{{nts|169396}}
+|-
+|55||{{flag|Vietnam}}||{{nts|155820}}
+|-
+|56||{{flag|Iraq}}||{{nts|149370}}
+|-
+|57||{{flag|Bangladesh}}||{{nts|127195}}
+|-
+|58||{{flag|Hungary}}||{{nts|124600}}
+|-
+|59||{{flag|Angola}}||{{nts|116308}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Puerto Rico}}''||{{nts|103516}}
+|-
+|60||{{flag|Morocco}}||{{nts|95992}}
+|-
+|61||{{flag|Libya}}||{{nts|95802}}
+|-
+|62||{{flag|Slovakia}}||{{nts|91349}}
+|-
+|63||{{flag|Ecuador}}||{{nts|87495}}
+|-
+|64||{{flag|Oman}}||{{nts|78111}}
+|-
+|65||{{flag|Cuba}}||{{nts|71017}}
+|-
+|66||{{flag|Azerbaijan}}||{{nts|68727}}
+|-
+|67||{{flag|Belarus}}||{{nts|63259}}
+|-
+|68||{{flag|Myanmar}}||{{nts|59444}}
+|-
+|69||{{flag|Sri Lanka}}||{{nts|59421}}
+|-
+|70||{{flag|Dominican Republic}}||{{nts|58898}}
+|-
+|71||{{flag|Croatia}}||{{nts|56447}}
+|-
+|72||{{flag|Kenya}}||{{nts|55206}}
+|-
+|73||{{flag|Luxembourg}}||{{nts|55143}}
+|-
+|74||{{flag|Sudan}}||{{nts|51453}}
+|-
+|75||{{flag|Uzbekistan}}||{{nts|51414}}
+|-
+|76||{{flag|Bulgaria}}||{{nts|50972}}
+|-
+|77||{{flag|Guatemala}}||{{nts|50377}}
+|-
+|78||{{flag|Uruguay}}||{{nts|49919}}
+|-
+|79||{{flag|Syria}}||{{nts|46540}}
+|-
+|80||{{flag|Slovenia}}||{{nts|45380}}
+|-
+|81||{{flag|Tunisia}}||{{nts|45132}}
+|-
+|82||{{flag|Costa Rica}}||{{nts|45107}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Macau}}''||{{nts|43582}}
+|-
+|84||{{flag|Lebanon}}||{{nts|42490}}
+|-
+|85||{{flag|Lithuania}}||{{nts|42339}}
+|-
+|86||{{flag|Ethiopia}}||{{nts|41605}}
+|-
+|87||{{flag|Ghana}}||{{nts|40711}}
+|-
+|88||{{flag|Kenya}}||{{nts|40711}}
+|-
+|89||{{flag|Serbia}}||{{nts|38491}}
+|-
+|90||{{flag|Panama}}||{{nts|36253}}
+|-
+|91||{{flag|Turkmenistan}}||{{nts|33466}}
+|-
+|92||{{flag|Yemen}}||{{nts|32831}}
+|-
+|93||{{flag|Jordan}}||{{nts|30937}}
+|-
+|94||{{flag|Bahrain}}||{{nts|30362}}
+|-
+|95||{{flag|Latvia}}||{{nts|28379}}
+|-
+|96||{{flag|Tanzania}}||{{nts|28249}}
+|-
+|97||{{flag|Bolivia}}||{{nts|27035}}
+|-
+|98||{{flag|Cameroon}}||{{nts|26094}}
+|-
+|99||{{flag|Paraguay}}||{{nts|25935}}
+|-
+|100||{{Hs|Cote d'Ivoire}}{{flag|Côte d'Ivoire}}||{{nts|24406}}
+|-
+|101||{{flag|Gabon}}||{{nts|24076}}
+|-
+|102||{{flag|El Salvador}}||{{nts|23864}}
+|-
+|103||{{flag|Trinidad and Tobago}}||{{nts|23225}}
+|-
+|104||{{flag|Cyprus}}||{{nts|22768}}
+|-
+|105||{{flag|Estonia}}||{{nts|22376}}
+|-
+|106||{{flag|Uganda}}||{{nts|21736}}
+|-
+|107||{{flag|Zambia}}||{{nts|21490}}
+|-
+|108||{{flag|Afghanistan}}||{{nts|20364}}
+|-
+|109||{{flag|Congo, Democratic Republic of the}}||{{nts|18823}}
+|-
+|110||{{flag|Honduras}}||{{nts|18564}}
+|-
+|111||{{flag|Nepal}}||{{nts|18029}}
+|-
+|112||{{flag|Bosnia and Herzegovina}}||{{nts|17319}}
+|-
+|113||{{flag|Brunei}}||{{nts|16954}}
+|-
+|114||{{flag|Georgia}}||{{nts|15830}}
+|-
+|115||{{flag|Papua New Guinea}}||{{nts|15677}}
+|-
+|116||{{flag|Jamaica}}||{{nts|14795}}
+|-
+|117||{{flag|Congo, Republic of the}}||{{nts|14763}}
+|-
+|118||{{flag|Mozambique}}||{{nts|14605}}
+|-
+|119||{{flag|Equatorial Guinea}}||{{nts|14491}}
+|-
+|120||{{flag|North Korea}}||{{nts|14411}}
+|-
+|121||{{flag|Botswana}}||{{nts|14410}}
+|-
+|122||{{flag|Cambodia}}||{{nts|14038}}
+|-
+|123||{{flag|Senegal}}||{{nts|13962}}
+|-
+|124||{{flag|Iceland}}||{{nts|13579}}
+|-
+|125||{{flag|Namibia}}||{{nts|12807}}
+|-
+|126||{{flag|Albania}}||{{nts|12044}}
+|-
+|127||{{flag|Mauritius}}||{{nts|11452}}
+|-
+|128||{{flag|Burkina Faso}}||{{nts|10687}}
+|-
+|129||{{flag|Nicaragua}}||{{nts|10508}}
+|-
+|130||{{flag|Mongolia}}||{{nts|10271}}
+|-
+|131||{{flag|Mali}}||{{nts|10262}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Palestinian territories|name=State of Palestine}}''||{{nts|10255}}
+|-
+|132||{{flag|Chad}}||{{nts|10183}}
+|-
+|133||{{flag|South Sudan}}||{{nts|10060}}
+|-
+|134||{{flag|Madagascar}}||{{nts|9968}}
+|-
+|135||{{flag|Armenia}}||{{nts|9950}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|New Caledonia}}''||{{nts|9840}}
+|-
+|136||{{flag|Zimbabwe}}||{{nts|9802}}
+|-
+|137||{{flag|Macedonia, Republic of}}||{{nts|9576}}
+|-
+|138||{{flag|Laos}}||{{nts|9100}}
+|-
+|139||{{flag|Malta}}||{{nts|8775}}
+|-
+|140||{{flag|Bahamas}}||{{nts|8043}}
+|-
+|141||{{flag|Tajikistan}}||{{nts|7633}}
+|-
+|142||{{flag|Benin}}||{{nts|7557}}
+|-
+|143||{{flag|Moldova}}||{{nts|7253}}
+|-
+|144||{{flag|Haiti}}||{{nts|7187}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|French Polynesia}}''||{{nts|7150}}
+|-
+|145||{{flag|Rwanda}}||{{nts|7103}}
+|-
+|146||{{flag|Niger}}||{{nts|6773}}
+|-
+|<span style="display:none;">9999999</span>||{{flag|Kosovo}}||{{nts|6499}}
+|-
+|147||{{flag|Kyrgyzstan}}||{{nts|6475}}
+|-
+|148||{{flag|Guinea}}||{{nts|6092}}
+|-
+|149||{{flag|Liechtenstein}}||{{nts|5827}}
+|-
+|150||{{flag|Monaco}}||{{nts|5707}}
+|-
+|151||{{flag|Malawi}}||{{nts|5653}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Bermuda}}''||{{nts|5593}}
+|-
+|152||{{flag|Timor-Leste}}||{{nts|5387}}
+|-
+|153||{{flag|Suriname}}||{{nts|5012}}
+|-
+|154||{{flag|Barbados}}||{{nts|4533}}
+|-
+|155||{{flag|Sierra Leone}}||{{nts|4336}}
+|-
+|155||{{flag|Montenegro}}||{{nts|4046}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Netherlands Antilles}}''||{{nts|4009}}
+|-
+|156||{{flag|Fiji}}||{{nts|3999}}
+|-
+|157||{{flag|Togo}}||{{nts|3917}}
+|-
+|158||{{flag|Mauritania}}||{{nts|3866}}
+|-
+|159||{{flag|Swaziland}}||{{nts|3861}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Cayman Islands}}''||{{nts|3393}}
+|-
+|160||{{flag|Andorra}}||{{nts|3222}}
+|-
+|161||{{flag|Eritrea}}||{{nts|3108}}
+|-
+|162||{{flag|Guyana}}||{{nts|2851}}
+|-
+|163||{{flag|Maldives}}||{{nts|2606}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Aruba}}''||{{nts|2544}}
+|-
+|164||{{flag|Lesotho}}||{{nts|2443}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Greenland}}''||{{nts|2343}}
+|-
+|165||{{flag|Burundi}}||{{nts|2257}}
+|-
+|166||{{flag|Central African Republic}}||{{nts|2184}}
+|-
+|167||{{flag|Cape Verde}}||{{nts|1903}}
+|-
+|168||{{flag|Bhutan}}||{{nts|1861}}
+|-
+|169||{{flag|San Marino}}||{{nts|1853}}
+|-
+|170||{{flag|Belize}}||{{nts|1554}}
+|-
+|171||{{flag|Liberia}}||{{nts|1491}}
+|-
+|172||{{flag|Djibouti}}||{{nts|1361}}
+|-
+|173||{{flag|Saint Lucia}}||{{nts|1318}}
+|-
+|174||{{flag|Somalia}}||{{nts|1306}}
+|-
+|175||{{flag|Antigua and Barbuda}}||{{nts|1176}}
+|-
+|176||{{flag|Seychelles}}||{{nts|1031}}
+|-
+|177||{{flag|Solomon Islands}}||{{nts|1010}}
+|-
+|178||{{flag|Gambia, The}}||{{nts|917}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|British Virgin Islands}}''||{{nts|909}}
+|-
+|179||{{flag|Guinea-Bissau}}||{{nts|849}}
+|-
+|180||{{flag|Grenada}}||{{nts|783}}
+|-
+|181||{{flag|Saint Kitts and Nevis}}||{{nts|765}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Zanzibar}}''||{{nts|755}}
+|-
+|182||{{flag|Vanuatu}}||{{nts|752}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Turks and Caicos Islands}}''||{{nts|728}}
+|-
+|183||{{flag|Saint Vincent and the Grenadines}}||{{nts|694}}
+|-
+|184||{{flag|Samoa}}||{{nts|681}}
+|-
+|185||{{flag|Comoros}}||{{nts|616}}
+|-
+|186||{{flag|Dominica}}||{{nts|499}}
+|-
+|187||{{flag|Tonga}}||{{nts|465}}
+|-
+|188||{{flag|Micronesia, Federated States of}}||{{nts|327}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Anguilla}}''||{{nts|288}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Cook Islands}}''||{{nts|283}}
+|-
+|189||{{Hs|Sao Tome and Principe}}{{flag|São Tomé and Príncipe}}||{{nts|261}}
+|-
+|190||{{flag|Palau}}||{{nts|213}}
+|-
+|191||{{flag|Marshall Islands}}||{{nts|198}}
+|-
+|192||{{flag|Kiribati}}||{{nts|176}}
+|-
+|193||{{flag|Nauru}}||{{nts|121}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Montserrat}}''||{{nts|64}}
+|-
+|194||{{flag|Tuvalu}}||{{nts|40}}
+|}
+|
+{| class="wikitable sortable" style="margin-left:auto;margin-right:auto"
+|-
+! style="width:2em;" | Rank !! Country/Region !! GDP (Millions of US$)
+|-
+!||{{left}}{{noflag}}'''''[[Gross world product|World]]'''''||{{left}}'''74,699,258'''<ref name="IMF Groups">{{cite web | url=http://www.imf.org/external/pubs/ft/weo/2013/02/weodata/weorept.aspx?pr.x=71&pr.y=15&sy=2013&ey=2013&scsm=1&ssd=1&sort=country&ds=.&br=1&c=001%2C998%2C901%2C511&s=NGDPD&grp=1&a=1 | title=Report for Selected Country Groups and Subjects | publisher=[[International Monetary Fund]] | work=[[World Economic Outlook]] | date=October 2014 | accessdate=8 October 2014}}</ref>
+|-style="background:#EBFFEB;"
+|<span style="display:none;">9999999</span>||''{{flag|European Union}}''{{refn|The '''European Union''' ('''EU''') is an [[Economic and Monetary Union of the European Union|economic]] and [[Politics of the European Union|political]] union of {{EUnum}} [[Member state of the European Union|member states]] that are located [[Outermost regions|primarily]]<!--Please do not remove this. Parts of Spain and France are outside Europe, and the geographical location of Cyprus is not clear. This word has been extensively discussed.--> in [[Europe]]. As the EU is not a country, the United States is the first ranked country on the list.|name = clarification that the EU is not a country and should not be given a rank number|group = n}}|| {{nts|17,512,109}}<ref name="IMF Groups" />
+|-
+|1||{{flag|United States}}||{{nts|16,768,050}}
+|-
+|2||{{flag|China}}||{{nts|9,469,124}}<ref group="n" name="n2" />
+|-
+|3||{{flag|Japan}}||{{nts|4,898,530}}
+|-
+|4||{{flag|Germany}}||{{nts|3,635,959}}
+|-
+|5||{{flag|France}}||{{nts|2,807,306}}
+|-style="background:#EBFFEB;"
+|<span style="display:none;">9999999</span>||''{{flag|CIS}}''{{refn|The '''Commonwealth of Independent States (CIS)''' is a loose association of states. Although the CIS has few supranational powers, it is aimed at being more than a purely symbolic organisation, nominally possessing coordinating powers in the realm of trade, finance, lawmaking, and security. Because of this, the CIS is not a country and is not ranked. The United Kingdom is the sixth ranked country on the list.|name = clarification that the CIS is not a country and should not be given a rank number|group = n}}||{{nts|2,800,090}}<ref name="IMF Groups" />
+|-
+|6||{{flag|United Kingdom}}||{{nts|2,523,216}}
+|-
+|7||{{flag|Brazil}}||{{nts|2,246,037}}
+|-
+|8||{{flag|Russia}}||{{nts|2,096,774}}<ref group="n" name="n14" />
+|-
+|9||{{flag|Italy}}||{{nts|2,071,955}}
+|-style="background:#EBFFEB;"
+|<span style="display:none;">9999999</span>||''{{Flag|ASEAN}}''{{refn|The '''Association of Southeast Asian Nations (ASEAN)''' is a political and economic organization of ten countries located in Southeast Asia, and is not a country. Due to this, India is the tenth ranked country on the list.<br />The IMF included all ten countries in this measurement - Indonesia, Malaysia, Philippines, Thailand, Vietnam and more.|name = clarification that ASEAN is not a country and should not be given a rank number|group = n}}||{{nts|2,013,318}}<ref name="IMF Groups" />
+|-
+|10||{{flag|India}}||{{nts|1,876,811}}
+|-
+|11||{{flag|Canada}}||{{nts|1,826,769}}
+|-
+|12||{{flag|Australia}}||1,505,924
+|-
+|13||{{flag|Spain}}||{{nts|1,358,687}}
+|-
+|14||{{flag|South Korea}}||{{nts|1,304,468}}
+|-
+|15||{{flag|Mexico}}||{{nts|1,260,915}}
+|-
+|16||{{flag|Indonesia}}||{{nts|870,275}}
+|-
+|17||{{flag|Netherlands}}||{{nts|853,806}}
+|-
+|18||{{flag|Turkey}}||{{nts|819,990}}
+|-
+|19||{{flag|Saudi Arabia}}||{{nts|748,450}}
+|-
+|20||{{flag|Switzerland}}||{{nts|650,431}}
+|-
+|21||{{flag|Argentina}}||{{nts|610,288}}
+|-
+|22||{{flag|Sweden}}||{{nts|558,949|}}
+|-
+|23||{{flag|Nigeria}}||{{nts|521,812}}
+|-
+|24||{{flag|Poland}}||{{nts|517,705}}
+|-
+|25||{{flag|Norway}}||{{nts|512,581}}
+|-
+|26||{{flag|Belgium}}||{{nts|508,275}}
+|-
+|27||{{flag|Taiwan}}<!-- Per the guidelines [Wikipedia:NC-TW#Republic of China, Taiwan, and variations thereof], names here are NOT to be changed. -->||{{nts|489,089}}
+|-
+|28||{{flag|Austria}}||416,062
+|-
+|29||{{flag|United Arab Emirates}}||{{nts|402,340}}
+|-
+|30||{{flag|Thailand}}||{{nts|387,253}}
+|-
+|31||{{flag|Colombia}}||{{nts|378,415}}
+|-
+|32||{{flag|Iran}}||{{nts|367,098}}
+|-
+|33||{{flag|South Africa}}||{{nts|350,800}}
+|-
+|34||{{flag|Denmark}}||{{nts|330,614}}
+|-
+|35||{{flag|Malaysia}}||{{nts|313,158}}
+|-
+|36||{{flag|Singapore}}||{{nts|297,941}}
+|-
+|37||{{flag|Israel}}||{{nts|290,643}}
+|-
+|38||{{flag|Chile}}||{{nts|276,971}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Hong Kong}}''||{{nts|274,027}}
+|-
+|39||{{flag|Philippines}}||{{nts|272,067}}
+|-
+|40||{{flag|Egypt}}||{{nts|271,427}}
+|-
+|41||{{flag|Finland}}||{{nts|267,412}}
+|-
+|42||{{flag|Greece}}||{{nts|241,796}}
+|-
+|43||{{flag|Pakistan}}||{{nts|232,757}}
+|-
+|44||{{flag|Ireland}}||{{nts|232,150}}
+|-
+|45||{{flag|Kazakhstan}}||{{nts|231,876}}
+|-
+|46||{{flag|Iraq}}||{{nts|229,327}}
+|-
+|47||{{flag|Venezuela}}||{{nts|227,175}}
+|-
+|48||{{flag|Portugal}}||{{nts|220,062}}
+|-
+|49||{{flag|Algeria}}||212.453
+|-
+|50||{{flag|Qatar}}||{{nts|202,450}}
+|-
+|51||{{flag|Peru}}||{{nts|202,416}}
+|-
+|52||{{flag|Czech Republic}}||{{nts|198,450}}
+|-
+|53||{{flag|Romania}}||{{nts|188,893}}
+|-
+|54||{{flag|New Zealand}}||{{nts|181,574}}
+|-
+|55||{{flag|Ukraine}}||{{nts|178,313}}
+|-
+|56||{{flag|Kuwait}}||{{nts|175,787}}
+|-
+|57||{{flag|Vietnam}}||{{nts|170,565}}
+|-
+|58||{{flag|Bangladesh}}||{{nts|161,763}}
+|-
+|59||{{flag|Hungary}}||{{nts|132,260}}
+|-
+|60||{{flag|Angola}}||124.178
+|-
+|61||{{flag|Morocco}}||{{nts|103,824}}
+|-
+|62||{{flag|Slovakia}}||{{nts|95,805}}
+|-
+|63||{{flag|Ecuador}}||{{nts|93,746}}
+|-
+|64||{{flag|Oman}}||{{nts|77,116}}
+|-
+|65||{{flag|Azerbaijan}}||{{nts|73,537}}
+|-
+|66||{{flag|Syria}}||{{nts|71,998}}{{refn|Data for Syria's 2013 GDP is from the September 2011 WEO Database, the latest available from the IMF.|group = n}}
+|-
+|67||{{flag|Belarus}}||{{nts|71,710}}
+|-
+|68||{{flag|Sudan}}||{{nts|66,748}}
+|-
+|69||{{flag|Sri Lanka}}||{{nts|66,722}}
+|-
+|70||{{flag|Libya}}||{{nts|65,516}}
+|-
+|71||{{flag|Dominican Republic}}||{{nts|61,256}}
+|-
+|72||{{flag|Luxembourg}}||{{nts|60,402}}
+|-
+|73||{{flag|Croatia}}||{{nts|57,371}}
+|-
+|74||{{flag|Uzbekistan}}||{{nts|56,805}}
+|-
+|75||{{flag|Burma}}||{{nts|56,759}}
+|-
+|76||{{flag|Uruguay}}||{{nts|55,708}}
+|-
+|77||{{flag|Kenya}}||{{nts|54,993}}
+|-
+|78||{{flag|Guatemala}}||{{nts|53,797}}
+|-
+|79||{{flag|Bulgaria}}||{{nts|53,046}}
+|-
+|80||{{flag|Costa Rica}}||{{nts|49,621}}
+|-
+|81||{{flag|Slovenia}}||{{nts|48,005}}
+|-
+|82||{{flag|Ghana}}||{{nts|47,830}}
+|-
+|83||{{flag|Tunisia}}||{{nts|46,995}}
+|-
+|84||{{flag|Lithuania}}||{{nts|46,507}}
+|-
+|85||{{flag|Ethiopia}}||{{nts|45,999}}
+|-
+|86||{{flag|Lebanon}}||{{nts|45,019}}
+|-
+|87||{{flag|Serbia}}||{{nts|42,492}}
+|-
+|88||{{flag|Turkmenistan}}||{{nts|40,826}}
+|-
+|89||{{flag|Panama}}||{{nts|40,467}}
+|-
+|90||{{flag|Yemen}}||{{nts|40,415}}
+|-
+|91||{{flag|Jordan}}||{{nts|33,858}}
+|-
+|92||{{flag|Tanzania}}||{{nts|33,285}}
+|-
+|93||{{flag|Bahrain}}||{{nts|32,791}}
+|-
+|94||{{Hs|Cote d'Ivoire}}{{flag|Côte d'Ivoire}}||{{nts|32,061}}
+|-
+|95||{{flag|Latvia}}||{{nts|30,953}}
+|-
+|96||{{flag|Bolivia}}||{{nts|30,824}}
+|-
+|97||{{flag|Congo, Democratic Republic of the}}||{{nts|29,896}}
+|-
+|98||{{flag|Cameroon}}||{{nts|29,267}}
+|-
+|99||{{flag|Paraguay}}||{{nts|29,051}}
+|-
+|100||{{flag|Trinidad and Tobago}}||{{nts|27,719}}
+|-
+|101||{{flag|Zambia}}||{{nts|26,831}}
+|-
+|102||{{flag|Estonia}}||{{nts|24,888}}
+|-
+|103||{{flag|El Salvador}}||{{nts|24,259}}
+|-
+|104||{{flag|Uganda}}||{{nts|22,926}}
+|-
+|105||{{flag|Cyprus}}||{{nts|21,919}}
+|-
+|106||{{flag|Afghanistan}}||21,706
+|-
+|106||{{flag|Nepal}}||{{nts|19,341}}
+|-
+|107||{{flag|Gabon}}||{{nts|19,228}}
+|-
+|108||{{flag|Honduras}}||{{nts|18,813}}
+|-
+|109||{{flag|Bosnia and Herzegovina}}||{{nts|17,828}}
+|-
+|110||{{flag|Brunei}}||{{nts|16,214}}
+|-
+|111||{{flag|Georgia}}||{{nts|16,162}}
+|-
+|112||{{flag|Papua New Guinea}}||{{nts|15,973}}
+|-
+|113||{{flag|Cambodia}}||{{nts|15,659}}
+|-
+|114||{{flag|Equatorial Guinea}}||{{nts|15,574}}
+|-
+|115||{{flag|Mozambique}}||{{nts|15,329}}
+|-
+|116||{{flag|Senegal}}||{{nts|15,154}}
+|-
+|117||{{flag|Botswana}}||{{nts|14,837}}
+|-
+|118||{{flag|Iceland}}||{{nts|14,656}}
+|-
+|119||{{flag|Jamaica}}||{{nts|14,288}}
+|-
+|120||{{flag|Congo, Republic of the}}||{{nts|13,781}}
+|-
+|121||{{flag|South Sudan}}||{{nts|13,734}}
+|-
+|122||{{flag|Chad}}||{{nts|13,411}}
+|-
+|123||{{flag|Zimbabwe}}||
+|-
+|124||{{flag|Albania}}||12,724
+|-
+|125||{{flag|Namibia}}||{{nts|12,318}}
+|-
+|126||{{flag|Burkina Faso}}||{{nts|12,247}}
+|-
+|127||{{flag|Mauritius}}||{{nts|11,930}}
+|-
+|128||{{flag|Mongolia}}||{{nts|11,516}}
+|-
+|129||{{flag|Nicaragua}}||{{nts|11,272}}
+|-
+|130||{{flag|Madagascar}}||{{nts|11,210}}
+|-
+|131||{{flag|Mali}}||{{nts|11,070}}
+|-
+|132||{{flag|Armenia}}||10.431
+|-
+|133||{{flag|Macedonia, Republic of}}||{{nts|10,238}}
+|-
+|134||{{flag|Laos}}||{{nts|10,002}}
+|-
+|135||{{flag|Malta}}||{{nts|9,545}}
+|-
+|136||{{flag|Tajikistan}}||{{nts|8,497}}
+|-
+|137||{{flag|Haiti}}||{{nts|8,458}}
+|-
+|138||{{flag|Bahamas, The}}||{{nts|8,367}}
+|-
+|139||{{flag|Benin}}||{{nts|8,310}}
+|-
+|140||{{flag|Moldova}}||{{nts|7,935}}
+|-
+|141||{{flag|Rwanda}}||{{nts|7,431}}
+|-
+|142||{{flag|Niger}}||{{nts|7,359}}
+|-
+|143||{{flag|Kyrgyzstan}}||{{nts|7,225}}
+|-
+|144||{{flag|Kosovo}}||{{nts|6,827}}
+|-
+|145||{{flag|Guinea}}||{{nts|6,282}}
+|-
+|146||{{flag|Timor-Leste}}||{{nts|6,147}}
+|-
+|147||{{flag|Suriname}}||{{nts|5,057}}
+|-
+|148||{{flag|Sierra Leone}}||{{nts|4,788}}
+|-
+|149||{{flag|Montenegro}}||{{nts|4,377}}
+|-
+|150||{{flag|Togo}}||{{nts|4,360}}
+|-
+|151||{{flag|Barbados}}||{{nts|4,284}}
+|-
+|152||{{flag|Mauritania}}||{{nts|4,187}}
+|-
+|153||{{flag|Fiji}}||{{nts|4,037}}
+|-
+|154||{{flag|Malawi}}||{{nts|3,814}}
+|-
+|155||{{flag|Swaziland}}||{{nts|3,620}}
+|-
+|156||{{flag|Eritrea}}||{{nts|3,444}}
+|-
+|157||{{flag|Guyana}}||{{nts|2,970}}
+|-
+|158||{{flag|Burundi}}||{{nts|2,723}}
+|-
+|159||{{flag|Lesotho}}||{{nts|2,276}}
+|-
+|159||{{flag|Maldives}}||{{nts|2,276}}
+|-
+|161||{{flag|Bhutan}}||{{nts|1,985}}
+|-
+|162||{{flag|Liberia}}||{{nts|1,933}}
+|-
+|163||{{flag|Cape Verde}}||{{nts|1,920}}
+|-
+|164||{{flag|San Marino}}||{{nts|1,802}}
+|-
+|165||{{flag|Belize}}||{{nts|1,604}}
+|-
+|166||{{flag|Central African Republic}}||{{nts|1,538}}
+|-
+|167||{{flag|Djibouti}}||{{nts|1,457}}
+|-
+|168||{{flag|Seychelles}}||{{nts|1,398}}
+|-
+|169||{{flag|Saint Lucia}}||{{nts|1,317}}
+|-
+|170||{{flag|Antigua and Barbuda}}||
+{| class="fancy"
+|1,201
+|}
+|-
+|171||{{flag|Solomon Islands}}||{{nts|1,097}}
+|-
+|172||{{flag|Gambia, The}}||{{nts|850}}
+|-
+|173||{{flag|Guinea-Bissau}}||{{nts|845}}
+|-
+|174||{{flag|Vanuatu}}||{{nts|821}}
+|-
+|175||{{flag|Grenada}}||{{nts|814}}
+|-
+|176||{{flag|Saint Kitts and Nevis}}||{{nts|767}}
+|-
+|177||{{flag|Saint Vincent and the Grenadines}}||{{nts|720}}
+|-
+|178||{{flag|Samoa}}||{{nts|705}}
+|-
+|179||{{flag|Comoros}}||{{nts|652}}
+|-
+|180||{{flag|Dominica}}||{{nts|498}}
+|-
+|181||{{flag|Tonga}}||{{nts|477}}
+|-
+|182||{{flag|Federated States of Micronesia}}||{{nts|333}}
+|-
+|183||{{Hs|Sao Tome and Principe}}{{flag|São Tomé and Príncipe}}||{{nts|308}}
+|-
+|184||{{flag|Palau}}||{{nts|246}}
+|-
+|185||{{flag|Marshall Islands}}||{{nts|175}}
+|-
+|186||{{flag|Kiribati}}||{{nts|172}}
+|-
+|187||{{flag|Tuvalu}}||{{nts|38}}
+|}
+|
+{| class="wikitable sortable" style="margin-left:auto;margin-right:auto"
+|-
+! style="width:2em;" | Rank !! Country/Region !! GDP (Millions of US$)
+|-
+!||{{left}}{{noflag}}'''''[[Gross world product|World]]'''''||{{left}}'''75,592,941'''<ref group="n" name="n12" />
+|-style="background:#EBFFEB;"
+|<span style="display:none;">9999999</span>||''{{flag|European Union}}''{{refn|name = clarification that the EU is not a country and should not be given a rank number|group = n}}||{{nts|17,958,073}}<ref>{{cite web | url=http://data.worldbank.org/indicator/NY.GDP.MKTP.CD/countries/EU?display=graph | title=EU GDP (current US$) | publisher=[[World Bank]] | work=[[World Development Indicators]] | accessdate=18 December 2014}}</ref>
+|-
+|1||{{flag|United States}}||{{nts|16,768,100}}
+|-
+|2||{{flag|China}}||{{nts|9,240,270}}<ref group="n" name="n2" />
+|-
+|3||{{flag|Japan}}||{{nts|4,919,563}}
+|-
+|4||{{flag|Germany}}||{{nts|3,730,261}}
+|-
+|5||{{flag|France}}||{{nts|2,806,428}}<ref group="n" name="n4" />
+|-
+|6||{{flag|United Kingdom}}||{{nts|2,678,455}}
+|-
+|7||{{flag|Brazil}}||{{nts|2,245,673}}
+|-
+|8||{{flag|Italy}}||{{nts|2,149,485}}
+|-
+|9||{{flag|Russia}}||{{nts|2,096,777}}<ref group="n" name="n14" />
+|-
+|10||{{flag|India}}||{{nts|1,876,797}}
+|-
+|11||{{flag|Canada}}||{{nts|1,826,769}}
+|-
+|12||{{flag|Australia}}||{{nts|1,560,372}}
+|-
+|13||{{flag|Spain}}||{{nts|1,393,040}}
+|-
+|14||{{flag|South Korea}}||{{nts|1,304,554}}
+|-
+|15||{{flag|Mexico}}||{{nts|1,260,915}}
+|-
+|16||{{flag|Indonesia}}||{{nts|868,346}}
+|-
+|17||{{flag|Netherlands}}||{{nts|853,539}}
+|-
+|18||{{flag|Turkey}}||{{nts|822,135}}
+|-
+|19||{{flag|Saudi Arabia}}||{{nts|748,450}}
+|-
+|20||{{flag|Switzerland}}||{{nts|685,434}}
+|-
+|21||{{flag|Argentina}}||{{nts|609,889}}
+|-
+|22||{{flag|Sweden}}||{{nts|579,680}}
+|-
+|23||{{flag|Poland}}||{{nts|525,866}}
+|-
+|24||{{flag|Belgium}}||{{nts|524,806}}
+|-
+|25||{{flag|Nigeria}}||{{nts|521,803}}
+|-
+|26||{{flag|Norway}}||{{nts|512,580}}
+|-
+|27||{{flag|Taiwan}}||{{nts|489,089}}
+|-
+|28||{{flag|Venezuela}}||{{nts|438,284}}
+|-
+|29||{{flag|Austria}}||{{nts|428,322}}
+|-
+|30||{{flag|United Arab Emirates}}||{{nts|402,340}}
+|-
+|31||{{flag|Thailand}}||{{nts|387,252}}
+|-
+|32||{{flag|Colombia}}||{{nts|378,415}}
+|-
+|33||{{flag|Iran}}||{{nts|368,904}}
+|-
+|34||{{flag|South Africa}}||{{nts|350,630}}
+|-
+|35||{{flag|Denmark}}||{{nts|335,878}}
+|-
+|36||{{flag|Malaysia}}||{{nts|313,159}}
+|-
+|37||{{flag|Singapore}}||{{nts|297,941}}
+|-
+|38||{{flag|Israel}}||{{nts|290,551}}
+|-
+|39||{{flag|Chile}}||{{nts|277,199}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Hong Kong}}''||{{nts|274,013}}
+|-
+|40||{{flag|Philippines}}||{{nts|272,067}}
+|-
+|41||{{flag|Egypt}}||{{nts|271,973}}
+|-
+|42||{{flag|Finland}}||{{nts|267,329}}
+|-
+|43||{{flag|Greece}}||{{nts|242,230}}
+|-
+|44||{{flag|Pakistan}}||{{nts|232,287}}
+|-
+|45||{{flag|Ireland}}||{{nts|232,077}}
+|-
+|46||{{flag|Kazakhstan}}||{{nts|231,876}}
+|-
+|47||{{flag|Iraq}}||{{nts|229,327}}
+|-
+|48||{{flag|Portugal}}||{{nts|227,324}}
+|-
+|49||{{flag|Algeria}}||{{nts|210,183}}
+|-
+|50||{{flag|Czech Republic}}||{{nts|208,796}}
+|-
+|51||{{flag|Qatar}}||{{nts|203,235}}
+|-
+|52||{{flag|Peru}}||{{nts|202,350}}
+|-
+|53||{{flag|Romania}}||{{nts|189,638}}
+|-
+|54||{{flag|New Zealand}}||{{nts|185,788}}
+|-
+|55||{{flag|Ukraine}}||{{nts|177,431}}
+|-
+|56||{{flag|Kuwait}}||{{nts|175,831}}
+|-
+|57||{{flag|Vietnam}}||{{nts|171,390}}
+|-
+|58||{{flag|Bangladesh}}||{{nts|149,990}}
+|-
+|59||{{flag|Hungary}}||{{nts|133,424}}
+|-
+|60||{{flag|Angola}}||{{nts|124,178}}
+|-
+|61||{{flag|Morocco}}||{{nts|103,836}}<ref group="n" name="n8" />
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Puerto Rico}}''||{{nts|103,135}}
+|-
+|62||{{flag|Slovakia}}||{{nts|97,707}}
+|-
+|63||{{flag|Ecuador}}||{{nts|94,473}}
+|-
+|64||{{flag|Oman}}||{{nts|79,656}}
+|-
+|65||{{flag|Libya}}||{{nts|74,200}}
+|-
+|66||{{flag|Azerbaijan}}||{{nts|73,560}}
+|-
+|67||{{flag|Syria}}||{{nts|71,998}}
+|-
+|68||{{flag|Belarus}}||{{nts|71,710}}
+|-
+|69||{{flag|Cuba}} (2011)||{{nts|68,234}} 
+|-
+|70||{{flag|Sri Lanka}}||{{nts|67,182}}
+|-
+|71||{{flag|Sudan}}||{{nts|66,566}}
+|-
+|72||{{flag|Dominican Republic}}||{{nts|61,164}}
+|-
+|73||{{flag|Luxembourg}}||{{nts|60,131}}
+|-
+|74||{{flag|Croatia}}||{{nts|57,869}}
+|-
+|75||{{flag|Uzbekistan}}||{{nts|56,796}}
+|-
+|76||{{flag|Uruguay}}||{{nts|55,708}}
+|-
+|77||{{flag|Kenya}}||{{nts|55,243}}
+|-
+|78||{{flag|Bulgaria}}||{{nts|54,480}}
+|-
+|79||{{flag|Guatemala}}||{{nts|53,797}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Macau}}''||{{nts|51,753}}
+|-
+|80||{{flag|Costa Rica}}||{{nts|49,621}}
+|-
+|81||{{flag|Ghana}}||{{nts|48,137}}
+|-
+|82||{{flag|Slovenia}}||{{nts|47,987}}
+|-
+|83||{{flag|Ethiopia}}||{{nts|47,525}}
+|-
+|84||{{flag|Tunisia}}||{{nts|46,994}}
+|-
+|85||{{flag|Lithuania}}||{{nts|45,932}}
+|-
+|86||{{flag|Serbia}}||{{nts|45,520}}
+|-
+|87||{{flag|Lebanon}}||{{nts|44,352}}
+|-
+|88||{{flag|Panama}}||{{nts|42,648}}
+|-
+|89||{{flag|Turkmenistan}}||{{nts|41,851}}
+|-
+|90||{{flag|Yemen}}||{{nts|35,955}}
+|-
+|91||{{flag|Jordan}}||{{nts|33,679}}
+|-
+|92||{{flag|Tanzania}}||{{nts|33,225}}<ref group="n" name="n10" />
+|-
+|93||{{flag|Bahrain}}||{{nts|32,890}}
+|-
+|93||{{Hs|Cote d'Ivoire}}{{flag|Côte d'Ivoire}}||{{nts|30,905}}
+|-
+|94||{{flag|Congo, Democratic Republic of the}}||{{nts|30,629}}
+|-
+|95||{{flag|Bolivia}}||{{nts|30,601}}
+|-
+|96||{{flag|Paraguay}}||{{nts|29,949}}
+|-
+|97||{{flag|Cameroon}}||{{nts|29,275}}
+|-
+|98||{{flag|Latvia}}||{{nts|28,373}}
+|-
+|99||{{flag|Trinidad and Tobago}}||{{nts|24,641}}
+|-
+|100||{{flag|El Salvador}}||{{nts|23,787}}
+|-
+|101||{{flag|Estonia}}||{{nts|24,477}}
+|-
+|102||{{flag|Cyprus}}||{{nts|22,767}}<ref group="n" name="n9" />
+|-
+|103||{{flag|Zambia}}||{{nts|20,678}}
+|-
+|104||{{flag|Afghanistan}}||{{nts|20,497}}
+|-
+|105||{{flag|Uganda}}||{{nts|19,881}}
+|-
+|106||{{flag|Nepal}}||{{nts|19,415}}
+|-
+|107||{{flag|Gabon}}||{{nts|18,661}}
+|-
+|108||{{flag|Honduras}}||{{nts|17,967}}
+|-
+|109||{{flag|Equatorial Guinea}}||{{nts|17,697}}
+|-
+|110||{{flag|Bosnia and Herzegovina}}||{{nts|17,048}}
+|-
+|111||{{flag|Brunei}}||{{nts|16,954}}
+|-
+|112||{{flag|Georgia}}||{{nts|15,829}}<ref group="n" name="n11" />
+|-
+|113||{{flag|Papua New Guinea}}||{{nts|15,654}}
+|-
+|114||{{flag|Jamaica}}||{{nts|14,840}}
+|-
+|115||{{flag|Mozambique}}||{{nts|14,588}}
+|-
+|116||{{flag|Botswana}}||{{nts|14,411}}
+|-
+|117||{{flag|Senegal}}||{{nts|14,160}}
+|-
+|118||{{flag|Cambodia}}||{{nts|14,062}}
+|-
+|119||{{flag|Congo, Republic of the}}||{{nts|13,678}}
+|-
+|120||{{flag|Iceland}}||{{nts|13,657}}
+|-
+|121||{{flag|Albania}}||{{nts|13,119}}
+|-
+|123||{{flag|Namibia}}||{{nts|12,807}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Guernsey}}'' + ''{{flag|Jersey}}''||{{nts|11,515}}<ref group="n" name="n12" />
+|-
+|124||{{flag|Chad}}||{{nts|11,018}}
+|-
+|125||{{flag|Zimbabwe}}||{{nts|10,814}}
+|-
+|126||{{flag|Nicaragua}}||{{nts|10,507}}
+|-
+|127||{{flag|Mauritius}}||{{nts|10,492}}
+|-
+|128||{{flag|Burkina Faso}}||{{nts|10,441}}
+|-
+|129||{{flag|Mali}}||{{nts|10,308}}
+|-
+|130||{{flag|Mongolia}}||{{nts|10,271}}
+|-
+|131||{{flag|Madagascar}}||{{nts|9,975}}
+|-
+|132||{{flag|Armenia}}||{{nts|9,910}}
+|-
+|133||{{flag|Macedonia, Republic of}}||{{nts|9,663}}
+|-
+|134||{{flag|South Sudan}}||{{nts|9,337}}
+|-
+|135||{{flag|Laos}}||{{nts|9,299}}
+|-
+|136||{{flag|Malta}}||{{nts|8,722}}
+|-
+|137||{{flag|Bahamas, The}}||{{nts|8,149}}
+|-
+|138||{{flag|Haiti}}||{{nts|7,843}}
+|-
+|139||{{flag|Benin}}||{{nts|7,557}}
+|-
+|140||{{flag|Moldova}}||{{nts|7,254}}<ref group="n" name="n7" />
+|-
+|141||{{flag|Rwanda}}||{{nts|7,103}}
+|-
+|142||{{flag|Tajikistan}}||{{nts|6,987}}
+|-
+|143||{{flag|Guinea}}||{{nts|6,768}}
+|-
+|144||{{flag|Niger}}||{{nts|6,568}}
+|-
+|145||{{flag|Kyrgyzstan}}||{{nts|6,473}}
+|-
+|146||{{flag|Kosovo}}||{{nts|6,238}}
+|-
+|147||{{flag|Monaco}}||{{nts|6,075}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Bermuda}}''||{{nts|5,474}}
+|-
+|148||{{flag|Liechtenstein}}||{{nts|4,826}}
+|-
+|149||{{flag|Suriname}}||{{nts|4,738}}
+|-
+|150||{{flag|Malawi}}||{{nts|4,264}}
+|-
+|151||{{flag|Montenegro}}||{{nts|4,231}}
+|-
+|152||{{flag|Mauritania}}||{{nts|4,199}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Isle of Man}}''||{{nts|4,076}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Palestinian territories|name=West Bank and Gaza}}''||{{nts|4,016}}
+|-
+|153||{{flag|Fiji}}||{{nts|3,908}}
+|-
+|154||{{flag|Togo}}||{{nts|3,814}}
+|-
+|155||{{flag|Sierra Leone}}||{{nts|3,796}}
+|-
+|156||{{flag|Swaziland}}||{{nts|3,744}}
+|-
+|157||{{flag|Andorra}}||{{nts|3,712}}
+|-
+|158||{{flag|Barbados}}||{{nts|3,685}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|French Polynesia}}''||{{nts|3,448}}
+|-
+|159||{{flag|Eritrea}}||{{nts|3,092}}
+|-
+|160||{{flag|Guyana}}||{{nts|2,851}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|New Caledonia}}''||{{nts|2,682}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Aruba}}''||{{nts|2,584}}
+|-
+|161||{{flag|Burundi}}||{{nts|2,472}}
+|-
+|162||{{flag|Lesotho}}||{{nts|2,448}}
+|-
+|163||{{flag|Maldives}}||{{nts|2,222}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Faroe Islands}}''||{{nts|2,198}}
+|-
+|164||{{flag|Central African Republic}}||{{nts|2,139}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Virgin Islands, U.S.}}''||{{nts|1,996}}
+|-
+|<span style="display:none;">9999999</span>||{{flag|San Marino}}||{{nts|1,900}}
+|-
+|165||{{flag|Cape Verde}}||{{nts|1,897}}
+|-
+|166||{{flag|Bhutan}}||{{nts|1,780}}
+|-
+|167||{{flag|Liberia}}||{{nts|1,767}}
+|-
+|168||{{flag|Belize}}||{{nts|1,493}}
+|-
+|169||{{flag|Timor-Leste}}||{{nts|1,293}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Greenland}}''||{{nts|1,268}}
+|-
+|170||{{flag|Djibouti}}||{{nts|1,239}}
+|-
+|171||{{flag|Saint Lucia}}||{{nts|1,186}}
+|-
+|172||{{flag|Antigua and Barbuda}}||{{nts|1,176}}
+|-
+|173||{{flag|Seychelles}}||{{nts|1,032}}
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Cayman Islands}}''||{{nts|1,012}}
+|-
+|174||{{flag|Solomon Islands}}||{{nts|1,010}}
+|-
+|175||{{flag|Gambia, The}}||{{nts|917}}
+|-
+|<span style="display:none;">9999999</span>||{{flag|Somalia}}||{{nts|917}}
+|-
+|176||{{flag|Guinea-Bissau}}||{{nts|897}}
+|-
+|177||{{flag|Grenada}}||{{nts|790}}
+|-
+|178||{{flag|Vanuatu}}||{{nts|785}}
+|-
+|179||{{flag|Saint Kitts and Nevis}}||{{nts|748}}
+|-
+|180||{{flag|Saint Vincent and the Grenadines}}||{{nts|713}}
+|-
+|181||{{flag|Samoa}}||{{nts|677}}
+|-
+|182||{{flag|Comoros}}||{{nts|596}}
+|-
+|183||{{flag|Dominica}}||{{nts|480}}
+|-
+|184||{{flag|Tonga}}||{{nts|472}}
+|-
+|185||{{flag|Micronesia, Federated States of}}||{{nts|327}}
+|-
+|186||{{Hs|Sao Tome and Principe}}{{flag|São Tomé and Príncipe}}||{{nts|264}}
+|-
+|187||{{flag|Palau}}||{{nts|228}}
+|-
+|188||{{flag|Marshall Islands}}||{{nts|187}}
+|-
+|189||{{flag|Kiribati}}||{{nts|176}}
+|-
+|190||{{flag|Tuvalu}}||{{nts|37}}
+|}
+|
+{| class="wikitable sortable" style="margin-left:auto;margin-right:auto"
+|-
+! style="width:2em;" | Rank !! Country/Region !! GDP (Millions of US$)
+! Year
+|-
+!||{{left}}{{noflag}}'''''[[Gross world product|World]]'''''||{{left}}'''73,870,000'''||{{left}}'''2013'''
+|-style="background:#EBFFEB;"
+|<span style="display:none;">9999999</span>||''{{flag|European Union}}''{{refn|name = clarification that the EU is not a country and should not be given a rank number|group = n}}||{{nts|16,950,000}}||2013
+|-
+|1||{{flag|United States}}||{{nts|16,720,000}}||2013
+|-
+|2||{{flag|China}}||{{nts|9,330,000}}||2013
+|-
+|3||{{flag|Japan}}||{{nts|5,007,000}}||2013
+|-
+|4||{{flag|Germany}}||{{nts|3,593,000}}||2013
+|-
+|5||{{flag|France}}||{{nts|2,739,000}}||2013
+|-
+|6||{{flag|United Kingdom}}||{{nts|2,490,000}}||2013
+|-
+|7||{{flag|Brazil}}||{{nts|2,190,000}}||2013 
+|-
+|8||{{flag|Russia}}||{{nts|2,113,000}}||2013 
+|-
+|9||{{flag|Italy}}||{{nts|2,068,000}}||2013
+|-
+|10||{{flag|Canada}}||{{nts|1,825,000}}||2013
+|-
+|11||{{flag|India}}||{{nts|1,670,000}}||2013
+|-
+|12||{{flag|Australia}}||{{nts|1,488,000}}||2013
+|-
+|13||{{flag|Spain}}||{{nts|1,356,000}}||2013
+|-
+|14||{{flag|Mexico}}||{{nts|1,327,000}}||2013
+|-
+|15||{{flag|South Korea}}||{{nts|1,198,000}}||2013
+|-
+|16||{{flag|Indonesia}}||{{nts|867,500}}||2013
+|-
+|17||{{flag|Turkey}}||{{nts|821,800}}||2013
+|-
+|18||{{flag|Netherlands}}||{{nts|722,300}}||2013
+|-
+|19||{{flag|Saudi Arabia}}||{{nts|718,500}}||2013
+|-
+|20||{{flag|Switzerland}}||{{nts|646,200}}||2013
+|-
+|21||{{flag|Sweden}}||{{nts|552,000}}||2013
+|-
+|22||{{flag|Norway}}||{{nts|515,800}}||2013
+|-
+|23||{{flag|Poland}}||{{nts|513,900}}||2013
+|-
+|24||{{flag|Belgium}}||{{nts|507,400}}||2013
+|-
+|25||{{flag|Nigeria}}||{{nts|502,000}}||2013
+|-
+|26||{{flag|Taiwan}}||{{nts|484,700}}||2013
+|-
+|27||{{flag|Argentina}}||{{nts|484,600}}||2013
+|-
+|28||{{flag|Austria}}||{{nts|417,900}}||2013
+|-
+|29||{{flag|Iran}}||{{nts|411,900}}||2013
+|-
+|30||{{flag|Thailand}}||{{nts|400,900}}||2013
+|-
+|31||{{flag|United Arab Emirates}}||{{nts|390,000}}||2013
+|-
+|32||{{flag|Colombia}}||{{nts|369,200}}||2013
+|-
+|33||{{flag|Venezuela}}||{{nts|367,500}}||2013
+|-
+|34||{{flag|South Africa}}||{{nts|353,900}}||2013
+|-
+|35||{{flag|Denmark}}||{{nts|324,300}}||2013
+|-
+|36||{{flag|Malaysia}}||{{nts|312,400}}||2013
+|-
+|37||{{flag|Chile}}||{{nts|291,700}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Hong Kong}}''||{{nts|289,100}}||2013
+|-
+|38||{{flag|Israel}}||{{nts|272,700}}||2013
+|-
+|39||{{flag|Philippines}}||{{nts|272,200}}||2013
+|-
+|40||{{flag|Singapore}}||{{nts|268,700}}||2013
+|-
+|41||{{flag|Egypt}}||{{nts|262,000}}||2013
+|-
+|42||{{flag|Finland}}||{{nts|259,600}}||2013
+|-
+|43||{{flag|Greece}}||{{nts|243,300}}||2013
+|-
+|44||{{flag|Pakistan}}||{{nts|236,500}}||2013
+|-
+|45||{{flag|Kazakhstan}}||{{nts|224,900}}||2013
+|-
+|46||{{flag|Iraq}}||{{nts|221,800}}||2013
+|-
+|47||{{flag|Ireland}}||{{nts|220,900}}||2013
+|-
+|48||{{flag|Portugal}}||{{nts|219,300}}||2013
+|-
+|49||{{flag|Algeria}}||{{nts|215,700}}||2013
+|-
+|50||{{flag|Qatar}}||{{nts|213,100}}||2013
+|-
+|51||{{flag|Peru}}||{{nts|210,300}}||2013
+|-
+|52||{{flag|Czech Republic}}||{{nts|194,800}}||2013
+|-
+|53||{{flag|Romania}}||{{nts|188,900}}||2013
+|-
+|54||{{flag|New Zealand}}||{{nts|181,100}}||2013
+|-
+|55||{{flag|Kuwait}}||{{nts|179,500}}||2013
+|-
+|56||{{flag|Ukraine}}||{{nts|175,500}}||2013
+|-
+|57||{{flag|Vietnam}}||{{nts|170,000}}||2013
+|-
+|58||{{flag|Bangladesh}}||{{nts|140,200}}||2013
+|-
+|59||{{flag|Hungary}}||{{nts|130,600}}||2013
+|-
+|60||{{flag|Angola}}||{{nts|124,000}}||2013
+|-
+|61||{{flag|Morocco}}||{{nts|104,800}}||2013
+|-
+|62||{{flag|Slovakia}}||{{nts|96,960}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Puerto Rico}}''||{{nts|93,520}}||2010
+|-
+|63||{{flag|Ecuador}}||{{nts|91,410}}||2013
+|-
+|64||{{flag|Oman}}||{{nts|81,950}}||2013
+|-
+|65||{{flag|Azerbaijan}}||{{nts|76,010}}||2013
+|-
+|66||{{flag|Cuba}}||{{nts|72,300}}||2012
+|-
+|67||{{flag|Libya}}||{{nts|70,920}}||2013
+|-
+|68||{{flag|Belarus}}||{{nts|69,240}}||2013
+|-
+|69||{{flag|Sri Lanka}}||{{nts|65,120}}||2013
+|-
+|70||{{flag|Syria}}||{{nts|64,700}}||2011
+|-
+|71||{{flag|Luxembourg}}||{{nts|60,540}}||2013
+|-
+|72||{{flag|Burma}}||{{nts|59,430}}||2013
+|-
+|73||{{flag|Dominican Republic}}||{{nts|59,270}}||2013
+|-
+|74||{{flag|Croatia}}||{{nts|59,140}}||2013
+|-
+|75||{{flag|Uruguay}}||{{nts|57,110}}||2013
+|-
+|76||{{flag|Kenya}}||{{nts|55,206}}||2013
+|-
+|77||{{flag|Uzbekistan}}||{{nts|55,180}}||2013
+|-
+|78||{{flag|Guatemala}}||{{nts|53,900}}||2013
+|-
+|79||{{flag|Bulgaria}}||{{nts|53,700}}||2013
+|-
+|80||{{flag|Sudan}}||{{nts|52,500}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Macau}}''||{{nts|51,580}}||2013
+|-
+|81||{{flag|Costa Rica}}||{{nts|48,510}}||2013
+|-
+|82||{{flag|Tunisia}}||{{nts|48,380}}||2013
+|-
+|83||{{flag|Ethiopia}}||{{nts|47,340}}||2013
+|-
+|84||{{flag|Slovenia}}||{{nts|46,820}}||2013
+|-
+|85||{{flag|Lithuania}}||{{nts|46,710}}||2013
+|-
+|86||{{flag|Ghana}}||{{nts|45,550}}||2013
+|-
+|87||{{flag|Yemen}}||{{nts|43,890}}||2013
+|-
+|88||{{flag|Serbia}}||{{nts|43,680}}||2013
+|-
+|89||{{flag|Lebanon}}||{{nts|43,490}}||2013
+|-
+|90||{{flag|Panama}}||{{nts|40,620}}||2013
+|-
+|91||{{flag|Turkmenistan}}||{{nts|40,560}}||2013
+|-
+|92||{{flag|Jordan}}||{{nts|34,080}}||2013
+|-
+|93||{{flag|Tanzania}}||{{nts|31,940}}||2013
+|-
+|94||{{flag|Paraguay}}||{{nts|30,560}}||2013
+|-
+|95||{{flag|Latvia}}||{{nts|30,380}}||2013
+|-
+|96||{{flag|Bolivia}}||{{nts|29,810}}||2013
+|-
+|97||{{flag|Bahrain}}||{{nts|28,360}}||2013
+|-
+|98||{{Hs|Cote d'Ivoire}}{{flag|Côte d'Ivoire}}||{{nts|28,280}}||2013
+|-
+|99||{{flag|North Korea}}||{{nts|28,000}}||2009
+|-
+|100||{{flag|Cameroon}}||{{nts|27,880}}||2013
+|-
+|101||{{flag|Trinidad and Tobago}}||{{nts|27,130}}||2013
+|-
+|102||{{flag|El Salvador}}||{{nts|24,670}}||2013
+|-
+|103||{{flag|Estonia}}||{{nts|24,280}}||2013
+|-
+|104||{{flag|Uganda}}||{{nts|22,600}}||2013
+|-
+|105||{{flag|Zambia}}||{{nts|22,240}}||2013
+|-
+|106||{{flag|Cyprus}}||{{nts|21,780}}||2013
+|-
+|107||{{flag|Afghanistan}}||{{nts|20,650}}||2013
+|-
+|108||{{flag|Gabon}}||{{nts|19,970}}||2013
+|-
+|109||{{flag|Nepal}}||{{nts|19,340}}||2013
+|-
+|110||{{flag|Honduras}}||{{nts|18,880}}||2013
+|-
+|111||{{flag|Bosnia and Herzegovina}}||{{nts|18,870}}||2013
+|-
+|112||{{flag|Congo, Democratic Republic of the}}||{{nts|18,560}}||2013
+|-
+|113||{{flag|Equatorial Guinea}}||{{nts|17,080}}||2013
+|-
+|114||{{flag|Brunei}}||{{nts|16,560}}||2013
+|-
+|115||{{flag|Papua New Guinea}}||{{nts|16,100}}||2013
+|-
+|116||{{flag|Georgia}}||{{nts|15,950}}||2013
+|-
+|117||{{flag|Cambodia}}||{{nts|15,640}}||2013
+|-
+|118||{{flag|Botswana}}||{{nts|15,530}}||2013
+|-
+|119||{{flag|Senegal}}||{{nts|15,360}}||2013
+|-
+|120||{{flag|Mozambique}}||{{nts|14,670}}||2013
+|-
+|121||{{flag|Iceland}}||{{nts|14,590}}||2013
+|-
+|122||{{flag|Jamaica}}||{{nts|14,390}}||2013
+|-
+|123||{{flag|Congo, Republic of the}}||{{nts|14,250}}||2013
+|-
+|124||{{flag|Chad}}||{{nts|13,590}}||2013
+|-
+|125||{{flag|Albania}}||{{nts|12,800}}||2013
+|-
+|126||{{flag|Namibia}}||{{nts|12,300}}||2013
+|-
+|127||{{flag|Burkina Faso}}||{{nts|12,130}}||2013
+|-
+|128||{{flag|Mauritius}}||{{nts|11,900}}||2013
+|-
+|129||{{flag|South Sudan}}||{{nts|11,700}}||2013
+|-
+|130||{{flag|Mali}}||{{nts|11,370}}||2013
+|-
+|131||{{flag|Nicaragua}}||{{nts|11,280}}||2013
+|-
+|132||{{flag|Mongolia}}||{{nts|11,140}}||2013
+|-
+|133||{{flag|Macedonia, Republic of}}||{{nts|10,650}}||2013
+|-
+|134||{{flag|Madagascar}}||{{nts|10,530}}||2013
+|-
+|135||{{flag|Zimbabwe}}||{{nts|10,480}}<ref group="n" name="n6" />||2013
+|-
+|136||{{flag|Armenia}}||{{nts|10,400}}||2013
+|-
+|137||{{flag|Laos}}||{{nts|10,100}}||2013
+|-
+|138||{{flag|Malta}}||{{nts|9,541}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|New Caledonia}}''||{{nts|9,280}}||2008
+|-
+|139||{{flag|Tajikistan}}||{{nts|8,513}}||2013
+|-
+|140||{{flag|Bahamas, The}}||{{nts|8,373}}||2013
+|-
+|141||{{flag|Benin}}||{{nts|8,359}}||2013
+|-
+|142||{{flag|Haiti}}||{{nts|8,287}}||2013
+|-
+|143||{{flag|Moldova}}||{{nts|7,932}}||2013
+|-
+|144||{{flag|Rwanda}}||{{nts|7,700}}||2013
+|-
+|145||{{flag|Niger}}||{{nts|7,304}}||2013
+|-
+|146||{{flag|Kyrgyzstan}}||{{nts|7,234}}||2013
+|-
+|147||{{flag|Kosovo}}||{{nts|7,150}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Palestinian territories|name=West Bank and Gaza}}''||{{nts|6,641}}||2008
+|-
+|148||{{flag|Guinea}}||{{nts|6,544}}||2013
+|-
+|149||{{flag|Timor-Leste}}||{{nts|6,129}}||2013
+|-
+|150||{{flag|Monaco}}||{{nts|5,748}}||2011
+|-
+|<span style="display:none;">9999999</span>||''{{flag|French Polynesia}}''||{{nts|5,650}}||2006
+|-
+|151||{{flag|Liechtenstein}}||{{nts|5,113}}||2010
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Jersey}}''||{{nts|5,100}}||2005
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Curaçao}}''||{{nts|5,080}}||2008
+|-
+|152||{{flag|Suriname}}||{{nts|5,009}}||2013
+|-
+|153||{{flag|Andorra}}||{{nts|4,800}}||2012
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Guam}}''||{{nts|4,600}}||2010
+|-
+|154||{{flag|Montenegro}}||{{nts|4,518}}||2013
+|-
+|155||{{flag|Togo}}||{{nts|4,299}}||2013
+|-
+|156||{{flag|Barbados}}||{{nts|4,262}}||2013
+|-
+|157||{{flag|Fiji}}||{{nts|4,218}}||2013
+|-
+|158||{{flag|Mauritania}}||{{nts|4,183}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Isle of Man}}''||{{nts|4,076}}||2007
+|-
+|159||{{flag|Swaziland}}||{{nts|3,807}}||2013
+|-
+|160||{{flag|Malawi}}||{{nts|3,683}}||2013
+|-
+|161||{{flag|Eritrea}}||{{nts|3,438}}||2013
+|-
+|162||{{flag|Guyana}}||{{nts|3,020}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Guernsey}}''||{{nts|2,742}}||2005
+|-
+|163||{{flag|Burundi}}||{{nts|2,676}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Aruba}}''||{{nts|2,516}}||2009
+|-
+|164||{{flag|Lesotho}}||{{nts|2,457}}||2013
+|-
+|165||{{flag|Somalia}}||{{nts|2,372}}||2010
+|-
+|166||{{flag|Maldives}}||{{nts|2,270}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Cayman Islands}}''||{{nts|2,250}}||2008
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Faroe Islands}}''||{{nts|2,230}}||2010
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Greenland}}''||{{nts|2,160}}||2011
+|-
+|167||{{flag|Bhutan}}||{{nts|2,133}}||2013
+|-
+|168||{{flag|Central African Republic}}||{{nts|2,050}}||2013
+|-
+|169||{{flag|Liberia}}||{{nts|1,977}}||2013
+|-
+|170||{{flag|Cape Verde}}||{{nts|1,955}}||2013
+|-
+|171||{{flag|San Marino}}||{{nts|1,866}}||2013
+|-
+|172||{{flag|Belize}}||{{nts|1,637}}||2013
+|-
+|173||{{flag|Djibouti}}||{{nts|1,459}}||2013
+|-
+|174||{{flag|Saint Lucia}}||{{nts|1,377}}||2013
+|-
+|175||{{flag|Seychelles}}||{{nts|1,271}}||2013
+|-
+|176||{{flag|Antigua and Barbuda}}||{{nts|1,220}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Gibraltar}}''||{{nts|1,106}}||2006
+|-
+|177||{{flag|Solomon Islands}}||{{nts|1,099}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|British Virgin Islands}}''||{{nts|1,095}}||2008
+|-
+|178||{{flag|Gambia, The}}||{{nts|896}}||2013
+|-
+|179||{{flag|Guinea-Bissau}}||{{nts|880}}||2013
+|-
+|180||{{flag|Vanuatu}}||{{nts|828}}||2013
+|-
+|181||{{flag|Grenada}}||{{nts|811}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Sint Maarten}}''||{{nts|794.7}}||2008
+|-
+|182||{{flag|Saint Kitts and Nevis}}||{{nts|767}}||2013
+|-
+|183||{{flag|Saint Vincent and the Grenadines}}||{{nts|742}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Northern Mariana Islands}}''||{{nts|733}}||2010
+|-
+|184||{{flag|Samoa}}||{{nts|705}}||2013
+|-
+|185||{{flag|Comoros}}||{{nts|658}}||2013
+|-
+|186||{{flag|Dominica}}||{{nts|495}}||2013
+|-
+|187||{{flag|Tonga}}||{{nts|477}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|American Samoa}}''||{{nts|462.2}}||2005
+|-
+|188||{{flag|Micronesia, Federated States of}}||{{nts|339}}||2013
+|-
+|189||{{Hs|Sao Tome and Principe}}{{flag|São Tomé and Príncipe}}||{{nts|311}}||2013
+|-
+|190||{{flag|Palau}}||{{nts|221}}||2011
+|-
+|191||{{flag|Marshall Islands}}||{{nts|193}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Cook Islands}}''||{{nts|183.2}}||2005
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Anguilla}}''||{{nts|175.4}}||2009
+|-
+|192||{{flag|Kiribati}}||{{nts|173}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Falkland Islands}}''||{{nts|164.5}}||2007
+|-
+|193||{{flag|Tuvalu}}||{{nts|38}}||2013
+|-
+|<span style="display:none;">9999999</span>||''{{flag|Niue}}''||{{nts|10.01}}||2003
+|-
+|<span style="display:none;">9999999</span>||{{flag|Nauru}}||n/a||
+|}
+|- valign="top"
+| colspan=3 |
+|}
+
+==Estimates==
+{{Main|List of IMF ranked countries by past and projected GDP (nominal)}}
+The IMF also provides five year estimates in its twice annual World Economic Outlook Databases (WEO). Since the list is preliminary, only the top 10 countries for the years 2014 and 2019 are listed here.<ref>[http://www.imf.org/external/pubs/ft/weo/2014/02/weodata/weorept.aspx?pr.x=68&pr.y=15&sy=2010&ey=2017&scsm=1&ssd=1&sort=country&ds=.&br=1&c=512%2C446%2C914%2C666%2C612%2C668%2C614%2C672%2C311%2C946%2C213%2C137%2C911%2C962%2C193%2C674%2C122%2C676%2C912%2C548%2C313%2C556%2C419%2C678%2C513%2C181%2C316%2C682%2C913%2C684%2C124%2C273%2C339%2C921%2C638%2C948%2C514%2C943%2C218%2C686%2C963%2C688%2C616%2C518%2C223%2C728%2C516%2C558%2C918%2C138%2C748%2C196%2C618%2C278%2C522%2C692%2C622%2C694%2C156%2C142%2C624%2C449%2C626%2C564%2C628%2C283%2C228%2C853%2C924%2C288%2C233%2C293%2C632%2C566%2C636%2C964%2C634%2C182%2C238%2C453%2C662%2C968%2C960%2C922%2C423%2C714%2C935%2C862%2C128%2C135%2C611%2C716%2C321%2C456%2C243%2C722%2C248%2C942%2C469%2C718%2C253%2C724%2C642%2C576%2C643%2C936%2C939%2C961%2C644%2C813%2C819%2C199%2C172%2C733%2C132%2C184%2C646%2C524%2C648%2C361%2C915%2C362%2C134%2C364%2C652%2C732%2C174%2C366%2C328%2C734%2C258%2C144%2C656%2C146%2C654%2C463%2C336%2C528%2C263%2C923%2C268%2C738%2C532%2C578%2C944%2C537%2C176%2C742%2C534%2C866%2C536%2C369%2C429%2C744%2C433%2C186%2C178%2C925%2C436%2C869%2C136%2C746%2C343%2C926%2C158%2C466%2C439%2C112%2C916%2C111%2C664%2C298%2C826%2C927%2C542%2C846%2C967%2C299%2C443%2C582%2C917%2C474%2C544%2C754%2C941%2C698&s=NGDPD&grp=0&a= International Monetary Fund (IMF), World Economic Outlook (WEO) Database- GDP Nominal 2010 to 2019], imf.org, October 2014 Edition</ref>
+
+===2014===
+{| class="wikitable" style="text-align: right"
+|- style="background:#ececec;"
+! Rank !! Country !! GDP (billions of US$) || % of Global GDP
+|-
+|	-	||align=left|	'''''{{EU}}'''''	||	$18,399 || 23.7%''
+|-
+|	1	||align=left|	'''{{USA}}'''	||	$17,416 || 22.4%
+|-
+|	2	||align=left|	'''{{CHN}}'''	||	$10,355 || 13.3%
+|-
+|	3	||align=left|	'''{{JPN}}'''	||	$4,770 || 6.1%
+|-
+|	4	||align=left|	'''{{GER}}'''	||	$3,820 || 4.9%
+|-
+|	5	||align=left|	'''{{FRA}}'''	||	$2,902 || 3.7%
+|-
+|	6	||align=left|	'''{{GBR}}'''	||	$2,848 || 3.7%
+|-
+|	7	||align=left|	'''{{BRA}}'''	||	$2,244 || 2.9%
+|-
+|	8	||align=left|	'''{{ITA}}'''	||	$2,129 || 2.7%
+|-
+|	9	||align=left|	'''{{RUS}}'''	||	$2,057 || 2.7%
+|-
+|	10	||align=left|	'''{{IND}}'''	||	$2,048 || 2.6%
+|}
+
+===2019===
+{| class="wikitable" style="text-align: right"
+|- style="background:#ececec;"
+! Rank !! Country !! GDP (billions of US$) !! Projected population (millions)<ref>[http://www.imf.org/external/pubs/ft/weo/2014/02/weodata/weorept.aspx?pr.x=61&pr.y=8&sy=2019&ey=2019&scsm=1&ssd=1&sort=country&ds=.&br=1&c=223%2C924%2C922%2C132%2C134%2C534%2C136%2C158%2C112%2C111&s=LP&grp=0&a= International Monetary Fund (IMF), World Economic Outlook (WEO) Database- Population in 2019], imf.org, October 2014 Edition</ref>
+|-
+|	-	||align=left|	'''''{{EU}}'''''	||	$22,328 || 510.8
+|-
+|	1	||align=left|	'''{{USA}}'''	||	$22,148 ||   328.9
+|-
+|	2	||align=left|	'''{{CHN}}'''	||	$15,519 || 1,401.8
+|-
+|	3	||align=left|	'''{{JPN}}'''	||	 $5,433 ||   124.9
+|-
+|	4	||align=left|	'''{{DEU}}'''	||	 $4,556 ||    81.1
+|-
+|	5	||align=left|	'''{{GBR}}'''	||	 $3,704 ||    66.7
+|-
+|	6	||align=left|	'''{{FRA}}'''	||	 $3,393 ||    65.4
+|-
+|	7	||align=left|	'''{{IND}}'''	||	 $3,182 || 1,344.8
+|-
+|	8	||align=left|	'''{{BRA}}'''	||	 $2,892 ||   210.7
+|-
+|	9	||align=left|	'''{{RUS}}'''	||	 $2,595 ||   143.7
+|-
+|	10	||align=left|	'''{{ITA}}'''	||	 $2,456 ||    61.2
+|}
+
+==Notes==
+<references group="n">
+<ref group="n" name="n2">Figures exclude [[Taiwan]], and [[Special administrative region (People's Republic of China)|special administrative region]]s of [[Hong Kong]] and [[Macau]].</ref>
+<ref group="n" name="n4">Data include the French overseas departments of [[French Guiana]], [[Guadeloupe]], [[Martinique]], and [[Réunion]].</ref>
+<ref group="n" name="n6">Hyperinflation and the plunging value of the Zimbabwean dollar makes Zimbabwe's nominal GDP a highly inaccurate statistic.</ref>
+<ref group="n" name="n7">Excludes data for [[Transnistria]].</ref>
+<ref group="n" name="n8">Includes Former Spanish Sahara.</ref>
+<ref group="n" name="n9">Data are for the area controlled by the Government of the Republic of Cyprus.</ref>
+<ref group="n" name="n10">Covers mainland Tanzania only.</ref>
+<ref group="n" name="n11">Excludes [[Abkhazia]] and [[South Ossetia]].</ref>
+<ref group="n" name="n12">These data, as well as the complete set of data for all countries, can be accessed through the [http://databank.worldbank.org/ddp/home.do?Step=12&id=4&CNO=2 World Bank API]. More information about the API can be found [http://data.worldbank.org/developers here.]</ref>
+<ref group="n" name="n14">Excludes data for the [[Republic of Crimea]] and [[Sevastopol]].</ref>
+</references>
+
+==See also==
+* [[List of countries by GDP (PPP)]]
+* [[List of countries by Human Development Index]]
+* [[List of countries by income equality]]
+* [[List of countries by distribution of wealth]]
+* [[Gross national income]]
+* [[National wealth]]
+
+==References==
+{{Reflist|30em}}
+
+{{GDP country lists|state=uncollapsed}}
+{{Finance country lists}}
+{{Global economic classifications}}
+
+{{DEFAULTSORT:List Of Countries By Gdp (Nominal)}}
+[[Category:Lists by economic indicators|GDP (nominal)]]
+[[Category:Economics lists by country|GDP (nominal)]]
+[[Category:Gross domestic product]]

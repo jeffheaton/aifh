@@ -1,0 +1,1009 @@
+<onlyinclude><!-- See [[Wikipedia talk:Featured lists]] for an explanation of this and other inclusion tags below -->
+'''ISO 3166-1''' is part of the [[ISO 3166]] [[standardization|standard]] published by the [[International Organization for Standardization]] (ISO), and defines [[code]]s for the names of [[country|countries]], [[dependent territory|dependent territories]], and special areas of geographical interest. The official name of the standard is ''Codes for the representation of names of countries and their subdivisions &ndash; Part 1: Country codes''. It defines three sets of [[country code]]s:<ref>{{cite web| url=http://www.iso.org/iso/country_codes| title=ISO 3166 &ndash; FAQs &ndash; General questions| publisher=International Organization for Standardization (ISO)}}</ref>
+* [[ISO 3166-1 alpha-2]] – two-letter country codes which are the most widely used of the three, and used most prominently for the [[Internet]]'s [[country code top-level domain]]s (with a few exceptions).
+* [[ISO 3166-1 alpha-3]] – three-letter country codes which allow a better visual association between the codes and the country names than the alpha-2 codes.
+* [[ISO 3166-1 numeric]] – three-digit country codes which are identical to those developed and maintained by the [[United Nations Statistics Division]], with the advantage of script ([[writing system]]) independence, and hence useful for people or systems using non-[[Latin alphabet|Latin]] scripts.</onlyinclude>
+
+The alphabetic country codes were first included in ISO 3166 in 1974, and the numeric country codes were first included in 1981. The country codes have been published as ISO 3166-1 since 1997, when ISO 3166 was expanded into three parts, with [[ISO 3166-2]] defining codes for [[Administrative division|subdivisions]] and [[ISO 3166-3]] defining codes for [[List of former sovereign states|former countries]].<ref>{{cite web| url=http://www.iso.org/iso/country_codes| title=Development of ISO 3166| publisher=ISO}}</ref>
+
+As a widely used international standard, ISO 3166-1 is implemented in other standards and used by [[international organization]]s<ref>{{cite web| url=http://www.iso.org/iso/country_codes| title=Implementation of ISO 3166-1| publisher=ISO}}</ref> to allow facilitation of the exchange of goods and information.<ref>{{cite web| url=http://www.iso.org/iso/country_codes|title=You and ISO 3166| publisher=ISO}}</ref> However, it is not the only standard for country codes. [[Country code#Other country codes|Other country codes]] used by many international organizations are partly or totally incompatible with ISO 3166-1,<ref>{{cite web| url=http://www.iso.org/iso/country_codes| title=Links| publisher=ISO}}</ref> although some of them closely correspond to ISO 3166-1 codes.
+
+==Criteria for inclusion==
+Currently 249 countries, territories, or areas of geographical interest are assigned official codes in ISO 3166-1. According to the ISO 3166 Maintenance Agency (ISO 3166/MA), the only way to enter a new country name into ISO 3166-1 is to have it registered in one of the following two sources:<ref>{{cite web| url=http://www.iso.org/iso/country_codes| title=ISO 3166-1 and ccTLDs| publisher=ISO}}</ref>
+* [[United Nations]] Terminology Bulletin ''Country Names'', or
+* ''Country and Region Codes for Statistical Use'' of the UN Statistics Division.
+
+To be listed in the bulletin ''Country Names'', a country must be at least one of the following:<ref>{{cite web| url=https://www.iana.org/help/eligible-tlds| title=Qualifying top-level domain strings: Eligible categories of top-level domains| publisher=Internet Assigned Numbers Authority|accessdate=February 25, 2014}}</ref>
+
+* A [[United Nations member states|member state of the United Nations]]
+* A member of one of its [[List of specialized agencies of the United Nations|specialized agencies]]
+* A party to the ''[[Statute of the International Court of Justice]]''
+
+The list of names in ''Country and Region Codes for Statistical Use'' of the UN Statistics Division is based on the bulletin ''Country Names'' and other UN sources.
+
+Once a country name or territory name appears in either of these two sources, it will be added to ISO 3166-1 by default.
+
+The ISO 3166/MA may [[#Reserved and user-assigned code elements|reserve code elements]] for other entities that do not qualify for inclusion based on the above criteria.<ref>{{cite web| url=http://www.iso.org/iso/en/prods-services/iso3166ma/10faq/frequently-asked-questions.html#Q07| title=ISO 3166 &ndash; FAQs &ndash; General Questions| publisher=ISO |archiveurl=https://web.archive.org/web/20070306080355/http://www.iso.org/iso/en/prods-services/iso3166ma/10faq/frequently-asked-questions.html#Q07 |archivedate=2007-03-06}}</ref> For example, because the [[European Union]] is not a country, it is not formally included in ISO 3166-1, but for practical reasons, the ISO 3166/MA has "reserved the two-letter combination <tt>EU</tt> for the purpose of identifying the European Union within the framework of ISO 3166-1".<ref name="faqs_specific">{{cite web| url=http://www.iso.org/iso/country_codes/iso_3166-faqs/iso_3166_faqs_specific.htm| title=ISO 3166 &ndash; FAQs &ndash; Specific| publisher=ISO |archiveurl=http://web.archive.org/web/20120616044022/http://www.iso.org/iso/country_codes/iso_3166-faqs/iso_3166_faqs_specific.htm |archivedate=2012-06-16}}</ref>
+
+==Naming and code construction==
+[[File:ISO logo.png|thumb|alt=A blue rectangle with a white line drawing of a sphere inside divided longitudinally and latitudinally and emblazoned with the letters "ISO" in white|The [[International Organization for Standardization]] uses the country names chosen by the [[United Nations]], some of which are disputed.]]
+
+The country names used in ISO 3166-1 are taken from the two UN sources mentioned above. Some country names used by the UN, and accordingly by ISO, are subject to dispute:
+* The [[Republic of Macedonia]] is listed as "Macedonia, the former Yugoslav Republic of" because of the [[Macedonia naming dispute]], following the provisional reference used by the United Nations.
+*[[Taiwan]] is listed as non-independent "[[Taiwan, Province of China]]" or "Taiwan (Province of China)" as the lower-case short name, with "Taiwan" as the local short name acknowledged,<ref>{{cite web| url=https://www.iso.org/obp/ui/#iso:code:3166:TW | title=ISO 3166 information for TW| publisher=International Organization for Standardization|accessdate=February 25, 2014}}</ref> because of its [[political status of Taiwan|political status within the United Nations]].<ref name="faqs_specific" /> In 2007, the [[Republic of China]] filed a lawsuit before a Swiss civil court against the ISO, arguing that the ISO's use of the UN name rather than "Republic of China (Taiwan)" violates Taiwan's name rights.<ref>{{cite web| url=http://www.roc-taiwan.org/UK/ct.asp?xItem=41952&ctNode=932&mp=132&nowPage=6&pagesize=15| title=Taiwan sues ISO over incorrect reference| publisher=Taipei Representative Office in the UK}}</ref> On 9 September 2010, a panel of the [[Federal Supreme Court of Switzerland]] decided, by three votes to two, to dismiss the suit as presenting a [[political question]] not subject to Swiss civil jurisdiction.<ref>{{cite news| last=Felber| first=René| title=Umweg über Zivilrichter unzulässig: Taiwans Kampf um seinen Namen| newspaper=[[Neue Zürcher Zeitung]]| date=10 September 2010| page=14| language=German}}</ref><ref>{{cite web| url=http://www.bger.ch/de/mm_5a_329_2009_d.pdf| title=Urteil vom 9. September 2010 (5A_329/2009)| publisher=Federal Supreme Court of Switzerland| language=German| trans_title=Decision of 9 September 2010 (5A_329/2009)}}</ref><ref>{{cite web| url=http://www.bger.ch/fr/mm_5a_329_2009_d.pdf| title=Arrêt du 9 septembre 2010 (5A_329/2009)| publisher=Federal Supreme Court of Switzerland| language=French| trans_title=Decision of 9 September 2010 (5A_329/2009)}}</ref>
+*Following the [[United Nations General Assembly resolution 67/19|recognition of Palestine as a non-member UN state]] in 2012, the official designation used in ISO 3166-1 was changed from "[[Palestinian territories|Palestinian Territory, Occupied]]" to "[[State of Palestine|Palestine, State of]]",<ref>{{cite web| url=http://unstats.un.org/unsd/methods/m49/m49alpha.htm| title=Countries or areas, codes and abbreviations| publisher=United Nations Statistics Division}}</ref> with a remark noting conventional names but still not considered an independent sovereign state in ISO 3166.<ref>{{cite web| url=https://www.iso.org/obp/ui/#iso:code:3166:PS | title=ISO 3166 information for PS| publisher=International Organization for Standardization|accessdate=April 3, 2014}}</ref>
+
+The codes are chosen, according to the ISO 3166/MA, "to reflect the significant, unique component of the country name in order to allow a visual association between country name and country code".<ref name="faqs_specific" /> For this reason, common components of country names like "Republic", "Kingdom", "United", "Federal" or "Democratic" are normally not used for deriving the code elements. As a consequence, for example, the [[United Kingdom]] is officially assigned the alpha-2 code <tt>GB</tt> rather than <tt>UK</tt>, based on its official name "United Kingdom of Great Britain and Northern Ireland" (although <tt>UK</tt> is [[#Reserved and user-assigned code elements|reserved]] on the request of the United Kingdom). Some codes are chosen based on the native names of the countries. For example, [[Germany]] is assigned the alpha-2 code <tt>DE</tt>, based on its native name "Deutschland".
+
+==Information included==
+ISO 3166-1 is published officially in both [[English language|English]] and [[French language|French]]. Since the second edition of ISO 3166-1, the following columns are included for each entry:
+# Country Name&nbsp;– English (or French) short name (all upper-case)
+# English (or French) short name (upper/lower case)
+# English (or French) full name
+# [[ISO 3166-1 alpha-2|Alpha-2 code]]
+# [[ISO 3166-1 alpha-3|Alpha-3 code]]
+# [[ISO 3166-1 numeric|Numeric code]]
+# Remarks
+# Independent (# denotes the country is considered a [[sovereign state]])
+# Additional information: [[Official language|Administrative language(s)]] [[ISO 639-1|alpha-2 code element(s)]]
+# Additional information: Administrative language(s) [[ISO 639-2|alpha-3 code element(s)]]
+# Additional information: [[List of countries by native names|Local short name(s)]]
+
+==Current codes==
+
+===Officially assigned code elements===
+The following is a complete ISO 3166-1 encoding list of the countries which are assigned official codes. It is listed in alphabetical order by the English short country name (upper/lower case) used by the ISO 3166/MA.<ref>{{cite web| url=http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm| title=Country names and code elements| publisher=ISO}}&nbsp;– Note: The source actually shows only the "Country Name" element, in all upper-case. The table here has been upper/lower-cased per Wikipedia standards, but should closely resemble the upper/lower-case elements that are not freely available from the ISO.</ref>
+
+''Click on the button in the header to sort each column. For more information on each country and the assignment of its code elements, click on its [[ISO 3166-1 alpha-2#Officially assigned code elements|alpha-2 code]].''
+
+{| class="wikitable sortable"
+|-
+!scope="col"| English short name (upper/lower case)
+!scope="col"| [[ISO 3166-1 alpha-2#Officially assigned code elements|Alpha-2 code]]
+!scope="col"| [[ISO 3166-1 alpha-3#Officially assigned code elements|Alpha-3 code]]
+!scope="col"| [[ISO 3166-1 numeric#Officially assigned code elements|Numeric code]]
+!scope="col"| [[ISO 3166-2]] codes
+|-
+| [[Afghanistan]]
+| [[ISO 3166-1 alpha-2#AF|<tt>AF</tt>]] || <tt>AFG</tt> || <tt>004</tt> || [[ISO 3166-2:AF]]
+|-
+| {{sort|Aland Islands|[[Åland Islands]]}}
+| [[ISO 3166-1 alpha-2#AX|<tt>AX</tt>]] || <tt>ALA</tt> || <tt>248</tt> || [[ISO 3166-2:AX]]
+|-
+| [[Albania]]
+| [[ISO 3166-1 alpha-2#AL|<tt>AL</tt>]] || <tt>ALB</tt> || <tt>008</tt> || [[ISO 3166-2:AL]]
+|-
+| [[Algeria]]
+| [[ISO 3166-1 alpha-2#DZ|<tt>DZ</tt>]] || <tt>DZA</tt> || <tt>012</tt> || [[ISO 3166-2:DZ]]
+|-
+| [[American Samoa]]
+| [[ISO 3166-1 alpha-2#AS|<tt>AS</tt>]] || <tt>ASM</tt> || <tt>016</tt> || [[ISO 3166-2:AS]]
+|-
+| [[Andorra]]
+| [[ISO 3166-1 alpha-2#AD|<tt>AD</tt>]] || <tt>AND</tt> || <tt>020</tt> || [[ISO 3166-2:AD]]
+|-
+| [[Angola]]
+| [[ISO 3166-1 alpha-2#AO|<tt>AO</tt>]] || <tt>AGO</tt> || <tt>024</tt> || [[ISO 3166-2:AO]]
+|-
+| [[Anguilla]]
+| [[ISO 3166-1 alpha-2#AI|<tt>AI</tt>]] || <tt>AIA</tt> || <tt>660</tt> || [[ISO 3166-2:AI]]
+|-
+| [[Antarctica]]
+| [[ISO 3166-1 alpha-2#AQ|<tt>AQ</tt>]] || <tt>ATA</tt> || <tt>010</tt> || [[ISO 3166-2:AQ]]
+|-
+| [[Antigua and Barbuda]]
+| [[ISO 3166-1 alpha-2#AG|<tt>AG</tt>]] || <tt>ATG</tt> || <tt>028</tt> || [[ISO 3166-2:AG]]
+|-
+| [[Argentina]]
+| [[ISO 3166-1 alpha-2#AR|<tt>AR</tt>]] || <tt>ARG</tt> || <tt>032</tt> || [[ISO 3166-2:AR]]
+|-
+| [[Armenia]]
+| [[ISO 3166-1 alpha-2#AM|<tt>AM</tt>]] || <tt>ARM</tt> || <tt>051</tt> || [[ISO 3166-2:AM]]
+|-
+| [[Aruba]]
+| [[ISO 3166-1 alpha-2#AW|<tt>AW</tt>]] || <tt>ABW</tt> || <tt>533</tt> || [[ISO 3166-2:AW]]
+|-
+| [[Australia]]
+| [[ISO 3166-1 alpha-2#AU|<tt>AU</tt>]] || <tt>AUS</tt> || <tt>036</tt> || [[ISO 3166-2:AU]]
+|-
+| [[Austria]]
+| [[ISO 3166-1 alpha-2#AT|<tt>AT</tt>]] || <tt>AUT</tt> || <tt>040</tt> || [[ISO 3166-2:AT]]
+|-
+| [[Azerbaijan]]
+| [[ISO 3166-1 alpha-2#AZ|<tt>AZ</tt>]] || <tt>AZE</tt> || <tt>031</tt> || [[ISO 3166-2:AZ]]
+|-
+| [[Bahamas]]
+| [[ISO 3166-1 alpha-2#BS|<tt>BS</tt>]] || <tt>BHS</tt> || <tt>044</tt> || [[ISO 3166-2:BS]]
+|-
+| [[Bahrain]]
+| [[ISO 3166-1 alpha-2#BH|<tt>BH</tt>]] || <tt>BHR</tt> || <tt>048</tt> || [[ISO 3166-2:BH]]
+|-
+| [[Bangladesh]]
+| [[ISO 3166-1 alpha-2#BD|<tt>BD</tt>]] || <tt>BGD</tt> || <tt>050</tt> || [[ISO 3166-2:BD]]
+|-
+| [[Barbados]]
+| [[ISO 3166-1 alpha-2#BB|<tt>BB</tt>]] || <tt>BRB</tt> || <tt>052</tt> || [[ISO 3166-2:BB]]
+|-
+| [[Belarus]]
+| [[ISO 3166-1 alpha-2#BY|<tt>BY</tt>]] || <tt>BLR</tt> || <tt>112</tt> || [[ISO 3166-2:BY]]
+|-
+| [[Belgium]]
+| [[ISO 3166-1 alpha-2#BE|<tt>BE</tt>]] || <tt>BEL</tt> || <tt>056</tt> || [[ISO 3166-2:BE]]
+|-
+| [[Belize]]
+| [[ISO 3166-1 alpha-2#BZ|<tt>BZ</tt>]] || <tt>BLZ</tt> || <tt>084</tt> || [[ISO 3166-2:BZ]]
+|-
+| [[Benin]]
+| [[ISO 3166-1 alpha-2#BJ|<tt>BJ</tt>]] || <tt>BEN</tt> || <tt>204</tt> || [[ISO 3166-2:BJ]]
+|-
+| [[Bermuda]]
+| [[ISO 3166-1 alpha-2#BM|<tt>BM</tt>]] || <tt>BMU</tt> || <tt>060</tt> || [[ISO 3166-2:BM]]
+|-
+| [[Bhutan]]
+| [[ISO 3166-1 alpha-2#BT|<tt>BT</tt>]] || <tt>BTN</tt> || <tt>064</tt> || [[ISO 3166-2:BT]]
+|-
+| [[Bolivia, Plurinational State of]]
+| [[ISO 3166-1 alpha-2#BO|<tt>BO</tt>]] || <tt>BOL</tt> || <tt>068</tt> || [[ISO 3166-2:BO]]
+|-
+| [[Bonaire, Sint Eustatius and Saba]]
+| [[ISO 3166-1 alpha-2#BQ|<tt>BQ</tt>]] || <tt>BES</tt> || <tt>535</tt> || [[ISO 3166-2:BQ]]
+|-
+| [[Bosnia and Herzegovina]]
+| [[ISO 3166-1 alpha-2#BA|<tt>BA</tt>]] || <tt>BIH</tt> || <tt>070</tt> || [[ISO 3166-2:BA]]
+|-
+| [[Botswana]]
+| [[ISO 3166-1 alpha-2#BW|<tt>BW</tt>]] || <tt>BWA</tt> || <tt>072</tt> || [[ISO 3166-2:BW]]
+|-
+| [[Bouvet Island]]
+| [[ISO 3166-1 alpha-2#BV|<tt>BV</tt>]] || <tt>BVT</tt> || <tt>074</tt> || [[ISO 3166-2:BV]]
+|-
+| [[Brazil]]
+| [[ISO 3166-1 alpha-2#BR|<tt>BR</tt>]] || <tt>BRA</tt> || <tt>076</tt> || [[ISO 3166-2:BR]]
+|-
+| [[British Indian Ocean Territory]]
+| [[ISO 3166-1 alpha-2#IO|<tt>IO</tt>]] || <tt>IOT</tt> || <tt>086</tt> || [[ISO 3166-2:IO]]
+|-
+| [[Brunei Darussalam]]
+| [[ISO 3166-1 alpha-2#BN|<tt>BN</tt>]] || <tt>BRN</tt> || <tt>096</tt> || [[ISO 3166-2:BN]]
+|-
+| [[Bulgaria]]
+| [[ISO 3166-1 alpha-2#BG|<tt>BG</tt>]] || <tt>BGR</tt> || <tt>100</tt> || [[ISO 3166-2:BG]]
+|-
+| [[Burkina Faso]]
+| [[ISO 3166-1 alpha-2#BF|<tt>BF</tt>]] || <tt>BFA</tt> || <tt>854</tt> || [[ISO 3166-2:BF]]
+|-
+| [[Burundi]]
+| [[ISO 3166-1 alpha-2#BI|<tt>BI</tt>]] || <tt>BDI</tt> || <tt>108</tt> || [[ISO 3166-2:BI]]
+|-
+| [[Cambodia]]
+| [[ISO 3166-1 alpha-2#KH|<tt>KH</tt>]] || <tt>KHM</tt> || <tt>116</tt> || [[ISO 3166-2:KH]]
+|-
+| [[Cameroon]]
+| [[ISO 3166-1 alpha-2#CM|<tt>CM</tt>]] || <tt>CMR</tt> || <tt>120</tt> || [[ISO 3166-2:CM]]
+|-
+| [[Canada]]
+| [[ISO 3166-1 alpha-2#CA|<tt>CA</tt>]] || <tt>CAN</tt> || <tt>124</tt> || [[ISO 3166-2:CA]]
+|-
+| [[Cabo Verde]]
+| [[ISO 3166-1 alpha-2#CV|<tt>CV</tt>]] || <tt>CPV</tt> || <tt>132</tt> || [[ISO 3166-2:CV]]
+|-
+| [[Cayman Islands]]
+| [[ISO 3166-1 alpha-2#KY|<tt>KY</tt>]] || <tt>CYM</tt> || <tt>136</tt> || [[ISO 3166-2:KY]]
+|-
+| [[Central African Republic]]
+| [[ISO 3166-1 alpha-2#CF|<tt>CF</tt>]] || <tt>CAF</tt> || <tt>140</tt> || [[ISO 3166-2:CF]]
+|-
+| [[Chad]]
+| [[ISO 3166-1 alpha-2#TD|<tt>TD</tt>]] || <tt>TCD</tt> || <tt>148</tt> || [[ISO 3166-2:TD]]
+|-
+| [[Chile]]
+| [[ISO 3166-1 alpha-2#CL|<tt>CL</tt>]] || <tt>CHL</tt> || <tt>152</tt> || [[ISO 3166-2:CL]]
+|-
+| [[China]]
+| [[ISO 3166-1 alpha-2#CN|<tt>CN</tt>]] || <tt>CHN</tt> || <tt>156</tt> || [[ISO 3166-2:CN]]
+|-
+| [[Christmas Island]]
+| [[ISO 3166-1 alpha-2#CX|<tt>CX</tt>]] || <tt>CXR</tt> || <tt>162</tt> || [[ISO 3166-2:CX]]
+|-
+| [[Cocos (Keeling) Islands]]
+| [[ISO 3166-1 alpha-2#CC|<tt>CC</tt>]] || <tt>CCK</tt> || <tt>166</tt> || [[ISO 3166-2:CC]]
+|-
+| [[Colombia]]
+| [[ISO 3166-1 alpha-2#CO|<tt>CO</tt>]] || <tt>COL</tt> || <tt>170</tt> || [[ISO 3166-2:CO]]
+|-
+| [[Comoros]]
+| [[ISO 3166-1 alpha-2#KM|<tt>KM</tt>]] || <tt>COM</tt> || <tt>174</tt> || [[ISO 3166-2:KM]]
+|-
+| [[Republic of the Congo|Congo]]
+| [[ISO 3166-1 alpha-2#CG|<tt>CG</tt>]] || <tt>COG</tt> || <tt>178</tt> || [[ISO 3166-2:CG]]
+|-
+| [[Congo, the Democratic Republic of the]]
+| [[ISO 3166-1 alpha-2#CD|<tt>CD</tt>]] || <tt>COD</tt> || <tt>180</tt> || [[ISO 3166-2:CD]]
+|-
+| [[Cook Islands]]
+| [[ISO 3166-1 alpha-2#CK|<tt>CK</tt>]] || <tt>COK</tt> || <tt>184</tt> || [[ISO 3166-2:CK]]
+|-
+| [[Costa Rica]]
+| [[ISO 3166-1 alpha-2#CR|<tt>CR</tt>]] || <tt>CRI</tt> || <tt>188</tt> || [[ISO 3166-2:CR]]
+|-
+| {{sort|Cote d'Ivoire|[[Côte d'Ivoire]]}}
+| [[ISO 3166-1 alpha-2#CI|<tt>CI</tt>]] || <tt>CIV</tt> || <tt>384</tt> || [[ISO 3166-2:CI]]
+|-
+| [[Croatia]]
+| [[ISO 3166-1 alpha-2#HR|<tt>HR</tt>]] || <tt>HRV</tt> || <tt>191</tt> || [[ISO 3166-2:HR]]
+|-
+| [[Cuba]]
+| [[ISO 3166-1 alpha-2#CU|<tt>CU</tt>]] || <tt>CUB</tt> || <tt>192</tt> || [[ISO 3166-2:CU]]
+|-
+| {{sort|Curacao|[[Curaçao]]}}
+| [[ISO 3166-1 alpha-2#CW|<tt>CW</tt>]] || <tt>CUW</tt> || <tt>531</tt> || [[ISO 3166-2:CW]]
+|-
+| [[Cyprus]]
+| [[ISO 3166-1 alpha-2#CY|<tt>CY</tt>]] || <tt>CYP</tt> || <tt>196</tt> || [[ISO 3166-2:CY]]
+|-
+| [[Czech Republic]]
+| [[ISO 3166-1 alpha-2#CZ|<tt>CZ</tt>]] || <tt>CZE</tt> || <tt>203</tt> || [[ISO 3166-2:CZ]]
+|-
+| [[Denmark]]
+| [[ISO 3166-1 alpha-2#DK|<tt>DK</tt>]] || <tt>DNK</tt> || <tt>208</tt> || [[ISO 3166-2:DK]]
+|-
+| [[Djibouti]]
+| [[ISO 3166-1 alpha-2#DJ|<tt>DJ</tt>]] || <tt>DJI</tt> || <tt>262</tt> || [[ISO 3166-2:DJ]]
+|-
+| [[Dominica]]
+| [[ISO 3166-1 alpha-2#DM|<tt>DM</tt>]] || <tt>DMA</tt> || <tt>212</tt> || [[ISO 3166-2:DM]]
+|-
+| [[Dominican Republic]]
+| [[ISO 3166-1 alpha-2#DO|<tt>DO</tt>]] || <tt>DOM</tt> || <tt>214</tt> || [[ISO 3166-2:DO]]
+|-
+| [[Ecuador]]
+| [[ISO 3166-1 alpha-2#EC|<tt>EC</tt>]] || <tt>ECU</tt> || <tt>218</tt> || [[ISO 3166-2:EC]]
+|-
+| [[Egypt]]
+| [[ISO 3166-1 alpha-2#EG|<tt>EG</tt>]] || <tt>EGY</tt> || <tt>818</tt> || [[ISO 3166-2:EG]]
+|-
+| [[El Salvador]]
+| [[ISO 3166-1 alpha-2#SV|<tt>SV</tt>]] || <tt>SLV</tt> || <tt>222</tt> || [[ISO 3166-2:SV]]
+|-
+| [[Equatorial Guinea]]
+| [[ISO 3166-1 alpha-2#GQ|<tt>GQ</tt>]] || <tt>GNQ</tt> || <tt>226</tt> || [[ISO 3166-2:GQ]]
+|-
+| [[Eritrea]]
+| [[ISO 3166-1 alpha-2#ER|<tt>ER</tt>]] || <tt>ERI</tt> || <tt>232</tt> || [[ISO 3166-2:ER]]
+|-
+| [[Estonia]]
+| [[ISO 3166-1 alpha-2#EE|<tt>EE</tt>]] || <tt>EST</tt> || <tt>233</tt> || [[ISO 3166-2:EE]]
+|-
+| [[Ethiopia]]
+| [[ISO 3166-1 alpha-2#ET|<tt>ET</tt>]] || <tt>ETH</tt> || <tt>231</tt> || [[ISO 3166-2:ET]]
+|-
+| [[Falkland Islands (Malvinas)]]
+| [[ISO 3166-1 alpha-2#FK|<tt>FK</tt>]] || <tt>FLK</tt> || <tt>238</tt> || [[ISO 3166-2:FK]]
+|-
+| [[Faroe Islands]]
+| [[ISO 3166-1 alpha-2#FO|<tt>FO</tt>]] || <tt>FRO</tt> || <tt>234</tt> || [[ISO 3166-2:FO]]
+|-
+| [[Fiji]]
+| [[ISO 3166-1 alpha-2#FJ|<tt>FJ</tt>]] || <tt>FJI</tt> || <tt>242</tt> || [[ISO 3166-2:FJ]]
+|-
+| [[Finland]]
+| [[ISO 3166-1 alpha-2#FI|<tt>FI</tt>]] || <tt>FIN</tt> || <tt>246</tt> || [[ISO 3166-2:FI]]
+|-
+| [[France]]
+| [[ISO 3166-1 alpha-2#FR|<tt>FR</tt>]] || <tt>FRA</tt> || <tt>250</tt> || [[ISO 3166-2:FR]]
+|-
+| [[French Guiana]]
+| [[ISO 3166-1 alpha-2#GF|<tt>GF</tt>]] || <tt>GUF</tt> || <tt>254</tt> || [[ISO 3166-2:GF]]
+|-
+| [[French Polynesia]]
+| [[ISO 3166-1 alpha-2#PF|<tt>PF</tt>]] || <tt>PYF</tt> || <tt>258</tt> || [[ISO 3166-2:PF]]
+|-
+| [[French Southern Territories]]
+| [[ISO 3166-1 alpha-2#TF|<tt>TF</tt>]] || <tt>ATF</tt> || <tt>260</tt> || [[ISO 3166-2:TF]]
+|-
+| [[Gabon]]
+| [[ISO 3166-1 alpha-2#GA|<tt>GA</tt>]] || <tt>GAB</tt> || <tt>266</tt> || [[ISO 3166-2:GA]]
+|-
+| [[Gambia]]
+| [[ISO 3166-1 alpha-2#GM|<tt>GM</tt>]] || <tt>GMB</tt> || <tt>270</tt> || [[ISO 3166-2:GM]]
+|-
+| [[Georgia (country)|Georgia]]
+| [[ISO 3166-1 alpha-2#GE|<tt>GE</tt>]] || <tt>GEO</tt> || <tt>268</tt> || [[ISO 3166-2:GE]]
+|-
+| [[Germany]]
+| [[ISO 3166-1 alpha-2#DE|<tt>DE</tt>]] || <tt>DEU</tt> || <tt>276</tt> || [[ISO 3166-2:DE]]
+|-
+| [[Ghana]]
+| [[ISO 3166-1 alpha-2#GH|<tt>GH</tt>]] || <tt>GHA</tt> || <tt>288</tt> || [[ISO 3166-2:GH]]
+|-
+| [[Gibraltar]]
+| [[ISO 3166-1 alpha-2#GI|<tt>GI</tt>]] || <tt>GIB</tt> || <tt>292</tt> || [[ISO 3166-2:GI]]
+|-
+| [[Greece]]
+| [[ISO 3166-1 alpha-2#GR|<tt>GR</tt>]] || <tt>GRC</tt> || <tt>300</tt> || [[ISO 3166-2:GR]]
+|-
+| [[Greenland]]
+| [[ISO 3166-1 alpha-2#GL|<tt>GL</tt>]] || <tt>GRL</tt> || <tt>304</tt> || [[ISO 3166-2:GL]]
+|-
+| [[Grenada]]
+| [[ISO 3166-1 alpha-2#GD|<tt>GD</tt>]] || <tt>GRD</tt> || <tt>308</tt> || [[ISO 3166-2:GD]]
+|-
+| [[Guadeloupe]]
+| [[ISO 3166-1 alpha-2#GP|<tt>GP</tt>]] || <tt>GLP</tt> || <tt>312</tt> || [[ISO 3166-2:GP]]
+|-
+| [[Guam]]
+| [[ISO 3166-1 alpha-2#GU|<tt>GU</tt>]] || <tt>GUM</tt> || <tt>316</tt> || [[ISO 3166-2:GU]]
+|-
+| [[Guatemala]]
+| [[ISO 3166-1 alpha-2#GT|<tt>GT</tt>]] || <tt>GTM</tt> || <tt>320</tt> || [[ISO 3166-2:GT]]
+|-
+| [[Guernsey]]
+| [[ISO 3166-1 alpha-2#GG|<tt>GG</tt>]] || <tt>GGY</tt> || <tt>831</tt> || [[ISO 3166-2:GG]]
+|-
+| [[Guinea]]
+| [[ISO 3166-1 alpha-2#GN|<tt>GN</tt>]] || <tt>GIN</tt> || <tt>324</tt> || [[ISO 3166-2:GN]]
+|-
+| [[Guinea-Bissau]]
+| [[ISO 3166-1 alpha-2#GW|<tt>GW</tt>]] || <tt>GNB</tt> || <tt>624</tt> || [[ISO 3166-2:GW]]
+|-
+| [[Guyana]]
+| [[ISO 3166-1 alpha-2#GY|<tt>GY</tt>]] || <tt>GUY</tt> || <tt>328</tt> || [[ISO 3166-2:GY]]
+|-
+| [[Haiti]]
+| [[ISO 3166-1 alpha-2#HT|<tt>HT</tt>]] || <tt>HTI</tt> || <tt>332</tt> || [[ISO 3166-2:HT]]
+|-
+| [[Heard Island and McDonald Islands]]
+| [[ISO 3166-1 alpha-2#HM|<tt>HM</tt>]] || <tt>HMD</tt> || <tt>334</tt> || [[ISO 3166-2:HM]]
+|-
+| [[Vatican City State|Holy See (Vatican City State)]]
+| [[ISO 3166-1 alpha-2#VA|<tt>VA</tt>]] || <tt>VAT</tt> || <tt>336</tt> || [[ISO 3166-2:VA]]
+|-
+| [[Honduras]]
+| [[ISO 3166-1 alpha-2#HN|<tt>HN</tt>]] || <tt>HND</tt> || <tt>340</tt> || [[ISO 3166-2:HN]]
+|-
+| [[Hong Kong]]
+| [[ISO 3166-1 alpha-2#HK|<tt>HK</tt>]] || <tt>HKG</tt> || <tt>344</tt> || [[ISO 3166-2:HK]]
+|-
+| [[Hungary]]
+| [[ISO 3166-1 alpha-2#HU|<tt>HU</tt>]] || <tt>HUN</tt> || <tt>348</tt> || [[ISO 3166-2:HU]]
+|-
+| [[Iceland]]
+| [[ISO 3166-1 alpha-2#IS|<tt>IS</tt>]] || <tt>ISL</tt> || <tt>352</tt> || [[ISO 3166-2:IS]]
+|-
+| [[India]]
+| [[ISO 3166-1 alpha-2#IN|<tt>IN</tt>]] || <tt>IND</tt> || <tt>356</tt> || [[ISO 3166-2:IN]]
+|-
+| [[Indonesia]]
+| [[ISO 3166-1 alpha-2#ID|<tt>ID</tt>]] || <tt>IDN</tt> || <tt>360</tt> || [[ISO 3166-2:ID]]
+|-
+| [[Iran, Islamic Republic of]]
+| [[ISO 3166-1 alpha-2#IR|<tt>IR</tt>]] || <tt>IRN</tt> || <tt>364</tt> || [[ISO 3166-2:IR]]
+|-
+| [[Iraq]]
+| [[ISO 3166-1 alpha-2#IQ|<tt>IQ</tt>]] || <tt>IRQ</tt> || <tt>368</tt> || [[ISO 3166-2:IQ]]
+|-
+| [[Republic of Ireland|Ireland]]
+| [[ISO 3166-1 alpha-2#IE|<tt>IE</tt>]] || <tt>IRL</tt> || <tt>372</tt> || [[ISO 3166-2:IE]]
+|-
+| [[Isle of Man]]
+| [[ISO 3166-1 alpha-2#IM|<tt>IM</tt>]] || <tt>IMN</tt> || <tt>833</tt> || [[ISO 3166-2:IM]]
+|-
+| [[Israel]]
+| [[ISO 3166-1 alpha-2#IL|<tt>IL</tt>]] || <tt>ISR</tt> || <tt>376</tt> || [[ISO 3166-2:IL]]
+|-
+| [[Italy]]
+| [[ISO 3166-1 alpha-2#IT|<tt>IT</tt>]] || <tt>ITA</tt> || <tt>380</tt> || [[ISO 3166-2:IT]]
+|-
+| [[Jamaica]]
+| [[ISO 3166-1 alpha-2#JM|<tt>JM</tt>]] || <tt>JAM</tt> || <tt>388</tt> || [[ISO 3166-2:JM]]
+|-
+| [[Japan]]
+| [[ISO 3166-1 alpha-2#JP|<tt>JP</tt>]] || <tt>JPN</tt> || <tt>392</tt> || [[ISO 3166-2:JP]]
+|-
+| [[Jersey]]
+| [[ISO 3166-1 alpha-2#JE|<tt>JE</tt>]] || <tt>JEY</tt> || <tt>832</tt> || [[ISO 3166-2:JE]]
+|-
+| [[Jordan]]
+| [[ISO 3166-1 alpha-2#JO|<tt>JO</tt>]] || <tt>JOR</tt> || <tt>400</tt> || [[ISO 3166-2:JO]]
+|-
+| [[Kazakhstan]]
+| [[ISO 3166-1 alpha-2#KZ|<tt>KZ</tt>]] || <tt>KAZ</tt> || <tt>398</tt> || [[ISO 3166-2:KZ]]
+|-
+| [[Kenya]]
+| [[ISO 3166-1 alpha-2#KE|<tt>KE</tt>]] || <tt>KEN</tt> || <tt>404</tt> || [[ISO 3166-2:KE]]
+|-
+| [[Kiribati]]
+| [[ISO 3166-1 alpha-2#KI|<tt>KI</tt>]] || <tt>KIR</tt> || <tt>296</tt> || [[ISO 3166-2:KI]]
+|-
+| [[Korea, Democratic People's Republic of]]
+| [[ISO 3166-1 alpha-2#KP|<tt>KP</tt>]] || <tt>PRK</tt> || <tt>408</tt> || [[ISO 3166-2:KP]]
+|-
+| [[Korea, Republic of]]
+| [[ISO 3166-1 alpha-2#KR|<tt>KR</tt>]] || <tt>KOR</tt> || <tt>410</tt> || [[ISO 3166-2:KR]]
+|-
+| [[Kuwait]]
+| [[ISO 3166-1 alpha-2#KW|<tt>KW</tt>]] || <tt>KWT</tt> || <tt>414</tt> || [[ISO 3166-2:KW]]
+|-
+| [[Kyrgyzstan]]
+| [[ISO 3166-1 alpha-2#KG|<tt>KG</tt>]] || <tt>KGZ</tt> || <tt>417</tt> || [[ISO 3166-2:KG]]
+|-
+| [[Lao People's Democratic Republic]]
+| [[ISO 3166-1 alpha-2#LA|<tt>LA</tt>]] || <tt>LAO</tt> || <tt>418</tt> || [[ISO 3166-2:LA]]
+|-
+| [[Latvia]]
+| [[ISO 3166-1 alpha-2#LV|<tt>LV</tt>]] || <tt>LVA</tt> || <tt>428</tt> || [[ISO 3166-2:LV]]
+|-
+| [[Lebanon]]
+| [[ISO 3166-1 alpha-2#LB|<tt>LB</tt>]] || <tt>LBN</tt> || <tt>422</tt> || [[ISO 3166-2:LB]]
+|-
+| [[Lesotho]]
+| [[ISO 3166-1 alpha-2#LS|<tt>LS</tt>]] || <tt>LSO</tt> || <tt>426</tt> || [[ISO 3166-2:LS]]
+|-
+| [[Liberia]]
+| [[ISO 3166-1 alpha-2#LR|<tt>LR</tt>]] || <tt>LBR</tt> || <tt>430</tt> || [[ISO 3166-2:LR]]
+|-
+| [[Libya]]
+| [[ISO 3166-1 alpha-2#LY|<tt>LY</tt>]] || <tt>LBY</tt> || <tt>434</tt> || [[ISO 3166-2:LY]]
+|-
+| [[Liechtenstein]]
+| [[ISO 3166-1 alpha-2#LI|<tt>LI</tt>]] || <tt>LIE</tt> || <tt>438</tt> || [[ISO 3166-2:LI]]
+|-
+| [[Lithuania]]
+| [[ISO 3166-1 alpha-2#LT|<tt>LT</tt>]] || <tt>LTU</tt> || <tt>440</tt> || [[ISO 3166-2:LT]]
+|-
+| [[Luxembourg]]
+| [[ISO 3166-1 alpha-2#LU|<tt>LU</tt>]] || <tt>LUX</tt> || <tt>442</tt> || [[ISO 3166-2:LU]]
+|-
+| [[Macao]]
+| [[ISO 3166-1 alpha-2#MO|<tt>MO</tt>]] || <tt>MAC</tt> || <tt>446</tt> || [[ISO 3166-2:MO]]
+|-
+| [[Republic of Macedonia|Macedonia, the former Yugoslav Republic of]]
+| [[ISO 3166-1 alpha-2#MK|<tt>MK</tt>]] || <tt>MKD</tt> || <tt>807</tt> || [[ISO 3166-2:MK]]
+|-
+| [[Madagascar]]
+| [[ISO 3166-1 alpha-2#MG|<tt>MG</tt>]] || <tt>MDG</tt> || <tt>450</tt> || [[ISO 3166-2:MG]]
+|-
+| [[Malawi]]
+| [[ISO 3166-1 alpha-2#MW|<tt>MW</tt>]] || <tt>MWI</tt> || <tt>454</tt> || [[ISO 3166-2:MW]]
+|-
+| [[Malaysia]]
+| [[ISO 3166-1 alpha-2#MY|<tt>MY</tt>]] || <tt>MYS</tt> || <tt>458</tt> || [[ISO 3166-2:MY]]
+|-
+| [[Maldives]]
+| [[ISO 3166-1 alpha-2#MV|<tt>MV</tt>]] || <tt>MDV</tt> || <tt>462</tt> || [[ISO 3166-2:MV]]
+|-
+| [[Mali]]
+| [[ISO 3166-1 alpha-2#ML|<tt>ML</tt>]] || <tt>MLI</tt> || <tt>466</tt> || [[ISO 3166-2:ML]]
+|-
+| [[Malta]]
+| [[ISO 3166-1 alpha-2#MT|<tt>MT</tt>]] || <tt>MLT</tt> || <tt>470</tt> || [[ISO 3166-2:MT]]
+|-
+| [[Marshall Islands]]
+| [[ISO 3166-1 alpha-2#MH|<tt>MH</tt>]] || <tt>MHL</tt> || <tt>584</tt> || [[ISO 3166-2:MH]]
+|-
+| [[Martinique]]
+| [[ISO 3166-1 alpha-2#MQ|<tt>MQ</tt>]] || <tt>MTQ</tt> || <tt>474</tt> || [[ISO 3166-2:MQ]]
+|-
+| [[Mauritania]]
+| [[ISO 3166-1 alpha-2#MR|<tt>MR</tt>]] || <tt>MRT</tt> || <tt>478</tt> || [[ISO 3166-2:MR]]
+|-
+| [[Mauritius]]
+| [[ISO 3166-1 alpha-2#MU|<tt>MU</tt>]] || <tt>MUS</tt> || <tt>480</tt> || [[ISO 3166-2:MU]]
+|-
+| [[Mayotte]]
+| [[ISO 3166-1 alpha-2#YT|<tt>YT</tt>]] || <tt>MYT</tt> || <tt>175</tt> || [[ISO 3166-2:YT]]
+|-
+| [[Mexico]]
+| [[ISO 3166-1 alpha-2#MX|<tt>MX</tt>]] || <tt>MEX</tt> || <tt>484</tt> || [[ISO 3166-2:MX]]
+|-
+| [[Micronesia, Federated States of]]
+| [[ISO 3166-1 alpha-2#FM|<tt>FM</tt>]] || <tt>FSM</tt> || <tt>583</tt> || [[ISO 3166-2:FM]]
+|-
+| [[Moldova, Republic of]]
+| [[ISO 3166-1 alpha-2#MD|<tt>MD</tt>]] || <tt>MDA</tt> || <tt>498</tt> || [[ISO 3166-2:MD]]
+|-
+| [[Monaco]]
+| [[ISO 3166-1 alpha-2#MC|<tt>MC</tt>]] || <tt>MCO</tt> || <tt>492</tt> || [[ISO 3166-2:MC]]
+|-
+| [[Mongolia]]
+| [[ISO 3166-1 alpha-2#MN|<tt>MN</tt>]] || <tt>MNG</tt> || <tt>496</tt> || [[ISO 3166-2:MN]]
+|-
+| [[Montenegro]]
+| [[ISO 3166-1 alpha-2#ME|<tt>ME</tt>]] || <tt>MNE</tt> || <tt>499</tt> || [[ISO 3166-2:ME]]
+|-
+| [[Montserrat]]
+| [[ISO 3166-1 alpha-2#MS|<tt>MS</tt>]] || <tt>MSR</tt> || <tt>500</tt> || [[ISO 3166-2:MS]]
+|-
+| [[Morocco]]
+| [[ISO 3166-1 alpha-2#MA|<tt>MA</tt>]] || <tt>MAR</tt> || <tt>504</tt> || [[ISO 3166-2:MA]]
+|-
+| [[Mozambique]]
+| [[ISO 3166-1 alpha-2#MZ|<tt>MZ</tt>]] || <tt>MOZ</tt> || <tt>508</tt> || [[ISO 3166-2:MZ]]
+|-
+| [[Myanmar]]
+| [[ISO 3166-1 alpha-2#MM|<tt>MM</tt>]] || <tt>MMR</tt> || <tt>104</tt> || [[ISO 3166-2:MM]]
+|-
+| [[Namibia]]
+| [[ISO 3166-1 alpha-2#NA|<tt>NA</tt>]] || <tt>NAM</tt> || <tt>516</tt> || [[ISO 3166-2:NA]]
+|-
+| [[Nauru]]
+| [[ISO 3166-1 alpha-2#NR|<tt>NR</tt>]] || <tt>NRU</tt> || <tt>520</tt> || [[ISO 3166-2:NR]]
+|-
+| [[Nepal]]
+| [[ISO 3166-1 alpha-2#NP|<tt>NP</tt>]] || <tt>NPL</tt> || <tt>524</tt> || [[ISO 3166-2:NP]]
+|-
+| [[Netherlands]]
+| [[ISO 3166-1 alpha-2#NL|<tt>NL</tt>]] || <tt>NLD</tt> || <tt>528</tt> || [[ISO 3166-2:NL]]
+|-
+| [[New Caledonia]]
+| [[ISO 3166-1 alpha-2#NC|<tt>NC</tt>]] || <tt>NCL</tt> || <tt>540</tt> || [[ISO 3166-2:NC]]
+|-
+| [[New Zealand]]
+| [[ISO 3166-1 alpha-2#NZ|<tt>NZ</tt>]] || <tt>NZL</tt> || <tt>554</tt> || [[ISO 3166-2:NZ]]
+|-
+| [[Nicaragua]]
+| [[ISO 3166-1 alpha-2#NI|<tt>NI</tt>]] || <tt>NIC</tt> || <tt>558</tt> || [[ISO 3166-2:NI]]
+|-
+| [[Niger]]
+| [[ISO 3166-1 alpha-2#NE|<tt>NE</tt>]] || <tt>NER</tt> || <tt>562</tt> || [[ISO 3166-2:NE]]
+|-
+| [[Nigeria]]
+| [[ISO 3166-1 alpha-2#NG|<tt>NG</tt>]] || <tt>NGA</tt> || <tt>566</tt> || [[ISO 3166-2:NG]]
+|-
+| [[Niue]]
+| [[ISO 3166-1 alpha-2#NU|<tt>NU</tt>]] || <tt>NIU</tt> || <tt>570</tt> || [[ISO 3166-2:NU]]
+|-
+| [[Norfolk Island]]
+| [[ISO 3166-1 alpha-2#NF|<tt>NF</tt>]] || <tt>NFK</tt> || <tt>574</tt> || [[ISO 3166-2:NF]]
+|-
+| [[Northern Mariana Islands]]
+| [[ISO 3166-1 alpha-2#MP|<tt>MP</tt>]] || <tt>MNP</tt> || <tt>580</tt> || [[ISO 3166-2:MP]]
+|-
+| [[Norway]]
+| [[ISO 3166-1 alpha-2#NO|<tt>NO</tt>]] || <tt>NOR</tt> || <tt>578</tt> || [[ISO 3166-2:NO]]
+|-
+| [[Oman]]
+| [[ISO 3166-1 alpha-2#OM|<tt>OM</tt>]] || <tt>OMN</tt> || <tt>512</tt> || [[ISO 3166-2:OM]]
+|-
+| [[Pakistan]]
+| [[ISO 3166-1 alpha-2#PK|<tt>PK</tt>]] || <tt>PAK</tt> || <tt>586</tt> || [[ISO 3166-2:PK]]
+|-
+| [[Palau]]
+| [[ISO 3166-1 alpha-2#PW|<tt>PW</tt>]] || <tt>PLW</tt> || <tt>585</tt> || [[ISO 3166-2:PW]]
+|-
+| [[State of Palestine|Palestine, State of]]
+| [[ISO 3166-1 alpha-2#PS|<tt>PS</tt>]] || <tt>PSE</tt> || <tt>275</tt> || [[ISO 3166-2:PS]]
+|-
+| [[Panama]]
+| [[ISO 3166-1 alpha-2#PA|<tt>PA</tt>]] || <tt>PAN</tt> || <tt>591</tt> || [[ISO 3166-2:PA]]
+|-
+| [[Papua New Guinea]]
+| [[ISO 3166-1 alpha-2#PG|<tt>PG</tt>]] || <tt>PNG</tt> || <tt>598</tt> || [[ISO 3166-2:PG]]
+|-
+| [[Paraguay]]
+| [[ISO 3166-1 alpha-2#PY|<tt>PY</tt>]] || <tt>PRY</tt> || <tt>600</tt> || [[ISO 3166-2:PY]]
+|-
+| [[Peru]]
+| [[ISO 3166-1 alpha-2#PE|<tt>PE</tt>]] || <tt>PER</tt> || <tt>604</tt> || [[ISO 3166-2:PE]]
+|-
+| [[Philippines]]
+| [[ISO 3166-1 alpha-2#PH|<tt>PH</tt>]] || <tt>PHL</tt> || <tt>608</tt> || [[ISO 3166-2:PH]]
+|-
+| [[Pitcairn]]
+| [[ISO 3166-1 alpha-2#PN|<tt>PN</tt>]] || <tt>PCN</tt> || <tt>612</tt> || [[ISO 3166-2:PN]]
+|-
+| [[Poland]]
+| [[ISO 3166-1 alpha-2#PL|<tt>PL</tt>]] || <tt>POL</tt> || <tt>616</tt> || [[ISO 3166-2:PL]]
+|-
+| [[Portugal]]
+| [[ISO 3166-1 alpha-2#PT|<tt>PT</tt>]] || <tt>PRT</tt> || <tt>620</tt> || [[ISO 3166-2:PT]]
+|-
+| [[Puerto Rico]]
+| [[ISO 3166-1 alpha-2#PR|<tt>PR</tt>]] || <tt>PRI</tt> || <tt>630</tt> || [[ISO 3166-2:PR]]
+|-
+| [[Qatar]]
+| [[ISO 3166-1 alpha-2#QA|<tt>QA</tt>]] || <tt>QAT</tt> || <tt>634</tt> || [[ISO 3166-2:QA]]
+|-
+| {{sort|Reunion|[[Réunion]]}}
+| [[ISO 3166-1 alpha-2#RE|<tt>RE</tt>]] || <tt>REU</tt> || <tt>638</tt> || [[ISO 3166-2:RE]]
+|-
+| [[Romania]]
+| [[ISO 3166-1 alpha-2#RO|<tt>RO</tt>]] || <tt>ROU</tt> || <tt>642</tt> || [[ISO 3166-2:RO]]
+|-
+| [[Russian Federation]]
+| [[ISO 3166-1 alpha-2#RU|<tt>RU</tt>]] || <tt>RUS</tt> || <tt>643</tt> || [[ISO 3166-2:RU]]
+|-
+| [[Rwanda]]
+| [[ISO 3166-1 alpha-2#RW|<tt>RW</tt>]] || <tt>RWA</tt> || <tt>646</tt> || [[ISO 3166-2:RW]]
+|-
+| {{sort|Saint Barthelemy|[[Saint Barthélemy]]}}
+| [[ISO 3166-1 alpha-2#BL|<tt>BL</tt>]] || <tt>BLM</tt> || <tt>652</tt> || [[ISO 3166-2:BL]]
+|-
+| [[Saint Helena, Ascension and Tristan da Cunha]]
+| [[ISO 3166-1 alpha-2#SH|<tt>SH</tt>]] || <tt>SHN</tt> || <tt>654</tt> || [[ISO 3166-2:SH]]
+|-
+| [[Saint Kitts and Nevis]]
+| [[ISO 3166-1 alpha-2#KN|<tt>KN</tt>]] || <tt>KNA</tt> || <tt>659</tt> || [[ISO 3166-2:KN]]
+|-
+| [[Saint Lucia]]
+| [[ISO 3166-1 alpha-2#LC|<tt>LC</tt>]] || <tt>LCA</tt> || <tt>662</tt> || [[ISO 3166-2:LC]]
+|-
+| [[Saint Martin (French part)]]
+| [[ISO 3166-1 alpha-2#MF|<tt>MF</tt>]] || <tt>MAF</tt> || <tt>663</tt> || [[ISO 3166-2:MF]]
+|-
+| [[Saint Pierre and Miquelon]]
+| [[ISO 3166-1 alpha-2#PM|<tt>PM</tt>]] || <tt>SPM</tt> || <tt>666</tt> || [[ISO 3166-2:PM]]
+|-
+| [[Saint Vincent and the Grenadines]]
+| [[ISO 3166-1 alpha-2#VC|<tt>VC</tt>]] || <tt>VCT</tt> || <tt>670</tt> || [[ISO 3166-2:VC]]
+|-
+| [[Samoa]]
+| [[ISO 3166-1 alpha-2#WS|<tt>WS</tt>]] || <tt>WSM</tt> || <tt>882</tt> || [[ISO 3166-2:WS]]
+|-
+| [[San Marino]]
+| [[ISO 3166-1 alpha-2#SM|<tt>SM</tt>]] || <tt>SMR</tt> || <tt>674</tt> || [[ISO 3166-2:SM]]
+|-
+| [[Sao Tome and Principe]]
+| [[ISO 3166-1 alpha-2#ST|<tt>ST</tt>]] || <tt>STP</tt> || <tt>678</tt> || [[ISO 3166-2:ST]]
+|-
+| [[Saudi Arabia]]
+| [[ISO 3166-1 alpha-2#SA|<tt>SA</tt>]] || <tt>SAU</tt> || <tt>682</tt> || [[ISO 3166-2:SA]]
+|-
+| [[Senegal]]
+| [[ISO 3166-1 alpha-2#SN|<tt>SN</tt>]] || <tt>SEN</tt> || <tt>686</tt> || [[ISO 3166-2:SN]]
+|-
+| [[Serbia]]
+| [[ISO 3166-1 alpha-2#RS|<tt>RS</tt>]] || <tt>SRB</tt> || <tt>688</tt> || [[ISO 3166-2:RS]]
+|-
+| [[Seychelles]]
+| [[ISO 3166-1 alpha-2#SC|<tt>SC</tt>]] || <tt>SYC</tt> || <tt>690</tt> || [[ISO 3166-2:SC]]
+|-
+| [[Sierra Leone]]
+| [[ISO 3166-1 alpha-2#SL|<tt>SL</tt>]] || <tt>SLE</tt> || <tt>694</tt> || [[ISO 3166-2:SL]]
+|-
+| [[Singapore]]
+| [[ISO 3166-1 alpha-2#SG|<tt>SG</tt>]] || <tt>SGP</tt> || <tt>702</tt> || [[ISO 3166-2:SG]]
+|-
+| [[Sint Maarten (Dutch part)]]
+| [[ISO 3166-1 alpha-2#SX|<tt>SX</tt>]] || <tt>SXM</tt> || <tt>534</tt> || [[ISO 3166-2:SX]]
+|-
+| [[Slovakia]]
+| [[ISO 3166-1 alpha-2#SK|<tt>SK</tt>]] || <tt>SVK</tt> || <tt>703</tt> || [[ISO 3166-2:SK]]
+|-
+| [[Slovenia]]
+| [[ISO 3166-1 alpha-2#SI|<tt>SI</tt>]] || <tt>SVN</tt> || <tt>705</tt> || [[ISO 3166-2:SI]]
+|-
+| [[Solomon Islands]]
+| [[ISO 3166-1 alpha-2#SB|<tt>SB</tt>]] || <tt>SLB</tt> || <tt>090</tt> || [[ISO 3166-2:SB]]
+|-
+| [[Somalia]]
+| [[ISO 3166-1 alpha-2#SO|<tt>SO</tt>]] || <tt>SOM</tt> || <tt>706</tt> || [[ISO 3166-2:SO]]
+|-
+| [[South Africa]]
+| [[ISO 3166-1 alpha-2#ZA|<tt>ZA</tt>]] || <tt>ZAF</tt> || <tt>710</tt> || [[ISO 3166-2:ZA]]
+|-
+| [[South Georgia and the South Sandwich Islands]]
+| [[ISO 3166-1 alpha-2#GS|<tt>GS</tt>]] || <tt>SGS</tt> || <tt>239</tt> || [[ISO 3166-2:GS]]
+|-
+| [[South Sudan]]
+| [[ISO 3166-1 alpha-2#SS|<tt>SS</tt>]] || <tt>SSD</tt> || <tt>728</tt> || [[ISO 3166-2:SS]]
+|-
+| [[Spain]]
+| [[ISO 3166-1 alpha-2#ES|<tt>ES</tt>]] || <tt>ESP</tt> || <tt>724</tt> || [[ISO 3166-2:ES]]
+|-
+| [[Sri Lanka]]
+| [[ISO 3166-1 alpha-2#LK|<tt>LK</tt>]] || <tt>LKA</tt> || <tt>144</tt> || [[ISO 3166-2:LK]]
+|-
+| [[Sudan]]
+| [[ISO 3166-1 alpha-2#SD|<tt>SD</tt>]] || <tt>SDN</tt> || <tt>729</tt> || [[ISO 3166-2:SD]]
+|-
+| [[Suriname]]
+| [[ISO 3166-1 alpha-2#SR|<tt>SR</tt>]] || <tt>SUR</tt> || <tt>740</tt> || [[ISO 3166-2:SR]]
+|-
+| [[Svalbard and Jan Mayen]]
+| [[ISO 3166-1 alpha-2#SJ|<tt>SJ</tt>]] || <tt>SJM</tt> || <tt>744</tt> || [[ISO 3166-2:SJ]]
+|-
+| [[Swaziland]]
+| [[ISO 3166-1 alpha-2#SZ|<tt>SZ</tt>]] || <tt>SWZ</tt> || <tt>748</tt> || [[ISO 3166-2:SZ]]
+|-
+| [[Sweden]]
+| [[ISO 3166-1 alpha-2#SE|<tt>SE</tt>]] || <tt>SWE</tt> || <tt>752</tt> || [[ISO 3166-2:SE]]
+|-
+| [[Switzerland]]
+| [[ISO 3166-1 alpha-2#CH|<tt>CH</tt>]] || <tt>CHE</tt> || <tt>756</tt> || [[ISO 3166-2:CH]]
+|-
+| [[Syrian Arab Republic]]
+| [[ISO 3166-1 alpha-2#SY|<tt>SY</tt>]] || <tt>SYR</tt> || <tt>760</tt> || [[ISO 3166-2:SY]]
+|-
+| [[Taiwan|<!--DO NOT CHANGE-->Taiwan, Province of China<!--This is the country name used in ISO 3166: https://www.iso.org/obp/ui/#iso:code:3166:TW . If you disagree with this naming, contact the ISO 3166/MA; we must follow the published standard for this article. -->]]
+| [[ISO 3166-1 alpha-2#TW|<tt>TW</tt>]] || <tt>TWN</tt> || <tt>158</tt> || [[ISO 3166-2:TW]]
+|-
+| [[Tajikistan]]
+| [[ISO 3166-1 alpha-2#TJ|<tt>TJ</tt>]] || <tt>TJK</tt> || <tt>762</tt> || [[ISO 3166-2:TJ]]
+|-
+| [[Tanzania, United Republic of]]
+| [[ISO 3166-1 alpha-2#TZ|<tt>TZ</tt>]] || <tt>TZA</tt> || <tt>834</tt> || [[ISO 3166-2:TZ]]
+|-
+| [[Thailand]]
+| [[ISO 3166-1 alpha-2#TH|<tt>TH</tt>]] || <tt>THA</tt> || <tt>764</tt> || [[ISO 3166-2:TH]]
+|-
+| [[Timor-Leste]]
+| [[ISO 3166-1 alpha-2#TL|<tt>TL</tt>]] || <tt>TLS</tt> || <tt>626</tt> || [[ISO 3166-2:TL]]
+|-
+| [[Togo]]
+| [[ISO 3166-1 alpha-2#TG|<tt>TG</tt>]] || <tt>TGO</tt> || <tt>768</tt> || [[ISO 3166-2:TG]]
+|-
+| [[Tokelau]]
+| [[ISO 3166-1 alpha-2#TK|<tt>TK</tt>]] || <tt>TKL</tt> || <tt>772</tt> || [[ISO 3166-2:TK]]
+|-
+| [[Tonga]]
+| [[ISO 3166-1 alpha-2#TO|<tt>TO</tt>]] || <tt>TON</tt> || <tt>776</tt> || [[ISO 3166-2:TO]]
+|-
+| [[Trinidad and Tobago]]
+| [[ISO 3166-1 alpha-2#TT|<tt>TT</tt>]] || <tt>TTO</tt> || <tt>780</tt> || [[ISO 3166-2:TT]]
+|-
+| [[Tunisia]]
+| [[ISO 3166-1 alpha-2#TN|<tt>TN</tt>]] || <tt>TUN</tt> || <tt>788</tt> || [[ISO 3166-2:TN]]
+|-
+| [[Turkey]]
+| [[ISO 3166-1 alpha-2#TR|<tt>TR</tt>]] || <tt>TUR</tt> || <tt>792</tt> || [[ISO 3166-2:TR]]
+|-
+| [[Turkmenistan]]
+| [[ISO 3166-1 alpha-2#TM|<tt>TM</tt>]] || <tt>TKM</tt> || <tt>795</tt> || [[ISO 3166-2:TM]]
+|-
+| [[Turks and Caicos Islands]]
+| [[ISO 3166-1 alpha-2#TC|<tt>TC</tt>]] || <tt>TCA</tt> || <tt>796</tt> || [[ISO 3166-2:TC]]
+|-
+| [[Tuvalu]]
+| [[ISO 3166-1 alpha-2#TV|<tt>TV</tt>]] || <tt>TUV</tt> || <tt>798</tt> || [[ISO 3166-2:TV]]
+|-
+| [[Uganda]]
+| [[ISO 3166-1 alpha-2#UG|<tt>UG</tt>]] || <tt>UGA</tt> || <tt>800</tt> || [[ISO 3166-2:UG]]
+|-
+| [[Ukraine]]
+| [[ISO 3166-1 alpha-2#UA|<tt>UA</tt>]] || <tt>UKR</tt> || <tt>804</tt> || [[ISO 3166-2:UA]]
+|-
+| [[United Arab Emirates]]
+| [[ISO 3166-1 alpha-2#AE|<tt>AE</tt>]] || <tt>ARE</tt> || <tt>784</tt> || [[ISO 3166-2:AE]]
+|-
+| [[United Kingdom]]
+| [[ISO 3166-1 alpha-2#GB|<tt>GB</tt>]] || <tt>GBR</tt> || <tt>826</tt> || [[ISO 3166-2:GB]]
+|-
+| [[United States]]
+| [[ISO 3166-1 alpha-2#US|<tt>US</tt>]] || <tt>USA</tt> || <tt>840</tt> || [[ISO 3166-2:US]]
+|-
+| [[United States Minor Outlying Islands]]
+| [[ISO 3166-1 alpha-2#UM|<tt>UM</tt>]] || <tt>UMI</tt> || <tt>581</tt> || [[ISO 3166-2:UM]]
+|-
+| [[Uruguay]]
+| [[ISO 3166-1 alpha-2#UY|<tt>UY</tt>]] || <tt>URY</tt> || <tt>858</tt> || [[ISO 3166-2:UY]]
+|-
+| [[Uzbekistan]]
+| [[ISO 3166-1 alpha-2#UZ|<tt>UZ</tt>]] || <tt>UZB</tt> || <tt>860</tt> || [[ISO 3166-2:UZ]]
+|-
+| [[Vanuatu]]
+| [[ISO 3166-1 alpha-2#VU|<tt>VU</tt>]] || <tt>VUT</tt> || <tt>548</tt> || [[ISO 3166-2:VU]]
+|-
+| [[Venezuela, Bolivarian Republic of]]
+| [[ISO 3166-1 alpha-2#VE|<tt>VE</tt>]] || <tt>VEN</tt> || <tt>862</tt> || [[ISO 3166-2:VE]]
+|-
+| [[Viet Nam]]
+| [[ISO 3166-1 alpha-2#VN|<tt>VN</tt>]] || <tt>VNM</tt> || <tt>704</tt> || [[ISO 3166-2:VN]]
+|-
+| [[Virgin Islands, British]]
+| [[ISO 3166-1 alpha-2#VG|<tt>VG</tt>]] || <tt>VGB</tt> || <tt>092</tt> || [[ISO 3166-2:VG]]
+|-
+| [[Virgin Islands, U.S.]]
+| [[ISO 3166-1 alpha-2#VI|<tt>VI</tt>]] || <tt>VIR</tt> || <tt>850</tt> || [[ISO 3166-2:VI]]
+|-
+| [[Wallis and Futuna]]
+| [[ISO 3166-1 alpha-2#WF|<tt>WF</tt>]] || <tt>WLF</tt> || <tt>876</tt> || [[ISO 3166-2:WF]]
+|-
+| [[Western Sahara]]
+| [[ISO 3166-1 alpha-2#EH|<tt>EH</tt>]] || <tt>ESH</tt> || <tt>732</tt> || [[ISO 3166-2:EH]]
+|-
+| [[Yemen]]
+| [[ISO 3166-1 alpha-2#YE|<tt>YE</tt>]] || <tt>YEM</tt> || <tt>887</tt> || [[ISO 3166-2:YE]]
+|-
+| [[Zambia]]
+| [[ISO 3166-1 alpha-2#ZM|<tt>ZM</tt>]] || <tt>ZMB</tt> || <tt>894</tt> || [[ISO 3166-2:ZM]]
+|-
+| [[Zimbabwe]]
+| [[ISO 3166-1 alpha-2#ZW|<tt>ZW</tt>]] || <tt>ZWE</tt> || <tt>716</tt> || [[ISO 3166-2:ZW]]
+|}
+
+===Reserved and user-assigned code elements===
+Besides the officially assigned codes, code elements may be expanded by using either reserved codes or user-assigned codes.<ref>{{cite web| url=http://www.iso.org/iso/country_codes/country_codes| title=Customizing ISO 3166-1| publisher=ISO}}</ref>
+
+Reserved code elements are codes which have become obsolete, or are required in order to enable a particular user application of the standard but do not qualify for inclusion in ISO 3166-1. To avoid transitional application problems and to aid users who require specific additional code elements for the functioning of their coding systems, the ISO 3166/MA, when justified, reserves these codes which it undertakes not to use for other than specified purposes during a limited or indeterminate period of time. Codes are usually reserved for former countries, overseas territories, international organizations, and special nationality status. The reserved alpha-2 and alpha-3 codes can be divided into the following four categories ''(click on the links for the reserved codes of each category)'':
+* [[ISO 3166-1 alpha-2#Reserved code elements|Alpha-2]]: [[ISO 3166-1 alpha-2#Exceptional reservations|exceptional reservations]], [[ISO 3166-1 alpha-2#Transitional reservations|transitional reservations]], [[ISO 3166-1 alpha-2#Indeterminate reservations|indeterminate reservations]], and [[ISO 3166-1 alpha-2#Codes currently agreed not to use|codes currently agreed not to use]]
+* [[ISO 3166-1 alpha-3#Reserved code elements|Alpha-3]]: [[ISO 3166-1 alpha-3#Exceptional reservations|exceptional reservations]], [[ISO 3166-1 alpha-3#Transitional reservations|transitional reservations]], [[ISO 3166-1 alpha-3#Indeterminate reservations|indeterminate reservations]], and [[ISO 3166-1 alpha-3#Codes currently agreed not to use|codes currently agreed not to use]]
+* Numeric: no reserved codes
+
+User-assigned code elements are codes at the disposal of users who need to add further names of countries, territories, or other geographical entities to their in-house application of ISO 3166-1, and the ISO 3166/MA will never use these codes in the updating process of the standard. The following codes can be user-assigned:<ref>{{cite web| url=http://www.iso.org/iso/en/prods-services/iso3166ma/10faq/frequently-asked-questions.html#Q09| title=ISO 3166 &ndash; FAQs &ndash; General Questions| publisher=ISO |archiveurl=https://web.archive.org/web/20070306080355/http://www.iso.org/iso/en/prods-services/iso3166ma/10faq/frequently-asked-questions.html#Q09 |archivedate=2007-03-06}}</ref>
+* [[ISO 3166-1 alpha-2#User-assigned code elements|Alpha-2]]: <tt>AA</tt>, <tt>QM</tt> to <tt>QZ</tt>, <tt>XA</tt> to <tt>XZ</tt>, and <tt>ZZ</tt>
+* [[ISO 3166-1 alpha-3#User-assigned code elements|Alpha-3]]: <tt>AAA</tt> to <tt>AAZ</tt>, <tt>QMA</tt> to <tt>QZZ</tt>, <tt>XAA</tt> to <tt>XZZ</tt>, and <tt>ZZA</tt> to <tt>ZZZ</tt>
+* [[ISO 3166-1 numeric#User-assigned code elements|Numeric]]: <tt>900</tt> to <tt>999</tt>
+
+==Changes==
+The ISO 3166/MA updates ISO 3166-1 when necessary. A country is usually assigned new ISO 3166-1 codes if it changes its name or its territorial boundaries. In general, new alphabetic codes are assigned if a country changes a significant part of its name, while a new numeric code is assigned if a country changes its territorial boundaries. Codes for formerly used country names that were deleted from ISO 3166-1 are published in [[ISO 3166-3]].
+
+ISO used to announce changes in newsletters which updated the currently valid standard, and releasing new editions which comprise a consolidation of newsletter changes. As of July 2013, changes are published in the online catalogue of ISO only and no newsletters are published anymore. Past newsletters remain available on the ISO website.<ref name="Updates on ISO 3166">{{cite web| url=http://www.iso.org/iso/home/standards/country_codes/updates_on_iso_3166.htm| title=Updates on ISO 3166| publisher=ISO}}</ref>
+
+{| class="wikitable"
+|-
+!scope="col"| Edition/Newsletter
+!scope="col"| Date issued
+!scope="col"| Contents
+|-
+| id="I" | {{nowrap|ISO 3166:1974}}
+| 1974
+| ''First edition of ISO 3166''
+|-
+| id="II" | <!--[http://www.iso.org/iso/iso_catalogue/catalogue_ics/catalogue_detail_ics.htm?csnumber=8347--> {{nowrap|ISO 3166:1981}}
+| 1981
+| ''Second edition of ISO 3166''
+|-
+| id="III" | <!--[http://www.iso.org/iso/iso_catalogue/catalogue_ics/catalogue_detail_ics.htm?csnumber=8348--> {{nowrap|ISO 3166:1988}}
+| 1988-08-15
+| ''Third edition of ISO 3166''
+|-
+| id="IV" | <!--[http://www.iso.org/iso/iso_catalogue/catalogue_ics/catalogue_detail_ics.htm?csnumber=22748--> {{nowrap|ISO 3166:1994}}
+| 1994-02-10
+| ''Fourth edition of ISO 3166''
+|- style="background:#abcdef"
+| id="V" | <!--[http://www.iso.org/iso/iso_catalogue/catalogue_ics/catalogue_detail_ics.htm?csnumber=24591--> {{nowrap|ISO 3166-1:1997}}
+| {{nowrap|1997-09-25}}
+| ''First edition of ISO 3166-1 (ISO 3166 expanded into three parts)''
+|-
+| id="V-1" | <!--[http://www.iso.org/iso/newsletter_v-1_samoa.pdf-->[http://web.archive.org/web/20110722001704/http://www.iso.org/iso/newsletter_v-1_samoa.pdf {{nowrap|Newsletter V-1}}]
+| {{nowrap|1998-02-05}}
+| Change of official name ''([[Samoa]])''
+|-
+| id="V-2" | <!--[http://www.iso.org/iso/newsletter_v-2_palestinian_territory_occupied.pdf-->[http://web.archive.org/web/20110722001642/http://www.iso.org/iso/newsletter_v-2_palestinian_territory_occupied.pdf {{nowrap|Newsletter V-2}}]
+| {{nowrap|1999-10-01}}
+| Inclusion of new country name and code elements ''([[Palestinian territories|Palestinian Territory, Occupied]])''
+|-
+| id="V-3" | <!--[http://www.iso.org/iso/newsletter_v-3_romania.pdf-->[http://web.archive.org/web/20110722001502/http://www.iso.org/iso/newsletter_v-3_romania.pdf {{nowrap|Newsletter V-3}}]
+| {{nowrap|2002-02-01}}
+| Change of alpha-3 Code Element ''([[Romania]])''
+|-
+| id="V-4" | <!--[http://www.iso.org/iso/newsletter_v-4_name_changes.pdf-->[http://web.archive.org/web/20110722001521/http://www.iso.org/iso/newsletter_v-4_name_changes.pdf {{nowrap|Newsletter V-4}}]
+| {{nowrap|2002-05-20}}
+| Name changes ''([[Afghanistan]], [[Azerbaijan]], [[Bahrain]], [[Bosnia and Herzegovina]], [[Fiji]], [[Hong Kong]], [[Kazakhstan]], [[Kiribati]], [[Macau|Macao]], [[Niue]], [[Somalia]], [[Venezuela]])''
+|-
+| id="V-5" | <!--[http://www.iso.org/iso/newsletter_v-5_east_timor.pdf-->[http://web.archive.org/web/20110722001606/http://www.iso.org/iso/newsletter_v-5_east_timor.pdf {{nowrap|Newsletter V-5}}]
+| {{nowrap|2002-05-20}}
+| Change of names and alphabetical code elements of [[East Timor]]
+|-
+| id="V-6" | <!--[http://www.iso.org/iso/newsletter_v-6_timor_leste.pdf-->[http://web.archive.org/web/20110722001711/http://www.iso.org/iso/newsletter_v-6_timor_leste.pdf {{nowrap|Newsletter V-6}}]
+| {{nowrap|2002-11-15}}
+| Change of names of [[East Timor]]
+|-
+| id="V-7" | <!--[http://www.iso.org/iso/newsletter_v-7_comoros.pdf-->[http://web.archive.org/web/20110722001528/http://www.iso.org/iso/newsletter_v-7_comoros.pdf {{nowrap|Newsletter V-7}}]
+| {{nowrap|2003-01-14}}
+| Change of official name of [[Comoros]]
+|-
+| id="V-8" | <!--[http://www.iso.org/iso/newsletter_v-8_serbia_and_montenegro.pdf-->[http://web.archive.org/web/20110722001734/http://www.iso.org/iso/newsletter_v-8_serbia_and_montenegro.pdf {{nowrap|Newsletter V-8}}]
+| {{nowrap|2003-07-23}}
+| Deletion of "[[Federal Republic of Yugoslavia|Yugoslavia]]"; inclusion of "[[Serbia and Montenegro]]" with new alphabetical code elements
+|-
+| id="V-9" | <!--[http://www.iso.org/iso/newsletter_v-9_aland_islands.pdf-->[http://web.archive.org/web/20110722001657/http://www.iso.org/iso/newsletter_v-9_aland_islands.pdf {{nowrap|Newsletter V-9}}]
+| {{nowrap|2004-02-13}}
+| Inclusion of an entry for [[Åland Islands]]
+|-
+| id="V-10" | <!--[http://www.iso.org/iso/newsletter_v-10_name_changes.pdf-->[http://web.archive.org/web/20110722001512/http://www.iso.org/iso/newsletter_v-10_name_changes.pdf {{nowrap|Newsletter V-10}}]
+| {{nowrap|2004-04-26}}
+| Name changes ''([[Afghanistan]], [[Åland Islands]])''
+|-
+| id="V-11" | <!--[http://www.iso.org/iso/newsletter_v-11_jersey_guernsey_isle_of_man.pdf-->[http://web.archive.org/web/20110722001728/http://www.iso.org/iso/newsletter_v-11_jersey_guernsey_isle_of_man.pdf {{nowrap|Newsletter V-11}}]
+| {{nowrap|2006-03-29}}
+| Inclusion of an entry for [[Jersey]], [[Guernsey]] and [[Isle of Man]]. Change of remark for the [[United Kingdom]]
+|-
+| id="V-12" | <!--[http://www.iso.org/iso/newsletter_v-12_serbia_montenegro.pdf-->[http://web.archive.org/web/20110721191046/http://www.iso.org/iso/newsletter_v-12_serbia_montenegro.pdf {{nowrap|Newsletter V-12}}]
+| {{nowrap|2006-09-26}}
+| Inclusion of the new entries for "[[Serbia]]" and "[[Montenegro]]" ''(replacing [[Serbia and Montenegro]])''
+|- style="background:#abcdef"
+| id="VI" | [http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39719 {{nowrap|ISO 3166-1:2006}}]
+| {{nowrap|2006-11-20}}
+| ''Second edition of ISO 3166-1''
+|-
+| id="VI-Cor 1" | [http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=46123 {{nowrap|ISO 3166-1:2006/}}<br /> {{nowrap|Cor 1:2007}}]
+| {{nowrap|2007-07-15}}
+| ''First Technical Corrigendum to ISO 3166-1:2006''
+|-
+| id="VI-1" | [http://www.iso.org/iso/newsletter_vi-1.pdf {{nowrap|Newsletter VI-1}}]
+| {{nowrap|2007-09-21}}
+| Assignment of code elements for [[Saint Barthélemy]] and [[Collectivity of Saint Martin|Saint Martin]] and update of [[France]] and other French Territories ''([[French Polynesia]], [[French Southern and Antarctic Lands|French Southern Territories]], [[Guadeloupe]], [[Réunion]])''
+|-
+| id="VI-2" | [http://www.iso.org/iso/iso3166-1_newsletter_vi-2.pdf {{nowrap|Newsletter VI-2}}]
+| {{nowrap|2008-03-31}}
+| Name changes for [[Moldova]], [[Montenegro]] and other minor corrections ''([[Madagascar]], [[Palestinian territories|Palestinian Territory, Occupied]], [[Saint Barthélemy]])''
+|-
+| id="VI-3" | [http://www.iso.org/iso/n567_newsletter.pdf {{nowrap|Newsletter VI-3}}]
+| {{nowrap|2008-09-09}}
+| Name change for [[Nepal]] and other minor corrections ''([[Greenland]], [[Guernsey]], [[Moldova]], [[Nigeria]])''
+|-
+| id="VI-4" | [http://www.iso.org/iso/newsletter_vi-4_name_change_for_republic_of_moldova_and_other_minor_corrections_e_-4.pdf {{nowrap|Newsletter VI-4}}]
+| {{nowrap|2009-01-07}}
+| Name change for the [[Moldova|Republic of Moldova]] and other minor corrections ''([[Central African Republic]], [[Comoros]])''
+|-
+| id="VI-5" | [http://www.iso.org/iso/newsletter_vi-5.pdf {{nowrap|Newsletter VI-5}}]
+| {{nowrap|2009-03-03}}
+| Name change for [[Venezuela|Bolivarian Republic of Venezuela]] and other minor corrections ''([[Kiribati]], [[Tuvalu]])''
+|-
+| id="VI-6" | [http://www.iso.org/iso/newsletter_vi-6_name_change_plurinational_state_of_bolivia.pdf {{nowrap|Newsletter VI-6}}]
+| {{nowrap|2009-05-08}}
+| Name change for [[Bolivia|Plurinational State of Bolivia]]
+|-
+| id="VI-7" | [http://www.iso.org/iso/iso_3166-1_newsletter_vi-7_2010-02-22.pdf {{nowrap|Newsletter VI-7}}]
+| {{nowrap|2010-02-22}}
+| Name change for [[Saint Helena, Ascension and Tristan da Cunha]]
+|-
+| id="VI-8" | [http://www.iso.org/iso/iso_3166-1_newsletter_vi-8_split_of_the_dutch_antilles_final-en.pdf {{nowrap|Newsletter VI-8}}]
+| {{nowrap|2010-12-15}}
+| Code elements for [[Caribbean Netherlands|Bonaire, Saint Eustatius and Saba]], [[Curaçao]] and [[Sint Maarten|Sint Maarten (Dutch part)]], update of other territories ''([[Netherlands]], [[Netherlands Antilles]])'' and minor corrections ''([[Bosnia and Herzegovina]], [[Croatia]])''
+|-
+| id="VI-9" | [http://www.iso.org/iso/newsletter_vi-9_fiji-myanmar_and_other_minor_corrections-incl_bulgaria_corrected_2011-07-14_e_.pdf {{nowrap|Newsletter VI-9}}]
+| {{nowrap|2011-06-12}}<br /> ''(corrected<br /> {{nowrap|2011-07-14}})''
+| Name changes for [[Fiji]] and [[Myanmar]] as well as other minor corrections ''([[Åland Islands]], [[Caribbean Netherlands|Bonaire, Sint Eustatius and Saba]], [[Bulgaria]], [[Netherlands]], [[Niue]])''
+|-
+| id="VI-10" | [http://www.iso.org/iso/nl_vi-10_south_sudan.pdf {{nowrap|Newsletter VI-10}}]
+| {{nowrap|2011-08-09}}
+| Code elements for [[South Sudan]] ''(and new numeric code for [[Sudan]])''
+|-
+| id="VI-11" | [http://www.iso.org/iso/nl_vi-11_name_change_for_libya.pdf {{nowrap|Newsletter VI-11}}]
+| {{nowrap|2011-11-08}}
+| Name change for [[Libya]]
+|-
+| id="VI-12" | [http://www.iso.org/iso/iso_3166-1_nl_vi-12_name_change_for_hungary.pdf {{nowrap|Newsletter VI-12}}]
+| {{nowrap|2012-02-15}}
+| Name change for [[Hungary]] and other minor corrections ''([[Bangladesh]], [[Caribbean Netherlands|Bonaire, Sint Eustatius and Saba]], [[Central African Republic]], [[Equatorial Guinea]], [[Eritrea]], [[Germany]])''
+|-
+| id="VI-13" | [http://www.iso.org/iso/nl_vi-13_name_change_for_eritrea.pdf {{nowrap|Newsletter VI-13}}]
+| {{nowrap|2012-08-02}}
+| Name change for [[Eritrea]] and other minor corrections ''([[Germany]], [[Sri Lanka]])''
+|-
+| id="VI-14" | [http://www.iso.org/iso/iso_3166-1_newsletter_vi-14_name_change_state_of_palestine.pdf {{nowrap|Newsletter VI-14}}]
+| {{nowrap|2013-02-06}}
+| Name change for [[State of Palestine]] and other minor corrections ''([[Bulgaria]], [[Bouvet Island]], [[Jersey]], [[Collectivity of Saint Martin|Saint Martin (French part)]], [[Seychelles]], [[Sint Maarten|Sint Maarten (Dutch part)]], [[Vietnam|Viet Nam]])''
+|-
+| id="VI-15" | [http://www.iso.org/iso/iso_3166-1_newsletter__vi-15_name_change_for_papua_new_guinea.pdf {{nowrap|Newsletter VI-15}}]
+| {{nowrap|2013-05-10}}
+| Name change for [[Papua New Guinea]]
+|-
+| id="VI-16" | [http://www.iso.org/iso/iso_3166-1_newsletter__vi-16_name_change_for_somalia_en.pdf {{nowrap|Newsletter VI-16}}]
+| {{nowrap|2013-07-11}}
+| Name change for [[Somalia]]
+|- style="background:#abcdef"
+| id="VII" | [http://www.iso.org/iso/catalogue_detail.htm?csnumber=63545 {{nowrap|ISO 3166-1:2013}}]
+| {{nowrap|2013-11-19}}
+| ''Third edition of ISO 3166-1 (changes are published in the online catalogue of ISO only and no newsletters are published anymore)''
+|}
+
+==See also==
+* [[ISO 639]] – ''Codes for the representation of names of languages''
+
+==References==
+<references />
+
+==Sources and external links==
+* [http://www.iso.org/iso/country_codes.htm ISO 3166 Maintenance Agency], International Organization for Standardization (ISO)
+** [http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm Country names and code elements] &mdash; list of alpha-2 codes
+* [http://unstats.un.org/unsd/methods/m49/m49.htm ''Standard Country or Area Codes for Statistical Use''], United Nations Statistics Division
+** [http://unstats.un.org/unsd/methods/m49/m49alpha.htm Countries or areas, codes and abbreviations] &mdash; list of alpha-3 and numeric codes (a few territories officially assigned codes in ISO 3166-1 are not included in this list)
+* ''[[The World Factbook]]'' (public domain), Central Intelligence Agency
+** [https://www.cia.gov/library/publications/the-world-factbook/appendix/appendix-d.html Appendix D &ndash; Cross-Reference List of Country Data Codes] &mdash; comparison of FIPS 10, ISO 3166, and STANAG 1059 country codes
+* [http://www.statoids.com/ Administrative Divisions of Countries ("Statoids")], Statoids.com
+** [http://www.statoids.com/wab.html Country codes] &mdash; comparison of ISO 3166-1 country codes with other country codes
+
+{{Featured list}}
+{{ISO 3166}}
+{{Lists by country}}
+
+{{DEFAULTSORT:Iso 3166-1}}
+[[Category:ISO 3166|1]]
+[[Category:Lists of countries]]
+[[Category:Country codes]]
+
+[[sv:ISO 3166#ISO 3166-1-koder]]

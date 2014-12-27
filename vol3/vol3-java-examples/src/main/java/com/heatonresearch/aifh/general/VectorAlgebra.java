@@ -234,6 +234,30 @@ public class VectorAlgebra {
         }
 
         return result;
+    }
 
+    public static Matrix createRowMatrix(double[] d) {
+        Matrix result = new Matrix(1,d.length);
+        for(int i=0;i<d.length;i++) {
+            result.set(0,i,d[i]);
+        }
+        return result;
+    }
+
+    public static Matrix createColumnMatrix(double[] d) {
+        Matrix result = new Matrix(d.length,1);
+        for(int i=0;i<d.length;i++) {
+            result.set(i,0,d[i]);
+        }
+        return result;
+    }
+
+    public static Matrix identityMatrix(final int size) {
+        Matrix result = new Matrix(size,size);
+        for(int i=0;i<size;i++) {
+            result.set(i,i,1.0);
+        }
+
+        return result;
     }
 }

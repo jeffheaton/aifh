@@ -1,0 +1,514 @@
+{{multiple issues|
+{{disputed|date=March 2014}}
+{{update|inaccurate=y|date=March 2014}}
+}}
+{{pp-pc1|small=yes}}
+[[File:Analfabetismo2013unesco.png|thumb|right|400px|World map indicating literacy by country in 2013 (2013 UN [[Human Development Report]] and Individual statistics departments) Grey = no data]]
+This is a '''list of countries by [[literacy]] rate'''. The figures represent a mixture of data collected by the [[CIA World Factbook]],<ref name=cialittab>{{cite web |url=https://www.cia.gov/library/publications/the-world-factbook/fields/2103.html#136 |title=Literacy |work=[[CIA World Factbook]]}}</ref> and national self-reported data. Where data was unavailable, older figures were used. For highly developed/high income countries where literacy statistics were not collected, a rate of 99% was assumed.
+
+==List==
+According to the CIA World Factbook, almost 75% of the world's 775 million illiterate adults are concentrated in ten countries (in descending order: India, China, Pakistan, Bangladesh, Nigeria, Ethiopia, Egypt, Brazil, Indonesia, and the Democratic Republic of Congo). Women represent two-thirds of all illiterate adults globally. Extremely low literacy rates are focused in three regions: South Asia, West Asia and Sub-Saharan Africa. The global literacy rate for all people aged 15 and over is 84.1%. The global literacy rate for all males is 88.6% and the rate for all females is 79.7%.<ref>{{cite web |url=https://www.cia.gov/library/publications/the-world-factbook/fields/2103.html#xx|title=World |work=[[CIA Factbook]]}}</ref>
+<!--***NOTE*** 
+(1) If using UN data, make sure the Female is absolute rather than relative.  In general really, Male is usually higher than Female with the average being in the middle.  If Average is 90% and Male is 92%, then it would be impossible to have a Female of 95%.  If you're seeing that, it means Female literacy is 95% of Male (i.e. 95% of 92%, or about 88% (depending on relative proportion of male:female in the country)), rather than Female literacy is actually 95%.
+
+(2) Please supply cites if changing data
+
+(3) Please ensure your changes & cite support all 3 figures for a country (i.e. don't change the total figure without confirming the male & female to the new cite).
+
+(4) Don't automatically assume that Total literacy = Male+Female/2
+-->
+
+{| class="sortable wikitable"
+|-
+! Country !! data-sort-type="number"|Literacy rate (all) !! data-sort-type="number"|Male Literacy !! data-sort-type="number"|Female Literacy !! Criteria
+|-style="display:none;"
+| -9e99||-9e99||!a||-9e99
+|-
+|  '''{{flag|UN|name=World}}''' ||  '''84.1%''' || '''88.6%''' ||  '''79.7%''' || age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Afghanistan}} ||  28.1%  || 43.1% || 12.6% || age 15 and over can read and write (2000 est.)<ref name=cialittab />
+|-
+|  {{flag|Albania}} || 96.8% || 98% || 95.7% || age 9 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Algeria}} || 91.8% || 91.8% || 91.8% || age 15 and over can read and write <ref>http://www.algerienews.info/le-taux-danalphabetisme-est-de-82-en-algerie/</ref>
+|-
+|  {{flag|American Samoa}} ||  97% || 98% || 97% || age 15 and over can read and write (1980 est.)<ref name=cialittab />
+|-
+|  {{flag|Andorra}} || 100% || 100% || 100% || age 15 and over can read and write<ref name=cialittab />
+|-
+|  {{flag|Angola}} || 70.4% || 82.6% || 58.6% || age 15 and over can read and write (2011 est.)<ref name=cialittab />
+
+|- {{flag|Anguilla}} || 95% || 95% || 95% || age 12 and over can read and write (1984 est.)<ref name=cialittab />
+|-
+|  {{flag|Antigua and Barbuda}} || 99% || 98.4% || 99.4% || age 15 and over has completed five or more years of schooling (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Argentina}} || 97.9% || 97.8% || 97.9% || age 10 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Armenia}} || 99.6% || 99.7% || 99.5% || age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Aruba}} || 96.8% || 96.9% || 96.7% || age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Australia}} || 96% || 96% || 96% || age 15 and over can read brief texts on familiar topics (2011-2)<ref>{{cite web|title=Programme for the International Assessment of Adult Competencies, Australia, 2011-12|publisher=Australian Bureau of Statistics|date=9 Oct 2013|url=http://www.abs.gov.au/ausstats/abs@.nsf/Lookup/4228.0Main+Features202011-12|accessdate=2014-01-17}}</ref>
+|-
+|  {{flag|Austria}} || 98% || N/A || N/A || age 15 and over can read and write<ref name=cialittab /> 
+|-
+|  {{flag|Azerbaijan}} || 99.8% || 99.9% || 99.7% || age 15 and over can read and write (2010 census)<ref name=cialittab />
+|-
+|  {{flag|Bahamas, The}} || 95.6% || 94.7% || 96.5% || age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Bahrain}} || 94.6% || 96.1% || 91.6% || age 15 and over can read and write (2010 census)<ref name=cialittab />
+|-
+|  {{flag|Bangladesh}} || 57.7% || 62% || 53.4% || age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Barbados}} || 99.7% || 99.7% || 99.7% || age 15 and over has ever attended school (2002 est.)<ref name=cialittab />
+|-
+|  {{flag|Belarus}} || 99.6% || 99.8% || 99.5% || age 15 and over can read and write (2009 census)<ref name=cialittab />
+|-
+|  {{flag|Belgium}} || 99% || 99% || 99% || age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Belize}} || 76.9% || 76.7% || 77.1% || age 15 and over can read and write (2000 census)<ref name=cialittab />
+|-
+|  {{flag|Benin}} || 42.4% || 55.2% || 30.3% || age 15 and over can read and write (2010 census)<ref name=cialittab />
+|-
+|  {{flag|Bermuda}} || 98% || 98% ||  99%  ||  age 15 and over can read and write (2005 est.)<ref name=cialittab />
+|-
+|  {{flag|Bhutan}} || 52.8% || 65% || 38.7% ||  age 15 and over can read and write (2005 est.)<ref name=cialittab />
+|-
+|  {{flag|Bolivia}} || 91.2% || 95.8% || 86.8% ||  age 15 and over can read and write (2009 est.)<ref name=cialittab />
+|-
+|  {{flag|Bosnia and Herzegovina}} || 99.4% || 99.8% ||  98.9% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Botswana}} || 85.1% || 84.6% || 85.6% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Brazil}} ||  91.3% || N/A||  N/A ||  age 15 and over can read and write (2012 est.)<ref>{{cite web|title=Population Composition (Composição da População), Brazil, 2012|publisher=Ministério da Fazenda (Brazilian Ministry of Finance), Pesquisa Nacional por Amostra de Domicílio(Brazilian National Sample Survey of Households) (PNAD/IBGE) |date=September 2013|url=http://www1.fazenda.gov.br/spe/publicacoes/conjuntura/informativo_economico/2013/2013_09/emprego_renda/IE%202013%2009%2027%20-%20PNAD%202012.pdf|accessdate=2014-06-12}}</ref><ref>{{cite web|title=Taxa de analfabetismo para de cair no Brasil após 15 anos (Illiteracy rate stagnates in Brazil after 15 years), Brazil, 2012|publisher=UOL educação |date=27 September 2013|url=http://educacao.uol.com.br/noticias/2013/09/27/analfabetismo-volta-a-crescer-no-brasil-apos-mais-de-15-anos-de-queda.htm|accessdate=2014-06-12}}</ref><ref>{{cite web|title=Educação da população (Population Education), Brazil, 2012|publisher=Portal Brasil (Brazilian federal government official website)|date=27 September 2013|url=http://www.brasil.gov.br/educacao/2013/09/pnad-2012-cai-o-percentual-de-pessoas-sem-instrucao|accessdate=2014-06-12}}</ref>
+|-
+|  {{flag|British Virgin Islands}} ||  97.8% || N/A ||  N/A || age 15 and over can read and write (1991 est.)<ref name=cialittab />
+|-
+|  {{flag|Brunei}} ||  95.4% || 97% ||  93.9% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Bulgaria}} ||  98.4% || 98.7% ||  98% ||  age 15 and over can read and write (2011)<ref name=cialittab />
+|-
+|  {{flag|Burkina Faso}} || 28.7% || 36.7% || 21.6% ||  age 15 and over can read and write (2007 est.)<ref name=cialittab />
+|-
+|  {{flag|Burma}} || 92.7% || 95.1% || 90.4% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Burundi}} ||  67.2% || 72.9% ||  61.8% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Cambodia}} || 73.9% || 82.8% || 65.9% ||  age 15 and over can read and write (2009 est.)<ref name=cialittab />
+|-
+|  {{flag|Cameroon}} || 71.3% || 78.3% || 64.8% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Canada}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Cape Verde}} || 84.9% || 89.7% || 80.3% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Cayman Islands}} || 98.9% || 98.7% || 99% ||  age 15 and over has ever attended school  (2007 est.)<ref name=cialittab />
+|-
+|  {{flag|Central African Republic}} || 56.6% || 69.6% || 44.2% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Chad}} || 35.4% || 45.6% || 25.4% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Chile}} || 98.6% || 98.6% || 98.5% ||  age 15 and over can read and write (2009 est.)<ref name=cialittab />
+|-
+|  {{flag|China}} ||  95.1% || 97.5% ||  92.7% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Christmas Island}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Cocos (Keeling) Islands}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Colombia}} || 93.6% || 93.5% || 93.7% ||  age 15 and over can read and write (2011 est)<ref name=cialittab />
+|-
+|  {{flag|Comoros }} || 75.5% || 80.5% || 70.6% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Congo, Democratic Republic of the}} || 66.8% || 76.9% || 57% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Congo, Republic of the}} ||  83.8% || 89.6% ||  78.4% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Cook Islands}} ||  95% || N/A ||  N/A ||  age 15 and over can read and write<ref name=cialittab />
+|-
+|  {{flag|Costa Rica}} || 96.3% || 96% || 96.5% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Croatia}} || 99.2% || 99.4% || 98.7% ||  age 10 and over can read and write (2011 est.)<ref name=dzs.hr>{{cite web |url=http://www.dzs.hr/Hrv/censuses/census2011/results/htm/h01_01_33/H01_01_33.html |title=Literacy |publisher=[[Croatian Bureau of Statistics]]}}</ref>
+|-
+|  {{flag|Cuba}} || 99.8% || 99.8% || 99.8% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Cyprus}} || 98.7% || 99.3% || 98.1% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Czech Republic}} ||  99% || 99% ||  99% ||  (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Denmark}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Djibouti}} || 70% || N/A || N/A ||  age 15 and over can read and write (2012 est.)<ref name="Pcaotw">{{cite book|last=DK Publishing|title=Compact Atlas of the World|date=2012|publisher=Penguin|isbn=0756698596|page=138|url=http://www.google.com/books?id=pLw-ReHIgvQC}}</ref>
+|-
+|  {{flag|Dominica}} ||  94% || 94% ||  94% ||  age 15 and over has ever attended school (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Dominican Republic}} ||  90.1% || 90% ||  90.2% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Ecuador}} ||  91.6% || 93.1% ||  90.2% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Egypt}} ||  73.9% || 81.7% ||  65.8% ||  age 10 and over can read and write (2012 est.)<ref name=cialittab />
+|-
+|  {{flag|El Salvador}} ||  84.5% || 87.1% ||  82.3% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Equatorial Guinea}} ||  94.2% || 97.1% ||  91.1% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Eritrea}} ||  80% || N/A ||  N/A ||  age 15 and over can read and write (2013 est.)<ref>{{cite web|last=Ministry of Information of Eritrea|title=Adult Education Program gaining momentum: Ministry|url=http://www.shabait.com/news/local-news/12263-adult-education-program-gaining-momentum-ministry|publisher=Shabait|accessdate=9 October 2013}}</ref>
+|-
+|  {{flag|Estonia}} ||  99.8% || 99.8% ||  99.8% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Ethiopia}} ||  39% || 49.1% ||  28.9% ||  age 15 and over can read and write (2007 est.)<ref name=cialittab />
+|-
+|  {{flag|Falkland Islands}}|| N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Faroe Islands}}|| N/A || N/A || N/A || Note – probably 99%, the same as Denmark proper<ref name=cialittab />
+|-
+|  {{flag|Fiji}} ||  93.7% || 95.5% ||  91.9% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Finland}} ||  100% || 100% ||  100% ||  age 15 and over can read and write (2000 est.)<ref name=cialittab />
+|-
+|  {{flag|France}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|French Polynesia}} ||  98% || 98% ||  98% || age 14 and over can read and write (1977 est.)<ref name=cialittab />
+|-
+|  {{flag|Gabon}} ||  88.4% || 91.9% ||  84.9% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Gambia, The}} ||  50% || 60% ||  40.4% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Gaza Strip}} ||  96.4% || 98.3% ||  94.3% ||  age 15 and over can read and write (2012 est.)<ref>{{cite web |url=http://www.pcbs.gov.ps/Portals/_Rainbow/Documents/Education-1994-2012-11E3.htm |title=Literacy Rate of Persons in Gaza Strip |work=[[Palestinian Central Bureau of Statistics]]}}</ref>
+|-
+|  {{flag|Georgia}} ||  99.7% || 99.8% ||  99.7% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Germany}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Ghana}} ||  71.5% || 78.3% ||  65.3% ||  age 15 and over can read and write (2010 census)<ref name=cialittab />
+|-
+|  {{flag|Gibraltar}} ||  >80%|| N/A ||  N/A ||<ref name=cialittab />
+|-
+|  {{flag|Greece}} ||  98%|| 98.8% ||  99% ||  age 15 and over can read and write (2001 census)<ref name=cialittab />
+|-
+|  {{flag|Greenland}} ||  100% || 100% ||  100% ||  age 15 and over can read and write (2001 est.)<ref name=cialittab />
+|-
+|  {{flag|Grenada}} ||  96% || NA ||  NA ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Guam}} ||  99% || 99% ||  99% || age 15 and over can read and write (1990 est.)<ref name=cialittab />
+|-
+|  {{flag|Guatemala}} ||  83.4% || N/A || N/A ||  age 15 and over can read and write (2012 est.)<ref>{{cite web |url=http://www.ine.gob.gt/index.php/estadisticas/tema-indicadores# |title=Guatemala Education Stats }}</ref>
+|-
+|  {{flag|Guernsey}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Guinea}} ||  41% || 52% ||  30% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Guinea-Bissau}} ||  55.3% || 68.9% ||  42.1% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Guyana}} ||  91.8% || 92% ||  91.6% ||  age 15 and over has ever attended school (2002 census)<ref name=cialittab />
+|-
+|  {{flag|Haiti}} ||  52.9% || 54.8% ||  51.2% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Honduras}} ||  80% || 79.8% ||  80.2% ||  age 15 and over can read and write (2001 census)<ref name=cialittab />
+|-
+|  {{flag|Hong Kong}} ||  93.5% || 96.9% ||  89.6% ||  age 15 and over has ever attended school (2002)<ref name=cialittab />
+|-
+|  {{flag|Hungary}} ||  99% || 99.2% ||  98.9% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Iceland}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|India}} ||  74.4% || 82.1% ||  65.5% ||  age 7 and over can read and write (2011 census)<ref>{{cite web |url=http://censusindia.gov.in/2011census/censusinfodashboard/index.html |title=Census of India |work=[[Registrar General and Census Commissioner of India]]}}</ref>
+|-
+|  {{flag|Indonesia}} ||  92.8% || 97% ||  89.6% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Iran}} ||  85% || 89.3% ||  80.7% ||  age 15 and over can read and write (2008 est.)<ref>{{cite web |url=http://data.worldbank.org/country/iran-islamic-republic |title=World Bank Estimates Microdata |accessdate=5 September 2013}}</ref>
+|-
+|  {{flag|Iraq}} ||  80.2% || 89% ||  73.6% ||  age 15 and over can read and write (2012 est.)<ref name=cialittab />
+|-
+|  {{flag|Ireland}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Isle of Man}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Israel}} ||  97.1% || 98.5% ||  95.9% ||  age 15 and over can read and write (2004 est.)<ref name=cialittab />
+|-
+|  {{flag|Italy}} ||  99% || 99.2% ||  98.7% ||  age 15 and over can read and write (2011 census)<ref name=cialittab />
+|-
+|  {{flag|Ivory Coast}} ||  56.2% || 65.2% ||  46.6% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Jamaica}} ||  87.9% || 84.1% ||  91.6% ||  age 15 and over has ever attended school (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Japan}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2002 census)<ref name=cialittab />
+|-
+|  {{flag|Jersey}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Jordan}} ||  93.4% || 96.6% ||  90.2% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Kazakhstan}} ||  99.5% || 99.8% ||  99.3% || age 15 and over can read and write (1999 est.)<ref name=cialittab />
+|-
+|  {{flag|Kenya}} ||  87.4% || 90.6% ||  84.2% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Kiribati}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Korea, North}} ||  100% || 100% ||  100% || age 15 and over can read and write (2008 est.)<ref name=cialittab />
+|-
+|  {{flag|Korea, South}} ||  97.9% || 99.2% ||  96.6% ||  age 15 and over can read and write (2002)<ref name=cialittab />
+|-
+|  {{flag|Republic of Kosovo|name=Kosovo, Republic of}} ||  91.9% || 96.6% ||  87.5% ||  age 15 and over can read and write (2007 census)<ref name=cialittab />
+|-
+|  {{flag|Kuwait}} ||  94% || 94.4% ||  97% ||  age 15 and over can read and write (2007-2011 census)<ref>{{cite web |url=http://www.unicef.org/infobycountry/kuwait_statistics.html |title=Kuwait Statistics |work=[[UNICEF]]}}</ref>
+|-
+|  {{flag|Kyrgyzstan}} ||  98.7% || 99.3% ||  98.1% || age 15 and over can read and write (1999 census)<ref name=cialittab />
+|-
+|  {{flag|Laos}} ||  73% || 83% ||  63% ||  age 15 and over can read and write (2005 census)<ref name=cialittab />
+|-
+|  {{flag|Latvia}} ||  99.8% || 99.8% ||  99.8% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Lebanon}} ||  89.6% || 93.4% ||  86% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Lesotho}} ||  89.6% || 83.3%||  95.6% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Liberia}} ||  60.8% || 64.8% ||  56.8% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Libya}} ||  94.2% || 98.6% ||  90.7% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Liechtenstein}} ||  100% || 100% ||  100% ||  age 10 and over can read and write<ref name=cialittab />
+|-
+|  {{flag|Lithuania}} ||  99.7% || 99.7% ||  99.7% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Luxembourg}} ||  100% || 100% ||  100% ||  age 15 and over can read and write (2000 est.)<ref name=cialittab />
+|-
+|  {{flag|Macau}} ||  91.3% || 95.3% ||  87.8% ||  age 15 and over can read and write (2001 census)<ref name=cialittab />
+|-
+|  {{flag|Macedonia, Republic of}} ||  97.3% || 98.7% ||  95.9% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Madagascar}} ||  64.5% || 67.4% ||  61.6% ||  age 15 and over can read and write (2009 est.)<ref name=cialittab />
+|-
+|  {{flag|Malawi}} ||  74.8% || 81.1% ||  68.5% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Malaysia}} ||  93.1% || 95.4% ||  90.7% ||  age 15 and over can read and write (2010 census)<ref name=cialittab />
+|-
+|  {{flag|Maldives}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2006 census)<ref name=cialittab />
+|-
+|  {{flag|Mali}} ||  27.7% || 36.1% ||  19.8% ||  age 15 and over can read and write (2009 census)<ref name=cialittab />
+|-
+|  {{flag|Malta}} ||  92.8% || 91.7% ||  93.9% ||  age 10 and over can read and write (2005 census)<ref name=cialittab />
+|-
+|  {{flag|Marshall Islands}} ||  93.7% || 93.6% ||  93.7% || age 15 and over can read and write (1999 est.)<ref name=cialittab />
+|-
+|  {{flag|Mauritania}} ||  58% || 64.9% ||  51.2% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Mauritius}} ||  89.8% || 92.3% ||  87.3% ||  age 15 and over can read and write (2011 census)<ref name="mru">{{cite journal|url=http://www.gov.mu/portal/goc/cso/ei977/pop2011.pdf|publisher=[[Statistics Mauritius]]|title=2011 POPULATION CENSUS - MAIN RESULTS|accessdate=19 April 2014}}</ref>
+|-
+|  {{flag|Mexico}} ||  93.4% || 93.7% ||  93.1% ||  age 15 and over can read and write (2009 estimate)<ref name=cialittab />
+|-
+|  {{flag|Micronesia, Federated States of}} ||  89%|| 91% ||  88% || age 15 and over can read and write (1980 est.)<ref name=cialittab />
+|-
+|  {{flag|Moldova}} ||  98.5% || 99.1% ||  98.1% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Monaco}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Mongolia}} ||  97.4% || 96.9% ||  97.9% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Montenegro}} ||  98.4% || 99.4% ||  97.4% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Montserrat}} ||  97% || 97% ||  97% ||  age 15 and over has ever attended school (1970 est.)<ref name=cialittab />
+|-
+|  {{flag|Morocco}} ||  67.1% || 76.1% ||  57.6% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Mozambique}} ||  56.1% || 70.8% ||  42.8% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Namibia}} ||  88.8% || 89% ||  88.5% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Nauru}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Nepal}} ||  66% || 75.1% ||  57.4% ||  age 15 and over can read and write (2010 census)<ref name=cialittab />
+|-
+|  {{flag|Netherlands}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|New Caledonia}} ||  96.2% || 96.8% ||  95.5% || age 15 and over can read and write (1996 census)<ref name=cialittab />
+|-
+|  {{flag|New Zealand}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Nicaragua}} ||  67.5% || 67.2% ||  67.8% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Niger}} ||  28.7% || 42.9% ||  15.1% ||  age 15 and over can read and write (2005 est.)<ref name=cialittab />
+|-
+|  {{flag|Nigeria}} ||  61.3% || 72.1% ||  50.4% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Niue}} ||  95% || N/A  ||  N/A ||<ref name=cialittab />
+|-
+|  {{flag|Norfolk Island}} || 100% || 100% || 100% ||<ref name=cialittab />
+|-
+|  {{flag|Northern Mariana Islands}} ||  97% || 97% ||  96% || age 15 and over can read and write (1980 est.)<ref name=cialittab />
+|-
+|  {{flag|Norway}} ||  100% || 100% ||  100% ||<ref name=cialittab />
+|-
+|  {{flag|Oman}} ||  81.4% || 86.8% ||  73.5% ||  age 15 and over can read and write (2003 census)<ref name=cialittab />
+|-
+|  {{flag|Pakistan}} ||  55% || 67% ||  42% ||  age 15 and over can read and write.[http://www.unesco.org/uil/litbase/?menu=14&programme=66][http://www.alifailaan.pk/may_26_2014]
+|-
+|  {{flag|Palau}} ||  92% || 93% ||  90% || age 15 and over can read and write (1980 est.)<ref name=cialittab />
+|-
+|  {{flag|Palestine}} ||  95.6% || 98.1% ||  93.1% ||  age 15 and over can read and write (2012 est.)<ref>{{cite web |url=http://www.pcbs.gov.ps/Portals/_Rainbow/Documents/Education-1994-2012-11E2.htm |title=Literacy Rate of Persons in the West Bank |work=Palestinian Central Bureau of Statistics}}</ref>
+|-
+|  {{flag|Panama}} ||  91.9% || 92.5% ||  91.2% ||  age 15 and over can read and write (2000 census)<ref name=cialittab />
+|-
+|  {{flag|Papua New Guinea}} ||  57.3% || 63.4% ||  50.9% ||  age 15 and over can read and write (2000 census)<ref name=cialittab />
+|-
+|  {{flag|Paraguay}} ||  94% || 94.9% ||  93% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Peru}} ||  92.9% || 96.4% ||  89.4% ||  age 15 and over can read and write (2007 census)<ref name=cialittab />
+|-
+|  {{flag|Philippines}} ||  95.4% || 95% ||  95.8% ||  age 15 and over can read and write<ref name=cialittab />
+|-
+|  {{flag|Pitcairn Islands}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Poland}} ||  99.7% || 99.9% ||  99.6% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Portugal}} ||  95.4% || 97% ||  94% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Puerto Rico}} ||  94.1% || 93.9% ||  94.4% ||  age 15 and over can read and write (2002 est.)<ref name=cialittab />
+|-
+|  {{flag|Qatar}} ||  96.3% || 96.5% ||  95.4% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Romania}} ||  97.7% || 98.3% ||  97.1% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Russia}} ||  99.7% || 99.7% ||  99.6% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Rwanda}} ||  71.1% || 74.8% ||  67.5% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Saint Helena, Ascension and Tristan da Cunha}} ||  97% || 97% ||  98% ||  age 20 and over can read and write (1987 est.)<ref name=cialittab />
+|-
+|  {{flag|Saint Kitts and Nevis}} ||  97.8% || N/A ||  N/A ||  age 15 and over has ever attended school (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Saint Lucia}} ||  90.1% || 89.5% ||  90.6% ||  age 15 and over has ever attended school (2001 est.)<ref name=cialittab />
+|-
+|  {{flag|Saint Pierre and Miquelon}} ||  99% || 99% ||  99% || age 15 and over can read and write  (1982 est.)<ref name=cialittab />
+|-
+|  {{flag|Saint Vincent and the Grenadines}} ||  96% || 96% ||  96% ||  age 15 and over has ever attended school  (1970 est.)<ref name=cialittab />
+|-
+|  {{flag|Samoa}} ||  99.7% || 99.6% ||  99.7% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|San Marino}} ||  96% || 97% ||  95%||  age 10 and over can read and write<ref name=cialittab />
+|-
+|  {{flag|Sao Tome and Principe}} ||  84.9% || 92.2% ||  77.9% ||  age 15 and over can read and write (2001 census)<ref name=cialittab />
+|-
+|  {{flag|Saudi Arabia}} ||  86.6% || 90.4% ||  81.3% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Senegal}} ||  39.3% || 51.1% ||  29.2% ||  age 15 and over can read and write (2002 est.)<ref name=cialittab />
+|-
+|  {{flag|Serbia}} ||  98% || 99.2% ||  96.9% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|Seychelles}} ||  91.8% || 91.4% ||  92.3% ||  age 15 and over can read and write (2002 census)<ref name=cialittab />
+|-
+|  {{flag|Sierra Leone}} ||  35.1% || 46.9% ||  24.4% ||  age 15 and over can read and write (2004 est.)<ref name=cialittab />
+|-
+|  {{flag|Singapore}} ||  95.9% || 98.0% ||  93.8% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Slovakia}} ||  99.6% || 99.7% ||  99.6% ||  age 15 and over can read and write (2004)<ref name=cialittab />
+|-
+|  {{flag|Slovenia}} ||  99.7% || 99.7% ||  99.7% ||  (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Solomon Islands}} || 84.1% || 88.9% || 79.2% ||<ref name=cialittab />
+|-
+| {{flag|Somalia}} || N/A || N/A || N/A || <ref>No reliable data on nationwide literacy rate. 2013 FSNAU survey indicates considerable differences per region, with the autonomous northeastern [[Puntland]] region having the highest registered literacy rate (72%) [http://www.fsnau.org/downloads/Remittances-and-Livelihoods-Support-in-Puntland-and-Somaliland.pdf]</ref>
+|-
+|  {{flag|South Africa}} ||  93.1% || 93.9% ||  92.2% ||  age 15 and over can read and write (2011 est.)<ref name=cialittab />
+|-
+|  {{flag|South Sudan}} ||  27% || 40% ||  16% ||age 15 and over can read and write<ref name=cialittab />
+|-
+|  {{flag|Spain}} ||  97.7% || 98.5% ||  97% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Sri Lanka}} ||  98.1% || 97.7% ||  98.6% ||  age 15 and over can read and write (2010 census)<ref name=cialittab />
+|-
+|  {{flag|Sudan}} ||  71.9% || 80.7% ||  63.2% || age 15 and over can read and write<ref name=cialittab />
+|-
+|  {{flag|Suriname}} ||  92.6% || 95% ||  90.2% ||  age 15 and over can read and write (2010 census)<ref name=cialittab />
+|-
+|  {{flag|Svalbard}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Swaziland}} ||  81.6% || 82.6% ||  80.8% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Sweden}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Switzerland}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Syria}} ||  79.6% || 86% ||  73.6% ||  age 15 and over can read and write (2004 census)<ref name=cialittab />
+|-
+|  {{flag|Taiwan}} ||  98.29% || 99.62% ||  96.97% ||  age 15 and over can read and write (2012)<ref>https://stats.moe.gov.tw/files/main_statistics/age15up.xls</ref>
+|-
+|  {{flag|Tajikistan}} ||  99.7% || 99.8% ||  99.6% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Tanzania}} ||  69.4% || 77.5% ||  62.2% ||  age 15 and over can read and write (2002 census)<ref name=cialittab />
+|-
+|  {{flag|Thailand}} ||  93.5% || 95.6% ||  91.5% ||  age 15 and over can read and write (2005 census)<ref name=cialittab />
+|-
+|  {{flag|Timor-Leste	}} ||  58.6% || N/A ||  N/A ||  age 15 and over can read and write (2002)<ref name=cialittab />
+|-
+|  {{flag|Togo}} ||  60.9% || 75.4% ||  46.9% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Tokelau}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Tonga}} ||  98.9% || 98.8% ||  99% ||  can read and write Tongan and/or English  (1999 est.)<ref name=cialittab />
+|-
+|  {{flag|Trinidad and Tobago}} ||  98.6% || 99.1% ||  98% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Tunisia}} ||  88.3% || 95.1% ||  80.3% ||  age 15 and over can read and write (2010 census)<ref name=cialittab />
+|-
+|  {{flag|Turkey}} ||  95.3% || 98.3% ||  92.2% ||  age 15 and over can read and write (2012 est.)<ref>{{cite web |url=http://www.turkstat.gov.tr/PreHaberBultenleri.do?id=13458 |title=Women In Statistics, 2012 |work=[[Turkish Statistical Institute]]}}</ref>
+|-
+|  {{flag|Turkmenistan}} ||  98.8% || 99.3% ||  98.3% ||  age 15 and over can read and write (1999 est.)<ref name=cialittab />
+|-
+|  {{flag|Turks and Caicos Islands}} ||  98% || 99% ||  98% ||  age 15 and over has ever attended school (1970 est.)<ref name=cialittab />
+|-
+|  {{flag|Tuvalu}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Uganda}} ||  66.8% || 76.8% ||  57.7% ||  age 15 and over can read and write (2002 census)<ref name=cialittab />
+|-
+|  {{flag|Ukraine}} ||  99.7% || 99.8% ||  99.6% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|United Arab Emirates}} ||  77.9% || 76.1% ||  81.7% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|United Kingdom}} ||  99% || 99% ||  99% ||  age 15 and over has completed five or more years of schooling (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|United States}} ||  99% || 99% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|United States Virgin Islands}} ||  90-95% est. || N/A ||  N/A ||  age 15 and over can read and write (2005 est.)<ref name=cialittab />
+|-
+|  {{flag|Uruguay}} ||  98% || 97.6% ||  98.4% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Uzbekistan}} ||  99.3% || 99.6% ||  99% ||  age 15 and over can read and write (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Vanuatu}} ||  74% || N/A ||  N/A  || age 15 and over can read and write (1999 census)<ref name=cialittab />
+|-
+|  {{flag|Vatican City}} ||  99% || 99% ||  99% ||<ref name=cialittab />
+|-
+|  {{flag|Venezuela}} ||  95.5% || 95.7% ||  95.4% ||  age 15 and over can read and write (2009 est.)<ref>{{cite web |url=http://www.uis.unesco.org/DataCentre/Pages/country-profile.aspx?code=VEN&regioncode=40520 |title=Country Profiles: Venezuela (Bolivarian Republic of) |work=Unesco Institute for Statistics}}</ref>
+|-
+|  {{flag|Vietnam}} ||  94% || 96.1% ||  92% ||  age 15 and over can read and write (2002 est.)<ref name=cialittab />
+|-
+|  {{flag|Wallis and Futuna}} ||  50% || 50% ||  50% ||  age 15 and over can read and write (1969 est.)<ref name=cialittab />
+|-
+|  {{flag|Western Sahara}} || N/A || N/A || N/A ||<ref name=cialittab />
+|-
+|  {{flag|Yemen}} ||  63.9% || 81.2% ||  46.8% ||  age 15 and over can read and write (2010 est.)<ref name=cialittab />
+|-
+|  {{flag|Zambia}} ||  80.6% || 86.8% ||  74.8% ||  age 15 and over can read and write English (2003 est.)<ref name=cialittab />
+|-
+|  {{flag|Zimbabwe}} ||  90.7% || 94.2% ||  87.2% ||  age 15 and over can read and write English (2003 est.)<ref name=cialittab />
+|}
+
+==See also==
+*[[International Literacy Day]]
+*[[Compulsory education]]
+*[[Indian states ranking by literacy rate]] 
+*[[List of Brazilian states by literacy rate]]
+
+==References==
+{{Reflist|2}}
+
+==External links==
+*[http://data.worldbank.org/indicator/SE.ADT.LITR.ZS World Bank -  Literacy rate, adult total (% of people ages 15 and above)]
+
+{{Global economic classifications}}
+{{literacy}}
+{{Population country lists}}
+
+[[Category:Lists of countries|Literacy]]
+[[Category:Literacy|*]]
+[[Category:Lists of countries by population related issue]]
