@@ -25,9 +25,12 @@ package com.heatonresearch.aifh.som.train;
 
 import Jama.Matrix;
 import com.heatonresearch.aifh.general.VectorAlgebra;
+import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.som.BestMatchingUnit;
 import com.heatonresearch.aifh.som.SelfOrganizingMap;
 import com.heatonresearch.aifh.som.neighborhood.NeighborhoodFunction;
+
+import java.util.List;
 
 /**
  * This class implements competitive training, which would be used in a
@@ -138,7 +141,7 @@ public class BasicTrainSOM  {
      */
     private double radius;
 
-    private double[][] training;
+    private List<BasicData> training;
 
     private double error = 0;
 
@@ -155,7 +158,7 @@ public class BasicTrainSOM  {
      *            The neighborhood function to use.
      */
     public BasicTrainSOM(final SelfOrganizingMap network, final double learningRate,
-                         final double[][] training, final NeighborhoodFunction neighborhood) {
+                         final List<BasicData> training, final NeighborhoodFunction neighborhood) {
         this.neighborhood = neighborhood;
         this.training = training;
         this.learningRate = learningRate;
@@ -363,8 +366,8 @@ public class BasicTrainSOM  {
         //*this.correctionMatrix.clear();
 
         // Determine the BMU for each training element.
-        for (final double[] input : this.training) {
-            final int bmu = this.bmuUtil.calculateBMU(input);
+        for (final BasicData input : this.training) {
+            final int bmu = this.bmuUtil.calculateBMU(input.getInput());
             won[bmu]++;
 
             // If we are to force a winner each time, then track how many
@@ -374,17 +377,17 @@ public class BasicTrainSOM  {
 
                 // Get the "output" from the network for this pattern. This
                 // gets the activation level of the BMU.
-                final double[] output = compute(this.network,input);
+                final double[] output = compute(this.network,input.getInput());
 
                 // Track which training entry produces the least BMU. This
                 // pattern is the least represented by the network.
                 if (output[bmu] < leastRepresentedActivation) {
                     leastRepresentedActivation = output[bmu];
-                    leastRepresented = input;
+                    leastRepresented = input.getInput();
                 }
             }
 
-            train(bmu, this.network.getWeights(), input);
+            train(bmu, this.network.getWeights(), input.getInput());
 
             if (this.forceWinner) {
                 // force any non-winning neurons to share the burden somewhat\

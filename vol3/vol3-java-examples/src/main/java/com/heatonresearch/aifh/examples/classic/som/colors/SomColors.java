@@ -42,6 +42,8 @@ public class SomColors extends JFrame implements Runnable {
      *
      */
     private static final long serialVersionUID = -6762179069967224817L;
+    public static final int WIDTH = 50;
+    public static final int HEIGHT = 50;
     private MapPanel map;
     private SelfOrganizingMap network;
     private Thread thread;
@@ -52,9 +54,8 @@ public class SomColors extends JFrame implements Runnable {
         this.setSize(640, 480);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.network = createNetwork();
-        this.getContentPane().add(map = new MapPanel(this));
-        this.gaussian = new NeighborhoodRBF(RBFEnum.Gaussian,MapPanel.WIDTH,
-                MapPanel.HEIGHT);
+        this.getContentPane().add(map = new MapPanel(this.network,8,WIDTH,HEIGHT));
+        this.gaussian = new NeighborhoodRBF(RBFEnum.Gaussian,WIDTH,HEIGHT);
         this.train = new BasicTrainSOM(this.network, 0.01, null, gaussian);
         train.setForceWinner(false);
         this.thread = new Thread(this);
@@ -66,7 +67,7 @@ public class SomColors extends JFrame implements Runnable {
     }
 
     private SelfOrganizingMap createNetwork() {
-        SelfOrganizingMap result = new SelfOrganizingMap(3,MapPanel.WIDTH * MapPanel.HEIGHT);
+        SelfOrganizingMap result = new SelfOrganizingMap(3,WIDTH * HEIGHT);
         result.reset();
         return result;
     }
