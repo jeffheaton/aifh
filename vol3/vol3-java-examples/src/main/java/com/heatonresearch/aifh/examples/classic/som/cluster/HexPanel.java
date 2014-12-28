@@ -121,8 +121,18 @@ public class HexPanel extends JPanel {
         g.fillPolygon(xPoints,yPoints,xPoints.length);
         g.setColor(Color.BLACK);
         g.drawPolygon(xPoints,yPoints,xPoints.length);
+    }
 
+    public void plotCenter(Graphics g, int row, int col) {
+        double evenIndent = (this.unit+(this.sq3/2));
+        double oddIndent = this.unit*2+this.sq3*1.5;
+        double indent = ((row%2==1)?oddIndent:evenIndent);
 
+        int y = (int)(this.sq3+(row * this.sq3 ));
+        int x = (int)( (col*((this.unit*2)+(this.sq3*2)))  + indent  );
+
+        g.setColor(Color.BLACK);
+        g.drawOval(x,y,2,2);
     }
 
     @Override
@@ -154,5 +164,7 @@ public class HexPanel extends JPanel {
             }
             indent = !indent;
         }
+
+        plotCenter(g,2,0);
     }
 }

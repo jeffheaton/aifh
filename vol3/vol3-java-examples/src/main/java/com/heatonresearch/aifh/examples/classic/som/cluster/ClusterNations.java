@@ -42,7 +42,7 @@ public class ClusterNations extends JFrame implements Runnable {
     private List<BasicData> trainingData;
 
     public ClusterNations() {
-        this.setSize(640, 480);
+        this.setSize(750, 300);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         loadTraining();
 
@@ -54,6 +54,7 @@ public class ClusterNations extends JFrame implements Runnable {
         network.reset();
 
         this.gaussian = new NeighborhoodRBF(RBFEnum.Gaussian,WIDTH,HEIGHT);
+        this.gaussian.setHexagon(true);
         this.train = new BasicTrainSOM(this.network, 0.01, this.trainingData, gaussian);
         this.train.setAutoDecay(CYCLES,START_RATE,END_RATE,START_WIDTH,END_WIDTH);
         train.setForceWinner(false);

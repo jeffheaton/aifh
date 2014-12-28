@@ -28,6 +28,7 @@
  */
 package com.heatonresearch.aifh.som.neighborhood;
 
+import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.general.fns.*;
 
 /**
@@ -53,6 +54,10 @@ public class NeighborhoodRBF implements NeighborhoodFunction {
 	private int[] displacement;
 
     private double[] params;
+
+    private boolean hexagon;
+
+    public static final double sq3 = Math.sqrt(3);
 
 	/**
 	 * Construct a 2d neighborhood function based on the sizes for the
@@ -150,6 +155,19 @@ public class NeighborhoodRBF implements NeighborhoodFunction {
 		for (int i = 0; i < vectorCurrent.length; i++) {
 			vector[i] = vectorCurrent[i] - vectorBest[i];
 		}
+
+        if( this.hexagon ) {
+            double row = vector[1];
+            double col = vector[0];
+            double evenIndent = (1.0+(this.sq3/2));
+            double oddIndent = 2+this.sq3*1.5;
+            double indent = ((row%2==1)?oddIndent:evenIndent);
+
+            vector[1] = (int)(this.sq3+(row * this.sq3 ));
+            vector[0] = (int)( (col*((2)+(this.sq3*2)))  + indent  );
+        }
+
+
 		return this.rbf.evaluate(vector);
 
 	}
@@ -204,4 +222,14 @@ public class NeighborhoodRBF implements NeighborhoodFunction {
 		return result;
 	}
 
+    public boolean isHexagon() {
+        return hexagon;
+    }
+
+    public void setHexagon(final boolean theHexagon) {
+        if( theHexagon && this.size.length!=2) {
+            throw new AIFHError("Hexagon lattice can only be used in two dimensions.");
+        }
+        this.hexagon = theHexagon;
+    }
 }
