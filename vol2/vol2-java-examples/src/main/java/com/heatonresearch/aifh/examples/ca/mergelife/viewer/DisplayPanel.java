@@ -412,6 +412,52 @@ public class DisplayPanel extends JPanel implements MouseListener {
         }
     }
 
+    private void updateGUI() {
+        final Graphics g = getGraphics();
+        final FontMetrics fm = this.offscreenGraphics.getFontMetrics();
+
+        // Loop over all universes.
+        for (int row = 0; row < this.rows; row++) {
+            for (int col = 0; col < this.cols; col++) {
+                final int x = col
+                        * MultiverseViewer.getConfig().getPaneWidth();
+                final int y = row
+                        * MultiverseViewer.getConfig().getPaneHeight();
+
+                final UniversePane cell = this.grid[row][col];
+                final Image img = cell.getImage();
+                this.offscreenGraphics.drawImage(img, x, y, null);
+
+                final UniverseRunner selected = this.grid[row][col]
+                        .getUniverseRunner();
+
+                // Display any selection information.
+                if (this.copySource != null) {
+                    if (this.copySource == selected) {
+                        drawStatus(this.offscreenGraphics, row, col, fm,
+                                "Source");
+                    }
+                } else if (this.crossoverParent1 != null
+                        || this.crossoverParent2 != null) {
+                    if (selected == this.crossoverParent1) {
+                        drawStatus(this.offscreenGraphics, row, col, fm,
+                                "Father");
+                    } else if (selected == this.crossoverParent2) {
+                        drawStatus(this.offscreenGraphics, row, col, fm,
+                                "Mother");
+                    }
+                } else {
+                    final String s = "diff: "
+                            + cell.getUniverseRunner().getDiff() + ",age: "
+                            + cell.getUniverseRunner().getIterations();
+                    drawStatus(this.offscreenGraphics, row, col, fm, s);
+                }
+            }
+        }
+
+        g.drawImage(this.offscreenImage, 0, 0, this);
+    }
+
     /**
      * Update the multiverse on screen.
      */
@@ -427,49 +473,14 @@ public class DisplayPanel extends JPanel implements MouseListener {
         try {
             this.threadPool.invokeAll(tasks);
 
-            final Graphics g = getGraphics();
-            final FontMetrics fm = this.offscreenGraphics.getFontMetrics();
-
-            // Loop over all universes.
-            for (int row = 0; row < this.rows; row++) {
-                for (int col = 0; col < this.cols; col++) {
-                    final int x = col
-                            * MultiverseViewer.getConfig().getPaneWidth();
-                    final int y = row
-                            * MultiverseViewer.getConfig().getPaneHeight();
-
-                    final UniversePane cell = this.grid[row][col];
-                    final Image img = cell.getImage();
-                    this.offscreenGraphics.drawImage(img, x, y, null);
-
-                    final UniverseRunner selected = this.grid[row][col]
-                            .getUniverseRunner();
-
-                    // Display any selection information.
-                    if (this.copySource != null) {
-                        if (this.copySource == selected) {
-                            drawStatus(this.offscreenGraphics, row, col, fm,
-                                    "Source");
-                        }
-                    } else if (this.crossoverParent1 != null
-                            || this.crossoverParent2 != null) {
-                        if (selected == this.crossoverParent1) {
-                            drawStatus(this.offscreenGraphics, row, col, fm,
-                                    "Father");
-                        } else if (selected == this.crossoverParent2) {
-                            drawStatus(this.offscreenGraphics, row, col, fm,
-                                    "Mother");
-                        }
-                    } else {
-                        final String s = "diff: "
-                                + cell.getUniverseRunner().getDiff() + ",age: "
-                                + cell.getUniverseRunner().getIterations();
-                        drawStatus(this.offscreenGraphics, row, col, fm, s);
-                    }
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    updateGUI();
                 }
-            }
+            });
 
-            g.drawImage(this.offscreenImage, 0, 0, this);
+            Thread.sleep(100);
+
         } catch (final InterruptedException ex) {
             ex.printStackTrace();
         }
