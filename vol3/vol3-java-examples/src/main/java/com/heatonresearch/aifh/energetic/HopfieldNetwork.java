@@ -32,6 +32,8 @@ import Jama.Matrix;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.general.VectorAlgebra;
 
+import java.util.Arrays;
+
 /**
  * Implements a Hopfield network.
  * 
@@ -155,7 +157,7 @@ public class HopfieldNetwork extends EnergeticNetwork {
 				sum += getCurrentState()[fromNeuron]
 						* getWeight(fromNeuron, toNeuron);
 			}
-			getCurrentState()[toNeuron] = sum;
+			getCurrentState()[toNeuron] = (sum>0)?1:-1;
 		}
 	}
 
@@ -169,15 +171,15 @@ public class HopfieldNetwork extends EnergeticNetwork {
 	 */
 	public int runUntilStable(final int max) {
 		boolean done = false;
-		String lastStateStr = getCurrentState().toString();
-		String currentStateStr = getCurrentState().toString();
+		String lastStateStr = Arrays.toString(getCurrentState());
+		String currentStateStr = lastStateStr;
 
 		int cycle = 0;
 		do {
 			run();
 			cycle++;
 
-			lastStateStr = getCurrentState().toString();
+			lastStateStr = Arrays.toString(getCurrentState());
 
 			if (!currentStateStr.equals(lastStateStr)) {
 				if (cycle > max) {
