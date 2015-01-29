@@ -61,40 +61,6 @@ public class HopfieldNetwork extends EnergeticNetwork {
 	}
 
 	/**
-	 * Train the neural network for the specified pattern. The neural network
-	 * can be trained for more than one pattern. To do this simply call the
-	 * train method more than once.
-	 * 
-	 * @param pattern
-	 *            The pattern to train for.
-	 */
-	public void addPattern(final double[] pattern) {
-
-		if (pattern.length != getNeuronCount()) {
-			throw new AIFHError("Network with " + getNeuronCount()
-					+ " neurons, cannot learn a pattern of size "
-					+ pattern.length);
-		}
-
-		// Create a row matrix from the input, convert boolean to bipolar
-		final Matrix m2 = VectorAlgebra.createRowMatrix(pattern);
-		// Transpose the matrix and multiply by the original input matrix
-		final Matrix m1 = m2.transpose();
-		final Matrix m3 = m1.times(m2);
-
-		// matrix 3 should be square by now, so create an identity
-		// matrix of the same size.
-		final Matrix identity = VectorAlgebra.identityMatrix(m3.getRowDimension());
-
-		// subtract the identity matrix
-		final Matrix m4 = m3.minus(identity);
-
-		// now add the calculated matrix, for this pattern, to the
-		// existing weight matrix.
-		convertHopfieldMatrix(m4);
-	}
-
-	/**
 	 * Note: for Hopfield networks, you will usually want to call the "run"
 	 * method to compute the output.
 	 * 
@@ -111,26 +77,15 @@ public class HopfieldNetwork extends EnergeticNetwork {
 		run();
 
 		for (int i = 0; i < getCurrentState().length; i++) {
-			result[i] = (getCurrentState()[i]>0)?1:0;
+			result[i] = activationFunction(getCurrentState()[i]);
 		}
         System.arraycopy(getCurrentState(), 0, result, 0, result.length);
 		return result;
 	}
 
-	/**
-	 * Update the Hopfield weights after training.
-	 * 
-	 * @param delta
-	 *            The amount to change the weights by.
-	 */
-	private void convertHopfieldMatrix(final Matrix delta) {
-		// add the new weight matrix to what is there already
-		for (int row = 0; row < delta.getRowDimension(); row++) {
-			for (int col = 0; col < delta.getColumnDimension(); col++) {
-				addWeight(row, col, delta.get(row, col));
-			}
-		}
-	}
+    public double activationFunction(double d) {
+        return (d>0)?1:0;
+    }
 
 	/**
 	 * {@inheritDoc}
@@ -157,8 +112,8 @@ public class HopfieldNetwork extends EnergeticNetwork {
 				sum += getCurrentState()[fromNeuron]
 						* getWeight(fromNeuron, toNeuron);
 			}
-			getCurrentState()[toNeuron] = (sum>0)?1:-1;
-		}
+			getCurrentState()[toNeuron] = activationFunction(sum);
+        }
 	}
 
 	/**
@@ -195,6 +150,5 @@ public class HopfieldNetwork extends EnergeticNetwork {
 
 		return cycle;
 	}
-
 
 }

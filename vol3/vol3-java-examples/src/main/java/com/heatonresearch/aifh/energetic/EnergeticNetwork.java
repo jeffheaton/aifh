@@ -29,6 +29,7 @@
 package com.heatonresearch.aifh.energetic;
 
 import com.heatonresearch.aifh.AIFHError;
+import com.heatonresearch.aifh.learning.MLMethod;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 /**
@@ -36,7 +37,7 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
  * @author jheaton
  *
  */
-public abstract class EnergeticNetwork  {
+public abstract class EnergeticNetwork implements MLMethod {
 
 	/**
 	 * Serial id.
@@ -228,4 +229,10 @@ public abstract class EnergeticNetwork  {
 		this.weights = w;
 	}
 
+
+
+    @Override
+    public double[] getLongTermMemory() {
+        return this.weights;
+    }
 }

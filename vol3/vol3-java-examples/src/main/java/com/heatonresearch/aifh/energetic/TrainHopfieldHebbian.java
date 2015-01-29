@@ -10,11 +10,15 @@ import com.heatonresearch.aifh.AIFHError;
  * To change this template use File | Settings | File Templates.
  */
 public class TrainHopfieldHebbian {
-    private HopfieldNetwork network;
+    private HopfieldTankNetwork network;
     private double[][] sumMatrix;
     private int patternCount;
 
-    public TrainHopfieldHebbian(HopfieldNetwork theNetwork) {
+    public TrainHopfieldHebbian(HopfieldTankNetwork theNetwork) {
+        if( theNetwork instanceof HopfieldTankNetwork ) {
+            throw new AIFHError("This trainer cannot be used with a Hopfield-Tank network, only discrete Hopfield");
+        }
+
         this.network = theNetwork;
         this.sumMatrix = new double[network.getInputCount()][network.getInputCount()];
     }

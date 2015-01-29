@@ -278,4 +278,9 @@ public class BoltzmannMachine extends EnergeticNetwork {
     public void setRandom(final GenerateRandom random) {
         this.random = random;
     }
+
+    @Override
+    public double[] getLongTermMemory() {
+        return new double[0];  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }
