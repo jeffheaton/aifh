@@ -274,7 +274,7 @@ public class DiscreteACO {
     }
 
     /**
-     * @return The the best tour/path.
+     * @return The best tour/path.
      */
     public int[] getBestTour() {
         return bestPath;

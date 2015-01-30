@@ -40,7 +40,7 @@ import com.heatonresearch.aifh.randomize.GenerateRandom
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom
 
 /**
- * This example shows how the number of rounds affects the the average score of the genome selected by
+ * This example shows how the number of rounds affects the average score of the genome selected by
  * the tournament selection operator.  A population of 1000 genomes is created with each genome having a
  * score between 0 and 999.  There is one genome for each score.  Round counts are tried between one and ten.
  * The average score over 100k selections is reported.  As the number of rounds increases, so does the average

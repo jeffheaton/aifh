@@ -41,7 +41,7 @@ class SimpleAlgo(cannedResults: Vector[Double]) extends RegressionAlgorithm with
 
   override def computeClassification(input: Vector[Double]): Int = {
     val res = cannedResults(currentIndex).toInt
-    currentIndex +=1
+    currentIndex += 1
     res
   }
 

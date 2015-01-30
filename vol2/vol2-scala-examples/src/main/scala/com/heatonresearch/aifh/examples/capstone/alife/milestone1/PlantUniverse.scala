@@ -174,7 +174,7 @@ class PlantUniverse {
    * @return The info vector.
    */
   def getCellInfoVector(row: Int, col: Int): Array[Double] = {
-    val result= new Array[Double](CELL_VECTOR_LENGTH)
+    val result = new Array[Double](CELL_VECTOR_LENGTH)
     val cell = getCell(row, col)
     result(0) = row / PlantUniverse.UNIVERSE_HEIGHT
     if (row < PlantUniverse.GROUND_LINE) {

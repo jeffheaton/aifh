@@ -295,7 +295,7 @@ namespace AIFH_Vol2.Core.ACO
         }
 
         /// <summary>
-        /// The the best tour/path.
+        /// The best tour/path.
         /// </summary>
         public int[] BestTour
         {

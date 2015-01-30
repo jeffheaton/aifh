@@ -100,7 +100,7 @@ class Milestone3Main extends JFrame with Runnable {
    */
   private def randomGenome: DoubleArrayGenome = {
     val genome = new DoubleArrayGenome(GENOME_SIZE)
-    for(i<- 0 until genome.size) {
+    for(i <- 0 until genome.size) {
       genome.getData(i) = rnd.nextDouble(0, 1)
     }
 

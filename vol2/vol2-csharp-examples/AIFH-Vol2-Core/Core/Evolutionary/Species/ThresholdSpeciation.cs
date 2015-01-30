@@ -477,7 +477,7 @@ namespace AIFH_Vol2.Core.Evolutionary.Species
         /// </summary>
         /// <param name="genome1">The first genome.</param>
         /// <param name="genome2">The second genome.</param>
-        /// <returns>The compatability level.</returns>
+        /// <returns>The compatibility level.</returns>
         public abstract double GetCompatibilityScore(IGenome genome1, IGenome genome2);
     }
 }

@@ -104,7 +104,7 @@ class FindEquation {
       defaultSpecies.add(genome)
     }
     result.genomeFactory = new TreeGenomeFactory(eval)
-    result.speciesList +=defaultSpecies
+    result.speciesList += defaultSpecies
     result
   }
 
@@ -153,7 +153,7 @@ class FindEquation {
       builder.append(", Best Path Length = ")
       builder.append(thisSolution)
       println(builder.toString())
-      iteration+=1
+      iteration += 1
       if (Math.abs(lastSolution - thisSolution) < 1.0) {
         sameSolutionCount += 1
       }

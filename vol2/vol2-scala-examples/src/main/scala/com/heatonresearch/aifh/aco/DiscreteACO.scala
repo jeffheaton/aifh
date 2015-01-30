@@ -220,7 +220,7 @@ class DiscreteACO(val graph: CostGraph, antCount: Int) {
   }
 
   /**
-   * @return The the best tour/path.
+   * @return The best tour/path.
    */
   def getBestTour: Array[Int] = bestPath
 
