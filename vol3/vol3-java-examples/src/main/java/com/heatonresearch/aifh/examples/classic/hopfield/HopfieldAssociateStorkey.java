@@ -28,7 +28,7 @@
  */
 package com.heatonresearch.aifh.examples.classic.hopfield;
 
-import com.heatonresearch.aifh.energetic.HopfieldTankNetwork;
+import com.heatonresearch.aifh.energetic.HopfieldNetwork;
 import com.heatonresearch.aifh.energetic.TrainHopfieldStorkey;
 
 /**
@@ -213,7 +213,7 @@ public class HopfieldAssociateStorkey {
     }
 
 
-    public void evaluate(HopfieldTankNetwork hopfieldLogic, String[][] pattern)
+    public void evaluate(HopfieldNetwork hopfieldLogic, String[][] pattern)
     {
         for(int i=0;i<pattern.length;i++)
         {
@@ -229,7 +229,7 @@ public class HopfieldAssociateStorkey {
 
     public void run()
     {
-        HopfieldTankNetwork hopfieldLogic = new HopfieldTankNetwork(WIDTH*HEIGHT);
+        HopfieldNetwork hopfieldLogic = new HopfieldNetwork(WIDTH*HEIGHT);
         TrainHopfieldStorkey train = new TrainHopfieldStorkey(hopfieldLogic);
 
         for(int i=0;i<PATTERN.length;i++)
