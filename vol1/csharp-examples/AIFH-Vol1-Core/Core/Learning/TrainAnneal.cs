@@ -46,7 +46,7 @@ namespace AIFH_Vol1.Core.Learning
     ///     override this method.
     ///     Secondly, the cooling schedule.  This determines how quickly the current temperature will fall.  This is controlled
     ///     by the coolingSchedule.  To define a different cooling schedule, override this method.
-    ///     Finally, the the probability of accepting a higher-error (energy) solution.  This is defined by a Probability
+    ///     Finally, the probability of accepting a higher-error (energy) solution.  This is defined by a Probability
     ///     Distribution Function (PDF) contained in calcProbability.  To define a different PDF, override this method.
     ///     http://en.wikipedia.org/wiki/Simulated_annealing
     /// </summary>

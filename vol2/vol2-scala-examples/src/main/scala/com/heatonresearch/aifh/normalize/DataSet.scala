@@ -466,9 +466,9 @@ class DataSet {
       this.headers(column + i) = "new"
     }
     import scala.collection.JavaConversions._
-    for (obj <- this.data) {
+    for(obj <- this.data) {
       System.arraycopy(obj, column + 1 - columnCount, obj, column + 1, getHeaderCount - 1 - column)
-      for(i<-0 until columnCount) {
+      for(i <- 0 until columnCount) {
         obj(column + i) = 0.0.asInstanceOf[AnyRef]
       }
     }

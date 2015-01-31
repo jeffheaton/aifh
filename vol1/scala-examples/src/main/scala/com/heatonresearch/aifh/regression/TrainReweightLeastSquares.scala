@@ -67,7 +67,7 @@ class TrainReweightLeastSquares(algorithm: MultipleLinearRegression, trainingDat
   def iteration() {
     val rowCount = trainingData.size
     val coeffCount = algorithm.longTermMemory.length
-    val working: Vector[ArrayBuffer[Double]] = (for(i <- 0 until rowCount) yield ArrayBuffer.fill(coeffCount)(0.0)).toVector
+    val working: Vector[ArrayBuffer[Double]] = Vector.fill(rowCount)(ArrayBuffer.fill(coeffCount)(0.0))
     val errors = ArrayBuffer.fill(rowCount)(0.0)
     val weights = ArrayBuffer.fill(rowCount)(0.0)
     for(i <- 0 until rowCount) {

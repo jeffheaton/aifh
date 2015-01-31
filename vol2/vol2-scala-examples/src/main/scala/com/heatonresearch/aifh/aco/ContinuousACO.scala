@@ -122,9 +122,10 @@ class ContinuousACO(val algorithm : MLMethod,score: ScoreFunction,val population
    */
   private def computeWeighting() {
     sumWeighting = 0
+    val coef = (1 / (0.1 * Math.sqrt(2 * Math.PI)))
     for(i <- 0 until populationSize) {
       val exponent = (i * i) / (2 * CONST_Q * CONST_Q * populationSize * populationSize)
-      weighting(i) = (1 / (0.1 * Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, -exponent)
+      weighting(i) = coef * Math.exp(-exponent)
       sumWeighting += weighting(i)
     }
   }

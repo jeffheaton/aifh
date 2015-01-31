@@ -394,7 +394,7 @@ object NormalizeTitanic {
           FormatNumeric.formatDouble(data.input(11), 5),
           FormatNumeric.formatDouble(data.input(12), 5),
           FormatNumeric.formatDouble(data.ideal(0), 5))
-        idx +=1
+        idx += 1
         csv.writeNext(line)
       }
       csv.close()

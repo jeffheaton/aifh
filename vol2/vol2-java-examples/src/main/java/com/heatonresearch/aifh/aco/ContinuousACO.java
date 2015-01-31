@@ -157,10 +157,10 @@ public class ContinuousACO implements LearningMethod {
      */
     private void computeWeighting() {
         sumWeighting = 0;
+        double coef = (1 / (0.1 * Math.sqrt(2 * Math.PI)));
         for (int i = 0; i < this.populationSize; i++) {
             double exponent = (i * i) / (2 * CONST_Q * CONST_Q * this.populationSize * this.populationSize);
-            this.weighting[i] =
-                    (1 / (0.1 * Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, -exponent);
+            this.weighting[i] = coef * Math.exp(-exponent);
             sumWeighting += weighting[i];
         }
     }

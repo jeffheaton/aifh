@@ -34,7 +34,7 @@ make
 This assumes you have gcc and make installed.    
 
 Both examples include one file, named ```AIFH-VOL1.c``` that routes uses a command line
-paramater and routes you to the correct example.  You should provide a command paramater 
+parameter and routes you to the correct example.  You should provide a command parameter 
 that specifies the desired example. For example, to run the CSV example in UNIX, use:
 
 ```

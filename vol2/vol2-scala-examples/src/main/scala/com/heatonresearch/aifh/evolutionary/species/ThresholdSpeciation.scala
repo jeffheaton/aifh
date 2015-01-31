@@ -335,7 +335,7 @@ abstract class ThresholdSpeciation extends Speciation with Serializable {
    *
    * @param genome1 The first genome.
    * @param genome2 The second genome.
-   * @return The compatability level.
+   * @return The compatibility level.
    */
   def getCompatibilityScore(genome1: Genome, genome2: Genome): Double
 }

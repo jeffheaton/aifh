@@ -472,7 +472,7 @@ public abstract class ThresholdSpeciation implements Speciation, Serializable {
      *
      * @param genome1 The first genome.
      * @param genome2 The second genome.
-     * @return The compatability level.
+     * @return The compatibility level.
      */
     public abstract double getCompatibilityScore(Genome genome1, Genome genome2);
 }
