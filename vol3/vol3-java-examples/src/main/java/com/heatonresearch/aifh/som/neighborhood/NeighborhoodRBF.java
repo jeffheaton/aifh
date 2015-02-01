@@ -57,7 +57,7 @@ public class NeighborhoodRBF implements NeighborhoodFunction {
 
     private boolean hexagon;
 
-    public static final double sq3 = Math.sqrt(3);
+    public static final double sq75 = Math.sqrt(0.75);
 
 	/**
 	 * Construct a 2d neighborhood function based on the sizes for the
@@ -159,12 +159,13 @@ public class NeighborhoodRBF implements NeighborhoodFunction {
         if( this.hexagon ) {
             double row = vector[1];
             double col = vector[0];
-            double evenIndent = (1.0+(this.sq3/2));
-            double oddIndent = 2+this.sq3*1.5;
+            double evenIndent = 1;
+            double oddIndent = 2.5;
             double indent = ((row%2==1)?oddIndent:evenIndent);
 
-            vector[1] = (int)(this.sq3+(row * this.sq3 ));
-            vector[0] = (int)( (col*((2)+(this.sq3*2)))  + indent  );
+            vector[1] = (int)(this.sq75+(row * this.sq75 ));
+            vector[0] = (int)(indent+(3*col));
+
         }
 
 

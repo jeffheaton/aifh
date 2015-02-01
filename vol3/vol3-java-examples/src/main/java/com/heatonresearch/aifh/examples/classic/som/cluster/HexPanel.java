@@ -42,7 +42,7 @@ public class HexPanel extends JPanel {
     private boolean displayNumbers = false;
 
     private double unit;
-    private double sq3;
+    private double sq75;
     private double hSpace;
     private double vSpace;
 
@@ -53,10 +53,10 @@ public class HexPanel extends JPanel {
         this.height = theHeight;
         this.cellSize = theCellSize;
 
-        this.unit = this.cellSize/2.0;
-        this.sq3 = Math.sqrt(3.0) * unit;
-        this.hSpace = (this.sq3*2)+(this.unit*2.0);
-        this.vSpace = this.sq3;
+        this.unit = this.cellSize;
+        this.sq75 = Math.sqrt(0.75) * unit;
+        this.hSpace = this.unit*3.0;
+        this.vSpace = this.sq75;
     }
 
     private int convertColor(double d)
@@ -89,29 +89,29 @@ public class HexPanel extends JPanel {
         yPoints[0] = (int)currentY;
 
         // point 1
-        currentY-=sq3;
-        currentX+=unit;
+        currentY-=sq75;
+        currentX+=unit/2;
         xPoints[1] = (int)currentX;
         yPoints[1] = (int)currentY;
 
         // point 2
-        currentX+=sq3;
+        currentX+=unit;
         xPoints[2] = (int)currentX;
         yPoints[2] = (int)currentY;
 
         // point 3
         currentY=y;
-        currentX+=unit;
+        currentX+=unit/2;
         xPoints[3] = (int)currentX;
         yPoints[3] = (int)currentY;
 
         // point 4
         xPoints[4] = xPoints[2];
-        yPoints[4] = (int)(y+sq3);
+        yPoints[4] = (int)(y+sq75);
 
         // point 5
         xPoints[5] = xPoints[1];
-        yPoints[5] = (int)(y+sq3);
+        yPoints[5] = (int)(y+sq75);
 
         // point 6
         xPoints[6] = x;
@@ -124,12 +124,12 @@ public class HexPanel extends JPanel {
     }
 
     public void plotCenter(Graphics g, int row, int col) {
-        double evenIndent = (this.unit+(this.sq3/2));
-        double oddIndent = this.unit*2+this.sq3*1.5;
+        double evenIndent = this.unit;
+        double oddIndent = this.unit*2.5;
         double indent = ((row%2==1)?oddIndent:evenIndent);
 
-        int y = (int)(this.sq3+(row * this.sq3 ));
-        int x = (int)( (col*((this.unit*2)+(this.sq3*2)))  + indent  );
+        int y = (int)(this.sq75+(row * this.sq75 ));
+        int x = (int)(indent+(this.unit*3*col));
 
         g.setColor(Color.BLACK);
         g.drawOval(x,y,2,2);
@@ -152,8 +152,8 @@ public class HexPanel extends JPanel {
                 int green = convertColor(weights.get(index,1));
                 int blue = convertColor(weights.get(index,2));
                 Color c = new Color(red,green,blue);
-                int xLoc = (int)((x*hSpace)+(indent?(this.sq3+unit):0));
-                int yLoc = (int)((y*vSpace)+this.sq3);
+                int xLoc = (int)((x*hSpace)+(indent?(unit*1.5):0));
+                int yLoc = (int)((y*vSpace)+this.sq75);
                 drawHexagon(g,c,xLoc,yLoc);
 
                 if( isDisplayNumbers() ) {
@@ -165,6 +165,6 @@ public class HexPanel extends JPanel {
             indent = !indent;
         }
 
-        plotCenter(g,2,0);
+        //plotCenter(g,1,1);
     }
 }
