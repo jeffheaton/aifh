@@ -34,6 +34,7 @@ import com.heatonresearch.aifh.evolutionary.opp.EvolutionaryOperator
 import com.heatonresearch.aifh.evolutionary.species.Species
 import com.heatonresearch.aifh.randomize.GenerateRandom
 import java.util.concurrent.Callable
+import scala.util.control.ControlThrowable
 
 /**
  * A worker thread for an Evolutionary Algorithm.
@@ -106,6 +107,7 @@ class EAWorker(train: BasicEA, species: Species) extends Callable[AnyRef] {
           if (tries < 0) {
             throw new AIFHError(s"Could not perform a successful genetic operation after ${train.maxOperationErrors} tries.")
           }
+        case t: ControlThrowable => throw t
         case t: Throwable =>
           if (!train.shouldIgnoreExceptions) {
             train.reportError(t)
