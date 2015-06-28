@@ -114,6 +114,11 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
         return this.outputLayer.getOutputCount();
     }
 
+    /**
+     * Classify the input data into the list of probabilities of each class.
+     * @param input The input.
+     * @return An array that contains the probabilities of each class.
+     */
     @Override
     public double[] computeRegression(final double[] input) {
 
