@@ -86,7 +86,7 @@ public class UnsupervisedTrainDBN {
 
         for (final double[] aTrainingInput : trainingInput) {
 
-            // Perform layer-wise update.
+            // Perform layer-wise sample up to the layer being trained.
             for (int l = 0; l <= level; l++) {
 
                 if (l == 0) {
