@@ -153,7 +153,7 @@ public class UnsupervisedTrainDBN {
             rbm.getBiasH()[i] += lr * (samplePH[i] - meansNH[i]) / input.length;
         }
 
-
+        // Adjust the biases for learning.
         for(int i=0; i<rbm.getVisibleCount(); i++) {
             rbm.getBiasV()[i] += lr * (input[i] - samplesNV[i]) / input.length;
         }
@@ -194,7 +194,7 @@ public class UnsupervisedTrainDBN {
     }
 
     /**
-     * Perform Gibbs sampling.
+     * Perform Gibbs sampling.  Hidden to visible to hidden.
      * @param rbm The RBM to use.
      * @param sampleH0 The hidden samples.
      * @param meansNV Output: means for the visible (v) neurons.

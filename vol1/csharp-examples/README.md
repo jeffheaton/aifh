@@ -21,6 +21,11 @@ The Python examples make use of this code to find the data sets.
 
 ##Running Examples
 
+**Important note:** Binaries for 3rd party DLL's & tools are not included with the GitHub download.  Because of 
+this you might need to refresh NuGet dependencies.  There are several ways to do this, as documented below:
+
+https://docs.nuget.org/consume/package-restore
+
 There are a total of four different project files included with the examples.  These project files are listed here.
 
 * AIFH-Vol1 : The console examples.
