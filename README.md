@@ -94,7 +94,7 @@ If you would like to cite Volume 1: please use:
 
 ###Bibtex:
 
-	@book{1493682229,
+	@book{Heaton13a,
 		Author = {Jeff Heaton},
 		Title = {Artificial Intelligence for Humans, Volume 1: Fundamental Algorithms},
 		Publisher = {CreateSpace Independent Publishing Platform},
@@ -116,7 +116,7 @@ If you would like to cite Volume 2: please use:
 
 ###Bibtex:
 
-	@book{1493682229,
+	@book{Heaton14a,
 		Author = {Jeff Heaton},
 		Title = {Artificial Intelligence for Humans, Volume 2: Nature Inspired Algorithms},
 		Publisher = {CreateSpace Independent Publishing Platform},
