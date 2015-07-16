@@ -108,7 +108,6 @@ If you would like to cite Volume 1: please use:
 	%A Heaton, J.
 	%N v. 1
 	%@ 9781493682225
-	%U https://books.google.es/books?id=RResngEACAAJ
 	%D 2013
 	%I CreateSpace Independent Publishing Platform
 	
@@ -130,7 +129,6 @@ If you would like to cite Volume 2: please use:
 	%A Heaton, J.
 	%N v. 1
 	%@ 1499720572
-	%U https://books.google.es/books?id=RResngEACAAJ
 	%D 2014
 	%I CreateSpace Independent Publishing Platform
 	
