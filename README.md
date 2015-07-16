@@ -87,3 +87,50 @@ The process begins with a fork.  You create an account on GitHub and fork the AI
 A much more detailed article on contributing through GitHub can be found here.
 
 https://help.github.com/articles/fork-a-repo
+
+##Citations
+
+If you would like to cite Volume 1: please use:
+
+###Bibtex:
+
+	@book{1493682229,
+		Author = {Jeff Heaton},
+		Title = {Artificial Intelligence for Humans, Volume 1: Fundamental Algorithms},
+		Publisher = {CreateSpace Independent Publishing Platform},
+		Year = {2013},
+		ISBN = {1493682229}
+	}
+
+###Endnote:
+	%0 Book
+	%T Artificial Intelligence for Humans, Volume 1: Fundamental Algorithms
+	%A Heaton, J.
+	%N v. 1
+	%@ 9781493682225
+	%U https://books.google.es/books?id=RResngEACAAJ
+	%D 2013
+	%I CreateSpace Independent Publishing Platform
+	
+If you would like to cite Volume 2: please use:
+
+###Bibtex:
+
+	@book{1493682229,
+		Author = {Jeff Heaton},
+		Title = {Artificial Intelligence for Humans, Volume 2: Nature Inspired Algorithms},
+		Publisher = {CreateSpace Independent Publishing Platform},
+		Year = {2014},
+		ISBN = {1499720572}
+	}
+
+###Endnote:
+	%0 Book
+	%T Artificial Intelligence for Humans, Volume 2: Nature Inspired Algorithms
+	%A Heaton, J.
+	%N v. 1
+	%@ 1499720572
+	%U https://books.google.es/books?id=RResngEACAAJ
+	%D 2014
+	%I CreateSpace Independent Publishing Platform
+	
