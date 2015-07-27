@@ -1,3 +1,6 @@
+# Pickl files - Python
+*.pkl.gz
+
 # Java
 .gradle
 .idea
