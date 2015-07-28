@@ -21,64 +21,39 @@
     and trademarks visit:
     http://www.heatonresearch.com/copyright
 """
-import lasagne
-from lib.aifh.mnist import *
-from lasagne.objectives import mse
-import theano
-import theano.tensor as T
-import time
+from lasagne.layers import DenseLayer
+from lasagne.layers import InputLayer
+from lasagne.nonlinearities import sigmoid
+from lasagne.nonlinearities import rectify
+from lasagne.updates import nesterov_momentum
+from nolearn.lasagne import NeuralNet
 
-num_epochs = 50
+layers0 = [('input', InputLayer),
+           ('dense0', DenseLayer),
+           ('output', DenseLayer)]
 
-def build_mlp(input_var=None):
-    # Shape is: no predefined batch size,
-    l_in = lasagne.layers.InputLayer(shape=(None, 2),
-                                     input_var=input_var)
+net0 = NeuralNet(layers=layers0,
+    input_shape=(None, 2),
+    dense0_num_units=5,
+    dense0_nonlinearity = rectify,
+    output_num_units=1,
+    output_nonlinearity=sigmoid,
 
-    l_hid1 = lasagne.layers.DenseLayer(
-            l_in, num_units=5,
-            nonlinearity=lasagne.nonlinearities.sigmoid,
-            W=lasagne.init.GlorotUniform())
+    update=nesterov_momentum,
+    update_learning_rate=0.01,
+    update_momentum=0.9,
+    regression=True,
 
-    l_out = lasagne.layers.DenseLayer(
-            l_hid1, num_units=2,
-            nonlinearity=lasagne.nonlinearities.sigmoid)
+    eval_size=0.0,
+    verbose=1,
+    max_epochs=1000)
 
-    return l_out
+X = [ [0,0], [0,1], [1,0], [1,1] ]
+y = [ [0.0], [1.0], [1.0], [0.0] ]
 
+net0.fit(X,y)
 
-X_train = [ [0,0], [0,1], [1,0], [1,1] ]
-y_train = [ [0.0], [1.0], [1.0], [0.0] ]
+pred_y = net0.predict(X)
 
-
-# Prepare Theano variables for inputs and targets
-input_var_type = T.TensorType(theano.config.floatX, [False] * 2)
-input_var = input_var_type("inputs")
-target_var = T.fmatrix('targets')
-
-network = build_mlp(input_var)
-
-prediction = lasagne.layers.get_output(network)
-loss = mse(prediction, target_var) #lasagne.objectives.binary_crossentropy(prediction, target_var)
-loss = loss.mean()
-
-params = lasagne.layers.get_all_params(network, trainable=True)
-updates = lasagne.updates.nesterov_momentum(
-        loss, params, learning_rate=0.01, momentum=0.9)
-
-train_fn = theano.function([input_var, target_var], loss, updates=updates)
-
-print("Starting training...")
-
-# We iterate over epochs:
-for epoch in range(num_epochs):
-    # In each epoch, we do a full pass over the training data:
-    train_err = 0
-    train_batches = 0
-    start_time = time.time()
-    train_err += train_fn(X_train, y_train)
-
-    print("Epoch {} of {} took {:.3f}s".format(
-        epoch + 1, num_epochs, time.time() - start_time))
-    print("  training loss:\t\t{:.6f}".format(train_err / train_batches))
-
+for element in zip(X,y,pred_y):
+    print("Input: {}, Ideal: {}, Actual: {}".format(element[0],element[1],element[2]))

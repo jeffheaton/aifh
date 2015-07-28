@@ -30,7 +30,7 @@ from lib.aifh.util import *
 MNIST_PKL_URL = 'http://deeplearning.net/data/mnist/mnist.pkl.gz'
 MNIST_PKL_FILENAME = 'mnist.pkl.gz'
 
-def load_dataset():
+def load_dataset(reshape_data):
 
     if not os.path.exists(MNIST_PKL_FILENAME):
         print("Downloading MNIST dataset...")
@@ -43,9 +43,10 @@ def load_dataset():
     X_val, y_val = data[1]
     X_test, y_test = data[2]
 
-    X_train = X_train.reshape((-1, 1, 28, 28))
-    X_val = X_val.reshape((-1, 1, 28, 28))
-    X_test = X_test.reshape((-1, 1, 28, 28))
+    if reshape_data:
+        X_train = X_train.reshape((-1, 1, 28, 28))
+        X_val = X_val.reshape((-1, 1, 28, 28))
+        X_test = X_test.reshape((-1, 1, 28, 28))
 
     # Cast to int8 for GPU compatibility.
     y_train = y_train.astype(np.uint8)
