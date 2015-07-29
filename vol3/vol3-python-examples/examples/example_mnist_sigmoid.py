@@ -26,6 +26,7 @@ from lib.aifh.mnist import *
 import theano
 import theano.tensor as T
 import time
+import types
 from lasagne.layers import DenseLayer
 from lasagne.layers import InputLayer
 from lasagne.nonlinearities import sigmoid
@@ -50,10 +51,31 @@ net0 = NeuralNet(layers=layers0,
     update_momentum=0.9,
     regression=False,
 
-    eval_size=0.1,
+    on_epoch_finished=[
+        EarlyStopping(patience=20)
+        ],
+
+    eval_size=None,
     verbose=1,
-    max_epochs=1000)
+    max_epochs=100)
 
 X_train, y_train, X_val, y_val, X_test, y_test = load_dataset(False)
 
+def my_split(self, X, y, eval_size):
+    return X_train,X_val,y_train,y_val
+
+net0.train_test_split = types.MethodType(my_split, net0)
+
 net0.fit(X_train, y_train)
+
+y_predict = net0.predict(X_val)
+
+count = 0
+wrong = 0
+for element in zip(X_val,y_val,y_predict):
+    if element[1] != element[2]:
+        wrong = wrong + 1
+    count = count + 1
+
+print("Incorrect {}/{} ({}%)".format(wrong,count,(wrong/count)*100))
+

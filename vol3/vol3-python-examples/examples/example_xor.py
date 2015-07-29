@@ -21,6 +21,7 @@
     and trademarks visit:
     http://www.heatonresearch.com/copyright
 """
+import types
 from lasagne.layers import DenseLayer
 from lasagne.layers import InputLayer
 from lasagne.nonlinearities import sigmoid
@@ -35,21 +36,27 @@ layers0 = [('input', InputLayer),
 net0 = NeuralNet(layers=layers0,
     input_shape=(None, 2),
     dense0_num_units=5,
-    dense0_nonlinearity = rectify,
+    dense0_nonlinearity = sigmoid,
     output_num_units=1,
     output_nonlinearity=sigmoid,
 
     update=nesterov_momentum,
-    update_learning_rate=0.01,
+    update_learning_rate=0.5,
     update_momentum=0.9,
     regression=True,
 
-    eval_size=0.0,
+    eval_size=None,
     verbose=1,
-    max_epochs=1000)
+    max_epochs=200)
+
 
 X = [ [0,0], [0,1], [1,0], [1,1] ]
 y = [ [0.0], [1.0], [1.0], [0.0] ]
+
+def my_split(self, X, y, eval_size):
+    return X,X,y,y
+
+net0.train_test_split = types.MethodType(my_split, net0)
 
 net0.fit(X,y)
 
