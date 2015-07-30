@@ -43,27 +43,30 @@ by chapter.
 
 * Chapter 1: Neural Network Basics
 ```
-example_single_layer.py
+example_logic.py: Simple logic gates.
 ```
 * Chapter 2: Self Organizing Maps
 ```
-More to come.
+example_som_colors.py: SOM color grouping.
 ```
 * Chapter 3: Hopfield & Boltzmann Machines
 ```
-More to come.
+example_boltzmann.py: Traveling Salesman Problem using Boltzmann Machines
+example_hopfield.py: Hopfield Neural Networks
 ```
 * Chapter 4: Feedforward Neural Networks
 ```
-More to come.
+example_iris_anneal.py: Train a neural network on the Iris dataset with Simulated Annealing.
 ```
 * Chapter 5: Training & Evaluation
 ```
-More to come.
+example_roc.py: Plot ROC charts.
 ```
 * Chapter 6: Backpropagation Training
 ```
-More to come.
+example_iris.py: Basic classification example of the Iris dataset.
+example_mnist_sigmoid.py: Using a classic sigmoid neural network with MNIST.
+example_xor.py: Classic XOR neural network.
 ```
 * Chapter 7: Other Propagation Training
 ```
@@ -75,35 +78,35 @@ More to come.
 ```
 * Chapter 9: Deep Learning
 ```
-More to come.
+example_mnist_deep.py: MNIST dataset with a 4 layer neural network.
 ```
 * Chapter 10: Convolutional Neural Networks
 ```
-More to come.
+example_mnist_conv.py: Using Convolutional neural networks for the MNIST dataset.
 ```
 * Chapter 11: Pruning and Model Selection
 ```
-More to come.
+example_model_search.py: Trying several model architectures with MNIST.
 ```
 * Chapter 12: Dropout and Regularization
 ```
-More to come.
+example_mnist_drop.py: Using dropout for the MNIST dataset.
 ```
 * Chapter 13: Time Series and Recurrent Networks
 ```
-More to come.
+example_sunspots.py: Predicting sunpots.
 ```
 * Chapter 14: Architecting Neural Networks
 ```
-More to come.
+example_benchmark.py: Framework to compare different neural network techniques.
 ```
 * Chapter 15: Visualization
 ```
-More to come.
+example_tsne.py: Plot the MNIST digits with the T-SNE algorithm.
 ```
 * Chapter 16: Modelling with Neural Networks
 ```
-More to come.
+example_otto.py: The Kaggle Otto Group (tm) classification with deep learning.
 ```
 
 ##Running Examples - Command Line
