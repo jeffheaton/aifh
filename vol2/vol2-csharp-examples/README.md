@@ -32,10 +32,10 @@ issuing the AIFH-Vol1.exe command and following with the title of the example th
 either from the command line or by specifying the debug arguments when running the project.
 
 ```
-AI For Humans, Volume 1: Fundamental Algorithms
+AI For Humans, Volume 2: Nature Inspired Algorithms
 To run an example, pass its name as the first argument.
 
-For example: AIFH-Vol1 CSVExample
+For example: AIFH-Vol2 CSVExample
 
 Available Examples:
 

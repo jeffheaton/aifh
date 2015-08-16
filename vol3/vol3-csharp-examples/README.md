@@ -1,4 +1,4 @@
-AIFH Vol2  - C# Code Examples
+AIFH Vol3  - C# Code Examples
 ====
 This folder contains the C# examples for AIFH Volume 2.  This software was developed using Visual Studio 2012.
 
@@ -32,45 +32,15 @@ issuing the AIFH-Vol1.exe command and following with the title of the example th
 either from the command line or by specifying the debug arguments when running the project.
 
 ```
-AI For Humans, Volume 1: Fundamental Algorithms
+AI For Humans, Volume 3: Deep Learning and Neural Networks
 To run an example, pass its name as the first argument.
 
-For example: AIFH-Vol1 CSVExample
+For example: AIFH-Vol3 CSVExample
 
 Available Examples:
 
 ** Chapter 1: Introduction to AI, Examples:
 CSVExample : Shows how to use CsvHelper to read a CSV
 
-** Chapter 2: Normalizing Data, Examples:
-NormalizeCSVExample : A simple normalization example for the Iris data set
 
-** Chapter 3: Distance Metrics, Examples:
-
-** Chapter 4: Random Numbers, Examples:
-EvaluatePI : Approximate PI by Monte Carlo
-
-** Chapter 5: K-Means, Examples:
-PerformCluster : Attempt to cluster the iris data set
-
-** Chapter 6: Error Calculation, Examples:
-EvaluateErrors : Evaluate several error calculation methods
-
-** Chapter 7: Towards Machine Learning, Examples:
-LearnIris : Learn Iris data using RBF network & Greedy Random algorithm
-LearnPolynomial : Learn a simple polynomial with the Greedy Random algorithm
-LearnXOR : Learn the XOR function with a RBF Network trained by Greedy Random
-
-** Chapter 8: Optimization Algorithms, Examples:
-LearnIrisAnneal : Learn the Iris data set w/RBF net & annealing
-LearnIrisClimb : Learn the Iris data set w/RBF net & hill climbing
-LearnIrisNelderMead : Learn the Iris data set w/RBF net & Nelder Mead
-
-** Chapter 9: Discrete Optimization, Examples:
-KnapsackAnneal : Knapsack optimization with Simulated Annealing
-TravelingSalesmanAnneal : Traveling Salesman with Simulated Annealing
-
-** Chapter 10: Linear Regression, Examples:
-GLMExample : Use a GLM to predict the probability of breast cancer
-LinearRegressionExample : Linear regression on the abalone data set
 ```
