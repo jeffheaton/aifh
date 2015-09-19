@@ -15,10 +15,6 @@ public class TrainHopfieldHebbian {
     private int patternCount;
 
     public TrainHopfieldHebbian(HopfieldNetwork theNetwork) {
-        if( theNetwork instanceof HopfieldNetwork ) {
-            throw new AIFHError("This trainer cannot be used with a Hopfield-Tank network, only discrete Hopfield");
-        }
-
         this.network = theNetwork;
         this.sumMatrix = new double[network.getInputCount()][network.getInputCount()];
     }

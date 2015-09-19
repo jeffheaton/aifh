@@ -151,4 +151,25 @@ public class HopfieldNetwork extends EnergeticNetwork {
 		return cycle;
 	}
 
+    public double energy() {
+        double t = 0;
+
+        // Calculate first term
+        double a = 0;
+        for(int i=0;i<this.getInputCount();i++) {
+            for(int j=0;j<this.getOutputCount();j++) {
+                a+=this.getWeight(i,j) * this.getCurrentState()[i] * this.getCurrentState()[j];
+            }
+        }
+        a*=-0.5;
+
+        // Calculate second term
+        double b = 0;
+        for(int i=0;i<this.getInputCount();i++) {
+            b+=this.getCurrentState()[i] * t;
+        }
+
+        return a+b;
+    }
+
 }

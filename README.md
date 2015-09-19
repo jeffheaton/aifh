@@ -6,9 +6,7 @@ The following volumes are planned for this series:
 * Volume 0: Introduction to the Math of AI
 * Volume 1: Fundamental Algorithms 
 * Volume 2: Nature Inspired Algorithms
-* Volume 3: Neural Networks
-* Volume 4: Support Vector Machines
-* Volume 5: Probabilistic Learning
+* Volume 3: Neural Networks and Deep Learning
 
 ##Staying Up to Date
 
