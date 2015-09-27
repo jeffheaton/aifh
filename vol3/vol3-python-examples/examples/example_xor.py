@@ -22,6 +22,7 @@
     http://www.heatonresearch.com/copyright
 """
 import types
+import numpy as np
 from lasagne.layers import DenseLayer
 from lasagne.layers import InputLayer
 from lasagne.nonlinearities import sigmoid
@@ -50,8 +51,8 @@ net0 = NeuralNet(layers=layers0,
     max_epochs=200)
 
 
-X = [ [0,0], [0,1], [1,0], [1,1] ]
-y = [ [0.0], [1.0], [1.0], [0.0] ]
+X = np.array([ [0,0], [0,1], [1,0], [1,1] ])
+y = np.array([ [0.0], [1.0], [1.0], [0.0] ], dtype=np.float32)
 
 def my_split(self, X, y, eval_size):
     return X,X,y,y

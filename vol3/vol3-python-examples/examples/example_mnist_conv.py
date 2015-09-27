@@ -21,3 +21,66 @@
     and trademarks visit:
     http://www.heatonresearch.com/copyright
 """
+import lasagne
+from lib.aifh.mnist import *
+import theano
+import theano.tensor as T
+import time
+import types
+from lasagne.layers import DenseLayer
+from lasagne.layers import InputLayer
+from lasagne.nonlinearities import sigmoid
+from lasagne.nonlinearities import softmax
+from lasagne.nonlinearities import rectify
+from lasagne.updates import nesterov_momentum
+from nolearn.lasagne import NeuralNet
+from lasagne.layers import Conv2DLayer
+
+layers0 = [('input', InputLayer),
+           ('conv0', Conv2DLayer),
+           ('dense0', DenseLayer),
+           ('output', DenseLayer)]
+
+net0 = NeuralNet(layers=layers0,
+    input_shape=(None, 1, 28, 28),
+    conv0_num_filters=32,
+    conv0_filter_size=(5, 5),
+    conv0_nonlinearity=lasagne.nonlinearities.rectify,
+    dense0_num_units=1000,
+    dense0_nonlinearity = rectify,
+    output_num_units=10,
+    output_nonlinearity=softmax,
+
+    update=nesterov_momentum,
+    update_learning_rate=0.1,
+    update_momentum=0.9,
+    regression=False,
+
+    on_epoch_finished=[
+        EarlyStopping(patience=5)
+        ],
+
+    eval_size=None,
+    verbose=1,
+    max_epochs=100)
+
+X_train, y_train, X_val, y_val, X_test, y_test = load_dataset(True)
+
+def my_split(self, X, y, eval_size):
+    return X_train,X_val,y_train,y_val
+
+net0.train_test_split = types.MethodType(my_split, net0)
+
+net0.fit(X_train, y_train)
+
+y_predict = net0.predict(X_val)
+
+count = 0
+wrong = 0
+for element in zip(X_val,y_val,y_predict):
+    if element[1] != element[2]:
+        wrong = wrong + 1
+    count = count + 1
+
+print("Incorrect {}/{} ({}%)".format(wrong,count,(wrong/count)*100))
+

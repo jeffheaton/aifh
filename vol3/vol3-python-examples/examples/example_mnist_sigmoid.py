@@ -41,13 +41,13 @@ layers0 = [('input', InputLayer),
 
 net0 = NeuralNet(layers=layers0,
     input_shape=(None, 28*28),
-    dense0_num_units=800,
+    dense0_num_units=1000,
     dense0_nonlinearity = sigmoid,
     output_num_units=10,
     output_nonlinearity=softmax,
 
     update=nesterov_momentum,
-    update_learning_rate=0.01,
+    update_learning_rate=0.1,
     update_momentum=0.9,
     regression=False,
 
