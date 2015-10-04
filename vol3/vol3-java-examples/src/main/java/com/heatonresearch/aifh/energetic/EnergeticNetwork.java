@@ -33,7 +33,7 @@ import com.heatonresearch.aifh.learning.MLMethod;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 /**
- * The thermal network forms the base class for Hopfield and Boltzmann machines.
+ * The energetic network forms the base class for Hopfield and Boltzmann machines.
  * @author jheaton
  *
  */
@@ -67,7 +67,7 @@ public abstract class EnergeticNetwork implements MLMethod {
 	}
 
 	/**
-	 * Construct the network with the specicified neuron count.
+	 * Construct the network with the specified neuron count.
 	 * @param neuronCount The number of neurons.
 	 */
 	public EnergeticNetwork(final int neuronCount) {
@@ -157,7 +157,7 @@ public abstract class EnergeticNetwork implements MLMethod {
 	 * Init the network.
 	 * @param neuronCount The neuron count.
 	 * @param weights The weights.
-	 * @param output The toutpu
+	 * @param output The output.
 	 */
 	public void init(final int neuronCount, final double[] weights,
 			final double[] output) {

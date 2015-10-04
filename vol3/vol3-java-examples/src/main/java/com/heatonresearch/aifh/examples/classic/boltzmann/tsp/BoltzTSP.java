@@ -133,38 +133,24 @@ public class BoltzTSP {
 	}
 
 	public void calculateWeights(BoltzmannMachine logic) {
-
-        this.distance[0][0] = 0; this.distance[0][1] = 1; this.distance[0][2] = 2;
-        this.distance[1][0] = 1; this.distance[1][1] = 0; this.distance[1][2] = 3;
-        this.distance[2][0] = 2; this.distance[2][1] = 3; this.distance[2][2] = 0;
-
-        String[][] strWgt = new String[3][3];
-		
 		for (int sourceTour = 0; sourceTour < NUM_CITIES; sourceTour++) {
 			for (int sourceCity = 0; sourceCity < NUM_CITIES; sourceCity++) {
 				int sourceIndex = sourceTour * NUM_CITIES + sourceCity;
 				for (int targetTour = 0; targetTour < NUM_CITIES; targetTour++) {
 					for (int targetCity = 0; targetCity < NUM_CITIES; targetCity++) {
-                        String wgt  = "";
 						int targetIndex = targetTour * NUM_CITIES + targetCity;
 						double weight = 0;
-                        wgt = "0";
+
 						if (sourceIndex != targetIndex) {
 							int predTargetTour = (targetTour == 0 ? NUM_CITIES - 1 : targetTour - 1);
 							int succTargetTour = (targetTour == NUM_CITIES - 1 ? 0 : targetTour + 1);
 							if ((sourceTour == targetTour) || (sourceCity == targetCity)) {
                                 weight = -gamma;
-                                wgt = "-g";
                             }
 							else if ((sourceTour == predTargetTour) || (sourceTour == succTargetTour)) {
                                 weight = -distance[sourceCity][targetCity];
-                                wgt = "-dist(" + sourceCity + "," + targetCity + ")";
-                            } else {
-                                wgt = "0 (disjoint)";
                             }
 						}
-                        System.out.println( sourceIndex +"(" + sourceTour  + "," + sourceCity + ")->" +
-                                 targetIndex + "(" + targetTour + "," + targetCity + "):" + wgt);
 						logic.setWeight(sourceIndex, targetIndex, weight);
 					}
 				}

@@ -115,7 +115,8 @@ public class BoltzmannMachine extends EnergeticNetwork {
 	 * Decrease the temperature by the specified amount.
 	 * 
 	 * @param d
-	 *            The amount to decrease by.
+	 *            The amount to decrease by, for example .8 to change to
+     * 80% of current.
 	 */
 	public void decreaseTemperature(final double d) {
 		this.temperature *= d;
