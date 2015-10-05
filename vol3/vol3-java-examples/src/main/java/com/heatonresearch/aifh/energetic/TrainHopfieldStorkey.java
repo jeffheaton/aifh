@@ -12,14 +12,13 @@ import com.heatonresearch.aifh.AIFHError;
 public class TrainHopfieldStorkey {
     private HopfieldNetwork network;
     private double[][] sumMatrix;
-    private int patternCount;
 
     public TrainHopfieldStorkey(HopfieldNetwork theNetwork) {
         this.network = theNetwork;
         this.sumMatrix = new double[network.getInputCount()][network.getInputCount()];
     }
 
-    private double calculateLocalField(int i, int j, double[] pattern) {
+    private double calculateLocalField(int i, double[] pattern) {
         double sum = 0;
         for(int k=0;k<this.network.getInputCount();k++) {
             if(k!=i) {
@@ -40,8 +39,8 @@ public class TrainHopfieldStorkey {
         for(int i=0;i<this.sumMatrix.length;i++) {
             for(int j=0;j<this.sumMatrix.length;j++) {
                 double t1 = (pattern[i] * pattern[j])/n;
-                double t2 = (pattern[i] * calculateLocalField(j,i,pattern))/n;
-                double t3 = (pattern[j] * calculateLocalField(i,j,pattern))/n;
+                double t2 = (pattern[i] * calculateLocalField(j,pattern))/n;
+                double t3 = (pattern[j] * calculateLocalField(i,pattern))/n;
                 double d = t1-t2-t3;
                 this.sumMatrix[i][j]+=d;
             }
