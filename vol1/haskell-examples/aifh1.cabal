@@ -1,0 +1,21 @@
+name: aifh1
+version: 0.1
+cabal-version: >=1.8
+build-type: Simple
+license: Apache
+maintainer: JP Moresmau <jp@moresmau.fr>
+stability: experimental
+synopsis: Playing with recurrent neural networks
+description:
+    Playing with recurrent neural networks
+category: AI
+author: JP Moresmau
+
+executable runCSVExample
+  main-is: exe/runcsv.hs
+  build-depends:
+    base,
+    cassava,
+    directory,
+    bytestring,
+    vector
