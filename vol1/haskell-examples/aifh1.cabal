@@ -3,6 +3,7 @@ version: 0.1
 cabal-version: >=1.8
 build-type: Simple
 license: Apache
+license-file: LICENSE.txt
 maintainer: JP Moresmau <jp@moresmau.fr>
 stability: experimental
 synopsis: Playing with recurrent neural networks
@@ -11,11 +12,44 @@ description:
 category: AI
 author: JP Moresmau
 
+library
+    exposed-modules:
+        AI.AIFH.DataSets.Iris
+        AI.AIFH.Normalize
+        AI.AIFH.Utils
+    build-depends:
+        base <5,
+        bytestring -any,
+        cassava -any,
+        directory -any,
+        vector -any,
+        text -any
+    hs-source-dirs: src
+    ghc-options: -Wall
+
 executable runCSVExample
-  main-is: exe/runcsv.hs
-  build-depends:
-    base,
-    cassava,
-    directory,
-    bytestring,
-    vector
+    main-is: exe/runcsv.hs
+    build-depends:
+        base <5,
+        bytestring -any,
+        cassava -any,
+        directory -any,
+        vector -any
+    ghc-options: -Wall
+
+test-suite aifh-test
+    type: exitcode-stdio-1.0
+    main-is: aifh-test.hs
+    build-depends:
+        base >=4,
+        tasty >0.10,
+        tasty-hunit -any,
+        tasty-quickcheck -any,
+        HUnit -any,
+        QuickCheck -any
+    hs-source-dirs: test src
+    other-modules:
+        AI.AIFH.Normalize
+        AI.AIFH.NormalizeTests
+        AI.AIFH.Utils
+    ghc-options: -Wall -O2
