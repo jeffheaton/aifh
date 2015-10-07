@@ -71,9 +71,12 @@ net0 = NeuralNet(layers=layers0,
 # Get the iris dataset from scipy
 iris = datasets.load_iris()
 
+data = np.array(iris.data,dtype=np.float)
+target = np.array(iris.target,dtype=np.int32)
+
 # Split the iris dataset into 25% validation, and 75% train.  Also shuffle with a seed of 42.
 X_train, X_validate, y_train, y_validate = sklearn.cross_validation.train_test_split(
-    iris.data,iris.target, test_size = 0.25, random_state = 42)
+    data,target, test_size = 0.25, random_state = 42)
 
 # Calculate the mean and standard deviation vectors (all 4 measurements) for training data.
 train_mean = np.mean(X_train, axis=0)

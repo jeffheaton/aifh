@@ -53,6 +53,8 @@ def extract_weights(net):
                     result = np.hstack( [result,b] )
     return result
 
+
+
 # Define the structure of the neural network
 layers0 = [('input', InputLayer),
            ('dense0', DenseLayer),
@@ -100,7 +102,7 @@ X_validate_z = zscore(X_validate, train_mean, train_sdev)  #scipy.stats.mstats.z
 #print(X_train_z)
 #print(scipy.stats.mstats.zscore(X_train))
 
-# Provide our own validation set
+# Provide our own validation set, that reflects the split performed above.
 def my_split(self, X, y, eval_size):
     return X_train_z,X_validate_z,y_train,y_validate
 
@@ -109,7 +111,7 @@ net0.train_test_split = types.MethodType(my_split, net0)
 # Train the network
 net0.initialize()
 d = extract_weights(net0)
-print("D:" + str(len(d)))
+print("D:" + str(d))
 
 #net0.fit(X_train_z,y_train)
 

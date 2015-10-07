@@ -21,3 +21,31 @@
     and trademarks visit:
     http://www.heatonresearch.com/copyright
 """
+
+import numpy as np
+from sklearn.manifold import TSNE
+from lib.aifh.mnist import *
+import pylab as Plot
+import numpy as np
+import matplotlib.pyplot as plt
+
+X_train, y_train, X_val, y_val, X_test, y_test = load_dataset(False)
+
+x = np.array(X_train[0:50],dtype=np.float_)
+
+model = TSNE(n_components=2, random_state=0)
+result = model.fit_transform(x)
+
+
+N = 50
+x = np.random.rand(N)
+y = np.random.rand(N)
+colors = np.random.randint(N)
+area = np.pi * (15 * np.random.rand(N))**2 # 0 to 15 point radiuses
+
+x = result[:,0]
+y = result[:,1]
+#colors = y_train
+
+plt.scatter(x, y, c=colors, cmap=plt.get_cmap("rainbow"))
+plt.show()
