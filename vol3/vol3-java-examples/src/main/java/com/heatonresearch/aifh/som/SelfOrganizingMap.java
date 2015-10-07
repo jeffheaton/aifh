@@ -38,8 +38,7 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 public class SelfOrganizingMap {
 
     /**
-     * The weights of the output neurons base on the input from the input
-     * neurons.
+     *
      */
     private Matrix weights;
 

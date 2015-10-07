@@ -21,25 +21,20 @@
     and trademarks visit:
     http://www.heatonresearch.com/copyright
 """
-
 import numpy as np
-from sklearn.manifold import TSNE
-from lib.aifh.mnist import *
-import pylab as Plot
-import numpy as np
-import matplotlib.pyplot as plt
 
-X_train, y_train, X_val, y_val, X_test, y_test = load_dataset(False)
-
-x = np.array(X_train[0:3000],dtype=np.float_)
-yt = np.array(y_train[0:3000],dtype=np.int)
-
-model = TSNE(n_components=2, random_state=0)
-result = model.fit_transform(x)
-
-x = result[:,0]
-y = result[:,1]
-#colors = y_train
-
-plt.scatter(x, y, c=yt, cmap=plt.get_cmap("rainbow"))
-plt.show()
+class SelfOrganizingMap:
+    """
+    The weights of the output neurons base on the input from the input
+    neurons.
+    """
+    def __init__(self, input_count, output_count):
+        """
+        The constructor.
+        :param input_count: Number of input neurons
+        :param output_count: Number of output neurons
+        :return:
+        """
+        self.input_count = input_count
+        self.output_count = output_count
+        self.weights = np.zeros([self.output_count, self.input_count])
