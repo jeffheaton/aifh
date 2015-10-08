@@ -1,4 +1,4 @@
--- This example reads a CSV file
+-- | This example reads a CSV file
 module Main where
 
 import System.Directory

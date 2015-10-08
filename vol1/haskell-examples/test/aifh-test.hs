@@ -1,3 +1,4 @@
+-- | Entry point for tests
 module Main where
 
 import Test.Tasty
