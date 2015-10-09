@@ -1,3 +1,5 @@
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE FlexibleInstances #-}
 -----------------------------------------------------------------------------
 --
 -- Module      :  AI.AIFH.Normalize
@@ -32,31 +34,52 @@ import qualified Data.Vector.Unboxed as VU
 import qualified Data.Map as M
 
 -- | Normalize numbers, given a normalization range
-normalizeRange :: (Fractional a, Ord a, Functor f,Foldable f) => (a,a) -> f a -> f a
+normalizeRange :: (Fractional a, Ord a, Normalizable f a,Foldable f) => (a,a) -> f a -> f a
 normalizeRange normalizedBounds vals
-    | null vals = fmap id vals
+    | null vals = vals
     | otherwise =
         let dataLow = minimum vals
             dataHigh = maximum vals
         in normalizeRangeWithBounds normalizedBounds (dataLow,dataHigh) vals
 
--- | Normalize numbers, given a normalization range and a data range
-normalizeRangeWithBounds :: (Fractional a,Ord a,Functor f) => (a,a) -> (a,a) -> f a -> f a
-normalizeRangeWithBounds (normalizedLow,normalizedHigh) (dataLow,dataHigh) vals
-    | dataLow == dataHigh =  ((normalizedHigh + normalizedLow) / 2) <$ vals
-    | otherwise =
-        fmap scale vals
-        where scale x = ((x - dataLow)
-                            / (dataHigh - dataLow))
-                            * (normalizedHigh - normalizedLow) + normalizedLow
+-- | A typeclass to allow us to normalize over various structures for flexibility
+class (Fractional a,Ord a) => Normalizable n a where
+    -- | Normalize numbers, given a normalization range and a data range
+    normalizeRangeWithBounds :: (a,a) -> (a,a) -> n a -> n a
+    -- | Denormalize numbers, given a normalization range and a data range
+    denormalizeRangeWithBounds :: (a,a) -> (a,a) -> n a -> n a
 
--- | Denormalize numbers, given a normalization range and a data range
-denormalizeRangeWithBounds :: (Fractional a,Ord a,Functor f) => (a,a) -> (a,a) -> f a -> f a
-denormalizeRangeWithBounds (normalizedLow,normalizedHigh) (dataLow,dataHigh) =
-    fmap scale
-    where scale x = ((dataLow - dataHigh) * x - normalizedHigh
-                    * dataLow + dataHigh * normalizedLow)
-                    / (normalizedLow - normalizedHigh)
+-- | normalize over a Functor
+instance {-# OVERLAPPABLE #-} (Fractional a,Ord a,Functor f) => Normalizable f a where
+    normalizeRangeWithBounds (normalizedLow,normalizedHigh) (dataLow,dataHigh) vals
+        | dataLow == dataHigh =  ((normalizedHigh + normalizedLow) / 2) <$ vals
+        | otherwise =
+            fmap scale vals
+            where scale x = ((x - dataLow)
+                                / (dataHigh - dataLow))
+                                * (normalizedHigh - normalizedLow) + normalizedLow
+    denormalizeRangeWithBounds (normalizedLow,normalizedHigh) (dataLow,dataHigh) =
+        fmap scale
+        where scale x = ((dataLow - dataHigh) * x - normalizedHigh
+                        * dataLow + dataHigh * normalizedLow)
+                        / (normalizedLow - normalizedHigh)
+
+-- | Normalize over an unboxed vector
+instance {-# OVERLAPPING #-} (Fractional a,Ord a,VU.Unbox a) => Normalizable VU.Vector a where
+    normalizeRangeWithBounds (normalizedLow,normalizedHigh) (dataLow,dataHigh) vals
+        | dataLow == dataHigh =  VU.replicate (VU.length vals) ((normalizedHigh + normalizedLow) / 2)
+        | otherwise =
+            VU.map scale vals
+            where scale x = ((x - dataLow)
+                                / (dataHigh - dataLow))
+                                * (normalizedHigh - normalizedLow) + normalizedLow
+    denormalizeRangeWithBounds (normalizedLow,normalizedHigh) (dataLow,dataHigh) =
+        VU.map scale
+        where scale x = ((dataLow - dataHigh) * x - normalizedHigh
+                        * dataLow + dataHigh * normalizedLow)
+                        / (normalizedLow - normalizedHigh)
+
+
 
 -- | Encode a list of items using equilateral encoding
 --   return the encoded items  + the map used to encode

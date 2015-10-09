@@ -24,7 +24,8 @@ library
         directory -any,
         vector -any,
         text -any,
-        containers
+        containers,
+        unordered-containers
     hs-source-dirs: src
     ghc-options: -Wall
 
@@ -38,6 +39,20 @@ executable runCSVExample
         vector -any
     ghc-options: -Wall
 
+executable normalizeCSVExample
+    main-is: exe/normalizecsv.hs
+    build-depends:
+        base <5,
+        aifh1,
+        bytestring -any,
+        cassava -any,
+        directory -any,
+        vector -any,
+        text -any,
+        containers,
+        unordered-containers
+    ghc-options: -Wall
+
 test-suite aifh-test
     type: exitcode-stdio-1.0
     main-is: aifh-test.hs
@@ -49,7 +64,7 @@ test-suite aifh-test
         HUnit -any,
         QuickCheck -any,
         vector,
-        containers
+        containers, unordered-containers
     hs-source-dirs: test src
     other-modules:
         AI.AIFH.Normalize
