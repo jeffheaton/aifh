@@ -146,10 +146,8 @@ class BestMatchingUnit:
         result = 0
 
         # Loop over all input data.
-        for i in range(len(input)):
-            diff = input[i] - matrix[output_neuron][i]
-            result += diff * diff
-        return np.sqrt(result)
+        diff = input - matrix[output_neuron]
+        return np.sqrt(sum(diff*diff))
 
 
 class BasicTrainSOM:

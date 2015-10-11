@@ -21,3 +21,8 @@
     and trademarks visit:
     http://www.heatonresearch.com/copyright
 """
+
+import pandas
+import scipy.stats as ss
+
+sunspot_data = pandas.read_csv('sunspots.csv')

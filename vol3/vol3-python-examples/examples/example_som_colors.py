@@ -66,8 +66,6 @@ class DisplayColors:
         self.train = BasicTrainSOM(self.som, 0.01, None, self.gaussian)
         self.train.force_winner = False
         self.train.set_auto_decay(1000, 0.8, 0.003, 30, 5)
-
-        self.cycle = 1
         self.iteration = 1
 
     def RGBToHTMLColor(self, rgb_tuple):
@@ -102,7 +100,8 @@ class DisplayColors:
         self.update(self.som)
         print("Iteration {}, {}".format(self.iteration,self.train.get_status()))
         self.iteration+=1
-        self.root.after(1, self.update_clock)
+        if self.iteration<=1000:
+            self.root.after(1, self.update_clock)
 
 
 

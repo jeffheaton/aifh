@@ -22,3 +22,25 @@
     http://www.heatonresearch.com/copyright
 """
 
+import numpy as np
+
+def encode_timeseries_window(source, lag_size, include_fields, lead_size):
+    result = []
+
+    idx = 0
+    row = []
+
+
+
+# Create a simple 3-column dataset.  This will hold the values:
+# [1, 10, 100]
+# [2, 20, 200]
+# ...
+# [10, 100, 1000]
+
+raw_data = []
+for i in range(1,11):
+    raw_data.append([i,i*10,i*100])
+
+raw_data = np.array(raw_data)
+print(raw_data)
