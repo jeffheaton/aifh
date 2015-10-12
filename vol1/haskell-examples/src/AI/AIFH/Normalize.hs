@@ -19,6 +19,8 @@ module AI.AIFH.Normalize
     , normalizeRangeWithBounds
     , denormalizeRangeWithBounds
 
+    , oneOfNEncode
+    , oneOfNDecode
     , equilateralEncode
     , equilateralDecode
     )where
@@ -28,6 +30,7 @@ import AI.AIFH.Utils
 import Data.List
 import Data.Maybe
 import Data.Ord
+import Data.Tuple
 import qualified Data.Vector as V
 import qualified Data.Vector.Unboxed as VU
 
@@ -79,10 +82,32 @@ instance {-# OVERLAPPING #-} (Fractional a,Ord a,VU.Unbox a) => Normalizable VU.
                         * dataLow + dataHigh * normalizedLow)
                         / (normalizedLow - normalizedHigh)
 
+-- | Encode a list of items using one of n encoding
+-- return the encoded items + the map used to encode
+oneOfNEncode :: (Ord a) => [a] -> ([VU.Vector Double],M.Map a Int)
+oneOfNEncode vals =
+    let
+        allVals = ordNub vals
+        encoding = M.fromList $ zip allVals [0..]
+        emptyvu  = VU.replicate (length allVals) (-1)
+        result = map (setIndex encoding emptyvu) vals
+     in (result, encoding)
+     where
+       setIndex encoding emptyvu v =
+        let ix=fromJust $ M.lookup v encoding
+        in emptyvu VU.// [(ix,1)]
 
+-- | Decode a list of items using one of n encoding
+oneOfNDecode :: (Ord a) => M.Map a Int -> [VU.Vector Double] -> [a]
+oneOfNDecode encoding = map oneofNDecoding
+    where
+        rs = M.fromList $ map swap $ M.assocs encoding
+        oneofNDecoding v =
+            let ix = VU.maxIndex v
+            in fromJust $ M.lookup ix rs
 
 -- | Encode a list of items using equilateral encoding
---   return the encoded items  + the map used to encode
+--   return the encoded items + the map used to encode
 equilateralEncode :: (Ord a) => [a] -> ([VU.Vector Double],M.Map a (VU.Vector Double))
 equilateralEncode vals =
     let

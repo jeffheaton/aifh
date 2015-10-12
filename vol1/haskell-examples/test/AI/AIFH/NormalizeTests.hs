@@ -37,6 +37,11 @@ normalizeTests = testGroup "Normalize Tests"
                 [100,4000,997] @=? map (roundTo 2) (denormalizeRangeWithBounds (-1,1) (100,4000) [-1,1,-0.54])
         , testProperty "Normalize/Denormalize round trip" propNormalizeRoundTrip
         ]
+    , testGroup "One-of-N Encoding"
+        [ testCase "Book examples" $ do
+            testOneOfNExplicit ['a','c','b'] [[1,-1,-1],[-1,1,-1],[-1,-1,1]]
+        , testProperty "One of N round trip" propOneOfNRoundTrip
+        ]
     , testGroup "Equilateral Encoding"
         [ testCase "Book examples" $ do
             testEquilateralExplicit ['a','b'] [[-1],[1]]
@@ -56,6 +61,18 @@ propNormalizeRoundTrip valsRaw =
         dataBounds= (dataLow,dataHigh)
         res = map (roundTo 2) (denormalizeRangeWithBounds normBounds dataBounds (normalizeRange normBounds vals))
     in vals == res
+
+testOneOfNExplicit :: [Char] -> [VU.Vector Double] -> IO()
+testOneOfNExplicit vals output = do
+    let (v,m) = oneOfNEncode vals
+    map (VU.map (roundTo 3)) v @?= output
+    vals @=? oneOfNDecode m v
+
+propOneOfNRoundTrip :: NonEmptyList Char -> Bool
+propOneOfNRoundTrip valsRaw =
+    let vals = getNonEmpty valsRaw
+        (v,m) = oneOfNEncode vals
+    in vals == oneOfNDecode m v
 
 testEquilateralExplicit :: [Char] -> [VU.Vector Double] -> IO()
 testEquilateralExplicit vals output = do
