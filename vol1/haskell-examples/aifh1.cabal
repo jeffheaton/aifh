@@ -24,8 +24,8 @@ library
         directory -any,
         vector -any,
         text -any,
-        containers,
-        unordered-containers
+        containers -any,
+        unordered-containers -any
     hs-source-dirs: src
     ghc-options: -Wall
 
@@ -43,14 +43,21 @@ executable normalizeCSVExample
     main-is: exe/normalizecsv.hs
     build-depends:
         base <5,
-        aifh1,
+        aifh1 -any,
         bytestring -any,
         cassava -any,
         directory -any,
         vector -any,
         text -any,
-        containers,
-        unordered-containers
+        containers -any,
+        unordered-containers -any
+    ghc-options: -Wall
+
+executable distanceExample
+    main-is: exe/distance.hs
+    build-depends:
+        base <5,
+        aifh1 -any
     ghc-options: -Wall
 
 test-suite aifh-test
@@ -63,11 +70,13 @@ test-suite aifh-test
         tasty-quickcheck -any,
         HUnit -any,
         QuickCheck -any,
-        vector,
-        containers, unordered-containers
+        vector -any,
+        containers -any,
+        unordered-containers -any
     hs-source-dirs: test src
     other-modules:
         AI.AIFH.Normalize
         AI.AIFH.NormalizeTests
         AI.AIFH.Utils
+        AI.AIFH.UtilsTest
     ghc-options: -Wall -O2 -rtsopts -fprof-auto

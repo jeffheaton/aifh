@@ -149,5 +149,5 @@ equilateralEncoding vals =
 equilateralDecoding :: M.Map a (VU.Vector Double) -> VU.Vector Double -> a
 equilateralDecoding m os =
     let rs = M.assocs m
-        es = map (\(ix,vs)->(ix,euclidianV vs os)) rs
+        es = map (\(ix,vs)->(ix,euclideanV vs os)) rs
     in fst $ minimumBy (comparing snd) es
