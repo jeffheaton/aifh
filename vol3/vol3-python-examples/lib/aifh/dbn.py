@@ -200,4 +200,168 @@ class DeepBeliefNetwork:
 
 
 class UnsupervisedTrainDBN:
-    pass
+    """
+    Unsupervised training for DBNN's. This class trains a single layer at a time.
+    """
+    def __init__(self,network, level, training_input, learning_rate, k):
+        """
+        Construct a trainer for upsupervised training for the DBNN.
+        :param network: The DBNN to train.
+        :param level: The level of the DBNN being trained.
+        :param training_input: The training input cases.
+        :param learning_rate: The learning rate.
+        :param k: The number of cycles to use per iteration.
+        """
+        self.network = network
+        self.level = level
+        self.training_input = training_input
+        self.learning_rate = learning_rate
+        self.k = k
+
+    def iteration(self):
+        """
+        Perform one iteration of unsupervised training on the DBN.
+        """
+        layer_input = None
+
+        for row in self.training_input:
+
+            # Perform layer-wise sample up to the layer being trained.
+            for l in range(self.level+1):
+
+                if l == 0:
+                    layer_input = row[:]
+                else:
+                    # Get the previous input size, if we are on the first layer, this is the input count.
+                    # Otherwise it is the input (visible) count from the previous layer.
+                    if l == 1:
+                        prev_layer_input_size = self.network.input_count
+                    else:
+                        prev_layer_input_size = self.network.layers[l - 1].input_count
+
+                    # Copy the previous layer's input to a new array.
+                    prev_layer_input = layer_input[:]
+
+                    # Construct an array to hold the current layer's input
+                    layer_input = [0.0] * self.network.layers[l].input_count
+
+                    # Sample this layer's hidden neuron values (h), given previous layer's input (v).
+                    # The output goes into layerInput, which is used in the next layer.
+                    self.network.getLayers()[l - 1].sampleHgivenV(prev_layer_input, layer_input)
+
+            # Perform up-down algorithm.
+            self.contrastive_divergence(self.network.rbm[self.level], layer_input, self.learning_rate, self.k)
+
+    def contrastive_divergence(self, rbm, input, lr, k):
+        """
+        Perform contrastive divergence, also known as the up-down algorithm.
+        :param rbm: The RBM to use.
+        :param input: The input training pattern.
+        :param lr: The learning rate.
+        :param k: The number of cycles.
+        """
+        # The positive gradient mean & samples (P) - Only for hidden (H)
+        mean_ph = [0.0] * rbm.hidden_count
+        sample_ph = [0.0] * rbm.hidden_count
+        # The negative gradient mean & samples (N) - For both visible (V) & hidden (H)
+        means_nv = [0.0] * rbm.visible_count
+        samples_nv = [0.0] * rbm.visible_count
+        means_nh = [0.0] * rbm.hidden_count
+        samples_nh = [0.0] * rbm.hidden_count
+
+        # Calculate (sample) meanPH and samplePH
+        self.sample_hv(rbm, input, mean_ph, sample_ph)
+
+        for step in range(self.k):
+            if step == 0:
+                self.gibbs_hvh(rbm, sample_ph, means_nv, samples_nv, means_nh, samples_nh);
+            else:
+                self.gibbs_hvh(rbm, samples_nh, means_nv, samples_nv, means_nh, samples_nh)
+
+        # Adjust the weights, based on calculated mean values.
+        # This uses the maximum likelihood learning rule.
+        for i in range(rbm.hidden_count):
+            for j in range(rbm.visible_count):
+                rbm.getLayer().getWeights()[i][j] += lr *(mean_ph[i] * input[j] - means_nh[i] * samples_nv[j]) / len(input)
+            rbm.getBiasH()[i] += lr * (sample_ph[i] - means_nh[i]) / len(input)
+
+        # Adjust the biases for learning.
+        for i in range(rbm.visible_count):
+            rbm.getBiasV()[i] += lr * (input[i] - samples_nv[i]) / input.length
+
+    def sample_hv(self, rbm, v0sample, mean, sample):
+        """
+        Sample the hidden neurons (output), given the visible (input).  Return the mean, and a sample, based on that
+        mean probability.
+        :param rbm The RBM to use.
+        :param v0Sample The input to the layer.
+        :param mean Output: mean value of each hidden neuron.
+        :param sample Output: sample, based on mean.
+        """
+        for i in range(rbm.hidden_count):
+            # Find the mean.
+            mean[i] = self.prop_up(rbm, v0sample, rbm.layer.weights[i], rbm.bias_h[i])
+            # Sample, based on that mean.
+            sample[i] = rbm.binomial(1, mean[i])
+
+    def prop_up(self, rbm, v, w, b):
+        """
+        Estimate the mean of a hidden neuron in an RBM. Propagate upward part, from visible to hidden.
+        :param rbm: The RBM to use.
+        :param v: The input (v), visible neurons.
+        :param w: The weights.
+        :param b: The bias.
+        :return: The mean.
+        """
+        sum = 0.0
+        for j in range(rbm.visible_count):
+            sum += w[j] * v[j]
+
+        sum += b
+        return RestrictedBoltzmannMachine.sigmoid(sum)
+
+    def gibbs_hvh(self, rbm, sample_h0, means_nv, samples_nv, means_nh, samples_nh):
+        """
+        Perform Gibbs sampling.  Hidden to visible to hidden.
+        :param rbm: The RBM to use.
+        :param sample_h0: The hidden samples.
+        :param means_nv: Output: means for the visible (v) neurons.
+        :param samples_nv: Output: samples for the visible (v) neurons.
+        :param means_nh: Output: means for the hidden (h) neurons.
+        :param samples_nh: Output: samples for the hidden (h) neurons.
+        """
+        self.sample_vh(rbm, sample_h0, means_nv, samples_nv)
+        self.sample_hv(rbm, samples_nv, means_nh, samples_nh)
+
+    def sample_vh(self, rbm, sample_h0, mean, sample):
+        """
+        Sample the visible (input), given the hidden neurons (output).  Return the mean, and a sample, based on that
+        mean probability.
+        :param rbm: The RBM to use.
+        :param sample_h0: Hidden (h) samples.
+        :param mean: Output: Visible (v) mean.
+        :param sample: Output: Visible (v) sample.
+        """
+        for i in range(rbm.visible_count):
+            mean[i] = self.prop_down(rbm, sample_h0, i, rbm.bias_v[i])
+            sample[i] = rbm.binomial(1, mean[i])
+
+    def prop_down(self, rbm, h, i, b):
+        """
+        Estimate the mean of a visible neuron in an RBM. Propagate downward part, from hidden to visible.
+        :param rbm: The RBM to use.
+        :param h: The hidden neurons.
+        :param i: The visible neuron to use.
+        :param b: Bias value.
+        :return: The estimated mean
+        """
+        sum = 0.0
+        for j in range(self.hidden_count):
+            sum += rbm.layer.weights[j][i] * h[j]
+
+        sum += b
+        return RestrictedBoltzmannMachine.sigmoid(sum)
+
+class SupervisedTrainDBN:
+    def __init__(self):
+        pass
