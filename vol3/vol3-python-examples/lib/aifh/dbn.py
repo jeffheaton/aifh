@@ -32,8 +32,8 @@ class DeepLayer:
         self.owner = owner
 
     def softmax(self, x):
-        self.max = 0.0
-        self.sum = 0.0
+        max = 0.0
+        sum = 0.0
 
         for aX in x:
             if max < aX:
@@ -122,6 +122,21 @@ class RestrictedBoltzmannMachine:
         self.owner = layer.owner
         self.h_bias = layer.bias
         self.v_bias = np.zeros([self.get_visible_count()])
+        self.visible_count = self.layer.input_count
+        self.hidden_count = self.layer.output_count
+
+    def binomial(self, n,p):
+        if p < 0 or p > 1:
+            return 0
+
+        c = 0
+
+        for i in range(n):
+            r = np.random.rand()
+            if r < p:
+                c+=1
+        return c
+
 
     def get_visible_count(self):
         return self.layer.input_count
@@ -143,9 +158,8 @@ class DeepBeliefNetwork:
             else:
                 input_size = hidden[i - 1]
 
-            self.layers[i] = HiddenLayer(self,input_size, hidden[i])
-
-            self.rbm[i] = RestrictedBoltzmannMachine(self.layers[i])
+            self.layers.append(HiddenLayer(self,input_size, hidden[i]))
+            self.rbm.append(RestrictedBoltzmannMachine(self.layers[i]))
 
         self.output_layer = DeepLayer(self,hidden[len(hidden) - 1], output_count)
 
@@ -247,7 +261,7 @@ class UnsupervisedTrainDBN:
 
                     # Sample this layer's hidden neuron values (h), given previous layer's input (v).
                     # The output goes into layerInput, which is used in the next layer.
-                    self.network.getLayers()[l - 1].sampleHgivenV(prev_layer_input, layer_input)
+                    self.network.layers[l - 1].sample_h_given_v(prev_layer_input, layer_input)
 
             # Perform up-down algorithm.
             self.contrastive_divergence(self.network.rbm[self.level], layer_input, self.learning_rate, self.k)
@@ -282,12 +296,12 @@ class UnsupervisedTrainDBN:
         # This uses the maximum likelihood learning rule.
         for i in range(rbm.hidden_count):
             for j in range(rbm.visible_count):
-                rbm.getLayer().getWeights()[i][j] += lr *(mean_ph[i] * input[j] - means_nh[i] * samples_nv[j]) / len(input)
-            rbm.getBiasH()[i] += lr * (sample_ph[i] - means_nh[i]) / len(input)
+                rbm.layer.weights[i][j] += lr *(mean_ph[i] * input[j] - means_nh[i] * samples_nv[j]) / len(input)
+            rbm.h_bias[i] += lr * (sample_ph[i] - means_nh[i]) / len(input)
 
         # Adjust the biases for learning.
         for i in range(rbm.visible_count):
-            rbm.getBiasV()[i] += lr * (input[i] - samples_nv[i]) / input.length
+            rbm.v_bias[i] += lr * (input[i] - samples_nv[i]) / len(input)
 
     def sample_hv(self, rbm, v0sample, mean, sample):
         """
@@ -300,7 +314,7 @@ class UnsupervisedTrainDBN:
         """
         for i in range(rbm.hidden_count):
             # Find the mean.
-            mean[i] = self.prop_up(rbm, v0sample, rbm.layer.weights[i], rbm.bias_h[i])
+            mean[i] = self.prop_up(rbm, v0sample, rbm.layer.weights[i], rbm.h_bias[i])
             # Sample, based on that mean.
             sample[i] = rbm.binomial(1, mean[i])
 
@@ -318,7 +332,7 @@ class UnsupervisedTrainDBN:
             sum += w[j] * v[j]
 
         sum += b
-        return RestrictedBoltzmannMachine.sigmoid(sum)
+        return DeepBeliefNetwork.sigmoid(sum)
 
     def gibbs_hvh(self, rbm, sample_h0, means_nv, samples_nv, means_nh, samples_nh):
         """
@@ -343,7 +357,7 @@ class UnsupervisedTrainDBN:
         :param sample: Output: Visible (v) sample.
         """
         for i in range(rbm.visible_count):
-            mean[i] = self.prop_down(rbm, sample_h0, i, rbm.bias_v[i])
+            mean[i] = self.prop_down(rbm, sample_h0, i, rbm.v_bias[i])
             sample[i] = rbm.binomial(1, mean[i])
 
     def prop_down(self, rbm, h, i, b):
@@ -356,12 +370,62 @@ class UnsupervisedTrainDBN:
         :return: The estimated mean
         """
         sum = 0.0
-        for j in range(self.hidden_count):
+        for j in range(rbm.hidden_count):
             sum += rbm.layer.weights[j][i] * h[j]
 
         sum += b
-        return RestrictedBoltzmannMachine.sigmoid(sum)
+        return DeepBeliefNetwork.sigmoid(sum)
 
 class SupervisedTrainDBN:
-    def __init__(self):
-        pass
+    def __init__(self, network, training_input, training_ideal, learning_rate):
+        self.network = network
+        self.training_input = training_input
+        self.learning_rate = learning_rate
+        self.training_ideal = training_ideal
+        self.total_error = 0.0
+
+
+    def iteration(self):
+        self.total_error = 0
+        for row in self.training_input:
+            for i in range(len(self.network.layers)):
+                if i == 0:
+                    prev_layer_input = row[:]
+                else:
+                    prev_layer_input = layer_input[:]
+
+
+                layer_input = [0.0] * self.network.layers[i].output_count
+                self.network.layers[i].sample_h_given_v(prev_layer_input, layer_input)
+
+
+            self.train_logistic_layer(layer_input, row)
+
+
+    def train_logistic_layer(self, input, ideal):
+        p_y_given_x = [0.0] * self.network.output_layer.output_count
+        dy = [0.0] * self.network.output_layer.output_count
+
+        for i in range(self.network.output_layer.output_count):
+            p_y_given_x[i] = 0
+            for j in range(self.network.output_layer.input_count):
+                p_y_given_x[i] += self.network.output_layer.weights[i][j] * input[j]
+
+            p_y_given_x[i] += self.network.output_layer.bias[i]
+
+        self.network.output_layer.softmax(p_y_given_x)
+
+        for i in range(self.network.output_layer.output_count):
+            dy[i] = ideal[i] - p_y_given_x[i]
+            self.total_error+=np.power(dy[i],2)
+
+            for j in range(self.network.output_layer.input_count):
+                self.network.output_layer.weights[i][j] += self.learning_rate * dy[i] * input[j] / len(self.training_input)
+
+            self.network.output_layer.bias[i] += self.learning_rate * dy[i] / len(self.training_input)
+
+    def error(self):
+        """
+        :return: The SSE error.
+        """
+        return self.total_error / len(self.training_input)
