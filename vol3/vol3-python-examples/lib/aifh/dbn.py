@@ -150,7 +150,7 @@ class DeepBeliefNetwork:
         self.rbm = []
 
         self.input_count = input_count
-        self.input_count = output_count
+        self.output_count = output_count
 
         for i in range(len(hidden)):
             if i == 0:
@@ -197,7 +197,7 @@ class DeepBeliefNetwork:
                     output += self.layers[i].weights[k][j] * prev_layer_input[j]
 
                 output += self.layers[i].bias[k]
-                layer_input[k] = self.sigmoid(output)
+                layer_input[k] = DeepBeliefNetwork.sigmoid(output)
 
             if i < len(self.layers) - 1:
                 prev_layer_input = layer_input[:]
@@ -387,7 +387,8 @@ class SupervisedTrainDBN:
 
     def iteration(self):
         self.total_error = 0
-        for row in self.training_input:
+        for n in range(len(self.training_input)):
+            row = self.training_input[n]
             for i in range(len(self.network.layers)):
                 if i == 0:
                     prev_layer_input = row[:]
@@ -399,7 +400,7 @@ class SupervisedTrainDBN:
                 self.network.layers[i].sample_h_given_v(prev_layer_input, layer_input)
 
 
-            self.train_logistic_layer(layer_input, row)
+            self.train_logistic_layer(layer_input, self.training_ideal[n])
 
 
     def train_logistic_layer(self, input, ideal):

@@ -88,6 +88,6 @@ while not done:
 
 # Use test data.
 for row in TEST_INPUT:
-    output = dbn.compute_regression(input)
+    output = dbn.compute_regression(row)
     print("{} -> {}".format(row,output))
 
