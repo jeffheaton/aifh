@@ -72,6 +72,17 @@ executable ocrExample
         vector -any
     ghc-options: -Wall -fno-warn-unused-do-bind
 
+executable randomExample
+    main-is: exe/random.hs
+    build-depends:
+        base <5,
+        aifh1 -any,
+        Chart,
+        Chart-cairo,
+        mwc-random
+    ghc-options: -Wall -fno-warn-unused-do-bind
+
+
 test-suite aifh-test
     type: exitcode-stdio-1.0
     main-is: aifh-test.hs
