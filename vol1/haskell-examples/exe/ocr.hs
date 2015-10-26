@@ -57,10 +57,10 @@ data DrawingData = DrawingData
     , ddStride :: Int
     }
 
--- | A letter: the letter itself, and the sample data as a sparse array
+-- | A letter: the letter itself, and the sample data as a vector
 data Letter = Letter
     { lName :: Char
-    , lData :: [(Int,Int)]
+    , lData :: VU.Vector Double
     } deriving (Show,Read,Eq,Ord)
 
 -- * Data manipulation
@@ -93,14 +93,18 @@ downSample (sampW,sampH) (ps,(origW,origH)) = let
 recognize :: [Letter] -> [(Int,Int)] -> Maybe Letter
 recognize [] _ = Nothing
 recognize _ [] = Nothing
-recognize letters pos = Just $ fst $ minimumBy (comparing snd) $ map (dist pos) letters
+recognize letters pos = Just $ fst $ minimumBy (comparing snd) $ map (dist $ sparseToVector pos) letters
     where
           -- get the distance between the given sample and the letter data
-          dist po letter = (letter,euclideanV (toVector $ lData letter) $ toVector po)
-          -- convert sparse coordinates to a vector or 0 (empty) and 1 (pixel drawn)
-          toVector po = sampleV VU.// map (\ (x, y) -> (x + y * (fst sampleSize), 1)) po
-          sampleV = VU.replicate sampleLength 0
-          sampleLength = fst sampleSize * snd sampleSize
+          dist po letter = (letter,euclideanV (lData letter) po)
+
+-- | convert sparse coordinates to a vector or 0 (empty) and 1 (pixel drawn)
+sparseToVector :: [(Int,Int)] -> VU.Vector Double
+sparseToVector po =
+   let
+     sampleV = VU.replicate sampleLength 0
+     sampleLength = fst sampleSize * snd sampleSize
+   in sampleV VU.// map (\ (x, y) -> (x + y * (fst sampleSize), 1)) po
 
 
 -- | Get all neighbours of a coordinates, within a specified range
@@ -235,7 +239,7 @@ addEvents gui dData sampDData= do
             case l of
                 Just c -> do
                     pos <- readIORef coords
-                    let sample = sampleAll pos
+                    let sample = sparseToVector $ sampleAll pos
                     void $ listStoreAppend (gLetterListStore gui) (Letter c sample)
                 _ -> return ()
         return True
