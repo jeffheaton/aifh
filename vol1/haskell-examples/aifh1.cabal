@@ -76,11 +76,19 @@ executable randomExample
     main-is: exe/random.hs
     build-depends:
         base <5,
-        aifh1 -any,
+        aifh1,
         Chart,
         Chart-cairo,
         mwc-random
     ghc-options: -Wall -fno-warn-unused-do-bind
+
+executable piExample
+    main-is: exe/pi.hs
+    build-depends:
+        base <5,
+        aifh1,
+        mwc-random
+    ghc-options: -Wall -fno-warn-unused-do-bind -threaded -rtsopts
 
 
 test-suite aifh-test
