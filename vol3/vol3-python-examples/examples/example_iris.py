@@ -21,21 +21,19 @@
     and trademarks visit:
     http://www.heatonresearch.com/copyright
 """
-import numpy as np
-import matplotlib.pyplot as plt
 from lib.aifh.util import *
 import types
 from sklearn import svm, datasets
 import sklearn
-import scipy.stats
 import numpy as np
 from lasagne.layers import DenseLayer
 from lasagne.layers import InputLayer
-from lasagne.nonlinearities import sigmoid
 from lasagne.nonlinearities import softmax
 from lasagne.nonlinearities import rectify
 from lasagne.updates import nesterov_momentum
 from nolearn.lasagne import NeuralNet
+
+
 
 # Compute a z-score with a mean and standard deviation different than the provided matrix.
 def zscore(x,mean,sdev):

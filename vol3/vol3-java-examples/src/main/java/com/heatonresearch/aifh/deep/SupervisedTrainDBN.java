@@ -93,14 +93,14 @@ public class SupervisedTrainDBN implements LearningMethod {
 
     }
 
-    private void trainLogisticLayer(double[] trainingInput, double trainingIdeal[]) {
+    private void trainLogisticLayer(double[] input, double[] ideal) {
         double[] pYgivenX = new double[this.network.getLogLayer().getOutputCount()];
         double[] dy = new double[this.network.getLogLayer().getOutputCount()];
 
         for(int i=0; i<this.network.getLogLayer().getOutputCount(); i++) {
             pYgivenX[i] = 0;
             for(int j=0; j<this.network.getLogLayer().getInputCount(); j++) {
-                pYgivenX[i] += this.network.getLogLayer().getWeights()[i][j] * trainingInput[j];
+                pYgivenX[i] += this.network.getLogLayer().getWeights()[i][j] * input[j];
             }
             pYgivenX[i] += this.network.getLogLayer().getBias()[i];
         }
@@ -109,11 +109,11 @@ public class SupervisedTrainDBN implements LearningMethod {
 
 
         for(int i=0; i<this.network.getLogLayer().getOutputCount(); i++) {
-            dy[i] = trainingIdeal[i] - pYgivenX[i];
-            this.errorCalc.updateError(trainingIdeal[i], pYgivenX[i]);
+            dy[i] = ideal[i] - pYgivenX[i];
+            this.errorCalc.updateError(ideal[i], pYgivenX[i]);
 
             for(int j=0; j<this.network.getLogLayer().getInputCount(); j++) {
-                this.network.getLogLayer().getWeights()[i][j] += this.learningRate * dy[i] * trainingInput[j] / this.trainingInput.length;
+                this.network.getLogLayer().getWeights()[i][j] += this.learningRate * dy[i] * input[j] / this.trainingInput.length;
             }
 
             this.network.getLogLayer().getBias()[i] += this.learningRate * dy[i] / this.trainingInput.length;

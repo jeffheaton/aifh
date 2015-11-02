@@ -105,10 +105,9 @@ class EnergeticNetwork:
         for i in range(0,len(self.current_state)):
             self.current_state[i] = output[i]
 
-    def reset(self, rnd):
+    def reset(self):
         """
         Reset the neural network to random weights, this is not used for Hopfield.
-        :param rnd: Random number generator
         """
         for i in range(0, len(self.current_state)):
             self.current_state[i] = 0

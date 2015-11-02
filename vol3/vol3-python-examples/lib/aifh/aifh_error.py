@@ -21,33 +21,14 @@
     and trademarks visit:
     http://www.heatonresearch.com/copyright
 """
+__author__ = 'jheaton'
 
-import os
-import sys
 
-# Find the AIFH core files
-aifh_dir = os.path.dirname(os.path.abspath(__file__))
-aifh_dir = os.path.abspath(aifh_dir + os.sep + ".." + os.sep + "lib" + os.sep + "aifh")
-sys.path.append(aifh_dir)
+class AIFHError(Exception):
+    """An error was raised. This is used for several purposes, see individual error messages."""
 
-import numpy as np
-from window import *
+    def __init__(self, value):
+        self.value = value
 
-# Create a simple 3-column dataset.  This will hold the values:
-# [1, 10, 100]
-# [2, 20, 200]
-# ...
-# [10, 100, 1000]
-
-raw_data = []
-for i in range(1,11):
-    raw_data.append([i,i*10,i*100])
-
-raw_data = np.array(raw_data)
-result_x, result_y = encode_timeseries_window(raw_data, 3, 1, [True, True, True], [False, False, True])
-
-result_x = np.array(result_x)
-result_y = np.array(result_y)
-
-for x,y in zip(result_x, result_y):
-    print("{} --> {}".format(x,y))
+    def __str__(self):
+        return repr(self.value)
