@@ -19,8 +19,8 @@ import qualified Data.Set as S
 import qualified Data.Vector.Unboxed as VU
 
 -- | Round a number to n decimal digits
-roundTo :: (Fractional a, Integral b, RealFrac r) =>
-                 b -> r -> a
+roundTo :: (Fractional a, RealFrac r) =>
+                 Int -> r -> a
 roundTo n f=  fromInteger (round $ f * (10^n)) / (10.0^^n)
 
 -- | Euclidean distance

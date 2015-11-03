@@ -33,8 +33,8 @@ data Distribution = Uniform | Normal
 generateHistogram :: Distribution -> IO ()
 generateHistogram d = do
     -- random values
-    vals::[Double] <- withSystemRandom . asGenST $ \gen -> replicateM 10000 ((method d) gen)
-    -- freqency: round, sort, group and link value and length of group
+    vals::[Double] <- withSystemRandom . asGenST $ \gen -> replicateM 10000 (method d gen)
+    -- frequency: sort, group and link value and length of group
     let hist::[(Double,[Int])] = map (\xs->(head xs,[length xs])) $ group $ sort $ map (roundTo 2) vals
     -- generate bar chart
     toFile def (show d ++ ".png") $ do
