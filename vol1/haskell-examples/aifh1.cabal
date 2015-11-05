@@ -15,6 +15,7 @@ author: JP Moresmau
 library
     exposed-modules:
         AI.AIFH.DataSets.Iris
+        AI.AIFH.Cluster
         AI.AIFH.Normalize
         AI.AIFH.Utils
     build-depends:
@@ -25,7 +26,8 @@ library
         vector -any,
         text -any,
         containers -any,
-        unordered-containers -any
+        unordered-containers -any,
+        mwc-random
     hs-source-dirs: src
     ghc-options: -Wall
 
@@ -90,6 +92,20 @@ executable piExample
         mwc-random
     ghc-options: -Wall -fno-warn-unused-do-bind -threaded -rtsopts
 
+executable kmeansExample
+    main-is: exe/kmeans.hs
+    build-depends:
+        base <5,
+        aifh1,
+        mwc-random,
+        bytestring -any,
+        cassava -any,
+        directory -any,
+        vector -any,
+        containers
+    ghc-options: -Wall -fno-warn-unused-do-bind -threaded -rtsopts
+
+
 
 test-suite aifh-test
     type: exitcode-stdio-1.0
@@ -103,11 +119,13 @@ test-suite aifh-test
         QuickCheck -any,
         vector -any,
         containers -any,
-        unordered-containers -any
+        unordered-containers -any,
+        mwc-random
     hs-source-dirs: test src
     other-modules:
         AI.AIFH.Normalize
         AI.AIFH.NormalizeTests
         AI.AIFH.Utils
         AI.AIFH.UtilsTest
+        AI.AIFH.Cluster
     ghc-options: -Wall -O2 -rtsopts -fprof-auto

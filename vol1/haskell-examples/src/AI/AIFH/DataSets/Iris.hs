@@ -112,4 +112,4 @@ normalizeIrises is = let
             toLists (GIris sl sw pl pw c) (sls,sws,pls,pws,cs) = (sl:sls,sw:sws,pl:pls,pw:pws,c:cs)
             norm01 :: VU.Vector Double -> VU.Vector Double
             norm01 = normalizeRangeWithBounds (0,1) (-1,1)
-            normEqui (cls,encoding)=(map norm01 cls,encoding)
+            normEqui (cls,encoding)=(map norm01 cls,M.map norm01 encoding)
