@@ -1,6 +1,6 @@
 AIFH Vol3  - Java Code Examples
 ====
-This folder contains the Java examples for AIFH Volume 2.  This software was developed using JDK 1.7.  
+This folder contains the Java examples for AIFH Volume 3.  This software was developed using JDK 1.7.  
 To make use of this software you will need JDK 1.7 or later.
 
 Four 3rd party JARs are also used.

@@ -94,7 +94,7 @@ X_validate_z = zscore(X_validate, train_mean, train_sdev)  #scipy.stats.mstats.z
 def my_split(self, X, y, eval_size):
     return X_train_z,X_validate_z,y_train,y_validate
 
-net0.train_test_split = types.MethodType(my_split, net0)
+net0.train_split = types.MethodType(my_split, net0)
 
 # Train the network
 net0.fit(X_train_z,y_train)
