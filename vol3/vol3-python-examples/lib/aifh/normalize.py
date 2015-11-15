@@ -151,7 +151,7 @@ class Normalize(object):
         max_value = 0
         max_index = -1
 
-        for i in xrange(0, len(data)):
+        for i in range(0, len(data)):
             if max_index == -1 or data[i] > max_value:
                 max_value = data[i]
                 max_index = i

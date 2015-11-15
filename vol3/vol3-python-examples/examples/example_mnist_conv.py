@@ -60,7 +60,6 @@ net0 = NeuralNet(layers=layers0,
         EarlyStopping(patience=5)
         ],
 
-    eval_size=None,
     verbose=1,
     max_epochs=100)
 

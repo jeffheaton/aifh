@@ -57,7 +57,6 @@ net0 = NeuralNet(layers=layers0,
     update_momentum=0.9,
     regression=False,
 
-    eval_size=0.0,
     verbose=1,
     max_epochs=100000,
 

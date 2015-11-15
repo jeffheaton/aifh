@@ -15,6 +15,24 @@ https://store.continuum.io/cshop/anaconda/
 
 Anaconda is what I used while developing these examples.
 
+##Required Libraries
+
+The Python programming language has some of the most advanced deep learning neural network
+frameworks available of any language.  These libraries are designed for maximum 
+efficiency and computational power.  Most of these frameworks can also use a GPU to 
+further speed processing.  These frameworks make use of low level C/C++ code for 
+maximum performance.  Unfortunately, this increases the complexity of installing these
+frameworks.  The environment that I used for these examples includes:
+
+* [Anaconda Python 3.4](https://www.continuum.io/downloads) - Anaconda is built for scientific computing and contains many packages out of the box.  
+* [Theano](http://deeplearning.net/software/theano/install.html) - Numeric package for deep learning that supports CPU/GPU.
+* [Lasange](http://lasagne.readthedocs.org/en/latest/) - A deep neural network framework built upon Theano.
+* [Nolearn](https://pythonhosted.org/nolearn/) - A scikit-learn wrapper for Lasange.
+
+The above links contain information for the installation of each of these packages.  To 
+make use of all neural network examples in this book you will need the above packages
+installed into Python. 
+
 ##Data Files
 
 There are three different data sets used by this book's examples.  All three can be found
