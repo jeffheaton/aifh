@@ -442,7 +442,8 @@ public class DataSet {
         // make space for it
         final Map<String, Integer> classes = enumerateClasses(column);
         final int classCount = classes.size();
-        insertColumns(column + 1, classCount - 1);
+        // we'll use classCount - 1 columns, and we have the original column to reuse
+        insertColumns(column + 1, classCount - 2);
 
         // perform the equilateral
         final Equilateral eq = new Equilateral(classCount, offValue, onValue);
@@ -458,7 +459,7 @@ public class DataSet {
         }
 
         // name the new columns
-        for (int i = 0; i < classes.size(); i++) {
+        for (int i = 0; i < classCount - 1; i++) {
             this.headers[column + i] = name + "-" + i;
         }
 

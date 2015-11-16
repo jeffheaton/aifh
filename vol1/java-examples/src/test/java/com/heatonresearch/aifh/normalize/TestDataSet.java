@@ -34,7 +34,12 @@ import com.heatonresearch.aifh.general.data.BasicData;
 import org.junit.Test;
 
 import java.io.File;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -186,7 +191,29 @@ public class TestDataSet {
     @Test
     public void testEncodeEquilateral() {
         final DataSet ds1 = generateTestData();
-        ds1.encodeEquilateral(0);
+        ds1.encodeEquilateral(0,-1,1);
+        // 3 headers, first one replaced by 2 columns to store 3 values in equilateral encoding
+        assertEquals(4,ds1.getHeaderCount());
+        Set<Double> col1=new HashSet<>();
+        Set<Double> col2=new HashSet<>();
+        for (Object[] row:ds1.getData()){
+            col1.add(round((Double)row[0]));
+            col2.add(round((Double)row[1]));
+        }
+        Set<Double> expected1=new HashSet<>(Arrays.<Double>asList(0.0,-0.866,0.866));
+        Set<Double> expected2=new HashSet<>(Arrays.<Double>asList(1.0,-0.5));
+        assertEquals(expected1,col1);
+        assertEquals(expected2,col2);
+
+    }
+
+    /**
+     * round a double to 3 decimal places for comparisons in tests
+     * @param value the value to round
+     * @return the rounded value
+     */
+    public static double round(double value) {
+        return new BigDecimal(value).setScale(3, RoundingMode.HALF_UP).doubleValue();
     }
 
     @Test
