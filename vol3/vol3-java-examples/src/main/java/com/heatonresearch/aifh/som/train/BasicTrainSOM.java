@@ -472,12 +472,11 @@ public class BasicTrainSOM  {
      */
     @Override
     public String toString() {
-        final StringBuilder result = new StringBuilder();
-        result.append("Rate=");
-        result.append(this.learningRate);
-        result.append(", Radius=");
-        result.append(this.radius);
-        return result.toString();
+        String result = "Rate=" +
+                this.learningRate +
+                ", Radius=" +
+                this.radius;
+        return result;
     }
 
     /**

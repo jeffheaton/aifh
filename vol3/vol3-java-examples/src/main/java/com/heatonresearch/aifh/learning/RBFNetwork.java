@@ -186,14 +186,13 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
      */
     @Override
     public String toString() {
-        final StringBuilder result = new StringBuilder();
-        result.append("[RBFNetwork:inputCount=");
-        result.append(this.inputCount);
-        result.append(",outputCount=");
-        result.append(this.outputCount);
-        result.append(",RBFs=");
-        result.append(Arrays.toString(this.rbf));
-        result.append("]");
-        return result.toString();
+        String result = "[RBFNetwork:inputCount=" +
+                this.inputCount +
+                ",outputCount=" +
+                this.outputCount +
+                ",RBFs=" +
+                Arrays.toString(this.rbf) +
+                "]";
+        return result;
     }
 }

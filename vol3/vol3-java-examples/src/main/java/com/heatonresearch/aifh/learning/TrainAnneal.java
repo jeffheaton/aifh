@@ -318,15 +318,14 @@ public class TrainAnneal implements LearningMethod {
      */
     @Override
     public String getStatus() {
-        final StringBuilder result = new StringBuilder();
-        result.append("k=");
-        result.append(this.k);
-        result.append(",kMax=");
-        result.append(this.kMax);
-        result.append(",t=");
-        result.append(this.currentTemperature);
-        result.append(",prob=");
-        result.append(this.lastProbability);
-        return result.toString();
+        String result = "k=" +
+                this.k +
+                ",kMax=" +
+                this.kMax +
+                ",t=" +
+                this.currentTemperature +
+                ",prob=" +
+                this.lastProbability;
+        return result;
     }
 }

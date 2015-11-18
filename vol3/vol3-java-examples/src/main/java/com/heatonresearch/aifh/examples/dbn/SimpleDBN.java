@@ -28,13 +28,12 @@
  */
 package com.heatonresearch.aifh.examples.dbn;
 
-import com.heatonresearch.aifh.deep.DeepBeliefNetwork;
-import com.heatonresearch.aifh.deep.SupervisedTrainDBN;
-import com.heatonresearch.aifh.deep.UnsupervisedTrainDBN;
+import com.heatonresearch.aifh.dbnn.DeepBeliefNetwork;
+import com.heatonresearch.aifh.dbnn.SupervisedTrainDBN;
+import com.heatonresearch.aifh.dbnn.UnsupervisedTrainDBN;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class SimpleDBN {
     public static final double LearningRateUnsupervised = 0.1;
@@ -70,7 +69,7 @@ public class SimpleDBN {
 
     public static void main(String[] args) {
 
-        // Create an deep belief network.
+        // Create an dbnn belief network.
         int[] hidden = {2, 3};
         DeepBeliefNetwork dbn = new DeepBeliefNetwork(TRAINING_INPUT[0].length, hidden, TRAINING_IDEAL[0].length);
         dbn.setRandom(new MersenneTwisterGenerateRandom(54321));

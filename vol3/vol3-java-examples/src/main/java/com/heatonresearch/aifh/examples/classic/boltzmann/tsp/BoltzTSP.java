@@ -120,7 +120,7 @@ public class BoltzTSP {
 						first = false;
 						result.append(n2);
 					} else {
-						result.append(", " + n2);
+						result.append(", ").append(n2);
 					}
 				}
 			}

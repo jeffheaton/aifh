@@ -26,7 +26,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.deep;
+package com.heatonresearch.aifh.dbnn;
 
 /**
  * A hidden layer for a DBNN.  This is based on a restricted Boltzmann machine.

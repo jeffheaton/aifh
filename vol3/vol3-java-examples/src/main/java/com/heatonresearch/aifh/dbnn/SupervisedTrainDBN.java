@@ -26,7 +26,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.deep;
+package com.heatonresearch.aifh.dbnn;
 
 import com.heatonresearch.aifh.error.ErrorCalculation;
 import com.heatonresearch.aifh.error.ErrorCalculationMSE;

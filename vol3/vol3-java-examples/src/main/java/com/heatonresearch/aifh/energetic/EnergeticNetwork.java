@@ -175,9 +175,7 @@ public abstract class EnergeticNetwork implements MLMethod {
 		this.neuronCount = neuronCount;
 		this.weights = weights;
 		this.currentState = new double[neuronCount];
-        for(int i=0;i<this.currentState.length;i++) {
-            this.currentState[i] = output[i];
-        }
+		System.arraycopy(output, 0, this.currentState, 0, this.currentState.length);
 	}
 
 	public void reset(final GenerateRandom rand) {

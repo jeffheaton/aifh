@@ -26,7 +26,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.aifh.deep;
+package com.heatonresearch.aifh.dbnn;
 
 /**
  * Unsupervised training for DBNN's. This class trains a single layer at a time.

@@ -163,7 +163,7 @@ public class NeighborhoodRBF implements NeighborhoodFunction {
             double oddIndent = 2.5;
             double indent = ((row%2==1)?oddIndent:evenIndent);
 
-            vector[1] = (int)(this.sq75+(row * this.sq75 ));
+            vector[1] = (int)(sq75+(row * sq75 ));
             vector[0] = (int)(indent+(3*col));
 
         }
