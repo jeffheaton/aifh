@@ -16,11 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jheaton
- * Date: 12/27/14
- * Time: 2:48 PM
- * To change this template use File | Settings | File Templates.
+ * Example of clustering nations, by several stats, using a SOM.
+ * Use a hexagon map.
  */
 public class ClusterNations extends JFrame implements Runnable {
 

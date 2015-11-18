@@ -35,6 +35,10 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.util.Arrays;
 
+/**
+ * This example trains a deep belief neural network.  The training begins with unsupervised pretraining,
+ * followed by supervised training of the logisitic regression output layer.
+ */
 public class SimpleDBN {
     public static final double LearningRateUnsupervised = 0.1;
     public static final double LearningRateSupervised = 0.1;

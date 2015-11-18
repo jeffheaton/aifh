@@ -31,3 +31,15 @@ task(runDBNExample, group: 'examples', description: 'Chapter 10.  Simple dbnn be
     main = 'com.heatonresearch.aifh.examples.dbn.SimpleDBN'
     classpath = sourceSets.main.runtimeClasspath
 }
+
+task(runSOMColorsExample, group: 'examples', description: 'Chapter 2.  Self organizing map: Colors example.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.classic.som.colors.SomColors'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runClusterNationsExample, group: 'examples', description: 'Chapter 2.  Cluster nations with Hexagon lattice.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.classic.som.cluster.ClusterNations'
+    classpath = sourceSets.main.runtimeClasspath
+}
