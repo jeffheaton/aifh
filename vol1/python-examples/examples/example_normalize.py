@@ -212,7 +212,7 @@ for i in range(0, 4):
 # Discover all of the classes for column #4, the iris species.
 classes = norm.build_class_map(result, 4)
 
-# Normalize iris species as one-of-n
+# Normalize iris species with equilateral encoding
 norm.norm_col_equilateral(result, 4, classes, -1, 1)
 
 # Display the resulting data
