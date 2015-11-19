@@ -26,9 +26,9 @@ task(runCSVExample, group: 'examples', description: 'Introduction.  This example
     classpath = sourceSets.main.runtimeClasspath
 }
 
-task(runDBNExample, group: 'examples', description: 'Chapter 10.  Simple dbnn belief neural network.',
+task(runLogicExample, group: 'examples', description: 'Chapter 1.  Logic gates.',
         dependsOn: 'classes', type: JavaExec) {
-    main = 'com.heatonresearch.aifh.examples.dbn.SimpleDBN'
+    main = 'com.heatonresearch.aifh.examples.classic.logic.LogicExample'
     classpath = sourceSets.main.runtimeClasspath
 }
 
@@ -41,5 +41,29 @@ task(runSOMColorsExample, group: 'examples', description: 'Chapter 2.  Self orga
 task(runClusterNationsExample, group: 'examples', description: 'Chapter 2.  Cluster nations with Hexagon lattice.',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.classic.som.cluster.ClusterNations'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runBoltzmannTSPExample, group: 'examples', description: 'Chapter 3.  Boltzmann Traveling Salesman (TSP).',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.classic.boltzmann.tsp.BoltzTSP'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runHopfieldHebbianExample, group: 'examples', description: 'Chapter 3.  Hopfield Associate - Hebbian.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.classic.hopfield.HopfieldAssociateHebbian'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runHopfieldStorkeyExample, group: 'examples', description: 'Chapter 3.  Hopfield Associate - Storkey.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.classic.hopfield.HopfieldAssociateStorkey'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn belief neural network.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.dbn.SimpleDBN'
     classpath = sourceSets.main.runtimeClasspath
 }

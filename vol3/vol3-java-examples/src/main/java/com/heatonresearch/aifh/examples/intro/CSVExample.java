@@ -26,7 +26,7 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-package com.heatonresearch.examples.intro;
+package com.heatonresearch.aifh.examples.intro;
 
 import au.com.bytecode.opencsv.CSVReader;
 

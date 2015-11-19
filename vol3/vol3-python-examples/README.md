@@ -87,13 +87,7 @@ example_mnist_sigmoid.py: Using a classic sigmoid neural network with MNIST.
 example_xor.py: Classic XOR neural network.
 ```
 * Chapter 7: Other Propagation Training
-```
-More to come.
-```
 * Chapter 8: NEAT, CPPN and HyperNEAT
-```
-More to come.
-```
 * Chapter 9: Deep Learning
 ```
 example_mnist_deep.py: MNIST dataset with a 4 layer neural network.

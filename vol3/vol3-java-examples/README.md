@@ -29,10 +29,41 @@ The Python examples make use of this code to find the data sets.
 The individual examples are all located in the example folder.  They are listed here,
 by chapter.
 
-* Chapter 1: Introduction to AI
+* Introduction
 ```
-    runCSVExample - Chapter 1.  This example reads a CSV file
-
+    runCSVExample - Introduction.  This example reads a CSV file
+```
+* Chapter 1: Neural Network Basics
+```
+    runLogicExample - Logic gates, hardwired.
+```
+* Chapter 2: Self Organizing Maps
+```
+    runSOMColorsExample - Self organizing map: Colors example.
+    runClusterNationsExample - Cluster nations with Hexagon lattice.
+```
+* Chapter 3: Hopfield & Boltzmann Machines
+```
+    runBoltzmannTSPExample - Boltzmann Traveling Salesman (TSP).
+    runHopfieldHebbianExample - Hopfield Associate - Hebbian.
+    runHopfieldStorkeyExample - Hopfield Associate - Storkey.
+```
+* Chapter 4: Feedforward Neural Networks
+* Chapter 5: Training & Evaluation
+* Chapter 6: Backpropagation Training
+* Chapter 7: Other Propagation Training
+* Chapter 8: NEAT, CPPN and HyperNEAT
+* Chapter 9: Deep Learning
+```
+runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn belief neural network.',
+```
+* Chapter 10: Convolutional Neural Networks
+* Chapter 11: Pruning and Model Selection
+* Chapter 12: Dropout and Regularization
+* Chapter 13: Time Series and Recurrent Networks
+* Chapter 14: Architecting Neural Networks
+* Chapter 15: Visualization
+* Chapter 16: Modelling with Neural Networks
 
 ##Running Examples - Command Line
 
