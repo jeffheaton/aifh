@@ -28,12 +28,37 @@
  */
 package com.heatonresearch.aifh.dbnn;
 
+/**
+ * Restricted Boltzmann machine, for deep belief neural network.
+ */
 public class RestrictedBoltzmannMachine {
+
+    /**
+     * The hidden bias.
+     */
     private final double[] hBias;
+
+    /**
+     * The visable bias.
+     */
     private final double[] vBias;
+
+    /**
+     * The hidden layer that this RBM corresponds to.
+     */
     private final HiddenLayer layer;
+
+    /**
+     * The neural network.
+     */
     private final DeepBeliefNetwork owner;
 
+    /**
+     * Sample a bimodal value with the specified probability.  Returns the count of sampled true values.
+     * @param n The number of values to sample.
+     * @param p The probability of true.
+     * @return The count of true values.
+     */
 	public int binomial(int n, double p) {
 		if(p < 0 || p > 1) return 0;
 		
@@ -47,12 +72,20 @@ public class RestrictedBoltzmannMachine {
 		
 		return c;
 	}
-	
+
+    /**
+     * Sigmoid function.
+     * @param x The input.
+     * @return The output.
+     */
 	public static double sigmoid(double x) {
 		return 1.0 / (1.0 + Math.exp(-x));
 	}
-	
-	
+
+    /**
+     * Construct restricted Boltzmann machine.
+     * @param theLayer The layer that this RBM works with.
+     */
 	public RestrictedBoltzmannMachine(HiddenLayer theLayer) {
         this.layer = theLayer;
         this.owner = theLayer.getOwner();
@@ -60,26 +93,44 @@ public class RestrictedBoltzmannMachine {
         this.vBias = new double[getVisibleCount()];
 	}
 
+    /**
+     * @return The visable neuron count.
+     */
     public int getVisibleCount() {
         return this.layer.getInputCount();
     }
 
+    /**
+     * @return The hidden neuron count.
+     */
     public int getHiddenCount() {
         return this.layer.getOutputCount();
     }
 
+    /**
+     * @return The hidden layer that goes with this RBM.
+     */
     public HiddenLayer getLayer() {
         return this.layer;
     }
 
+    /**
+     * @return Hidden biases.
+     */
     public double[] getBiasH() {
         return hBias;
     }
 
+    /**
+     * @return Visable biases.
+     */
     public double[] getBiasV() {
         return vBias;
     }
 
+    /**
+     * @return The network owner.
+     */
     public DeepBeliefNetwork getOwner() {
         return owner;
     }

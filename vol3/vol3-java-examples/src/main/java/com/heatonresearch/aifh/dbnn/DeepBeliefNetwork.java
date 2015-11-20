@@ -34,18 +34,41 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 /**
- * References:
+ * A deep belief neural network.
  *
+ * References:
  * http://deeplearning.net/software/theano/
  * https://github.com/yusugomori/DeepLearning
  * http://en.wikipedia.org/wiki/Deep_learning
  */
 public class DeepBeliefNetwork implements RegressionAlgorithm {
+
+    /**
+     * The hidden layers of the neural network.
+     */
     private HiddenLayer[] layers;
+
+    /**
+     * The restricted boltzmann machines for the neural network, one for leach layer.
+     */
     private RestrictedBoltzmannMachine[] rbm;
+
+    /**
+     * The output layer for the neural network.
+     */
     private DeepLayer outputLayer;
+
+    /**
+     * The random number generator to use.
+     */
     private GenerateRandom random = new MersenneTwisterGenerateRandom();
 
+    /**
+     * Construct a deep belief neural network.
+     * @param inputCount The input count.
+     * @param hidden The counts for the hidden layers.
+     * @param outputCount The output neuron count.
+     */
     public DeepBeliefNetwork(int inputCount, int[] hidden, int outputCount) {
         int inputSize;
 
@@ -67,6 +90,9 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
         this.outputLayer = new DeepLayer(this,hidden[this.layers.length - 1], outputCount);
     }
 
+    /**
+     * Randomize the weights of the neural network.
+     */
     public void reset() {
         for (int i = 0; i < rbm.length; i++) {
 
@@ -82,34 +108,61 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
         }
     }
 
+    /**
+     * The sigmoid/logistic function, used by the output layer.
+     * @param x The input.
+     * @return The output.
+     */
     public static double sigmoid(double x) {
         return 1.0 / (1.0 + Math.exp(-x));
     }
 
+    /**
+     * @return The layers of the neural network.
+     */
     public HiddenLayer[] getLayers() {
         return this.layers;
     }
 
+    /**
+     * @return The restricted Boltzmann machines.
+     */
     RestrictedBoltzmannMachine[] getRBMLayers() {
         return this.rbm;
     }
 
+    /**
+     * @return The input count.
+     */
     public int getInputCount() {
         return this.layers[0].getInputCount();
     }
 
+    /**
+     * @return The output (logistic) layer.
+     */
     public DeepLayer getLogLayer() {
         return this.outputLayer;
     }
 
+    /**
+     * @return The random number generator.
+     */
     public GenerateRandom getRandom() {
         return random;
     }
 
+    /**
+     * Set the random number generator.
+     * @param random The random number generator.
+     */
     public void setRandom(final GenerateRandom random) {
         this.random = random;
     }
 
+    /**
+     * @return The number of output neurons.
+     */
     public int getOutputCount() {
         return this.outputLayer.getOutputCount();
     }
@@ -161,6 +214,9 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double[] getLongTermMemory() {
         throw new AIFHError("Can't access DBM memory as array.");

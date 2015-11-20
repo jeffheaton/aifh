@@ -28,17 +28,41 @@
  */
 package com.heatonresearch.aifh.dbnn;
 
+/**
+ * A layer for a deep belief neural network.
+ */
 public class DeepLayer {
+    /**
+     * The weights of this layer.
+     */
     private double[][] weights;
+
+    /**
+     * The biases.
+     */
     private double[] bias;
+
+    /**
+     * The network that owns this layer.
+     */
     private DeepBeliefNetwork owner;
-	
+
+    /**
+     * Construct the layer.
+     * @param theOwner The network that owns this layer.
+     * @param inputCount The input count for this layer.
+     * @param outputCount The output count for this layer.
+     */
 	public DeepLayer(DeepBeliefNetwork theOwner, int inputCount, int outputCount) {
 		this.weights = new double[outputCount][inputCount];
 		this.bias = new double[outputCount];
         this.owner = theOwner;
 	}
 
+    /**
+     * Used to calculate the softmax for this layer.
+     * @param x The input to the softmax.
+     */
 	public void softmax(double[] x) {
 		double max = 0.0;
 		double sum = 0.0;
@@ -59,22 +83,37 @@ public class DeepLayer {
 		}
 	}
 
+    /**
+     * @return The input count.
+     */
     public int getInputCount() {
         return this.weights[0].length;
     }
 
+    /**
+     * @return The output count.
+     */
     public int getOutputCount() {
         return this.weights.length;
     }
 
+    /**
+     * @return The weights.
+     */
     public double[][] getWeights() {
         return this.weights;
     }
 
+    /**
+     * @return The biases.
+     */
     public double[] getBias() {
         return this.bias;
     }
 
+    /**
+     * @return The network.
+     */
     public DeepBeliefNetwork getOwner() {
         return this.owner;
     }

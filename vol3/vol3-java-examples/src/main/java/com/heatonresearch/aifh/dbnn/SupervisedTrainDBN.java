@@ -32,14 +32,43 @@ import com.heatonresearch.aifh.error.ErrorCalculation;
 import com.heatonresearch.aifh.error.ErrorCalculationMSE;
 import com.heatonresearch.aifh.learning.LearningMethod;
 
+/**
+ * Supervised training for the DBN.  Used to train the output layer with labels.
+ */
 public class SupervisedTrainDBN implements LearningMethod {
 
+    /**
+     * The network to train.
+     */
     private DeepBeliefNetwork network;
+
+    /**
+     * The input (x) for the training.
+     */
     private double[][] trainingInput;
+
+    /**
+     * The expected output (y, or labels).
+     */
     private double[][] trainingIdeal;
+
+    /**
+     * The learning rate.
+     */
     private double learningRate;
+
+    /**
+     * The error calculation to use.
+     */
     private ErrorCalculation errorCalc = new ErrorCalculationMSE();
 
+    /**
+     * Construct the supervised trainer for DBN.
+     * @param theNetwork The network to train.
+     * @param theTrainingInput The input (x) to train.
+     * @param theTrainingIdeal The expected output (y, or labels) to train.
+     * @param theLearningRate The learning rate.
+     */
     public SupervisedTrainDBN(DeepBeliefNetwork theNetwork, double[][] theTrainingInput, double[][] theTrainingIdeal,
                                 double theLearningRate) {
         this.network = theNetwork;
@@ -48,6 +77,9 @@ public class SupervisedTrainDBN implements LearningMethod {
         this.trainingIdeal = theTrainingIdeal;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void iteration() {
         double[] layerInput = new double[0];
@@ -73,26 +105,43 @@ public class SupervisedTrainDBN implements LearningMethod {
             }
         }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getLastError() {
         return this.errorCalc.calculate();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean done() {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getStatus() {
         return "";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void finishTraining() {
 
     }
 
+    /**
+     * Train the logistic layer, the output layer.
+     * @param input The input (x).
+     * @param ideal The expected output (y, or labels).
+     */
     private void trainLogisticLayer(double[] input, double[] ideal) {
         double[] pYgivenX = new double[this.network.getLogLayer().getOutputCount()];
         double[] dy = new double[this.network.getLogLayer().getOutputCount()];
@@ -120,10 +169,17 @@ public class SupervisedTrainDBN implements LearningMethod {
         }
     }
 
+    /**
+     * @return The error calculation method.
+     */
     public ErrorCalculation getErrorCalc() {
         return errorCalc;
     }
 
+    /**
+     * Set the error calculation method.
+     * @param errorCalc The error calculation method.
+     */
     public void setErrorCalc(final ErrorCalculation errorCalc) {
         this.errorCalc = errorCalc;
     }

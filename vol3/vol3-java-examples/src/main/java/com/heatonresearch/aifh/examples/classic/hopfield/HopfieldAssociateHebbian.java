@@ -33,8 +33,11 @@ import com.heatonresearch.aifh.energetic.TrainHopfieldHebbian;
 
 /**
  * Simple class to recognize some patterns with a Hopfield Neural Network.
+ * This version makes use of the storkey training.
+ *
+ *
  * This is very loosely based on a an example by Karsten Kutza, 
- * written in C on 1996-01-30.
+ * written in C on 1996-01-30. (link below is no longer active)
  * http://www.neural-networks-at-your-fingertips.com/hopfield.html
  *
  * I translated it to Java and adapted it to use Encog for neural
@@ -44,13 +47,13 @@ import com.heatonresearch.aifh.energetic.TrainHopfieldHebbian;
  */
 public class HopfieldAssociateHebbian {
 
-    final static int HEIGHT = 10;
-    final static int WIDTH = 10;
+    public final static int HEIGHT = 10;
+    public final static int WIDTH = 10;
 
     /**
      * The neural network will learn these patterns.
      */
-    public static final String[][] PATTERN  = { {
+    public final static String[][] PATTERN  = { {
             "O O O O O ",
             " O O O O O",
             "O O O O O ",
@@ -166,7 +169,7 @@ public class HopfieldAssociateHebbian {
                     "O        O",
                     "OOOOOOOOOO"  } };
 
-    public double[] convertPattern(String[][] data, int index)
+    public static double[] convertPattern(String[][] data, int index)
     {
         int resultIndex = 0;
         double[] result = new double[WIDTH*HEIGHT];
@@ -181,7 +184,7 @@ public class HopfieldAssociateHebbian {
         return result;
     }
 
-    public void display(double[] pattern1,double[] pattern2)
+    public static void display(double[] pattern1,double[] pattern2)
     {
         int index1 = 0;
         int index2 = 0;
@@ -213,7 +216,7 @@ public class HopfieldAssociateHebbian {
     }
 
 
-    public void evaluate(HopfieldNetwork hopfieldLogic, String[][] pattern)
+    public static void evaluate(HopfieldNetwork hopfieldLogic, String[][] pattern)
     {
         for(int i=0;i<pattern.length;i++)
         {
