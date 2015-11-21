@@ -14,10 +14,11 @@ dependencies {
     compile 'net.sf.opencsv:opencsv:2.3'
     compile 'gov.nist.math:jama:1.0.3'
     compile 'org.lwjgl.lwjgl:lwjgl:2.9.1'
+    compile 'org.encog:encog-core:3.2.0'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.8'
+    gradleVersion = '2.2'
 }
 
 task(runCSVExample, group: 'examples', description: 'Introduction.  This example reads a CSV file',
@@ -59,6 +60,24 @@ task(runHopfieldHebbianExample, group: 'examples', description: 'Chapter 3.  Hop
 task(runHopfieldStorkeyExample, group: 'examples', description: 'Chapter 3.  Hopfield Associate - Storkey.',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.classic.hopfield.HopfieldAssociateStorkey'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runIrisAnnealExample, group: 'examples', description: 'Chapter 4.  Iris ANN annealed.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ann.LearnIrisAnneal'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runNEATXORExample, group: 'examples', description: 'Chapter 8.  NEAT XOR network.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.neat.NEATXORExample'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runHyperNEATBoxesExample, group: 'examples', description: 'Chapter 8.  HyperNEAT Boxes Example.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.neat.hyperneat.VisualizeBoxesMain'
     classpath = sourceSets.main.runtimeClasspath
 }
 

@@ -49,10 +49,18 @@ by chapter.
     runHopfieldStorkeyExample - Hopfield Associate - Storkey.
 ```
 * Chapter 4: Feedforward Neural Networks
+```
+    runIrisAnnealExample - Train an iris ANN with annealing.
+```
 * Chapter 5: Training & Evaluation
 * Chapter 6: Backpropagation Training
 * Chapter 7: Other Propagation Training
 * Chapter 8: NEAT, CPPN and HyperNEAT
+```
+    runNEATXORExample - NEAT XOR network.
+    runHyperNEATBoxesExample - HyperNEAT Boxes Example.
+
+```
 * Chapter 9: Deep Learning
 ```
 runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn belief neural network.',
