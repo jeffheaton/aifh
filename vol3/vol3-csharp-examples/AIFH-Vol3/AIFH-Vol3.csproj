@@ -48,6 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleHolder.cs" />
+    <Compile Include="Examples\Classic\Logic\InputNeuron.cs" />
+    <Compile Include="Examples\Classic\Logic\Connection.cs" />
+    <Compile Include="Examples\Classic\Logic\INeuron.cs" />
+    <Compile Include="Examples\Classic\Logic\LogicExample.cs" />
+    <Compile Include="Examples\Classic\Logic\RegularNeuron.cs" />
     <Compile Include="Examples\Intro\CSVExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

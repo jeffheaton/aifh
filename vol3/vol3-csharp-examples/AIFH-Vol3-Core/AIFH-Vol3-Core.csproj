@@ -41,8 +41,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Core\AIFH.cs" />
+    <Compile Include="Core\AIFHError.cs" />
+    <Compile Include="Core\Energetic\BoltzmannMachine.cs" />
+    <Compile Include="Core\Energetic\EnergeticNetwork.cs" />
+    <Compile Include="Core\Learning\IMLContext.cs" />
+    <Compile Include="Core\Learning\IMLMethod.cs" />
+    <Compile Include="Core\Randomize\AbstractBoxMuller.cs" />
+    <Compile Include="Core\Randomize\AbstractGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\BasicGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\IGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\IRandomFactory.cs" />
+    <Compile Include="Core\Randomize\LinearCongruentialRandom.cs" />
+    <Compile Include="Core\Randomize\MersenneTwisterFactory.cs" />
+    <Compile Include="Core\Randomize\MersenneTwisterGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\MultiplyWithCarryGenerateRandom.cs" />
+    <Compile Include="Core\Randomize\RandomChoice.cs" />
+    <Compile Include="Core\Randomize\SecureGenerateRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
