@@ -24,9 +24,9 @@ The following language ports have been completed for this book.  See the individ
 README files inside of each chapter for language specific instructions. If you find a bug,
 or improve an example, please consider pushing a change via GitHub.
 	
-* vol3-python-examples
-* vol3-java-examples
-* vol3-csharp-examples		
+* vol3-python-examples - Complete
+* vol3-java-examples - In progress
+* vol3-csharp-examples - In progress		
 		
 ** Some of the examples are under construction **
 ** See individual languages for more information **
