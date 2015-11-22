@@ -3,14 +3,18 @@ package com.heatonresearch.aifh.energetic;
 import com.heatonresearch.aifh.AIFHError;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Jeff
- * Date: 1/27/15
- * Time: 4:56 PM
- * To change this template use File | Settings | File Templates.
+ * Train the Hopfield network using a Hebbian algorithm.
+ * For more info: https://en.wikipedia.org/wiki/Hopfield_network
  */
 public class TrainHopfieldStorkey {
+    /**
+     * The network to train.
+     */
     private HopfieldNetwork network;
+
+    /**
+     * The summation matrix.
+     */
     private double[][] sumMatrix;
 
     public TrainHopfieldStorkey(HopfieldNetwork theNetwork) {
@@ -18,6 +22,12 @@ public class TrainHopfieldStorkey {
         this.sumMatrix = new double[network.getInputCount()][network.getInputCount()];
     }
 
+    /**
+     * Calculate the local field needed by training.
+     * @param i The neuron.
+     * @param pattern The pattern.
+     * @return The local field value.
+     */
     private double calculateLocalField(int i, double[] pattern) {
         double sum = 0;
         for(int k=0;k<this.network.getInputCount();k++) {
@@ -28,6 +38,10 @@ public class TrainHopfieldStorkey {
         return sum;
     }
 
+    /**
+     * Add a pattern for training.
+     * @param pattern The pattern to add.
+     */
     public void addPattern(double[] pattern) {
         for(int i=0;i<sumMatrix.length;i++) {
             for(int j=0;j<sumMatrix.length;j++) {
@@ -45,7 +59,6 @@ public class TrainHopfieldStorkey {
                 this.sumMatrix[i][j]+=d;
             }
         }
-        //this.patternCount++;
 
         for(int i=0;i<sumMatrix.length;i++) {
             for(int j=0;j<sumMatrix.length;j++) {
