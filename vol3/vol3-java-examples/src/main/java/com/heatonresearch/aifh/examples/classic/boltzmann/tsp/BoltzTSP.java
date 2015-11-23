@@ -29,7 +29,7 @@ import com.heatonresearch.aifh.energetic.BoltzmannMachine;
  * Use a Boltzmann machine to solve the Traveling Salesman Problem.
  * 
  * This is based on a an example by Karsten Kutza, 
- * written in C on 1996-01-24.
+ * written in C on 1996-01-24. (link now defunct)
  * http://www.neural-networks-at-your-fingertips.com
  *
  */

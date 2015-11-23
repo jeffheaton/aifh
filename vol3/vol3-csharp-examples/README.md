@@ -45,7 +45,17 @@ Available Examples:
 CSVExample : Shows how to use CsvHelper to read a CSV
 LogicExample : Logic gates, hardwired.
 ```
-Examples are under active development, more will be added soon.
-
-
+** Chapter 2: Self Organizing Maps, Examples:
+GUI examples are provided for this chapter.
+** Chapter 3: Hopfield & Boltzmann Machines, Examples:
 ```
+HopfieldAssociateHebbian : Hopfield Associate - Hebbian.
+HopfieldAssociateStorkey : Hopfield Associate - Storkey.
+BoltzTSP : Boltzmann Traveling Salesman (TSP).
+```
+** Chapter 4: Feedforward Neural Networks, Examples:
+```
+LearnIrisAnneal : Iris ANN annealed.
+```
+
+Examples are under active development, more will be added soon.
