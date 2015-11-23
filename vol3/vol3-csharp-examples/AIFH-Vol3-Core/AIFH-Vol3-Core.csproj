@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.13.2.0\lib\net40-client\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,8 +49,36 @@
     <Compile Include="Core\AIFHError.cs" />
     <Compile Include="Core\Energetic\BoltzmannMachine.cs" />
     <Compile Include="Core\Energetic\EnergeticNetwork.cs" />
+    <Compile Include="Core\Energetic\HopfieldNetwork.cs" />
+    <Compile Include="Core\Energetic\TrainHopfieldHebbian.cs" />
+    <Compile Include="Core\Energetic\TrainHopfieldStorkey.cs" />
+    <Compile Include="Core\Error\AbstractErrorCalculation.cs" />
+    <Compile Include="Core\Error\ErrorCalculationMSE.cs" />
+    <Compile Include="Core\Error\ErrorCalculationRMS.cs" />
+    <Compile Include="Core\Error\ErrorCalculationSSE.cs" />
+    <Compile Include="Core\Error\IErrorCalculation.cs" />
+    <Compile Include="Core\General\Data\BasicData.cs" />
+    <Compile Include="Core\General\Fns\AbstractRBF.cs" />
+    <Compile Include="Core\General\Fns\GaussianFunction.cs" />
+    <Compile Include="Core\General\Fns\IFn.cs" />
+    <Compile Include="Core\General\Fns\IFnRBF.cs" />
+    <Compile Include="Core\General\Fns\InverseMultiquadricFunction.cs" />
+    <Compile Include="Core\General\Fns\MexicanHatFunction.cs" />
+    <Compile Include="Core\General\Fns\MultiquadricFunction.cs" />
+    <Compile Include="Core\General\VectorAlgebra.cs" />
+    <Compile Include="Core\General\VectorUtil.cs" />
+    <Compile Include="Core\Learning\IClassificationAlgorithm.cs" />
+    <Compile Include="Core\Learning\ILearningMethod.cs" />
     <Compile Include="Core\Learning\IMLContext.cs" />
     <Compile Include="Core\Learning\IMLMethod.cs" />
+    <Compile Include="Core\Learning\IRegressionAlgorithm.cs" />
+    <Compile Include="Core\Learning\RBFNetwork.cs" />
+    <Compile Include="Core\Learning\Score\IScoreFunction.cs" />
+    <Compile Include="Core\Learning\Score\ScoreClassificationData.cs" />
+    <Compile Include="Core\Learning\Score\ScoreRegressionData.cs" />
+    <Compile Include="Core\Learning\TrainAnneal.cs" />
+    <Compile Include="Core\Normalize\DataSet.cs" />
+    <Compile Include="Core\Normalize\Equilateral.cs" />
     <Compile Include="Core\Randomize\AbstractBoxMuller.cs" />
     <Compile Include="Core\Randomize\AbstractGenerateRandom.cs" />
     <Compile Include="Core\Randomize\BasicGenerateRandom.cs" />
@@ -60,7 +92,9 @@
     <Compile Include="Core\Randomize\SecureGenerateRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

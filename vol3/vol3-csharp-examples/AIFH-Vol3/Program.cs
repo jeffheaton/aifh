@@ -116,7 +116,6 @@ namespace AIFH_Vol3
         {
             int index = 0;
             bool pause = false;
-            bool success = false;
 
             // process any options
 
