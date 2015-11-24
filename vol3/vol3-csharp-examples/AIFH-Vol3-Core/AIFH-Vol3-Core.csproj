@@ -34,8 +34,13 @@
       <HintPath>..\packages\CsvHelper.2.13.2.0\lib\net40-client\CsvHelper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.8.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +52,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Core\AIFH.cs" />
     <Compile Include="Core\AIFHError.cs" />
+    <Compile Include="Core\Distance\AbstractDistance.cs" />
+    <Compile Include="Core\Distance\ChebyshevDistance.cs" />
+    <Compile Include="Core\Distance\EuclideanDistance.cs" />
+    <Compile Include="Core\Distance\ICalculateDistance.cs" />
+    <Compile Include="Core\Distance\ManhattanDistance.cs" />
     <Compile Include="Core\Energetic\BoltzmannMachine.cs" />
     <Compile Include="Core\Energetic\EnergeticNetwork.cs" />
     <Compile Include="Core\Energetic\HopfieldNetwork.cs" />
@@ -90,11 +100,20 @@
     <Compile Include="Core\Randomize\MultiplyWithCarryGenerateRandom.cs" />
     <Compile Include="Core\Randomize\RandomChoice.cs" />
     <Compile Include="Core\Randomize\SecureGenerateRandom.cs" />
+    <Compile Include="Core\SOM\BestMatchingUnit.cs" />
+    <Compile Include="Core\SOM\Neighborhood\INeighborhoodFunction.cs" />
+    <Compile Include="Core\SOM\Neighborhood\NeighborhoodBubble.cs" />
+    <Compile Include="Core\SOM\Neighborhood\NeighborhoodRBF.cs" />
+    <Compile Include="Core\SOM\Neighborhood\NeighborhoodRBF1D.cs" />
+    <Compile Include="Core\SOM\Neighborhood\NeighborhoodSingle.cs" />
+    <Compile Include="Core\SOM\SelfOrganizingMap.cs" />
+    <Compile Include="Core\SOM\Train\BasicTrainSOM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,18 @@
 
 namespace AIFH_Vol3.Core.General.Fns
 {
+
+    /// <summary>
+    /// The implemented function types of the RBFs.
+    /// </summary>
+    public enum RBFEnum
+    {
+        Gaussian, 
+        Multiquadric,
+        InverseMultiquadric,
+        MexicanHat
+    }
+
     /// <summary>
     /// A function that implements a radial basis function (RBF).
     /// </summary>
