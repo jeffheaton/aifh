@@ -37,6 +37,10 @@
       <HintPath>..\packages\CsvHelper.2.13.2.0\lib\net40-client\CsvHelper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="encog-core-cs, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e882172b12155d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\encog-dotnet-core.3.3.0\lib\net35\encog-core-cs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,7 +61,9 @@
     <Compile Include="Examples\Classic\Logic\INeuron.cs" />
     <Compile Include="Examples\Classic\Logic\LogicExample.cs" />
     <Compile Include="Examples\Classic\Logic\RegularNeuron.cs" />
+    <Compile Include="Examples\DBN\SimpleDBN.cs" />
     <Compile Include="Examples\Intro\CSVExample.cs" />
+    <Compile Include="Examples\NEAT\XORNEAT.cs" />
     <Compile Include="Examples\SimpleLearn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,0 +1,25 @@
+﻿<Window x:Class="HyperNEATBoxes.DisplayBoxes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DisplayBoxes" Height="300" Width="300" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0" Background="LightGray" BorderThickness="1" BorderBrush="Black" Padding="5">
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Name="Resolution" Width="50">
+                    <ComboBoxItem IsSelected="True">11</ComboBoxItem>
+                    <ComboBoxItem>22</ComboBoxItem>
+                    <ComboBoxItem>33</ComboBoxItem>
+                    <ComboBoxItem>44</ComboBoxItem>
+                    <ComboBoxItem>55</ComboBoxItem>
+                </ComboBox>
+                <Button Name="NewCase" Click="NewCase_Click">New Case</Button>
+            </StackPanel>
+        </Border>
+        <Canvas Grid.Row="1" Name="GridCanvas"></Canvas>
+    </Grid>
+</Window>

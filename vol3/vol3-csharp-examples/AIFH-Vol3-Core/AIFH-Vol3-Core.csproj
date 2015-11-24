@@ -52,6 +52,12 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Core\AIFH.cs" />
     <Compile Include="Core\AIFHError.cs" />
+    <Compile Include="Core\DBNN\DeepBeliefNetwork.cs" />
+    <Compile Include="Core\DBNN\DeepLayer.cs" />
+    <Compile Include="Core\DBNN\HiddenLayer.cs" />
+    <Compile Include="Core\DBNN\RestrictedBoltzmannMachine.cs" />
+    <Compile Include="Core\DBNN\SupervisedTrainDBN.cs" />
+    <Compile Include="Core\DBNN\UnsupervisedTrainDBN.cs" />
     <Compile Include="Core\Distance\AbstractDistance.cs" />
     <Compile Include="Core\Distance\ChebyshevDistance.cs" />
     <Compile Include="Core\Distance\EuclideanDistance.cs" />
