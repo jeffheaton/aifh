@@ -40,13 +40,13 @@ AIFH-Vol3 CSVExample
 ```
 Available Examples:
 
-* Chapter 1: Introduction to AI, Examples:
+* Chapter 1: Neural Network Basics, Examples:
 ```
 CSVExample : Shows how to use CsvHelper to read a CSV
-LogicExample : Logic gates, hardwired.
+LogicExample : Simple hard-wired neural network for logic gates.
 ```
 * Chapter 2: Self Organizing Maps, Examples:
-GUI examples are provided for this chapter.
+(GUI example provided)
 * Chapter 3: Hopfield & Boltzmann Machines, Examples:
 ```
 HopfieldAssociateHebbian : Hopfield Associate - Hebbian.
@@ -57,5 +57,25 @@ BoltzTSP : Boltzmann Traveling Salesman (TSP).
 ```
 LearnIrisAnneal : Iris ANN annealed.
 ```
+* Chapter 5: Training & Evaluation, Examples:
+* Chapter 6: Backpropagation Training, Examples:
+* Chapter 7: Other Propagation Training, Examples:
+* Chapter 8: NEAT, CPPN and HyperNEAT, Examples:
+```
+XORNEAT : Use a NEAT neural network for the XOR operator.
+(GUI example included)
+```
+* Chapter 9: Deep Learning, Examples:
+```
+SimpleDBN : Simple deep belief neural network (DBNN).
+```
+* Chapter 10: Convolutional Neural Networks, Examples:
+* Chapter 11: Pruning and Model Selection, Examples:
+* Chapter 12: Dropout and Regularization, Examples:
+* Chapter 13: Time Series and Recurrent Networks, Examples:
+* Chapter 14: Architecting Neural Networks, Examples:
+* Chapter 15: Visualization, Examples:
+* Chapter 16: Modelling with Neural Networks, Examples:
+
 
 Examples are under active development, more will be added soon.
