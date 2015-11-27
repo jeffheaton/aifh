@@ -32,11 +32,6 @@ public class BasicNetwork {
     private int[] layerCounts;
 
     /**
-     * The dropout rate for each layer.
-     */
-    private double[] layerDropoutRates;
-
-    /**
      * The number of context neurons in each layer. These context neurons will
      * feed the next layer.
      */
@@ -131,81 +126,12 @@ public class BasicNetwork {
      */
     private boolean hasContext;
 
+    private final List<BasicLayer> layers = new ArrayList<BasicLayer>();
+
     /**
      * Default constructor.
      */
     public BasicNetwork() {
-        this.layerDropoutRates = new double[0];
-    }
-
-    /**
-     * Create a flat network from an array of layers.
-     *
-     * @param layers
-     *            The layers.
-     */
-    public BasicNetwork(final BasicLayer[] layers) {
-        init(layers,false);
-    }
-    public BasicNetwork(final BasicLayer[] layers, boolean dropout) {
-        init(layers,dropout);
-    }
-
-    /**
-     * Construct a flat neural network.
-     *
-     * @param input
-     *            Neurons in the input layer.
-     * @param hidden1
-     *            Neurons in the first hidden layer. Zero for no first hidden
-     *            layer.
-     * @param hidden2
-     *            Neurons in the second hidden layer. Zero for no second hidden
-     *            layer.
-     * @param output
-     *            Neurons in the output layer.
-     * @param tanh
-     *            True if this is a tanh activation, false for sigmoid.
-     */
-    public BasicNetwork(final int input, final int hidden1, final int hidden2,
-                       final int output, final boolean tanh) {
-
-        final ActivationFunction linearAct = new ActivationLinear();
-        BasicLayer[] layers;
-        final ActivationFunction act = tanh ? new ActivationTANH()
-                : new ActivationSigmoid();
-
-        if ((hidden1 == 0) && (hidden2 == 0)) {
-            layers = new BasicLayer[2];
-            layers[0] = new BasicLayer(linearAct, input,
-                    BasicNetwork.DEFAULT_BIAS_ACTIVATION);
-            layers[1] = new BasicLayer(act, output,
-                    BasicNetwork.NO_BIAS_ACTIVATION);
-        } else if ((hidden1 == 0) || (hidden2 == 0)) {
-            final int count = Math.max(hidden1, hidden2);
-            layers = new BasicLayer[3];
-            layers[0] = new BasicLayer(linearAct, input,
-                    BasicNetwork.DEFAULT_BIAS_ACTIVATION);
-            layers[1] = new BasicLayer(act, count,
-                    BasicNetwork.DEFAULT_BIAS_ACTIVATION);
-            layers[2] = new BasicLayer(act, output,
-                    BasicNetwork.NO_BIAS_ACTIVATION);
-        } else {
-            layers = new BasicLayer[4];
-            layers[0] = new BasicLayer(linearAct, input,
-                    BasicNetwork.DEFAULT_BIAS_ACTIVATION);
-            layers[1] = new BasicLayer(act, hidden1,
-                    BasicNetwork.DEFAULT_BIAS_ACTIVATION);
-            layers[2] = new BasicLayer(act, hidden2,
-                    BasicNetwork.DEFAULT_BIAS_ACTIVATION);
-            layers[3] = new BasicLayer(act, output,
-                    BasicNetwork.NO_BIAS_ACTIVATION);
-        }
-
-        this.isLimited = false;
-        this.connectionLimit = 0.0;
-
-        init(layers,false);
     }
 
     /**
@@ -287,12 +213,6 @@ public class BasicNetwork {
         final int outputIndex = this.layerIndex[currentLayer - 1];
         final int inputSize = this.layerCounts[currentLayer];
         final int outputSize = this.layerFeedCounts[currentLayer - 1];
-        final double dropoutRate;
-        if(this.layerDropoutRates.length > currentLayer - 1) {
-            dropoutRate = this.layerDropoutRates[currentLayer - 1];
-        } else {
-            dropoutRate = 0;
-        }
 
         int index = this.weightIndex[currentLayer - 1];
 
@@ -303,7 +223,7 @@ public class BasicNetwork {
         for (int x = outputIndex; x < limitX; x++) {
             double sum = 0;
             for (int y = inputIndex; y < limitY; y++) {
-                sum += this.weights[index++] * this.layerOutput[y] * (1 - dropoutRate);
+                sum += this.weights[index++] * this.layerOutput[y];
             }
             this.layerSums[x] = sum;
             this.layerOutput[x] = sum;
@@ -489,7 +409,7 @@ public class BasicNetwork {
      * @param layers
      *            The layers of the network to create.
      */
-    public void init(final BasicLayer[] layers, boolean dropout) {
+    public void init(final BasicLayer[] layers) {
 
         final int layerCount = layers.length;
 
@@ -500,11 +420,7 @@ public class BasicNetwork {
         this.layerContextCount = new int[layerCount];
         this.weightIndex = new int[layerCount];
         this.layerIndex = new int[layerCount];
-        if(dropout){
-            this.layerDropoutRates = new double[layerCount];
-        } else {
-            this.layerDropoutRates = new double[0];
-        }
+
         this.activationFunctions = new ActivationFunction[layerCount];
         this.layerFeedCounts = new int[layerCount];
         this.contextTargetOffset = new int[layerCount];
@@ -524,15 +440,11 @@ public class BasicNetwork {
                 nextLayer = layers[i - 1];
             }
 
-            this.biasActivation[index] = layer.getBiasActivation();
+            this.biasActivation[index] = 1;
             this.layerCounts[index] = layer.getTotalCount();
             this.layerFeedCounts[index] = layer.getCount();
             this.layerContextCount[index] = layer.getContextCount();
             this.activationFunctions[index] = layer.getActivation();
-            if(dropout)
-            {
-                this.layerDropoutRates[index] = layer.getDropoutRate();
-            }
 
             neuronCount += layer.getTotalCount();
 
@@ -671,15 +583,6 @@ public class BasicNetwork {
         return layerSums;
     }
 
-
-    public double[] getLayerDropoutRates() {
-        return layerDropoutRates;
-    }
-
-    public void setLayerDropoutRates(double[] layerDropoutRates) {
-        this.layerDropoutRates = layerDropoutRates;
-    }
-
     /**
      * Get the weight between the two layers.
      * @param fromLayer The from layer.
@@ -747,14 +650,89 @@ public class BasicNetwork {
     }
 
     public void addLayer(BasicLayer layer) {
-
+        this.layers.add(layer);
     }
 
     public void finalizeStructure() {
+        final int layerCount = layers.size();
 
+        this.inputCount = layers.get(0).getCount();
+        this.outputCount = layers.get(layerCount - 1).getCount();
+
+        this.layerCounts = new int[layerCount];
+        this.layerContextCount = new int[layerCount];
+        this.weightIndex = new int[layerCount];
+        this.layerIndex = new int[layerCount];
+
+        this.activationFunctions = new ActivationFunction[layerCount];
+        this.layerFeedCounts = new int[layerCount];
+        this.contextTargetOffset = new int[layerCount];
+        this.contextTargetSize = new int[layerCount];
+        this.biasActivation = new double[layerCount];
+
+        int index = 0;
+        int neuronCount = 0;
+        int weightCount = 0;
+
+        for (int i = layers.size() - 1; i >= 0; i--) {
+
+            final BasicLayer layer = layers.get(i);
+            BasicLayer nextLayer = null;
+
+            if (i > 0) {
+                nextLayer = layers.get(i - 1);
+            }
+
+            this.biasActivation[index] = 1;
+            this.layerCounts[index] = layer.getTotalCount();
+            this.layerFeedCounts[index] = layer.getCount();
+            this.layerContextCount[index] = layer.getContextCount();
+            this.activationFunctions[index] = layer.getActivation();
+
+            neuronCount += layer.getTotalCount();
+
+            if (nextLayer != null) {
+                weightCount += layer.getCount() * nextLayer.getTotalCount();
+            }
+
+            if (index == 0) {
+                this.weightIndex[index] = 0;
+                this.layerIndex[index] = 0;
+            } else {
+                this.weightIndex[index] = this.weightIndex[index - 1]
+                        + (this.layerCounts[index] * this.layerFeedCounts[index - 1]);
+                this.layerIndex[index] = this.layerIndex[index - 1]
+                        + this.layerCounts[index - 1];
+            }
+
+            int neuronIndex = 0;
+            for (int j = layers.size() - 1; j >= 0; j--) {
+                if (layers.get(j).getContextFedBy() == layer) {
+                    this.hasContext = true;
+                    this.contextTargetSize[index] = layers.get(j).getContextCount();
+                    this.contextTargetOffset[index] = neuronIndex
+                            + (layers.get(j).getTotalCount() - layers.get(j)
+                            .getContextCount());
+                }
+                neuronIndex += layers.get(j).getTotalCount();
+            }
+
+            index++;
+        }
+
+        this.beginTraining = 0;
+        this.endTraining = this.layerCounts.length - 1;
+
+        this.weights = new double[weightCount];
+        this.layerOutput = new double[neuronCount];
+        this.layerSums = new double[neuronCount];
+
+        clearContext();
     }
 
     public void reset() {
-
+        for(int i=0;i<this.weights.length;i++) {
+            this.weights[i] = Math.random()-0.5;
+        }
     }
 }
