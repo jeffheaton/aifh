@@ -5,6 +5,8 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.activation.ActivationLinear;
 import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
 import com.heatonresearch.aifh.ann.activation.ActivationTANH;
+import com.heatonresearch.aifh.ann.randomize.RangeRandomizeNetwork;
+import com.heatonresearch.aifh.ann.randomize.XaiverRandomizeNetwork;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -730,9 +732,41 @@ public class BasicNetwork {
         clearContext();
     }
 
-    public void reset() {
-        for(int i=0;i<this.weights.length;i++) {
-            this.weights[i] = Math.random()-0.5;
+    /**
+     * Set the weight between the two specified neurons. The bias neuron is always
+     * the last neuron on a layer.
+     * @param fromLayer The from layer.
+     * @param fromNeuron The from neuron.
+     * @param toNeuron The to neuron.
+     * @param value The to value.
+     */
+    public void setWeight(final int fromLayer, final int fromNeuron,
+                          final int toNeuron, final double value) {
+        final int fromLayerNumber = this.layers.size() - fromLayer - 1;
+        final int toLayerNumber = fromLayerNumber - 1;
+
+        if (toLayerNumber < 0) {
+            throw new AIFHError(
+                    "The specified layer is not connected to another layer: "
+                            + fromLayer);
         }
+
+        final int weightBaseIndex
+                = getWeightIndex()[toLayerNumber];
+        final int count
+                = getLayerCounts()[fromLayerNumber];
+        final int weightIndex = weightBaseIndex + fromNeuron
+                + (toNeuron * count);
+
+        getWeights()[weightIndex] = value;
+    }
+
+    public void reset() {
+        XaiverRandomizeNetwork random = new XaiverRandomizeNetwork();
+        random.randomize(this);
+    }
+
+    public List<BasicLayer> getLayers() {
+        return this.layers;
     }
 }

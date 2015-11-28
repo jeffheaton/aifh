@@ -4,6 +4,7 @@ import com.heatonresearch.aifh.AIFH;
 import com.heatonresearch.aifh.ann.BasicNetwork;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.error.ErrorFunction;
+import com.heatonresearch.aifh.error.ErrorCalculation;
 
 public class GradientCalc {
     /**
@@ -68,12 +69,11 @@ public class GradientCalc {
      */
     private final ErrorFunction errorFunction;
 
-    private double[] layerDropoutRates;
     private double[][] x;
     private double[][] y;
 
     public GradientCalc(final BasicNetwork theNetwork,
-                          ErrorFunction ef) {
+                          ErrorFunction ef, GradientCalcOwner theOwner) {
         this.network = theNetwork;
         this.errorFunction = ef;
 
@@ -88,6 +88,7 @@ public class GradientCalc {
         this.layerOutput = network.getLayerOutput();
         this.layerSums = network.getLayerSums();
         this.layerFeedCounts = network.getLayerFeedCounts();
+        this.owner = theOwner;
     }
 
     /**
@@ -112,10 +113,10 @@ public class GradientCalc {
      * @param ideal
      *            The ideal values.
      */
-    public void process(double[] input, double[] ideal) {
+    public void process(ErrorCalculation errorCalc, double[] input, double[] ideal) {
         this.network.compute(input, this.actual);
 
-        //this.errorCalculation.updateError(this.actual, pair.getIdealArray(), pair.getSignificance());
+        errorCalc.updateError(this.actual, ideal, 1.0);
 
         // Calculate error for the output layer.
         this.errorFunction.calculateError(
@@ -151,10 +152,6 @@ public class GradientCalc {
         final int toLayerIndex = this.layerIndex[currentLevel];
         final int fromLayerSize = this.layerCounts[currentLevel + 1];
         final int toLayerSize = this.layerFeedCounts[currentLevel];
-        double dropoutRate = 0;
-        if(this.layerDropoutRates.length > currentLevel && this.layerDropoutRates[currentLevel] != 0) {
-            dropoutRate = this.layerDropoutRates[currentLevel];
-        }
 
         final int index = this.weightIndex[currentLevel];
         final ActivationFunction activation = this.network
@@ -186,22 +183,10 @@ public class GradientCalc {
         }
     }
 
-    /**
-     * Perform the gradient calculation for the specified index range.
-     */
-    public final void run(int low, int high) {
-
-            //this.errorCalculation.reset();
-            for (int i = low; i <= high; i++) {
-                process(this.x[i],this.y[i]);
-            }
-            //final double error = this.errorCalculation.calculate();
-            //this.owner.report(this.gradients, error, null);
-
-            for(int i=0;i<this.gradients.length;i++) {
-                this.gradients[i] = 0;
-            }
-
+    public void reset() {
+        for(int i=0;i<this.gradients.length;i++) {
+            this.gradients[i] = 0;
+        }
     }
 
 

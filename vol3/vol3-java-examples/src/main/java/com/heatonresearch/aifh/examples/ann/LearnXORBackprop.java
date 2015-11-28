@@ -2,6 +2,7 @@ package com.heatonresearch.aifh.examples.ann;
 
 import com.heatonresearch.aifh.ann.BasicLayer;
 import com.heatonresearch.aifh.ann.BasicNetwork;
+import com.heatonresearch.aifh.ann.activation.ActivationLinear;
 import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
@@ -32,7 +33,7 @@ public class LearnXORBackprop {
         // create a neural network, without using a factory
         BasicNetwork network = new BasicNetwork();
         network.addLayer(new BasicLayer(null,true,2));
-        network.addLayer(new BasicLayer(new ActivationReLU(),true,5));
+        network.addLayer(new BasicLayer(new ActivationSigmoid(),true,5));
         network.addLayer(new BasicLayer(new ActivationSigmoid(),false,1));
         network.finalizeStructure();
         network.reset();
