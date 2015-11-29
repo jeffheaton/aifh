@@ -65,7 +65,19 @@ task(runHopfieldStorkeyExample, group: 'examples', description: 'Chapter 3.  Hop
 
 task(runIrisAnnealExample, group: 'examples', description: 'Chapter 4.  Iris ANN annealed.',
         dependsOn: 'classes', type: JavaExec) {
-    main = 'com.heatonresearch.aifh.examples.ann.LearnIrisAnneal'
+    main = 'com.heatonresearch.aifh.examples.rbf.LearnIrisAnneal'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runXORBackpropExample, group: 'examples', description: 'Chapter 6.  XOR using Backpropagation.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ann.LearnXORBackprop'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runIrisBackpropExample, group: 'examples', description: 'Chapter 6.  XOR using Backpropagation.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ann.LearnXORBackprop'
     classpath = sourceSets.main.runtimeClasspath
 }
 

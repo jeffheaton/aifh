@@ -7,12 +7,13 @@ import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
 import com.heatonresearch.aifh.ann.activation.ActivationTANH;
 import com.heatonresearch.aifh.ann.randomize.RangeRandomizeNetwork;
 import com.heatonresearch.aifh.ann.randomize.XaiverRandomizeNetwork;
+import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BasicNetwork {
+public class BasicNetwork implements RegressionAlgorithm {
     /**
      * The default bias activation.
      */
@@ -197,11 +198,6 @@ public class BasicNetwork {
         System.arraycopy(this.layerOutput, 0, output, 0, this.outputCount);
     }
 
-    public double[] compute(double[] input) {
-        double[] output = new double[getOutputCount()];
-        compute(input,output);
-        return output;
-    }
 
     /**
      * Calculate a layer.
@@ -768,5 +764,26 @@ public class BasicNetwork {
 
     public List<BasicLayer> getLayers() {
         return this.layers;
+    }
+
+    /**
+     * Compute the output for the specified input.
+     *
+     * @param input The input.
+     * @return The regression output.
+     */
+    @Override
+    public double[] computeRegression(double[] input) {
+        double[] output = new double[getOutputCount()];
+        compute(input,output);
+        return output;
+    }
+
+    /**
+     * @return The long term memory for the algorithm.  This is usually weights or other coefficients.
+     */
+    @Override
+    public double[] getLongTermMemory() {
+        return this.weights;
     }
 }

@@ -6,8 +6,10 @@ import com.heatonresearch.aifh.ann.activation.ActivationLinear;
 import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
+import com.heatonresearch.aifh.general.data.BasicData;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Jeff on 11/27/2015.
@@ -30,7 +32,6 @@ public class LearnXORBackprop {
      */
     public static void main(final String args[]) {
 
-        // create a neural network, without using a factory
         BasicNetwork network = new BasicNetwork();
         network.addLayer(new BasicLayer(null,true,2));
         network.addLayer(new BasicLayer(new ActivationSigmoid(),true,5));
@@ -38,21 +39,23 @@ public class LearnXORBackprop {
         network.finalizeStructure();
         network.reset();
 
+        List<BasicData> trainingData = BasicData.combineXY(XOR_INPUT, XOR_IDEAL);
+
         // train the neural network
-        final BackPropagation train = new BackPropagation(network, XOR_INPUT, XOR_IDEAL, 0.7, 0.9);
+        final BackPropagation train = new BackPropagation(network, trainingData, 0.7, 0.9);
 
         int epoch = 1;
 
         do {
             train.iteration();
-            System.out.println("Epoch #" + epoch + " Error:" + train.getError());
+            System.out.println("Epoch #" + epoch + " Error:" + train.getLastError());
             epoch++;
-        } while(train.getError() > 0.01);
+        } while(train.getLastError() > 0.01);
 
         // test the neural network
         System.out.println("Neural Network Results:");
         for(int i=0;i < XOR_INPUT.length; i++ ) {
-            double[] output = network.compute(XOR_INPUT[i]);
+            double[] output = network.computeRegression(XOR_INPUT[i]);
             System.out.println(Arrays.toString(XOR_INPUT[i])
                     + ", actual=" + Arrays.toString(output)
                     + ",ideal=" + Arrays.toString(XOR_IDEAL[i]));

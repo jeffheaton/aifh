@@ -28,6 +28,8 @@
  */
 package com.heatonresearch.aifh.general.data;
 
+import com.heatonresearch.aifh.AIFHError;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -180,4 +182,23 @@ public class BasicData {
         return result;
     }
 
+
+    /**
+     * Construct supervised training data from an input (X) and ideal (Y).
+     * @param theInput The input data (x).
+     * @param theIdeal The ideal, or expected (y), data.
+     * @return The training set.
+     */
+    public static List<BasicData> combineXY(double[][] theInput, double[][] theIdeal) {
+        if( theInput.length != theIdeal.length ) {
+            throw new AIFHError("The element count of the input and ideal element must match: "
+                    + theInput.length + " != " + theIdeal.length);
+        }
+
+        List<BasicData> result = new ArrayList<BasicData>();
+        for(int i=0;i<theInput.length;i++) {
+            result.add(new BasicData(theInput[i],theIdeal[i],null));
+        }
+        return result;
+    }
 }

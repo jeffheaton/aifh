@@ -40,6 +40,9 @@ public class SimpleLearn {
                 done = true;
             } else if (!shouldMinimize && train.getLastError() > targetScore) {
                 done = true;
+            } else if (Double.isNaN(train.getLastError())) {
+                System.out.println("Training failed.");
+                done = true;
             }
 
             System.out.println("Iteration #" + iterationNumber + ", Score=" + train.getLastError() + ", " + train.getStatus());

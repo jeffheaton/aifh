@@ -1,4 +1,4 @@
-package com.heatonresearch.aifh.examples.ann;
+package com.heatonresearch.aifh.examples.rbf;
 
 import com.heatonresearch.aifh.examples.learning.SimpleLearn;
 import com.heatonresearch.aifh.general.data.BasicData;
@@ -47,7 +47,6 @@ public class LearnIrisAnneal extends SimpleLearn {
             final TrainAnneal train = new TrainAnneal(network, score);
             performIterations(train, 100000, 0.01, true);
             queryOneOfN(network, trainingData, species);
-            System.out.println(Arrays.toString(network.getLongTermMemory()));
 
 
         } catch (Throwable t) {
