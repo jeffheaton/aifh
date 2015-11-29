@@ -1,7 +1,9 @@
 package com.heatonresearch.aifh.examples.learning;
 
+import com.heatonresearch.aifh.error.ErrorCalculation;
 import com.heatonresearch.aifh.general.VectorUtil;
 import com.heatonresearch.aifh.general.data.BasicData;
+import com.heatonresearch.aifh.general.data.DataUtil;
 import com.heatonresearch.aifh.learning.LearningMethod;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 import com.heatonresearch.aifh.normalize.Equilateral;
@@ -51,6 +53,49 @@ public class SimpleLearn {
         train.finishTraining();
         System.out.println("Final score: " + train.getLastError());
     }
+
+    public void performIterationsEarlyStop(final LearningMethod train,
+                                           final RegressionAlgorithm model,
+                                           final List<BasicData> validationData,
+                                           final int tolerate,
+                                           final ErrorCalculation errorCalc) {
+        int iterationNumber = 0;
+        boolean done = false;
+        double bestError = Double.POSITIVE_INFINITY;
+        int badIterations = 0;
+
+        do {
+            iterationNumber++;
+
+            train.iteration();
+            double validationError = DataUtil.calculateRegressionError(validationData, model, errorCalc);
+
+            if(validationError<bestError) {
+                badIterations = 0;
+                bestError = validationError;
+            } else {
+                badIterations++;
+            }
+
+            if (train.done()) {
+                done = true;
+            } else if( validationError>bestError && badIterations>tolerate ) {
+                done = true;
+            } else if (Double.isNaN(train.getLastError())) {
+                System.out.println("Training failed.");
+                done = true;
+            }
+
+            System.out.println("Iteration #" + iterationNumber
+                    + ", Iteration Score=" + train.getLastError()
+                    + ", Validation Score=" + validationError
+                    + ", " + train.getStatus());
+        } while (!done);
+
+        train.finishTraining();
+        System.out.println("Final score: " + train.getLastError());
+    }
+
 
     /**
      * Query a regression algorithm and see how close it matches the training data.

@@ -173,7 +173,7 @@ public class GradientCalc {
             final int loopEnd = toLayerIndex+toLayerSize;
 
                 for (int xi = toLayerIndex; xi < loopEnd; xi++, wi += fromLayerSize) {
-                    gradients[wi] += output * layerDelta[xi];
+                    this.gradients[wi] += -(output * layerDelta[xi]);
                     sum += weights[wi] * layerDelta[xi];
                 }
                 layerDelta[yi] = sum

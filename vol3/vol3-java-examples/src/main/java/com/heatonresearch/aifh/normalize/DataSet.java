@@ -232,6 +232,58 @@ public class DataSet {
     }
 
     /**
+     * Get the mean numeric value for a column.
+     *
+     * @param column The column.
+     * @return The mean numeric value.
+     */
+    public double getMean(final int column) {
+        double sum = 0;
+        int count = 0;
+
+        for (final Object[] obj : this.data) {
+            if(!DataSet.isMissing(obj.toString())) {
+                sum += convertNumeric(obj, column);
+                count++;
+            }
+        }
+
+        return sum/count;
+    }
+
+    /**
+     * Get the standard deviation value for a column.
+     *
+     * @param column The column.
+     * @return The standard deviation numeric value.
+     */
+    public double getStandardDeviation(final int column) {
+        double mean = getMean(column);
+        double sum = 0;
+        int count = 0;
+
+        for (final Object[] obj : this.data) {
+            if(!DataSet.isMissing(obj.toString())) {
+                double delta = mean - convertNumeric(obj, column);
+                sum += delta*delta;
+                count++;
+            }
+        }
+
+        return Math.sqrt(sum/count);
+    }
+
+    /**
+     * Determine if the specified value is missing (empty string, NULL, NA, or ?).
+     * @param str The value to check.
+     * @return True if missing.
+     */
+    public static boolean isMissing(String str) {
+        return( str.equals("?") || str.trim().equals("") || str.trim().toUpperCase().equals("NA")
+                || str.trim().toUpperCase().equals("NULL"));
+    }
+
+    /**
      * Get the minimum numeric value for a column.
      *
      * @param column The column.
@@ -279,6 +331,20 @@ public class DataSet {
         final double dataLow = getMin(column);
         final double dataHigh = getMax(column);
         normalizeRange(column, dataLow, dataHigh, normalizedLow, normalizedHigh);
+    }
+
+    public void normalizeZScore(final int column) {
+        final double standardDeviation =  getStandardDeviation(column);
+        final double mean = getMean(column);
+
+        for (final Object[] obj : this.data) {
+            if(isMissing(obj.toString())) {
+                obj[column] = 0; // Place at mean
+            } else {
+                double x = convertNumeric(obj, column);
+                obj[column] = (x - mean)/standardDeviation;
+            }
+        }
     }
 
     /**
