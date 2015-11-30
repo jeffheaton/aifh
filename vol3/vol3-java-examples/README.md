@@ -54,6 +54,11 @@ by chapter.
 ```
 * Chapter 5: Training & Evaluation
 * Chapter 6: Backpropagation Training
+```
+	runXORBackpropExample - Chapter 6.  XOR using Backpropagation.
+	runIrisBackpropExample - Chapter 6.  Iris classification using Backpropagation.
+	runAutoMPGBackpropExample - Chapter 6.  MPG automobile regression using Backpropagation.
+```
 * Chapter 7: Other Propagation Training
 * Chapter 8: NEAT, CPPN and HyperNEAT
 ```

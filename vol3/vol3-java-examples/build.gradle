@@ -75,9 +75,15 @@ task(runXORBackpropExample, group: 'examples', description: 'Chapter 6.  XOR usi
     classpath = sourceSets.main.runtimeClasspath
 }
 
-task(runIrisBackpropExample, group: 'examples', description: 'Chapter 6.  XOR using Backpropagation.',
+task(runIrisBackpropExample, group: 'examples', description: 'Chapter 6.  Iris classification using Backpropagation.',
         dependsOn: 'classes', type: JavaExec) {
-    main = 'com.heatonresearch.aifh.examples.ann.LearnXORBackprop'
+    main = 'com.heatonresearch.aifh.examples.ann.LearnIrisBackprop'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runAutoMPGBackpropExample, group: 'examples', description: 'Chapter 6.  MPG automobile regression using Backpropagation.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ann.LearnAutoMPGBackprop'
     classpath = sourceSets.main.runtimeClasspath
 }
 
