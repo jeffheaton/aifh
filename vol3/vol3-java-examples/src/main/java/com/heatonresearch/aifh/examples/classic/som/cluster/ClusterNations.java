@@ -1,6 +1,5 @@
 package com.heatonresearch.aifh.examples.classic.som.cluster;
 
-import com.heatonresearch.aifh.examples.classic.som.colors.MapPanel;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.general.fns.RBFEnum;
 import com.heatonresearch.aifh.normalize.DataSet;
@@ -110,7 +109,7 @@ public class ClusterNations extends JFrame implements Runnable {
 
 
         for(int i=0;i<buckets;i++) {
-            List<String> nations = new ArrayList<String>();
+            List<String> nations = new ArrayList<>();
             for(BasicData nation: trainingData) {
                 if( network.classify(nation.getInput())==i ) {
                     nations.add(nation.getLabel());

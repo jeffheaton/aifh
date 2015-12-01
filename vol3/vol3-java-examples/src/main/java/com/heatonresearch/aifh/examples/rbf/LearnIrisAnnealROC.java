@@ -20,8 +20,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class LearnIrisAnnealROC extends JFrame implements ActionListener {
 
@@ -131,11 +133,11 @@ public class LearnIrisAnnealROC extends JFrame implements ActionListener {
 
             final java.util.List<BasicData> trainingData = ds.extractSupervised(0, 4, 4, 1);
 
-            for(int i=0;i<trainingData.size();i++) {
-                if( trainingData.get(i).getIdeal()[0] == irisVersicolor ) {
-                    trainingData.get(i).getIdeal()[0] = 1; // True, is versicolor
+            for (BasicData aTrainingData : trainingData) {
+                if (aTrainingData.getIdeal()[0] == irisVersicolor) {
+                    aTrainingData.getIdeal()[0] = 1; // True, is versicolor
                 } else {
-                    trainingData.get(i).getIdeal()[0] = 0; // False, is not versicolor
+                    aTrainingData.getIdeal()[0] = 0; // False, is not versicolor
                 }
 
             }
@@ -187,7 +189,7 @@ public class LearnIrisAnnealROC extends JFrame implements ActionListener {
         }
         System.out.println(this.trainer.getLastError());
 
-        Set<RocPair> list = new TreeSet<RocPair>();
+        Set<RocPair> list = new TreeSet<>();
         list.add(new RocPair(0,0));
         for(int i=0;i<=10;i++) {
             double[] tpfp = calculateTruePositiveFalsePositive(i/10.0);
@@ -217,7 +219,8 @@ public class LearnIrisAnnealROC extends JFrame implements ActionListener {
         if( e.getSource()==this.buttonAnneal ) {
             updateChart();
         } else if(e.getSource()==this.buttonReset) {
-
+            this.network.reset(new MersenneTwisterGenerateRandom());
+            updateChart();
         }
     }
 }

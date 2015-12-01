@@ -1,11 +1,5 @@
 package com.heatonresearch.aifh.examples.neat.hyperneat;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.Random;
-
-import javax.swing.JPanel;
-
 import org.encog.mathutil.IntPair;
 import org.encog.neural.hyperneat.HyperNEATCODEC;
 import org.encog.neural.hyperneat.substrate.Substrate;
@@ -13,6 +7,10 @@ import org.encog.neural.hyperneat.substrate.SubstrateFactory;
 import org.encog.neural.neat.NEATNetwork;
 import org.encog.neural.neat.NEATPopulation;
 import org.encog.neural.neat.training.NEATGenome;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.Random;
 
 /**
  * Created by jeff on 11/21/15.

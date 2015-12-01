@@ -1,7 +1,5 @@
 package com.heatonresearch.aifh.energetic;
 
-import com.heatonresearch.aifh.AIFHError;
-
 /**
  * Train the Hopfield network using a Storkey algorithm.
  * For more info: https://en.wikipedia.org/wiki/Hopfield_network

@@ -26,9 +26,8 @@ package com.heatonresearch.aifh.examples.classic.som.cluster;
 import Jama.Matrix;
 import com.heatonresearch.aifh.som.SelfOrganizingMap;
 
+import javax.swing.*;
 import java.awt.*;
-
-import javax.swing.JPanel;
 
 /**
  *

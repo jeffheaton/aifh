@@ -21,11 +21,11 @@ public class DataUtil {
      * @return A list containing the two split lists.
      */
     public static <T> List<List<T>> split(final List<T> list, final double ratio, final GenerateRandom rnd) {
-        List<List<T>> result = new ArrayList<List<T>>();
+        List<List<T>> result = new ArrayList<>();
         int aCount = (int)(list.size() * ratio);
 
-        List<T> a = new ArrayList<T>();
-        List<T> b = new ArrayList<T>();
+        List<T> a = new ArrayList<>();
+        List<T> b = new ArrayList<>();
         result.add(a);
         result.add(b);
 

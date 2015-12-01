@@ -41,7 +41,7 @@ public interface ErrorCalculation {
     /**
      * @return A new instance of this object.
      */
-    public ErrorCalculation create();
+    ErrorCalculation create();
 
     /**
      * Called to update for each number that should be checked.

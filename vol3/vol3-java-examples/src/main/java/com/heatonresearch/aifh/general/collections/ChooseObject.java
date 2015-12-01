@@ -44,7 +44,7 @@ public class ChooseObject<T> implements Serializable {
     /**
      * The objects that we are choosing from.
      */
-    private final List<ObjectHolder<T>> list = new ArrayList<ObjectHolder<T>>();
+    private final List<ObjectHolder<T>> list = new ArrayList<>();
 
     /**
      * The random choose.
@@ -70,7 +70,7 @@ public class ChooseObject<T> implements Serializable {
      * @param opp         The object to add.
      */
     public void add(double probability, T opp) {
-        list.add(new ObjectHolder<T>(opp, probability));
+        list.add(new ObjectHolder<>(opp, probability));
     }
 
     /**

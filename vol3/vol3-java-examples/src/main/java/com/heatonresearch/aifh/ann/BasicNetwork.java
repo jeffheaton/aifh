@@ -2,10 +2,6 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
-import com.heatonresearch.aifh.ann.activation.ActivationLinear;
-import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
-import com.heatonresearch.aifh.ann.activation.ActivationTANH;
-import com.heatonresearch.aifh.ann.randomize.RangeRandomizeNetwork;
 import com.heatonresearch.aifh.ann.randomize.XaiverRandomizeNetwork;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 
@@ -129,7 +125,7 @@ public class BasicNetwork implements RegressionAlgorithm {
      */
     private boolean hasContext;
 
-    private final List<BasicLayer> layers = new ArrayList<BasicLayer>();
+    private final List<Layer> layers = new ArrayList<>();
 
     /**
      * Default constructor.
@@ -386,7 +382,7 @@ public class BasicNetwork implements RegressionAlgorithm {
      *         function.
      */
     public Class<?> hasSameActivationFunction() {
-        final List<Class<?>> map = new ArrayList<Class<?>>();
+        final List<Class<?>> map = new ArrayList<>();
 
         for (final ActivationFunction activation : this.activationFunctions) {
             if (!map.contains(activation.getClass())) {
@@ -674,8 +670,8 @@ public class BasicNetwork implements RegressionAlgorithm {
 
         for (int i = layers.size() - 1; i >= 0; i--) {
 
-            final BasicLayer layer = layers.get(i);
-            BasicLayer nextLayer = null;
+            final Layer layer = layers.get(i);
+            Layer nextLayer = null;
 
             if (i > 0) {
                 nextLayer = layers.get(i - 1);
@@ -762,7 +758,7 @@ public class BasicNetwork implements RegressionAlgorithm {
         random.randomize(this);
     }
 
-    public List<BasicLayer> getLayers() {
+    public List<Layer> getLayers() {
         return this.layers;
     }
 

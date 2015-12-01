@@ -46,7 +46,7 @@ public class DataSet {
     /**
      * The data loaded from a CSV, or other source.
      */
-    private final List<Object[]> data = new ArrayList<Object[]>();
+    private final List<Object[]> data = new ArrayList<>();
     /**
      * The column headers.
      */
@@ -242,7 +242,7 @@ public class DataSet {
         int count = 0;
 
         for (final Object[] obj : this.data) {
-            if(!DataSet.isMissing(obj.toString())) {
+            if(!DataSet.isMissing(obj[column].toString())) {
                 sum += convertNumeric(obj, column);
                 count++;
             }
@@ -250,6 +250,8 @@ public class DataSet {
 
         return sum/count;
     }
+
+
 
     /**
      * Get the standard deviation value for a column.
@@ -263,7 +265,7 @@ public class DataSet {
         int count = 0;
 
         for (final Object[] obj : this.data) {
-            if(!DataSet.isMissing(obj.toString())) {
+            if(!DataSet.isMissing(obj[column].toString())) {
                 double delta = mean - convertNumeric(obj, column);
                 sum += delta*delta;
                 count++;
@@ -338,7 +340,7 @@ public class DataSet {
         final double mean = getMean(column);
 
         for (final Object[] obj : this.data) {
-            if(isMissing(obj.toString())) {
+            if(isMissing(obj[column].toString())) {
                 obj[column] = 0; // Place at mean
             } else {
                 double x = convertNumeric(obj, column);
@@ -399,12 +401,12 @@ public class DataSet {
      */
     public Map<String, Integer> enumerateClasses(final int column) {
         // determine classes
-        final Set<String> classes = new HashSet<String>();
+        final Set<String> classes = new HashSet<>();
         for (final Object[] obj : this.data) {
             classes.add(obj[column].toString());
         }
         // assign numeric values to each class
-        final Map<String, Integer> result = new HashMap<String, Integer>();
+        final Map<String, Integer> result = new HashMap<>();
         int index = 0;
         for (final String className : classes) {
             result.put(className, index++);
@@ -649,7 +651,7 @@ public class DataSet {
      * @return The training set.
      */
     public List<BasicData> extractUnsupervisedLabeled(final int labelIndex) {
-        final List<BasicData> result = new ArrayList<BasicData>();
+        final List<BasicData> result = new ArrayList<>();
 
         final int dimensions = getHeaderCount() - 1;
 
@@ -680,7 +682,7 @@ public class DataSet {
      * @return The training set.
      */
     public List<BasicData> extractSupervised(final int inputBegin, final int inputCount, final int idealBegin, final int idealCount) {
-        final List<BasicData> result = new ArrayList<BasicData>();
+        final List<BasicData> result = new ArrayList<>();
 
         for (int rowIndex = 0; rowIndex < size(); rowIndex++) {
             final Object[] raw = this.data.get(rowIndex);

@@ -1,9 +1,8 @@
 package com.heatonresearch.aifh.ann;
 
-import com.heatonresearch.aifh.AIFH;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 
-public class BasicLayer {
+public class BasicLayer implements Layer {
     /**
      * The activation function.
      */
@@ -115,7 +114,7 @@ public class BasicLayer {
         result.append(this.getClass().getSimpleName());
         result.append(": count=");
         result.append(this.count);
-        result.append(",bias=" + hasBias);
+        result.append(",bias=").append(hasBias);
 
         if (this.contextFedBy != null) {
             result.append(",contextFed=");

@@ -28,10 +28,6 @@
  */
 package com.heatonresearch.aifh.energetic;
 
-import Jama.Matrix;
-import com.heatonresearch.aifh.AIFHError;
-import com.heatonresearch.aifh.general.VectorAlgebra;
-
 import java.util.Arrays;
 
 /**

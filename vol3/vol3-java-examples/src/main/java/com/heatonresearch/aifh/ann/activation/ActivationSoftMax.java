@@ -2,8 +2,6 @@ package com.heatonresearch.aifh.ann.activation;
 
 import org.encog.Encog;
 import org.encog.mathutil.BoundMath;
-import org.encog.ml.factory.MLActivationFactory;
-import org.encog.util.obj.ActivationUtil;
 
 /**
  * The softmax activation function.

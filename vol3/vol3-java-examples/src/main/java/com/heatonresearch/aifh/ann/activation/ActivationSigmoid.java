@@ -1,8 +1,6 @@
 package com.heatonresearch.aifh.ann.activation;
 
 import org.encog.mathutil.BoundMath;
-import org.encog.ml.factory.MLActivationFactory;
-import org.encog.util.obj.ActivationUtil;
 
 /**
  * The sigmoid activation function takes on a sigmoidal shape. Only positive

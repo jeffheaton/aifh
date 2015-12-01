@@ -6,8 +6,6 @@ import com.heatonresearch.aifh.error.ErrorCalculation;
 import com.heatonresearch.aifh.error.ErrorCalculationMSE;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.learning.LearningMethod;
-import com.heatonresearch.aifh.randomize.GenerateRandom;
-import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.util.List;
 
@@ -73,8 +71,7 @@ public class ResilientPropagation implements GradientCalcOwner, LearningMethod {
         this.errorCalc.clear();
 
         // Calculate gradients for entire training set, RPROP does not do online.
-        for(int i=0;i<this.training.size();i++) {
-            BasicData element = this.training.get(i);
+        for (BasicData element : this.training) {
             this.gradients.process(errorCalc, element.getInput(), element.getIdeal());
         }
         this.currentError = this.errorCalc.calculate();

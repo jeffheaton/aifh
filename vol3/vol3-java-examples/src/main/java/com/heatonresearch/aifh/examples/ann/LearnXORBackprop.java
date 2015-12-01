@@ -2,8 +2,6 @@ package com.heatonresearch.aifh.examples.ann;
 
 import com.heatonresearch.aifh.ann.BasicLayer;
 import com.heatonresearch.aifh.ann.BasicNetwork;
-import com.heatonresearch.aifh.ann.activation.ActivationLinear;
-import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
 import com.heatonresearch.aifh.general.data.BasicData;

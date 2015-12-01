@@ -51,7 +51,7 @@ public class LogicExample {
      */
     public static void processAnd() {
         System.out.println("Boolean AND");
-        List<InputNeuron> inputs = new ArrayList<InputNeuron>();
+        List<InputNeuron> inputs = new ArrayList<>();
         inputs.add(new InputNeuron());
         inputs.add(new InputNeuron());
 
@@ -67,7 +67,7 @@ public class LogicExample {
      */
     public static void processOr() {
         System.out.println("Boolean OR");
-        List<InputNeuron> inputs = new ArrayList<InputNeuron>();
+        List<InputNeuron> inputs = new ArrayList<>();
         inputs.add(new InputNeuron());
         inputs.add(new InputNeuron());
 
@@ -83,7 +83,7 @@ public class LogicExample {
      */
     public static void processNot() {
         System.out.println("Boolean NOT");
-        List<InputNeuron> inputs = new ArrayList<InputNeuron>();
+        List<InputNeuron> inputs = new ArrayList<>();
         inputs.add(new InputNeuron());
 
         RegularNeuron output = new RegularNeuron(0.5);
@@ -96,11 +96,11 @@ public class LogicExample {
      */
     public static void processXor() {
         System.out.println("Boolean XOR");
-        List<InputNeuron> inputs = new ArrayList<InputNeuron>();
+        List<InputNeuron> inputs = new ArrayList<>();
         inputs.add(new InputNeuron());
         inputs.add(new InputNeuron());
 
-        List<RegularNeuron> hidden1 = new ArrayList<RegularNeuron>();
+        List<RegularNeuron> hidden1 = new ArrayList<>();
         hidden1.add(new RegularNeuron(-0.5));
         hidden1.add(new RegularNeuron(-1.5));
         hidden1.get(0).getParents().add(new Connection(1,inputs.get(0)));

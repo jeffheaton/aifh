@@ -2,8 +2,6 @@ package com.heatonresearch.aifh.ann.randomize;
 
 import com.heatonresearch.aifh.ann.BasicNetwork;
 
-import java.util.Arrays;
-
 /**
  * Created by jeff on 11/28/15.
  */

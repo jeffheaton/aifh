@@ -1,8 +1,5 @@
 package com.heatonresearch.aifh.ann.activation;
 
-import org.encog.ml.factory.MLActivationFactory;
-import org.encog.util.obj.ActivationUtil;
-
 /**
  * The Linear layer is really not an activation function at all. The input is
  * simply passed on, unmodified, to the output. This activation function is

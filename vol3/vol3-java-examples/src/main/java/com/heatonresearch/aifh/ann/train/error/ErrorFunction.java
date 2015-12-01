@@ -16,7 +16,7 @@ public interface ErrorFunction {
 	 * @param actual
 	 * @param error
 	 */
-	public void calculateError(ActivationFunction af, double[] b, double[] a,
+	void calculateError(ActivationFunction af, double[] b, double[] a,
 							   double[] ideal, double[] actual, double[] error, double derivShift,
 							   double significance);
 }

@@ -1,8 +1,5 @@
 package com.heatonresearch.aifh.ann.activation;
 
-import org.encog.ml.factory.MLActivationFactory;
-import org.encog.util.obj.ActivationUtil;
-
 /**
  * A ramp activation function. This function has a high and low threshold. If
  * the high threshold is exceeded a fixed value is returned. Likewise, if the

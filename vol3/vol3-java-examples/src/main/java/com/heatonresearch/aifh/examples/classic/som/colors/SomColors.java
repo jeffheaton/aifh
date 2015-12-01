@@ -30,7 +30,7 @@ import com.heatonresearch.aifh.som.SelfOrganizingMap;
 import com.heatonresearch.aifh.som.neighborhood.NeighborhoodRBF;
 import com.heatonresearch.aifh.som.train.BasicTrainSOM;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * A classic SOM example that shows how the SOM groups similar color shades.

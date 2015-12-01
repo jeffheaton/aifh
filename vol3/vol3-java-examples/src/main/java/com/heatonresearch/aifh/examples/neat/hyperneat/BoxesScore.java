@@ -1,10 +1,10 @@
 package com.heatonresearch.aifh.examples.neat.hyperneat;
 
-import java.util.Random;
-
 import org.encog.mathutil.IntPair;
 import org.encog.ml.CalculateScore;
 import org.encog.ml.MLMethod;
+
+import java.util.Random;
 
 /**
  * The objective function for the boxes experiment. This score is described as

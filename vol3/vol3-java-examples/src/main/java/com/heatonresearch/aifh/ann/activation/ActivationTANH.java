@@ -1,8 +1,5 @@
 package com.heatonresearch.aifh.ann.activation;
 
-import org.encog.ml.factory.MLActivationFactory;
-import org.encog.util.obj.ActivationUtil;
-
 /**
  * The hyperbolic tangent activation function takes the curved shape of the
  * hyperbolic tangent. This activation function produces both positive and

@@ -1,8 +1,8 @@
 package com.heatonresearch.aifh.examples.neat.hyperneat;
 
-import java.util.Random;
-
 import org.encog.mathutil.IntPair;
+
+import java.util.Random;
 
 /**
  * One case in the boxes score.  Position the boxes at random locations.

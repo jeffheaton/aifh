@@ -10,7 +10,7 @@ public class RegularNeuron implements Neuron {
     /**
      * The parents to this neuron.
      */
-    private final List<Connection> parents = new ArrayList<Connection>();
+    private final List<Connection> parents = new ArrayList<>();
 
     /**
      * The bias.

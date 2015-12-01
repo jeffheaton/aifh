@@ -5,11 +5,11 @@ public interface GradientCalcOwner {
 	/**
 	 * @return How much to apply l1 regularization penalty, 0 (default) for none.
 	 */
-	public double getL1();
+	double getL1();
 
 	/**
 	 * @return How much to apply l2 regularization penalty, 0 (default) for none.
 	 */
-	public double getL2();
+	double getL2();
 
 }
