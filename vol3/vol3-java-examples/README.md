@@ -53,6 +53,9 @@ by chapter.
     runIrisAnnealExample - Train an iris ANN with annealing.
 ```
 * Chapter 5: Training & Evaluation
+```
+	runIrisROCExample - Iris ANN annealed ROC chart.
+```
 * Chapter 6: Backpropagation Training
 ```
 	runXORBackpropExample - Chapter 6.  XOR using Backpropagation.
@@ -60,6 +63,9 @@ by chapter.
 	runAutoMPGBackpropExample - Chapter 6.  MPG automobile regression using Backpropagation.
 ```
 * Chapter 7: Other Propagation Training
+```
+	runXORRPROPExample - Chapter 7.  XOR using RPROP.
+```
 * Chapter 8: NEAT, CPPN and HyperNEAT
 ```
     runNEATXORExample - NEAT XOR network.

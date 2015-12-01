@@ -15,6 +15,7 @@ dependencies {
     compile 'gov.nist.math:jama:1.0.3'
     compile 'org.lwjgl.lwjgl:lwjgl:2.9.1'
     compile 'org.encog:encog-core:3.2.0'
+    compile 'jfree:jfreechart:1.0.12'
 }
 
 task wrapper(type: Wrapper) {
@@ -69,6 +70,12 @@ task(runIrisAnnealExample, group: 'examples', description: 'Chapter 4.  Iris ANN
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task(runIrisROCExample, group: 'examples', description: 'Chapter 5.  Iris ANN annealed ROC chart.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.rbf.LearnIrisAnnealROC'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 task(runXORBackpropExample, group: 'examples', description: 'Chapter 6.  XOR using Backpropagation.',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.ann.LearnXORBackprop'
@@ -84,6 +91,12 @@ task(runIrisBackpropExample, group: 'examples', description: 'Chapter 6.  Iris c
 task(runAutoMPGBackpropExample, group: 'examples', description: 'Chapter 6.  MPG automobile regression using Backpropagation.',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.ann.LearnAutoMPGBackprop'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runXORRPROPExample, group: 'examples', description: 'Chapter 7.  XOR using RPROP.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ann.LearnXORRPROP'
     classpath = sourceSets.main.runtimeClasspath
 }
 
@@ -104,3 +117,4 @@ task(runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn bel
     main = 'com.heatonresearch.aifh.examples.dbn.SimpleDBN'
     classpath = sourceSets.main.runtimeClasspath
 }
+
