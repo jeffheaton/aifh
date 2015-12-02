@@ -181,8 +181,8 @@ public class BasicNetwork implements RegressionAlgorithm {
         System.arraycopy(input, 0, this.layerOutput, sourceIndex,
                 this.inputCount);
 
-        for (int i = this.layerIndex.length - 1; i > 0; i--) {
-            computeLayer(i);
+        for (int i = 0; i<this.layerIndex.length - 1; i++) {
+            this.layers.get(i).computeLayer();
         }
 
         // update context values
@@ -195,43 +195,7 @@ public class BasicNetwork implements RegressionAlgorithm {
     }
 
 
-    /**
-     * Calculate a layer.
-     *
-     * @param currentLayer
-     *            The layer to calculate.
-     */
-    protected void computeLayer(final int currentLayer) {
 
-        final int inputIndex = this.layerIndex[currentLayer];
-        final int outputIndex = this.layerIndex[currentLayer - 1];
-        final int inputSize = this.layerCounts[currentLayer];
-        final int outputSize = this.layerFeedCounts[currentLayer - 1];
-
-        int index = this.weightIndex[currentLayer - 1];
-
-        final int limitX = outputIndex + outputSize;
-        final int limitY = inputIndex + inputSize;
-
-        // weight values
-        for (int x = outputIndex; x < limitX; x++) {
-            double sum = 0;
-            for (int y = inputIndex; y < limitY; y++) {
-                sum += this.weights[index++] * this.layerOutput[y];
-            }
-            this.layerSums[x] = sum;
-            this.layerOutput[x] = sum;
-        }
-
-        this.activationFunctions[currentLayer - 1].activationFunction(
-                this.layerOutput, outputIndex, outputSize);
-
-        // update context values
-        final int offset = this.contextTargetOffset[currentLayer];
-
-        System.arraycopy(this.layerOutput, outputIndex,
-                this.layerOutput, offset, this.contextTargetSize[currentLayer]);
-    }
 
     /**
      * @return The activation functions.
@@ -397,89 +361,7 @@ public class BasicNetwork implements RegressionAlgorithm {
         }
     }
 
-    /**
-     * Construct a flat network.
-     *
-     * @param layers
-     *            The layers of the network to create.
-     */
-    public void init(final BasicLayer[] layers) {
 
-        final int layerCount = layers.length;
-
-        this.inputCount = layers[0].getCount();
-        this.outputCount = layers[layerCount - 1].getCount();
-
-        this.layerCounts = new int[layerCount];
-        this.layerContextCount = new int[layerCount];
-        this.weightIndex = new int[layerCount];
-        this.layerIndex = new int[layerCount];
-
-        this.activationFunctions = new ActivationFunction[layerCount];
-        this.layerFeedCounts = new int[layerCount];
-        this.contextTargetOffset = new int[layerCount];
-        this.contextTargetSize = new int[layerCount];
-        this.biasActivation = new double[layerCount];
-
-        int index = 0;
-        int neuronCount = 0;
-        int weightCount = 0;
-
-        for (int i = layers.length - 1; i >= 0; i--) {
-
-            final BasicLayer layer = layers[i];
-            BasicLayer nextLayer = null;
-
-            if (i > 0) {
-                nextLayer = layers[i - 1];
-            }
-
-            this.biasActivation[index] = 1;
-            this.layerCounts[index] = layer.getTotalCount();
-            this.layerFeedCounts[index] = layer.getCount();
-            this.layerContextCount[index] = layer.getContextCount();
-            this.activationFunctions[index] = layer.getActivation();
-
-            neuronCount += layer.getTotalCount();
-
-            if (nextLayer != null) {
-                weightCount += layer.getCount() * nextLayer.getTotalCount();
-            }
-
-            if (index == 0) {
-                this.weightIndex[index] = 0;
-                this.layerIndex[index] = 0;
-            } else {
-                this.weightIndex[index] = this.weightIndex[index - 1]
-                        + (this.layerCounts[index] * this.layerFeedCounts[index - 1]);
-                this.layerIndex[index] = this.layerIndex[index - 1]
-                        + this.layerCounts[index - 1];
-            }
-
-            int neuronIndex = 0;
-            for (int j = layers.length - 1; j >= 0; j--) {
-                if (layers[j].getContextFedBy() == layer) {
-                    this.hasContext = true;
-                    this.contextTargetSize[index] = layers[j].getContextCount();
-                    this.contextTargetOffset[index] = neuronIndex
-                            + (layers[j].getTotalCount() - layers[j]
-                            .getContextCount());
-                }
-                neuronIndex += layers[j].getTotalCount();
-            }
-
-            index++;
-        }
-
-        this.beginTraining = 0;
-        this.endTraining = this.layerCounts.length - 1;
-
-        this.weights = new double[weightCount];
-        this.layerOutput = new double[neuronCount];
-        this.layerSums = new double[neuronCount];
-
-        clearContext();
-    }
 
     /**
      * @return the isLimited
@@ -710,6 +592,13 @@ public class BasicNetwork implements RegressionAlgorithm {
                 }
                 neuronIndex += layers.get(j).getTotalCount();
             }
+
+            // finalize the structure of the layer
+            Layer prev = null;
+            if(i<this.layers.size()-1) {
+                prev = this.layers.get(i+1);
+            }
+            layer.finalizeStructure(this,index,prev,this.layerIndex[index], this.weightIndex[index],this.layerFeedCounts[index]);
 
             index++;
         }

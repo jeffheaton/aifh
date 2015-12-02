@@ -12,4 +12,17 @@ public interface Layer {
     ActivationFunction getActivation();
 
     Layer getContextFedBy();
+
+    void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, Layer thePreviousLayer,
+                           int theNeuronIndex, int theWeightIndex, int theFeedCount);
+
+    void computeLayer();
+
+    Layer getPreviousLayer();
+
+    int getWeightIndex();
+
+    int getFeedCount();
+
+    int getNeuronIndex();
 }

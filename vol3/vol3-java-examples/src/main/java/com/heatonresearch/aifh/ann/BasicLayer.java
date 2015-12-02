@@ -20,6 +20,15 @@ public class BasicLayer implements Layer {
 
     private boolean hasBias;
 
+    private int layerIndex;
+
+    private BasicNetwork owner;
+
+    private Layer previousLayer;
+    private int weightIndex;
+    private int neuronIndex;
+    private int feedCount;
+
     /**
      * Do not use this constructor.  This was added to support serialization.
      */
@@ -31,6 +40,18 @@ public class BasicLayer implements Layer {
         this.activation = theActivation;
         this.hasBias = theHasBias;
         this.count = theCount;
+    }
+
+    @Override
+    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, Layer thePreviousLayer,
+                                  int theNeuronIndex, int theWeightIndex, int theFeedCount) {
+        this.owner = theOwner;
+        this.layerIndex = theLayerIndex;
+        this.previousLayer = thePreviousLayer;
+        this.neuronIndex = theNeuronIndex;
+        this.weightIndex = theWeightIndex;
+        this.feedCount = theFeedCount;
+
     }
 
 
@@ -127,5 +148,59 @@ public class BasicLayer implements Layer {
         result.append("]");
         return result.toString();
     }
+
+    public void computeLayer() {
+
+        final int inputIndex = this.neuronIndex;
+        final int outputIndex = getPreviousLayer().getNeuronIndex();
+        final int inputSize = getTotalCount();
+        final int outputSize = getPreviousLayer().getFeedCount();
+        final double[] weights = this.owner.getWeights();
+
+        int index = getPreviousLayer().getWeightIndex();
+
+        final int limitX = outputIndex + outputSize;
+        final int limitY = inputIndex + inputSize;
+
+        // weight values
+        for (int x = outputIndex; x < limitX; x++) {
+            double sum = 0;
+            for (int y = inputIndex; y < limitY; y++) {
+                sum += weights[index++] * this.owner.getLayerOutput()[y];
+            }
+            this.owner.getLayerSums()[x] = sum;
+            this.owner.getLayerOutput()[x] = sum;
+        }
+
+        getPreviousLayer().getActivation().activationFunction(
+                this.owner.getLayerOutput(), outputIndex, outputSize);
+
+        // update context values
+        final int offset = this.owner.getContextTargetOffset()[this.layerIndex];
+
+        System.arraycopy(this.owner.getLayerOutput(), outputIndex,
+                this.owner.getLayerOutput(), offset, this.owner.getContextTargetSize()[this.layerIndex]);
+    }
+
+    @Override
+    public Layer getPreviousLayer() {
+        return this.previousLayer;
+    }
+
+    @Override
+    public int getWeightIndex() {
+        return this.weightIndex;
+    }
+
+    @Override
+    public int getFeedCount() {
+        return this.feedCount;
+    }
+
+    @Override
+    public int getNeuronIndex() {
+        return this.neuronIndex;
+    }
+
 
 }
