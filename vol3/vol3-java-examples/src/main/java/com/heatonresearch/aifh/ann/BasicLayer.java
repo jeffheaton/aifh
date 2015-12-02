@@ -13,11 +13,6 @@ public class BasicLayer implements Layer {
      */
     private int count;
 
-    /**
-     * The layer that feeds this layer's context.
-     */
-    private BasicLayer contextFedBy;
-
     private boolean hasBias;
 
     private int layerIndex;
@@ -63,24 +58,6 @@ public class BasicLayer implements Layer {
     }
 
     /**
-     * @return The number of neurons our context is fed by.
-     */
-    public int getContextCount() {
-        if (this.contextFedBy == null) {
-            return 0;
-        } else {
-            return this.contextFedBy.getCount();
-        }
-    }
-
-    /**
-     * @return The layer that feeds this layer's context.
-     */
-    public BasicLayer getContextFedBy() {
-        return this.contextFedBy;
-    }
-
-    /**
      * @return the count
      */
     public int getCount() {
@@ -92,12 +69,7 @@ public class BasicLayer implements Layer {
      *         and regular.
      */
     public int getTotalCount() {
-        if (this.contextFedBy == null) {
-            return getCount() + (hasBias() ? 1 : 0);
-        } else {
-            return getCount() + (hasBias() ? 1 : 0)
-                    + this.contextFedBy.getCount();
-        }
+        return getCount() + (hasBias() ? 1 : 0);
     }
 
     /**
@@ -116,16 +88,6 @@ public class BasicLayer implements Layer {
     }
 
     /**
-     * Set the layer that this layer's context is fed by.
-     *
-     * @param from
-     *            The layer feeding.
-     */
-    public void setContextFedBy(final BasicLayer from) {
-        this.contextFedBy = from;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -137,14 +99,6 @@ public class BasicLayer implements Layer {
         result.append(this.count);
         result.append(",bias=").append(hasBias);
 
-        if (this.contextFedBy != null) {
-            result.append(",contextFed=");
-            if (this.contextFedBy == this) {
-                result.append("itself");
-            } else {
-                result.append(this.contextFedBy);
-            }
-        }
         result.append("]");
         return result.toString();
     }
@@ -175,11 +129,6 @@ public class BasicLayer implements Layer {
         getPreviousLayer().getActivation().activationFunction(
                 this.owner.getLayerOutput(), outputIndex, outputSize);
 
-        // update context values
-        final int offset = this.owner.getContextTargetOffset()[this.layerIndex];
-
-        System.arraycopy(this.owner.getLayerOutput(), outputIndex,
-                this.owner.getLayerOutput(), offset, this.owner.getContextTargetSize()[this.layerIndex]);
     }
 
     @Override

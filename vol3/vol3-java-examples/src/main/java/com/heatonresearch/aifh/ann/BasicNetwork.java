@@ -80,50 +80,10 @@ public class BasicNetwork implements RegressionAlgorithm {
     private ActivationFunction[] activationFunctions;
 
     /**
-     * The context target for each layer. This is how the backwards connections
-     * are formed for the recurrent neural network. Each layer either has a
-     * zero, which means no context target, or a layer number that indicates the
-     * target layer.
-     */
-    private int[] contextTargetOffset;
-
-    /**
-     * The size of each of the context targets. If a layer's contextTargetOffset
-     * is zero, its contextTargetSize should also be zero. The contextTargetSize
-     * should always match the feed count of the targeted context layer.
-     */
-    private int[] contextTargetSize;
-
-    /**
      * The bias activation for each layer. This is usually either 1, for a bias,
      * or zero for no bias.
      */
     private double[] biasActivation;
-
-    /**
-     * The layer that training should begin on.
-     */
-    private int beginTraining;
-
-    /**
-     * The layer that training should end on.
-     */
-    private int endTraining;
-
-    /**
-     * Does this network have some connections disabled.
-     */
-    private boolean isLimited;
-
-    /**
-     * The limit, under which, all a cconnection is not considered to exist.
-     */
-    private double connectionLimit;
-
-    /**
-     * True if the network has context.
-     */
-    private boolean hasContext;
 
     private final List<Layer> layers = new ArrayList<>();
 
@@ -133,13 +93,6 @@ public class BasicNetwork implements RegressionAlgorithm {
     public BasicNetwork() {
     }
 
-    /**
-     * Clear any connection limits.
-     */
-    public void clearConnectionLimit() {
-        this.connectionLimit = 0.0;
-        this.isLimited = false;
-    }
 
     /**
      * Clear any context neurons.
@@ -185,11 +138,6 @@ public class BasicNetwork implements RegressionAlgorithm {
             this.layers.get(i).computeLayer();
         }
 
-        // update context values
-        final int offset = this.contextTargetOffset[0];
-
-        System.arraycopy(this.layerOutput, 0, layerOutput,
-                offset, this.contextTargetSize[0]);
 
         System.arraycopy(this.layerOutput, 0, output, 0, this.outputCount);
     }
@@ -205,39 +153,10 @@ public class BasicNetwork implements RegressionAlgorithm {
     }
 
     /**
-     * @return the beginTraining
-     */
-    public int getBeginTraining() {
-        return this.beginTraining;
-    }
-
-    /**
      * @return The bias activation.
      */
     public double[] getBiasActivation() {
         return this.biasActivation;
-    }
-
-    /**
-     * @return the connectionLimit
-     */
-    public double getConnectionLimit() {
-        return this.connectionLimit;
-    }
-
-    /**
-     * @return The offset of the context target for each layer.
-     */
-    public int[] getContextTargetOffset() {
-        return this.contextTargetOffset;
-    }
-
-    /**
-     * @return The context target size for each layer. Zero if the layer does
-     *         not feed a context layer.
-     */
-    public int[] getContextTargetSize() {
-        return this.contextTargetSize;
     }
 
     /**
@@ -247,19 +166,6 @@ public class BasicNetwork implements RegressionAlgorithm {
         return this.weights.length;
     }
 
-    /**
-     * @return the endTraining
-     */
-    public int getEndTraining() {
-        return this.endTraining;
-    }
-
-    /**
-     * @return True if this network has context.
-     */
-    public boolean getHasContext() {
-        return this.hasContext;
-    }
 
     /**
      * @return The number of input neurons.
@@ -361,38 +267,6 @@ public class BasicNetwork implements RegressionAlgorithm {
         }
     }
 
-
-
-    /**
-     * @return the isLimited
-     */
-    public boolean isLimited() {
-        return this.isLimited;
-    }
-
-    /**
-     * Perform a simple randomization of the weights of the neural network
-     * between -1 and 1.
-     */
-    public void randomize() {
-        randomize(1, -1);
-    }
-
-    /**
-     * Perform a simple randomization of the weights of the neural network
-     * between the specified hi and lo.
-     *
-     * @param hi
-     *            The network high.
-     * @param lo
-     *            The network low.
-     */
-    public void randomize(final double hi, final double lo) {
-        for (int i = 0; i < this.weights.length; i++) {
-            this.weights[i] = (Math.random() * (hi - lo)) + lo;
-        }
-    }
-
     /**
      * Set the activation functions.
      * @param af The activation functions.
@@ -402,35 +276,11 @@ public class BasicNetwork implements RegressionAlgorithm {
     }
 
     /**
-     * @param beginTraining
-     *            the beginTraining to set
-     */
-    public void setBeginTraining(final int beginTraining) {
-        this.beginTraining = beginTraining;
-    }
-
-    /**
      * Set the bias activation.
      * @param biasActivation The bias activation.
      */
     public void setBiasActivation(final double[] biasActivation) {
         this.biasActivation = biasActivation;
-    }
-
-    /**
-     * @param endTraining
-     *            the endTraining to set
-     */
-    public void setEndTraining(final int endTraining) {
-        this.endTraining = endTraining;
-    }
-
-    /**
-     * Set the hasContext property.
-     * @param hasContext True if the network has context.
-     */
-    public void setHasContext(final boolean hasContext) {
-        this.hasContext = hasContext;
     }
 
     /**
@@ -542,8 +392,6 @@ public class BasicNetwork implements RegressionAlgorithm {
 
         this.activationFunctions = new ActivationFunction[layerCount];
         this.layerFeedCounts = new int[layerCount];
-        this.contextTargetOffset = new int[layerCount];
-        this.contextTargetSize = new int[layerCount];
         this.biasActivation = new double[layerCount];
 
         int index = 0;
@@ -562,7 +410,6 @@ public class BasicNetwork implements RegressionAlgorithm {
             this.biasActivation[index] = 1;
             this.layerCounts[index] = layer.getTotalCount();
             this.layerFeedCounts[index] = layer.getCount();
-            this.layerContextCount[index] = layer.getContextCount();
             this.activationFunctions[index] = layer.getActivation();
 
             neuronCount += layer.getTotalCount();
@@ -583,13 +430,6 @@ public class BasicNetwork implements RegressionAlgorithm {
 
             int neuronIndex = 0;
             for (int j = layers.size() - 1; j >= 0; j--) {
-                if (layers.get(j).getContextFedBy() == layer) {
-                    this.hasContext = true;
-                    this.contextTargetSize[index] = layers.get(j).getContextCount();
-                    this.contextTargetOffset[index] = neuronIndex
-                            + (layers.get(j).getTotalCount() - layers.get(j)
-                            .getContextCount());
-                }
                 neuronIndex += layers.get(j).getTotalCount();
             }
 
@@ -602,9 +442,6 @@ public class BasicNetwork implements RegressionAlgorithm {
 
             index++;
         }
-
-        this.beginTraining = 0;
-        this.endTraining = this.layerCounts.length - 1;
 
         this.weights = new double[weightCount];
         this.layerOutput = new double[neuronCount];

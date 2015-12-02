@@ -69,9 +69,6 @@ public class GradientCalc {
      */
     private final ErrorFunction errorFunction;
 
-    private double[][] x;
-    private double[][] y;
-
     public GradientCalc(final BasicNetwork theNetwork,
                           ErrorFunction ef, GradientCalcOwner theOwner) {
         this.network = theNetwork;
@@ -135,8 +132,7 @@ public class GradientCalc {
         }
 
         // Propagate backwards (chain rule from calculus).
-        for (int i = this.network.getBeginTraining(); i < this.network
-                .getEndTraining(); i++) {
+        for (int i = 0; i < this.layerCounts.length-1; i++) {
             processLevel(i);
         }
     }
