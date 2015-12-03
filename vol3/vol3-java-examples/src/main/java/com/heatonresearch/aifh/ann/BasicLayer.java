@@ -20,7 +20,6 @@ public class BasicLayer implements Layer {
 
     private BasicNetwork owner;
 
-    private Layer previousLayer;
     private int weightIndex;
     private int neuronIndex;
 
@@ -38,11 +37,10 @@ public class BasicLayer implements Layer {
     }
 
     @Override
-    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, Layer thePreviousLayer,
+    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex,
                                   int theNeuronIndex, int theWeightIndex) {
         this.owner = theOwner;
         this.layerIndex = theLayerIndex;
-        this.previousLayer = thePreviousLayer;
         this.neuronIndex = theNeuronIndex;
         this.weightIndex = theWeightIndex;
 
@@ -128,11 +126,6 @@ public class BasicLayer implements Layer {
         next.getActivation().activationFunction(
                 this.owner.getLayerOutput(), outputIndex, outputSize);
 
-    }
-
-    @Override
-    public Layer getPreviousLayer() {
-        return this.previousLayer;
     }
 
     @Override

@@ -5,19 +5,12 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 
 public interface Layer {
     int getCount();
-
     int getTotalCount();
-
-
     ActivationFunction getActivation();
-
-
-    void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, Layer thePreviousLayer,
+    void finalizeStructure(BasicNetwork theOwner, int theLayerIndex,
                            int theNeuronIndex, int theWeightIndex);
 
     void computeLayer();
-
-    Layer getPreviousLayer();
 
     int getWeightIndex();
 

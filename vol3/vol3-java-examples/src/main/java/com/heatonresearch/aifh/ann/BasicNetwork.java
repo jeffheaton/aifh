@@ -1,7 +1,6 @@
 package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.AIFHError;
-import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.randomize.XaiverRandomizeNetwork;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 
@@ -52,12 +51,6 @@ public class BasicNetwork implements RegressionAlgorithm {
      */
     private double[] weights;
 
-    /**
-     * The bias activation for each layer. This is usually either 1, for a bias,
-     * or zero for no bias.
-     */
-    private double[] biasActivation;
-
     private final List<Layer> layers = new ArrayList<>();
 
     /**
@@ -76,8 +69,8 @@ public class BasicNetwork implements RegressionAlgorithm {
      *            Output will be placed here.
      */
     public void compute(final double[] input, final double[] output) {
-        final int sourceIndex = this.layerOutput.length
-                - this.layerCounts[this.layerCounts.length - 1];
+        final int sourceIndex = getNeuronCount()
+                - this.layers.get(0).getTotalCount();
 
         System.arraycopy(input, 0, this.layerOutput, sourceIndex,
                 this.inputCount);
@@ -90,11 +83,12 @@ public class BasicNetwork implements RegressionAlgorithm {
         System.arraycopy(this.layerOutput, 0, output, 0, this.outputCount);
     }
 
-    /**
-     * @return The bias activation.
-     */
-    public double[] getBiasActivation() {
-        return this.biasActivation;
+    public int getNeuronCount() {
+        int result = 0;
+        for(Layer layer: this.layers) {
+            result+=layer.getTotalCount();
+        }
+        return result;
     }
 
     /**
@@ -134,17 +128,6 @@ public class BasicNetwork implements RegressionAlgorithm {
     }
 
     /**
-     * @return The neuron count.
-     */
-    public int getNeuronCount() {
-        int result = 0;
-        for (final int element : this.layerCounts) {
-            result += element;
-        }
-        return result;
-    }
-
-    /**
      * @return The number of output neurons.
      */
     public int getOutputCount() {
@@ -165,13 +148,6 @@ public class BasicNetwork implements RegressionAlgorithm {
         return this.weights;
     }
 
-    /**
-     * Set the bias activation.
-     * @param biasActivation The bias activation.
-     */
-    public void setBiasActivation(final double[] biasActivation) {
-        this.biasActivation = biasActivation;
-    }
 
     /**
      * Set the input count.
@@ -222,8 +198,7 @@ public class BasicNetwork implements RegressionAlgorithm {
 
         final int weightBaseIndex
                 = this.weightIndex[toLayerNumber];
-        final int count
-                = this.layerCounts[fromLayerNumber];
+        final int count = this.layers.get(fromLayer).getTotalCount();
         final int weightIndex = weightBaseIndex + fromNeuron
                 + (toNeuron * count);
 
@@ -236,7 +211,7 @@ public class BasicNetwork implements RegressionAlgorithm {
      * @param neuron The target neuron.
      */
     public void validateNeuron(final int targetLayer, final int neuron) {
-        if ((targetLayer < 0) || (targetLayer >= this.layerCounts.length)) {
+        if ((targetLayer < 0) || (targetLayer >= this.layers.size())) {
             throw new AIFHError("Invalid layer count: " + targetLayer);
         }
 
@@ -251,8 +226,7 @@ public class BasicNetwork implements RegressionAlgorithm {
      * @return The count.
      */
     public int getLayerTotalNeuronCount(final int l) {
-        final int layerNumber = this.layerCounts.length - l - 1;
-        return this.layerCounts[layerNumber];
+        return this.layers.get(l).getTotalCount();
     }
 
     public void addLayer(BasicLayer layer) {
@@ -270,7 +244,6 @@ public class BasicNetwork implements RegressionAlgorithm {
         this.layerIndex = new int[layerCount];
 
         int[] layerFeedCounts = new int[layerCount];
-        this.biasActivation = new double[layerCount];
 
         int index = 0;
         int neuronCount = 0;
@@ -285,7 +258,6 @@ public class BasicNetwork implements RegressionAlgorithm {
                 nextLayer = layers.get(i - 1);
             }
 
-            this.biasActivation[index] = 1;
             this.layerCounts[index] = layer.getTotalCount();
             layerFeedCounts[index] = layer.getCount();
 
@@ -311,11 +283,8 @@ public class BasicNetwork implements RegressionAlgorithm {
             }
 
             // finalize the structure of the layer
-            Layer prev = null;
-            if(i<this.layers.size()-1) {
-                prev = this.layers.get(i+1);
-            }
-            layer.finalizeStructure(this,index,prev,this.layerIndex[index], this.weightIndex[index]);
+
+            layer.finalizeStructure(this,index,this.layerIndex[index], this.weightIndex[index]);
 
             index++;
         }
@@ -337,7 +306,7 @@ public class BasicNetwork implements RegressionAlgorithm {
 
             // fill in the bias
             if (hasBias) {
-                this.layerOutput[index++] = this.biasActivation[i];
+                this.layerOutput[index++] = 1.0;
             }
         }
     }

@@ -24,12 +24,6 @@ public class GradientCalc {
     private final double[] layerDelta;
 
     /**
-     * The neuron counts, per layer.
-     */
-    private final int[] layerCounts;
-
-
-    /**
      * The layer indexes.
      */
     private final int[] layerIndex;
@@ -77,7 +71,6 @@ public class GradientCalc {
 
         this.weights = network.getWeights();
         this.layerIndex = network.getLayerIndex();
-        this.layerCounts = network.getLayerCounts();
         this.weightIndex = network.getWeightIndex();
         this.layerOutput = network.getLayerOutput();
         this.layerSums = network.getLayerSums();
@@ -130,7 +123,7 @@ public class GradientCalc {
         }
 
         // Propagate backwards (chain rule from calculus).
-        for (int i = this.layerCounts.length-1; i>0; i--) {
+        for (int i = this.network.getLayers().size()-1; i>0; i--) {
             Layer layer = this.network.getLayers().get(i);
             processLevel(layer);
         }
@@ -146,9 +139,9 @@ public class GradientCalc {
         int currentLevel = layer.getLayerIndex();
         Layer prev = this.network.getPreviousLayer(layer);
         final int fromLayerIndex = prev.getNeuronIndex();
-        final int toLayerIndex = layer.getNeuronIndex(); // this.layerIndex[currentLevel];
-        final int fromLayerSize = this.layerCounts[currentLevel + 1];
-        final int toLayerSize = layer.getCount(); // this.layerFeedCounts[currentLevel];
+        final int toLayerIndex = layer.getNeuronIndex();
+        final int fromLayerSize = prev.getTotalCount();
+        final int toLayerSize = layer.getCount();
 
         final int index = this.weightIndex[currentLevel];
         final ActivationFunction activation = layer.getActivation();
@@ -193,7 +186,7 @@ public class GradientCalc {
     }
 
     public void calculateRegularizationPenalty(double[] l) {
-        for (int i = 0; i < network.getLayerCounts().length - 1; i++) {
+        for (int i = 0; i < this.network.getLayers().size() - 1; i++) {
             layerRegularizationPenalty(i, l);
         }
     }
