@@ -2,6 +2,7 @@ package com.heatonresearch.aifh.ann.train;
 
 import com.heatonresearch.aifh.AIFH;
 import com.heatonresearch.aifh.ann.BasicNetwork;
+import com.heatonresearch.aifh.ann.Layer;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.error.ErrorFunction;
 import com.heatonresearch.aifh.error.ErrorCalculation;
@@ -116,8 +117,10 @@ public class GradientCalc {
         errorCalc.updateError(this.actual, ideal, 1.0);
 
         // Calculate error for the output layer.
+        int outputLayerIndex = this.network.getLayers().size()-1;
+        ActivationFunction outputActivation = this.network.getLayers().get(outputLayerIndex).getActivation();
         this.errorFunction.calculateError(
-                this.network.getActivationFunctions()[0], this.layerSums,this.layerOutput,
+                outputActivation, this.layerSums,this.layerOutput,
                 ideal, this.actual, this.layerDelta, 0, 1.0);
 
         // Apply regularization, if requested.
@@ -132,26 +135,27 @@ public class GradientCalc {
         }
 
         // Propagate backwards (chain rule from calculus).
-        for (int i = 0; i < this.layerCounts.length-1; i++) {
-            processLevel(i);
+        for (int i = this.layerCounts.length-1; i>0; i--) {
+            Layer layer = this.network.getLayers().get(i);
+            processLevel(layer);
         }
     }
 
     /**
      * Process one level.
      *
-     * @param currentLevel
+     * @param layer
      *            The level.
      */
-    private void processLevel(final int currentLevel) {
+    private void processLevel(final Layer layer) {
+        int currentLevel = layer.getLayerIndex();
         final int fromLayerIndex = this.layerIndex[currentLevel + 1];
         final int toLayerIndex = this.layerIndex[currentLevel];
         final int fromLayerSize = this.layerCounts[currentLevel + 1];
         final int toLayerSize = this.layerFeedCounts[currentLevel];
 
         final int index = this.weightIndex[currentLevel];
-        final ActivationFunction activation = this.network
-                .getActivationFunctions()[currentLevel];
+        final ActivationFunction activation = layer.getActivation();
 
         // handle weights
         // array references are made method local to avoid one indirection

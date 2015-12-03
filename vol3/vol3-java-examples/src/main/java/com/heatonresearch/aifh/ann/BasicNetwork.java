@@ -10,15 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BasicNetwork implements RegressionAlgorithm {
-    /**
-     * The default bias activation.
-     */
-    public static final double DEFAULT_BIAS_ACTIVATION = 1.0;
-
-    /**
-     * The value that indicates that there is no bias activation.
-     */
-    public static final double NO_BIAS_ACTIVATION = 0.0;
 
     /**
      * The number of input neurons in this network.
@@ -29,12 +20,6 @@ public class BasicNetwork implements RegressionAlgorithm {
      * The number of neurons in each of the layers.
      */
     private int[] layerCounts;
-
-    /**
-     * The number of context neurons in each layer. These context neurons will
-     * feed the next layer.
-     */
-    private int[] layerContextCount;
 
     /**
      * The number of neurons in each layer that are actually fed by neurons in
@@ -75,11 +60,6 @@ public class BasicNetwork implements RegressionAlgorithm {
     private double[] weights;
 
     /**
-     * The activation types.
-     */
-    private ActivationFunction[] activationFunctions;
-
-    /**
      * The bias activation for each layer. This is usually either 1, for a bias,
      * or zero for no bias.
      */
@@ -93,31 +73,6 @@ public class BasicNetwork implements RegressionAlgorithm {
     public BasicNetwork() {
     }
 
-
-    /**
-     * Clear any context neurons.
-     */
-    public void clearContext() {
-        int index = 0;
-
-        for (int i = 0; i < this.layerIndex.length; i++) {
-
-            final boolean hasBias = (this.layerContextCount[i] + this.layerFeedCounts[i]) != this.layerCounts[i];
-
-            // fill in regular neurons
-            Arrays.fill(this.layerOutput, index, index+this.layerFeedCounts[i], 0);
-            index += this.layerFeedCounts[i];
-
-            // fill in the bias
-            if (hasBias) {
-                this.layerOutput[index++] = this.biasActivation[i];
-            }
-
-            // fill in context
-            Arrays.fill(this.layerOutput, index, index+this.layerContextCount[i], 0);
-            index += this.layerContextCount[i];
-        }
-    }
 
     /**
      * Calculate the output for the given input.
@@ -142,16 +97,6 @@ public class BasicNetwork implements RegressionAlgorithm {
         System.arraycopy(this.layerOutput, 0, output, 0, this.outputCount);
     }
 
-
-
-
-    /**
-     * @return The activation functions.
-     */
-    public ActivationFunction[] getActivationFunctions() {
-        return this.activationFunctions;
-    }
-
     /**
      * @return The bias activation.
      */
@@ -172,13 +117,6 @@ public class BasicNetwork implements RegressionAlgorithm {
      */
     public int getInputCount() {
         return this.inputCount;
-    }
-
-    /**
-     * @return The layer context count.
-     */
-    public int[] getLayerContextCount() {
-        return this.layerContextCount;
     }
 
     /**
@@ -243,39 +181,6 @@ public class BasicNetwork implements RegressionAlgorithm {
     }
 
     /**
-     * Neural networks with only one type of activation function offer certain
-     * optimization options. This method determines if only a single activation
-     * function is used.
-     *
-     * @return The number of the single activation function, or -1 if there are
-     *         no activation functions or more than one type of activation
-     *         function.
-     */
-    public Class<?> hasSameActivationFunction() {
-        final List<Class<?>> map = new ArrayList<>();
-
-        for (final ActivationFunction activation : this.activationFunctions) {
-            if (!map.contains(activation.getClass())) {
-                map.add(activation.getClass());
-            }
-        }
-
-        if (map.size() != 1) {
-            return null;
-        } else {
-            return map.get(0);
-        }
-    }
-
-    /**
-     * Set the activation functions.
-     * @param af The activation functions.
-     */
-    public void setActivationFunctions(final ActivationFunction[] af) {
-        this.activationFunctions = Arrays.copyOf(af, af.length);
-    }
-
-    /**
      * Set the bias activation.
      * @param biasActivation The bias activation.
      */
@@ -321,7 +226,7 @@ public class BasicNetwork implements RegressionAlgorithm {
                             final int toNeuron) {
         validateNeuron(fromLayer, fromNeuron);
         validateNeuron(fromLayer + 1, toNeuron);
-        final int fromLayerNumber = this.layerContextCount.length - fromLayer - 1;
+        final int fromLayerNumber = this.layers.size() - fromLayer - 1;
         final int toLayerNumber = fromLayerNumber - 1;
 
         if (toLayerNumber < 0) {
@@ -386,11 +291,9 @@ public class BasicNetwork implements RegressionAlgorithm {
         this.outputCount = layers.get(layerCount - 1).getCount();
 
         this.layerCounts = new int[layerCount];
-        this.layerContextCount = new int[layerCount];
         this.weightIndex = new int[layerCount];
         this.layerIndex = new int[layerCount];
 
-        this.activationFunctions = new ActivationFunction[layerCount];
         this.layerFeedCounts = new int[layerCount];
         this.biasActivation = new double[layerCount];
 
@@ -410,7 +313,6 @@ public class BasicNetwork implements RegressionAlgorithm {
             this.biasActivation[index] = 1;
             this.layerCounts[index] = layer.getTotalCount();
             this.layerFeedCounts[index] = layer.getCount();
-            this.activationFunctions[index] = layer.getActivation();
 
             neuronCount += layer.getTotalCount();
 
@@ -447,7 +349,22 @@ public class BasicNetwork implements RegressionAlgorithm {
         this.layerOutput = new double[neuronCount];
         this.layerSums = new double[neuronCount];
 
-        clearContext();
+        // Init the output arrays
+        index = 0;
+
+        for (int i = 0; i < this.layerIndex.length; i++) {
+
+            final boolean hasBias = this.layerFeedCounts[i] != this.layerCounts[i];
+
+            // fill in regular neurons
+            Arrays.fill(this.layerOutput, index, index+this.layerFeedCounts[i], 0);
+            index += this.layerFeedCounts[i];
+
+            // fill in the bias
+            if (hasBias) {
+                this.layerOutput[index++] = this.biasActivation[i];
+            }
+        }
     }
 
     /**

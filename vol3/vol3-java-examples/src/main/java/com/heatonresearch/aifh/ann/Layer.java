@@ -23,4 +23,6 @@ public interface Layer {
     int getFeedCount();
 
     int getNeuronIndex();
+
+    int getLayerIndex();
 }
