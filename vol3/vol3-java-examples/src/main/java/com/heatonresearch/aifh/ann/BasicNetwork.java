@@ -16,17 +16,6 @@ public class BasicNetwork implements RegressionAlgorithm {
     private int inputCount;
 
     /**
-     * The number of neurons in each of the layers.
-     */
-    private int[] layerCounts;
-
-    /**
-     * An index to where each layer begins (based on the number of neurons in
-     * each layer).
-     */
-    private int[] layerIndex;
-
-    /**
      * The outputs from each of the neurons.
      */
     private double[] layerOutput;
@@ -40,11 +29,6 @@ public class BasicNetwork implements RegressionAlgorithm {
      * The number of output neurons in this network.
      */
     private int outputCount;
-
-    /**
-     * The index to where the weights that are stored at for a given layer.
-     */
-    private int[] weightIndex;
 
     /**
      * The weights for a neural network.
@@ -75,7 +59,7 @@ public class BasicNetwork implements RegressionAlgorithm {
         System.arraycopy(input, 0, this.layerOutput, sourceIndex,
                 this.inputCount);
 
-        for (int i = 0; i<this.layerIndex.length - 1; i++) {
+        for (int i = 0; i<this.layers.size() - 1; i++) {
             this.layers.get(i).computeLayer();
         }
 
@@ -107,20 +91,6 @@ public class BasicNetwork implements RegressionAlgorithm {
     }
 
     /**
-     * @return The number of neurons in each layer.
-     */
-    public int[] getLayerCounts() {
-        return this.layerCounts;
-    }
-
-    /**
-     * @return Indexes into the weights for the start of each layer.
-     */
-    public int[] getLayerIndex() {
-        return this.layerIndex;
-    }
-
-    /**
      * @return The output for each layer.
      */
     public double[] getLayerOutput() {
@@ -132,13 +102,6 @@ public class BasicNetwork implements RegressionAlgorithm {
      */
     public int getOutputCount() {
         return this.outputCount;
-    }
-
-    /**
-     * @return The index of each layer in the weight and threshold array.
-     */
-    public int[] getWeightIndex() {
-        return this.weightIndex;
     }
 
     /**
@@ -197,7 +160,7 @@ public class BasicNetwork implements RegressionAlgorithm {
         }
 
         final int weightBaseIndex
-                = this.weightIndex[toLayerNumber];
+                = this.layers.get(fromLayer+1).getWeightIndex();
         final int count = this.layers.get(fromLayer).getTotalCount();
         final int weightIndex = weightBaseIndex + fromNeuron
                 + (toNeuron * count);
@@ -239,11 +202,11 @@ public class BasicNetwork implements RegressionAlgorithm {
         this.inputCount = layers.get(0).getCount();
         this.outputCount = layers.get(layerCount - 1).getCount();
 
-        this.layerCounts = new int[layerCount];
-        this.weightIndex = new int[layerCount];
-        this.layerIndex = new int[layerCount];
+        int[] weightIndex = new int[layerCount];
 
         int[] layerFeedCounts = new int[layerCount];
+        int[] layerCounts = new int[layerCount];
+        int[] layerIndex = new int[layerCount];
 
         int index = 0;
         int neuronCount = 0;
@@ -258,7 +221,7 @@ public class BasicNetwork implements RegressionAlgorithm {
                 nextLayer = layers.get(i - 1);
             }
 
-            this.layerCounts[index] = layer.getTotalCount();
+            layerCounts[index] = layer.getTotalCount();
             layerFeedCounts[index] = layer.getCount();
 
             neuronCount += layer.getTotalCount();
@@ -268,13 +231,13 @@ public class BasicNetwork implements RegressionAlgorithm {
             }
 
             if (index == 0) {
-                this.weightIndex[index] = 0;
-                this.layerIndex[index] = 0;
+                weightIndex[index] = 0;
+                layerIndex[index] = 0;
             } else {
-                this.weightIndex[index] = this.weightIndex[index - 1]
-                        + (this.layerCounts[index] * layerFeedCounts[index - 1]);
-                this.layerIndex[index] = this.layerIndex[index - 1]
-                        + this.layerCounts[index - 1];
+                weightIndex[index] = weightIndex[index - 1]
+                        + (layerCounts[index] * layerFeedCounts[index - 1]);
+                layerIndex[index] = layerIndex[index - 1]
+                        + layerCounts[index - 1];
             }
 
             int neuronIndex = 0;
@@ -284,7 +247,7 @@ public class BasicNetwork implements RegressionAlgorithm {
 
             // finalize the structure of the layer
 
-            layer.finalizeStructure(this,index,this.layerIndex[index], this.weightIndex[index]);
+            layer.finalizeStructure(this,index,layerIndex[index], weightIndex[index]);
 
             index++;
         }
@@ -296,9 +259,9 @@ public class BasicNetwork implements RegressionAlgorithm {
         // Init the output arrays
         index = 0;
 
-        for (int i = 0; i < this.layerIndex.length; i++) {
+        for (int i = 0; i < layerIndex.length; i++) {
 
-            final boolean hasBias = layerFeedCounts[i] != this.layerCounts[i];
+            final boolean hasBias = layerFeedCounts[i] != layerCounts[i];
 
             // fill in regular neurons
             Arrays.fill(this.layerOutput, index, index+layerFeedCounts[i], 0);
@@ -331,9 +294,9 @@ public class BasicNetwork implements RegressionAlgorithm {
         }
 
         final int weightBaseIndex
-                = getWeightIndex()[toLayerNumber];
-        final int count
-                = getLayerCounts()[fromLayerNumber];
+                = this.layers.get(fromLayer+1).getWeightIndex();
+        final int count = this.layers.get(fromLayer).getTotalCount();
+
         final int weightIndex = weightBaseIndex + fromNeuron
                 + (toNeuron * count);
 

@@ -24,16 +24,6 @@ public class GradientCalc {
     private final double[] layerDelta;
 
     /**
-     * The layer indexes.
-     */
-    private final int[] layerIndex;
-
-    /**
-     * The index to each layer's weights and thresholds.
-     */
-    private final int[] weightIndex;
-
-    /**
      * The output from each layer.
      */
     private final double[] layerOutput;
@@ -70,8 +60,6 @@ public class GradientCalc {
         this.actual = new double[network.getOutputCount()];
 
         this.weights = network.getWeights();
-        this.layerIndex = network.getLayerIndex();
-        this.weightIndex = network.getWeightIndex();
         this.layerOutput = network.getLayerOutput();
         this.layerSums = network.getLayerSums();
         this.owner = theOwner;
@@ -143,7 +131,7 @@ public class GradientCalc {
         final int fromLayerSize = prev.getTotalCount();
         final int toLayerSize = layer.getCount();
 
-        final int index = this.weightIndex[currentLevel];
+        final int index = layer.getWeightIndex(); // this.weightIndex[currentLevel];
         final ActivationFunction activation = layer.getActivation();
 
         // handle weights
