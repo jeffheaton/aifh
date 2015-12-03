@@ -22,13 +22,6 @@ public class BasicNetwork implements RegressionAlgorithm {
     private int[] layerCounts;
 
     /**
-     * The number of neurons in each layer that are actually fed by neurons in
-     * the previous layer. Bias neurons, as well as context neurons, are not fed
-     * from the previous layer.
-     */
-    private int[] layerFeedCounts;
-
-    /**
      * An index to where each layer begins (based on the number of neurons in
      * each layer).
      */
@@ -124,14 +117,6 @@ public class BasicNetwork implements RegressionAlgorithm {
      */
     public int[] getLayerCounts() {
         return this.layerCounts;
-    }
-
-    /**
-     * @return The number of neurons in each layer that are fed by the previous
-     *         layer.
-     */
-    public int[] getLayerFeedCounts() {
-        return this.layerFeedCounts;
     }
 
     /**
@@ -270,16 +255,6 @@ public class BasicNetwork implements RegressionAlgorithm {
         return this.layerCounts[layerNumber];
     }
 
-    /**
-     * Get the neuron count.
-     * @param l The layer.
-     * @return The neuron count.
-     */
-    public int getLayerNeuronCount(final int l) {
-        final int layerNumber = this.layerCounts.length - l - 1;
-        return this.layerFeedCounts[layerNumber];
-    }
-
     public void addLayer(BasicLayer layer) {
         this.layers.add(layer);
     }
@@ -294,7 +269,7 @@ public class BasicNetwork implements RegressionAlgorithm {
         this.weightIndex = new int[layerCount];
         this.layerIndex = new int[layerCount];
 
-        this.layerFeedCounts = new int[layerCount];
+        int[] layerFeedCounts = new int[layerCount];
         this.biasActivation = new double[layerCount];
 
         int index = 0;
@@ -312,7 +287,7 @@ public class BasicNetwork implements RegressionAlgorithm {
 
             this.biasActivation[index] = 1;
             this.layerCounts[index] = layer.getTotalCount();
-            this.layerFeedCounts[index] = layer.getCount();
+            layerFeedCounts[index] = layer.getCount();
 
             neuronCount += layer.getTotalCount();
 
@@ -325,7 +300,7 @@ public class BasicNetwork implements RegressionAlgorithm {
                 this.layerIndex[index] = 0;
             } else {
                 this.weightIndex[index] = this.weightIndex[index - 1]
-                        + (this.layerCounts[index] * this.layerFeedCounts[index - 1]);
+                        + (this.layerCounts[index] * layerFeedCounts[index - 1]);
                 this.layerIndex[index] = this.layerIndex[index - 1]
                         + this.layerCounts[index - 1];
             }
@@ -340,7 +315,7 @@ public class BasicNetwork implements RegressionAlgorithm {
             if(i<this.layers.size()-1) {
                 prev = this.layers.get(i+1);
             }
-            layer.finalizeStructure(this,index,prev,this.layerIndex[index], this.weightIndex[index],this.layerFeedCounts[index]);
+            layer.finalizeStructure(this,index,prev,this.layerIndex[index], this.weightIndex[index]);
 
             index++;
         }
@@ -354,11 +329,11 @@ public class BasicNetwork implements RegressionAlgorithm {
 
         for (int i = 0; i < this.layerIndex.length; i++) {
 
-            final boolean hasBias = this.layerFeedCounts[i] != this.layerCounts[i];
+            final boolean hasBias = layerFeedCounts[i] != this.layerCounts[i];
 
             // fill in regular neurons
-            Arrays.fill(this.layerOutput, index, index+this.layerFeedCounts[i], 0);
-            index += this.layerFeedCounts[i];
+            Arrays.fill(this.layerOutput, index, index+layerFeedCounts[i], 0);
+            index += layerFeedCounts[i];
 
             // fill in the bias
             if (hasBias) {
@@ -424,5 +399,28 @@ public class BasicNetwork implements RegressionAlgorithm {
     @Override
     public double[] getLongTermMemory() {
         return this.weights;
+    }
+
+
+    public Layer getNextLayer(Layer layer) {
+        int idx = this.layers.indexOf(layer);
+        if( idx==-1 ) {
+            throw new AIFHError("Can't find next layer for a layer that is not part of this network.");
+        }
+        if( idx>=this.layers.size() ) {
+            throw new AIFHError("Can't find the next layer for the final layer in a network.");
+        }
+        return this.layers.get(idx+1);
+    }
+
+    public Layer getPreviousLayer(Layer layer) {
+        int idx = this.layers.indexOf(layer);
+        if( idx==-1 ) {
+            throw new AIFHError("Can't find previous layer for a layer that is not part of this network.");
+        }
+        if( idx==0 ) {
+            throw new AIFHError("Can't find the previous layer for the final layer in a network.");
+        }
+        return this.layers.get(idx-1);
     }
 }

@@ -23,7 +23,6 @@ public class BasicLayer implements Layer {
     private Layer previousLayer;
     private int weightIndex;
     private int neuronIndex;
-    private int feedCount;
 
     /**
      * Do not use this constructor.  This was added to support serialization.
@@ -40,13 +39,12 @@ public class BasicLayer implements Layer {
 
     @Override
     public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, Layer thePreviousLayer,
-                                  int theNeuronIndex, int theWeightIndex, int theFeedCount) {
+                                  int theNeuronIndex, int theWeightIndex) {
         this.owner = theOwner;
         this.layerIndex = theLayerIndex;
         this.previousLayer = thePreviousLayer;
         this.neuronIndex = theNeuronIndex;
         this.weightIndex = theWeightIndex;
-        this.feedCount = theFeedCount;
 
     }
 
@@ -105,14 +103,14 @@ public class BasicLayer implements Layer {
     }
 
     public void computeLayer() {
-
+        Layer next = this.owner.getNextLayer(this);
         final int inputIndex = this.neuronIndex;
-        final int outputIndex = getPreviousLayer().getNeuronIndex();
+        final int outputIndex = next.getNeuronIndex();
         final int inputSize = getTotalCount();
-        final int outputSize = getPreviousLayer().getFeedCount();
+        final int outputSize = next.getCount();
         final double[] weights = this.owner.getWeights();
 
-        int index = getPreviousLayer().getWeightIndex();
+        int index = next.getWeightIndex();
 
         final int limitX = outputIndex + outputSize;
         final int limitY = inputIndex + inputSize;
@@ -127,7 +125,7 @@ public class BasicLayer implements Layer {
             this.owner.getLayerOutput()[x] = sum;
         }
 
-        getPreviousLayer().getActivation().activationFunction(
+        next.getActivation().activationFunction(
                 this.owner.getLayerOutput(), outputIndex, outputSize);
 
     }
@@ -140,11 +138,6 @@ public class BasicLayer implements Layer {
     @Override
     public int getWeightIndex() {
         return this.weightIndex;
-    }
-
-    @Override
-    public int getFeedCount() {
-        return this.feedCount;
     }
 
     @Override

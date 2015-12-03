@@ -1,5 +1,6 @@
 package com.heatonresearch.aifh.ann;
 
+import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 
 public interface Layer {
@@ -12,7 +13,7 @@ public interface Layer {
 
 
     void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, Layer thePreviousLayer,
-                           int theNeuronIndex, int theWeightIndex, int theFeedCount);
+                           int theNeuronIndex, int theWeightIndex);
 
     void computeLayer();
 
@@ -20,9 +21,9 @@ public interface Layer {
 
     int getWeightIndex();
 
-    int getFeedCount();
-
     int getNeuronIndex();
 
     int getLayerIndex();
+
+
 }

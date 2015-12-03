@@ -9,7 +9,7 @@ public class XaiverRandomizeNetwork extends AbstractRandomizeNetwork {
 
     private void randomizeLayer(BasicNetwork network, int fromLayer) {
         final int fromCount = network.getLayerTotalNeuronCount(fromLayer);
-        final int toCount = network.getLayerNeuronCount(fromLayer + 1);
+        final int toCount = network.getLayers().get(fromLayer + 1).getCount();
 
         for (int fromNeuron = 0; fromNeuron < fromCount; fromNeuron++) {
             for (int toNeuron = 0; toNeuron < toCount; toNeuron++) {

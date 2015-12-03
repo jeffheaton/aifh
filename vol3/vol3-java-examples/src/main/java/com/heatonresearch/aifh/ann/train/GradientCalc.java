@@ -28,10 +28,6 @@ public class GradientCalc {
      */
     private final int[] layerCounts;
 
-    /**
-     * The feed counts, per layer.
-     */
-    private final int[] layerFeedCounts;
 
     /**
      * The layer indexes.
@@ -85,7 +81,6 @@ public class GradientCalc {
         this.weightIndex = network.getWeightIndex();
         this.layerOutput = network.getLayerOutput();
         this.layerSums = network.getLayerSums();
-        this.layerFeedCounts = network.getLayerFeedCounts();
         this.owner = theOwner;
     }
 
@@ -149,10 +144,11 @@ public class GradientCalc {
      */
     private void processLevel(final Layer layer) {
         int currentLevel = layer.getLayerIndex();
-        final int fromLayerIndex = this.layerIndex[currentLevel + 1];
-        final int toLayerIndex = this.layerIndex[currentLevel];
+        Layer prev = this.network.getPreviousLayer(layer);
+        final int fromLayerIndex = prev.getNeuronIndex();
+        final int toLayerIndex = layer.getNeuronIndex(); // this.layerIndex[currentLevel];
         final int fromLayerSize = this.layerCounts[currentLevel + 1];
-        final int toLayerSize = this.layerFeedCounts[currentLevel];
+        final int toLayerSize = layer.getCount(); // this.layerFeedCounts[currentLevel];
 
         final int index = this.weightIndex[currentLevel];
         final ActivationFunction activation = layer.getActivation();
@@ -161,7 +157,6 @@ public class GradientCalc {
         // array references are made method local to avoid one indirection
         final double[] layerDelta = this.layerDelta;
         final double[] weights = this.weights;
-        final double[] gradients = this.gradients;
         final double[] layerOutput = this.layerOutput;
         final double[] layerSums = this.layerSums;
         int yi = fromLayerIndex;
@@ -205,7 +200,7 @@ public class GradientCalc {
 
     public void layerRegularizationPenalty(final int fromLayer, final double[] l) {
         final int fromCount = network.getLayerTotalNeuronCount(fromLayer);
-        final int toCount = network.getLayerNeuronCount(fromLayer + 1);
+        final int toCount = network.getLayers().get(fromLayer + 1).getCount();
 
         for (int fromNeuron = 0; fromNeuron < fromCount; fromNeuron++) {
             for (int toNeuron = 0; toNeuron < toCount; toNeuron++) {
