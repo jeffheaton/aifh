@@ -39,6 +39,8 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
 
     private final List<Layer> layers = new ArrayList<>();
 
+    private boolean networkTraining;
+
     /**
      * Default constructor.
      */
@@ -367,5 +369,13 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
     @Override
     public int computeClassification(double[] input) {
         return ArrayUtil.indexOfLargest(computeRegression(input));
+    }
+
+    public boolean isNetworkTraining() {
+        return networkTraining;
+    }
+
+    public void setNetworkTraining(boolean networkTraining) {
+        this.networkTraining = networkTraining;
     }
 }

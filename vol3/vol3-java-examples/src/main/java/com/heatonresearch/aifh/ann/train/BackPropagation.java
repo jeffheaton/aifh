@@ -1,6 +1,7 @@
 package com.heatonresearch.aifh.ann.train;
 
 import com.heatonresearch.aifh.ann.BasicNetwork;
+import com.heatonresearch.aifh.ann.Layer;
 import com.heatonresearch.aifh.ann.train.error.CrossEntropyErrorFunction;
 import com.heatonresearch.aifh.error.ErrorCalculation;
 import com.heatonresearch.aifh.error.ErrorCalculationMSE;
@@ -52,6 +53,14 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     }
 
     public void iteration() {
+        this.network.setNetworkTraining(true);
+
+        // alert the layers that a new batch is starting.
+        for(Layer layer: this.network.getLayers()) {
+            layer.trainingBatch(this.stochastic);
+        }
+
+        // begin the iteration
         this.gradients.reset();
         this.errorCalc.clear();
 
@@ -97,6 +106,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
 
             this.network.getWeights()[i] += delta;
         }
+        this.network.setNetworkTraining(false);
     }
 
     public boolean isOnlineTraining() {

@@ -51,7 +51,7 @@ public class GradientCalc {
     private final ErrorFunction errorFunction;
 
     public GradientCalc(final BasicNetwork theNetwork,
-                          ErrorFunction ef, GradientCalcOwner theOwner) {
+                        ErrorFunction ef, GradientCalcOwner theOwner) {
         this.network = theNetwork;
         this.errorFunction = ef;
 
@@ -82,10 +82,8 @@ public class GradientCalc {
     /**
      * Process one training set element.
      *
-     * @param input
-     *            The network input.
-     * @param ideal
-     *            The ideal values.
+     * @param input The network input.
+     * @param ideal The ideal values.
      */
     public void process(ErrorCalculation errorCalc, double[] input, double[] ideal) {
         this.network.compute(input, this.actual);
@@ -93,25 +91,25 @@ public class GradientCalc {
         errorCalc.updateError(this.actual, ideal, 1.0);
 
         // Calculate error for the output layer.
-        int outputLayerIndex = this.network.getLayers().size()-1;
+        int outputLayerIndex = this.network.getLayers().size() - 1;
         ActivationFunction outputActivation = this.network.getLayers().get(outputLayerIndex).getActivation();
         this.errorFunction.calculateError(
-                outputActivation, this.layerSums,this.layerOutput,
+                outputActivation, this.layerSums, this.layerOutput,
                 ideal, this.actual, this.layerDelta, 0, 1.0);
 
         // Apply regularization, if requested.
-        if( this.owner.getL1()> AIFH.DEFAULT_PRECISION
-                || this.owner.getL1()>AIFH.DEFAULT_PRECISION  ) {
+        if (this.owner.getL1() > AIFH.DEFAULT_PRECISION
+                || this.owner.getL1() > AIFH.DEFAULT_PRECISION) {
             double[] lp = new double[2];
             calculateRegularizationPenalty(lp);
-            for(int i=0;i<this.actual.length;i++) {
-                double p = (lp[0]*this.owner.getL1()) + (lp[1]*this.owner.getL2());
-                this.layerDelta[i]+=p;
+            for (int i = 0; i < this.actual.length; i++) {
+                double p = (lp[0] * this.owner.getL1()) + (lp[1] * this.owner.getL2());
+                this.layerDelta[i] += p;
             }
         }
 
         // Propagate backwards (chain rule from calculus).
-        for (int i = this.network.getLayers().size()-1; i>0; i--) {
+        for (int i = this.network.getLayers().size() - 1; i > 0; i--) {
             Layer layer = this.network.getLayers().get(i);
             processLevel(layer);
         }
@@ -120,8 +118,7 @@ public class GradientCalc {
     /**
      * Process one level.
      *
-     * @param layer
-     *            The level.
+     * @param layer The level.
      */
     private void processLevel(final Layer layer) {
         int currentLevel = layer.getLayerIndex();
@@ -140,27 +137,30 @@ public class GradientCalc {
         final double[] weights = this.weights;
         final double[] layerOutput = this.layerOutput;
         final double[] layerSums = this.layerSums;
-        int yi = fromLayerIndex;
-        for (int y = 0; y < fromLayerSize; y++) {
-            final double output = layerOutput[yi];
+        int y = fromLayerIndex;
+        for (int yi = 0; yi < fromLayerSize; yi++) {
+            final double output = layerOutput[y];
             double sum = 0;
 
-            int wi = index + y;
-            final int loopEnd = toLayerIndex+toLayerSize;
+            int wi = index + yi;
 
-                for (int xi = toLayerIndex; xi < loopEnd; xi++, wi += fromLayerSize) {
-                    this.gradients[wi] += -(output * layerDelta[xi]);
-                    sum += weights[wi] * layerDelta[xi];
+            for (int xi = 0; xi < toLayerSize; xi++, wi += fromLayerSize) {
+                int x = xi + toLayerIndex;
+
+                if( prev.isActive(yi) && layer.isActive(xi) ) {
+                    this.gradients[wi] += -(output * layerDelta[x]);
+                    sum += weights[wi] * layerDelta[x];
                 }
-                layerDelta[yi] = sum
-                        * (activation.derivativeFunction(layerSums[yi], layerOutput[yi]));
+            }
+            layerDelta[y] = sum
+                    * (activation.derivativeFunction(layerSums[y], layerOutput[y]));
 
-            yi++;
+            y++;
         }
     }
 
     public void reset() {
-        for(int i=0;i<this.gradients.length;i++) {
+        for (int i = 0; i < this.gradients.length; i++) {
             this.gradients[i] = 0;
         }
     }
@@ -186,8 +186,8 @@ public class GradientCalc {
         for (int fromNeuron = 0; fromNeuron < fromCount; fromNeuron++) {
             for (int toNeuron = 0; toNeuron < toCount; toNeuron++) {
                 double w = this.network.getWeight(fromLayer, fromNeuron, toNeuron);
-                l[0]+=Math.abs(w);
-                l[1]+=w*w;
+                l[0] += Math.abs(w);
+                l[1] += w * w;
             }
         }
     }

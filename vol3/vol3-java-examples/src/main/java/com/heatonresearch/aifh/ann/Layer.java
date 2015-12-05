@@ -1,7 +1,7 @@
 package com.heatonresearch.aifh.ann;
 
-import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 public interface Layer {
     int getCount();
@@ -18,5 +18,10 @@ public interface Layer {
 
     int getLayerIndex();
 
+    void trainingBatch(GenerateRandom rnd);
+
+    BasicNetwork getOwner();
+
+    boolean isActive(int i);
 
 }

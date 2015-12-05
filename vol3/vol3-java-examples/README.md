@@ -76,11 +76,14 @@ by chapter.
 ```
 * Chapter 9: Deep Learning
 ```
-runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn belief neural network.',
+	runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn belief neural network.',
 ```
 * Chapter 10: Convolutional Neural Networks
 * Chapter 11: Pruning and Model Selection
 * Chapter 12: Dropout and Regularization
+```
+	runDigitsDropoutExample - Chapter 12.  Dropout network for MNIST digits.
+```
 * Chapter 13: Time Series and Recurrent Networks
 * Chapter 14: Architecting Neural Networks
 * Chapter 15: Visualization

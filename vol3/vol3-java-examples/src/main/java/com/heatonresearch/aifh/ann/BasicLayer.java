@@ -1,6 +1,7 @@
 package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 public class BasicLayer implements Layer {
     /**
@@ -99,31 +100,30 @@ public class BasicLayer implements Layer {
         return result.toString();
     }
 
+    @Override
     public void computeLayer() {
         Layer next = this.owner.getNextLayer(this);
-        final int inputIndex = this.neuronIndex;
-        final int outputIndex = next.getNeuronIndex();
-        final int inputSize = getTotalCount();
-        final int outputSize = next.getCount();
         final double[] weights = this.owner.getWeights();
 
         int index = next.getWeightIndex();
 
-        final int limitX = outputIndex + outputSize;
-        final int limitY = inputIndex + inputSize;
-
         // weight values
-        for (int x = outputIndex; x < limitX; x++) {
+        for (int ix = 0; ix < next.getCount(); ix++) {
+            int x = next.getNeuronIndex()+ix;
             double sum = 0;
-            for (int y = inputIndex; y < limitY; y++) {
-                sum += weights[index++] * this.owner.getLayerOutput()[y];
+
+            for (int y = 0; y < getTotalCount(); y++) {
+                if(next.isActive(ix) && isActive(y)) {
+                    sum += weights[index] * this.owner.getLayerOutput()[this.neuronIndex+y];
+                }
+                index++;
             }
             this.owner.getLayerSums()[x] = sum;
             this.owner.getLayerOutput()[x] = sum;
         }
 
         next.getActivation().activationFunction(
-                this.owner.getLayerOutput(), outputIndex, outputSize);
+                this.owner.getLayerOutput(), next.getNeuronIndex(), next.getCount());
 
     }
 
@@ -142,5 +142,19 @@ public class BasicLayer implements Layer {
         return this.layerIndex;
     }
 
+    @Override
+    public void trainingBatch(GenerateRandom rnd) {
+        // Nothing needs to be done!
+    }
+
+    @Override
+    public BasicNetwork getOwner() {
+        return this.owner;
+    }
+
+    @Override
+    public boolean isActive(int i) {
+        return true;
+    }
 
 }
