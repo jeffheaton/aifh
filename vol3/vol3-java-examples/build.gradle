@@ -94,6 +94,12 @@ task(runAutoMPGBackpropExample, group: 'examples', description: 'Chapter 6.  MPG
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task(runDigitsBackpropExample, group: 'examples', description: 'Chapter 6.  MNIST Digit classification using Backpropagation.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ann.LearnDigitsBackprop'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 task(runXORRPROPExample, group: 'examples', description: 'Chapter 7.  XOR using RPROP.',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.ann.LearnXORRPROP'

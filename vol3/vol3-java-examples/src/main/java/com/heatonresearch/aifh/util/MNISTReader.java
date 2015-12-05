@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 /**
  * This reads the MNIST dataset of handwritten digits into a data set.
@@ -29,10 +30,28 @@ public class MNISTReader {
 
     public MNISTReader(String labelFilename, String imageFilename) {
         try {
-            DataInputStream labels = new DataInputStream(new FileInputStream(
-                    labelFilename));
-            DataInputStream images = new DataInputStream(new FileInputStream(
-                    imageFilename));
+            DataInputStream labels;
+            DataInputStream images;
+
+            // Read label file, decompress (as read in) if needed.
+            if( labelFilename.toLowerCase().endsWith(".gz")) {
+                labels = new DataInputStream(new GZIPInputStream(new FileInputStream(
+                        labelFilename)));
+            } else {
+                labels = new DataInputStream(new FileInputStream(
+                        labelFilename));
+            }
+
+            // Read images file, decompress (as read in) if needed.
+            if( imageFilename.toLowerCase().endsWith(".gz")) {
+                images = new DataInputStream(new GZIPInputStream(new FileInputStream(
+                        imageFilename)));
+            } else {
+                images = new DataInputStream(new FileInputStream(
+                        imageFilename));
+            }
+
+
             int magicNumber = labels.readInt();
             if (magicNumber != 2049) {
                 throw new AIFHError("Label file has wrong magic number: "

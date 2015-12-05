@@ -2,13 +2,15 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.randomize.XaiverRandomizeNetwork;
+import com.heatonresearch.aifh.learning.ClassificationAlgorithm;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
+import com.heatonresearch.aifh.util.ArrayUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BasicNetwork implements RegressionAlgorithm {
+public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorithm {
 
     /**
      * The number of input neurons in this network.
@@ -354,5 +356,16 @@ public class BasicNetwork implements RegressionAlgorithm {
             throw new AIFHError("Can't find the previous layer for the final layer in a network.");
         }
         return this.layers.get(idx-1);
+    }
+
+    /**
+     * Classify the specified input into a group.
+     *
+     * @param input The input data.
+     * @return The group the data was classified into.
+     */
+    @Override
+    public int computeClassification(double[] input) {
+        return ArrayUtil.indexOfLargest(computeRegression(input));
     }
 }

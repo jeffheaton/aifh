@@ -1,7 +1,6 @@
 package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
-import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
 
 public class BasicLayer implements Layer {
     /**

@@ -1,9 +1,11 @@
 package com.heatonresearch.aifh.general.data;
 
 import com.heatonresearch.aifh.error.ErrorCalculation;
+import com.heatonresearch.aifh.learning.ClassificationAlgorithm;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
+import com.heatonresearch.aifh.util.ArrayUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,4 +65,22 @@ public class DataUtil {
 
         return calc.calculate();
     }
+
+    public static double calculateClassificationError(
+            List<BasicData> data,
+            ClassificationAlgorithm model) {
+        int total = 0;
+        int correct = 0;
+
+        for(BasicData pair : data ) {
+            int ideal = ArrayUtil.indexOfLargest(pair.getIdeal());
+            int actual = model.computeClassification(pair.getInput());
+            if( actual==ideal )
+                correct++;
+            total++;
+        }
+        return (double)(total-correct) / (double)total;
+
+    }
+
 }

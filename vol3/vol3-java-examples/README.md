@@ -61,6 +61,8 @@ by chapter.
 	runXORBackpropExample - Chapter 6.  XOR using Backpropagation.
 	runIrisBackpropExample - Chapter 6.  Iris classification using Backpropagation.
 	runAutoMPGBackpropExample - Chapter 6.  MPG automobile regression using Backpropagation.
+	runDigitsBackpropExample - Chapter 6.  MNIST Digit classification using Backpropagation.
+
 ```
 * Chapter 7: Other Propagation Training
 ```

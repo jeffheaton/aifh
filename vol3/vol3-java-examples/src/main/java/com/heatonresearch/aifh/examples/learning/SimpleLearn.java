@@ -4,6 +4,7 @@ import com.heatonresearch.aifh.error.ErrorCalculation;
 import com.heatonresearch.aifh.general.VectorUtil;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.general.data.DataUtil;
+import com.heatonresearch.aifh.learning.ClassificationAlgorithm;
 import com.heatonresearch.aifh.learning.LearningMethod;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 import com.heatonresearch.aifh.normalize.Equilateral;
@@ -94,6 +95,47 @@ public class SimpleLearn {
 
         train.finishTraining();
         System.out.println("Final score: " + train.getLastError());
+    }
+
+    public void performIterationsClassifyEarlyStop(final LearningMethod train,
+                                           final ClassificationAlgorithm model,
+                                           final List<BasicData> validationData,
+                                           final int tolerate) {
+        int iterationNumber = 0;
+        boolean done = false;
+        double bestError = Double.POSITIVE_INFINITY;
+        int badIterations = 0;
+
+        do {
+            iterationNumber++;
+
+            train.iteration();
+            double validationError = DataUtil.calculateClassificationError(validationData, model);
+
+            if(validationError<bestError) {
+                badIterations = 0;
+                bestError = validationError;
+            } else {
+                badIterations++;
+            }
+
+            if (train.done()) {
+                done = true;
+            } else if( badIterations>tolerate ) {
+                done = true;
+            } else if (Double.isNaN(train.getLastError())) {
+                System.out.println("Training failed.");
+                done = true;
+            }
+
+            System.out.println("Iteration #" + iterationNumber
+                    + ", Iteration Score=" + train.getLastError()
+                    + ", Validation Incorrect= %" + validationError*100.0
+                    + ", " + train.getStatus());
+        } while (!done);
+
+        train.finishTraining();
+        System.out.println("Final score: " + bestError*100.0);
     }
 
 
