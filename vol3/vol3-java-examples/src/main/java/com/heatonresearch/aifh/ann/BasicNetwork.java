@@ -196,7 +196,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         return this.layers.get(l).getTotalCount();
     }
 
-    public void addLayer(BasicLayer layer) {
+    public void addLayer(Layer layer) {
         this.layers.add(layer);
     }
 

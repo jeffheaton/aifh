@@ -7,7 +7,6 @@ import com.heatonresearch.aifh.ann.BasicNetwork;
 import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSoftMax;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
-import com.heatonresearch.aifh.error.ErrorCalculationMSE;
 import com.heatonresearch.aifh.examples.learning.SimpleLearn;
 import com.heatonresearch.aifh.util.ArrayUtil;
 import com.heatonresearch.aifh.util.FileUtil;

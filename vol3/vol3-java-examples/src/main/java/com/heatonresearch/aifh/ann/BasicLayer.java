@@ -1,5 +1,6 @@
 package com.heatonresearch.aifh.ann;
 
+import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
@@ -12,7 +13,7 @@ public class BasicLayer implements Layer {
     /**
      * The neuron count.
      */
-    private int count;
+    private int[] count;
 
     private boolean hasBias;
 
@@ -30,10 +31,17 @@ public class BasicLayer implements Layer {
 
     }
 
-    public BasicLayer(final ActivationFunction theActivation, boolean theHasBias, int theCount) {
+    public BasicLayer(final ActivationFunction theActivation, boolean theHasBias, int[] theCount) {
+        if( theCount.length!=1 && theCount.length!=3 ) {
+            throw new AIFHError("The number of dimensions must be 1 or 3.");
+        }
         this.activation = theActivation;
         this.hasBias = theHasBias;
         this.count = theCount;
+    }
+
+    public BasicLayer(final ActivationFunction theActivation, boolean theHasBias, int theCount) {
+        this(theActivation,theHasBias,new int[] {theCount});
     }
 
     @Override
@@ -58,7 +66,11 @@ public class BasicLayer implements Layer {
      * @return the count
      */
     public int getCount() {
-        return this.count;
+        int product = 1;
+        for(int i=0;i<this.count.length;i++) {
+            product*=this.count[i];
+        }
+        return product;
     }
 
     /**

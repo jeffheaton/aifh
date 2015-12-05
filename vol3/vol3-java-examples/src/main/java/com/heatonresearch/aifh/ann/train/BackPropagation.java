@@ -12,9 +12,6 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.util.List;
 
-/**
- * Created by Jeff on 11/27/2015.
- */
 public class BackPropagation implements GradientCalcOwner, LearningMethod {
 
     private final BasicNetwork network;
