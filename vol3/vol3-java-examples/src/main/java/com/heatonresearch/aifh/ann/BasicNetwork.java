@@ -206,10 +206,6 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         this.inputCount = layers.get(0).getCount();
         this.outputCount = layers.get(layerCount - 1).getCount();
 
-        int[] layerFeedCounts = new int[layerCount];
-        int[] layerCounts = new int[layerCount];
-        int[] layerIndex = new int[layerCount];
-
         int index = 0;
         int neuronCount = 0;
         int weightCount = 0;
@@ -220,29 +216,26 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
             Layer prevLayer = (i>0) ? layers.get(i-1) : null;
             Layer nextLayer = (i<layers.size()-1) ? layers.get(i+1) : null;
 
-            layerCounts[index] = layer.getTotalCount();
-            layerFeedCounts[index] = layer.getCount();
-
             neuronCount += layer.getTotalCount();
 
             if (prevLayer != null) {
                 weightCount += layer.getCount() * prevLayer.getTotalCount();
             }
 
-            int weightIndex;
+            int weightIndex, layerIndex;
             if (index == 0) {
                 weightIndex = 0;
-                layerIndex[index] = 0;
+                layerIndex = 0;
             } else {
                 weightIndex = nextLayer.getWeightIndex()
-                        + (layerCounts[index] * nextLayer.getCount());
-                layerIndex[index] = nextLayer.getLayerIndex()
+                        + (layer.getTotalCount() * nextLayer.getCount());
+                layerIndex = nextLayer.getLayerIndex()
                         + nextLayer.getTotalCount();
             }
 
             // finalize the structure of the layer
 
-            layer.finalizeStructure(this,index,layerIndex[index], weightIndex);
+            layer.finalizeStructure(this,index,layerIndex, weightIndex);
 
             index++;
         }
@@ -251,19 +244,12 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         this.layerOutput = new double[neuronCount];
         this.layerSums = new double[neuronCount];
 
-        // Init the output arrays
+        // Init the output arrays by filling in bias values
         index = 0;
-
-        for (int i = 0; i < layerIndex.length; i++) {
-
-            final boolean hasBias = layerFeedCounts[i] != layerCounts[i];
-
-            // fill in regular neurons
-            Arrays.fill(this.layerOutput, index, index+layerFeedCounts[i], 0);
-            index += layerFeedCounts[i];
-
-            // fill in the bias
-            if (hasBias) {
+        for (int i = 0; i < this.layers.size(); i++) {
+            Layer layer = this.layers.get(this.layers.size()-1-i);
+            index += layer.getCount();
+            if (layer.hasBias()) {
                 this.layerOutput[index++] = 1.0;
             }
         }
