@@ -64,4 +64,9 @@ public class MaxPoolLayer implements Layer {
     public boolean isActive(int i) {
         return false;
     }
+
+    @Override
+    public boolean hasBias() {
+        return true;
+    }
 }

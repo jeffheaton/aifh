@@ -88,4 +88,8 @@ public class Conv2DLayer implements Layer {
     public boolean isActive(int i) {
         return true;
     }
+
+    public boolean hasBias() {
+        return true;
+    }
 }

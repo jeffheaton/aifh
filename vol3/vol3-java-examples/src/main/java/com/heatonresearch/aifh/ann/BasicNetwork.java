@@ -206,8 +206,6 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         this.inputCount = layers.get(0).getCount();
         this.outputCount = layers.get(layerCount - 1).getCount();
 
-        int[] weightIndex = new int[layerCount];
-
         int[] layerFeedCounts = new int[layerCount];
         int[] layerCounts = new int[layerCount];
         int[] layerIndex = new int[layerCount];
@@ -219,39 +217,32 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         for (int i = layers.size() - 1; i >= 0; i--) {
 
             final Layer layer = layers.get(i);
-            Layer nextLayer = null;
-
-            if (i > 0) {
-                nextLayer = layers.get(i - 1);
-            }
+            Layer prevLayer = (i>0) ? layers.get(i-1) : null;
+            Layer nextLayer = (i<layers.size()-1) ? layers.get(i+1) : null;
 
             layerCounts[index] = layer.getTotalCount();
             layerFeedCounts[index] = layer.getCount();
 
             neuronCount += layer.getTotalCount();
 
-            if (nextLayer != null) {
-                weightCount += layer.getCount() * nextLayer.getTotalCount();
+            if (prevLayer != null) {
+                weightCount += layer.getCount() * prevLayer.getTotalCount();
             }
 
+            int weightIndex;
             if (index == 0) {
-                weightIndex[index] = 0;
+                weightIndex = 0;
                 layerIndex[index] = 0;
             } else {
-                weightIndex[index] = weightIndex[index - 1]
-                        + (layerCounts[index] * layerFeedCounts[index - 1]);
-                layerIndex[index] = layerIndex[index - 1]
-                        + layerCounts[index - 1];
-            }
-
-            int neuronIndex = 0;
-            for (int j = layers.size() - 1; j >= 0; j--) {
-                neuronIndex += layers.get(j).getTotalCount();
+                weightIndex = nextLayer.getWeightIndex()
+                        + (layerCounts[index] * nextLayer.getCount());
+                layerIndex[index] = nextLayer.getLayerIndex()
+                        + nextLayer.getTotalCount();
             }
 
             // finalize the structure of the layer
 
-            layer.finalizeStructure(this,index,layerIndex[index], weightIndex[index]);
+            layer.finalizeStructure(this,index,layerIndex[index], weightIndex);
 
             index++;
         }

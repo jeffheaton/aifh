@@ -24,4 +24,6 @@ public interface Layer {
 
     boolean isActive(int i);
 
+    boolean hasBias();
+
 }
