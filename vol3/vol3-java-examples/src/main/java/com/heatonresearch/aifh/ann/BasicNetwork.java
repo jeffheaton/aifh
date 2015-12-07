@@ -206,9 +206,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         this.inputCount = layers.get(0).getCount();
         this.outputCount = layers.get(layerCount - 1).getCount();
 
-        int index = 0;
-        int neuronCount = 0;
-        int weightCount = 0;
+        TempStructureCounts counts = new TempStructureCounts();
 
         for (int i = layers.size() - 1; i >= 0; i--) {
 
@@ -216,14 +214,14 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
             Layer prevLayer = (i>0) ? layers.get(i-1) : null;
             Layer nextLayer = (i<layers.size()-1) ? layers.get(i+1) : null;
 
-            neuronCount += layer.getTotalCount();
+            counts.addNeuronCount(layer.getTotalCount());
 
             if (prevLayer != null) {
-                weightCount += layer.getCount() * prevLayer.getTotalCount();
+                counts.addWeightCount(layer.getCount() * prevLayer.getTotalCount());
             }
 
             int weightIndex, layerIndex;
-            if (index == 0) {
+            if (i == layers.size()-1 ) {
                 weightIndex = 0;
                 layerIndex = 0;
             } else {
@@ -235,17 +233,16 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
 
             // finalize the structure of the layer
 
-            layer.finalizeStructure(this,index,layerIndex, weightIndex);
+            layer.finalizeStructure(this,layers.size()-1-i,layerIndex, weightIndex);
 
-            index++;
         }
 
-        this.weights = new double[weightCount];
-        this.layerOutput = new double[neuronCount];
-        this.layerSums = new double[neuronCount];
+        this.weights = new double[counts.getWeightCount()];
+        this.layerOutput = new double[counts.getNeuronCount()];
+        this.layerSums = new double[counts.getNeuronCount()];
 
         // Init the output arrays by filling in bias values
-        index = 0;
+        int index = 0;
         for (int i = 0; i < this.layers.size(); i++) {
             Layer layer = this.layers.get(this.layers.size()-1-i);
             index += layer.getCount();

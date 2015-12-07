@@ -2,6 +2,7 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
+import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
 
 public class MaxPoolLayer implements Layer {
 
@@ -29,6 +30,7 @@ public class MaxPoolLayer implements Layer {
     public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, int theNeuronIndex, int theWeightIndex) {
 
     }
+
 
     @Override
     public void computeLayer() {

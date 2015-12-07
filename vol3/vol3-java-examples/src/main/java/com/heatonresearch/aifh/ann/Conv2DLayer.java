@@ -51,7 +51,7 @@ public class Conv2DLayer implements Layer {
 
     @Override
     public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, int theNeuronIndex, int theWeightIndex) {
-        this.owner = theOwner;
+
     }
 
     @Override
@@ -92,4 +92,5 @@ public class Conv2DLayer implements Layer {
     public boolean hasBias() {
         return true;
     }
+
 }

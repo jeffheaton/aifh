@@ -147,10 +147,9 @@ public class GradientCalc {
             for (int xi = 0; xi < toLayerSize; xi++, wi += fromLayerSize) {
                 int x = xi + toLayerIndex;
 
-                if( prev.isActive(yi) && layer.isActive(xi) ) {
-                    this.gradients[wi] += -(output * layerDelta[x]);
-                    sum += weights[wi] * layerDelta[x];
-                }
+                if( prev.isActive(yi) && layer.isActive(xi) )
+                this.gradients[wi] += -(output * layerDelta[x]);
+                sum += weights[wi] * layerDelta[x];
             }
             layerDelta[y] = sum
                     * (activation.derivativeFunction(layerSums[y], layerOutput[y]));
