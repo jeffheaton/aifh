@@ -2,6 +2,7 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.ann.train.GradientCalc;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 public class BasicLayer implements Layer {
@@ -46,12 +47,32 @@ public class BasicLayer implements Layer {
 
     @Override
     public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex,
-                                  int theNeuronIndex, int theWeightIndex) {
+                                  TempStructureCounts counts) {
         this.owner = theOwner;
         this.layerIndex = theLayerIndex;
-        this.neuronIndex = theNeuronIndex;
-        this.weightIndex = theWeightIndex;
 
+        Layer prevLayer = (this.layerIndex>0) ? this.owner.getLayers().get(this.layerIndex-1) : null;
+        Layer nextLayer = (this.layerIndex<this.owner.getLayers().size()-1) ? this.owner.getLayers().get(this.layerIndex+1) : null;
+
+        counts.addNeuronCount(getTotalCount());
+
+        if (prevLayer != null) {
+            counts.addWeightCount(getCount() * prevLayer.getTotalCount());
+        }
+
+        int weightIndex, layerIndex;
+        if (theLayerIndex == this.owner.getLayers().size()-1 ) {
+            weightIndex = 0;
+            layerIndex = 0;
+        } else {
+            weightIndex = nextLayer.getWeightIndex()
+                    + (getTotalCount() * nextLayer.getCount());
+            layerIndex = nextLayer.getLayerIndexReverse()
+                    + nextLayer.getTotalCount();
+        }
+
+        this.neuronIndex = layerIndex;
+        this.weightIndex = weightIndex;
     }
 
 
@@ -140,6 +161,45 @@ public class BasicLayer implements Layer {
     }
 
     @Override
+    public void computeGradient(GradientCalc calc) {
+        int currentLevel = getLayerIndexReverse();
+        Layer prev = this.owner.getPreviousLayer(this);
+        final int fromLayerIndex = prev.getNeuronIndex();
+        final int toLayerIndex = getNeuronIndex();
+        final int fromLayerSize = prev.getTotalCount();
+        final int toLayerSize = getCount();
+
+        final int index = getWeightIndex(); // this.weightIndex[currentLevel];
+        final ActivationFunction activation = getActivation();
+
+        // handle weights
+        // array references are made method local to avoid one indirection
+        final double[] layerDelta = calc.getLayerDelta();
+        final double[] weights = this.getOwner().getWeights();
+        final double[] layerOutput = this.owner.getLayerOutput();
+        final double[] layerSums = this.owner.getLayerSums();
+        int y = fromLayerIndex;
+        for (int yi = 0; yi < fromLayerSize; yi++) {
+            final double output = layerOutput[y];
+            double sum = 0;
+
+            int wi = index + yi;
+
+            for (int xi = 0; xi < toLayerSize; xi++, wi += fromLayerSize) {
+                int x = xi + toLayerIndex;
+
+                if( prev.isActive(yi) && isActive(xi) )
+                    calc.getGradients()[wi] += -(output * layerDelta[x]);
+                sum += weights[wi] * layerDelta[x];
+            }
+            layerDelta[y] = sum
+                    * (activation.derivativeFunction(layerSums[y], layerOutput[y]));
+
+            y++;
+        }
+    }
+
+    @Override
     public int getWeightIndex() {
         return this.weightIndex;
     }
@@ -150,9 +210,11 @@ public class BasicLayer implements Layer {
     }
 
     @Override
-    public int getLayerIndex() {
-        return this.layerIndex;
+    public int getLayerIndexReverse() {
+        return this.owner.getLayers().size() - 1 - this.layerIndex;
     }
+
+    public int getLayerIndex() { return this.layerIndex; }
 
     @Override
     public void trainingBatch(GenerateRandom rnd) {

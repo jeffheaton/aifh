@@ -1,6 +1,7 @@
 package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.ann.train.GradientCalc;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 public class Conv2DLayer implements Layer {
@@ -50,12 +51,17 @@ public class Conv2DLayer implements Layer {
     }
 
     @Override
-    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, int theNeuronIndex, int theWeightIndex) {
+    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, TempStructureCounts counts) {
 
     }
 
     @Override
     public void computeLayer() {
+
+    }
+
+    @Override
+    public void computeGradient(GradientCalc calc) {
 
     }
 
@@ -70,7 +76,7 @@ public class Conv2DLayer implements Layer {
     }
 
     @Override
-    public int getLayerIndex() {
+    public int getLayerIndexReverse() {
         return 0;
     }
 
@@ -92,5 +98,8 @@ public class Conv2DLayer implements Layer {
     public boolean hasBias() {
         return true;
     }
+
+    @Override
+    public int getLayerIndex() { return 0; }
 
 }

@@ -1,6 +1,7 @@
 package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.ann.train.GradientCalc;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
 
@@ -27,13 +28,18 @@ public class MaxPoolLayer implements Layer {
     }
 
     @Override
-    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, int theNeuronIndex, int theWeightIndex) {
+    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, TempStructureCounts counts) {
 
     }
 
 
     @Override
     public void computeLayer() {
+
+    }
+
+    @Override
+    public void computeGradient(GradientCalc calc) {
 
     }
 
@@ -48,9 +54,12 @@ public class MaxPoolLayer implements Layer {
     }
 
     @Override
-    public int getLayerIndex() {
+    public int getLayerIndexReverse() {
         return 0;
     }
+
+    @Override
+    public int getLayerIndex() { return 0; }
 
     @Override
     public void trainingBatch(GenerateRandom rnd) {

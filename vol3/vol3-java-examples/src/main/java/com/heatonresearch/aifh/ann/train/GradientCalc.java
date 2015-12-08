@@ -111,52 +111,10 @@ public class GradientCalc {
         // Propagate backwards (chain rule from calculus).
         for (int i = this.network.getLayers().size() - 1; i > 0; i--) {
             Layer layer = this.network.getLayers().get(i);
-            processLevel(layer);
+            layer.computeGradient(this);
         }
     }
 
-    /**
-     * Process one level.
-     *
-     * @param layer The level.
-     */
-    private void processLevel(final Layer layer) {
-        int currentLevel = layer.getLayerIndex();
-        Layer prev = this.network.getPreviousLayer(layer);
-        final int fromLayerIndex = prev.getNeuronIndex();
-        final int toLayerIndex = layer.getNeuronIndex();
-        final int fromLayerSize = prev.getTotalCount();
-        final int toLayerSize = layer.getCount();
-
-        final int index = layer.getWeightIndex(); // this.weightIndex[currentLevel];
-        final ActivationFunction activation = layer.getActivation();
-
-        // handle weights
-        // array references are made method local to avoid one indirection
-        final double[] layerDelta = this.layerDelta;
-        final double[] weights = this.weights;
-        final double[] layerOutput = this.layerOutput;
-        final double[] layerSums = this.layerSums;
-        int y = fromLayerIndex;
-        for (int yi = 0; yi < fromLayerSize; yi++) {
-            final double output = layerOutput[y];
-            double sum = 0;
-
-            int wi = index + yi;
-
-            for (int xi = 0; xi < toLayerSize; xi++, wi += fromLayerSize) {
-                int x = xi + toLayerIndex;
-
-                if( prev.isActive(yi) && layer.isActive(xi) )
-                this.gradients[wi] += -(output * layerDelta[x]);
-                sum += weights[wi] * layerDelta[x];
-            }
-            layerDelta[y] = sum
-                    * (activation.derivativeFunction(layerSums[y], layerOutput[y]));
-
-            y++;
-        }
-    }
 
     public void reset() {
         for (int i = 0; i < this.gradients.length; i++) {
@@ -189,5 +147,9 @@ public class GradientCalc {
                 l[1] += w * w;
             }
         }
+    }
+
+    public double[] getLayerDelta() {
+        return layerDelta;
     }
 }

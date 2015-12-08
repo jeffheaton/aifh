@@ -211,29 +211,8 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         for (int i = layers.size() - 1; i >= 0; i--) {
 
             final Layer layer = layers.get(i);
-            Layer prevLayer = (i>0) ? layers.get(i-1) : null;
-            Layer nextLayer = (i<layers.size()-1) ? layers.get(i+1) : null;
 
-            counts.addNeuronCount(layer.getTotalCount());
-
-            if (prevLayer != null) {
-                counts.addWeightCount(layer.getCount() * prevLayer.getTotalCount());
-            }
-
-            int weightIndex, layerIndex;
-            if (i == layers.size()-1 ) {
-                weightIndex = 0;
-                layerIndex = 0;
-            } else {
-                weightIndex = nextLayer.getWeightIndex()
-                        + (layer.getTotalCount() * nextLayer.getCount());
-                layerIndex = nextLayer.getLayerIndex()
-                        + nextLayer.getTotalCount();
-            }
-
-            // finalize the structure of the layer
-
-            layer.finalizeStructure(this,layers.size()-1-i,layerIndex, weightIndex);
+            layer.finalizeStructure(this, i, counts);
 
         }
 
