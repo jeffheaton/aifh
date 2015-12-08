@@ -32,7 +32,7 @@ public class LearnDigitsConv extends SimpleLearn {
 
         BasicNetwork network = new BasicNetwork();
         network.addLayer(new BasicLayer(null,true,inputShape));
-        network.addLayer(new Conv2DLayer(new ActivationReLU(),true,30,5,5));
+        network.addLayer(new Conv2DLayer(new ActivationReLU(),30,5,5));
         network.addLayer(new BasicLayer(new ActivationReLU(),true,25));
         network.addLayer(new BasicLayer(new ActivationSoftMax(),false,outputCount));
         network.finalizeStructure();
