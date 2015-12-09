@@ -18,6 +18,9 @@ import java.io.File;
  * http://yann.lecun.com/exdb/mnist/
  */
 public class LearnDigitsBackprop extends SimpleLearn {
+
+    public static final int MNIST_DEPTH = 3;
+
     public static void dump(double[] data) {
         int idx = 0;
         for(int i=0;i<28;i++) {
@@ -82,7 +85,7 @@ public class LearnDigitsBackprop extends SimpleLearn {
         }
 
         return new MNISTReader(
-                pathLabels.toString(),pathImages.toString());
+                pathLabels.toString(),pathImages.toString(),MNIST_DEPTH);
     }
 
     public void display(MNISTReader reader) {

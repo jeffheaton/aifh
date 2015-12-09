@@ -28,8 +28,13 @@ public class MNISTReader {
     private final int numCols;
     private final List<BasicData> data;
 
-    public MNISTReader(String labelFilename, String imageFilename) {
+    public MNISTReader(String labelFilename, String imageFilename, int depth) {
         try {
+            if( depth!=1 && depth!=3 ) {
+                throw new AIFHError("MNIST depth must be 1 or 3.");
+            }
+
+
             DataInputStream labels;
             DataInputStream images;
 
@@ -84,9 +89,13 @@ public class MNISTReader {
             int imageIndex = 0;
             for(int i=0;i<this.numLabels;i++) {
                 int label = labelsData[i];
-                double[] inputData = new double[imageVectorSize];
+                double[] inputData = new double[imageVectorSize*depth];
+                int outputIndex = 0;
                 for(int j=0;j<imageVectorSize;j++) {
-                    inputData[j] = ((double)(imagesData[imageIndex++]&0xff))/255.0;
+                    int t = imageIndex++;
+                    for(int k=0;k<depth;k++) {
+                        inputData[outputIndex++] = ((double) (imagesData[t] & 0xff)) / 255.0;
+                    }
                 }
                 double[] idealData = new double[10];
                 idealData[label] = 1.0;

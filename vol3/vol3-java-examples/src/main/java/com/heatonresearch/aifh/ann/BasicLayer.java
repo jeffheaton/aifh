@@ -155,4 +155,9 @@ public class BasicLayer extends WeightedLayer {
         return true;
     }
 
+    @Override
+    public int[] getDimensionCounts() {
+        return this.count;
+    }
+
 }

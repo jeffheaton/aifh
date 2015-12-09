@@ -31,4 +31,6 @@ public interface Layer {
 
     boolean hasBias();
 
+    int[] getDimensionCounts();
+
 }

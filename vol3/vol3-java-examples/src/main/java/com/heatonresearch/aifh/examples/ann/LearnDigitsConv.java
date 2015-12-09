@@ -1,7 +1,5 @@
 package com.heatonresearch.aifh.examples.ann;
 
-import com.heatonresearch.aifh.AIFH;
-import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.BasicLayer;
 import com.heatonresearch.aifh.ann.BasicNetwork;
 import com.heatonresearch.aifh.ann.Conv2DLayer;
@@ -9,11 +7,7 @@ import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSoftMax;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
 import com.heatonresearch.aifh.examples.learning.SimpleLearn;
-import com.heatonresearch.aifh.util.ArrayUtil;
-import com.heatonresearch.aifh.util.FileUtil;
 import com.heatonresearch.aifh.util.MNISTReader;
-
-import java.io.File;
 
 public class LearnDigitsConv extends SimpleLearn {
 

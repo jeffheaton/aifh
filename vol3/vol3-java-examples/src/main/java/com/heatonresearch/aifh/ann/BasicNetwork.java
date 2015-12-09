@@ -277,6 +277,10 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      */
     @Override
     public double[] computeRegression(double[] input) {
+        if( input.length!=getInputCount()) {
+            throw new AIFHError("Invalid input count("+ input.length+"), this network is designed for: "
+                    + getInputCount());
+        }
         double[] output = new double[getOutputCount()];
         compute(input,output);
         return output;

@@ -80,4 +80,9 @@ public class MaxPoolLayer implements Layer {
     public boolean hasBias() {
         return true;
     }
+
+    @Override
+    public int[] getDimensionCounts() {
+        return new int[0];
+    }
 }
