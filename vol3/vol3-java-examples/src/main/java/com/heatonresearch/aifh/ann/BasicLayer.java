@@ -64,22 +64,6 @@ public class BasicLayer extends WeightedLayer {
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        final StringBuilder result = new StringBuilder();
-        result.append("[");
-        result.append(this.getClass().getSimpleName());
-        result.append(": count=");
-        result.append(this.count);
-        result.append(",bias=").append(hasBias);
-
-        result.append("]");
-        return result.toString();
-    }
-
     @Override
     public void computeLayer() {
         computeLayer(0,0);
@@ -141,11 +125,32 @@ public class BasicLayer extends WeightedLayer {
 
     @Override
     public int getWeightDepthUnit() {
-        return 0;
+        Layer previousLayer = getOwner().getPreviousLayer(this);
+        int prevCount;
+        if( previousLayer instanceof Conv2DLayer ) {
+            prevCount = (((Conv2DLayer)previousLayer).getFilterColumns() *
+                    ((Conv2DLayer)previousLayer).getFilterRows());
+        } else {
+            if( previousLayer.getDimensionCounts().length==1) {
+                prevCount = previousLayer.getCount();
+            } else {
+                prevCount = previousLayer.getDimensionCounts()[0] * previousLayer.getDimensionCounts()[1];
+            }
+        }
+        if(previousLayer.hasBias()) {
+            prevCount++;
+        }
+
+
+        return prevCount * getNeuronDepthUnit();
     }
 
     @Override
     public int getNeuronDepthUnit() {
-        return 0;
+        if( this.count.length==3) {
+            return this.count[0] * this.count[1];
+        } else {
+            return this.count[0];
+        }
     }
 }

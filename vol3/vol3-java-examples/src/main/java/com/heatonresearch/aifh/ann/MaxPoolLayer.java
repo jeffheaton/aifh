@@ -85,4 +85,14 @@ public class MaxPoolLayer implements Layer {
     public int[] getDimensionCounts() {
         return new int[0];
     }
+
+    @Override
+    public int getWeightDepthUnit() {
+        return 0;
+    }
+
+    @Override
+    public int getNeuronDepthUnit() {
+        return 0;
+    }
 }

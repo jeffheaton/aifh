@@ -106,6 +106,19 @@ public abstract class WeightedLayer implements Layer {
         return this.activation;
     }
 
-    public abstract int getWeightDepthUnit();
-    public abstract int getNeuronDepthUnit();
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        final StringBuilder result = new StringBuilder();
+        result.append("[");
+        result.append(this.getClass().getSimpleName());
+        result.append(",count=").append(getCount());
+        result.append(",weightIndex=").append(getWeightIndex());
+        result.append(",neuronIndex=").append(getNeuronIndex());
+
+        result.append("]");
+        return result.toString();
+    }
 }

@@ -45,7 +45,8 @@ public class Conv2DLayer extends WeightedLayer {
 
     @Override
     public int getWeightDepthUnit() {
-        return 0;
+        Layer previousLayer = getOwner().getPreviousLayer(this);
+        return previousLayer.getNeuronDepthUnit() * getNeuronDepthUnit();
     }
 
     @Override
@@ -114,4 +115,7 @@ public class Conv2DLayer extends WeightedLayer {
     public void setStride(int stride) {
         this.stride = stride;
     }
+
+    public int getFilterRows() { return this.filterRows; }
+    public int getFilterColumns() { return this.filterColumns; }
 }

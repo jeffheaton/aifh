@@ -33,4 +33,7 @@ public interface Layer {
 
     int[] getDimensionCounts();
 
+    int getWeightDepthUnit();
+    int getNeuronDepthUnit();
+
 }

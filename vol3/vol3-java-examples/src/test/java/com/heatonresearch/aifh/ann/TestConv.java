@@ -43,7 +43,7 @@ public class TestConv {
         double[] output = network.computeRegression(input);
         Assert.assertEquals(2, output.length);
         Assert.assertArrayEquals(new double[] {
-                0.5886888873549091,
-                0.4113111126450909},output, AIFH.DEFAULT_PRECISION);
+                0.50772252335148,
+                0.49227747664851984},output, AIFH.DEFAULT_PRECISION);
     }
 }
