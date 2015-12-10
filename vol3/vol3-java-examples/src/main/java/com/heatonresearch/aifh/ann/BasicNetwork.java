@@ -63,7 +63,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         System.arraycopy(input, 0, this.layerOutput, sourceIndex,
                 this.inputCount);
 
-        for (int i = 0; i<this.layers.size() - 1; i++) {
+        for (int i = 1; i<this.layers.size(); i++) {
             this.layers.get(i).computeLayer();
         }
 

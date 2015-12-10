@@ -41,6 +41,34 @@ public abstract class WeightedLayer implements Layer {
         this.weightIndex = weightIndex;
     }
 
+    public void computeLayer(int inputOffset, int outputOffset) {
+        Layer prev = getOwner().getPreviousLayer(this);
+        final double[] weights = getOwner().getWeights();
+        int weightSize = getWeightDepthUnit();
+        int outputSize = getNeuronDepthUnit();
+
+        int index = getWeightIndex() + (inputOffset*weightSize);
+
+        // weight values
+        for (int ix = 0; ix < getCount(); ix++) {
+            int x = getNeuronIndex()+ix + (outputOffset * outputSize);
+            double sum = 0;
+
+            for (int y = 0; y < prev.getTotalCount(); y++) {
+                if(prev.isActive(ix) && isActive(y)) {
+                    sum += weights[index] * getOwner().getLayerOutput()[prev.getNeuronIndex()+y];
+                }
+                index++;
+            }
+            getOwner().getLayerSums()[x] = sum;
+            getOwner().getLayerOutput()[x] = sum;
+        }
+
+        getActivation().activationFunction(
+                getOwner().getLayerOutput(), getNeuronIndex(), getCount());
+    }
+
+
     @Override
     public int getWeightIndex() {
         return this.weightIndex;
@@ -77,4 +105,7 @@ public abstract class WeightedLayer implements Layer {
     public ActivationFunction getActivation() {
         return this.activation;
     }
+
+    public abstract int getWeightDepthUnit();
+    public abstract int getNeuronDepthUnit();
 }

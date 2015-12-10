@@ -82,30 +82,9 @@ public class BasicLayer extends WeightedLayer {
 
     @Override
     public void computeLayer() {
-        Layer next = getOwner().getNextLayer(this);
-        final double[] weights = getOwner().getWeights();
-
-        int index = next.getWeightIndex();
-
-        // weight values
-        for (int ix = 0; ix < next.getCount(); ix++) {
-            int x = next.getNeuronIndex()+ix;
-            double sum = 0;
-
-            for (int y = 0; y < getTotalCount(); y++) {
-                if(next.isActive(ix) && isActive(y)) {
-                    sum += weights[index] * getOwner().getLayerOutput()[getNeuronIndex()+y];
-                }
-                index++;
-            }
-            getOwner().getLayerSums()[x] = sum;
-            getOwner().getLayerOutput()[x] = sum;
-        }
-
-        next.getActivation().activationFunction(
-                getOwner().getLayerOutput(), next.getNeuronIndex(), next.getCount());
-
+        computeLayer(0,0);
     }
+
 
     @Override
     public void computeGradient(GradientCalc calc) {
@@ -160,4 +139,13 @@ public class BasicLayer extends WeightedLayer {
         return this.count;
     }
 
+    @Override
+    public int getWeightDepthUnit() {
+        return 0;
+    }
+
+    @Override
+    public int getNeuronDepthUnit() {
+        return 0;
+    }
 }

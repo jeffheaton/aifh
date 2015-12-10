@@ -12,7 +12,6 @@ public class Conv2DLayer extends WeightedLayer {
     private int filterColumns;
     private int padding = 0;
     private int stride = 1;
-
     private double outColumns;
     private double outRows;
     private int inDepth;
@@ -45,6 +44,16 @@ public class Conv2DLayer extends WeightedLayer {
     }
 
     @Override
+    public int getWeightDepthUnit() {
+        return 0;
+    }
+
+    @Override
+    public int getNeuronDepthUnit() {
+        return this.filterColumns * this.filterRows;
+    }
+
+    @Override
     public int getCount() {
         return this.filterRows * this.filterColumns * this.numFilters;
     }
@@ -57,38 +66,12 @@ public class Conv2DLayer extends WeightedLayer {
     @Override
     public void computeLayer() {
         Layer next = getOwner().getNextLayer(this);
-        final double[] weights = getOwner().getWeights();
 
         // Calculate the output for each filter (depth).
         for(int dOutput=0;dOutput<this.numFilters;dOutput++) {
-
             for (int dInput = 0; dInput < this.inDepth; dInput++) {
-                int x;
-                int y = -this.padding;
-
-                for (int ay = 0; ay < this.outColumns; y += this.stride, ay++) {
-                    x = -this.padding;
-                    for (int ax = 0; ax < this.outRows; x += this.stride, ax++) {
-
-                        int index = next.getWeightIndex();
-
-                        for (int ix = 0; ix < next.getCount(); ix++) {
-                            int xx = next.getNeuronIndex() + ix;
-                            double sum = 0;
-                            for (int yy = 0; yy < getTotalCount(); yy++) {
-                                sum += weights[index] * getOwner().getLayerOutput()[getNeuronIndex() + yy];
-                                index++;
-                            }
-                            getOwner().getLayerSums()[xx] = sum;
-                            getOwner().getLayerOutput()[xx] = sum;
-                        }
-
-                    }
-                }
+                computeLayer(dInput, dOutput);
             }
-
-            next.getActivation().activationFunction(
-                    getOwner().getLayerOutput(), next.getNeuronIndex(), next.getCount());
         }
     }
 
