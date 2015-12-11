@@ -66,46 +66,17 @@ public class BasicLayer extends WeightedLayer {
 
     @Override
     public void computeLayer() {
-        computeLayer(0,0);
+        Layer prev = getOwner().getPreviousLayer(this);
+        computeLayer(0,0, prev.getTotalCount(), getCount());
     }
 
 
     @Override
     public void computeGradient(GradientCalc calc) {
-        Layer prev = getOwner().getPreviousLayer(this);
-        final int fromLayerIndex = prev.getNeuronIndex();
-        final int toLayerIndex = getNeuronIndex();
+        final Layer prev = getOwner().getPreviousLayer(this);
         final int fromLayerSize = prev.getTotalCount();
         final int toLayerSize = getCount();
-
-        final int index = getWeightIndex(); // this.weightIndex[currentLevel];
-        final ActivationFunction activation = getActivation();
-
-        // handle weights
-        // array references are made method local to avoid one indirection
-        final double[] layerDelta = calc.getLayerDelta();
-        final double[] weights = this.getOwner().getWeights();
-        final double[] layerOutput = getOwner().getLayerOutput();
-        final double[] layerSums = getOwner().getLayerSums();
-        int y = fromLayerIndex;
-        for (int yi = 0; yi < fromLayerSize; yi++) {
-            final double output = layerOutput[y];
-            double sum = 0;
-
-            int wi = index + yi;
-
-            for (int xi = 0; xi < toLayerSize; xi++, wi += fromLayerSize) {
-                int x = xi + toLayerIndex;
-
-                if( prev.isActive(yi) && isActive(xi) )
-                    calc.getGradients()[wi] += -(output * layerDelta[x]);
-                sum += weights[wi] * layerDelta[x];
-            }
-            layerDelta[y] = sum
-                    * (activation.derivativeFunction(layerSums[y], layerOutput[y]));
-
-            y++;
-        }
+        this.computeGradient(calc,0,0,fromLayerSize,toLayerSize);
     }
 
     @Override

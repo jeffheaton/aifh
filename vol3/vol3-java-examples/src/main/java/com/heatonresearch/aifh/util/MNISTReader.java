@@ -91,10 +91,11 @@ public class MNISTReader {
                 int label = labelsData[i];
                 double[] inputData = new double[imageVectorSize*depth];
                 int outputIndex = 0;
-                for(int j=0;j<imageVectorSize;j++) {
-                    int t = imageIndex++;
-                    for(int k=0;k<depth;k++) {
-                        inputData[outputIndex++] = ((double) (imagesData[t] & 0xff)) / 255.0;
+                int t = imageIndex;
+                for(int k=0;k<depth;k++) {
+                    imageIndex = t;
+                    for (int j = 0; j < imageVectorSize; j++) {
+                        inputData[outputIndex++] = ((double) (imagesData[imageIndex++] & 0xff)) / 255.0;
                     }
                 }
                 double[] idealData = new double[10];

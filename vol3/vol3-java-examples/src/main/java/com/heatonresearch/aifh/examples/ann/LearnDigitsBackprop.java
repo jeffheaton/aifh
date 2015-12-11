@@ -28,7 +28,6 @@ public class LearnDigitsBackprop extends SimpleLearn {
             for(int j=0;j<28;j++) {
                 line.append(data[idx++]> AIFH.DEFAULT_PRECISION?"*":" ");
             }
-            System.out.println(line.toString());
         }
     }
 
@@ -57,8 +56,6 @@ public class LearnDigitsBackprop extends SimpleLearn {
             labelsFilename += ".gz";
             pathLabels = new File(path2,labelsFilename);
         }
-
-        System.out.println(new File(path,"train-images-idx3-ubyte.gz").getAbsoluteFile());
 
         if( !pathImages.exists() ) {
             // download

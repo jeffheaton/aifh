@@ -1,6 +1,7 @@
 package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.ann.train.GradientCalc;
 
 public abstract class WeightedLayer implements Layer {
     private int layerIndex;
@@ -41,7 +42,7 @@ public abstract class WeightedLayer implements Layer {
         this.weightIndex = weightIndex;
     }
 
-    public void computeLayer(int inputOffset, int outputOffset) {
+    public void computeLayer(int inputOffset, int outputOffset, int fromCount, int toCount) {
         Layer prev = getOwner().getPreviousLayer(this);
         final double[] weights = getOwner().getWeights();
         int weightSize = getWeightDepthUnit();
@@ -50,26 +51,64 @@ public abstract class WeightedLayer implements Layer {
         int index = getWeightIndex() + (inputOffset*weightSize);
 
         // weight values
-        for (int ix = 0; ix < getCount(); ix++) {
+        for (int ix = 0; ix < toCount; ix++) {
             int x = getNeuronIndex()+ix + (outputOffset * outputSize);
             double sum = 0;
 
-            for (int y = 0; y < prev.getTotalCount(); y++) {
+            for (int y = 0; y < fromCount; y++) {
                 if(prev.isActive(ix) && isActive(y)) {
                     sum += weights[index] * getOwner().getLayerOutput()[prev.getNeuronIndex()+y];
                 }
                 index++;
             }
-            getOwner().getLayerSums()[x] = sum;
-            getOwner().getLayerOutput()[x] = sum;
+            getOwner().getLayerSums()[x] += sum;
+            getOwner().getLayerOutput()[x] += sum;
         }
 
         getActivation().activationFunction(
-                getOwner().getLayerOutput(), getNeuronIndex(), getCount());
+                getOwner().getLayerOutput(), getNeuronIndex(), toCount);
+    }
+
+    public void computeGradient(GradientCalc calc, int inputOffset, int outputOffset, int fromLayerSize, int toLayerSize) {
+        Layer prev = getOwner().getPreviousLayer(this);
+        final int fromLayerIndex = prev.getNeuronIndex();
+        final int toLayerIndex = getNeuronIndex();
+        final int weightSize = getWeightDepthUnit();
+        final int outputSize = getNeuronDepthUnit();
+
+
+        final int index = getWeightIndex()+(weightSize*inputOffset); // this.weightIndex[currentLevel];
+        final ActivationFunction activation = getActivation();
+
+        // handle weights
+        // array references are made method local to avoid one indirection
+        final double[] layerDelta = calc.getLayerDelta();
+        final double[] weights = this.getOwner().getWeights();
+        final double[] layerOutput = getOwner().getLayerOutput();
+        final double[] layerSums = getOwner().getLayerSums();
+        int y = fromLayerIndex;
+        for (int yi = 0; yi < fromLayerSize; yi++) {
+            final double output = layerOutput[y];
+            double sum = 0;
+
+            int wi = index + yi;
+
+            for (int xi = 0; xi < toLayerSize; xi++, wi += fromLayerSize) {
+                int x = xi + toLayerIndex;
+
+                if (prev.isActive(yi) && isActive(xi))
+                    calc.getGradients()[wi] += -(output * layerDelta[x]);
+                sum += weights[wi] * layerDelta[x];
+            }
+            layerDelta[y] = sum
+                    * (activation.derivativeFunction(layerSums[y], layerOutput[y]));
+
+            y++;
+        }
     }
 
 
-    @Override
+        @Override
     public int getWeightIndex() {
         return this.weightIndex;
     }

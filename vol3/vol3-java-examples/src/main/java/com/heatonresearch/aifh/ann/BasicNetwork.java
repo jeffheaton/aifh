@@ -57,6 +57,8 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      *            Output will be placed here.
      */
     public void compute(final double[] input, final double[] output) {
+        clearOutput();
+
         final int sourceIndex = getNeuronCount()
                 - this.layers.get(0).getTotalCount();
 
@@ -220,6 +222,15 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         this.layerOutput = new double[counts.getNeuronCount()];
         this.layerSums = new double[counts.getNeuronCount()];
 
+        clearOutput();
+    }
+
+    public void clearOutput() {
+        // Clear all outputs to 0
+        for(int i=0;i<this.layerOutput.length;i++) {
+            this.layerOutput[i] = 0.0;
+            this.layerSums[i] = 0.0;
+        }
         // Init the output arrays by filling in bias values
         int index = 0;
         for (int i = 0; i < this.layers.size(); i++) {
