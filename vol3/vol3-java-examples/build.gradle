@@ -124,6 +124,13 @@ task(runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn bel
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task(runDigitsConvExample, group: 'examples', description: 'Chapter 10.  Convolution network for MNIST digits.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ann.LearnDigitsConv'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+
 task(runDigitsDropoutExample, group: 'examples', description: 'Chapter 12.  Dropout network for MNIST digits.',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.ann.LearnDigitsDropout'

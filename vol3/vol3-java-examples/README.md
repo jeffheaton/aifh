@@ -79,6 +79,9 @@ by chapter.
 	runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn belief neural network.',
 ```
 * Chapter 10: Convolutional Neural Networks
+```
+	runDigitsConvExample - Convolution network for MNIST digits.
+```
 * Chapter 11: Pruning and Model Selection
 * Chapter 12: Dropout and Regularization
 ```
