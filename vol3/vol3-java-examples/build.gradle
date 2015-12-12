@@ -130,6 +130,18 @@ task(runDigitsConvExample, group: 'examples', description: 'Chapter 10.  Convolu
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task(runListSearches, group: 'examples', description: 'Chapter 11.  Compare grid and random search.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.search.ListSearches'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runIrisModelSearchGrid, group: 'examples', description: 'Chapter 11.  Grid model search.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.search.IrisModelSearchGrid'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 
 task(runDigitsDropoutExample, group: 'examples', description: 'Chapter 12.  Dropout network for MNIST digits.',
         dependsOn: 'classes', type: JavaExec) {

@@ -1,5 +1,7 @@
 package com.heatonresearch.aifh.selection;
 
+import com.heatonresearch.aifh.randomize.GenerateRandom;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,5 +37,10 @@ public class CategorySearchAxis implements SearchAxis {
     @Override
     public Object currentState() {
         return this.categories.get(this.currentIndex);
+    }
+
+    @Override
+    public Object sample(GenerateRandom rnd) {
+        return this.categories.get(rnd.nextInt(this.categories.size()));
     }
 }

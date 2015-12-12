@@ -6,6 +6,7 @@ import java.util.List;
 public abstract class ModelSelection {
     private final List<SearchAxis> searchAxises = new ArrayList<SearchAxis>();
 
+
     public List<SearchAxis> getSearchAxises() {
         return searchAxises;
     }
@@ -17,4 +18,6 @@ public abstract class ModelSelection {
     public void addCategoryAxis(String[] list) {
         this.searchAxises.add(new CategorySearchAxis(list));
     }
+
+    public abstract Object[] next();
 }

@@ -83,6 +83,10 @@ by chapter.
 	runDigitsConvExample - Convolution network for MNIST digits.
 ```
 * Chapter 11: Pruning and Model Selection
+```
+	runListSearches - Compare grid and random search.
+	runIrisModelSearchGrid - Grid model search.
+```
 * Chapter 12: Dropout and Regularization
 ```
 	runDigitsDropoutExample - Chapter 12.  Dropout network for MNIST digits.

@@ -1,5 +1,7 @@
 package com.heatonresearch.aifh.selection;
 
+import com.heatonresearch.aifh.randomize.GenerateRandom;
+
 public class NumericSearchAxis implements SearchAxis {
     private final double start;
     private final double stop;
@@ -42,5 +44,10 @@ public class NumericSearchAxis implements SearchAxis {
     @Override
     public Object currentState() {
         return new Double(this.currentState);
+    }
+
+    @Override
+    public Object sample(GenerateRandom rnd) {
+        return rnd.nextDouble(this.start,this.stop);
     }
 }

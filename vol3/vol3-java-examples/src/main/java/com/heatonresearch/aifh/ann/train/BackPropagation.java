@@ -18,7 +18,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     private final List<BasicData> training;
     private final double learningRate;
     private final double momentum;
-    private final int batchSize = 500;
+    private int batchSize = 500;
     /**
      * If we are doing non-stochastic batches, this keeps track of where we were in the
      * training set elements.
@@ -193,5 +193,9 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
 
     public void setStochastic(GenerateRandom stochastic) {
         this.stochastic = stochastic;
+    }
+
+    public void setBatchSize(int batchSize) {
+        this.batchSize = batchSize;
     }
 }

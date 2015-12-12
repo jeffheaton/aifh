@@ -54,7 +54,7 @@ public class LearnIrisBackprop extends SimpleLearn {
 
             final BackPropagation train = new BackPropagation(network, trainingData, 0.001, 0.9);
 
-            performIterations(train, 100000, 0.01, true);
+            performIterations(train, 100000, 0.02, true);
             queryOneOfN(network, trainingData, species);
 
         } catch (Throwable t) {
