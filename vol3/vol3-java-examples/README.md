@@ -97,8 +97,13 @@ by chapter.
 ```
 * Chapter 14: Architecting Neural Networks
 * Chapter 15: Visualization
-* Chapter 16: Modelling with Neural Networks
-
+```
+I have not been able to find a good Java version of T-SNE, see Python example.  
+```
+* Chapter 16: Modeling with Neural Networks
+```
+	runModelKaggleOtto - Modeling, Kaggle Otto Group.
+```
 ##Running Examples - Command Line
 
 The easiest means for running the examples is to use the provided Gradle wrapper.  This does not require you to download

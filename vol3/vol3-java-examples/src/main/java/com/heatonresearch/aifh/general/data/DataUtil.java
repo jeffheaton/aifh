@@ -1,5 +1,6 @@
 package com.heatonresearch.aifh.general.data;
 
+import au.com.bytecode.opencsv.CSVWriter;
 import com.heatonresearch.aifh.error.ErrorCalculation;
 import com.heatonresearch.aifh.learning.ClassificationAlgorithm;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
@@ -7,8 +8,12 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 import com.heatonresearch.aifh.util.ArrayUtil;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Several dataset utilities.
@@ -81,6 +86,39 @@ public class DataUtil {
         }
         return (double)(total-correct) / (double)total;
 
+    }
+
+    public static void dumpCSV(File file, List<BasicData> dataset) throws IOException {
+        CSVWriter writer = new CSVWriter(new FileWriter(file));
+        int inputCount = dataset.get(0).getInput().length;
+        int outputCount = dataset.get(0).getIdeal().length;
+        int totalCount = inputCount + outputCount;
+
+        String[] headers = new String[totalCount];
+        int idx = 0;
+        for(int i=0;i<inputCount;i++) {
+            headers[idx++] = "x"+i;
+        }
+        for(int i=0;i<outputCount;i++) {
+            headers[idx++] = "y"+i;
+        }
+        writer.writeNext(headers);
+
+        String[] line = new String[totalCount];
+        for(int i = 0; i<dataset.size(); i++) {
+            BasicData item = dataset.get(i);
+
+            idx = 0;
+            for(int j=0;j<inputCount;j++) {
+                line[idx++] = String.format(Locale.ENGLISH, "%.2f", item.getInput()[j]);
+            }
+            for(int j=0;j<outputCount;j++) {
+                line[idx++] = String.format(Locale.ENGLISH, "%.2f", item.getIdeal()[j]);
+            }
+            writer.writeNext(line);
+
+        }
+        writer.close();
     }
 
 }

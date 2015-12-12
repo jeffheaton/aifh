@@ -142,14 +142,19 @@ task(runIrisModelSearchGrid, group: 'examples', description: 'Chapter 11.  Grid 
     classpath = sourceSets.main.runtimeClasspath
 }
 
-task(runPredictSunspots, group: 'examples', description: 'Chapter 12.  Predict sunspots.',
+task(runDigitsDropoutExample, group: 'examples', description: 'Chapter 12.  Dropout network for MNIST digits.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ann.LearnDigitsDropout'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runPredictSunspots, group: 'examples', description: 'Chapter 13.  Predict sunspots.',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.timeseries.PredictSunspots'
     classpath = sourceSets.main.runtimeClasspath
 }
 
-
-task(runDigitsDropoutExample, group: 'examples', description: 'Chapter 12.  Dropout network for MNIST digits.',
+task(runModelKaggleOtto, group: 'examples', description: 'Chapter 16.  Modeling, Kaggle Otto Group.',
         dependsOn: 'classes', type: JavaExec) {
     main = 'com.heatonresearch.aifh.examples.ann.LearnDigitsDropout'
     classpath = sourceSets.main.runtimeClasspath

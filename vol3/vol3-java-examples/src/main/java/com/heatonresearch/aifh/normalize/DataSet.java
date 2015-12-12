@@ -776,4 +776,20 @@ public class DataSet {
 
         }
     }
+
+    /**
+     * Extract a single column as a list of strings.
+     * @param columnIndex The column to extract.
+     * @return The list of strings for that column.
+     */
+    public List<String> columnAsList(int columnIndex) {
+        List<String> result = new ArrayList<>();
+
+        for (int rowIndex = 0; rowIndex < size(); rowIndex++) {
+            final Object[] raw = this.data.get(rowIndex);
+            result.add(raw[columnIndex].toString());
+        }
+
+        return result;
+    }
 }
