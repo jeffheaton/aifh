@@ -89,9 +89,12 @@ by chapter.
 ```
 * Chapter 12: Dropout and Regularization
 ```
-	runDigitsDropoutExample - Chapter 12.  Dropout network for MNIST digits.
+	runDigitsDropoutExample - Dropout network for MNIST digits.
 ```
 * Chapter 13: Time Series and Recurrent Networks
+```
+	runPredictSunspots - Predict sunspots
+```
 * Chapter 14: Architecting Neural Networks
 * Chapter 15: Visualization
 * Chapter 16: Modelling with Neural Networks
