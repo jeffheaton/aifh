@@ -36,27 +36,27 @@ public class UnsupervisedTrainDBN {
     /**
      * The network being trained.
      */
-    private DeepBeliefNetwork network;
+    private final DeepBeliefNetwork network;
 
     /**
      * The level bring trained.
      */
-    private int level;
+    private final int level;
 
     /**
      * The training cases.
      */
-    private double[][] trainingInput;
+    private final double[][] trainingInput;
 
     /**
      * The learning rate.
      */
-    private double learningRate;
+    private final double learningRate;
 
     /**
      * The number of cycles per iteration.
      */
-    private int k;
+    private final int k;
 
     /**
      * Construct a trainer for upsupervised training for the DBNN.
@@ -84,10 +84,10 @@ public class UnsupervisedTrainDBN {
         double[] prevLayerInput;
 
 
-        for (final double[] aTrainingInput : trainingInput) {
+        for (final double[] aTrainingInput : this.trainingInput) {
 
             // Perform layer-wise sample up to the layer being trained.
-            for (int l = 0; l <= level; l++) {
+            for (int l = 0; l <= this.level; l++) {
 
                 if (l == 0) {
                     layerInput = new double[this.network.getInputCount()];
@@ -112,7 +112,7 @@ public class UnsupervisedTrainDBN {
             }
 
             // Perform up-down algorithm.
-            contrastiveDivergence(this.network.getRBMLayers()[this.level], layerInput, this.learningRate, k);
+            contrastiveDivergence(this.network.getRBMLayers()[this.level], layerInput, this.learningRate, this.k);
         }
     }
 

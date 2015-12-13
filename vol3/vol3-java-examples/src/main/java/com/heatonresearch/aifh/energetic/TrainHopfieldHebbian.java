@@ -39,12 +39,12 @@ public class TrainHopfieldHebbian {
     /**
      * The network to train.
      */
-    private HopfieldNetwork network;
+    private final HopfieldNetwork network;
 
     /**
      * The summation matrix.
      */
-    private double[][] sumMatrix;
+    private final double[][] sumMatrix;
 
     /**
      * The count of patterns.
@@ -57,7 +57,7 @@ public class TrainHopfieldHebbian {
      */
     public TrainHopfieldHebbian(HopfieldNetwork theNetwork) {
         this.network = theNetwork;
-        this.sumMatrix = new double[network.getInputCount()][network.getInputCount()];
+        this.sumMatrix = new double[this.network.getInputCount()][this.network.getInputCount()];
     }
 
     /**

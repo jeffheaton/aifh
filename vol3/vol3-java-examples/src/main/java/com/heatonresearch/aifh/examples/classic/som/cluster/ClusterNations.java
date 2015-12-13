@@ -57,12 +57,12 @@ public class ClusterNations extends JFrame implements Runnable {
     public static final double END_RATE = 0.001;
 
 
-    private HexPanel map;
-    private SelfOrganizingMap network;
-    private Thread thread;
-    private BasicTrainSOM train;
+    private final HexPanel map;
+    private final SelfOrganizingMap network;
+    private final Thread thread;
+    private final BasicTrainSOM train;
     private NeighborhoodRBF gaussian;
-    private int buckets;
+    private final int buckets;
     private List<BasicData> trainingData;
 
     public ClusterNations() {
@@ -75,19 +75,19 @@ public class ClusterNations extends JFrame implements Runnable {
 
         this.buckets = WIDTH * HEIGHT;
         this.network = new SelfOrganizingMap(3,this.buckets);
-        network.reset();
+        this.network.reset();
 
         this.gaussian = new NeighborhoodRBF(RBFEnum.Gaussian,WIDTH,HEIGHT);
         this.gaussian.setHexagon(true);
-        this.train = new BasicTrainSOM(this.network, 0.01, this.trainingData, gaussian);
+        this.train = new BasicTrainSOM(this.network, 0.01, this.trainingData, this.gaussian);
         this.train.setAutoDecay(CYCLES,START_RATE,END_RATE,START_WIDTH,END_WIDTH);
-        train.setForceWinner(false);
+        this.train.setForceWinner(false);
 
-        this.getContentPane().add(map = new HexPanel(this.network,32,WIDTH,HEIGHT));
+        this.getContentPane().add(this.map = new HexPanel(this.network,32,WIDTH,HEIGHT));
         this.map.setDisplayNumbers(true);
 
         this.thread = new Thread(this);
-        thread.start();
+        this.thread.start();
     }
 
     /**
@@ -136,10 +136,10 @@ public class ClusterNations extends JFrame implements Runnable {
         }
 
 
-        for(int i=0;i<buckets;i++) {
+        for(int i = 0; i< this.buckets; i++) {
             List<String> nations = new ArrayList<>();
-            for(BasicData nation: trainingData) {
-                if( network.classify(nation.getInput())==i ) {
+            for(BasicData nation: this.trainingData) {
+                if(this.network.classify(nation.getInput())==i ) {
                     nations.add(nation.getLabel());
                 }
             }

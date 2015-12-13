@@ -41,7 +41,7 @@ public abstract class AbstractBoxMuller extends AbstractGenerateRandom {
     /**
      * Should we use the last value.
      */
-    private boolean useLast = false;
+    private boolean useLast;
 
     /**
      * The mean.

@@ -146,9 +146,9 @@ public class BasicTrainSOM  {
      */
     private double radius;
 
-    private List<BasicData> training;
+    private final List<BasicData> training;
 
-    private double error = 0;
+    private double error;
 
     /**
      * Create an instance of competitive training.

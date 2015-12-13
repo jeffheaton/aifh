@@ -89,7 +89,7 @@ public class RestrictedBoltzmannMachine {
 	public RestrictedBoltzmannMachine(HiddenLayer theLayer) {
         this.layer = theLayer;
         this.owner = theLayer.getOwner();
-        this.hBias = layer.getBias();
+        this.hBias = this.layer.getBias();
         this.vBias = new double[getVisibleCount()];
 	}
 
@@ -118,20 +118,20 @@ public class RestrictedBoltzmannMachine {
      * @return Hidden biases.
      */
     public double[] getBiasH() {
-        return hBias;
+        return this.hBias;
     }
 
     /**
      * @return Visable biases.
      */
     public double[] getBiasV() {
-        return vBias;
+        return this.vBias;
     }
 
     /**
      * @return The network owner.
      */
     public DeepBeliefNetwork getOwner() {
-        return owner;
+        return this.owner;
     }
 }

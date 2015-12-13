@@ -56,7 +56,7 @@ public class Connection {
      * @return The weight.
      */
     public double getWeight() {
-        return weight;
+        return this.weight;
     }
 
     /**
@@ -71,7 +71,7 @@ public class Connection {
      * @return The parent neuron.
      */
     public Neuron getParent() {
-        return parent;
+        return this.parent;
     }
 
     /**

@@ -51,7 +51,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
      * If we are doing non-stochastic batches, this keeps track of where we were in the
      * training set elements.
      */
-    private int currentIndex = 0;
+    private int currentIndex;
 
     /**
      * Should we use stochastic gradient descent (SGD)?  If so, this holds the random number
@@ -61,7 +61,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
 
     private final GradientCalc gradients;
     private final double[] lastDelta;
-    private ErrorCalculation errorCalc = new ErrorCalculationMSE();
+    private final ErrorCalculation errorCalc = new ErrorCalculationMSE();
     private double currentError = 1.0;
     private double l1;
     private double l2;
@@ -106,7 +106,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
             } else {
                 element = this.training.get(i);
             }
-            this.gradients.process(errorCalc, element.getInput(), element.getIdeal());
+            this.gradients.process(this.errorCalc, element.getInput(), element.getIdeal());
         }
 
         if(this.currentIndex>this.training.size() || this.batchSize == 0) {
@@ -180,7 +180,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     }
 
     public boolean isNesterovUpdate() {
-        return nesterovUpdate;
+        return this.nesterovUpdate;
     }
 
     public void setNesterovUpdate(boolean nesterovUpdate) {
@@ -204,19 +204,19 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     }
 
     public int getBatchSize() {
-        return batchSize;
+        return this.batchSize;
     }
 
     public double getLearningRate() {
-        return learningRate;
+        return this.learningRate;
     }
 
     public double getMomentum() {
-        return momentum;
+        return this.momentum;
     }
 
     public GenerateRandom getStochastic() {
-        return stochastic;
+        return this.stochastic;
     }
 
     public void setStochastic(GenerateRandom stochastic) {

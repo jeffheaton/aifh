@@ -35,10 +35,10 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 public class Conv2DLayer extends WeightedLayer {
 
-    private int numFilters;
-    private int filterRows;
-    private int filterColumns;
-    private int padding = 0;
+    private final int numFilters;
+    private final int filterRows;
+    private final int filterColumns;
+    private int padding;
     private int stride = 1;
     private double outColumns;
     private double outRows;
@@ -147,7 +147,7 @@ public class Conv2DLayer extends WeightedLayer {
     }
 
     public int getPadding() {
-        return padding;
+        return this.padding;
     }
 
     public void setPadding(int padding) {
@@ -155,7 +155,7 @@ public class Conv2DLayer extends WeightedLayer {
     }
 
     public int getStride() {
-        return stride;
+        return this.stride;
     }
 
     public void setStride(int stride) {

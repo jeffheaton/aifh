@@ -73,7 +73,7 @@ public class BestMatchingUnit {
         int result = 0;
 
         if( input.length>this.som.getInputCount() ) {
-            throw new AIFHError("Can't train SOM with input size of " + som.getInputCount()
+            throw new AIFHError("Can't train SOM with input size of " + this.som.getInputCount()
                     + " with input data of count "
                     + input.length);
         }

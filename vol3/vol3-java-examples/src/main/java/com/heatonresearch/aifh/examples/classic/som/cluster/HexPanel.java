@@ -39,16 +39,16 @@ import java.awt.*;
  * http://www.redblobgames.com/grids/hexagons/
  */
 public class HexPanel extends JPanel {
-    private SelfOrganizingMap network;
-    private int width;
-    private int height;
-    private int cellSize;
-    private boolean displayNumbers = false;
+    private final SelfOrganizingMap network;
+    private final int width;
+    private final int height;
+    private final int cellSize;
+    private boolean displayNumbers;
 
-    private double unit;
-    private double sq75;
-    private double hSpace;
-    private double vSpace;
+    private final double unit;
+    private final double sq75;
+    private final double hSpace;
+    private final double vSpace;
 
     public HexPanel(SelfOrganizingMap theNetwork, int theCellSize, int theWidth, int theHeight)
     {
@@ -58,7 +58,7 @@ public class HexPanel extends JPanel {
         this.cellSize = theCellSize;
 
         this.unit = this.cellSize;
-        this.sq75 = Math.sqrt(0.75) * unit;
+        this.sq75 = Math.sqrt(0.75) * this.unit;
         this.hSpace = this.unit*3.0;
         this.vSpace = this.sq75;
     }
@@ -73,7 +73,7 @@ public class HexPanel extends JPanel {
     }
 
     public boolean isDisplayNumbers() {
-        return displayNumbers;
+        return this.displayNumbers;
     }
 
     public void setDisplayNumbers(final boolean displayNumbers) {
@@ -93,29 +93,29 @@ public class HexPanel extends JPanel {
         yPoints[0] = (int)currentY;
 
         // point 1
-        currentY-=sq75;
-        currentX+=unit/2;
+        currentY-= this.sq75;
+        currentX+= this.unit /2;
         xPoints[1] = (int)currentX;
         yPoints[1] = (int)currentY;
 
         // point 2
-        currentX+=unit;
+        currentX+= this.unit;
         xPoints[2] = (int)currentX;
         yPoints[2] = (int)currentY;
 
         // point 3
         currentY=y;
-        currentX+=unit/2;
+        currentX+= this.unit /2;
         xPoints[3] = (int)currentX;
         yPoints[3] = (int)currentY;
 
         // point 4
         xPoints[4] = xPoints[2];
-        yPoints[4] = (int)(y+sq75);
+        yPoints[4] = (int)(y+ this.sq75);
 
         // point 5
         xPoints[5] = xPoints[1];
-        yPoints[5] = (int)(y+sq75);
+        yPoints[5] = (int)(y+ this.sq75);
 
         // point 6
         xPoints[6] = x;
@@ -156,13 +156,13 @@ public class HexPanel extends JPanel {
                 int green = convertColor(weights.get(index,1));
                 int blue = convertColor(weights.get(index,2));
                 Color c = new Color(red,green,blue);
-                int xLoc = (int)((x*hSpace)+(indent?(unit*1.5):0));
-                int yLoc = (int)((y*vSpace)+this.sq75);
+                int xLoc = (int)((x* this.hSpace)+(indent?(this.unit *1.5):0));
+                int yLoc = (int)((y* this.vSpace)+this.sq75);
                 drawHexagon(g,c,xLoc,yLoc);
 
                 if( isDisplayNumbers() ) {
                     g.setColor(Color.BLACK);
-                    g.drawString(""+idx,(int)(xLoc+unit), yLoc);
+                    g.drawString(""+idx,(int)(xLoc+ this.unit), yLoc);
                     idx++;
                 }
             }

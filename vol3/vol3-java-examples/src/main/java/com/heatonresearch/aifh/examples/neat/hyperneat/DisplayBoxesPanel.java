@@ -48,12 +48,12 @@ public class DisplayBoxesPanel extends JPanel {
      * The serial.
      */
     private static final long serialVersionUID = 1L;
-    private BoxTrialCase testCase = new BoxTrialCase(new Random());
-    private NEATPopulation pop;
+    private final BoxTrialCase testCase = new BoxTrialCase(new Random());
+    private final NEATPopulation pop;
     private int resolution = BoxTrialCase.BASE_RESOLUTION;
 
     public DisplayBoxesPanel(NEATPopulation thePopulation) {
-        testCase.initTestCase(0);
+        this.testCase.initTestCase(0);
         this.pop = thePopulation;
     }
 
@@ -61,27 +61,27 @@ public class DisplayBoxesPanel extends JPanel {
     public void paint(Graphics g) {
 
         NEATGenome genome = (NEATGenome) this.pop.getBestGenome();
-        Substrate substrate = SubstrateFactory.factorSandwichSubstrate(resolution, resolution);
+        Substrate substrate = SubstrateFactory.factorSandwichSubstrate(this.resolution, this.resolution);
         HyperNEATCODEC codec = new HyperNEATCODEC();
         NEATNetwork phenotype = (NEATNetwork) codec.decode(this.pop, substrate, genome);
 
         TrialEvaluation trial = new TrialEvaluation(phenotype, this.testCase);
-        IntPair actualPos = trial.query(resolution);
+        IntPair actualPos = trial.query(this.resolution);
 
         // clear what was there before
         g.setColor(Color.white);
         g.fillRect(0, 0, getWidth(), getHeight());
 
         //
-        int boxWidth = this.getWidth()/resolution;
-        int boxHeight = this.getHeight()/resolution;
-        double delta = 2.0 / resolution;
+        int boxWidth = this.getWidth()/ this.resolution;
+        int boxHeight = this.getHeight()/ this.resolution;
+        double delta = 2.0 / this.resolution;
         int index = 0;
 
-        for(int row = 0; row < resolution; row++ ) {
+        for(int row = 0; row < this.resolution; row++ ) {
             double y = -1 + (row*delta);
             int boxY = row * boxHeight;
-            for(int col = 0; col< resolution; col++ ) {
+            for(int col = 0; col< this.resolution; col++ ) {
                 double x = -1 + (col*delta);
                 int boxX = col*boxWidth;
 

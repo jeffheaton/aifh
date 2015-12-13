@@ -76,11 +76,11 @@ public class LearnIrisAnnealROC extends JFrame implements ActionListener {
         }
 
         public double getX() {
-            return x;
+            return this.x;
         }
 
         public double getY() {
-            return y;
+            return this.y;
         }
 
         public boolean equal(RocPair other) {
@@ -134,10 +134,10 @@ public class LearnIrisAnnealROC extends JFrame implements ActionListener {
         this.training = loadIrisData();
 
         this.network = new RBFNetwork(4, 4, 1);
-        network.reset(new MersenneTwisterGenerateRandom());
+        this.network.reset(new MersenneTwisterGenerateRandom());
 
-        final ScoreFunction score = new ScoreRegressionData(training);
-        this.trainer = new TrainAnneal(network, score);
+        final ScoreFunction score = new ScoreRegressionData(this.training);
+        this.trainer = new TrainAnneal(this.network, score);
     }
 
     private List<BasicData> loadIrisData() {

@@ -98,7 +98,7 @@ public class LearnAutoMPGBackprop extends SimpleLearn {
             final BackPropagation train = new BackPropagation(network, trainingData, 0.000001, 0.9);
 
             performIterationsEarlyStop(train, network, validationData, 20, new ErrorCalculationMSE());
-            this.query(network, validationData);
+            query(network, validationData);
 
         } catch (Throwable t) {
             t.printStackTrace();

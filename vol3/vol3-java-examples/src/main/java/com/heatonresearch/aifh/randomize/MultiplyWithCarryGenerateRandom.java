@@ -44,7 +44,7 @@ package com.heatonresearch.aifh.randomize;
 public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
     private long c;
     private long multiplier;
-    private int n = 0;
+    private int n;
     private int r;
     private final long[] seed;
 
@@ -88,12 +88,12 @@ public class MultiplyWithCarryGenerateRandom extends AbstractBoxMuller {
     }
 
     private int next(final int bits) {
-        final long t = multiplier * seed[n] + c;
+        final long t = this.multiplier * this.seed[this.n] + this.c;
         final long d32 = t >>> 32;
-        c = d32 + ((t & 0xFFFFFFFFL) >= 0xFFFFFFFFL - d32 ? 1L : 0L);
-        seed[n] = 0xFFFFFFFEL - (t & 0xFFFFFFFFL) - (c - d32 << 32) - c & 0xFFFFFFFFL;
-        final long result = seed[n];
-        n = n + 1 & r - 1;
+        this.c = d32 + ((t & 0xFFFFFFFFL) >= 0xFFFFFFFFL - d32 ? 1L : 0L);
+        this.seed[this.n] = 0xFFFFFFFEL - (t & 0xFFFFFFFFL) - (this.c - d32 << 32) - this.c & 0xFFFFFFFFL;
+        final long result = this.seed[this.n];
+        this.n = this.n + 1 & this.r - 1;
         return (int) (result >>> 32 - bits);
     }
 

@@ -84,7 +84,7 @@ public class PredictSunspots extends SimpleLearn {
         }
 
         // timseries encode
-        List<BasicData> result = TimeSeriesUtil.slidingWindow(dataset,INPUT_WINDOW,1,new int[]{0},new int[]{0});
+        List<BasicData> result = TimeSeriesUtil.slidingWindow(dataset, this.INPUT_WINDOW,1,new int[]{0},new int[]{0});
 
         return result;
     }
@@ -94,7 +94,7 @@ public class PredictSunspots extends SimpleLearn {
             List<BasicData> trainingData = loadSunspots();
 
             BasicNetwork network = new BasicNetwork();
-            network.addLayer(new BasicLayer(null,true,INPUT_WINDOW));
+            network.addLayer(new BasicLayer(null,true, this.INPUT_WINDOW));
             network.addLayer(new BasicLayer(new ActivationReLU(),true,50));
             network.addLayer(new BasicLayer(new ActivationLinear(),false,1));
             network.finalizeStructure();

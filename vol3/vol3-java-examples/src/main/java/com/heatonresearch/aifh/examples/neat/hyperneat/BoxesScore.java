@@ -80,8 +80,8 @@ public class BoxesScore implements CalculateScore {
     private final double pixelSize;
 
     public BoxesScore(int theResolution) {
-        resolution = theResolution;
-        pixelSize = EDGE_LEN / theResolution;
+        this.resolution = theResolution;
+        this.pixelSize = EDGE_LEN / theResolution;
     }
 
     @Override
@@ -107,8 +107,8 @@ public class BoxesScore implements CalculateScore {
     }
 
     private double calcRealDistanceSquared(IntPair a, IntPair b) {
-        double xdelta = (a.getX() - b.getX()) * pixelSize;
-        double ydelta = (a.getY() - b.getY()) * pixelSize;
+        double xdelta = (a.getX() - b.getX()) * this.pixelSize;
+        double ydelta = (a.getY() - b.getY()) * this.pixelSize;
         return xdelta * xdelta + ydelta * ydelta;
     }
 

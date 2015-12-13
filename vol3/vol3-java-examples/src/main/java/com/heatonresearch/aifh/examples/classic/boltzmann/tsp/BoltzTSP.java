@@ -66,7 +66,7 @@ public class BoltzTSP {
 	public static final int NUM_CITIES = 4;
 	public static final int NEURON_COUNT = NUM_CITIES * NUM_CITIES;
 
-	private double gamma = 7;
+	private final double gamma = 7;
 	private double[][] distance;		
 
 	public double sqr(double x) {
@@ -87,7 +87,7 @@ public class BoltzTSP {
 				y1 = Math.sin(alpha1);
 				x2 = Math.cos(alpha2);
 				y2 = Math.sin(alpha2);
-				distance[n1][n2] = Math.sqrt(sqr(x1 - x2) + sqr(y1 - y2));
+				this.distance[n1][n2] = Math.sqrt(sqr(x1 - x2) + sqr(y1 - y2));
 			}
 		}		
 	}
@@ -128,7 +128,7 @@ public class BoltzTSP {
 				if (data[((n1 + 1) % NUM_CITIES) * NUM_CITIES + n3]>0)
 					break;
 			}
-			result += distance[n2][n3];
+			result += this.distance[n2][n3];
 		}
 		return result;
 	}
@@ -173,16 +173,16 @@ public class BoltzTSP {
 							int predTargetTour = (targetTour == 0 ? NUM_CITIES - 1 : targetTour - 1);
 							int succTargetTour = (targetTour == NUM_CITIES - 1 ? 0 : targetTour + 1);
 							if ((sourceTour == targetTour) || (sourceCity == targetCity)) {
-                                weight = -gamma;
+                                weight = -this.gamma;
                             }
 							else if ((sourceTour == predTargetTour) || (sourceTour == succTargetTour)) {
-                                weight = -distance[sourceCity][targetCity];
+                                weight = -this.distance[sourceCity][targetCity];
                             }
 						}
 						logic.setWeight(sourceIndex, targetIndex, weight);
 					}
 				}
-				logic.getThreshold()[sourceIndex] = -gamma / 2;
+				logic.getThreshold()[sourceIndex] = -this.gamma / 2;
 			}
 		}
 	}

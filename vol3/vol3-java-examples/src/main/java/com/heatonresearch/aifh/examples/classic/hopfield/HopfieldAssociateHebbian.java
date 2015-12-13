@@ -47,13 +47,13 @@ import com.heatonresearch.aifh.energetic.TrainHopfieldHebbian;
  */
 public class HopfieldAssociateHebbian {
 
-    public final static int HEIGHT = 10;
-    public final static int WIDTH = 10;
+    public static final int HEIGHT = 10;
+    public static final int WIDTH = 10;
 
     /**
      * The neural network will learn these patterns.
      */
-    public final static String[][] PATTERN  = { {
+    public static final String[][] PATTERN  = { {
             "O O O O O ",
             " O O O O O",
             "O O O O O ",

@@ -44,22 +44,22 @@ public class SomColors extends JFrame implements Runnable {
     private static final long serialVersionUID = -6762179069967224817L;
     public static final int WIDTH = 50;
     public static final int HEIGHT = 50;
-    private MapPanel map;
-    private SelfOrganizingMap network;
-    private Thread thread;
-    private BasicTrainSOM train;
-    private NeighborhoodRBF gaussian;
+    private final MapPanel map;
+    private final SelfOrganizingMap network;
+    private final Thread thread;
+    private final BasicTrainSOM train;
+    private final NeighborhoodRBF gaussian;
 
     public SomColors() {
         this.setSize(640, 480);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.network = createNetwork();
-        this.getContentPane().add(map = new MapPanel(this.network,8,WIDTH,HEIGHT));
+        this.getContentPane().add(this.map = new MapPanel(this.network,8,WIDTH,HEIGHT));
         this.gaussian = new NeighborhoodRBF(RBFEnum.Gaussian,WIDTH,HEIGHT);
-        this.train = new BasicTrainSOM(this.network, 0.01, null, gaussian);
-        train.setForceWinner(false);
+        this.train = new BasicTrainSOM(this.network, 0.01, null, this.gaussian);
+        this.train.setForceWinner(false);
         this.thread = new Thread(this);
-        thread.start();
+        this.thread.start();
     }
 
     public SelfOrganizingMap getNetwork() {

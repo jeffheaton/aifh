@@ -99,18 +99,18 @@ public class MNISTReader {
             this.numImages = images.readInt();
             this.numRows = images.readInt();
             this.numCols = images.readInt();
-            if (numLabels != numImages) {
+            if (this.numLabels != this.numImages) {
                 StringBuilder str = new StringBuilder();
                 str.append("Image file and label file do not contain the same number of entries.\n");
-                str.append("  Label file contains: " + numLabels + "\n");
-                str.append("  Image file contains: " + numImages + "\n");
+                str.append("  Label file contains: " + this.numLabels + "\n");
+                str.append("  Image file contains: " + this.numImages + "\n");
                 throw new AIFHError(str.toString());
             }
 
-            byte[] labelsData = new byte[numLabels];
+            byte[] labelsData = new byte[this.numLabels];
             labels.read(labelsData);
-            int imageVectorSize = numCols * numRows;
-            byte[] imagesData = new byte[numLabels * imageVectorSize];
+            int imageVectorSize = this.numCols * this.numRows;
+            byte[] imagesData = new byte[this.numLabels * imageVectorSize];
             images.read(imagesData);
 
             this.data = new ArrayList<>();
@@ -143,35 +143,35 @@ public class MNISTReader {
      * @return the numLabels
      */
     public int getNumLabels() {
-        return numLabels;
+        return this.numLabels;
     }
 
     /**
      * @return the numImages
      */
     public int getNumImages() {
-        return numImages;
+        return this.numImages;
     }
 
     /**
      * @return the numRows
      */
     public int getNumRows() {
-        return numRows;
+        return this.numRows;
     }
 
     /**
      * @return the numCols
      */
     public int getNumCols() {
-        return numCols;
+        return this.numCols;
     }
 
     /**
      * @return the data
      */
     public List<BasicData> getData() {
-        return data;
+        return this.data;
     }
 
 

@@ -34,7 +34,7 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 public class DropoutLayer extends BasicLayer {
 
     private double dropoutProbability;
-    private boolean[] active;
+    private final boolean[] active;
 
     public DropoutLayer(final ActivationFunction theActivation, boolean theHasBias, int theCount, double theDropout) {
         super(theActivation,theHasBias,theCount);
@@ -53,7 +53,7 @@ public class DropoutLayer extends BasicLayer {
     }
 
     public double getDropoutProbability() {
-        return dropoutProbability;
+        return this.dropoutProbability;
     }
 
     public void setDropoutProbability(double dropoutProbability) {
@@ -61,7 +61,7 @@ public class DropoutLayer extends BasicLayer {
     }
 
     public boolean[] getActive() {
-        return active;
+        return this.active;
     }
 
     @Override

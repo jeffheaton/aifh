@@ -71,7 +71,7 @@ public class GradientCalc {
      */
     private final double[] weights;
 
-    private GradientCalcOwner owner;
+    private final GradientCalcOwner owner;
 
     /**
      * The error function to use.
@@ -83,13 +83,13 @@ public class GradientCalc {
         this.network = theNetwork;
         this.errorFunction = ef;
 
-        this.layerDelta = new double[network.getLayerOutput().length];
-        this.gradients = new double[network.getWeights().length];
-        this.actual = new double[network.getOutputCount()];
+        this.layerDelta = new double[this.network.getLayerOutput().length];
+        this.gradients = new double[this.network.getWeights().length];
+        this.actual = new double[this.network.getOutputCount()];
 
-        this.weights = network.getWeights();
-        this.layerOutput = network.getLayerOutput();
-        this.layerSums = network.getLayerSums();
+        this.weights = this.network.getWeights();
+        this.layerOutput = this.network.getLayerOutput();
+        this.layerSums = this.network.getLayerSums();
         this.owner = theOwner;
     }
 
@@ -155,7 +155,7 @@ public class GradientCalc {
      * @return the gradients
      */
     public double[] getGradients() {
-        return gradients;
+        return this.gradients;
     }
 
     public void calculateRegularizationPenalty(double[] l) {
@@ -165,8 +165,8 @@ public class GradientCalc {
     }
 
     public void layerRegularizationPenalty(final int fromLayer, final double[] l) {
-        final int fromCount = network.getLayerTotalNeuronCount(fromLayer);
-        final int toCount = network.getLayers().get(fromLayer + 1).getCount();
+        final int fromCount = this.network.getLayerTotalNeuronCount(fromLayer);
+        final int toCount = this.network.getLayers().get(fromLayer + 1).getCount();
 
         for (int fromNeuron = 0; fromNeuron < fromCount; fromNeuron++) {
             for (int toNeuron = 0; toNeuron < toCount; toNeuron++) {
@@ -178,6 +178,6 @@ public class GradientCalc {
     }
 
     public double[] getLayerDelta() {
-        return layerDelta;
+        return this.layerDelta;
     }
 }

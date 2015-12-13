@@ -35,7 +35,7 @@ import java.util.List;
 
 public class CategorySearchAxis implements SearchAxis {
     private final List<String> categories = new ArrayList<String>();
-    private int currentIndex = 0;
+    private int currentIndex;
 
     public CategorySearchAxis(String[] catList) {
         for(String str:catList) {

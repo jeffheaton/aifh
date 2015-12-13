@@ -125,8 +125,8 @@ public class IrisModelSearchGrid {
 
         System.out.println(bestRun.toString());
 
-        if( globalBest==null || globalBest.compareTo(bestRun)>0 ) {
-            globalBest = bestRun;
+        if(this.globalBest ==null || this.globalBest.compareTo(bestRun)>0 ) {
+            this.globalBest = bestRun;
         }
     }
 

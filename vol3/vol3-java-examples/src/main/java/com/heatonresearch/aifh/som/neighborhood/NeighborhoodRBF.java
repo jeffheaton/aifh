@@ -224,7 +224,7 @@ public class NeighborhoodRBF implements NeighborhoodFunction {
 	}
 
     public boolean isHexagon() {
-        return hexagon;
+        return this.hexagon;
     }
 
     public void setHexagon(final boolean theHexagon) {

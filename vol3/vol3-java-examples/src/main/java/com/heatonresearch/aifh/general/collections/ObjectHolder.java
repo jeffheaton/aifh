@@ -63,6 +63,6 @@ public class ObjectHolder<T> implements Serializable {
      * @return the probability
      */
     public double getProbability() {
-        return probability;
+        return this.probability;
     }
 }

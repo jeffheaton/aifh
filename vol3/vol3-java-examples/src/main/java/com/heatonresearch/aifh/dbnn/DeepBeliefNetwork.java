@@ -46,17 +46,17 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
     /**
      * The hidden layers of the neural network.
      */
-    private HiddenLayer[] layers;
+    private final HiddenLayer[] layers;
 
     /**
      * The restricted boltzmann machines for the neural network, one for leach layer.
      */
-    private RestrictedBoltzmannMachine[] rbm;
+    private final RestrictedBoltzmannMachine[] rbm;
 
     /**
      * The output layer for the neural network.
      */
-    private DeepLayer outputLayer;
+    private final DeepLayer outputLayer;
 
     /**
      * The random number generator to use.
@@ -75,7 +75,7 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
         this.layers = new HiddenLayer[hidden.length];
         this.rbm = new RestrictedBoltzmannMachine[hidden.length];
 
-        for (int i = 0; i < rbm.length; i++) {
+        for (int i = 0; i < this.rbm.length; i++) {
             if (i == 0) {
                 inputSize = inputCount;
             } else {
@@ -94,7 +94,7 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
      * Randomize the weights of the neural network.
      */
     public void reset() {
-        for (int i = 0; i < rbm.length; i++) {
+        for (int i = 0; i < this.rbm.length; i++) {
 
             HiddenLayer layer = this.layers[i];
 
@@ -149,7 +149,7 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
      * @return The random number generator.
      */
     public GenerateRandom getRandom() {
-        return random;
+        return this.random;
     }
 
     /**
@@ -184,33 +184,33 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
         double output;
 
         for (int i = 0; i < this.layers.length; i++) {
-            layerInput = new double[layers[i].getOutputCount()];
+            layerInput = new double[this.layers[i].getOutputCount()];
 
-            for (int k = 0; k < layers[i].getOutputCount(); k++) {
+            for (int k = 0; k < this.layers[i].getOutputCount(); k++) {
                 output = 0.0;
 
-                for (int j = 0; j < layers[i].getInputCount(); j++) {
-                    output += layers[i].getWeights()[k][j] * prevLayerInput[j];
+                for (int j = 0; j < this.layers[i].getInputCount(); j++) {
+                    output += this.layers[i].getWeights()[k][j] * prevLayerInput[j];
                 }
-                output += layers[i].getBias()[k];
+                output += this.layers[i].getBias()[k];
                 layerInput[k] = sigmoid(output);
             }
 
             if (i < this.layers.length - 1) {
-                prevLayerInput = new double[layers[i].getOutputCount()];
-                System.arraycopy(layerInput, 0, prevLayerInput, 0, layers[i].getOutputCount());
+                prevLayerInput = new double[this.layers[i].getOutputCount()];
+                System.arraycopy(layerInput, 0, prevLayerInput, 0, this.layers[i].getOutputCount());
             }
         }
 
-        for (int i = 0; i < outputLayer.getOutputCount(); i++) {
+        for (int i = 0; i < this.outputLayer.getOutputCount(); i++) {
             result[i] = 0;
-            for (int j = 0; j < outputLayer.getInputCount(); j++) {
-                result[i] += outputLayer.getWeights()[i][j] * layerInput[j];
+            for (int j = 0; j < this.outputLayer.getInputCount(); j++) {
+                result[i] += this.outputLayer.getWeights()[i][j] * layerInput[j];
             }
-            result[i] += outputLayer.getBias()[i];
+            result[i] += this.outputLayer.getBias()[i];
         }
 
-        outputLayer.softmax(result);
+        this.outputLayer.softmax(result);
         return result;
     }
 

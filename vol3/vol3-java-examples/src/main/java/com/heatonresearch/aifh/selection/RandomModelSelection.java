@@ -47,7 +47,7 @@ public class RandomModelSelection extends ModelSelection {
     }
 
     public GenerateRandom getRandom() {
-        return rnd;
+        return this.rnd;
     }
 
     public void setRandom(GenerateRandom rnd) {

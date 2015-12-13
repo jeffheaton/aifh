@@ -82,7 +82,7 @@ public class ScoreRegressionData implements ScoreFunction {
      * @return The error calculation method.
      */
     public ErrorCalculation getErrorCalc() {
-        return errorCalc;
+        return this.errorCalc;
     }
 
     /**
@@ -98,7 +98,7 @@ public class ScoreRegressionData implements ScoreFunction {
      * @return The training data.
      */
     public List<BasicData> getTrainingData() {
-        return trainingData;
+        return this.trainingData;
     }
 
     /**

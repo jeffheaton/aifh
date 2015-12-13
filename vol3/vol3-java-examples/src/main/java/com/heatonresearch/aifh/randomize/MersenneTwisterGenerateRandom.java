@@ -69,16 +69,16 @@ public class MersenneTwisterGenerateRandom extends AbstractBoxMuller {
     }
 
     public void setSeed(final long seed) {
-        stateVector = new int[N];
+        this.stateVector = new int[N];
 
-        mag01 = new int[2];
-        mag01[0] = 0x0;
-        mag01[1] = MATRIX_A;
+        this.mag01 = new int[2];
+        this.mag01[0] = 0x0;
+        this.mag01[1] = MATRIX_A;
 
-        stateVector[0] = (int) seed;
-        for (mti = 1; mti < N; mti++) {
-            stateVector[mti] =
-                    (1812433253 * (stateVector[mti - 1] ^ (stateVector[mti - 1] >>> 30)) + mti);
+        this.stateVector[0] = (int) seed;
+        for (this.mti = 1; this.mti < N; this.mti++) {
+            this.stateVector[this.mti] =
+                    (1812433253 * (this.stateVector[this.mti - 1] ^ (this.stateVector[this.mti - 1] >>> 30)) + this.mti);
         }
     }
 
@@ -89,47 +89,47 @@ public class MersenneTwisterGenerateRandom extends AbstractBoxMuller {
         j = 0;
         k = (N > array.length ? N : array.length);
         for (; k != 0; k--) {
-            stateVector[i] = (stateVector[i] ^ ((stateVector[i - 1] ^ (stateVector[i - 1] >>> 30)) * 1664525)) + array[j] + j;
+            this.stateVector[i] = (this.stateVector[i] ^ ((this.stateVector[i - 1] ^ (this.stateVector[i - 1] >>> 30)) * 1664525)) + array[j] + j;
             i++;
             j++;
             if (i >= N) {
-                stateVector[0] = stateVector[N - 1];
+                this.stateVector[0] = this.stateVector[N - 1];
                 i = 1;
             }
             if (j >= array.length) j = 0;
         }
         for (k = N - 1; k != 0; k--) {
-            stateVector[i] = (stateVector[i] ^ ((stateVector[i - 1] ^ (stateVector[i - 1] >>> 30)) * 1566083941)) - i;
+            this.stateVector[i] = (this.stateVector[i] ^ ((this.stateVector[i - 1] ^ (this.stateVector[i - 1] >>> 30)) * 1566083941)) - i;
             i++;
             if (i >= N) {
-                stateVector[0] = stateVector[N - 1];
+                this.stateVector[0] = this.stateVector[N - 1];
                 i = 1;
             }
         }
-        stateVector[0] = 0x80000000;
+        this.stateVector[0] = 0x80000000;
     }
 
     protected int next(final int bits) {
         int y;
 
-        if (mti >= N) {
+        if (this.mti >= N) {
             int kk;
 
             for (kk = 0; kk < N - M; kk++) {
-                y = (stateVector[kk] & UPPER_MASK) | (stateVector[kk + 1] & LOWER_MASK);
-                stateVector[kk] = stateVector[kk + M] ^ (y >>> 1) ^ mag01[y & 0x1];
+                y = (this.stateVector[kk] & UPPER_MASK) | (this.stateVector[kk + 1] & LOWER_MASK);
+                this.stateVector[kk] = this.stateVector[kk + M] ^ (y >>> 1) ^ this.mag01[y & 0x1];
             }
             for (; kk < N - 1; kk++) {
-                y = (stateVector[kk] & UPPER_MASK) | (stateVector[kk + 1] & LOWER_MASK);
-                stateVector[kk] = stateVector[kk + (M - N)] ^ (y >>> 1) ^ mag01[y & 0x1];
+                y = (this.stateVector[kk] & UPPER_MASK) | (this.stateVector[kk + 1] & LOWER_MASK);
+                this.stateVector[kk] = this.stateVector[kk + (M - N)] ^ (y >>> 1) ^ this.mag01[y & 0x1];
             }
-            y = (stateVector[N - 1] & UPPER_MASK) | (stateVector[0] & LOWER_MASK);
-            stateVector[N - 1] = stateVector[M - 1] ^ (y >>> 1) ^ mag01[y & 0x1];
+            y = (this.stateVector[N - 1] & UPPER_MASK) | (this.stateVector[0] & LOWER_MASK);
+            this.stateVector[N - 1] = this.stateVector[M - 1] ^ (y >>> 1) ^ this.mag01[y & 0x1];
 
-            mti = 0;
+            this.mti = 0;
         }
 
-        y = stateVector[mti++];
+        y = this.stateVector[this.mti++];
         y ^= y >>> 11;
         y ^= (y << 7) & TEMPERING_MASK_B;
         y ^= (y << 15) & TEMPERING_MASK_C;

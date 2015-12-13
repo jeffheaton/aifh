@@ -66,16 +66,16 @@ public class NeighborhoodRBF1D implements NeighborhoodFunction {
 		switch(type)
 		{
 			case Gaussian:
-				this.radial = new GaussianFunction(1,params,0);
+				this.radial = new GaussianFunction(1, this.params,0);
 				break;
 			case InverseMultiquadric:
-				this.radial = new InverseMultiquadricFunction(1,params,0);
+				this.radial = new InverseMultiquadricFunction(1, this.params,0);
 				break;
 			case Multiquadric:
-				this.radial = new MultiquadricFunction(1,params,0);
+				this.radial = new MultiquadricFunction(1, this.params,0);
 				break;
 			case MexicanHat:
-				this.radial = new MexicanHatFunction(1,params,0);
+				this.radial = new MexicanHatFunction(1, this.params,0);
 				break;		
 			default:
 				throw new AIFHError("Unknown RBF type: " + type.toString());

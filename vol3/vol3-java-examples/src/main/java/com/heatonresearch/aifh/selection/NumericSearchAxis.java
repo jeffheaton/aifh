@@ -43,15 +43,15 @@ public class NumericSearchAxis implements SearchAxis {
     }
 
     public double getStart() {
-        return start;
+        return this.start;
     }
 
     public double getStop() {
-        return stop;
+        return this.stop;
     }
 
     public double getStep() {
-        return step;
+        return this.step;
     }
 
     @Override

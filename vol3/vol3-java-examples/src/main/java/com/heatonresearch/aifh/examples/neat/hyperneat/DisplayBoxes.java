@@ -44,16 +44,16 @@ public class DisplayBoxes extends JFrame implements ActionListener  {
      */
     private static final long serialVersionUID = 1L;
     public static final String[] RESOLUTIONS = { "11", "22", "33", "44", "55" };
-    private JComboBox resolution;
-    private DisplayBoxesPanel display;
-    private JButton newCase;
+    private final JComboBox resolution;
+    private final DisplayBoxesPanel display;
+    private final JButton newCase;
 
     public DisplayBoxes(NEATPopulation thePopulation) {
         setSize(400,400);
         setLayout(new BorderLayout());
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(this.resolution=new JComboBox(RESOLUTIONS));
-        buttonPanel.add(newCase=new JButton("New Case"));
+        buttonPanel.add(this.newCase =new JButton("New Case"));
         this.add(buttonPanel,BorderLayout.NORTH);
         this.display = new DisplayBoxesPanel(thePopulation);
         this.add(this.display, BorderLayout.CENTER);

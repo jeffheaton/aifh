@@ -87,7 +87,7 @@ public class SelfOrganizingMap {
         int result = -1;
 
         for (int i = 0; i < getOutputCount(); i++) {
-            double dist = calcDist.calculate(input, this.weights.getArray()[i]);
+            double dist = this.calcDist.calculate(input, this.weights.getArray()[i]);
             if (dist < minDist) {
                 minDist = dist;
                 result = i;

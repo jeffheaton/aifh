@@ -273,7 +273,7 @@ public class BoltzmannMachine extends EnergeticNetwork {
 	}
 
     public GenerateRandom getRandom() {
-        return random;
+        return this.random;
     }
 
     public void setRandom(final GenerateRandom random) {

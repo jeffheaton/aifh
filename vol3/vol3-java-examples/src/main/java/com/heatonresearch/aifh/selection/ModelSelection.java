@@ -36,7 +36,7 @@ public abstract class ModelSelection {
 
 
     public List<SearchAxis> getSearchAxises() {
-        return searchAxises;
+        return this.searchAxises;
     }
 
     public void addNumericAxis(double start, double stop, double step) {

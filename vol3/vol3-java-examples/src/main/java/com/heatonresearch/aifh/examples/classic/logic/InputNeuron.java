@@ -41,7 +41,7 @@ public class InputNeuron implements Neuron {
      * @return The current value of the input neuron.
      */
     public double getValue() {
-        return value;
+        return this.value;
     }
 
     /**

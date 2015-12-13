@@ -43,7 +43,7 @@ public class RegularNeuron implements Neuron {
     /**
      * The bias.
      */
-    private double bias;
+    private final double bias;
 
     /**
      * Construct the neuron.
@@ -74,6 +74,6 @@ public class RegularNeuron implements Neuron {
      * @return The parent neurons.
      */
     public List<Connection> getParents() {
-        return parents;
+        return this.parents;
     }
 }

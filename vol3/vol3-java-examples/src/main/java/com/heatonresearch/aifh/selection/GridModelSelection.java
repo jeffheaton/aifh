@@ -30,11 +30,11 @@ package com.heatonresearch.aifh.selection;
 
 public class GridModelSelection extends ModelSelection {
 
-    private boolean done = false;
+    private boolean done;
 
 
     public Object[] next() {
-        if( done ) {
+        if(this.done) {
             return null;
         }
 
@@ -48,7 +48,7 @@ public class GridModelSelection extends ModelSelection {
         while(getSearchAxises().get(idx).advance()) {
             idx++;
             if( idx>=getSearchAxises().size() ) {
-                done = true;
+                this.done = true;
                 break;
             }
         }

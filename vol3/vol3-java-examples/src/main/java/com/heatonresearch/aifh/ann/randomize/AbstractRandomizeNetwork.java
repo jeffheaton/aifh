@@ -39,7 +39,7 @@ public abstract class AbstractRandomizeNetwork implements RandomizeNetwork {
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
     public GenerateRandom getRnd() {
-        return rnd;
+        return this.rnd;
     }
 
     public void setRnd(GenerateRandom rnd) {

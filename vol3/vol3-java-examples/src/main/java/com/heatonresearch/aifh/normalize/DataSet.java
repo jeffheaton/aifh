@@ -189,7 +189,7 @@ public class DataSet {
      * @return The number of columns (or headers).
      */
     public int getHeaderCount() {
-        return headers.length;
+        return this.headers.length;
     }
 
     /**
@@ -536,7 +536,7 @@ public class DataSet {
      * @return The number of rows.
      */
     public int size() {
-        return data.size();
+        return this.data.size();
     }
 
     /**
@@ -709,7 +709,7 @@ public class DataSet {
     public void deleteUnknowns() {
         int rowIndex = 0;
         while (rowIndex < this.data.size()) {
-            final Object[] row = data.get(rowIndex);
+            final Object[] row = this.data.get(rowIndex);
             boolean remove = false;
             for (final Object aRow : row) {
                 if (aRow.toString().equals("?")) {
@@ -719,7 +719,7 @@ public class DataSet {
             }
 
             if (remove) {
-                data.remove(rowIndex);
+                this.data.remove(rowIndex);
             } else {
                 rowIndex++;
             }
@@ -732,13 +732,13 @@ public class DataSet {
      * @param col The column to delete.
      */
     public void deleteColumn(final int col) {
-        final String[] headers2 = new String[headers.length - 1];
+        final String[] headers2 = new String[this.headers.length - 1];
 
         // first, remove the header
         int h2Index = 0;
-        for (int i = 0; i < headers.length; i++) {
+        for (int i = 0; i < this.headers.length; i++) {
             if (i != col) {
-                headers2[h2Index++] = headers[i];
+                headers2[h2Index++] = this.headers[i];
             }
         }
         this.headers = headers2;
@@ -746,9 +746,9 @@ public class DataSet {
         // now process the data
         int rowIndex = 0;
         for (final Object[] row : this.data) {
-            final Object[] row2 = new Object[headers.length];
+            final Object[] row2 = new Object[this.headers.length];
             int r2Index = 0;
-            for (int i = 0; i <= headers.length; i++) {
+            for (int i = 0; i <= this.headers.length; i++) {
                 if (i != col) {
                     row2[r2Index++] = row[i];
                 }

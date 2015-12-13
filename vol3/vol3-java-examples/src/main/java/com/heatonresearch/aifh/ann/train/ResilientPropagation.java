@@ -46,11 +46,11 @@ public class ResilientPropagation implements GradientCalcOwner, LearningMethod {
     private final GradientCalc gradients;
     private final double[] lastDelta;
     private final double[] lastGradients;
-    private ErrorCalculation errorCalc = new ErrorCalculationMSE();
+    private final ErrorCalculation errorCalc = new ErrorCalculationMSE();
     private double currentError = 1.0;
     private double l1;
     private double l2;
-    private double[] updateValues;
+    private final double[] updateValues;
 
     /**
      * The POSITIVE ETA value. This is specified by the resilient propagation
@@ -100,7 +100,7 @@ public class ResilientPropagation implements GradientCalcOwner, LearningMethod {
 
         // Calculate gradients for entire training set, RPROP does not do online.
         for (BasicData element : this.training) {
-            this.gradients.process(errorCalc, element.getInput(), element.getIdeal());
+            this.gradients.process(this.errorCalc, element.getInput(), element.getIdeal());
         }
         this.currentError = this.errorCalc.calculate();
 

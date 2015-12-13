@@ -115,21 +115,21 @@ public class BasicData {
      * @return The input vector.
      */
     public double[] getInput() {
-        return input;
+        return this.input;
     }
 
     /**
      * @return The ideal vector.
      */
     public double[] getIdeal() {
-        return ideal;
+        return this.ideal;
     }
 
     /**
      * @return The label vector.
      */
     public String getLabel() {
-        return label;
+        return this.label;
     }
 
     /**

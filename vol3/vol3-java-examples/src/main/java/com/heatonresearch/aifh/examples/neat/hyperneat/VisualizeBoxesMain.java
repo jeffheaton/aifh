@@ -67,13 +67,13 @@ public class VisualizeBoxesMain extends JFrame implements Runnable,
      * The serial id.
      */
     private static final long serialVersionUID = 1L;
-    private JButton btnTraining;
-    private JButton btnExample;
+    private final JButton btnTraining;
+    private final JButton btnExample;
     private boolean trainingUnderway;
-    private JLabel labelIterations;
-    private JLabel labelError;
-    private JLabel labelSpecies;
-    private boolean requestStop = false;
+    private final JLabel labelIterations;
+    private final JLabel labelError;
+    private final JLabel labelSpecies;
+    private boolean requestStop;
     private NEATPopulation pop;
     private EvolutionaryAlgorithm train;
 
@@ -109,13 +109,13 @@ public class VisualizeBoxesMain extends JFrame implements Runnable,
     public void resetTraining() {
         Substrate substrate = SubstrateFactory.factorSandwichSubstrate(11, 11);
         BoxesScore score = new BoxesScore(11);
-        pop = new NEATPopulation(substrate, 500);
-        pop.setActivationCycles(4);
-        pop.reset();
-        train = NEATUtil.constructNEATTrainer(pop, score);
+        this.pop = new NEATPopulation(substrate, 500);
+        this.pop.setActivationCycles(4);
+        this.pop.reset();
+        this.train = NEATUtil.constructNEATTrainer(this.pop, score);
         OriginalNEATSpeciation speciation = new OriginalNEATSpeciation();
         speciation.setCompatibilityThreshold(1);
-        train.setSpeciation(speciation = new OriginalNEATSpeciation());
+        this.train.setSpeciation(speciation = new OriginalNEATSpeciation());
         // train.setThreadCount(1);
     }
 
@@ -141,7 +141,7 @@ public class VisualizeBoxesMain extends JFrame implements Runnable,
         this.requestStop = false;
         while (!this.requestStop && this.train.getError() < 110) {
             this.train.iteration();
-            this.labelError.setText(Format.formatDouble(train.getError(), 2));
+            this.labelError.setText(Format.formatDouble(this.train.getError(), 2));
             this.labelIterations.setText(Format.formatInteger(this.train
                     .getIteration()));
             this.labelSpecies.setText(Format.formatInteger(this.pop
@@ -174,7 +174,7 @@ public class VisualizeBoxesMain extends JFrame implements Runnable,
             handleTraining();
         }
         if (ev.getSource() == this.btnExample) {
-            DisplayBoxes display = new DisplayBoxes(pop);
+            DisplayBoxes display = new DisplayBoxes(this.pop);
             display.setVisible(true);
         }
     }

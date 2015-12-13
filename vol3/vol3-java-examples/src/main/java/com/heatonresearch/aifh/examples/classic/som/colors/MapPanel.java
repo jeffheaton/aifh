@@ -35,11 +35,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MapPanel extends JPanel {
-    private SelfOrganizingMap network;
-    private int width;
-    private int height;
-    private int cellSize;
-    private boolean displayNumbers = false;
+    private final SelfOrganizingMap network;
+    private final int width;
+    private final int height;
+    private final int cellSize;
+    private boolean displayNumbers;
 
     public MapPanel(SelfOrganizingMap theNetwork, int theCellSize, int theWidth, int theHeight)
     {
@@ -59,7 +59,7 @@ public class MapPanel extends JPanel {
     }
 
     public boolean isDisplayNumbers() {
-        return displayNumbers;
+        return this.displayNumbers;
     }
 
     public void setDisplayNumbers(final boolean displayNumbers) {

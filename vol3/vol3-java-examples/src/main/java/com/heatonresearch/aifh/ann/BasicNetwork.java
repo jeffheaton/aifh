@@ -169,7 +169,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      * @return the layerSums
      */
     public double[] getLayerSums() {
-        return layerSums;
+        return this.layerSums;
     }
 
     /**
@@ -231,16 +231,16 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
     }
 
     public void finalizeStructure() {
-        final int layerCount = layers.size();
+        final int layerCount = this.layers.size();
 
-        this.inputCount = layers.get(0).getCount();
-        this.outputCount = layers.get(layerCount - 1).getCount();
+        this.inputCount = this.layers.get(0).getCount();
+        this.outputCount = this.layers.get(layerCount - 1).getCount();
 
         TempStructureCounts counts = new TempStructureCounts();
 
-        for (int i = layers.size() - 1; i >= 0; i--) {
+        for (int i = this.layers.size() - 1; i >= 0; i--) {
 
-            final Layer layer = layers.get(i);
+            final Layer layer = this.layers.get(i);
 
             layer.finalizeStructure(this, i, counts);
 
@@ -368,7 +368,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
     }
 
     public boolean isNetworkTraining() {
-        return networkTraining;
+        return this.networkTraining;
     }
 
     public void setNetworkTraining(boolean networkTraining) {

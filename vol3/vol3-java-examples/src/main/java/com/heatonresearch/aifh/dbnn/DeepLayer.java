@@ -35,17 +35,17 @@ public class DeepLayer {
     /**
      * The weights of this layer.
      */
-    private double[][] weights;
+    private final double[][] weights;
 
     /**
      * The biases.
      */
-    private double[] bias;
+    private final double[] bias;
 
     /**
      * The network that owns this layer.
      */
-    private DeepBeliefNetwork owner;
+    private final DeepBeliefNetwork owner;
 
     /**
      * Construct the layer.

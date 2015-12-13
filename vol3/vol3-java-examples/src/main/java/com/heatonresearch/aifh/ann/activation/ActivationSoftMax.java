@@ -38,10 +38,6 @@ import org.encog.mathutil.BoundMath;
  */
 public class ActivationSoftMax implements ActivationFunction {
 
-	/**
-	 * The serial id.
-	 */
-	private static final long serialVersionUID = -960489243250457611L;
 
 	/**
 	 * The parameters.

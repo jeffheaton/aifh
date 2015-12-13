@@ -40,22 +40,22 @@ public class SupervisedTrainDBN implements LearningMethod {
     /**
      * The network to train.
      */
-    private DeepBeliefNetwork network;
+    private final DeepBeliefNetwork network;
 
     /**
      * The input (x) for the training.
      */
-    private double[][] trainingInput;
+    private final double[][] trainingInput;
 
     /**
      * The expected output (y, or labels).
      */
-    private double[][] trainingIdeal;
+    private final double[][] trainingIdeal;
 
     /**
      * The learning rate.
      */
-    private double learningRate;
+    private final double learningRate;
 
     /**
      * The error calculation to use.
@@ -173,7 +173,7 @@ public class SupervisedTrainDBN implements LearningMethod {
      * @return The error calculation method.
      */
     public ErrorCalculation getErrorCalc() {
-        return errorCalc;
+        return this.errorCalc;
     }
 
     /**

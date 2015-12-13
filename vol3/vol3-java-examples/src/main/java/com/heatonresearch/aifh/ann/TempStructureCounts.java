@@ -32,8 +32,8 @@ package com.heatonresearch.aifh.ann;
  * Created by jeff on 12/7/15.
  */
 public class TempStructureCounts {
-    int neuronCount = 0;
-    int weightCount = 0;
+    int neuronCount;
+    int weightCount;
 
     public int getNeuronCount() {
         return this.neuronCount;

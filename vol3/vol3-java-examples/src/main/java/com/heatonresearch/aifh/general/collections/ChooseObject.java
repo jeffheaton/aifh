@@ -57,7 +57,7 @@ public class ChooseObject<T> implements Serializable {
     public void finalizeStructure() {
         double[] d = new double[size()];
         for (int i = 0; i < size(); i++) {
-            d[i] = list.get(i).getProbability();
+            d[i] = this.list.get(i).getProbability();
         }
 
         this.chooser = new RandomChoice(d);
@@ -70,14 +70,14 @@ public class ChooseObject<T> implements Serializable {
      * @param opp         The object to add.
      */
     public void add(double probability, T opp) {
-        list.add(new ObjectHolder<>(opp, probability));
+        this.list.add(new ObjectHolder<>(opp, probability));
     }
 
     /**
      * @return The number of objects added.
      */
     public int size() {
-        return list.size();
+        return this.list.size();
     }
 
     /**

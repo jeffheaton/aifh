@@ -77,7 +77,7 @@ public abstract class AbstractRBF implements FnRBF {
      */
     @Override
     public final double getCenter(final int dimension) {
-        return this.params[indexCenters + dimension];
+        return this.params[this.indexCenters + dimension];
     }
 
     /**
@@ -93,7 +93,7 @@ public abstract class AbstractRBF implements FnRBF {
      */
     @Override
     public final double getWidth() {
-        return this.params[indexWidth];
+        return this.params[this.indexWidth];
     }
 
     /**
@@ -101,7 +101,7 @@ public abstract class AbstractRBF implements FnRBF {
      */
     @Override
     public final void setWidth(final double theWidth) {
-        this.params[indexWidth] = theWidth;
+        this.params[this.indexWidth] = theWidth;
     }
 
     /**
@@ -135,6 +135,6 @@ public abstract class AbstractRBF implements FnRBF {
      */
     @Override
     public void setCenter(final int dimension, final double value) {
-        this.params[indexCenters + dimension] = value;
+        this.params[this.indexCenters + dimension] = value;
     }
 }

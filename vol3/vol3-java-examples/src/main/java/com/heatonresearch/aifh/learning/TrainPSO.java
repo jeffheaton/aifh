@@ -80,7 +80,7 @@ public class TrainPSO implements LearningMethod {
      * Although this is redundant with m_bestVectors[bestVectorIndex],
      * bestVectors[bestVectorIndex] is not thread safe.
      */
-    private double[] bestVector;
+    private final double[] bestVector;
 
     // Determines the size of the search space.
     // The position components of particle will be bounded to
@@ -155,14 +155,14 @@ public class TrainPSO implements LearningMethod {
         updateVelocity(particleIndex);
 
         // velocity clamping
-        VectorAlgebra.clampComponents(velocities[particleIndex], maxVelocity);
+        VectorAlgebra.clampComponents(this.velocities[particleIndex], this.maxVelocity);
 
         // new position (Xt = Xt-1 + Vt)
-        VectorAlgebra.add(particlePosition, velocities[particleIndex]);
+        VectorAlgebra.add(particlePosition, this.velocities[particleIndex]);
 
         // pin the particle against the boundary of the search space.
         // (only for the components exceeding maxPosition)
-        VectorAlgebra.clampComponents(particlePosition, maxPosition);
+        VectorAlgebra.clampComponents(particlePosition, this.maxPosition);
 
         updatePersonalBestPosition(particleIndex, particlePosition);
     }
@@ -180,20 +180,20 @@ public class TrainPSO implements LearningMethod {
         // Standard PSO formula
 
         // inertia weight
-        VectorAlgebra.mul(velocities[particleIndex], inertiaWeight);
+        VectorAlgebra.mul(this.velocities[particleIndex], this.inertiaWeight);
 
         // cognitive term
-        VectorAlgebra.copy(vtmp, bestVectors[particleIndex]);
+        VectorAlgebra.copy(vtmp, this.bestVectors[particleIndex]);
         VectorAlgebra.sub(vtmp, particlePosition);
         VectorAlgebra.mulRand(this.rnd, vtmp, this.c1);
-        VectorAlgebra.add(velocities[particleIndex], vtmp);
+        VectorAlgebra.add(this.velocities[particleIndex], vtmp);
 
         // social term
-        if (particleIndex != bestVectorIndex) {
-            VectorAlgebra.copy(vtmp, bestVector);
+        if (particleIndex != this.bestVectorIndex) {
+            VectorAlgebra.copy(vtmp, this.bestVector);
             VectorAlgebra.sub(vtmp, particlePosition);
-            VectorAlgebra.mulRand(this.rnd, vtmp, c2);
-            VectorAlgebra.add(velocities[particleIndex], vtmp);
+            VectorAlgebra.mulRand(this.rnd, vtmp, this.c2);
+            VectorAlgebra.add(this.velocities[particleIndex], vtmp);
         }
     }
 
@@ -208,9 +208,9 @@ public class TrainPSO implements LearningMethod {
         double score = this.score.calculateScore(this.particles[particleIndex]);
 
         // update the best vectors (g and i)
-        if ((bestScores[particleIndex] == 0) || isScoreBetter(score, bestScores[particleIndex])) {
-            bestScores[particleIndex] = score;
-            VectorAlgebra.copy(bestVectors[particleIndex], particlePosition);
+        if ((this.bestScores[particleIndex] == 0) || isScoreBetter(score, this.bestScores[particleIndex])) {
+            this.bestScores[particleIndex] = score;
+            VectorAlgebra.copy(this.bestVectors[particleIndex], particlePosition);
         }
     }
 
@@ -220,14 +220,14 @@ public class TrainPSO implements LearningMethod {
     protected void updateGlobalBestPosition() {
         boolean bestUpdated = false;
         for (int i = 0; i < this.particles.length; i++) {
-            if ((bestVectorIndex == -1) || isScoreBetter(bestScores[i], bestScores[bestVectorIndex])) {
-                bestVectorIndex = i;
+            if ((this.bestVectorIndex == -1) || isScoreBetter(this.bestScores[i], this.bestScores[this.bestVectorIndex])) {
+                this.bestVectorIndex = i;
                 bestUpdated = true;
             }
         }
         if (bestUpdated) {
-            VectorAlgebra.copy(bestVector, bestVectors[bestVectorIndex]);
-            this.bestScore = bestScores[bestVectorIndex];
+            VectorAlgebra.copy(this.bestVector, this.bestVectors[this.bestVectorIndex]);
+            this.bestScore = this.bestScores[this.bestVectorIndex];
         }
     }
 
@@ -301,7 +301,7 @@ public class TrainPSO implements LearningMethod {
     }
 
     public MLMethod getBestParticle() {
-        VectorAlgebra.copy(this.particles[bestVectorIndex].getLongTermMemory(), this.bestVector);
+        VectorAlgebra.copy(this.particles[this.bestVectorIndex].getLongTermMemory(), this.bestVector);
         return this.particles[this.bestVectorIndex];
     }
 }

@@ -48,7 +48,7 @@ public class RangeRandomizeNetwork extends AbstractRandomizeNetwork {
     @Override
     public void randomize(BasicNetwork network) {
         for(int i=0;i<network.getWeights().length;i++) {
-            network.getWeights()[i] = this.getRnd().nextDouble(low,high);
+            network.getWeights()[i] = this.getRnd().nextDouble(this.low, this.high);
         }
     }
 

@@ -48,7 +48,7 @@ public class RandomChoice implements Serializable {
     /**
      * The probabilities of each item in the list.
      */
-    final private double[] probabilities;
+    private final double[] probabilities;
 
     /**
      * Construct a list of probabilities.
@@ -60,27 +60,27 @@ public class RandomChoice implements Serializable {
         this.probabilities = theProbabilities.clone();
 
         double total = 0;
-        for (final double probability : probabilities) {
+        for (final double probability : this.probabilities) {
             total += probability;
         }
 
         if (total == 0.0) {
-            double prob = 1.0 / probabilities.length;
-            for (int i = 0; i < probabilities.length; i++) {
-                probabilities[i] = prob;
+            double prob = 1.0 / this.probabilities.length;
+            for (int i = 0; i < this.probabilities.length; i++) {
+                this.probabilities[i] = prob;
             }
         } else {
             double total2 = 0;
             double factor = 1.0 / total;
-            for (int i = 0; i < probabilities.length; i++) {
-                probabilities[i] = probabilities[i] * factor;
-                total2 += probabilities[i];
+            for (int i = 0; i < this.probabilities.length; i++) {
+                this.probabilities[i] = this.probabilities[i] * factor;
+                total2 += this.probabilities[i];
             }
 
             if (Math.abs(1.0 - total2) > 0.02) {
-                double prob = 1.0 / probabilities.length;
-                for (int i = 0; i < probabilities.length; i++) {
-                    probabilities[i] = prob;
+                double prob = 1.0 / this.probabilities.length;
+                for (int i = 0; i < this.probabilities.length; i++) {
+                    this.probabilities[i] = prob;
                 }
             }
         }
@@ -96,15 +96,15 @@ public class RandomChoice implements Serializable {
         double r = theGenerator.nextDouble();
         double sum = 0.0;
 
-        for (int i = 0; i < probabilities.length; i++) {
-            sum += probabilities[i];
+        for (int i = 0; i < this.probabilities.length; i++) {
+            sum += this.probabilities[i];
             if (r < sum) {
                 return i;
             }
         }
 
-        for (int i = 0; i < probabilities.length; i++) {
-            if (probabilities[i] != 0.0) {
+        for (int i = 0; i < this.probabilities.length; i++) {
+            if (this.probabilities[i] != 0.0) {
                 return i;
             }
         }
@@ -119,32 +119,32 @@ public class RandomChoice implements Serializable {
      * @return The random choice.
      */
     public int generate(GenerateRandom theGenerator, int skip) {
-        double totalProb = 1.0 - probabilities[skip];
+        double totalProb = 1.0 - this.probabilities[skip];
 
         double throwValue = theGenerator.nextDouble() * totalProb;
         double accumulator = 0.0;
 
         for (int i = 0; i < skip; i++) {
-            accumulator += probabilities[i];
+            accumulator += this.probabilities[i];
             if (accumulator > throwValue) {
                 return i;
             }
         }
 
-        for (int i = skip + 1; i < probabilities.length; i++) {
-            accumulator += probabilities[i];
+        for (int i = skip + 1; i < this.probabilities.length; i++) {
+            accumulator += this.probabilities[i];
             if (accumulator > throwValue) {
                 return i;
             }
         }
 
         for (int i = 0; i < skip; i++) {
-            if (probabilities[i] != 0.0) {
+            if (this.probabilities[i] != 0.0) {
                 return i;
             }
         }
-        for (int i = skip + 1; i < probabilities.length; i++) {
-            if (probabilities[i] != 0.0) {
+        for (int i = skip + 1; i < this.probabilities.length; i++) {
+            if (this.probabilities[i] != 0.0) {
                 return i;
             }
         }

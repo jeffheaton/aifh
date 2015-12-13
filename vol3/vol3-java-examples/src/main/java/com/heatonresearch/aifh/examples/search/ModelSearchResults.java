@@ -42,11 +42,11 @@ public class ModelSearchResults implements Comparable<ModelSearchResults> {
     }
 
     public int getEpochs() {
-        return epochs;
+        return this.epochs;
     }
 
     public double getError() {
-        return error;
+        return this.error;
     }
 
     @Override

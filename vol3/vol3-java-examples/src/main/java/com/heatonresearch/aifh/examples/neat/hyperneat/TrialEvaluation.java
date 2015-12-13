@@ -56,14 +56,14 @@ public class TrialEvaluation {
      * @return the phenotype
      */
     public MLMethod getPhenotype() {
-        return phenotype;
+        return this.phenotype;
     }
 
     /**
      * @return the test
      */
     public BoxTrialCase getTest() {
-        return test;
+        return this.test;
     }
 
     public void accumulate(double distance, double range) {
@@ -75,7 +75,7 @@ public class TrialEvaluation {
      * @return the accDistance
      */
     public double getAccDistance() {
-        return accDistance;
+        return this.accDistance;
     }
 
     /**
@@ -89,7 +89,7 @@ public class TrialEvaluation {
      * @return the accRange
      */
     public double getAccRange() {
-        return accRange;
+        return this.accRange;
     }
 
     /**
@@ -131,25 +131,25 @@ public class TrialEvaluation {
         }
 
         // second, query the network
-        output = ((NEATNetwork)this.phenotype).compute(inputData);
+        this.output = ((NEATNetwork)this.phenotype).compute(inputData);
 
         // finally, process the output
-        minActivation = Double.POSITIVE_INFINITY;
-        maxActivation = Double.NEGATIVE_INFINITY;
+        this.minActivation = Double.POSITIVE_INFINITY;
+        this.maxActivation = Double.NEGATIVE_INFINITY;
         int maxIndex = 0;
 
-        for(int i=0; i<output.size(); i++)
+        for(int i = 0; i< this.output.size(); i++)
         {
-            double d = output.getData(i);
+            double d = this.output.getData(i);
 
-            if(d > maxActivation)
+            if(d > this.maxActivation)
             {
-                maxActivation = d;
+                this.maxActivation = d;
                 maxIndex = i;
             }
-            else if(d < minActivation)
+            else if(d < this.minActivation)
             {
-                minActivation = d;
+                this.minActivation = d;
             }
         }
 
@@ -162,21 +162,21 @@ public class TrialEvaluation {
      * @return the minActivation
      */
     public double getMinActivation() {
-        return minActivation;
+        return this.minActivation;
     }
 
     /**
      * @return the maxActivation
      */
     public double getMaxActivation() {
-        return maxActivation;
+        return this.maxActivation;
     }
 
     /**
      * @return the output
      */
     public MLData getOutput() {
-        return output;
+        return this.output;
     }
 
     public int normalize(double d, int i) {

@@ -90,9 +90,9 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
 
         // calculate input and output weight counts
         // add 1 to output to account for an extra bias node
-        final int inputWeightCount = inputCount * rbfCount;
-        final int outputWeightCount = (rbfCount + 1) * outputCount;
-        final int rbfParams = (inputCount + 1) * rbfCount;
+        final int inputWeightCount = this.inputCount * rbfCount;
+        final int outputWeightCount = (rbfCount + 1) * this.outputCount;
+        final int rbfParams = (this.inputCount + 1) * rbfCount;
         this.longTermMemory = new double[
                 inputWeightCount + outputWeightCount + rbfParams];
 
@@ -102,8 +102,8 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
         this.rbf = new FnRBF[rbfCount];
 
         for (int i = 0; i < rbfCount; i++) {
-            final int rbfIndex = inputWeightCount + ((inputCount + 1) * i);
-            this.rbf[i] = new GaussianFunction(inputCount, this.longTermMemory, rbfIndex);
+            final int rbfIndex = inputWeightCount + ((this.inputCount + 1) * i);
+            this.rbf[i] = new GaussianFunction(this.inputCount, this.longTermMemory, rbfIndex);
         }
     }
 
@@ -115,10 +115,10 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
 
         // first, compute the output values of each of the RBFs
         // Add in one additional RBF output for bias (always set to one).
-        final double[] rbfOutput = new double[rbf.length + 1];
+        final double[] rbfOutput = new double[this.rbf.length + 1];
         rbfOutput[rbfOutput.length - 1] = 1; // bias
 
-        for (int rbfIndex = 0; rbfIndex < rbf.length; rbfIndex++) {
+        for (int rbfIndex = 0; rbfIndex < this.rbf.length; rbfIndex++) {
 
             // weight the input
             final double[] weightedInput = new double[input.length];
@@ -139,7 +139,7 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
             double sum = 0;
             for (int rbfIndex = 0; rbfIndex < rbfOutput.length; rbfIndex++) {
                 // add 1 to rbf length for bias
-                final int memoryIndex = this.indexOutputWeights + (outputIndex * (rbf.length + 1)) + rbfIndex;
+                final int memoryIndex = this.indexOutputWeights + (outputIndex * (this.rbf.length + 1)) + rbfIndex;
                 sum += rbfOutput[rbfIndex] * this.longTermMemory[memoryIndex];
             }
             result[outputIndex] = sum;
@@ -154,7 +154,7 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
      */
     @Override
     public double[] getLongTermMemory() {
-        return longTermMemory;
+        return this.longTermMemory;
     }
 
     /**

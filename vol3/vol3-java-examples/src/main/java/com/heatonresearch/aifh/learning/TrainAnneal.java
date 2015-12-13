@@ -147,7 +147,7 @@ public class TrainAnneal implements LearningMethod {
         this.algorithm = theAlgorithm;
         this.score = theScore;
         this.kMax = theKMax;
-        this.currentError = score.calculateScore(this.algorithm);
+        this.currentError = this.score.calculateScore(this.algorithm);
         this.startingTemperature = theStartingTemperature;
         this.endingTemperature = theEndingTemperature;
         this.globalBest = new double[theAlgorithm.getLongTermMemory().length];
@@ -161,7 +161,7 @@ public class TrainAnneal implements LearningMethod {
      * @return The probability.
      */
     public double coolingSchedule() {
-        final double ex = (double) k / (double) kMax;
+        final double ex = (double) this.k / (double) this.kMax;
         return this.startingTemperature * Math.pow(this.endingTemperature / this.startingTemperature, ex);
     }
 
@@ -171,7 +171,7 @@ public class TrainAnneal implements LearningMethod {
     @Override
     public void iteration() {
         final int len = this.algorithm.getLongTermMemory().length;
-        k++;
+        this.k++;
 
         this.currentTemperature = coolingSchedule();
 
@@ -184,7 +184,7 @@ public class TrainAnneal implements LearningMethod {
             performRandomize(this.algorithm.getLongTermMemory());
 
             // did we improve it?
-            final double trialError = score.calculateScore(this.algorithm);
+            final double trialError = this.score.calculateScore(this.algorithm);
 
             // was this iteration an improvement?  If so, always keep.
             boolean keep = false;
@@ -193,7 +193,7 @@ public class TrainAnneal implements LearningMethod {
                 keep = true;
             } else {
 
-                this.lastProbability = calcProbability(currentError, trialError, this.currentTemperature);
+                this.lastProbability = calcProbability(this.currentError, trialError, this.currentTemperature);
                 if (this.lastProbability > this.rnd.nextDouble()) {
                     keep = true;
                 }
@@ -230,7 +230,7 @@ public class TrainAnneal implements LearningMethod {
      */
     @Override
     public boolean done() {
-        return k >= kMax;
+        return this.k >= this.kMax;
     }
 
     /**
@@ -258,42 +258,42 @@ public class TrainAnneal implements LearningMethod {
      * @return The current temperature.
      */
     public double getCurrentTemperature() {
-        return currentTemperature;
+        return this.currentTemperature;
     }
 
     /**
      * @return The current iteration number.
      */
     public int getK() {
-        return k;
+        return this.k;
     }
 
     /**
      * @return The starting temperature.
      */
     public double getStartingTemperature() {
-        return startingTemperature;
+        return this.startingTemperature;
     }
 
     /**
      * @return The ending temperature.
      */
     public double getEndingTemperature() {
-        return endingTemperature;
+        return this.endingTemperature;
     }
 
     /**
      * @return The number of cycles per iteration.
      */
     public int getCycles() {
-        return cycles;
+        return this.cycles;
     }
 
     /**
      * @return The last probability.
      */
     public double getLastProbability() {
-        return lastProbability;
+        return this.lastProbability;
     }
 
     /**
