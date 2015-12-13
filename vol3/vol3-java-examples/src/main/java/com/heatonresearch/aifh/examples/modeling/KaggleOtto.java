@@ -8,7 +8,6 @@ import com.heatonresearch.aifh.ann.activation.ActivationSoftMax;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
 import com.heatonresearch.aifh.examples.learning.SimpleLearn;
 import com.heatonresearch.aifh.general.data.BasicData;
-import com.heatonresearch.aifh.general.data.DataUtil;
 import com.heatonresearch.aifh.normalize.DataSet;
 
 import java.io.File;
@@ -48,7 +47,7 @@ public class KaggleOtto extends SimpleLearn {
             String[] line = new String[10];
             line[0] = ids.get(i);
             for(int j=0;j<output.length;j++) {
-                line[j+1] = String.format(Locale.ENGLISH, "%.2f", output[j]);
+                line[j+1] = String.format(Locale.ENGLISH, "%f", output[j]);
             }
             writer.writeNext(line);
 
@@ -76,26 +75,25 @@ public class KaggleOtto extends SimpleLearn {
         columnCount--;
 
         for(int i=0;i<columnCount-1;i++) {
-            //ds.normalizeZScore(i);
+            ds.normalizeZScore(i);
         }
         Map<String, Integer> classes = ds.encodeOneOfN(columnCount-1);
 
         BasicNetwork network = new BasicNetwork();
         network.addLayer(new BasicLayer(null,true,columnCount-1));
-        //network.addLayer(new BasicLayer(new ActivationReLU(),true,300));
-        //network.addLayer(new BasicLayer(new ActivationReLU(),true,200));
-        network.addLayer(new BasicLayer(new ActivationReLU(),true,500));
+        network.addLayer(new BasicLayer(new ActivationReLU(),true,256));
+        network.addLayer(new BasicLayer(new ActivationReLU(),true,128));
+        network.addLayer(new BasicLayer(new ActivationReLU(),true,64));
         network.addLayer(new BasicLayer(new ActivationSoftMax(),false,classes.size()));
         network.finalizeStructure();
         network.reset();
 
         final List<BasicData> trainingData = ds.extractSupervised(0, columnCount-1, columnCount-1, classes.size());
 
-        //DataUtil.dumpCSV(KAGGLE_DUMP,trainingData);
+        final BackPropagation train = new BackPropagation(network, trainingData, 1e-10, 0.8);
+        train.setBatchSize(1000);
 
-        final BackPropagation train = new BackPropagation(network, trainingData, 1e-5, 0.0);
-        train.setBatchSize(0);
-        performIterations(train, 10000, 0.01, true);
+        performIterations(train, 500, 0.01, true);
 
         // generate a submission file
         createSubmission(network);

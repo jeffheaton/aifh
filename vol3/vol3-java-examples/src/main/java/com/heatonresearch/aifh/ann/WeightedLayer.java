@@ -21,7 +21,8 @@ public abstract class WeightedLayer implements Layer {
         Layer prevLayer = (this.layerIndex>0) ? this.owner.getLayers().get(this.layerIndex-1) : null;
         Layer nextLayer = (this.layerIndex<this.owner.getLayers().size()-1) ? this.owner.getLayers().get(this.layerIndex+1) : null;
 
-        counts.addNeuronCount(getTotalCount());
+        int tc = getTotalCount();
+        counts.addNeuronCount(tc);
 
         if (prevLayer != null) {
             counts.addWeightCount(getCount() * prevLayer.getTotalCount());
@@ -34,8 +35,10 @@ public abstract class WeightedLayer implements Layer {
         } else {
             weightIndex = nextLayer.getWeightIndex()
                     + (getTotalCount() * nextLayer.getCount());
-            layerIndex = nextLayer.getLayerIndexReverse()
-                    + nextLayer.getTotalCount();
+            layerIndex = nextLayer.getNeuronIndex() + nextLayer.getTotalCount();
+
+            //layerIndex = nextLayer.getLayerIndexReverse()
+            //        + nextLayer.getTotalCount();
         }
 
         this.neuronIndex = layerIndex;

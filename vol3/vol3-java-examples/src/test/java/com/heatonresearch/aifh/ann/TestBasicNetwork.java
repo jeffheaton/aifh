@@ -2,7 +2,9 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.AIFH;
 import com.heatonresearch.aifh.AIFHError;
+import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
+import com.heatonresearch.aifh.ann.activation.ActivationSoftMax;
 import com.heatonresearch.aifh.ann.randomize.RangeRandomizeNetwork;
 import com.heatonresearch.aifh.randomize.LinearCongruentialRandom;
 import org.junit.Assert;
@@ -82,5 +84,30 @@ public class TestBasicNetwork {
         double[] out2 = network.computeRegression(new double[] {1.0, 0.0});
         Assert.assertEquals(0.32943376685512565, out2[0], AIFH.DEFAULT_PRECISION);
         Assert.assertEquals(1,out2.length);
+    }
+
+    @Test
+    public void testNeuronStructure() {
+        Layer inputLayer,hidden1Layer,hidden2Layer,hidden3Layer,outputLayer;
+        BasicNetwork network = new BasicNetwork();
+        network.addLayer(inputLayer = new BasicLayer(null,true,90));
+        network.addLayer(hidden1Layer = new BasicLayer(new ActivationReLU(),true,256));
+        network.addLayer(hidden2Layer = new BasicLayer(new ActivationReLU(),true,128));
+        network.addLayer(hidden3Layer = new BasicLayer(new ActivationReLU(),true,64));
+        network.addLayer(outputLayer = new BasicLayer(new ActivationSoftMax(),false,10));
+        network.finalizeStructure();
+
+        Assert.assertEquals(91, inputLayer.getTotalCount());
+        Assert.assertEquals(257, hidden1Layer.getTotalCount());
+        Assert.assertEquals(129, hidden2Layer.getTotalCount());
+        Assert.assertEquals(65, hidden3Layer.getTotalCount());
+        Assert.assertEquals(10, outputLayer.getTotalCount());
+
+        Assert.assertEquals(0, outputLayer.getNeuronIndex());
+        Assert.assertEquals(10, hidden3Layer.getNeuronIndex());
+        Assert.assertEquals(75, hidden2Layer.getNeuronIndex());
+        Assert.assertEquals(204, hidden1Layer.getNeuronIndex());
+        Assert.assertEquals(0, outputLayer.getNeuronIndex());
+
     }
 }
