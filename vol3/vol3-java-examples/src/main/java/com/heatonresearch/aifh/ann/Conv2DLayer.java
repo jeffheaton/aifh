@@ -33,18 +33,61 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
+/**
+ * A 2D convolution layer.
+ *
+ * LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P. (1998). Gradient-based learning applied to document recognition.
+ * Proceedings of the IEEE, 86(11), 2278-2324.
+ */
 public class Conv2DLayer extends WeightedLayer {
 
+    /**
+     * The number of filters (output depth).
+     */
     private final int numFilters;
+
+    /**
+     * The number of rows in each filter.
+     */
     private final int filterRows;
+
+    /**
+     * The number of columns in each filter.
+     */
     private final int filterColumns;
+
+    /**
+     * The padding, both horizontal and vertical.
+     */
     private int padding;
+
+    /**
+     * The stride.
+     */
     private int stride = 1;
+
+    /**
+     * The output columns.
+     */
     private double outColumns;
+
+    /**
+     * The output rows.
+     */
     private double outRows;
+
+    /**
+     * The input depth.
+     */
     private int inDepth;
 
-
+    /**
+     * Construct a 2D convolution layer.
+     * @param theActivation The activation function.
+     * @param theNumFilters The number of filters.
+     * @param theFilterRows The rows in each filter.
+     * @param theFilterColumns The columns in each filter.
+     */
     public Conv2DLayer(final ActivationFunction theActivation, int theNumFilters, int theFilterRows, int theFilterColumns) {
         this.setActivation(theActivation);
         this.filterRows = theFilterRows;
@@ -52,6 +95,9 @@ public class Conv2DLayer extends WeightedLayer {
         this.numFilters = theNumFilters;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, TempStructureCounts counts) {
         super.finalizeStructure(theOwner,theLayerIndex,counts);
@@ -71,27 +117,42 @@ public class Conv2DLayer extends WeightedLayer {
         this.outRows = Math.floor((inRows + this.padding * 2 - this.filterColumns) / this.stride + 1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getWeightDepthUnit() {
         Layer previousLayer = getOwner().getPreviousLayer(this);
         return previousLayer.getNeuronDepthUnit() * getNeuronDepthUnit();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getNeuronDepthUnit() {
         return this.filterColumns * this.filterRows;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getCount() {
         return this.filterRows * this.filterColumns * this.numFilters;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getTotalCount() {
         return getCount()+1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void computeLayer() {
         Layer prev = getOwner().getPreviousLayer(this);
@@ -113,6 +174,9 @@ public class Conv2DLayer extends WeightedLayer {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void computeGradient(GradientCalc calc) {
         final Layer prev = getOwner().getPreviousLayer(this);
@@ -127,41 +191,75 @@ public class Conv2DLayer extends WeightedLayer {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void trainingBatch(GenerateRandom rnd) {
         // nothing to do
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isActive(int i) {
         return true;
     }
 
+    /**
+     * @return Conv2D layers always have bias.
+     */
+    @Override
     public boolean hasBias() {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int[] getDimensionCounts() {
         return new int[] { this.filterColumns, this.filterRows, this.numFilters };
     }
 
+    /**
+     * @return The padding.
+     */
     public int getPadding() {
         return this.padding;
     }
 
+    /**
+     * Set the padding.
+     * @param padding The padding.
+     */
     public void setPadding(int padding) {
         this.padding = padding;
     }
 
+    /**
+     * @return The stride.
+     */
     public int getStride() {
         return this.stride;
     }
 
+    /**
+     * Set the stride.
+     * @param stride The stride.
+     */
     public void setStride(int stride) {
         this.stride = stride;
     }
 
+    /**
+     * @return The filter rows.
+     */
     public int getFilterRows() { return this.filterRows; }
+
+    /**
+     * @return The filter columns.
+     */
     public int getFilterColumns() { return this.filterColumns; }
 }

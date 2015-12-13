@@ -31,10 +31,19 @@ package com.heatonresearch.aifh.ann.randomize;
 import com.heatonresearch.aifh.ann.BasicNetwork;
 
 /**
- * Created by jeff on 11/28/15.
+ * The Xaiver initialization (aka Glorot) weight initialization.  A very good weight initialization method that provides very
+ * efficient training and relatively consistent results.  As described by the following paper.
+ *
+ * Glorot, X., & Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks.
+ * In International conference on artificial intelligence and statistics (pp. 249-256).
  */
 public class XaiverRandomizeNetwork extends AbstractRandomizeNetwork {
 
+    /**
+     * The Xaiver initialization works layer by layer.
+     * @param network The network.
+     * @param fromLayer The source layer.
+     */
     private void randomizeLayer(BasicNetwork network, int fromLayer) {
         final int fromCount = network.getLayerTotalNeuronCount(fromLayer);
         final int toCount = network.getLayers().get(fromLayer + 1).getCount();
@@ -48,6 +57,9 @@ public class XaiverRandomizeNetwork extends AbstractRandomizeNetwork {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void randomize(BasicNetwork network) {
         for (int i = 0; i < network.getLayers().size() - 1; i++) {

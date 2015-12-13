@@ -147,6 +147,10 @@ public class HopfieldNetwork extends EnergeticNetwork {
 		return cycle;
 	}
 
+	/**
+	 * Calculate the energy for this network.
+	 * @return The energy.
+     */
     public double energy() {
         double t = 0;
 

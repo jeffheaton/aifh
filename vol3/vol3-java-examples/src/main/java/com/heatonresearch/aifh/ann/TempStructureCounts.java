@@ -29,24 +29,46 @@
 package com.heatonresearch.aifh.ann;
 
 /**
- * Created by jeff on 12/7/15.
+ * Simple holder class that keeps the count of the neurons and weights as a neural network is built.  This class is
+ * temporary and is only used briefly while the neural network structure is finalized.
  */
 public class TempStructureCounts {
+    /**
+     * The count of neurons.
+     */
     int neuronCount;
+
+    /**
+     * The count of weights.
+     */
     int weightCount;
 
+    /**
+     * @return The neuron count.
+     */
     public int getNeuronCount() {
         return this.neuronCount;
     }
 
+    /**
+     * @return The weight count.
+     */
     public int getWeightCount() {
         return this.weightCount;
     }
 
+    /**
+     * Add to the neuron count.
+     * @param i The value to add to the neuron count.
+     */
     public void addNeuronCount(int i) {
         this.neuronCount+=i;
     }
 
+    /**
+     * Add to the weight count.
+     * @param i The value to add to the weight count.
+     */
     public void addWeightCount(int i) {
         this.weightCount+=i;
     }

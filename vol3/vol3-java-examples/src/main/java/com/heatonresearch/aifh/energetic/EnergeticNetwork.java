@@ -178,6 +178,10 @@ public abstract class EnergeticNetwork implements MLMethod {
 		System.arraycopy(output, 0, this.currentState, 0, this.currentState.length);
 	}
 
+	/**
+	 * Randomize the weights.
+	 * @param rand The random number generator to use.
+     */
 	public void reset(final GenerateRandom rand) {
 
         for(int i=0;i<this.currentState.length;i++) {

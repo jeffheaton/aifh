@@ -33,25 +33,50 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An axis of categorical items.
+ */
 public class CategorySearchAxis implements SearchAxis {
-    private final List<String> categories = new ArrayList<String>();
+
+    /**
+     * The list of categories.
+     */
+    private final List<String> categories = new ArrayList<>();
+
+    /**
+     * The current index.
+     */
     private int currentIndex;
 
+    /**
+     * Create a category search axis.
+     * @param catList The list of categories.
+     */
     public CategorySearchAxis(String[] catList) {
         for(String str:catList) {
             this.categories.add(str);
         }
     }
 
+    /**
+     *
+     * @return The categories.
+     */
     public List<String> getCategories() {
         return this.categories;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void reset() {
         this.currentIndex = 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean advance() {
         this.currentIndex++;
@@ -62,11 +87,17 @@ public class CategorySearchAxis implements SearchAxis {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object currentState() {
         return this.categories.get(this.currentIndex);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object sample(GenerateRandom rnd) {
         return this.categories.get(rnd.nextInt(this.categories.size()));

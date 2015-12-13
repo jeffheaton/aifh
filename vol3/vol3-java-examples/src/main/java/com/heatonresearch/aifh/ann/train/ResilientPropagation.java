@@ -37,19 +37,87 @@ import com.heatonresearch.aifh.learning.LearningMethod;
 
 import java.util.List;
 
+/**
+ * One problem with the backpropagation algorithm is that the magnitude of the
+ * partial derivative is usually too large or too small. Further, the learning
+ * rate is a single value for the entire neural network. The resilient
+ * propagation learning algorithm uses a special update value(similar to the
+ * learning rate) for every neuron connection. Further these update values are
+ * automatically determined, unlike the learning rate of the backpropagation
+ * algorithm.
+ *
+ * There are a total of three parameters that must be provided to the resilient
+ * training algorithm. Defaults are provided for each, and in nearly all cases,
+ * these defaults are acceptable. This makes the resilient propagation algorithm
+ * one of the easiest and most efficient training algorithms available.
+ *
+ * It is also important to note that RPROP does not work well with online training.
+ * You should always use a batch size bigger than one.  Typically the larger the better.
+ * By default a batch size of zero is used, zero means to include the entire training
+ * set in the batch.
+ *
+ * The optional parameters are:
+ *
+ * zeroTolerance - How close to zero can a number be to be considered zero. The
+ * default is 0.00000000000000001.
+ *
+ * initialUpdate - What are the initial update values for each matrix value. The
+ * default is 0.1.
+ *
+ * maxStep - What is the largest amount that the update values can step. The
+ * default is 50.xw
+ *
+ */
 public class ResilientPropagation implements GradientCalcOwner, LearningMethod {
 
+    /**
+     * The network to train.
+     */
     private final BasicNetwork network;
+
+    /**
+     * The training data.
+     */
     private final List<BasicData> training;
 
-
+    /**
+     * The gradients.
+     */
     private final GradientCalc gradients;
+
+    /**
+     * The weight delta from the last training iteration.
+     */
     private final double[] lastDelta;
+
+    /**
+     * The gradients from the last training iteration.
+     */
     private final double[] lastGradients;
+
+    /**
+     * The error calculation method to use.
+     */
     private final ErrorCalculation errorCalc = new ErrorCalculationMSE();
+
+    /**
+     * The current error.
+     */
     private double currentError = 1.0;
+
+    /**
+     * The L1 regularization.
+     */
     private double l1;
+
+    /**
+     * The L2 regularization.
+     */
     private double l2;
+
+    /**
+     * The current update values.
+     */
     private final double[] updateValues;
 
     /**
@@ -94,6 +162,10 @@ public class ResilientPropagation implements GradientCalcOwner, LearningMethod {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void iteration() {
         this.gradients.reset();
         this.errorCalc.clear();
@@ -115,6 +187,13 @@ public class ResilientPropagation implements GradientCalcOwner, LearningMethod {
 
     }
 
+    /**
+     * Calculate the change in weights.
+     * @param gradients The gradients.
+     * @param lastGradient The last graidents.
+     * @param index The weight currently being updated.
+     * @return The weight change.
+     */
     public double calculateWeightDelta(final double[] gradients,
                                    final double[] lastGradient, final int index) {
         // multiply the current and previous gradient, and take the
@@ -202,10 +281,18 @@ public class ResilientPropagation implements GradientCalcOwner, LearningMethod {
         return this.l2;
     }
 
+    /**
+     * Set the L1 regularization multiplier.
+     * @param theL1 The L1 regularization multiplier.
+     */
     public void setL1(double theL1) {
         this.l1 = theL1;
     }
 
+    /**
+     * Set the L2 regularization multiplier.
+     * @param theL2 The L2 regularization multiplier.
+     */
     public void setL2(double theL2) {
         this.l2 = theL2;
     }

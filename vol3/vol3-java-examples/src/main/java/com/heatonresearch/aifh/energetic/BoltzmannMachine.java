@@ -38,11 +38,6 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 public class BoltzmannMachine extends EnergeticNetwork {
 
 	/**
-	 * Serial id.
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The current temperature of the neural network. The higher the
 	 * temperature, the more random the network will behave.
 	 */
@@ -272,14 +267,24 @@ public class BoltzmannMachine extends EnergeticNetwork {
 		// nothing needed here
 	}
 
+    /**
+     * @return The random number generator.
+     */
     public GenerateRandom getRandom() {
         return this.random;
     }
 
+    /**
+     * Set the random number generator.
+     * @param random The random number generator.
+     */
     public void setRandom(final GenerateRandom random) {
         this.random = random;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double[] getLongTermMemory() {
         return new double[0];  //To change body of implemented methods use File | Settings | File Templates.

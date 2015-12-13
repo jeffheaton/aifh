@@ -38,6 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The base class for most feedforward networks in this book.  This includes deep and convolutional networks.
+ *
+ * Layers must be added to the neural network and then a call to finalizeStructure makes the network ready for use.
+ * After the call to finalizeStructure, layers can no longer be added to the NN.
+ */
 public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorithm {
 
     /**
@@ -65,8 +71,14 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      */
     private double[] weights;
 
+    /**
+     * The layers of the network.
+     */
     private final List<Layer> layers = new ArrayList<>();
 
+    /**
+     * True if the network is in training mode.  Some layers act differently while training (i.e. dropout).
+     */
     private boolean networkTraining;
 
     /**
@@ -101,6 +113,9 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         System.arraycopy(this.layerOutput, 0, output, 0, this.outputCount);
     }
 
+    /**
+     * @return The total number of neurons in the neural network.
+     */
     public int getNeuronCount() {
         int result = 0;
         for(Layer layer: this.layers) {
@@ -226,6 +241,11 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         return this.layers.get(l).getTotalCount();
     }
 
+
+    /**
+     * Add a layer to the neural network.
+     * @param layer The layer to be added to the neural network.
+     */
     public void addLayer(Layer layer) {
         this.layers.add(layer);
     }
@@ -253,6 +273,9 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         clearOutput();
     }
 
+    /**
+     * Clear the outputs of each layer.
+     */
     public void clearOutput() {
         // Clear all outputs to 0
         for(int i=0;i<this.layerOutput.length;i++) {
@@ -299,11 +322,17 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         getWeights()[weightIndex] = value;
     }
 
+    /**
+     * Randomize the neural network.
+     */
     public void reset() {
         XaiverRandomizeNetwork random = new XaiverRandomizeNetwork();
         random.randomize(this);
     }
 
+    /**
+     * @return The layers of the neural network.
+     */
     public List<Layer> getLayers() {
         return this.layers;
     }
@@ -334,6 +363,11 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
     }
 
 
+    /**
+     * Find the next layer in a neural network, given a layer.
+     * @param layer The reference layer.
+     * @return The next layer in the neural network.
+     */
     public Layer getNextLayer(Layer layer) {
         int idx = this.layers.indexOf(layer);
         if( idx==-1 ) {
@@ -345,6 +379,11 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         return this.layers.get(idx+1);
     }
 
+    /**
+     * Find the previous layer in a neural network, given a layer.
+     * @param layer The reference layer.
+     * @return The previous layer in the neural network.
+     */
     public Layer getPreviousLayer(Layer layer) {
         int idx = this.layers.indexOf(layer);
         if( idx==-1 ) {
@@ -367,10 +406,17 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         return ArrayUtil.indexOfLargest(computeRegression(input));
     }
 
+    /**
+     * @return True, if the neural network is training.  Some layers (e.g. dropout) behave differently.
+     */
     public boolean isNetworkTraining() {
         return this.networkTraining;
     }
 
+    /**
+     * Determine if the neural network is training.
+     * @param networkTraining True, if the neural network is training.
+     */
     public void setNetworkTraining(boolean networkTraining) {
         this.networkTraining = networkTraining;
     }

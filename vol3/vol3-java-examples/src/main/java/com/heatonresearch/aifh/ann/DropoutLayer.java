@@ -31,11 +31,32 @@ package com.heatonresearch.aifh.ann;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
+/**
+ * A dropout layer.  This layer behaves just like a reugular fully-connected layer once the network is trained.
+ * However, during training some of the neurons will "drop out" of the layer.  This greatly reduces overfitting.
+ *
+ * Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2014). Dropout: A simple way to
+ * prevent neural networks from overfitting. The Journal of Machine Learning Research, 15(1), 1929-1958.
+ */
 public class DropoutLayer extends BasicLayer {
 
+    /**
+     * The probability of a neuron dropping out.
+     */
     private double dropoutProbability;
+
+    /**
+     * Which neurons are currently active.
+     */
     private final boolean[] active;
 
+    /**
+     * Construct a dropout layer.
+     * @param theActivation The activation function.
+     * @param theHasBias True, if this layer has bias.  Dropout layers usually will.
+     * @param theCount The count of neurons.
+     * @param theDropout The dropout probability.
+     */
     public DropoutLayer(final ActivationFunction theActivation, boolean theHasBias, int theCount, double theDropout) {
         super(theActivation,theHasBias,theCount);
         this.dropoutProbability = theDropout;
@@ -45,6 +66,9 @@ public class DropoutLayer extends BasicLayer {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void trainingBatch(GenerateRandom rnd) {
         for(int i=0;i<this.active.length;i++) {
@@ -52,18 +76,31 @@ public class DropoutLayer extends BasicLayer {
         }
     }
 
+    /**
+     * @return The dropout probability.
+     */
     public double getDropoutProbability() {
         return this.dropoutProbability;
     }
 
+    /**
+     * Set the dropout probability.
+     * @param dropoutProbability The dropout probability.
+     */
     public void setDropoutProbability(double dropoutProbability) {
         this.dropoutProbability = dropoutProbability;
     }
 
+    /**
+     * @return The neurons in this layer that are currently active.
+     */
     public boolean[] getActive() {
         return this.active;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isActive(int i) {
         if( getOwner().isNetworkTraining() ) {

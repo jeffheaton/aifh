@@ -37,13 +37,17 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
  *
  */
 public interface ErrorFunction {
-	/**
-	 * Calculate the error.
-	 * @param af The activation function used at the output layer.
-	 * @param ideal The ideal values.
-	 * @param actual
-	 * @param error
-	 */
+    /**
+     * Calculate the error.
+     * @param af The activation function.
+     * @param b The output, before the activation function.
+     * @param a The output, after the activation function.
+     * @param ideal The idea/expected output.
+     * @param actual The actual output.
+     * @param error Error vector (output)
+     * @param derivShift Any derivative shift to apply (usually 0.0), used to implement flat-spot problem shift.
+     * @param significance The significance weight (usually 1.0)
+     */
 	void calculateError(ActivationFunction af, double[] b, double[] a,
 							   double[] ideal, double[] actual, double[] error, double derivShift,
 							   double significance);

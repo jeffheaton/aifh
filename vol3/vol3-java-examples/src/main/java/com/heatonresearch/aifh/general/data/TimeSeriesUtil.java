@@ -31,7 +31,19 @@ package com.heatonresearch.aifh.general.data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility for time series.
+ */
 public class TimeSeriesUtil {
+    /**
+     * Encode sliding window.
+     * @param dataset The dataset.
+     * @param inputWindow The size of the input window.
+     * @param predictedWindow The size of the prediction window.
+     * @param inputColumns The number of input columns.
+     * @param predictedColumns The number of predicted columns.
+     * @return The dataset.
+     */
     public static List<BasicData> slidingWindow(
             double[][] dataset,
             int inputWindow,

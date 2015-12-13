@@ -30,9 +30,32 @@ package com.heatonresearch.aifh.selection;
 
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
+/**
+ * A search axis.
+ */
 public interface SearchAxis {
+
+    /**
+     * Reset the axis back to the beginning.
+     */
     void reset();
+
+    /**
+     * Advance a position in the search.
+     * @return True if there is more to read.
+     */
     boolean advance();
+
+    /**
+     * The current state of the axis.
+     * @return The current value of the axis.
+     */
     Object currentState();
+
+    /**
+     * Sample a random value from the axis.
+     * @param rnd Random number generator.
+     * @return The value randomly picked.
+     */
     Object sample(GenerateRandom rnd);
 }

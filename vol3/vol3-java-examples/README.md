@@ -27,7 +27,8 @@ The Python examples make use of this code to find the data sets.
 
 ##Individual Examples
 The individual examples are all located in the example folder.  They are listed here,
-by chapter.
+by chapter.  I will likely be adding examples and finetuning, so please check back
+if you have not downloaded a copy in awhile.
 
 * Introduction
 ```

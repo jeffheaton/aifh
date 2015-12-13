@@ -30,35 +30,74 @@ package com.heatonresearch.aifh.selection;
 
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
+/**
+ * A numeric range search axis.
+ */
 public class NumericSearchAxis implements SearchAxis {
+    /**
+     * The start of the range.
+     */
     private final double start;
+
+    /**
+     * The end of the range.
+     */
     private final double stop;
+
+    /**
+     * The step in the range.
+     */
     private final double step;
+
+    /**
+     * The current position in the range.
+     */
     private double currentState;
 
+    /**
+     * Construct a numeric range axis.
+     * @param start The start of the range.
+     * @param stop Where to stop in the range.
+     * @param step The step for the range.
+     */
     public NumericSearchAxis(double start, double stop, double step) {
         this.start = start;
         this.stop = stop;
         this.step = step;
     }
 
+    /**
+     * @return The start of the range.
+     */
     public double getStart() {
         return this.start;
     }
 
+    /**
+     * @return The end of the range.
+     */
     public double getStop() {
         return this.stop;
     }
 
+    /**
+     * @return The step value for the range.
+     */
     public double getStep() {
         return this.step;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void reset() {
         this.currentState = this.start;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean advance() {
         this.currentState+=this.step;
@@ -69,11 +108,17 @@ public class NumericSearchAxis implements SearchAxis {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object currentState() {
         return new Double(this.currentState);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object sample(GenerateRandom rnd) {
         return rnd.nextDouble(this.start,this.stop);

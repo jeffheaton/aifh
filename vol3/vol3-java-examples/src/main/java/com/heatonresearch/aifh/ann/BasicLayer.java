@@ -33,12 +33,19 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
+/**
+ * A fully connected weight layer in a neural network.  This layer type is used for input and output layers.
+ * This layer type is also one of several hidden layer types available.
+ */
 public class BasicLayer extends WeightedLayer {
     /**
      * The neuron count.
      */
     private int[] count;
 
+    /**
+     * True if this layer has bias.
+     */
     private boolean hasBias;
 
 
@@ -49,6 +56,13 @@ public class BasicLayer extends WeightedLayer {
 
     }
 
+    /**
+     * Construct a multi-dimensional input layer.  This layer is usually used in conjunction with a
+     * convolutional neural network (CNN/LeNET).
+     * @param theActivation The activation function.
+     * @param theHasBias True, if this layer has bias, input layers will usually have bias, others will not.
+     * @param theCount The number of neurons in each dimension.
+     */
     public BasicLayer(final ActivationFunction theActivation, boolean theHasBias, int[] theCount) {
         if( theCount.length!=1 && theCount.length!=3 ) {
             throw new AIFHError("The number of dimensions must be 1 or 3.");
@@ -58,6 +72,12 @@ public class BasicLayer extends WeightedLayer {
         this.count = theCount;
     }
 
+    /**
+     * Construct a single dimension layer, this is usually used for non-convolutional neural networks.
+     * @param theActivation The activation function.  All layers, except input will have activation functions.
+     * @param theHasBias True, if this layer has a bias, all layers except the output have bias.
+     * @param theCount
+     */
     public BasicLayer(final ActivationFunction theActivation, boolean theHasBias, int theCount) {
         this(theActivation,theHasBias,new int[] {theCount});
     }
@@ -92,13 +112,18 @@ public class BasicLayer extends WeightedLayer {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void computeLayer() {
         Layer prev = getOwner().getPreviousLayer(this);
         computeLayer(0,0, prev.getTotalCount(), getCount());
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void computeGradient(GradientCalc calc) {
         final Layer prev = getOwner().getPreviousLayer(this);
@@ -107,21 +132,33 @@ public class BasicLayer extends WeightedLayer {
         this.computeGradient(calc,0,0,fromLayerSize,toLayerSize);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void trainingBatch(GenerateRandom rnd) {
         // Nothing needs to be done!
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isActive(int i) {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int[] getDimensionCounts() {
         return this.count;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getWeightDepthUnit() {
         Layer previousLayer = getOwner().getPreviousLayer(this);
@@ -144,6 +181,9 @@ public class BasicLayer extends WeightedLayer {
         return prevCount * getNeuronDepthUnit();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getNeuronDepthUnit() {
         if( this.count.length==3) {

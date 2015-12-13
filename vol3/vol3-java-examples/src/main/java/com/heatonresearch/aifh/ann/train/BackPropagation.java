@@ -40,13 +40,47 @@ import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 import java.util.List;
 
+/**
+ * This class supports several variants of the backpropagation training algorithm for neural networks.  By default,
+ * this class will perform a stochastic gradient descent (SGD) train with a mini-batch of 500.  The cross-entropy
+ * error function is used, along with Nesterov momentum. L1 & L2 regularization can also be used.
+ *
+ * With backpropagation is it important to choose a good learning rate and momentum.  If the learning rate is too high
+ * your network will not converge, and may become unstable with weights going to NaN.  Too small a learning rate will
+ * take a considerable amount of time to train.
+ *
+ * Nesterov, Y. (2004). Introductory lectures on convex optimization (Vol. 87). Springer Science & Business Media.
+ *
+ * Sutskever, Ilya, et al. "On the importance of initialization and momentum in deep learning." Proceedings of the
+ * 30th international conference on machine learning (ICML-13). 2013.
+ */
 public class BackPropagation implements GradientCalcOwner, LearningMethod {
 
+    /**
+     * The network to train.
+     */
     private final BasicNetwork network;
+
+    /**
+     * The training set.
+     */
     private final List<BasicData> training;
+
+    /**
+     * The learning rate.
+     */
     private final double learningRate;
+
+    /**
+     * The momentum.
+     */
     private final double momentum;
+
+    /**
+     * The batch size, set to zero for full batch training.
+     */
     private int batchSize = 500;
+
     /**
      * If we are doing non-stochastic batches, this keeps track of where we were in the
      * training set elements.
@@ -59,16 +93,50 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
      */
     private GenerateRandom stochastic = new MersenneTwisterGenerateRandom();
 
+    /**
+     * Gradient calculation utility.
+     */
     private final GradientCalc gradients;
+
+    /**
+     * The weight deltas from the last iteration.
+     */
     private final double[] lastDelta;
+
+    /**
+     * The last error calculation.
+     */
     private final ErrorCalculation errorCalc = new ErrorCalculationMSE();
+
+    /**
+     * The current error.
+     */
     private double currentError = 1.0;
+
+    /**
+     * L1 regularization weighting, 0.0 for none.
+     */
     private double l1;
+
+    /**
+     * L2 regularization weighting, 0.0 for none.
+     */
     private double l2;
 
+    /**
+     * Should nesterov update be used?
+     */
     private boolean nesterovUpdate = true;
 
-    public BackPropagation(BasicNetwork theNetwork, List<BasicData> theTraining, double theLearningRate, double theMomentum) {
+    /**
+     * Construct the backpropagation trainer.
+     * @param theNetwork The network to train.
+     * @param theTraining The training data to use.
+     * @param theLearningRate The learning rate.  Can be changed as training runs.
+     * @param theMomentum The momentum.  Can be changed as training runs.
+     */
+    public BackPropagation(BasicNetwork theNetwork, List<BasicData> theTraining, double theLearningRate,
+                           double theMomentum) {
         this.network = theNetwork;
         this.training = theTraining;
         this.learningRate = theLearningRate;
@@ -77,6 +145,10 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
         this.lastDelta = new double[theNetwork.getWeights().length];
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void iteration() {
         this.network.setNetworkTraining(true);
 
@@ -139,7 +211,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     }
 
     /**
-     * @return The error from the last training iteration.
+     * {@inheritDoc}
      */
     @Override
     public double getLastError() {
@@ -147,8 +219,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     }
 
     /**
-     * @return True, if we are done learning.  Not all learning algorithms know when they are done, in this case
-     * false is always returned.
+     * {@inheritDoc}
      */
     @Override
     public boolean done() {
@@ -156,7 +227,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     }
 
     /**
-     * @return A string that indicates the status of training.
+     * {@inheritDoc}
      */
     @Override
     public String getStatus() {
@@ -164,7 +235,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     }
 
     /**
-     * Should be called after the last iteration to make sure training completes any final tasks.
+     * {@inheritDoc}
      */
     @Override
     public void finishTraining() {
@@ -172,7 +243,7 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     }
 
     /**
-     * @return How much to apply l1 regularization penalty, 0 (default) for none.
+     * {@inheritDoc}
      */
     @Override
     public double getL1() {
@@ -188,41 +259,70 @@ public class BackPropagation implements GradientCalcOwner, LearningMethod {
     }
 
     /**
-     * @return How much to apply l2 regularization penalty, 0 (default) for none.
+     * {@inheritDoc}
      */
     @Override
     public double getL2() {
         return this.l2;
     }
 
+    /**
+     * Set the L1 regularization multiplier.
+     * @param theL1 The L1 regularization multiplier.
+     */
     public void setL1(double theL1) {
         this.l1 = theL1;
     }
 
+    /**
+     * Set the L2 regularization multiplier.
+     * @param theL2 The L2 regularization multiplier.
+     */
     public void setL2(double theL2) {
         this.l2 = theL2;
     }
 
+    /**
+     * @return The batch size.
+     */
     public int getBatchSize() {
         return this.batchSize;
     }
 
+    /**
+     * @return The learning rate.
+     */
     public double getLearningRate() {
         return this.learningRate;
     }
 
+    /**
+     * @return The momentum.
+     */
     public double getMomentum() {
         return this.momentum;
     }
 
+    /**
+     * The random number generator used for stochastic gradient descent (SGD), or null if none.
+     * @return A random number generator, or null if not using SGD.
+     */
     public GenerateRandom getStochastic() {
         return this.stochastic;
     }
 
+    /**
+     * The random number generator to use for stochastic gradient descent (CGD), or null for none.
+     * @param stochastic Random number generator, or null.
+     */
     public void setStochastic(GenerateRandom stochastic) {
         this.stochastic = stochastic;
     }
 
+    /**
+     * Set the batch size.
+     * @param batchSize The batch size.
+     */
     public void setBatchSize(int batchSize) {
         this.batchSize = batchSize;
     }

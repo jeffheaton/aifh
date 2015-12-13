@@ -236,6 +236,11 @@ public class VectorAlgebra {
         return result;
     }
 
+    /**
+     * Create a row matrix.
+     * @param d The vector.
+     * @return A matrix.
+     */
     public static Matrix createRowMatrix(double[] d) {
         Matrix result = new Matrix(1,d.length);
         for(int i=0;i<d.length;i++) {
@@ -244,6 +249,11 @@ public class VectorAlgebra {
         return result;
     }
 
+    /**
+     * Create a column matrix.
+     * @param d The vector.
+     * @return A matrix.
+     */
     public static Matrix createColumnMatrix(double[] d) {
         Matrix result = new Matrix(d.length,1);
         for(int i=0;i<d.length;i++) {
@@ -252,6 +262,11 @@ public class VectorAlgebra {
         return result;
     }
 
+    /**
+     * Create an identity matrix.
+     * @param size The size.
+     * @return The matrix.
+     */
     public static Matrix identityMatrix(final int size) {
         Matrix result = new Matrix(size,size);
         for(int i=0;i<size;i++) {

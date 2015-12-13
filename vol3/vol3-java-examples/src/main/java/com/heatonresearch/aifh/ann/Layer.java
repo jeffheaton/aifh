@@ -32,36 +32,95 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
+/**
+ * A layer of a BasicNetwork.
+ */
 public interface Layer {
+    /**
+     * @return The number of neurons, excluding bias neurons and context neurons. This is the number of neurons that
+     * are directly fed from elsewhere.
+     */
     int getCount();
+
+    /**
+     * @return The number of neurons, including bias neurons and context neurons.
+     */
     int getTotalCount();
+
+    /**
+     * @return The activation/transfer function for this neuron.
+     */
     ActivationFunction getActivation();
     void finalizeStructure(BasicNetwork theOwner, int theLayerIndex,
                            TempStructureCounts counts);
 
+    /**
+     * Compute this layer.
+     */
     void computeLayer();
 
+    /**
+     * Compute the gradients for this layer.
+     * @param calc The gradient calculation utility.
+     */
     void computeGradient(GradientCalc calc);
 
+    /**
+     * @return The start of this layer's weights in the weight vector.
+     */
     int getWeightIndex();
 
+    /**
+     * @return The start of this layer's neurons in the neuron vector.
+     */
     int getNeuronIndex();
 
-    int getLayerIndexReverse();
-
+    /**
+     * @return This layer's index in the layer stack.
+     */
     int getLayerIndex();
 
+    /**
+     * Notification that a training batch is beginning.
+     * @param rnd A random number generator, from the trainer.
+     */
     void trainingBatch(GenerateRandom rnd);
 
+    /**
+     * @return The owner of the neural network.
+     */
     BasicNetwork getOwner();
 
+    /**
+     * Determine if a neuron is active.
+     * @param i The neuron to check.
+     * @return True of that neuron is active.
+     */
     boolean isActive(int i);
 
+    /**
+     * @return True if this neuron has bias.
+     */
     boolean hasBias();
 
+    /**
+     * The dimension conts, a single dimension network will return a 1D array with the count.
+     * @return
+     */
     int[] getDimensionCounts();
 
+    /**
+     * Get the number of weights in a single unit.  For  non-convolution layer, this is the total number of weights.
+     * For a convolution network, this is the number of weights per filter.
+     * @return The weights per depth unit.
+     */
     int getWeightDepthUnit();
+
+    /**
+     * Get the number of neurons in a single unit.  For non-convolution layers, this is the total number of neurons in
+     * this layer.  For convolution networks this is the number of neurons per filter.
+     * @return The neurons per depth unit.
+     */
     int getNeuronDepthUnit();
 
 }

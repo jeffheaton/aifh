@@ -35,6 +35,9 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.error.ErrorFunction;
 import com.heatonresearch.aifh.error.ErrorCalculation;
 
+/**
+ * A utility class used to help calculate the gradient of the error function for neural networks.
+ */
 public class GradientCalc {
     /**
      * The network to train.
@@ -71,6 +74,9 @@ public class GradientCalc {
      */
     private final double[] weights;
 
+    /**
+     * The owner of the gradient calculation.
+     */
     private final GradientCalcOwner owner;
 
     /**
@@ -78,6 +84,12 @@ public class GradientCalc {
      */
     private final ErrorFunction errorFunction;
 
+    /**
+     * Construct the gradient calculation class.
+     * @param theNetwork The network to use.
+     * @param ef The error function to use.
+     * @param theOwner The owner (usually a trainer).
+     */
     public GradientCalc(final BasicNetwork theNetwork,
                         ErrorFunction ef, GradientCalcOwner theOwner) {
         this.network = theNetwork;
@@ -144,6 +156,9 @@ public class GradientCalc {
     }
 
 
+    /**
+     * Reset all gradients to zero.
+     */
     public void reset() {
         for (int i = 0; i < this.gradients.length; i++) {
             this.gradients[i] = 0;
@@ -164,6 +179,11 @@ public class GradientCalc {
         }
     }
 
+    /**
+     * Apply a regularization penalty, such as that from L1/L2 regularization.
+     * @param fromLayer The from layer.
+     * @param l The penalty.
+     */
     public void layerRegularizationPenalty(final int fromLayer, final double[] l) {
         final int fromCount = this.network.getLayerTotalNeuronCount(fromLayer);
         final int toCount = this.network.getLayers().get(fromLayer + 1).getCount();
@@ -177,6 +197,9 @@ public class GradientCalc {
         }
     }
 
+    /**
+     * @return The layer deltas used to calculate the gradient.
+     */
     public double[] getLayerDelta() {
         return this.layerDelta;
     }

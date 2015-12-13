@@ -25,8 +25,8 @@ README files inside of each chapter for language specific instructions. If you f
 or improve an example, please consider pushing a change via GitHub.
 	
 * vol3-python-examples - Complete
-* vol3-java-examples - In progress
+* vol3-java-examples - Complete
 * vol3-csharp-examples - In progress		
 		
-** Some of the examples are under construction **
-** See individual languages for more information **
+Note: Even though I list a set of examples as complete, I will likely add to and finetune 
+these examples.  It might be beneficial to download if you have not updated your source in awhile.

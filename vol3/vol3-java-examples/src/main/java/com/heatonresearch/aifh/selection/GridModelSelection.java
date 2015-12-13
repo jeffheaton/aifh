@@ -28,11 +28,20 @@
  */
 package com.heatonresearch.aifh.selection;
 
+/**
+ * Perform a grid search over the axes.
+ */
 public class GridModelSelection extends ModelSelection {
 
+    /**
+     * Is the search done?
+     */
     private boolean done;
 
-
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Object[] next() {
         if(this.done) {
             return null;

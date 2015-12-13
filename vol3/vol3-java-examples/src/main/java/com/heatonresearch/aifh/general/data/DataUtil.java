@@ -87,9 +87,16 @@ public class DataUtil {
         return split(list,ratio,new MersenneTwisterGenerateRandom());
     }
 
+    /**
+     * Calculate error for regression.
+     * @param dataset The dataset.
+     * @param model The model to evaluate.
+     * @param calc The error calculation.
+     * @return The error.
+     */
     public static double calculateRegressionError(final List<BasicData> dataset,
-                                                  RegressionAlgorithm model,
-                                                  ErrorCalculation calc) {
+                                                  final RegressionAlgorithm model,
+                                                  final ErrorCalculation calc) {
         calc.clear();
         for(BasicData item: dataset) {
             double[] output = model.computeRegression(item.getInput());
@@ -99,6 +106,12 @@ public class DataUtil {
         return calc.calculate();
     }
 
+    /**
+     * Calculate classification error.
+     * @param data The dataset.
+     * @param model The model to evaluate.
+     * @return The error.
+     */
     public static double calculateClassificationError(
             List<BasicData> data,
             ClassificationAlgorithm model) {
@@ -116,6 +129,12 @@ public class DataUtil {
 
     }
 
+    /**
+     * Dump a dataset as a CSV.
+     * @param file The file to dump to.
+     * @param dataset The dataset.
+     * @throws IOException If an IO error occurs.
+     */
     public static void dumpCSV(File file, List<BasicData> dataset) throws IOException {
         CSVWriter writer = new CSVWriter(new FileWriter(file));
         int inputCount = dataset.get(0).getInput().length;

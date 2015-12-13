@@ -31,9 +31,20 @@ package com.heatonresearch.aifh.ann.randomize;
 
 import com.heatonresearch.aifh.ann.BasicNetwork;
 
+/**
+ * Neural network randomizer that simply assigns each weight and bias to a uniform random number between a high
+ * and low range.
+ */
 public class RangeRandomizeNetwork extends AbstractRandomizeNetwork {
 
+    /**
+     * The low end of the range.
+     */
     private final double low;
+
+    /**
+     * The high end of the range.
+     */
     private final double high;
 
     public RangeRandomizeNetwork(double theLow, double theHigh) {
@@ -41,10 +52,16 @@ public class RangeRandomizeNetwork extends AbstractRandomizeNetwork {
         this.high = theHigh;
     }
 
+    /**
+     * Create a range randomizer between -1 and 1.
+     */
     public RangeRandomizeNetwork() {
         this(-1,1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void randomize(BasicNetwork network) {
         for(int i=0;i<network.getWeights().length;i++) {

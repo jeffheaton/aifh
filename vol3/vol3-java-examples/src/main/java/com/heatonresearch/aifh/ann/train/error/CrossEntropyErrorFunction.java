@@ -34,7 +34,9 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 /**
  * Implements a cross entropy error function.  This can be used with backpropagation to
  * sometimes provide better performance than the standard linear error function.
- * @author jheaton
+ *
+ * De Boer, Pieter-Tjerk, et al. "A tutorial on the cross-entropy method." Annals of operations
+ * research 134.1 (2005): 19-67.
  *
  */
 public class CrossEntropyErrorFunction implements ErrorFunction {

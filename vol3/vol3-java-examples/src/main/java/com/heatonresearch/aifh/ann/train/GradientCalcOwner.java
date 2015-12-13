@@ -28,6 +28,10 @@
  */
 package com.heatonresearch.aifh.ann.train;
 
+/**
+ * A class that owns a gradient calculation utility, usually a trainer.  This class provides the L1 and L2
+ * regularizaiton multipliers.
+ */
 public interface GradientCalcOwner {
 
 	/**

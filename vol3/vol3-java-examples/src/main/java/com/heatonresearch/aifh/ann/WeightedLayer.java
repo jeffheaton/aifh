@@ -31,16 +31,39 @@ package com.heatonresearch.aifh.ann;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
 
+/**
+ * Base class for all layers (used with BasicNetwork) that have weights.
+ */
 public abstract class WeightedLayer implements Layer {
+
+    /**
+     * The layer index.
+     */
     private int layerIndex;
+
+    /**
+     * The network that owns this layer.
+     */
     private BasicNetwork owner;
+
+    /**
+     * The index to this layer's weights.
+     */
     private int weightIndex;
+
+    /**
+     * The index to this layer's neurons.
+     */
     private int neuronIndex;
+
     /**
      * The activation function.
      */
     private ActivationFunction activation;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, TempStructureCounts counts) {
         this.owner = theOwner;
@@ -73,6 +96,13 @@ public abstract class WeightedLayer implements Layer {
         this.weightIndex = weightIndex;
     }
 
+    /**
+     * Compute a layer.
+     * @param inputOffset The offset to the input for this layer.
+     * @param outputOffset The offset to the output from this layer.
+     * @param fromCount The count of from neurons.
+     * @param toCount The count of to neurons.
+     */
     public void computeLayer(int inputOffset, int outputOffset, int fromCount, int toCount) {
         Layer prev = getOwner().getPreviousLayer(this);
         final double[] weights = getOwner().getWeights();
@@ -100,6 +130,14 @@ public abstract class WeightedLayer implements Layer {
                 getOwner().getLayerOutput(), getNeuronIndex(), toCount);
     }
 
+    /**
+     * Compute gradients for this layer.
+     * @param calc The gradient calculator.
+     * @param inputOffset The input offset.
+     * @param outputOffset The output offset.
+     * @param fromLayerSize The from layer size.
+     * @param toLayerSize The to layer size.
+     */
     public void computeGradient(GradientCalc calc, int inputOffset, int outputOffset, int fromLayerSize, int toLayerSize) {
         Layer prev = getOwner().getPreviousLayer(this);
         final int fromLayerIndex = prev.getNeuronIndex();
@@ -139,23 +177,31 @@ public abstract class WeightedLayer implements Layer {
     }
 
 
-        @Override
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int getWeightIndex() {
         return this.weightIndex;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getNeuronIndex() {
         return this.neuronIndex;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int getLayerIndexReverse() {
-        return this.owner.getLayers().size() - 1 - this.layerIndex;
-    }
-
     public int getLayerIndex() { return this.layerIndex; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BasicNetwork getOwner() {
         return this.owner;
@@ -170,8 +216,9 @@ public abstract class WeightedLayer implements Layer {
     }
 
     /**
-     * @return the activation
+     * {@inheritDoc}
      */
+    @Override
     public ActivationFunction getActivation() {
         return this.activation;
     }

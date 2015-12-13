@@ -25,6 +25,9 @@ package com.heatonresearch.aifh.ann.train.error;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 
+/**
+ * A very simple quadratic error function.  It is usually better to use the cross entropy error function.
+ */
 public class OutputErrorFunction implements ErrorFunction {
 
 	/**

@@ -32,30 +32,46 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
+/**
+ * Not currently used.  Will soon support maxpooling layers.
+ */
 public class MaxPoolLayer implements Layer {
 
-
-
+    /**
+     * Construct a max pooling layer.
+     * @param count The counts.
+     */
     public MaxPoolLayer(int[] count) {
 
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getCount() {
         return 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getTotalCount() {
         return 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ActivationFunction getActivation() {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, TempStructureCounts counts) {
 
@@ -82,10 +98,6 @@ public class MaxPoolLayer implements Layer {
         return 0;
     }
 
-    @Override
-    public int getLayerIndexReverse() {
-        return 0;
-    }
 
     @Override
     public int getLayerIndex() { return 0; }

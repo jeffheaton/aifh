@@ -31,21 +31,43 @@ package com.heatonresearch.aifh.selection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Base class for model selection searches.
+ */
 public abstract class ModelSelection {
+    /**
+     * The axes.
+     */
     private final List<SearchAxis> searchAxises = new ArrayList<SearchAxis>();
 
-
+    /**
+     * @return The search axes.
+     */
     public List<SearchAxis> getSearchAxises() {
         return this.searchAxises;
     }
 
+    /**
+     * Add a numeric axis.
+     * @param start The start of the axis.
+     * @param stop The end of the axis.
+     * @param step The step.
+     */
     public void addNumericAxis(double start, double stop, double step) {
         this.searchAxises.add(new NumericSearchAxis(start,stop,step));
     }
 
+    /**
+     * Add a category axis.
+     * @param list The list of categories.
+     */
     public void addCategoryAxis(String[] list) {
         this.searchAxises.add(new CategorySearchAxis(list));
     }
 
+    /**
+     * Get the next element to search.
+     * @return The next element to search.
+     */
     public abstract Object[] next();
 }

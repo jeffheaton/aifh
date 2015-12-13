@@ -32,16 +32,26 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
 
 /**
- * Created by jeff on 11/28/15.
+ * Base class for network randomizers that are based on a GenerateRandom PRNG.
  */
 public abstract class AbstractRandomizeNetwork implements RandomizeNetwork {
 
+    /**
+     * The random number generator.
+     */
     private GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
+    /**
+     * @return The random number generator.
+     */
     public GenerateRandom getRnd() {
         return this.rnd;
     }
 
+    /**
+     * Set the random number generator.
+     * @param rnd The random number generator.
+     */
     public void setRnd(GenerateRandom rnd) {
         this.rnd = rnd;
     }
