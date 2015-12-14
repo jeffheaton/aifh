@@ -52,6 +52,12 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Core\AIFH.cs" />
     <Compile Include="Core\AIFHError.cs" />
+    <Compile Include="Core\ANN\ActivationTANH.cs" />
+    <Compile Include="Core\ANN\Activation\ActivationLinear.cs" />
+    <Compile Include="Core\ANN\Activation\ActivationReLU.cs" />
+    <Compile Include="Core\ANN\Activation\ActivationSigmoid.cs" />
+    <Compile Include="Core\ANN\Activation\ActivationSoftMax.cs" />
+    <Compile Include="Core\ANN\Activation\IActivationFunction.cs" />
     <Compile Include="Core\DBNN\DeepBeliefNetwork.cs" />
     <Compile Include="Core\DBNN\DeepLayer.cs" />
     <Compile Include="Core\DBNN\HiddenLayer.cs" />
