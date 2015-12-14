@@ -32,9 +32,8 @@ import org.encog.Encog;
 import org.encog.mathutil.BoundMath;
 
 /**
- * The softmax activation function.
- * 
- * @author jheaton
+ * The softmax activation function. This activation function is usually used on the output layer of a
+ * classification network.
  */
 public class ActivationSoftMax implements ActivationFunction {
 

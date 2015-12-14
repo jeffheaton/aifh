@@ -38,11 +38,6 @@ import org.encog.mathutil.BoundMath;
 public class ActivationSigmoid implements ActivationFunction {
 
 	/**
-	 * Serial id for this class.
-	 */
-	private static final long serialVersionUID = 5622349801036468572L;
-
-	/**
 	 * The parameters.
 	 */
 	private final double[] params;

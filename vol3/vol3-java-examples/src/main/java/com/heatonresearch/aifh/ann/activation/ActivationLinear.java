@@ -30,9 +30,8 @@ package com.heatonresearch.aifh.ann.activation;
 
 /**
  * The Linear layer is really not an activation function at all. The input is
- * simply passed on, unmodified, to the output. This activation function is
- * primarily theoretical and of little actual use. Usually an activation
- * function that scales between 0 and 1 or -1 and 1 should be used.
+ * simply passed on, unmodified, to the output. The linear activation function
+ * is usually used on the output layer of a regression network.
  */
 public class ActivationLinear implements ActivationFunction {
 

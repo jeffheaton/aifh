@@ -29,10 +29,13 @@
 package com.heatonresearch.aifh.ann.activation;
 
 /**
- * A ramp activation function. This function has a high and low threshold. If
- * the high threshold is exceeded a fixed value is returned. Likewise, if the
- * low value is exceeded another fixed value is returned.
- * 
+ * A Rectified Linear Unit (ReLU activation function. This activation function is commonly
+ * used for hidden layers of a neural network.  A ReLU activation function will usually
+ * perform better than tanh and sigmoid.  This is the most popular activation function for
+ * deep neural networks.
+ *
+ * Glorot, X., Bordes, A., & Bengio, Y. (2011). Deep sparse rectifier neural networks. In International Conference
+ * on Artificial Intelligence and Statistics (pp. 315-323).
  */
 public class ActivationReLU implements ActivationFunction {
 
@@ -46,10 +49,6 @@ public class ActivationReLU implements ActivationFunction {
 	 */
 	public static final int PARAM_RELU_LOW = 0;
 
-	/**
-	 * The serial ID.
-	 */
-	private static final long serialVersionUID = 6336245112244386279L;
 
 	/**
 	 * The parameters.

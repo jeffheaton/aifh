@@ -38,11 +38,6 @@ package com.heatonresearch.aifh.ann.activation;
 public class ActivationTANH implements ActivationFunction {
 
 	/**
-	 * Serial id for this class.
-	 */
-	private static final long serialVersionUID = 9121998892720207643L;
-
-	/**
 	 * The parameters.
 	 */
 	private final double[] params;
