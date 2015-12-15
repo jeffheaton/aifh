@@ -31,6 +31,13 @@ package com.heatonresearch.aifh.ann.randomize;
 
 import com.heatonresearch.aifh.ann.BasicNetwork;
 
+/**
+ * Randomize a neural network.
+ */
 public interface RandomizeNetwork {
+    /**
+     * Randomize a neural network.
+     * @param network The neural network to randomize.
+     */
     void randomize(BasicNetwork network);
 }

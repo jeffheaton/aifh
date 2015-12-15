@@ -52,12 +52,23 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Core\AIFH.cs" />
     <Compile Include="Core\AIFHError.cs" />
-    <Compile Include="Core\ANN\ActivationTANH.cs" />
+    <Compile Include="Core\ANN\Activation\ActivationTANH.cs" />
     <Compile Include="Core\ANN\Activation\ActivationLinear.cs" />
     <Compile Include="Core\ANN\Activation\ActivationReLU.cs" />
     <Compile Include="Core\ANN\Activation\ActivationSigmoid.cs" />
     <Compile Include="Core\ANN\Activation\ActivationSoftMax.cs" />
     <Compile Include="Core\ANN\Activation\IActivationFunction.cs" />
+    <Compile Include="Core\ANN\BasicNetwork.cs" />
+    <Compile Include="Core\ANN\ILayer.cs" />
+    <Compile Include="Core\ANN\Randomize\AbstractRandomizeNetwork.cs" />
+    <Compile Include="Core\ANN\Randomize\IRandomizeNetwork.cs" />
+    <Compile Include="Core\ANN\Randomize\RangeRandomizeNetwork.cs" />
+    <Compile Include="Core\ANN\Randomize\XaiverRandomizeNetwork.cs" />
+    <Compile Include="Core\ANN\TempStructureCounts.cs" />
+    <Compile Include="Core\ANN\Train\Error\IErrorFunction.cs" />
+    <Compile Include="Core\ANN\Train\GradientCalc.cs" />
+    <Compile Include="Core\ANN\Train\IGradientCalcOwner.cs" />
+    <Compile Include="Core\ANN\WeightedLayer.cs" />
     <Compile Include="Core\DBNN\DeepBeliefNetwork.cs" />
     <Compile Include="Core\DBNN\DeepLayer.cs" />
     <Compile Include="Core\DBNN\HiddenLayer.cs" />
@@ -120,6 +131,7 @@
     <Compile Include="Core\SOM\Neighborhood\NeighborhoodSingle.cs" />
     <Compile Include="Core\SOM\SelfOrganizingMap.cs" />
     <Compile Include="Core\SOM\Train\BasicTrainSOM.cs" />
+    <Compile Include="Core\Util\ArrayUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

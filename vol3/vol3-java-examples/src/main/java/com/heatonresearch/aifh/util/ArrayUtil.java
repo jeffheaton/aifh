@@ -29,9 +29,15 @@
 package com.heatonresearch.aifh.util;
 
 /**
- * Created by jeff on 12/4/15.
+ * Array utilities.
  */
 public class ArrayUtil {
+
+    /**
+     * Return the index of the largest value in a vector.
+     * @param data The vector.
+     * @return The index of the largest value.
+     */
     public static int indexOfLargest(double[] data) {
         int result = -1;
 

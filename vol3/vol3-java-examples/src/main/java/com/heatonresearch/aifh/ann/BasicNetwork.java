@@ -250,6 +250,10 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         this.layers.add(layer);
     }
 
+    /**
+     * Finalize the structure of the neural network.  This must be called before any training or calculation can
+     * be performed.  After this method is called layers can no longer be added to the neural network.
+     */
     public void finalizeStructure() {
         final int layerCount = this.layers.size();
 

@@ -51,6 +51,13 @@ public interface Layer {
      * @return The activation/transfer function for this neuron.
      */
     ActivationFunction getActivation();
+
+    /**
+     * Finalize the structure of this layer.
+     * @param theOwner The neural network that owns this layer.
+     * @param theLayerIndex The zero-based index of this layer.
+     * @param counts The counts structure to track the weight and neuron counts.
+     */
     void finalizeStructure(BasicNetwork theOwner, int theLayerIndex,
                            TempStructureCounts counts);
 

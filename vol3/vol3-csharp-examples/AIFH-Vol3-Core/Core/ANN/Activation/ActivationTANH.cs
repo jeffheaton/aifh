@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AIFH_Vol3_Core.Core.ANN.Activation;
 
-namespace AIFH_Vol3_Core.Core.ANN
+namespace AIFH_Vol3_Core.Core.ANN.Activation
 {
     /// <summary>
     /// The hyperbolic tangent activation function takes the curved shape of the
