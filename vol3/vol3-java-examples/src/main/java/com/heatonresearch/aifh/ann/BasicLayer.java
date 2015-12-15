@@ -76,7 +76,7 @@ public class BasicLayer extends WeightedLayer {
      * Construct a single dimension layer, this is usually used for non-convolutional neural networks.
      * @param theActivation The activation function.  All layers, except input will have activation functions.
      * @param theHasBias True, if this layer has a bias, all layers except the output have bias.
-     * @param theCount
+     * @param theCount The neuron count.
      */
     public BasicLayer(final ActivationFunction theActivation, boolean theHasBias, int theCount) {
         this(theActivation,theHasBias,new int[] {theCount});

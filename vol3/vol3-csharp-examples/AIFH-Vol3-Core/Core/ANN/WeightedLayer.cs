@@ -205,10 +205,10 @@ namespace AIFH_Vol3_Core.Core.ANN
         }
 
         /// <inheritdoc/>
-        public int Count { get; }
+        public abstract int Count { get; }
 
         /// <inheritdoc/>
-        public int TotalCount { get; }
+        public abstract int TotalCount { get; }
 
         /// <inheritdoc/>
         public abstract bool HasBias { get; }
@@ -217,7 +217,7 @@ namespace AIFH_Vol3_Core.Core.ANN
         public abstract int[] DimensionCounts { get; }
 
         /// <inheritdoc/>
-        public int WeightDepthUnit { get; }
+        public abstract int WeightDepthUnit { get; }
 
         /// <inheritdoc/>
         public abstract int NeuronDepthUnit { get; }

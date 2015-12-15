@@ -13,17 +13,17 @@ namespace AIFH_Vol3_Core.Core.ANN.Train.Error
     /// </summary>
     public interface IErrorFunction
     {
-        /**
-    * Calculate the error.
-    * @param af The activation function.
-    * @param b The output, before the activation function.
-    * @param a The output, after the activation function.
-    * @param ideal The idea/expected output.
-    * @param actual The actual output.
-    * @param error Error vector (output)
-    * @param derivShift Any derivative shift to apply (usually 0.0), used to implement flat-spot problem shift.
-    * @param significance The significance weight (usually 1.0)
-    */
+        /// <summary>
+        /// Calculate the error.
+        /// </summary>
+        /// <param name="af">The activation function.</param>
+        /// <param name="b">The output, before the activation function.</param>
+        /// <param name="a">The output, after the activation function.</param>
+        /// <param name="ideal">The idea/expected output.</param>
+        /// <param name="actual">The actual output.</param>
+        /// <param name="error">Error vector (output)</param>
+        /// <param name="derivShift">Any derivative shift to apply (usually 0.0), used to implement flat-spot problem shift.</param>
+        /// <param name="significance">The significance weight (usually 1.0)</param>
         void CalculateError(IActivationFunction af, double[] b, double[] a,
                                    double[] ideal, double[] actual, double[] error, double derivShift,
                                    double significance);

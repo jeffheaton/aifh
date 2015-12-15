@@ -121,7 +121,7 @@ public class GradientCalc {
 
     /**
      * Process one training set element.
-     *
+     * @param  errorCalc The error calculation.
      * @param input The network input.
      * @param ideal The ideal values.
      */
@@ -173,6 +173,10 @@ public class GradientCalc {
         return this.gradients;
     }
 
+    /**
+     * Apply a regularization penalty, such as that from L1/L2 regularization.
+     * @param l The penalty.
+     */
     public void calculateRegularizationPenalty(double[] l) {
         for (int i = 0; i < this.network.getLayers().size() - 1; i++) {
             layerRegularizationPenalty(i, l);

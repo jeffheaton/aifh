@@ -15,9 +15,9 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
     /// </summary>
     public class GradientCalc
     {
-        /**
-     * The network to train.
-     */
+        /// <summary>
+        /// The network to train.
+        /// </summary>
         private readonly BasicNetwork _network;
 
         /// <summary>
@@ -30,43 +30,43 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
         /// </summary>
         private readonly double[] _layerDelta;
 
-        /**
-         * The output from each layer.
-         */
+        /// <summary>
+        /// The output from each layer.
+        /// </summary>
         private readonly double[] _layerOutput;
 
-        /**
-         * The sums.
-         */
+        /// <summary>
+        /// The sums.
+        /// </summary>
         private readonly double[] _layerSums;
 
-        /**
-         * The gradients.
-         */
+        /// <summary>
+        /// The gradients.
+        /// </summary>
         private readonly double[] _gradients;
 
-        /**
-         * The weights and thresholds.
-         */
+        /// <summary>
+        /// The weights and thresholds.
+        /// </summary>
         private readonly double[] _weights;
 
-        /**
-         * The owner of the gradient calculation.
-         */
+        /// <summary>
+        /// The owner of the gradient calculation.
+        /// </summary>
         private readonly IGradientCalcOwner _owner;
 
-    /**
-     * The error function to use.
-     */
-    private readonly IErrorFunction errorFunction;
-
-    /**
-     * Construct the gradient calculation class.
-     * @param theNetwork The network to use.
-     * @param ef The error function to use.
-     * @param theOwner The owner (usually a trainer).
-     */
-    public GradientCalc(BasicNetwork theNetwork,
+        /// <summary>
+        /// The error function to use.
+        /// </summary>
+        private readonly IErrorFunction errorFunction;
+        
+        /// <summary>
+        /// Construct the gradient calculation class.
+        /// </summary>
+        /// <param name="theNetwork">The network to use.</param>
+        /// <param name="ef">The error function to use.</param>
+        /// <param name="theOwner">The owner (usually a trainer).</param>
+        public GradientCalc(BasicNetwork theNetwork,
                         IErrorFunction ef, IGradientCalcOwner theOwner)
         {
             _network = theNetwork;
@@ -82,9 +82,9 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
             _owner = theOwner;
         }
 
-        /**
-         * @return The network being processed.
-         */
+        /// <summary>
+        /// The network being processed.
+        /// </summary>
         public BasicNetwork Network
         {
             get
@@ -93,9 +93,9 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
             }
         }
 
-        /**
-         * @return The weights for this network.
-         */
+        /// <summary>
+        /// The weights for this network.
+        /// </summary>
         public double[] Weights
         {
             get
@@ -103,13 +103,13 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
                 return _weights;
             }
         }
-
-        /**
-         * Process one training set element.
-         *
-         * @param input The network input.
-         * @param ideal The ideal values.
-         */
+        
+        /// <summary>
+        /// Process one training set element. 
+        /// </summary>
+        /// <param name="errorCalc">The error calculation to use.</param>
+        /// <param name="input">The network input.</param>
+        /// <param name="ideal">The ideal values.</param>
         public void Process(IErrorCalculation errorCalc, double[] input, double[] ideal)
         {
             _network.Compute(input, _actual);
@@ -145,9 +145,9 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
         }
 
 
-        /**
-         * Reset all gradients to zero.
-         */
+        /// <summary>
+        /// Reset all gradients to zero.
+        /// </summary>
         public void Reset()
         {
             for (int i = 0; i < _gradients.Length; i++)
@@ -157,9 +157,9 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
         }
 
 
-        /**
-         * @return the gradients
-         */
+        /// <summary>
+        /// The gradients.
+        /// </summary>
         public double[] Gradients
         {
             get
@@ -168,6 +168,10 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
             }
         }
 
+        /// <summary>
+        /// Calculate the regularization penalty.
+        /// </summary>
+        /// <param name="l">The penalty.</param>
         public void CalculateRegularizationPenalty(double[] l)
         {
             for (int i = 0; i < _network.Layers.Count - 1; i++)
@@ -176,11 +180,11 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
             }
         }
 
-        /**
-         * Apply a regularization penalty, such as that from L1/L2 regularization.
-         * @param fromLayer The from layer.
-         * @param l The penalty.
-         */
+        /// <summary>
+        /// Apply a regularization penalty, such as that from L1/L2 regularization. 
+        /// </summary>
+        /// <param name="fromLayer">The from layer.</param>
+        /// <param name="l">The penalty.</param>
         public void LayerRegularizationPenalty(int fromLayer, double[] l)
         {
             int fromCount = _network.GetLayerTotalNeuronCount(fromLayer);
@@ -197,9 +201,9 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
             }
         }
 
-        /**
-         * @return The layer deltas used to calculate the gradient.
-         */
+        /// <summary>
+        /// The layer deltas used to calculate the gradient.
+        /// </summary>
         public double[] LayerDelta
         {
             get
