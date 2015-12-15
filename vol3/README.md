@@ -26,7 +26,8 @@ or improve an example, please consider pushing a change via GitHub.
 	
 * vol3-python-examples - Complete
 * vol3-java-examples - Complete
-* vol3-csharp-examples - In progress		
+* vol3-csharp-examples - In progress
+		
 		
 Note: Even though I list a set of examples as complete, I will likely add to and finetune 
 these examples.  It might be beneficial to download if you have not updated your source in awhile.
