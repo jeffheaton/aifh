@@ -106,7 +106,7 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
         /// <param name="theTraining">The training data to use.</param>
         /// <param name="theLearningRate">The learning rate.  Can be changed as training runs.</param>
         /// <param name="theMomentum">The momentum.  Can be changed as training runs.</param>
-        public BackPropagation(BasicNetwork theNetwork, List<BasicData> theTraining, double theLearningRate,
+        public BackPropagation(BasicNetwork theNetwork, IList<BasicData> theTraining, double theLearningRate,
                                double theMomentum)
         {
             BatchSize = 500;

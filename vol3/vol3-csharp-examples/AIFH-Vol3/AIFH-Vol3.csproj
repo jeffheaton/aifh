@@ -52,7 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleHolder.cs" />
+    <Compile Include="Examples\ANN\LearnAutoMPGBackprop.cs" />
+    <Compile Include="Examples\ANN\LearnDigitsBackprop.cs" />
     <Compile Include="Examples\ANN\LearnIrisAnneal.cs" />
+    <Compile Include="Examples\ANN\LearnIrisBackprop.cs" />
+    <Compile Include="Examples\ANN\LearnXORBackprop.cs" />
+    <Compile Include="Examples\ANN\LearnXORRPROP.cs" />
     <Compile Include="Examples\Classic\Boltzmann\TSP\BoltzTSP.cs" />
     <Compile Include="Examples\Classic\HopfieldAssociate\HopfieldAssociateHebbian.cs" />
     <Compile Include="Examples\Classic\HopfieldAssociate\HopfieldAssociateStorkey.cs" />
@@ -72,6 +77,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Resources\iris.csv" />
+    <EmbeddedResource Include="Resources\auto-mpg.data.csv" />
+    <EmbeddedResource Include="Resources\nations.csv" />
+    <EmbeddedResource Include="Resources\sunspots.csv" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AIFH-Vol3-Core\AIFH-Vol3-Core.csproj">

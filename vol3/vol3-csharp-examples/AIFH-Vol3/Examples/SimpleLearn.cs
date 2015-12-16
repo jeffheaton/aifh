@@ -4,6 +4,8 @@ using AIFH_Vol3.Core.General;
 using AIFH_Vol3.Core.General.Data;
 using AIFH_Vol3.Core.Learning;
 using AIFH_Vol3.Core.Normalize;
+using AIFH_Vol3.Core.Error;
+using AIFH_Vol3_Core.Core.General.Data;
 
 namespace AIFH_Vol3.Examples.Learning
 {
@@ -133,5 +135,117 @@ namespace AIFH_Vol3.Examples.Learning
                         + ", Ideal: " + invMap[idealIndex]);
             }
         }
+
+        /// <summary>
+        /// Train and stop when the validation set does not improve anymore.
+        /// </summary>
+        /// <param name="train">The trainer to use.</param>
+        /// <param name="model">The model that is trained.</param>
+        /// <param name="validationData">The validation data.</param>
+        /// <param name="tolerate">Number of iterations to tolerate no improvement to the validation error.</param>
+        /// <param name="errorCalc">The error calculation method.</param>
+        public void PerformIterationsEarlyStop(ILearningMethod train,
+                                               IRegressionAlgorithm model,
+                                               IList<BasicData> validationData,
+                                               int tolerate,
+                                               IErrorCalculation errorCalc)
+        {
+            int iterationNumber = 0;
+            bool done = false;
+            double bestError = double.PositiveInfinity;
+            int badIterations = 0;
+
+            do
+            {
+                iterationNumber++;
+
+                train.Iteration();
+                double validationError = DataUtil.CalculateRegressionError(validationData, model, errorCalc);
+
+                if (validationError < bestError)
+                {
+                    badIterations = 0;
+                    bestError = validationError;
+                }
+                else
+                {
+                    badIterations++;
+                }
+
+                if (train.Done)
+                {
+                    done = true;
+                }
+                else if (validationError > bestError && badIterations > tolerate)
+                {
+                    done = true;
+                }
+                else if (Double.IsNaN(train.LastError))
+                {
+                    Console.WriteLine("Training failed.");
+                    done = true;
+                }
+
+                Console.WriteLine("Iteration #" + iterationNumber
+                        + ", Iteration Score=" + train.LastError
+                        + ", Validation Score=" + validationError
+                        + ", " + train.Status);
+            } while (!done);
+
+            train.FinishTraining();
+            Console.WriteLine("Final score: " + train.LastError);
+        }
+
+        public void PerformIterationsClassifyEarlyStop(ILearningMethod train,
+                                               IClassificationAlgorithm model,
+                                               IList<BasicData> validationData,
+                                               int tolerate)
+        {
+            int iterationNumber = 0;
+            bool done = false;
+            double bestError = double.PositiveInfinity;
+            int badIterations = 0;
+
+            do
+            {
+                iterationNumber++;
+
+                train.Iteration();
+                double validationError = DataUtil.CalculateClassificationError(validationData, model);
+
+                if (validationError < bestError)
+                {
+                    badIterations = 0;
+                    bestError = validationError;
+                }
+                else
+                {
+                    badIterations++;
+                }
+
+                if (train.Done)
+                {
+                    done = true;
+                }
+                else if (badIterations > tolerate)
+                {
+                    done = true;
+                }
+                else if (Double.IsNaN(train.LastError))
+                {
+                    Console.WriteLine("Training failed.");
+                    done = true;
+                }
+
+                Console.WriteLine("Iteration #" + iterationNumber
+                        + ", Iteration Score=" + train.LastError
+                        + ", Validation Incorrect= %" + validationError * 100.0
+                        + ", " + train.Status);
+            } while (!done);
+
+            train.FinishTraining();
+            Console.WriteLine("Final score: " + bestError * 100.0);
+        }
+
     }
 }

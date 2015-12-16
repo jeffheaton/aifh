@@ -728,5 +728,82 @@ namespace AIFH_Vol3.Core.Normalize
                 }
             }
         }
+
+        public void NormalizeZScore(int column)
+        {
+            double standardDeviation = GetStandardDeviation(column);
+            double mean = GetMean(column);
+
+            foreach (Object[] obj in _data)
+            {
+                if (IsMissing(obj[column].ToString()))
+                {
+                    obj[column] = 0; // Place at mean
+                }
+                else
+                {
+                    double x = ConvertNumeric(obj, column);
+                    obj[column] = (x - mean) / standardDeviation;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Determine if the specified value is missing (empty string, NULL, NA, or ?).
+        /// </summary>
+        /// <param name="str">The value to check.</param>
+        /// <returns>True if missing.</returns>
+        public static bool IsMissing(String str)
+        {
+            return (str.Equals("?") || str.Trim().Equals("") || str.Trim().ToUpper().Equals("NA")
+                    || str.Trim().ToUpper().Equals("NULL"));
+        }
+        
+        /// <summary>
+        /// Get the mean numeric value for a column.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>The mean numeric value.</returns>
+
+        public double GetMean(int column)
+        {
+            double sum = 0;
+            int count = 0;
+
+            foreach (Object[] obj in _data)
+            {
+                if (!DataSet.IsMissing(obj[column].ToString()))
+                {
+                    sum += ConvertNumeric(obj, column);
+                    count++;
+                }
+            }
+
+            return sum / count;
+        }
+
+        /// <summary>
+        /// Get the standard deviation value for a column.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>The standard deviation numeric value.</returns>
+        public double GetStandardDeviation(int column)
+        {
+            double mean = GetMean(column);
+            double sum = 0;
+            int count = 0;
+
+            foreach (Object[] obj in _data)
+            {
+                if (!DataSet.IsMissing(obj[column].ToString()))
+                {
+                    double delta = mean - ConvertNumeric(obj, column);
+                    sum += delta * delta;
+                    count++;
+                }
+            }
+
+            return Math.Sqrt(sum / count);
+        }
     }
 }

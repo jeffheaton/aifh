@@ -83,6 +83,14 @@ public class SimpleLearn {
         System.out.println("Final score: " + train.getLastError());
     }
 
+    /**
+     * Train and stop when the validation set does not improve anymore.
+     * @param train The trainer to use.
+     * @param model The model that is trained.
+     * @param validationData The validation data.
+     * @param tolerate Number of iterations to tolerate no improvement to the validation error.
+     * @param errorCalc The error calculation method.
+     */
     public void performIterationsEarlyStop(final LearningMethod train,
                                            final RegressionAlgorithm model,
                                            final List<BasicData> validationData,
