@@ -25,7 +25,7 @@ namespace AIFH_Vol3.Examples.ANN
         /// </summary>
         public static int ExampleChapter = 8;
 
-        public static readonly int MNIST_DEPTH = 3;
+        public static readonly int MNIST_DEPTH = 1;
 
         public static void Dump(double[] data)
         {
@@ -40,7 +40,7 @@ namespace AIFH_Vol3.Examples.ANN
             }
         }
 
-        public static MNISTReader LoadMNIST(string path, bool training)
+        public static MNISTReader LoadMNIST(string path, bool training, int depth)
         {
             string imagesFilename;
             string labelsFilename;
@@ -99,7 +99,7 @@ namespace AIFH_Vol3.Examples.ANN
             }
 
             return new MNISTReader(
-                    pathLabels, pathImages, MNIST_DEPTH);
+                    pathLabels, pathImages, depth);
         }
 
         public void Display(MNISTReader reader)
@@ -115,8 +115,8 @@ namespace AIFH_Vol3.Examples.ANN
         {
             Console.WriteLine("Please wait, reading MNIST training data.");
             string dir = AppDomain.CurrentDomain.BaseDirectory;
-            MNISTReader trainingReader = LoadMNIST(dir, true);
-            MNISTReader validationReader = LoadMNIST(dir, false);
+            MNISTReader trainingReader = LoadMNIST(dir, true, MNIST_DEPTH);
+            MNISTReader validationReader = LoadMNIST(dir, false, MNIST_DEPTH);
 
             Console.WriteLine("Training set size: " + trainingReader.NumImages);
             Console.WriteLine("Validation set size: " + validationReader.NumImages);

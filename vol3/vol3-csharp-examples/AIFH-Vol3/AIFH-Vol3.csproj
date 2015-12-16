@@ -54,6 +54,8 @@
     <Compile Include="ExampleHolder.cs" />
     <Compile Include="Examples\ANN\LearnAutoMPGBackprop.cs" />
     <Compile Include="Examples\ANN\LearnDigitsBackprop.cs" />
+    <Compile Include="Examples\ANN\LearnDigitsConv.cs" />
+    <Compile Include="Examples\ANN\LearnDigitsDropout.cs" />
     <Compile Include="Examples\ANN\LearnIrisAnneal.cs" />
     <Compile Include="Examples\ANN\LearnIrisBackprop.cs" />
     <Compile Include="Examples\ANN\LearnXORBackprop.cs" />
@@ -69,7 +71,9 @@
     <Compile Include="Examples\DBN\SimpleDBN.cs" />
     <Compile Include="Examples\Intro\CSVExample.cs" />
     <Compile Include="Examples\NEAT\XORNEAT.cs" />
+    <Compile Include="Examples\Search\ListSearches.cs" />
     <Compile Include="Examples\SimpleLearn.cs" />
+    <Compile Include="Examples\Timeseries\PredictSunspots.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

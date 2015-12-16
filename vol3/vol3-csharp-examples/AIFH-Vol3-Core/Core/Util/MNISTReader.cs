@@ -27,6 +27,12 @@ namespace AIFH_Vol3_Core.Core.Util
         private int _numCols;
         private IList<BasicData> _data;
 
+        private int ReadInt32(BinaryReader reader)
+        {
+            byte[] b = reader.ReadBytes(4);
+            return b[3] + (b[2] << 8) + (b[1] << 16) + (b[0] << 24);
+        }
+
         public MNISTReader(String labelFilename, String imageFilename, int depth)
         {
             if (depth != 1 && depth != 3)
@@ -58,24 +64,23 @@ namespace AIFH_Vol3_Core.Core.Util
             {
                 images = new BinaryReader(File.Open(imageFilename, FileMode.Open));
             }
-
-
-            int magicNumber = labels.ReadInt32();
+            
+            int magicNumber = ReadInt32(labels);
             if (magicNumber != 2049)
             {
                 throw new AIFHError("Label file has wrong magic number: "
                         + magicNumber + " (should be 2049)");
             }
-            magicNumber = images.ReadInt32();
+            magicNumber = ReadInt32(images);
             if (magicNumber != 2051)
             {
                 throw new AIFHError("Image file has wrong magic number: "
                         + magicNumber + " (should be 2051)");
             }
-            _numLabels = labels.ReadInt32();
-            _numImages = images.ReadInt32();
-            _numRows = images.ReadInt32();
-            _numCols = images.ReadInt32();
+            _numLabels = ReadInt32(labels);
+            _numImages = ReadInt32(images);
+            _numRows = ReadInt32(images);
+            _numCols = ReadInt32(images);
             if (_numLabels != _numImages)
             {
                 StringBuilder str = new StringBuilder();
@@ -93,6 +98,7 @@ namespace AIFH_Vol3_Core.Core.Util
             int imageIndex = 0;
             for (int i = 0; i < _numLabels; i++)
             {
+                Console.WriteLine(i + "/" + _numLabels);
                 int label = labelsData[i];
                 double[] inputData = new double[imageVectorSize * depth];
                 int outputIndex = 0;

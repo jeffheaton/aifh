@@ -101,6 +101,7 @@
     <Compile Include="Core\General\Data\BasicData.cs" />
     <Compile Include="Core\General\Data\DataUtil.cs" />
     <Compile Include="Core\General\Data\ErrorCalculation.cs" />
+    <Compile Include="Core\General\Data\TimeSeriesUtil.cs" />
     <Compile Include="Core\General\Fns\AbstractRBF.cs" />
     <Compile Include="Core\General\Fns\GaussianFunction.cs" />
     <Compile Include="Core\General\Fns\IFn.cs" />

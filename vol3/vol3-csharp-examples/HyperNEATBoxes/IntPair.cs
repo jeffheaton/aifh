@@ -44,7 +44,7 @@ namespace HyperNEATBoxes
             return new IntPair(X, Y);
         }
 
-        public String ToString()
+        public override String ToString()
         {
             StringBuilder result = new StringBuilder();
             result.Append("[IntPair:");
