@@ -48,14 +48,14 @@ import java.io.File;
  */
 public class LearnDigitsDropout extends SimpleLearn {
 
-
+    public static final int MNIST_DEPTH = 1;
 
 
     public void process() {
         System.out.println("Please wait, reading MNIST training data.");
         String dir = System.getProperty("user.dir");
-        MNISTReader trainingReader = LearnDigitsBackprop.loadMNIST(dir,true);
-        MNISTReader validationReader = LearnDigitsBackprop.loadMNIST(dir,false);
+        MNISTReader trainingReader = LearnDigitsBackprop.loadMNIST(dir,true,MNIST_DEPTH);
+        MNISTReader validationReader = LearnDigitsBackprop.loadMNIST(dir,false,MNIST_DEPTH);
 
         System.out.println("Training set size: " + trainingReader.getNumImages());
         System.out.println("Validation set size: " + validationReader.getNumImages());

@@ -47,7 +47,7 @@ import java.io.File;
  */
 public class LearnDigitsBackprop extends SimpleLearn {
 
-    public static final int MNIST_DEPTH = 3;
+    public static final int MNIST_DEPTH = 1;
 
     public static void dump(double[] data) {
         int idx = 0;
@@ -59,7 +59,7 @@ public class LearnDigitsBackprop extends SimpleLearn {
         }
     }
 
-    public static MNISTReader loadMNIST(String path, boolean training) {
+    public static MNISTReader loadMNIST(String path, boolean training, int depth) {
         File path2 = new File(path);
         String imagesFilename;
         String labelsFilename;
@@ -110,7 +110,7 @@ public class LearnDigitsBackprop extends SimpleLearn {
         }
 
         return new MNISTReader(
-                pathLabels.toString(),pathImages.toString(),MNIST_DEPTH);
+                pathLabels.toString(),pathImages.toString(),depth);
     }
 
     public void display(MNISTReader reader) {
@@ -123,8 +123,8 @@ public class LearnDigitsBackprop extends SimpleLearn {
     public void process() {
         System.out.println("Please wait, reading MNIST training data.");
         String dir = System.getProperty("user.dir");
-        MNISTReader trainingReader = loadMNIST(dir,true);
-        MNISTReader validationReader = loadMNIST(dir,false);
+        MNISTReader trainingReader = loadMNIST(dir,true, MNIST_DEPTH);
+        MNISTReader validationReader = loadMNIST(dir,false, MNIST_DEPTH);
 
         System.out.println("Training set size: " + trainingReader.getNumImages());
         System.out.println("Validation set size: " + validationReader.getNumImages());
