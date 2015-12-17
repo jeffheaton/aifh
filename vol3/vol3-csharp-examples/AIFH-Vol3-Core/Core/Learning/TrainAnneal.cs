@@ -1,5 +1,5 @@
 ﻿// Artificial Intelligence for Humans
-// Volume 1: Fundamental Algorithms
+// Volume 3: Deep Learning and Neural Networks
 // C# Version
 // http://www.aifh.org
 // http://www.jeffheaton.com
@@ -7,7 +7,7 @@
 // Code repository:
 // https://github.com/jeffheaton/aifh
 //
-// Copyright 2013 by Jeff Heaton
+// Copyright 2015 by Jeff Heaton
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
+
 using System;
 using System.Text;
 using AIFH_Vol3.Core.Learning.Score;
@@ -149,22 +150,6 @@ namespace AIFH_Vol3.Core.Learning
             Array.Copy(_algorithm.LongTermMemory, 0, _globalBest, 0, _globalBest.Length);
         }
 
-        /// <summary>
-        ///     True, if we have reached the max iterations.
-        /// </summary>
-        public bool Done
-        {
-            get { return _k >= _kMax; }
-        }
-
-        /// <summary>
-        ///     The error (or energy) from the last iteration.
-        /// </summary>
-        public double LastError
-        {
-            get { return _globalBestError; }
-        }
-
 
         /// <summary>
         ///     The current temperature.
@@ -215,8 +200,24 @@ namespace AIFH_Vol3.Core.Learning
             get { return _lastProbability; }
         }
 
+        /// <summary>
+        ///     True, if we have reached the max iterations.
+        /// </summary>
+        public bool Done
+        {
+            get { return _k >= _kMax; }
+        }
+
+        /// <summary>
+        ///     The error (or energy) from the last iteration.
+        /// </summary>
+        public double LastError
+        {
+            get { return _globalBestError; }
+        }
+
         /// <inheritdoc />
-        public String Status
+        public string Status
         {
             get
             {
@@ -233,26 +234,15 @@ namespace AIFH_Vol3.Core.Learning
             }
         }
 
-        /// <summary>
-        ///     The cooling schedule.  This is a Probability Distribution Function (PDF) that specifies the probability,
-        ///     at a given temperature, of accepting a higher-energy move.
-        /// </summary>
-        /// <returns>The probability.</returns>
-        public double CoolingSchedule()
-        {
-            double ex = _k/(double) _kMax;
-            return _startingTemperature*Math.Pow(_endingTemperature/_startingTemperature, ex);
-        }
-
         /// <inheritdoc />
         public void Iteration()
         {
-            int len = _algorithm.LongTermMemory.Length;
+            var len = _algorithm.LongTermMemory.Length;
             _k++;
 
             _currentTemperature = CoolingSchedule();
 
-            for (int cycle = 0; cycle < _cycles; cycle++)
+            for (var cycle = 0; cycle < _cycles; cycle++)
             {
                 // backup current state
                 var oldState = new double[len];
@@ -262,10 +252,10 @@ namespace AIFH_Vol3.Core.Learning
                 PerformRandomize(_algorithm.LongTermMemory);
 
                 // did we improve it?  Only keep the new method if it improved (greedy).
-                double trialError = _score.CalculateScore(_algorithm);
+                var trialError = _score.CalculateScore(_algorithm);
 
                 // was this iteration an improvement?  If so, always keep.
-                bool keep = false;
+                var keep = false;
 
                 if (trialError < _currentError)
                 {
@@ -299,14 +289,33 @@ namespace AIFH_Vol3.Core.Learning
         }
 
         /// <summary>
+        ///     Copy the global best solution to the machine learning algorithm.  It is very important to call this method.
+        /// </summary>
+        public void FinishTraining()
+        {
+            Array.Copy(_globalBest, 0, _algorithm.LongTermMemory, 0, _globalBest.Length);
+        }
+
+        /// <summary>
+        ///     The cooling schedule.  This is a Probability Distribution Function (PDF) that specifies the probability,
+        ///     at a given temperature, of accepting a higher-energy move.
+        /// </summary>
+        /// <returns>The probability.</returns>
+        public double CoolingSchedule()
+        {
+            var ex = _k/(double) _kMax;
+            return _startingTemperature*Math.Pow(_endingTemperature/_startingTemperature, ex);
+        }
+
+        /// <summary>
         ///     Randomly move to a new location.  To specify a new randomization function, override this method.
         /// </summary>
         /// <param name="memory">The long term memory.</param>
         public void PerformRandomize(double[] memory)
         {
-            for (int i = 0; i < memory.Length; i++)
+            for (var i = 0; i < memory.Length; i++)
             {
-                double d = _rnd.NextGaussian()*3;
+                var d = _rnd.NextGaussian()*3;
                 memory[i] += d;
             }
         }
@@ -322,14 +331,6 @@ namespace AIFH_Vol3.Core.Learning
         public double CalcProbability(double ecurrent, double enew, double t)
         {
             return Math.Exp(-(Math.Abs(enew - ecurrent)/t));
-        }
-
-        /// <summary>
-        ///     Copy the global best solution to the machine learning algorithm.  It is very important to call this method.
-        /// </summary>
-        public void FinishTraining()
-        {
-            Array.Copy(_globalBest, 0, _algorithm.LongTermMemory, 0, _globalBest.Length);
         }
     }
 }

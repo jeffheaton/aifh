@@ -1,43 +1,66 @@
-﻿using AIFH_Vol3.Core.Error;
-using AIFH_Vol3.Core.General.Data;
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
+
+using System;
+using System.IO;
+using System.Reflection;
+using AIFH_Vol3.Core.Error;
 using AIFH_Vol3.Core.Normalize;
 using AIFH_Vol3.Examples.Learning;
 using AIFH_Vol3_Core.Core.ANN;
 using AIFH_Vol3_Core.Core.ANN.Activation;
 using AIFH_Vol3_Core.Core.ANN.Train;
 using AIFH_Vol3_Core.Core.General.Data;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AIFH_Vol3.Examples.ANN
 {
     /// <summary>
-    /// Predict car's MPG using regression.
+    ///     Predict car's MPG using regression.
     /// </summary>
-    public class LearnAutoMPGBackprop: SimpleLearn
+    public class LearnAutoMPGBackprop : SimpleLearn
     {
         /// <summary>
-        /// The name of this example.
+        ///     The name of this example.
         /// </summary>
         public static string ExampleName = "Auto MPG Backpropagation.";
 
         /// <summary>
-        /// The chapter this example is from.
+        ///     The chapter this example is from.
         /// </summary>
         public static int ExampleChapter = 8;
 
         /// <summary>
-        /// Run the example.
+        ///     Run the example.
         /// </summary>
         public void Process()
         {
             // read the iris data from the resources
-            Assembly assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.GetExecutingAssembly();
             var res = assembly.GetManifestResourceStream("AIFH_Vol3.Resources.auto-mpg.data.csv");
 
             // did we fail to read the resouce
@@ -49,7 +72,7 @@ namespace AIFH_Vol3.Examples.ANN
 
             // load the data
             var istream = new StreamReader(res);
-            DataSet ds = DataSet.Load(istream);
+            var ds = DataSet.Load(istream);
             istream.Close();
 
             // The following ranges are setup for the Auto MPG data set.  If you wish to normalize other files you will
@@ -67,19 +90,19 @@ namespace AIFH_Vol3.Examples.ANN
             ds.NormalizeZScore(4);
             ds.NormalizeZScore(5);
 
-            IList<BasicData> trainingData = ds.ExtractSupervised(1, 4, 0, 1);
+            var trainingData = ds.ExtractSupervised(1, 4, 0, 1);
 
-            IList<IList<BasicData>> splitList = DataUtil.Split(trainingData, 0.75);
+            var splitList = DataUtil.Split(trainingData, 0.75);
             trainingData = splitList[0];
-            IList<BasicData> validationData = splitList[1];
+            var validationData = splitList[1];
 
             Console.WriteLine("Size of dataset: " + ds.Count);
             Console.WriteLine("Size of training set: " + trainingData.Count);
             Console.WriteLine("Size of validation set: " + validationData.Count);
 
-            int inputCount = trainingData[0].Input.Length;
+            var inputCount = trainingData[0].Input.Length;
 
-            BasicNetwork network = new BasicNetwork();
+            var network = new BasicNetwork();
             network.AddLayer(new BasicLayer(null, true, inputCount));
             network.AddLayer(new BasicLayer(new ActivationReLU(), true, 50));
             network.AddLayer(new BasicLayer(new ActivationReLU(), true, 25));
@@ -88,11 +111,10 @@ namespace AIFH_Vol3.Examples.ANN
             network.FinalizeStructure();
             network.Reset();
 
-            BackPropagation train = new BackPropagation(network, trainingData, 0.000001, 0.9);
+            var train = new BackPropagation(network, trainingData, 0.000001, 0.9);
 
             PerformIterationsEarlyStop(train, network, validationData, 20, new ErrorCalculationMSE());
             Query(network, validationData);
-
         }
 
         /// <summary>

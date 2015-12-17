@@ -75,7 +75,8 @@ namespace AIFH_Vol3.Examples.Timeseries
             }
 
             // timseries encode
-            IList<BasicData> result = TimeSeriesUtil.SlidingWindow(dataset, this.INPUT_WINDOW, 1, new int[] { 0 }, new int[] { 0 });
+            IList<BasicData> result = TimeSeriesUtil.SlidingWindow(dataset, this.INPUT_WINDOW, 1, new int[] {0},
+                new int[] {0});
 
             return result;
         }
@@ -98,5 +99,15 @@ namespace AIFH_Vol3.Examples.Timeseries
             Query(network, trainingData);
         }
 
+        /// <summary>
+        ///     The entry point for this example.  If you would like to make this example
+        ///     stand alone, then add to its own project and rename to Main.
+        /// </summary>
+        /// <param name="args">Not used.</param>
+        public static void ExampleMain(string[] args)
+        {
+            PredictSunspots prg = new PredictSunspots();
+            prg.Process();
+        }
     }
 }

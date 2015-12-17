@@ -1,4 +1,31 @@
-﻿
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -31,6 +58,39 @@ namespace AIFH_Vol3.Core.Normalize
         public DataSet(string[] theHeaders)
         {
             _headers = theHeaders;
+        }
+
+        /// <summary>
+        ///     The number of columns (or headers).
+        /// </summary>
+        public int HeaderCount
+        {
+            get { return _headers.Length; }
+        }
+
+        /// <summary>
+        ///     The column headers.
+        /// </summary>
+        public string[] Headers
+        {
+            get { return _headers; }
+        }
+
+        /// <summary>
+        ///     The row data.
+        /// </summary>
+        public IList<object[]> Data
+        {
+            get { return _data; }
+        }
+
+        /**
+         * @return The number of rows.
+         */
+
+        public int Count
+        {
+            get { return _data.Count; }
         }
 
         /// <summary>
@@ -69,7 +129,7 @@ namespace AIFH_Vol3.Core.Normalize
         /// <returns>The data set read.</returns>
         public static DataSet Load(string filename)
         {
-            using (StreamReader fileReader = File.OpenText(filename))
+            using (var fileReader = File.OpenText(filename))
             {
                 return Load(fileReader);
             }
@@ -85,7 +145,7 @@ namespace AIFH_Vol3.Core.Normalize
             DataSet result = null;
             using (var csvReader = new CsvReader(stream))
             {
-                int fieldCount = 0;
+                var fieldCount = 0;
 
                 while (csvReader.Read())
                 {
@@ -96,7 +156,7 @@ namespace AIFH_Vol3.Core.Normalize
                         fieldCount = csvReader.FieldHeaders.Count();
                         var headers = new string[fieldCount];
 
-                        for (int i = 0; i < fieldCount; i++)
+                        for (var i = 0; i < fieldCount; i++)
                         {
                             headers[i] = csvReader.FieldHeaders[i];
                         }
@@ -105,8 +165,8 @@ namespace AIFH_Vol3.Core.Normalize
                     }
 
                     // process each line
-                    var obj = new Object[fieldCount];
-                    for (int i = 0; i < fieldCount; i++)
+                    var obj = new object[fieldCount];
+                    for (var i = 0; i < fieldCount; i++)
                     {
                         obj[i] = csvReader.GetField<string>(i);
                     }
@@ -116,22 +176,22 @@ namespace AIFH_Vol3.Core.Normalize
 
             return result;
         }
-        
+
         /// <summary>
-        /// Save the specified data set to a CSV file. 
+        ///     Save the specified data set to a CSV file.
         /// </summary>
         /// <param name="filename">The filename.</param>
         /// <param name="ds">The data set to save.</param>
         public static void Save(string filename, DataSet ds)
         {
-            using (StreamWriter textWriter = File.CreateText(filename))
+            using (var textWriter = File.CreateText(filename))
             {
                 Save(textWriter, ds);
             }
         }
 
         /// <summary>
-        /// Save the specified data to an output stream. 
+        ///     Save the specified data to an output stream.
         /// </summary>
         /// <param name="textWriter">The output stream.</param>
         /// <param name="ds">The data set.</param>
@@ -140,7 +200,7 @@ namespace AIFH_Vol3.Core.Normalize
             using (var writer = new CsvWriter(textWriter))
             {
                 // write the headers
-                foreach (string header in ds.Headers)
+                foreach (var header in ds.Headers)
                 {
                     writer.WriteField(header);
                 }
@@ -149,7 +209,7 @@ namespace AIFH_Vol3.Core.Normalize
                 // write the data
                 foreach (var item in ds.Data)
                 {
-                    for (int i = 0; i < ds.HeaderCount; i++)
+                    for (var i = 0; i < ds.HeaderCount; i++)
                     {
                         writer.WriteField(item[i].ToString());
                     }
@@ -159,49 +219,16 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// The number of columns (or headers).
-        /// </summary>
-        public int HeaderCount
-        {
-            get
-            {
-                return _headers.Length;
-            }
-        }
-
-        /// <summary>
-        /// The column headers.
-        /// </summary>
-        public string[] Headers
-        {
-            get
-            {
-                return _headers;
-            }
-        }
-
-        /// <summary>
-        /// Add a row. 
+        ///     Add a row.
         /// </summary>
         /// <param name="row">The row to add.</param>
-        public void Add(Object[] row)
+        public void Add(object[] row)
         {
             _data.Add(row);
         }
 
         /// <summary>
-        /// The row data.
-        /// </summary>
-        public IList<object[]> Data
-        {
-            get
-            {
-                return _data;
-            }
-        }
-
-        /// <summary>
-        /// Get the maximum numeric value for a column.
+        ///     Get the maximum numeric value for a column.
         /// </summary>
         /// <param name="column">The column.</param>
         /// <returns>The max numeric value.</returns>
@@ -211,7 +238,7 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Get the minimum numeric value for a column.
+        ///     Get the minimum numeric value for a column.
         /// </summary>
         /// <param name="column">The column.</param>
         /// <returns>The min numeric value.</returns>
@@ -221,8 +248,8 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Normalize a column using range normalization.
-        /// http://www.heatonresearch.com/wiki/Range_Normalization 
+        ///     Normalize a column using range normalization.
+        ///     http://www.heatonresearch.com/wiki/Range_Normalization
         /// </summary>
         /// <param name="column">The column to normalize.</param>
         /// <param name="dataLow">The low value for the actual data.</param>
@@ -234,31 +261,31 @@ namespace AIFH_Vol3.Core.Normalize
         {
             foreach (var obj in _data)
             {
-                double x = ConvertNumeric(obj, column);
+                var x = ConvertNumeric(obj, column);
 
-                obj[column] = ((x - dataLow)
-                               /(dataHigh - dataLow))
+                obj[column] = (x - dataLow)
+                              /(dataHigh - dataLow)
                               *(normalizedHigh - normalizedLow) + normalizedLow;
             }
         }
 
         /// <summary>
-        /// Normalize a column using range normalization.  Automatically determine the actual data high and low.
-        /// http://www.heatonresearch.com/wiki/Range_Normalization 
+        ///     Normalize a column using range normalization.  Automatically determine the actual data high and low.
+        ///     http://www.heatonresearch.com/wiki/Range_Normalization
         /// </summary>
         /// <param name="column">The column to normalize.</param>
         /// <param name="normalizedLow">The desired low normalized value.</param>
         /// <param name="normalizedHigh">The desired high normalized value.</param>
         public void NormalizeRange(int column, double normalizedLow, double normalizedHigh)
         {
-            double dataLow = GetMin(column);
-            double dataHigh = GetMax(column);
+            var dataLow = GetMin(column);
+            var dataHigh = GetMax(column);
             NormalizeRange(column, dataLow, dataHigh, normalizedLow, normalizedHigh);
         }
 
         /// <summary>
-        /// De-Normalize a column using range normalization.
-        /// http://www.heatonresearch.com/wiki/Range_Normalization 
+        ///     De-Normalize a column using range normalization.
+        ///     http://www.heatonresearch.com/wiki/Range_Normalization
         /// </summary>
         /// <param name="column">The column to normalize.</param>
         /// <param name="dataLow">The low value for the actual data.</param>
@@ -270,7 +297,7 @@ namespace AIFH_Vol3.Core.Normalize
         {
             foreach (var obj in _data)
             {
-                double x = ConvertNumeric(obj, column);
+                var x = ConvertNumeric(obj, column);
 
                 obj[column] = ((dataLow - dataHigh)*x - normalizedHigh
                                *dataLow + dataHigh*normalizedLow)
@@ -279,23 +306,23 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Normalize a column using reciprocal normalization.
-        /// http://www.heatonresearch.com/wiki/Reciprocal_Normalization 
+        ///     Normalize a column using reciprocal normalization.
+        ///     http://www.heatonresearch.com/wiki/Reciprocal_Normalization
         /// </summary>
         /// <param name="column">The column to encode.</param>
         public void NormalizeReciprocal(int column)
         {
             foreach (var obj in _data)
             {
-                double x = ConvertNumeric(obj, column);
+                var x = ConvertNumeric(obj, column);
                 obj[column] = 1/x;
             }
         }
 
         /// <summary>
-        /// De-Normalize a column using reciprocal normalization.
-        /// Note: normalization and de-normalization are the same mathematical operation.
-        /// http://www.heatonresearch.com/wiki/Reciprocal_Normalization 
+        ///     De-Normalize a column using reciprocal normalization.
+        ///     Note: normalization and de-normalization are the same mathematical operation.
+        ///     http://www.heatonresearch.com/wiki/Reciprocal_Normalization
         /// </summary>
         /// <param name="column">The column to encode.</param>
         public void DeNormalizeReciprocal(int column)
@@ -304,22 +331,22 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Enumerate classes (factors) into a numbered set. 
+        ///     Enumerate classes (factors) into a numbered set.
         /// </summary>
         /// <param name="column">The column to enumerate.</param>
         /// <returns>The numbered set.</returns>
-        public IDictionary<String, int> EnumerateClasses(int column)
+        public IDictionary<string, int> EnumerateClasses(int column)
         {
             // determine classes
-            var classes = new HashSet<String>();
+            var classes = new HashSet<string>();
             foreach (var obj in _data)
             {
                 classes.Add(obj[column].ToString());
             }
             // assign numeric values to each class
-            IDictionary<String, int> result = new Dictionary<String, int>();
-            int index = 0;
-            foreach (String className in classes)
+            IDictionary<string, int> result = new Dictionary<string, int>();
+            var index = 0;
+            foreach (var className in classes)
             {
                 result[className] = index++;
             }
@@ -328,67 +355,65 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Encode (enumerate) a column with simple numeric index encoding.
+        ///     Encode (enumerate) a column with simple numeric index encoding.
         /// </summary>
         /// <param name="column">The column to encode.</param>
         /// <returns>The mapping from column names to indexes.</returns>
         public IDictionary<string, int> EncodeNumeric(int column)
         {
-            IDictionary<string, int> classes = EnumerateClasses(column);
+            var classes = EnumerateClasses(column);
 
             foreach (var obj in _data)
             {
-                int index = classes[obj[column].ToString()];
+                var index = classes[obj[column].ToString()];
                 obj[column] = index;
             }
 
             return classes;
         }
-        
+
         /// <summary>
-        /// Encode a column using "one of n" encoding.  Use 0 for the off value, and 1 for on.
-        /// 
-        /// http://www.heatonresearch.com/wiki/One_of_n 
+        ///     Encode a column using "one of n" encoding.  Use 0 for the off value, and 1 for on.
+        ///     http://www.heatonresearch.com/wiki/One_of_n
         /// </summary>
         /// <param name="column">The column to use.</param>
         /// <returns>The column to index mapping (the same result as calling enumerateClasses).</returns>
-        public IDictionary<String, int> EncodeOneOfN(int column)
+        public IDictionary<string, int> EncodeOneOfN(int column)
         {
             return EncodeOneOfN(column, 0, 1);
         }
 
         /// <summary>
-        /// Encode a column using "one of n" encoding.
-        ///
-        /// http://www.heatonresearch.com/wiki/One_of_n 
+        ///     Encode a column using "one of n" encoding.
+        ///     http://www.heatonresearch.com/wiki/One_of_n
         /// </summary>
         /// <param name="column">The column to use.</param>
         /// <param name="offValue">The off value to use.</param>
         /// <param name="onValue">The on value to use.</param>
         /// <returns>The column to index mapping (the same result as calling enumerateClasses).</returns>
-        public IDictionary<String, int> EncodeOneOfN(int column, double offValue, double onValue)
+        public IDictionary<string, int> EncodeOneOfN(int column, double offValue, double onValue)
         {
             // remember the column name
-            string name = _headers[column];
+            var name = _headers[column];
 
             // make space for it
-            IDictionary<String, int> classes = EnumerateClasses(column);
+            var classes = EnumerateClasses(column);
             InsertColumns(column + 1, classes.Count - 1);
 
             // perform the 1 of n encode
             foreach (var obj in _data)
             {
-                int index = classes[obj[column].ToString()];
-                int classCount = classes.Count;
+                var index = classes[obj[column].ToString()];
+                var classCount = classes.Count;
 
-                for (int i = 0; i < classCount; i++)
+                for (var i = 0; i < classCount; i++)
                 {
-                    obj[column + i] = (i == index) ? onValue : offValue;
+                    obj[column + i] = i == index ? onValue : offValue;
                 }
             }
 
             // name the new columns
-            for (int i = 0; i < classes.Count; i++)
+            for (var i = 0; i < classes.Count; i++)
             {
                 _headers[column + i] = name + "-" + i;
             }
@@ -404,13 +429,12 @@ namespace AIFH_Vol3.Core.Normalize
  */
 
         /// <summary>
-        /// Use equilateral encoding to encode a column, use zero for the off value and one for the on value.
-        ///
-        /// http://www.heatonresearch.com/wiki/Equilateral
+        ///     Use equilateral encoding to encode a column, use zero for the off value and one for the on value.
+        ///     http://www.heatonresearch.com/wiki/Equilateral
         /// </summary>
         /// <param name="column">The column to encode.</param>
         /// <returns>The column to index mapping (the same result as calling enumerateClasses).</returns>
-        public IDictionary<String, int> EncodeEquilateral(int column)
+        public IDictionary<string, int> EncodeEquilateral(int column)
         {
             return EncodeEquilateral(column, 0, 1);
         }
@@ -426,14 +450,14 @@ namespace AIFH_Vol3.Core.Normalize
          * @return The column to index mapping (the same result as calling enumerateClasses).
          */
 
-        public IDictionary<String, int> EncodeEquilateral(int column, double offValue, double onValue)
+        public IDictionary<string, int> EncodeEquilateral(int column, double offValue, double onValue)
         {
             // remember the column name
-            String name = _headers[column];
+            var name = _headers[column];
 
             // make space for it
-            IDictionary<String, int> classes = EnumerateClasses(column);
-            int classCount = classes.Count;
+            var classes = EnumerateClasses(column);
+            var classCount = classes.Count;
             InsertColumns(column + 1, classCount - 1);
 
             // perform the equilateral
@@ -441,35 +465,23 @@ namespace AIFH_Vol3.Core.Normalize
 
             foreach (var obj in _data)
             {
-                int index = classes[obj[column].ToString()];
+                var index = classes[obj[column].ToString()];
 
-                double[] encoded = eq.Encode(index);
+                var encoded = eq.Encode(index);
 
-                for (int i = 0; i < classCount - 1; i++)
+                for (var i = 0; i < classCount - 1; i++)
                 {
                     obj[column + i] = encoded[i];
                 }
             }
 
             // name the new columns
-            for (int i = 0; i < classes.Count; i++)
+            for (var i = 0; i < classes.Count; i++)
             {
                 _headers[column + i] = name + "-" + i;
             }
 
             return classes;
-        }
-
-        /**
-         * @return The number of rows.
-         */
-
-        public int Count
-        {
-            get
-            {
-                return _data.Count;
-            }
         }
 
         /**
@@ -481,10 +493,10 @@ namespace AIFH_Vol3.Core.Normalize
         public void AppendColumns(int count)
         {
             // add the headers
-            var newHeaders = new String[HeaderCount + count];
+            var newHeaders = new string[HeaderCount + count];
             Array.Copy(_headers, 0, newHeaders, 0, HeaderCount);
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 newHeaders[i + HeaderCount] = "new";
             }
@@ -492,12 +504,12 @@ namespace AIFH_Vol3.Core.Normalize
             _headers = newHeaders;
 
             // add the data
-            for (int rowIndex = 0; rowIndex < Count; rowIndex++)
+            for (var rowIndex = 0; rowIndex < Count; rowIndex++)
             {
-                object[] originalRow = _data[rowIndex];
-                var newRow = new Object[HeaderCount];
+                var originalRow = _data[rowIndex];
+                var newRow = new object[HeaderCount];
                 Array.Copy(originalRow, 0, newRow, 0, originalRow.Length);
-                for (int i = 0; i < count; i++)
+                for (var i = 0; i < count; i++)
                 {
                     newRow[HeaderCount - 1 - i] = (double) 0;
                 }
@@ -506,7 +518,7 @@ namespace AIFH_Vol3.Core.Normalize
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void InsertColumns(int column, int columnCount)
         {
             // create space for new columns
@@ -516,7 +528,7 @@ namespace AIFH_Vol3.Core.Normalize
             Array.Copy(_headers, column + 1 - columnCount, _headers, column + 1, HeaderCount - 1 - column);
 
             // mark new columns headers
-            for (int i = 0; i < columnCount; i++)
+            for (var i = 0; i < columnCount; i++)
             {
                 _headers[column + i] = "new";
             }
@@ -527,14 +539,14 @@ namespace AIFH_Vol3.Core.Normalize
                 Array.Copy(obj, column + 1 - columnCount, obj, column + 1, HeaderCount - 1 - column);
 
                 // mark new columns
-                for (int i = 0; i < columnCount; i++)
+                for (var i = 0; i < columnCount; i++)
                 {
                     obj[column + i] = (double) 0;
                 }
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override bool Equals(object other)
         {
             if (!(other is DataSet))
@@ -546,7 +558,7 @@ namespace AIFH_Vol3.Core.Normalize
 
             // do the basic sizes match
 
-            if (HeaderCount != otherSet.HeaderCount )
+            if (HeaderCount != otherSet.HeaderCount)
             {
                 return false;
             }
@@ -557,7 +569,7 @@ namespace AIFH_Vol3.Core.Normalize
             }
 
             // do the headers match?
-            for (int i = 0; i < HeaderCount; i++)
+            for (var i = 0; i < HeaderCount; i++)
             {
                 if (!_headers[i].Equals(otherSet.Headers[i]))
                 {
@@ -566,12 +578,12 @@ namespace AIFH_Vol3.Core.Normalize
             }
 
             // does the data match?
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
-                object[] row1 = _data[i];
-                object[] row2 = ((DataSet) other).Data[i];
+                var row1 = _data[i];
+                var row2 = ((DataSet) other).Data[i];
 
-                for (int j = 0; j < HeaderCount; j++)
+                for (var j = 0; j < HeaderCount; j++)
                 {
                     if (!row1[j].Equals(row2[j]))
                     {
@@ -585,7 +597,7 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Extract and label an unsupervised training set. 
+        ///     Extract and label an unsupervised training set.
         /// </summary>
         /// <param name="labelIndex">The column index to use for the label.</param>
         /// <returns>The training set.</returns>
@@ -593,15 +605,15 @@ namespace AIFH_Vol3.Core.Normalize
         {
             IList<BasicData> result = new List<BasicData>();
 
-            int dimensions = HeaderCount - 1;
+            var dimensions = HeaderCount - 1;
 
-            for (int rowIndex = 0; rowIndex < Count; rowIndex++)
+            for (var rowIndex = 0; rowIndex < Count; rowIndex++)
             {
-                Object[] raw = _data[rowIndex];
+                var raw = _data[rowIndex];
                 var row = new BasicData(dimensions, 0, raw[labelIndex].ToString());
 
-                int colIndex = 0;
-                for (int rawColIndex = 0; rawColIndex < HeaderCount; rawColIndex++)
+                var colIndex = 0;
+                for (var rawColIndex = 0; rawColIndex < HeaderCount; rawColIndex++)
                 {
                     if (rawColIndex != labelIndex)
                     {
@@ -616,7 +628,7 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Extract a supervised training set.  This has both input and expected (ideal) output. 
+        ///     Extract a supervised training set.  This has both input and expected (ideal) output.
         /// </summary>
         /// <param name="inputBegin">The first input column.</param>
         /// <param name="inputCount">The number of columns for input.</param>
@@ -627,17 +639,17 @@ namespace AIFH_Vol3.Core.Normalize
         {
             IList<BasicData> result = new List<BasicData>();
 
-            for (int rowIndex = 0; rowIndex < Count; rowIndex++)
+            for (var rowIndex = 0; rowIndex < Count; rowIndex++)
             {
-                object[] raw = _data[rowIndex];
+                var raw = _data[rowIndex];
                 var row = new BasicData(inputCount, idealCount);
 
-                for (int i = 0; i < inputCount; i++)
+                for (var i = 0; i < inputCount; i++)
                 {
                     row.Input[i] = ConvertNumeric(raw, inputBegin + i);
                 }
 
-                for (int i = 0; i < idealCount; i++)
+                for (var i = 0; i < idealCount; i++)
                 {
                     row.Ideal[i] = ConvertNumeric(raw, idealBegin + i);
                 }
@@ -649,15 +661,15 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Delete all rows that contain unknown data.  An unknown column has a "?" value.
+        ///     Delete all rows that contain unknown data.  An unknown column has a "?" value.
         /// </summary>
         public void DeleteUnknowns()
         {
-            int rowIndex = 0;
+            var rowIndex = 0;
             while (rowIndex < _data.Count)
             {
-                Object[] row = _data[rowIndex];
-                bool remove = row.Any(aRow => aRow.ToString().Equals("?"));
+                var row = _data[rowIndex];
+                var remove = row.Any(aRow => aRow.ToString().Equals("?"));
 
                 if (remove)
                 {
@@ -671,16 +683,16 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Delete the specified column.
+        ///     Delete the specified column.
         /// </summary>
         /// <param name="col">The column to delete.</param>
         public void DeleteColumn(int col)
         {
-            var headers2 = new String[_headers.Length - 1];
+            var headers2 = new string[_headers.Length - 1];
 
             // first, remove the header
-            int h2Index = 0;
-            for (int i = 0; i < _headers.Length; i++)
+            var h2Index = 0;
+            for (var i = 0; i < _headers.Length; i++)
             {
                 if (i != col)
                 {
@@ -690,12 +702,12 @@ namespace AIFH_Vol3.Core.Normalize
             _headers = headers2;
 
             // now process the data
-            for(int rowIndex=0;rowIndex<_data.Count;rowIndex++)
+            for (var rowIndex = 0; rowIndex < _data.Count; rowIndex++)
             {
                 var row = _data[rowIndex];
-                var row2 = new Object[_headers.Length];
-                int r2Index = 0;
-                for (int i = 0; i <= _headers.Length; i++)
+                var row2 = new object[_headers.Length];
+                var r2Index = 0;
+                for (var i = 0; i <= _headers.Length; i++)
                 {
                     if (i != col)
                     {
@@ -707,7 +719,7 @@ namespace AIFH_Vol3.Core.Normalize
         }
 
         /// <summary>
-        /// Replace all of the specified values in a column. 
+        ///     Replace all of the specified values in a column.
         /// </summary>
         /// <param name="columnIndex">The column index.</param>
         /// <param name="searchFor">What to search for.</param>
@@ -717,7 +729,7 @@ namespace AIFH_Vol3.Core.Normalize
         {
             foreach (var row in _data)
             {
-                double d = ConvertNumeric(row, columnIndex);
+                var d = ConvertNumeric(row, columnIndex);
                 if (Math.Abs(d - searchFor) < 0.0001)
                 {
                     row[columnIndex] = replaceWith;
@@ -731,10 +743,10 @@ namespace AIFH_Vol3.Core.Normalize
 
         public void NormalizeZScore(int column)
         {
-            double standardDeviation = GetStandardDeviation(column);
-            double mean = GetMean(column);
+            var standardDeviation = GetStandardDeviation(column);
+            var mean = GetMean(column);
 
-            foreach (Object[] obj in _data)
+            foreach (var obj in _data)
             {
                 if (IsMissing(obj[column].ToString()))
                 {
@@ -742,68 +754,67 @@ namespace AIFH_Vol3.Core.Normalize
                 }
                 else
                 {
-                    double x = ConvertNumeric(obj, column);
-                    obj[column] = (x - mean) / standardDeviation;
+                    var x = ConvertNumeric(obj, column);
+                    obj[column] = (x - mean)/standardDeviation;
                 }
             }
         }
-        
+
         /// <summary>
-        /// Determine if the specified value is missing (empty string, NULL, NA, or ?).
+        ///     Determine if the specified value is missing (empty string, NULL, NA, or ?).
         /// </summary>
         /// <param name="str">The value to check.</param>
         /// <returns>True if missing.</returns>
-        public static bool IsMissing(String str)
+        public static bool IsMissing(string str)
         {
-            return (str.Equals("?") || str.Trim().Equals("") || str.Trim().ToUpper().Equals("NA")
-                    || str.Trim().ToUpper().Equals("NULL"));
+            return str.Equals("?") || str.Trim().Equals("") || str.Trim().ToUpper().Equals("NA")
+                   || str.Trim().ToUpper().Equals("NULL");
         }
-        
+
         /// <summary>
-        /// Get the mean numeric value for a column.
+        ///     Get the mean numeric value for a column.
         /// </summary>
         /// <param name="column">The column.</param>
         /// <returns>The mean numeric value.</returns>
-
         public double GetMean(int column)
         {
             double sum = 0;
-            int count = 0;
+            var count = 0;
 
-            foreach (Object[] obj in _data)
+            foreach (var obj in _data)
             {
-                if (!DataSet.IsMissing(obj[column].ToString()))
+                if (!IsMissing(obj[column].ToString()))
                 {
                     sum += ConvertNumeric(obj, column);
                     count++;
                 }
             }
 
-            return sum / count;
+            return sum/count;
         }
 
         /// <summary>
-        /// Get the standard deviation value for a column.
+        ///     Get the standard deviation value for a column.
         /// </summary>
         /// <param name="column">The column.</param>
         /// <returns>The standard deviation numeric value.</returns>
         public double GetStandardDeviation(int column)
         {
-            double mean = GetMean(column);
+            var mean = GetMean(column);
             double sum = 0;
-            int count = 0;
+            var count = 0;
 
-            foreach (Object[] obj in _data)
+            foreach (var obj in _data)
             {
-                if (!DataSet.IsMissing(obj[column].ToString()))
+                if (!IsMissing(obj[column].ToString()))
                 {
-                    double delta = mean - ConvertNumeric(obj, column);
-                    sum += delta * delta;
+                    var delta = mean - ConvertNumeric(obj, column);
+                    sum += delta*delta;
                     count++;
                 }
             }
 
-            return Math.Sqrt(sum / count);
+            return Math.Sqrt(sum/count);
         }
     }
 }

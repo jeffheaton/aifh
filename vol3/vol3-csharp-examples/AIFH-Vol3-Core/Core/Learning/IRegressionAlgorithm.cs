@@ -1,5 +1,5 @@
 // Artificial Intelligence for Humans
-// Volume 2: Nature-Inspired Algorithms
+// Volume 3: Deep Learning and Neural Networks
 // C# Version
 // http://www.aifh.org
 // http://www.jeffheaton.com
@@ -7,7 +7,7 @@
 // Code repository:
 // https://github.com/jeffheaton/aifh
 //
-// Copyright 2014 by Jeff Heaton
+// Copyright 2015 by Jeff Heaton
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,22 +25,17 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AIFH_Vol3.Core.Learning
 {
     /// <summary>
-    /// A regression algorithm provides an output for the given input.  This allows the machine learning algorithm to
-    /// approximate a function.
+    ///     A regression algorithm provides an output for the given input.  This allows the machine learning algorithm to
+    ///     approximate a function.
     /// </summary>
-    public interface IRegressionAlgorithm: IMLMethod
+    public interface IRegressionAlgorithm : IMLMethod
     {
         /// <summary>
-        /// Compute the output for the specified input.
+        ///     Compute the output for the specified input.
         /// </summary>
         /// <param name="input">The input.</param>
         /// <returns>The regression output.</returns>

@@ -1,4 +1,30 @@
-﻿
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
 
 using System;
 using System.Collections.Generic;
@@ -7,28 +33,23 @@ using System.Text;
 namespace AIFH_Vol3.Core.General.Data
 {
     /// <summary>
-    /// This class is used to store both the input and ideal vectors for a single item of training data.  
-    /// A label can also be applied.
+    ///     This class is used to store both the input and ideal vectors for a single item of training data.
+    ///     A label can also be applied.
     /// </summary>
     public class BasicData
     {
         /// <summary>
-        /// The input vector.
-        /// </summary>
-        private readonly double[] _input;
-
-        /// <summary>
-        /// The ideal (or expected output) vector.
+        ///     The ideal (or expected output) vector.
         /// </summary>
         private readonly double[] _ideal;
 
         /// <summary>
-        /// A label, that can be used to tag this element.
+        ///     The input vector.
         /// </summary>
-        public string Label { get; set; }
+        private readonly double[] _input;
 
         /// <summary>
-        /// Construct an empty unsupervised element.  An unsupervised element does not have an expected output. 
+        ///     Construct an empty unsupervised element.  An unsupervised element does not have an expected output.
         /// </summary>
         /// <param name="theInputDimensions">The number of dimensions.</param>
         public BasicData(int theInputDimensions)
@@ -37,7 +58,7 @@ namespace AIFH_Vol3.Core.General.Data
         }
 
         /// <summary>
-        /// Construct an empty supervised element.  A supervised element has both input an ideal. 
+        ///     Construct an empty supervised element.  A supervised element has both input an ideal.
         /// </summary>
         /// <param name="theInputDimensions">The dimensions for the input vector.</param>
         /// <param name="theIdealDimensions">The dimensions for the ideal vector.</param>
@@ -47,7 +68,7 @@ namespace AIFH_Vol3.Core.General.Data
         }
 
         /// <summary>
-        /// Construct an object with the specified dimensions and label.
+        ///     Construct an object with the specified dimensions and label.
         /// </summary>
         /// <param name="theInputDimensions">The input dimensions.</param>
         /// <param name="theIdealDimensions">The ideal dimensions.</param>
@@ -60,7 +81,7 @@ namespace AIFH_Vol3.Core.General.Data
         }
 
         /// <summary>
-        /// Construct a supervised element, with a label. 
+        ///     Construct a supervised element, with a label.
         /// </summary>
         /// <param name="theInputData">The input data vector.</param>
         /// <param name="theIdealData">The ideal data vector.</param>
@@ -73,50 +94,47 @@ namespace AIFH_Vol3.Core.General.Data
         }
 
         /// <summary>
-        /// Construct an unsupervised element, with a label. 
+        ///     Construct an unsupervised element, with a label.
         /// </summary>
         /// <param name="theInputData">The input vector.</param>
         /// <param name="theLabel">The label.</param>
         public BasicData(double[] theInputData, string theLabel)
             : this(theInputData, new double[0], theLabel)
         {
-
         }
 
         /// <summary>
-        /// Construct an unsupervised element, without a label. 
+        ///     Construct an unsupervised element, without a label.
         /// </summary>
         /// <param name="theInputData">The input vector.</param>
         public BasicData(double[] theInputData)
             : this(theInputData, null)
         {
-
         }
 
         /// <summary>
-        /// The input vector.
+        ///     A label, that can be used to tag this element.
+        /// </summary>
+        public string Label { get; set; }
+
+        /// <summary>
+        ///     The input vector.
         /// </summary>
         public double[] Input
         {
-            get
-            {
-                return _input;
-            }
+            get { return _input; }
         }
 
         /// <summary>
-        /// The ideal vector.
+        ///     The ideal vector.
         /// </summary>
         public double[] Ideal
         {
-            get
-            {
-                return _ideal;
-            }
+            get { return _ideal; }
         }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override string ToString()
         {
             var result = new StringBuilder();
@@ -132,8 +150,8 @@ namespace AIFH_Vol3.Core.General.Data
         }
 
         /// <summary>
-        /// Convert two 2D arrays into a List of BasicData elements.  One array holds input and the other ideal 
-        /// vectors. 
+        ///     Convert two 2D arrays into a List of BasicData elements.  One array holds input and the other ideal
+        ///     vectors.
         /// </summary>
         /// <param name="inputData">An array of input vectors.</param>
         /// <param name="idealData">An array of ideal vectors.</param>

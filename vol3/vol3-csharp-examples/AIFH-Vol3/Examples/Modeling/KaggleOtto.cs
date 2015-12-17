@@ -25,28 +25,40 @@
 // and trademarks visit:
 // http://www.heatonresearch.com/copyright
 //
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-using AIFH_Vol3_Core.Core.ANN.Activation;
-
-namespace AIFH_Vol3_Core.Core.ANN.Train.Error
+namespace AIFH_Vol3.Examples.Modeling
 {
-    /// <summary>
-    ///     Implements a cross entropy error function.  This can be used with backpropagation to
-    ///     sometimes provide better performance than the standard linear error function.
-    ///     De Boer, Pieter-Tjerk, et al. "A tutorial on the cross-entropy method." Annals of operations
-    ///     research 134.1 (2005): 19-67.
-    /// </summary>
-    public class CrossEntropyErrorFunction : IErrorFunction
+    public class KaggleOtto
     {
-        /// <inheritdoc />
-        public void CalculateError(IActivationFunction af, double[] b, double[] a,
-            double[] ideal, double[] actual, double[] error, double derivShift,
-            double significance)
+        /// <summary>
+        ///     The name of this example.
+        /// </summary>
+        public static string ExampleName = "Kaggle Otto Group modeling with deep neural network.";
+
+        /// <summary>
+        ///     The chapter this example is from.
+        /// </summary>
+        public static int ExampleChapter = 16;
+
+        public void Process()
         {
-            for (var i = 0; i < actual.Length; i++)
-            {
-                error[i] = (ideal[i] - actual[i])*significance;
-            }
+            
+        }
+
+        /// <summary>
+        ///     The entry point for this example.  If you would like to make this example
+        ///     stand alone, then add to its own project and rename to Main.
+        /// </summary>
+        /// <param name="args">Not used.</param>
+        public static void ExampleMain(string[] args)
+        {
+            var prg = new KaggleOtto();
+            prg.Process();
         }
     }
 }

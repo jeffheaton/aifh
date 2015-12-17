@@ -1,45 +1,71 @@
-﻿using AIFH_Vol3.Core.General.Data;
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
+
+using System;
+using AIFH_Vol3.Core.General.Data;
 using AIFH_Vol3.Examples.Learning;
 using AIFH_Vol3_Core.Core.ANN;
 using AIFH_Vol3_Core.Core.ANN.Activation;
 using AIFH_Vol3_Core.Core.ANN.Train;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AIFH_Vol3.Examples.ANN
 {
-    public class LearnXORBackprop :  SimpleLearn
+    public class LearnXORBackprop : SimpleLearn
     {
         /// <summary>
-        /// The input necessary for XOR.
+        ///     The input necessary for XOR.
         /// </summary>
-        public static double[][] XOR_INPUT = 
-        { 
-            new double[] { 0.0, 0.0 }, 
-            new double[] { 1.0, 0.0 },
-            new double[] { 0.0, 1.0 }, 
-            new double[] { 1.0, 1.0 } };
+        public static double[][] XOR_INPUT =
+        {
+            new[] {0.0, 0.0},
+            new[] {1.0, 0.0},
+            new[] {0.0, 1.0},
+            new[] {1.0, 1.0}
+        };
 
         /// <summary>
-        /// The ideal data necessary for XOR.
+        ///     The ideal data necessary for XOR.
         /// </summary>
-        public static double[][] XOR_IDEAL = 
-        { 
-            new double[] { 0.0 }, 
-            new double[] { 1.0 }, 
-            new double[] { 1.0 }, 
-            new double[] { 0.0 } };
+        public static double[][] XOR_IDEAL =
+        {
+            new[] {0.0},
+            new[] {1.0},
+            new[] {1.0},
+            new[] {0.0}
+        };
 
         /// <summary>
-        /// The name of this example.
+        ///     The name of this example.
         /// </summary>
         public static string ExampleName = "XOR with Backpropagation.";
 
         /// <summary>
-        /// The chapter this example is from.
+        ///     The chapter this example is from.
         /// </summary>
         public static int ExampleChapter = 6;
 
@@ -50,19 +76,19 @@ namespace AIFH_Vol3.Examples.ANN
         /// <param name="args">Not used.</param>
         public static void ExampleMain(string[] args)
         {
-            BasicNetwork network = new BasicNetwork();
+            var network = new BasicNetwork();
             network.AddLayer(new BasicLayer(null, true, 2));
             network.AddLayer(new BasicLayer(new ActivationSigmoid(), true, 5));
             network.AddLayer(new BasicLayer(new ActivationSigmoid(), false, 1));
             network.FinalizeStructure();
             network.Reset();
 
-            IList<BasicData> trainingData = BasicData.ConvertArrays(XOR_INPUT, XOR_IDEAL);
+            var trainingData = BasicData.ConvertArrays(XOR_INPUT, XOR_IDEAL);
 
             // train the neural network
-            BackPropagation train = new BackPropagation(network, trainingData, 0.7, 0.9);
+            var train = new BackPropagation(network, trainingData, 0.7, 0.9);
 
-            int epoch = 1;
+            var epoch = 1;
 
             do
             {
@@ -73,12 +99,12 @@ namespace AIFH_Vol3.Examples.ANN
 
             // test the neural network
             Console.WriteLine("Neural Network Results:");
-            for (int i = 0; i < XOR_INPUT.Length; i++)
+            for (var i = 0; i < XOR_INPUT.Length; i++)
             {
-                double[] output = network.ComputeRegression(XOR_INPUT[i]);
-                Console.WriteLine(string.Join(",",XOR_INPUT[i])
-                        + ", actual=" + string.Join(",", output)
-                        + ",ideal=" + string.Join(",", XOR_IDEAL[i]));
+                var output = network.ComputeRegression(XOR_INPUT[i]);
+                Console.WriteLine(string.Join(",", XOR_INPUT[i])
+                                  + ", actual=" + string.Join(",", output)
+                                  + ",ideal=" + string.Join(",", XOR_IDEAL[i]));
             }
         }
     }

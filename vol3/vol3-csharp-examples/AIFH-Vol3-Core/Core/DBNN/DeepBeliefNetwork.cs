@@ -1,46 +1,64 @@
-﻿using AIFH_Vol3.Core;
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
+
+using System;
+using AIFH_Vol3.Core;
 using AIFH_Vol3.Core.Learning;
 using AIFH_Vol3.Core.Randomize;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AIFH_Vol3_Core.Core.DBNN
 {
     /// <summary>
-    /// A deep belief neural network.
-    ///
-    /// References:
-    /// http://deeplearning.net/software/theano/
-    /// https://github.com/yusugomori/DeepLearning
-    /// http://en.wikipedia.org/wiki/Deep_learning
+    ///     A deep belief neural network.
+    ///     References:
+    ///     http://deeplearning.net/software/theano/
+    ///     https://github.com/yusugomori/DeepLearning
+    ///     http://en.wikipedia.org/wiki/Deep_learning
     /// </summary>
     public class DeepBeliefNetwork : IRegressionAlgorithm
     {
         /// <summary>
-        /// The hidden layers of the neural network.
+        ///     The hidden layers of the neural network.
         /// </summary>
-        private HiddenLayer[] _layers;
+        private readonly HiddenLayer[] _layers;
 
         /// <summary>
-        /// The restricted boltzmann machines for the neural network, one for leach layer.
+        ///     The output layer for the neural network.
         /// </summary>
-        private RestrictedBoltzmannMachine[] _rbm;
+        private readonly DeepLayer _outputLayer;
 
         /// <summary>
-        /// The output layer for the neural network.
+        ///     The restricted boltzmann machines for the neural network, one for leach layer.
         /// </summary>
-        private DeepLayer _outputLayer;
+        private readonly RestrictedBoltzmannMachine[] _rbm;
 
         /// <summary>
-        /// The random number generator to use.
-        /// </summary>
-        public IGenerateRandom Random { get; set; }
-
-        /// <summary>
-        /// Construct a deep belief neural network. 
+        ///     Construct a deep belief neural network.
         /// </summary>
         /// <param name="inputCount">The input count.</param>
         /// <param name="hidden">The counts for the hidden layers.</param>
@@ -52,7 +70,7 @@ namespace AIFH_Vol3_Core.Core.DBNN
             _layers = new HiddenLayer[hidden.Length];
             _rbm = new RestrictedBoltzmannMachine[hidden.Length];
 
-            for (int i = 0; i < _rbm.Length; i++)
+            for (var i = 0; i < _rbm.Length; i++)
             {
                 if (i == 0)
                 {
@@ -73,121 +91,78 @@ namespace AIFH_Vol3_Core.Core.DBNN
         }
 
         /// <summary>
-        /// Randomize the weights of the neural network.
+        ///     The random number generator to use.
         /// </summary>
-        public void Reset()
-        {
-            for (int i = 0; i < _rbm.Length; i++)
-            {
-
-                HiddenLayer layer = _layers[i];
-
-                double a = 1.0 / layer.InputCount;
-
-                for (int j = 0; j < layer.OutputCount; j++)
-                {
-                    for (int k = 0; k < layer.InputCount; k++)
-                    {
-                        layer.Weights[j][k] = Random.NextDouble(-a, a);
-                    }
-                }
-            }
-        }
+        public IGenerateRandom Random { get; set; }
 
         /// <summary>
-        /// The sigmoid/logistic function, used by the output layer. 
-        /// </summary>
-        /// <param name="x">The input.</param>
-        /// <returns>The output.</returns>
-        public static double Sigmoid(double x)
-        {
-            return 1.0 / (1.0 + Math.Exp(-x));
-        }
-
-        /// <summary>
-        /// The layers of the neural network.
+        ///     The layers of the neural network.
         /// </summary>
         /// <returns></returns>
         public HiddenLayer[] Layers
         {
-            get
-            {
-                return _layers;
-            }
+            get { return _layers; }
         }
 
         /// <summary>
-        /// The restricted Boltzmann machines.
+        ///     The restricted Boltzmann machines.
         /// </summary>
         public RestrictedBoltzmannMachine[] RBMLayers
         {
-            get
-            {
-                return _rbm;
-            }
+            get { return _rbm; }
         }
 
         /// <summary>
-        /// The input count.
+        ///     The input count.
         /// </summary>
         public int InputCount
         {
-            get
-            {
-                return _layers[0].InputCount;
-            }
+            get { return _layers[0].InputCount; }
         }
 
         /// <summary>
-        /// The output (logistic) layer.
+        ///     The output (logistic) layer.
         /// </summary>
         public DeepLayer LogLayer
         {
-            get
-            {
-                return _outputLayer;
-            }
+            get { return _outputLayer; }
         }
 
 
         /// <summary>
-        /// The number of output neurons.
+        ///     The number of output neurons.
         /// </summary>
         public int OutputCount
         {
-            get
-            {
-                return _outputLayer.OutputCount;
-            }
+            get { return _outputLayer.OutputCount; }
         }
 
         /// <summary>
-        /// Classify the input data into the list of probabilities of each class. 
+        ///     Classify the input data into the list of probabilities of each class.
         /// </summary>
         /// <param name="input">The input.</param>
         /// <returns>An array that contains the probabilities of each class.</returns>
         public double[] ComputeRegression(double[] input)
         {
-
-            double[] result = new double[OutputCount];
-            double[] layerInput = new double[0];
-            double[] prevLayerInput = new double[InputCount];
+            var result = new double[OutputCount];
+            var layerInput = new double[0];
+            var prevLayerInput = new double[InputCount];
 
             Array.Copy(input, prevLayerInput, InputCount);
 
             double output;
 
-            for (int i = 0; i < _layers.Length; i++)
+            for (var i = 0; i < _layers.Length; i++)
             {
                 layerInput = new double[_layers[i].OutputCount];
 
-                for (int k = 0; k < _layers[i].OutputCount; k++)
+                for (var k = 0; k < _layers[i].OutputCount; k++)
                 {
                     output = 0.0;
 
-                    for (int j = 0; j < _layers[i].InputCount; j++)
+                    for (var j = 0; j < _layers[i].InputCount; j++)
                     {
-                        output += _layers[i].Weights[k][j] * prevLayerInput[j];
+                        output += _layers[i].Weights[k][j]*prevLayerInput[j];
                     }
                     output += _layers[i].Bias[k];
                     layerInput[k] = Sigmoid(output);
@@ -200,12 +175,12 @@ namespace AIFH_Vol3_Core.Core.DBNN
                 }
             }
 
-            for (int i = 0; i < _outputLayer.OutputCount; i++)
+            for (var i = 0; i < _outputLayer.OutputCount; i++)
             {
                 result[i] = 0;
-                for (int j = 0; j < _outputLayer.InputCount; j++)
+                for (var j = 0; j < _outputLayer.InputCount; j++)
                 {
-                    result[i] += _outputLayer.Weights[i][j] * layerInput[j];
+                    result[i] += _outputLayer.Weights[i][j]*layerInput[j];
                 }
                 result[i] += _outputLayer.Bias[i];
             }
@@ -214,13 +189,41 @@ namespace AIFH_Vol3_Core.Core.DBNN
             return result;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public double[] LongTermMemory
         {
-            get
+            get { throw new AIFHError("Can't access DBM memory as array."); }
+        }
+
+        /// <summary>
+        ///     Randomize the weights of the neural network.
+        /// </summary>
+        public void Reset()
+        {
+            for (var i = 0; i < _rbm.Length; i++)
             {
-                throw new AIFHError("Can't access DBM memory as array.");
+                var layer = _layers[i];
+
+                var a = 1.0/layer.InputCount;
+
+                for (var j = 0; j < layer.OutputCount; j++)
+                {
+                    for (var k = 0; k < layer.InputCount; k++)
+                    {
+                        layer.Weights[j][k] = Random.NextDouble(-a, a);
+                    }
+                }
             }
+        }
+
+        /// <summary>
+        ///     The sigmoid/logistic function, used by the output layer.
+        /// </summary>
+        /// <param name="x">The input.</param>
+        /// <returns>The output.</returns>
+        public static double Sigmoid(double x)
+        {
+            return 1.0/(1.0 + Math.Exp(-x));
         }
     }
 }

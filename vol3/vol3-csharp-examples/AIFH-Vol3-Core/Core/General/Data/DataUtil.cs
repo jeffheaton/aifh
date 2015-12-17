@@ -1,26 +1,50 @@
-﻿using AIFH_Vol3.Core.Error;
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
+
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using AIFH_Vol3.Core.Error;
 using AIFH_Vol3.Core.General.Data;
 using AIFH_Vol3.Core.Learning;
 using AIFH_Vol3.Core.Randomize;
 using AIFH_Vol3_Core.Core.Util;
 using CsvHelper;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AIFH_Vol3_Core.Core.General.Data
 {
     /// <summary>
-    /// Several dataset utilities.
+    ///     Several dataset utilities.
     /// </summary>
     public class DataUtil
     {
         /// <summary>
-        /// Split a list into two sublists by randomly shuffling the values (without replacement).
+        ///     Split a list into two sublists by randomly shuffling the values (without replacement).
         /// </summary>
         /// <typeparam name="T">The type that the lists contain.</typeparam>
         /// <param name="list">The list to split/shuffle.</param>
@@ -30,18 +54,18 @@ namespace AIFH_Vol3_Core.Core.General.Data
         public static IList<IList<T>> Split<T>(IList<T> list, double ratio, IGenerateRandom rnd)
         {
             IList<IList<T>> result = new List<IList<T>>();
-            int aCount = (int)(list.Count * ratio);
+            var aCount = (int) (list.Count*ratio);
 
-            List<T> a = new List<T>();
-            List<T> b = new List<T>();
+            var a = new List<T>();
+            var b = new List<T>();
             result.Add(a);
             result.Add(b);
 
             b.AddRange(list);
 
-            for (int i = 0; i < aCount; i++)
+            for (var i = 0; i < aCount; i++)
             {
-                int idx = rnd.NextInt(0, b.Count);
+                var idx = rnd.NextInt(0, b.Count);
                 a.Add(b[idx]);
                 b.RemoveAt(idx);
             }
@@ -50,8 +74,8 @@ namespace AIFH_Vol3_Core.Core.General.Data
         }
 
         /// <summary>
-        /// Split a list into two sublists by randomly shuffling the values (without replacement).
-        /// A new Mersenne twister random number generator will be used.
+        ///     Split a list into two sublists by randomly shuffling the values (without replacement).
+        ///     A new Mersenne twister random number generator will be used.
         /// </summary>
         /// <typeparam name="T">The type that the lists contain.</typeparam>
         /// <param name="list">The list to split/shuffle.</param>
@@ -63,20 +87,20 @@ namespace AIFH_Vol3_Core.Core.General.Data
         }
 
         /// <summary>
-        /// Calculate error for regression. 
+        ///     Calculate error for regression.
         /// </summary>
         /// <param name="dataset">The dataset.</param>
         /// <param name="model">The model to evaluate.</param>
         /// <param name="calc">The error calculation.</param>
         /// <returns>The error.</returns>
         public static double CalculateRegressionError(IList<BasicData> dataset,
-                                                      IRegressionAlgorithm model,
-                                                      IErrorCalculation calc)
+            IRegressionAlgorithm model,
+            IErrorCalculation calc)
         {
             calc.Clear();
-            foreach (BasicData item in dataset)
+            foreach (var item in dataset)
             {
-                double[] output = model.ComputeRegression(item.Input);
+                var output = model.ComputeRegression(item.Input);
                 calc.UpdateError(output, item.Ideal, 1.0);
             }
 
@@ -84,32 +108,31 @@ namespace AIFH_Vol3_Core.Core.General.Data
         }
 
         /// <summary>
-        /// Calculate classification error. 
+        ///     Calculate classification error.
         /// </summary>
         /// <param name="data">The dataset.</param>
         /// <param name="model">The model to evaluate.</param>
         /// <returns>The error.</returns>
         public static double CalculateClassificationError(
-                IList<BasicData> data,
-                IClassificationAlgorithm model)
+            IList<BasicData> data,
+            IClassificationAlgorithm model)
         {
-            int total = 0;
-            int correct = 0;
+            var total = 0;
+            var correct = 0;
 
-            foreach (BasicData pair in data)
+            foreach (var pair in data)
             {
-                int ideal = ArrayUtil.IndexOfLargest(pair.Ideal);
-                int actual = model.ComputeClassification(pair.Input);
+                var ideal = ArrayUtil.IndexOfLargest(pair.Ideal);
+                var actual = model.ComputeClassification(pair.Input);
                 if (actual == ideal)
                     correct++;
                 total++;
             }
-            return (double)(total - correct) / (double)total;
-
+            return (total - correct)/(double) total;
         }
-        
+
         /// <summary>
-        /// Dump a dataset as a CSV. 
+        ///     Dump a dataset as a CSV.
         /// </summary>
         /// <param name="file">The file to dump to.</param>
         /// <param name="dataset">The dataset.</param>
@@ -117,34 +140,34 @@ namespace AIFH_Vol3_Core.Core.General.Data
         {
             using (TextWriter tw = File.CreateText(file))
             {
-                CsvWriter writer = new CsvWriter(tw);
-                int inputCount = dataset[0].Input.Length;
-                int outputCount = dataset[0].Ideal.Length;
-                int totalCount = inputCount + outputCount;
+                var writer = new CsvWriter(tw);
+                var inputCount = dataset[0].Input.Length;
+                var outputCount = dataset[0].Ideal.Length;
+                var totalCount = inputCount + outputCount;
 
-                String[] headers = new String[totalCount];
-                int idx = 0;
-                for (int i = 0; i < inputCount; i++)
+                var headers = new string[totalCount];
+                var idx = 0;
+                for (var i = 0; i < inputCount; i++)
                 {
                     headers[idx++] = "x" + i;
                 }
-                for (int i = 0; i < outputCount; i++)
+                for (var i = 0; i < outputCount; i++)
                 {
                     headers[idx++] = "y" + i;
                 }
                 writer.WriteRecord(headers);
 
-                String[] line = new String[totalCount];
-                for (int i = 0; i < dataset.Count; i++)
+                var line = new string[totalCount];
+                for (var i = 0; i < dataset.Count; i++)
                 {
-                    BasicData item = dataset[i];
+                    var item = dataset[i];
 
                     idx = 0;
-                    for (int j = 0; j < inputCount; j++)
+                    for (var j = 0; j < inputCount; j++)
                     {
                         line[idx++] = item.Input[j].ToString(CultureInfo.InvariantCulture);
                     }
-                    for (int j = 0; j < outputCount; j++)
+                    for (var j = 0; j < outputCount; j++)
                     {
                         line[idx++] = item.Ideal[j].ToString(CultureInfo.InvariantCulture);
                     }

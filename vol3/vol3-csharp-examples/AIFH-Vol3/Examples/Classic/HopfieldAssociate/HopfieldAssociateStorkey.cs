@@ -1,47 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
+
+using System;
 using System.Text;
-using System.Threading.Tasks;
 using AIFH_Vol3_Core.Core.Energetic;
 
 namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
 {
     /// <summary>
-    ///  * Simple class to recognize some patterns with a Hopfield Neural Network.
-    /// This version makes use of the storkey training.
-    ///
-    ///
-    /// This is very loosely based on a an example by Karsten Kutza,
-    /// written in C on 1996-01-30. (link below is no longer active)
-    /// http://www.neural-networks-at-your-fingertips.com/hopfield.html
-    ///
-    /// I translated it to Java and adapted it to use Encog for neural
-    /// network processing.I mainly kept the patterns from the
-    /// original example.
+    ///     * Simple class to recognize some patterns with a Hopfield Neural Network.
+    ///     This version makes use of the storkey training.
+    ///     This is very loosely based on a an example by Karsten Kutza,
+    ///     written in C on 1996-01-30. (link below is no longer active)
+    ///     http://www.neural-networks-at-your-fingertips.com/hopfield.html
+    ///     I translated it to Java and adapted it to use Encog for neural
+    ///     network processing.I mainly kept the patterns from the
+    ///     original example.
     /// </summary>
     public class HopfieldAssociateStorkey
     {
+        public const int HEIGHT = 10;
+        public const int WIDTH = 10;
+
         /// <summary>
-        /// The name of this example.
+        ///     The name of this example.
         /// </summary>
         public static string ExampleName = "Hopfield Associate - Storkey.";
 
         /// <summary>
-        /// The chapter this example is from.
+        ///     The chapter this example is from.
         /// </summary>
         public static int ExampleChapter = 3;
-
-        public const int HEIGHT = 10;
-        public const int WIDTH = 10;
 
         /**
          * The neural network will learn these patterns.
          */
 
-        public readonly static String[][] PATTERN =
+        public static readonly string[][] PATTERN =
         {
-            new string[]
+            new[]
             {
                 "O O O O O ",
                 " O O O O O",
@@ -54,8 +76,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
                 "O O O O O ",
                 " O O O O O"
             },
-
-            new string[]
+            new[]
             {
                 "OO  OO  OO",
                 "OO  OO  OO",
@@ -68,7 +89,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
                 "OO  OO  OO",
                 "OO  OO  OO"
             },
-            new string[]
+            new[]
             {
                 "OOOOO     ",
                 "OOOOO     ",
@@ -81,7 +102,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
                 "     OOOOO",
                 "     OOOOO"
             },
-            new string[]
+            new[]
             {
                 "O  O  O  O",
                 " O  O  O  ",
@@ -94,7 +115,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
                 "  O  O  O ",
                 "O  O  O  O"
             },
-            new string[]
+            new[]
             {
                 "OOOOOOOOOO",
                 "O        O",
@@ -114,10 +135,10 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
          * which of the last set they are the closest to.
          */
 
-        public static readonly String[][]
+        public static readonly string[][]
             PATTERN2 =
             {
-                new string[]
+                new[]
                 {
                     "          ",
                     "          ",
@@ -130,8 +151,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
                     "O O O O O ",
                     " O O O O O"
                 },
-
-                new string[]
+                new[]
                 {
                     "OOO O    O",
                     " O  OOO OO",
@@ -144,8 +164,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
                     "OO OOO  O ",
                     " O  O  OOO"
                 },
-
-                new string[]
+                new[]
                 {
                     "OOOOO     ",
                     "O   O OOO ",
@@ -158,7 +177,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
                     " OOO O   O",
                     "     OOOOO"
                 },
-                new string[]
+                new[]
                 {
                     "O  OOOO  O",
                     "OO  OOOO  ",
@@ -171,7 +190,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
                     "OOO  OOOO ",
                     "OOOO  OOOO"
                 },
-                new string[]
+                new[]
                 {
                     "OOOOOOOOOO",
                     "O        O",
@@ -186,16 +205,16 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
                 }
             };
 
-        public static double[] ConvertPattern(String[][] data, int index)
+        public static double[] ConvertPattern(string[][] data, int index)
         {
-            int resultIndex = 0;
-            double[] result = new double[WIDTH * HEIGHT];
-            for (int row = 0; row < HEIGHT; row++)
+            var resultIndex = 0;
+            var result = new double[WIDTH*HEIGHT];
+            for (var row = 0; row < HEIGHT; row++)
             {
-                for (int col = 0; col < WIDTH; col++)
+                for (var col = 0; col < WIDTH; col++)
                 {
-                    char ch = data[index][row][col];
-                    result[resultIndex++] = (ch != ' ') ? 1 : -1;
+                    var ch = data[index][row][col];
+                    result[resultIndex++] = ch != ' ' ? 1 : -1;
                 }
             }
             return result;
@@ -203,14 +222,14 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
 
         public static void Display(double[] pattern1, double[] pattern2)
         {
-            int index1 = 0;
-            int index2 = 0;
+            var index1 = 0;
+            var index2 = 0;
 
-            for (int row = 0; row < HEIGHT; row++)
+            for (var row = 0; row < HEIGHT; row++)
             {
-                StringBuilder line = new StringBuilder();
+                var line = new StringBuilder();
 
-                for (int col = 0; col < WIDTH; col++)
+                for (var col = 0; col < WIDTH; col++)
                 {
                     if (pattern1[index1++] > 0)
                         line.Append('O');
@@ -220,7 +239,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
 
                 line.Append("   ->   ");
 
-                for (int col = 0; col < WIDTH; col++)
+                for (var col = 0; col < WIDTH; col++)
                 {
                     if (pattern2[index2++] > 0)
                         line.Append('O');
@@ -233,14 +252,14 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
         }
 
 
-        public static void Evaluate(HopfieldNetwork hopfieldLogic, String[][] pattern)
+        public static void Evaluate(HopfieldNetwork hopfieldLogic, string[][] pattern)
         {
-            for (int i = 0; i < pattern.Length; i++)
+            for (var i = 0; i < pattern.Length; i++)
             {
-                double[] pattern1 = ConvertPattern(pattern, i);
+                var pattern1 = ConvertPattern(pattern, i);
                 hopfieldLogic.CopyToCurrentState(pattern1);
-                int cycles = hopfieldLogic.RunUntilStable(100);
-                double[] pattern2 = hopfieldLogic.CurrentState;
+                var cycles = hopfieldLogic.RunUntilStable(100);
+                var pattern2 = hopfieldLogic.CurrentState;
                 Console.WriteLine("Cycles until stable(max 100): " + cycles + ", result=");
                 Display(pattern1, pattern2);
                 Console.WriteLine("----------------------");
@@ -249,10 +268,10 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
 
         public void Run()
         {
-            HopfieldNetwork hopfieldLogic = new HopfieldNetwork(WIDTH * HEIGHT);
-            TrainHopfieldStorkey train = new TrainHopfieldStorkey(hopfieldLogic);
+            var hopfieldLogic = new HopfieldNetwork(WIDTH*HEIGHT);
+            var train = new TrainHopfieldStorkey(hopfieldLogic);
 
-            for (int i = 0; i < PATTERN.Length; i++)
+            for (var i = 0; i < PATTERN.Length; i++)
             {
                 train.AddPattern(ConvertPattern(PATTERN, i));
             }
@@ -269,7 +288,7 @@ namespace AIFH_Vol3.Examples.Classic.HopfieldAssociate
         public static void ExampleMain(string[] args)
         {
             {
-                HopfieldAssociateHebbian program = new HopfieldAssociateHebbian();
+                var program = new HopfieldAssociateHebbian();
                 program.Run();
             }
         }

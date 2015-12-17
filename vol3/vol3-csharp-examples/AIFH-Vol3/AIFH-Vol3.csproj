@@ -70,6 +70,7 @@
     <Compile Include="Examples\Classic\Logic\RegularNeuron.cs" />
     <Compile Include="Examples\DBN\SimpleDBN.cs" />
     <Compile Include="Examples\Intro\CSVExample.cs" />
+    <Compile Include="Examples\Modeling\KaggleOtto.cs" />
     <Compile Include="Examples\NEAT\XORNEAT.cs" />
     <Compile Include="Examples\Search\ListSearches.cs" />
     <Compile Include="Examples\SimpleLearn.cs" />

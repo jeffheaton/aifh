@@ -1,69 +1,101 @@
-﻿using AIFH_Vol3.Core;
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AIFH_Vol3.Core;
 using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace AIFH_Vol3_Core.Core.SOM
 {
     /// <summary>
-    /// The "Best Matching Unit" or BMU is a very important concept in the training
-    /// for a SOM.The BMU is the output neuron that has weight connections to the
-    /// input neurons that most closely match the current input vector.This neuron
-    /// (and its "neighborhood") are the neurons that will receive training.
-    ///
-    /// This class also tracks the worst distance(of all BMU's). This gives some
-    /// indication of how well the network is trained, and thus becomes the "error"
-    /// of the entire network.
+    ///     The "Best Matching Unit" or BMU is a very important concept in the training
+    ///     for a SOM.The BMU is the output neuron that has weight connections to the
+    ///     input neurons that most closely match the current input vector.This neuron
+    ///     (and its "neighborhood") are the neurons that will receive training.
+    ///     This class also tracks the worst distance(of all BMU's). This gives some
+    ///     indication of how well the network is trained, and thus becomes the "error"
+    ///     of the entire network.
     /// </summary>
     public class BestMatchingUnit
     {
         /// <summary>
-        /// The owner of this class.
+        ///     The owner of this class.
         /// </summary>
-        private SelfOrganizingMap _som;
+        private readonly SelfOrganizingMap _som;
 
         /// <summary>
-        /// What is the worst BMU distance so far, this becomes the error for the
-        /// entire SOM.
+        ///     What is the worst BMU distance so far, this becomes the error for the
+        ///     entire SOM.
         /// </summary>
         private double _worstDistance;
-        
+
         /// <summary>
-        /// Construct a BestMatchingUnit class.  The training class must be provided.
+        ///     Construct a BestMatchingUnit class.  The training class must be provided.
         /// </summary>
         /// <param name="som">The SOM to evaluate.</param>
         public BestMatchingUnit(SelfOrganizingMap som)
         {
             _som = som;
         }
-        
+
         /// <summary>
-        /// Calculate the best matching unit (BMU). This is the output neuron that
-        /// has the lowest Euclidean distance to the input vector.
+        ///     What is the worst BMU distance so far, this becomes the error
+        ///     for the entire SOM.
+        /// </summary>
+        public double WorstDistance
+        {
+            get { return _worstDistance; }
+        }
+
+        /// <summary>
+        ///     Calculate the best matching unit (BMU). This is the output neuron that
+        ///     has the lowest Euclidean distance to the input vector.
         /// </summary>
         /// <param name="input">The input vector.</param>
         /// <returns>The output neuron number that is the BMU.</returns>
         public int CalculateBMU(double[] input)
         {
-            int result = 0;
+            var result = 0;
 
             if (input.Length > _som.InputCount)
             {
                 throw new AIFHError("Can't train SOM with input size of " + _som.InputCount
-                        + " with input data of count "
-                        + input.Length);
+                                    + " with input data of count "
+                                    + input.Length);
             }
 
             // Track the lowest distance so far.
-            double lowestDistance = double.PositiveInfinity;
+            var lowestDistance = double.PositiveInfinity;
 
-            for (int i = 0; i < _som.OutputCount; i++)
+            for (var i = 0; i < _som.OutputCount; i++)
             {
-                double distance = CalculateEuclideanDistance(_som.Weights, input,
-                        i);
+                var distance = CalculateEuclideanDistance(_som.Weights, input,
+                    i);
 
                 // Track the lowest distance, this is the BMU.
                 if (distance < lowestDistance)
@@ -81,43 +113,34 @@ namespace AIFH_Vol3_Core.Core.SOM
 
             return result;
         }
-        
+
         /// <summary>
-        /// Calculate the Euclidean distance for the specified output neuron and the
-        /// input vector.This is the square root of the squares of the differences
-        /// between the weight and input vectors.
+        ///     Calculate the Euclidean distance for the specified output neuron and the
+        ///     input vector.This is the square root of the squares of the differences
+        ///     between the weight and input vectors.
         /// </summary>
         /// <param name="matrix">The matrix to get the weights from.</param>
         /// <param name="input">The input vector.</param>
         /// <param name="outputNeuron">The neuron we are calculating the distance for.</param>
         /// <returns>The Euclidean distance.</returns>
         public double CalculateEuclideanDistance(Matrix matrix,
-                                                 double[] input, int outputNeuron)
+            double[] input, int outputNeuron)
         {
             double result = 0;
 
             // Loop over all input data.
-            for (int i = 0; i < input.Length; i++)
+            for (var i = 0; i < input.Length; i++)
             {
-                double diff = input[i]
-                        - matrix[outputNeuron, i];
-                result += diff * diff;
+                var diff = input[i]
+                           - matrix[outputNeuron, i];
+                result += diff*diff;
             }
             return Math.Sqrt(result);
         }
 
         /// <summary>
-        /// What is the worst BMU distance so far, this becomes the error
-        /// for the entire SOM.
-        /// </summary>
-        public double WorstDistance
-        {
-            get { return _worstDistance; }
-        }
-
-        /// <summary>
-        /// Reset the "worst distance" back to a minimum value.  This should be
-        /// called for each training iteration.
+        ///     Reset the "worst distance" back to a minimum value.  This should be
+        ///     called for each training iteration.
         /// </summary>
         public void Reset()
         {

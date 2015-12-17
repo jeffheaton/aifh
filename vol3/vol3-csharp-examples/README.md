@@ -40,42 +40,63 @@ AIFH-Vol3 CSVExample
 ```
 Available Examples:
 
-* Chapter 1: Neural Network Basics, Examples:
+* Chapter 1: Neural Network Basics
 ```
 CSVExample : Shows how to use CsvHelper to read a CSV
 LogicExample : Simple hard-wired neural network for logic gates.
 ```
-* Chapter 2: Self Organizing Maps, Examples:
-(GUI example provided)
-* Chapter 3: Hopfield & Boltzmann Machines, Examples:
+* Chapter 2: Self Organizing Maps
+See GUI example
+* Chapter 3: Hopfield & Boltzmann Machines
 ```
 HopfieldAssociateHebbian : Hopfield Associate - Hebbian.
 HopfieldAssociateStorkey : Hopfield Associate - Storkey.
 BoltzTSP : Boltzmann Traveling Salesman (TSP).
 ```
-* Chapter 4: Feedforward Neural Networks, Examples:
+* Chapter 4: Feedforward Neural Networks
 ```
 LearnIrisAnneal : Iris ANN annealed.
 ```
-* Chapter 5: Training & Evaluation, Examples:
-* Chapter 6: Backpropagation Training, Examples:
-* Chapter 7: Other Propagation Training, Examples:
-* Chapter 8: NEAT, CPPN and HyperNEAT, Examples:
+* Chapter 5: Training & Evaluation
+* Chapter 6: Backpropagation Training
+```
+LearnXORBackprop : XOR with Backpropagation.
+```
+* Chapter 7: Other Propagation Training
+```
+LearnXORRPROP : XOR with Resilient Propagation (RPROP).
+```
+* Chapter 8: NEAT, CPPN and HyperNEAT
 ```
 XORNEAT : Use a NEAT neural network for the XOR operator.
-(GUI example included)
+LearnAutoMPGBackprop : Auto MPG Backpropagation.
+LearnDigitsBackprop : MNIST Digits ANN Backpropagation.
+LearnIrisBackprop : Iris ANN Backpropagation.
 ```
-* Chapter 9: Deep Learning, Examples:
+* Chapter 9: Deep Learning
 ```
 SimpleDBN : Simple deep belief neural network (DBNN).
 ```
-* Chapter 10: Convolutional Neural Networks, Examples:
-* Chapter 11: Pruning and Model Selection, Examples:
-* Chapter 12: Dropout and Regularization, Examples:
-* Chapter 13: Time Series and Recurrent Networks, Examples:
-* Chapter 14: Architecting Neural Networks, Examples:
-* Chapter 15: Visualization, Examples:
-* Chapter 16: Modelling with Neural Networks, Examples:
-
-
+* Chapter 10: Convolutional Neural Networks
+```
+LearnDigitsConv : MNIST Digits Convolution Neural Network.
+```
+* Chapter 11: Pruning and Model Selection
+```
+ListSearches : List model searches: random and grid.
+```
+* Chapter 12: Dropout and Regularization
+```
+LearnDigitsDropout : MNIST Digits Dropout Neural Network.
+```
+* Chapter 13: Time Series and Recurrent Networks
+```
+PredictSunspots : Predict sunspots.
+```
+* Chapter 14: Architecting Neural Networks
+* Chapter 15: Visualization
+* Chapter 16: Modelling with Neural Networks
+```
+KaggleOtto : Kaggle Otto Group modeling with deep neural network.
+```
 Examples are under active development, more will be added soon.

@@ -1,71 +1,94 @@
-﻿using AIFH_Vol3.Core.Error;
-using AIFH_Vol3.Core.Learning;
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AIFH_Vol3.Core.Error;
+using AIFH_Vol3.Core.Learning;
 
 namespace AIFH_Vol3_Core.Core.DBNN
 {
     /// <summary>
-    /// Supervised training for the DBN.  Used to train the output layer with labels.
+    ///     Supervised training for the DBN.  Used to train the output layer with labels.
     /// </summary>
-    public class SupervisedTrainDBN: ILearningMethod
+    public class SupervisedTrainDBN : ILearningMethod
     {
         /// <summary>
-        /// The network to train.
+        ///     The learning rate.
         /// </summary>
-        private DeepBeliefNetwork _network;
+        private readonly double _learningRate;
 
         /// <summary>
-        /// The input (x) for the training.
+        ///     The network to train.
         /// </summary>
-        private double[][] _trainingInput;
+        private readonly DeepBeliefNetwork _network;
 
         /// <summary>
-        /// The expected output (y, or labels).
+        ///     The expected output (y, or labels).
         /// </summary>
-        private double[][] _trainingIdeal;
+        private readonly double[][] _trainingIdeal;
 
         /// <summary>
-        /// The learning rate.
+        ///     The input (x) for the training.
         /// </summary>
-        private double _learningRate;
+        private readonly double[][] _trainingInput;
 
         /// <summary>
-        /// The error calculation to use.
-        /// </summary>
-        public IErrorCalculation ErrorCalc { get; set; }
-        
-        /// <summary>
-        /// Construct the supervised trainer for DBN. 
+        ///     Construct the supervised trainer for DBN.
         /// </summary>
         /// <param name="theNetwork">The network to train.</param>
         /// <param name="theTrainingInput">The input (x) to train.</param>
         /// <param name="theTrainingIdeal">The expected output (y, or labels) to train.</param>
         /// <param name="theLearningRate">The learning rate.</param>
         public SupervisedTrainDBN(DeepBeliefNetwork theNetwork, double[][] theTrainingInput, double[][] theTrainingIdeal,
-                                    double theLearningRate)
+            double theLearningRate)
         {
             _network = theNetwork;
             _trainingInput = theTrainingInput;
             _learningRate = theLearningRate;
             _trainingIdeal = theTrainingIdeal;
-            ErrorCalc = new ErrorCalculationMSE(); 
+            ErrorCalc = new ErrorCalculationMSE();
         }
 
-        /// <inheritdoc/>
-    public void Iteration()
+        /// <summary>
+        ///     The error calculation to use.
+        /// </summary>
+        public IErrorCalculation ErrorCalc { get; set; }
+
+        /// <inheritdoc />
+        public void Iteration()
         {
-            double[] layerInput = new double[0];
+            var layerInput = new double[0];
             double[] prevLayerInput;
 
             ErrorCalc.Clear();
-            for (int n = 0; n < _trainingInput.Length; n++)
+            for (var n = 0; n < _trainingInput.Length; n++)
             {
-
-                for (int i = 0; i < _network.Layers.Length; i++)
+                for (var i = 0; i < _network.Layers.Length; i++)
                 {
                     if (i == 0)
                     {
@@ -86,74 +109,64 @@ namespace AIFH_Vol3_Core.Core.DBNN
             }
         }
 
-        /// <inheritdoc/>
-    public double LastError
+        /// <inheritdoc />
+        public double LastError
         {
-            get
-            {
-                return ErrorCalc.Calculate();
-            }
+            get { return ErrorCalc.Calculate(); }
         }
 
         /// <summary>
-        /// Done?
+        ///     Done?
         /// </summary>
-    public bool Done
-        { get
-            {
-                return false;
-            }
-        }
-
-        /// <inheritdoc/>
-    public String Status
+        public bool Done
         {
-            get
-            {
-                return "";
-            }
+            get { return false; }
         }
 
-        /// <inheritdoc/>
-    public void FinishTraining()
+        /// <inheritdoc />
+        public string Status
         {
-
+            get { return ""; }
         }
-        
+
+        /// <inheritdoc />
+        public void FinishTraining()
+        {
+        }
+
         /// <summary>
-        /// Train the logistic layer, the output layer. 
+        ///     Train the logistic layer, the output layer.
         /// </summary>
         /// <param name="input">The input (x).</param>
         /// <param name="ideal">The expected output (y, or labels).</param>
         private void TrainLogisticLayer(double[] input, double[] ideal)
         {
-            double[] pYgivenX = new double[_network.LogLayer.OutputCount];
-            double[] dy = new double[_network.LogLayer.OutputCount];
+            var pYgivenX = new double[_network.LogLayer.OutputCount];
+            var dy = new double[_network.LogLayer.OutputCount];
 
-            for (int i = 0; i < _network.LogLayer.OutputCount; i++)
+            for (var i = 0; i < _network.LogLayer.OutputCount; i++)
             {
                 pYgivenX[i] = 0;
-                for (int j = 0; j < _network.LogLayer.InputCount; j++)
+                for (var j = 0; j < _network.LogLayer.InputCount; j++)
                 {
-                    pYgivenX[i] += _network.LogLayer.Weights[i][j] * input[j];
+                    pYgivenX[i] += _network.LogLayer.Weights[i][j]*input[j];
                 }
                 pYgivenX[i] += _network.LogLayer.Bias[i];
             }
             _network.LogLayer.Softmax(pYgivenX);
 
 
-
-            for (int i = 0; i < _network.LogLayer.OutputCount; i++)
+            for (var i = 0; i < _network.LogLayer.OutputCount; i++)
             {
                 dy[i] = ideal[i] - pYgivenX[i];
                 ErrorCalc.UpdateError(ideal[i], pYgivenX[i]);
 
-                for (int j = 0; j < _network.LogLayer.InputCount; j++)
+                for (var j = 0; j < _network.LogLayer.InputCount; j++)
                 {
-                    _network.LogLayer.Weights[i][j] += _learningRate * dy[i] * input[j] / _trainingInput.Length;
+                    _network.LogLayer.Weights[i][j] += _learningRate*dy[i]*input[j]/_trainingInput.Length;
                 }
 
-                _network.LogLayer.Bias[i] += _learningRate * dy[i] / _trainingInput.Length;
+                _network.LogLayer.Bias[i] += _learningRate*dy[i]/_trainingInput.Length;
             }
         }
     }

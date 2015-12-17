@@ -1,39 +1,54 @@
-﻿using AIFH_Vol3.Core;
-using AIFH_Vol3.Core.General.Data;
+﻿// Artificial Intelligence for Humans
+// Volume 3: Deep Learning and Neural Networks
+// C# Version
+// http://www.aifh.org
+// http://www.jeffheaton.com
+//
+// Code repository:
+// https://github.com/jeffheaton/aifh
+//
+// Copyright 2015 by Jeff Heaton
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// For more information on Heaton Research copyrights, licenses
+// and trademarks visit:
+// http://www.heatonresearch.com/copyright
+//
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using AIFH_Vol3.Core;
+using AIFH_Vol3.Core.General.Data;
 
 namespace AIFH_Vol3_Core.Core.Util
 {
     /// <summary>
-    ///  * This reads the MNIST dataset of handwritten digits into a data set.
-    /// The MNIST dataset is found at http://yann.lecun.com/exdb/mnist/.
-    ///
-    /// Very loosely adapted from a class by Gabe Johnson<johnsogg@cmu.edu>.
-    /// https://code.google.com
-    /// /p/pen-ui/source/browse/trunk/skrui/src/org/six11/skrui
-    /// /charrec/MNISTReader.java? r = 185
+    ///     * This reads the MNIST dataset of handwritten digits into a data set.
+    ///     The MNIST dataset is found at http://yann.lecun.com/exdb/mnist/.
+    ///     Very loosely adapted from a class by Gabe Johnson
+    ///     <johnsogg@ cmu.edu>
+    ///         .
+    ///         https://code.google.com
+    ///         /p/pen-ui/source/browse/trunk/skrui/src/org/six11/skrui
+    ///         /charrec/MNISTReader.java? r = 185
     /// </summary>
     public class MNISTReader
     {
-        private int _numLabels;
-        private int _numImages;
-        private int _numRows;
-        private int _numCols;
-        private IList<BasicData> _data;
-
-        private int ReadInt32(BinaryReader reader)
-        {
-            byte[] b = reader.ReadBytes(4);
-            return b[3] + (b[2] << 8) + (b[1] << 16) + (b[0] << 24);
-        }
-
-        public MNISTReader(String labelFilename, String imageFilename, int depth)
+        public MNISTReader(string labelFilename, string imageFilename, int depth)
         {
             if (depth != 1 && depth != 3)
             {
@@ -64,56 +79,56 @@ namespace AIFH_Vol3_Core.Core.Util
             {
                 images = new BinaryReader(File.Open(imageFilename, FileMode.Open));
             }
-            
-            int magicNumber = ReadInt32(labels);
+
+            var magicNumber = ReadInt32(labels);
             if (magicNumber != 2049)
             {
                 throw new AIFHError("Label file has wrong magic number: "
-                        + magicNumber + " (should be 2049)");
+                                    + magicNumber + " (should be 2049)");
             }
             magicNumber = ReadInt32(images);
             if (magicNumber != 2051)
             {
                 throw new AIFHError("Image file has wrong magic number: "
-                        + magicNumber + " (should be 2051)");
+                                    + magicNumber + " (should be 2051)");
             }
-            _numLabels = ReadInt32(labels);
-            _numImages = ReadInt32(images);
-            _numRows = ReadInt32(images);
-            _numCols = ReadInt32(images);
-            if (_numLabels != _numImages)
+            NumLabels = ReadInt32(labels);
+            NumImages = ReadInt32(images);
+            NumRows = ReadInt32(images);
+            NumCols = ReadInt32(images);
+            if (NumLabels != NumImages)
             {
-                StringBuilder str = new StringBuilder();
+                var str = new StringBuilder();
                 str.Append("Image file and label file do not contain the same number of entries.\n");
-                str.Append("  Label file contains: " + _numLabels + "\n");
-                str.Append("  Image file contains: " + _numImages + "\n");
+                str.Append("  Label file contains: " + NumLabels + "\n");
+                str.Append("  Image file contains: " + NumImages + "\n");
                 throw new AIFHError(str.ToString());
             }
 
-            byte[] labelsData = labels.ReadBytes(_numLabels);
-            int imageVectorSize = _numCols * _numRows;
-            byte[] imagesData = images.ReadBytes(_numLabels * imageVectorSize);
+            var labelsData = labels.ReadBytes(NumLabels);
+            var imageVectorSize = NumCols*NumRows;
+            var imagesData = images.ReadBytes(NumLabels*imageVectorSize);
 
-            _data = new List<BasicData>();
-            int imageIndex = 0;
-            for (int i = 0; i < _numLabels; i++)
+            Data = new List<BasicData>();
+            var imageIndex = 0;
+            for (var i = 0; i < NumLabels; i++)
             {
-                Console.WriteLine(i + "/" + _numLabels);
+                Console.WriteLine(i + "/" + NumLabels);
                 int label = labelsData[i];
-                double[] inputData = new double[imageVectorSize * depth];
-                int outputIndex = 0;
-                int t = imageIndex;
-                for (int k = 0; k < depth; k++)
+                var inputData = new double[imageVectorSize*depth];
+                var outputIndex = 0;
+                var t = imageIndex;
+                for (var k = 0; k < depth; k++)
                 {
                     imageIndex = t;
-                    for (int j = 0; j < imageVectorSize; j++)
+                    for (var j = 0; j < imageVectorSize; j++)
                     {
-                        inputData[outputIndex++] = ((double)(imagesData[imageIndex++] & 0xff)) / 255.0;
+                        inputData[outputIndex++] = (imagesData[imageIndex++] & 0xff)/255.0;
                     }
                 }
-                double[] idealData = new double[10];
+                var idealData = new double[10];
                 idealData[label] = 1.0;
-                _data.Add(new BasicData(inputData, idealData, null));
+                Data.Add(new BasicData(inputData, idealData, null));
             }
 
             images.Close();
@@ -121,58 +136,39 @@ namespace AIFH_Vol3_Core.Core.Util
         }
 
         /// <summary>
-        /// The number of labels.
+        ///     The number of labels.
         /// </summary>
-        public int NumLabels
-        {
-            get
-            {
-                return _numLabels;
-            }
-        }
+        public int NumLabels { get; }
 
         /// <summary>
-        /// The number of images.
+        ///     The number of images.
         /// </summary>
-        public int NumImages
-        {
-            get
-            {
-                return _numImages;
-            }
-        }
+        public int NumImages { get; }
 
         /// <summary>
-        /// The rows.
+        ///     The rows.
         /// </summary>
-        public int NumRows
-        {
-            get
-            {
-                return _numRows;
-            }
-        }
+        public int NumRows { get; }
 
         /// <summary>
-        /// The columns.
+        ///     The columns.
         /// </summary>
-        public int NumCols
-        {
-            get
-            {
-                return _numCols;
-            }
-        }
+        public int NumCols { get; }
 
         /// <summary>
-        /// The data.
+        ///     The data.
         /// </summary>
-        public IList<BasicData> Data
+        public IList<BasicData> Data { get; }
+
+        /// <summary>
+        /// Read a big-endian integer.
+        /// </summary>
+        /// <param name="reader">Where to read from.</param>
+        /// <returns>The integer.</returns>
+        private int ReadInt32(BinaryReader reader)
         {
-            get
-            {
-                return _data;
-            }
+            var b = reader.ReadBytes(4);
+            return b[3] + (b[2] << 8) + (b[1] << 16) + (b[0] << 24);
         }
     }
 }
