@@ -109,7 +109,7 @@ class RbfNetwork(object):
         for i in xrange(0, len(self.long_term_memory)):
             self.long_term_memory[i] = np.random.uniform(0, 1)
 
-    def compure_classification(self, input):
+    def compute_classification(self, input):
         """ Compute the output and return the index of the output with the largest value.  This is the class that
         the network recognized.
         @param input: The input pattern.
