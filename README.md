@@ -30,10 +30,10 @@ Github provides an icon that allows you to simply download a ZIP file that conta
 
 https://github.com/jeffheaton/aifh
 
-You can see the download link in Figure A.1.
+You can see the download link in Figure 1.
 
-Figure A.1: GitHub
-![Image](http://www.heatonresearch.com/images/aifh/cha_github.png)
+Figure 1: GitHub
+![Image](http://www.heatonresearch.com/images/aifh/readme_github.png)
  
 
 ###Clone the Git Repository
@@ -53,9 +53,9 @@ http://git-scm.com/docs/gittutorial
 ##Example Contents
 
 The entire “Artificial Intelligence for Humans” series is contained in one download.  This download is a zip file. 
-Once you open the examples file you will see the contents see in Figure 1.
+Once you open the examples file you will see the contents see in Figure 2.
 
-Figure 1: Examples Download
+Figure 2: Examples Download
 ![Image](http://www.heatonresearch.com/images/aifh/readme_main_download.png)
  
 The license file describes the license used for the book examples. All of the examples for this series are released under the [Apache 2 License](./LICENSE.txt) license.  This is a Free and open-source software (FOSS) license.  This means that I do retain a copyright to the files.  However, you can freely reuse these files in both commercial and non-commercial projects without further permission. 
@@ -65,17 +65,17 @@ There are also two README files included in the download.  The README.md is a �
 https://help.github.com/articles/github-flavored-markdown
 
 You will find README files at several levels of the examples download. The README file contained in the examples root (seen above) contains information about the book series.  
-You will also notice the individual volume folders contained in the download.  These are named vol1, vol2, etc.  You may not see all of the volumes in the download.  Not all of the volumes have been written yet!  All of the volumes have the same format.  For example, if you were to open Volume 1, you would see the contents listed in Figure A.3.
+You will also notice the individual volume folders contained in the download.  These are named vol1, vol2, etc.  You may not see all of the volumes in the download.  Not all of the volumes have been written yet!  All of the volumes have the same format.  For example, if you were to open Volume 1, you would see the contents listed in Figure 3.
 
-Figure A.3: Inside Volume 1
+Figure 3: Inside Volume 1
 ![Image](http://www.heatonresearch.com/images/aifh/readme_vol1.png)
  
 Again, you see the two README files.  These files contain information unique to this particular volume.  The most important information contained in the volume level README files is the current status of the examples.  The community often contributes example packs.  This means that some of the example packs may not be complete.  The README for the volume will let you know this important information. The volume README.also contains the errata and FAQ for a volume.
 You should also see a file named “chart.R”.  This file contains the source code that I used to create many of the charts in the book.  I use the R programming language to produce nearly all graphs and charts seen in the book.  This allows you to see the equations behind the pictures.  I do not translate this file to other programming languages.  R is simply what I use in the production of the book.  If I used another language, like Python, to produce some of the charts, you would see a “chart.py” along with the R code.
 You can see that the above volume contains examples for C, C#, Java, Python and R. These are the core languages that I try to always ensure complete examples for.  However, you may see other languages added.  Again, always check the README file for the latest information on language translations.
-Figure A.4 shows the contents of a typical language pack.  
+Figure 4 shows the contents of a typical language pack.  
 
-Figure A.4: The Java Language Pack
+Figure 4: The Java Language Pack
 ![Image](http://www.heatonresearch.com/images/aifh/readme_java.png)
  
 Notice the README files again?  The README files inside of a language folder are VERY important.  Inside the above two README files you will find information about using the examples with Java.  If you are having trouble using the book’s examples with a particular language, the README file should be your first stop.  The other files seen above are all unique to Java.  The README file above describes these in much greater detail.
