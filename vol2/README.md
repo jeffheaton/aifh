@@ -26,3 +26,7 @@ or improve an example, please consider pushing a change via GitHub.
 If you find a language folder, other than those above, the language is likely "under
 construction".  In this case, there should be more information in the language specific
 folder.
+
+## Getting Help
+
+* [Q&A Forum on Google Groups](https://groups.google.com/forum/#!forum/jeffheatons-ai-group)

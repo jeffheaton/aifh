@@ -28,4 +28,6 @@ or improve an example, please consider pushing a change via GitHub.
 * vol3-java-examples
 * vol3-csharp-examples 
 		
-		
+## Getting Help
+
+* [Q&A Forum on Google Groups](https://groups.google.com/forum/#!forum/jeffheatons-ai-group)

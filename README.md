@@ -53,10 +53,10 @@ http://git-scm.com/docs/gittutorial
 ##Example Contents
 
 The entire “Artificial Intelligence for Humans” series is contained in one download.  This download is a zip file. 
-Once you open the examples file you will see the contents see in Figure A.2.
+Once you open the examples file you will see the contents see in Figure 1.
 
-Figure A.2: Examples Download
-![Image](http://www.heatonresearch.com/images/aifh/cha_main_download.png)
+Figure 1: Examples Download
+![Image](http://www.heatonresearch.com/images/aifh/readme_main_download.png)
  
 The license file describes the license used for the book examples. All of the examples for this series are released under the [Apache 2 License](./LICENSE.txt) license.  This is a Free and open-source software (FOSS) license.  This means that I do retain a copyright to the files.  However, you can freely reuse these files in both commercial and non-commercial projects without further permission. 
 While the book source code is provided free, the book text is not provided free.  These books are commercial products that I sell through a variety of means.  You may not redistribute the actual books.  This includes the PDF, MOBI, EPUB and any other format the book might be converted to. I do, however, provide all books in DRM-free form. Your support of this policy is greatly appreciated and does contribute to the future growth of these books.
@@ -68,7 +68,7 @@ You will find README files at several levels of the examples download. The READM
 You will also notice the individual volume folders contained in the download.  These are named vol1, vol2, etc.  You may not see all of the volumes in the download.  Not all of the volumes have been written yet!  All of the volumes have the same format.  For example, if you were to open Volume 1, you would see the contents listed in Figure A.3.
 
 Figure A.3: Inside Volume 1
-![Image](http://www.heatonresearch.com/images/aifh/cha_vol1.png)
+![Image](http://www.heatonresearch.com/images/aifh/readme_vol1.png)
  
 Again, you see the two README files.  These files contain information unique to this particular volume.  The most important information contained in the volume level README files is the current status of the examples.  The community often contributes example packs.  This means that some of the example packs may not be complete.  The README for the volume will let you know this important information. The volume README.also contains the errata and FAQ for a volume.
 You should also see a file named “chart.R”.  This file contains the source code that I used to create many of the charts in the book.  I use the R programming language to produce nearly all graphs and charts seen in the book.  This allows you to see the equations behind the pictures.  I do not translate this file to other programming languages.  R is simply what I use in the production of the book.  If I used another language, like Python, to produce some of the charts, you would see a “chart.py” along with the R code.
@@ -76,7 +76,7 @@ You can see that the above volume contains examples for C, C#, Java, Python and 
 Figure A.4 shows the contents of a typical language pack.  
 
 Figure A.4: The Java Language Pack
-![Image](http://www.heatonresearch.com/images/aifh/cha_java.png)
+![Image](http://www.heatonresearch.com/images/aifh/readme_java.png)
  
 Notice the README files again?  The README files inside of a language folder are VERY important.  Inside the above two README files you will find information about using the examples with Java.  If you are having trouble using the book’s examples with a particular language, the README file should be your first stop.  The other files seen above are all unique to Java.  The README file above describes these in much greater detail.
 Contributing to the Project
@@ -85,6 +85,10 @@ The process begins with a fork.  You create an account on GitHub and fork the AI
 A much more detailed article on contributing through GitHub can be found here.
 
 https://help.github.com/articles/fork-a-repo
+
+## Getting Help
+
+* [Q&A Forum on Google Groups](https://groups.google.com/forum/#!forum/jeffheatons-ai-group)
 
 ##Citations
 
