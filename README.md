@@ -33,6 +33,7 @@ https://github.com/jeffheaton/aifh
 You can see the download link in Figure 1.
 
 Figure 1: GitHub
+
 ![Image](http://www.heatonresearch.com/images/aifh/readme_github.png)
  
 
@@ -56,6 +57,7 @@ The entire “Artificial Intelligence for Humans” series is contained in one d
 Once you open the examples file you will see the contents see in Figure 2.
 
 Figure 2: Examples Download
+
 ![Image](http://www.heatonresearch.com/images/aifh/readme_main_download.png)
  
 The license file describes the license used for the book examples. All of the examples for this series are released under the [Apache 2 License](./LICENSE.txt) license.  This is a Free and open-source software (FOSS) license.  This means that I do retain a copyright to the files.  However, you can freely reuse these files in both commercial and non-commercial projects without further permission. 
@@ -68,6 +70,7 @@ You will find README files at several levels of the examples download. The READM
 You will also notice the individual volume folders contained in the download.  These are named vol1, vol2, etc.  You may not see all of the volumes in the download.  Not all of the volumes have been written yet!  All of the volumes have the same format.  For example, if you were to open Volume 1, you would see the contents listed in Figure 3.
 
 Figure 3: Inside Volume 1
+
 ![Image](http://www.heatonresearch.com/images/aifh/readme_vol1.png)
  
 Again, you see the two README files.  These files contain information unique to this particular volume.  The most important information contained in the volume level README files is the current status of the examples.  The community often contributes example packs.  This means that some of the example packs may not be complete.  The README for the volume will let you know this important information. The volume README.also contains the errata and FAQ for a volume.
@@ -76,6 +79,7 @@ You can see that the above volume contains examples for C, C#, Java, Python and 
 Figure 4 shows the contents of a typical language pack.  
 
 Figure 4: The Java Language Pack
+
 ![Image](http://www.heatonresearch.com/images/aifh/readme_java.png)
  
 Notice the README files again?  The README files inside of a language folder are VERY important.  Inside the above two README files you will find information about using the examples with Java.  If you are having trouble using the book’s examples with a particular language, the README file should be your first stop.  The other files seen above are all unique to Java.  The README file above describes these in much greater detail.
