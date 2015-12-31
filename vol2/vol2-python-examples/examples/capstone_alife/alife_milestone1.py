@@ -28,7 +28,13 @@
     http://www.heatonresearch.com/copyright
 """
 import math
-from Tkinter import *
+
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
 
 class PlantCell:
     def __init__(self):
@@ -61,7 +67,7 @@ class PlantUniverse:
     UNIVERSE_HEIGHT = 100
 
     # The location of the ground line.  Anything >= to this is underground.
-    GROUND_LINE = UNIVERSE_HEIGHT - (UNIVERSE_HEIGHT / 3)
+    GROUND_LINE = int(UNIVERSE_HEIGHT - (UNIVERSE_HEIGHT / 3))
 
     # The size of a cell "info vector".  This vector identifies a cell's state, and is used to encode instructions
     # in the genome.  All of these are normalized to [0,1].  There are currently four elements:
@@ -201,7 +207,7 @@ class PlantUniverse:
                 cell.energy = 0
                 cell.nourishment = 0
 
-        center = PlantUniverse.UNIVERSE_WIDTH / 2
+        center = int(PlantUniverse.UNIVERSE_WIDTH / 2)
         ground_level = PlantUniverse.GROUND_LINE
 
         # root

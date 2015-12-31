@@ -110,7 +110,7 @@ class PlantGrowth:
 
 
         # Grow new cell, if requested, did we ever set target row & col to anything?
-        if growth_target_row <> row or growth_target_col <> col:
+        if growth_target_row != row or growth_target_col != col:
             self.new_composition[growth_target_row][growth_target_col] = True
 
     def run_growth(self, universe, genome):

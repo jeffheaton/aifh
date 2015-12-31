@@ -62,9 +62,10 @@ p1 = [ 1,2,3,4,5,6,7,8,9,10 ]
 p2 = [ 10,9,8,7,6,5,4,3,2,1 ]
 off = [[],[]]
 
+pop = Population()
 
 print("Crossover Splice")
-crossover_splice(p1,p2,5,off)
+crossover_splice(pop, p1,p2,off)
 print("Parent 1: " + str(p1))
 print("Parent 2: " + str(p2))
 print("Offspring 1: " + str(off[0]))
@@ -72,7 +73,7 @@ print("Offspring 2: " + str(off[1]))
 
 print()
 print("Crossover Splice No Repeat")
-crossover_splice_no_repeat(p1,p2,5,off)
+crossover_splice_no_repeat(pop, p1,p2,off)
 print("Parent 1: " + str(p1))
 print("Parent 2: " + str(p2))
 print("Offspring 1: " + str(off[0]))

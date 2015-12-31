@@ -29,12 +29,18 @@
 """
 __author__ = 'jheaton'
 
-# for python 3.x use 'tkinter' rather than 'Tkinter'
-from Tkinter import *
-import time
-from random import *
+try:
+    # for Python2
+    from Tkinter import *
+    from Tkinter import _flatten
+except ImportError:
+    # for Python3
+    from tkinter import *
+    from tkinter import _flatten
+
+import random
 import math
-import Tkinter
+
 
 # The number of particles.
 PARTICLE_COUNT = 25
@@ -79,10 +85,10 @@ class App():
             p = Particle()
             p.location = [0] * 2
             p.velocity = [0] * 2
-            p.location[0] = randint(0,CANVAS_WIDTH)
-            p.location[1] = randint(0,CANVAS_HEIGHT)
+            p.location[0] = random.randint(0,CANVAS_WIDTH)
+            p.location[1] = random.randint(0,CANVAS_HEIGHT)
             p.velocity[0] = 3
-            p.velocity[1] = uniform(0,2.0*math.pi)
+            p.velocity[1] = random.uniform(0,2.0*math.pi)
 
             p.poly = self.c.create_polygon([0,0,0,0,0,0],fill='white')
 
@@ -132,7 +138,7 @@ class App():
                         result.append(particle)
                         worst_index = self.max_index(temp_dist)
                     elif d<temp_dist[worst_index]:
-                        temp_dist[worst_index] = particle
+                        temp_dist[worst_index] = d
                         worst_index = self.max_index(temp_dist)
         return result
 
@@ -200,7 +206,7 @@ class App():
             points[4] = points[0] - (int) (math.cos(r2) * PARTICLE_SIZE)
             points[5] = points[1] - (int) (math.sin(r2) * PARTICLE_SIZE)
 
-            self.c.coords(p.poly,Tkinter._flatten(points))
+            self.c.coords(p.poly,_flatten(points))
 
             # move the particle
             dx = math.cos(r)

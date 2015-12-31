@@ -30,7 +30,13 @@
 __author__ = 'jheaton'
 
 # for python 3.x use 'tkinter' rather than 'Tkinter'
-from Tkinter import *
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
+
 import time
 import random
 
@@ -56,13 +62,13 @@ class App():
         self.c = Canvas(self.root,width=400, height=400)
         self.c.pack()
 
-        rows = CANVAS_HEIGHT / CELL_HEIGHT
-        cols = CANVAS_WIDTH / CELL_WIDTH
+        rows = int(CANVAS_HEIGHT / CELL_HEIGHT)
+        cols = int(CANVAS_WIDTH / CELL_WIDTH)
 
         grid = [[0 for x in range(rows)] for x in range(cols)]
 
         # Seed the grid
-        grid[0][cols/2] = True
+        grid[0][cols//2] = True
 
         # Decode the rule
         output = [0] * 8

@@ -29,8 +29,13 @@
 """
 __author__ = 'jheaton'
 
-# for python 3.x use 'tkinter' rather than 'Tkinter'
-from Tkinter import *
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
+
 import time
 import random
 
@@ -56,8 +61,8 @@ class App():
         self.c = Canvas(self.root,width=400, height=400)
         self.c.pack()
 
-        rows = CANVAS_HEIGHT / CELL_HEIGHT
-        cols = CANVAS_WIDTH / CELL_WIDTH
+        rows = int(CANVAS_HEIGHT / CELL_HEIGHT)
+        cols = int(CANVAS_WIDTH / CELL_WIDTH)
 
         self.grid_cells1 = [[0 for x in range(rows)] for x in range(cols)]
         self.grid_cells2 = [[0 for x in range(rows)] for x in range(cols)]
@@ -82,8 +87,8 @@ class App():
         self.root.mainloop()
 
     def update_clock(self):
-        rows = CANVAS_HEIGHT / CELL_HEIGHT
-        cols = CANVAS_WIDTH / CELL_WIDTH
+        rows = int(CANVAS_HEIGHT / CELL_HEIGHT)
+        cols = int(CANVAS_WIDTH / CELL_WIDTH)
 
         for row in range(0,rows):
             for col in range(0,cols):
