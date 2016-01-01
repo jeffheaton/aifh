@@ -109,7 +109,7 @@ def score_funct(x):
     @return: The Euclidean distance between each city on the path.
     """
     result = 0
-    for i in xrange(0, CITY_COUNT - 1):
+    for i in range(0, CITY_COUNT - 1):
         result += distance.euclidean(x[i], x[i + 1])
     return result
 
@@ -121,7 +121,7 @@ MAP_SIZE = 10
 cities = []
 ratio = (2.0 * np.pi) / CITY_COUNT
 
-for i in xrange(0, CITY_COUNT):
+for i in range(0, CITY_COUNT):
     x = int(np.cos(ratio * i) * (MAP_SIZE / 2.0) + (MAP_SIZE / 2.0))
     y = int(np.sin(ratio * i) * (MAP_SIZE / 2.0) + (MAP_SIZE / 2.0))
 

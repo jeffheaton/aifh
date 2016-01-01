@@ -115,7 +115,7 @@ def build_training_set():
     result_ideal = []
     coeff = [6, 4, 2]
 
-    for x in xrange(-50, 50):
+    for x in range(-50, 50):
         y = poly(coeff, x)
         result_input.append([x])
         result_ideal.append(y)
@@ -130,7 +130,7 @@ def print_poly(coeff):
     """
     result = ""
 
-    for i in xrange(0, len(coeff)):
+    for i in range(0, len(coeff)):
         c = coeff[i]
 
         if len(result) > 0:

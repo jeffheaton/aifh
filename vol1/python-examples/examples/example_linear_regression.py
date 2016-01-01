@@ -86,7 +86,7 @@ def multi_linear_regression(x, y):
 
 def calc_linear_regression(coeff, x):
     result = 0
-    for i in xrange(1, len(coeff)):
+    for i in range(1, len(coeff)):
         result += x[i - 1] * coeff[i]
 
     result += coeff[0]

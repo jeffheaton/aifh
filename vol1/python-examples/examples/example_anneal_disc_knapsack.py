@@ -109,7 +109,7 @@ def score_function(x):
         return max_profit
     # Loop over count up the profit.
     result = 0
-    for idx in xrange(0, len(x)):
+    for idx in range(0, len(x)):
         if x[idx]:
             result += profit[idx]
     # The profit is not the score.  We want a score we can minimize.  So the score is the distance between our
@@ -124,7 +124,7 @@ def calculate_total_weight(items):
     """
     # Loop over the list and sum up the weight.
     result = 0
-    for i in xrange(0, len(items)):
+    for i in range(0, len(items)):
         if items[i]:
             result += weight[i]
     return result
@@ -142,7 +142,7 @@ def balance(items):
 
 # Generate a random set of items.
 # Calculate max_profit.
-for n in xrange(0, NUM_ITEMS_TO_CHOOSE):
+for n in range(0, NUM_ITEMS_TO_CHOOSE):
     profit[n] = int(np.random.uniform(1, ITEM_MAX_VALUE))
     weight[n] = int(np.random.uniform(1, ITEM_MAX_WEIGHT))
     max_profit += profit[n]
@@ -156,6 +156,6 @@ print("Final profit: " + str(max_profit - score_function(train.position)))
 
 # Display the results.
 print("Took the following items: ")
-for i in xrange(0, NUM_ITEMS_TO_CHOOSE):
+for i in range(0, NUM_ITEMS_TO_CHOOSE):
     if train.position[i]:
         print("Item #" + str(i) + ", weight=" + str(weight[i]) + ", profit=" + str(profit[i]))

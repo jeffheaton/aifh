@@ -301,7 +301,7 @@ res = minimize(score_funct, x0, method='nelder-mead', tol=0.0001, options={'disp
 eq = Equilateral(3, 0, 1)
 
 # Display the final validation.  We show all of the iris data as well as the predicted species.
-for i in xrange(0, len(training_input)):
+for i in range(0, len(training_input)):
     input_data = training_input[i]
     # Compute the output from the RBF network
     output_data = network.compute_regression(input_data)

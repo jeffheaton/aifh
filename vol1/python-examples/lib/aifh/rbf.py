@@ -57,7 +57,7 @@ class RbfGaussian(RbfFunction):
         value = 0
         width = self.width
 
-        for i in xrange(self.dimensions):
+        for i in range(self.dimensions):
             center = self.get_center(i)
             value += ((x[i] - center) ** 2) / (2.0 * width * width)
         return np.exp(-value)
@@ -68,7 +68,7 @@ class RbfMexicanHat(RbfFunction):
         # Calculate the "norm", but don't take square root.
         # Don't square because we are just going to square it.
         norm = 0
-        for i in xrange(self.dimensions):
+        for i in range(self.dimensions):
             center = self.get_center(i)
             norm += (x[i] - center) ** 2
 
@@ -81,7 +81,7 @@ class RbfMultiquadric(RbfFunction):
         value = 0
         width = self.width
 
-        for i in xrange(self.dimensions):
+        for i in range(self.dimensions):
             center = self.get_center(i)
             value += (x[i] - center) ** 2 + (width * width)
 
@@ -93,7 +93,7 @@ class RbfInverseMultiquadric(RbfFunction):
         value = 0
         width = self.width
 
-        for i in xrange(self.dimensions):
+        for i in range(self.dimensions):
             center = self.get_center(i)
             value += (x[i] - center) ** 2 + (width * width)
 

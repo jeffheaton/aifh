@@ -79,8 +79,8 @@ def generate(seed, rows, cols, low, high, distort):
     result['ideal'] = ideal
     result['actual'] = actual
 
-    for row in xrange(0, rows):
-        for col in xrange(0, cols):
+    for row in range(0, rows):
+        for col in range(0, cols):
             d = float(np.random.randint(low, high))
             ideal[row][col] = d
             actual[row][col] = d + (np.random.normal() * distort)

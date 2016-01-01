@@ -61,7 +61,7 @@ class RbfNetwork(object):
         self.rbf = {}
 
         # default the Rbf's to gaussian
-        for i in xrange(0, rbf_count):
+        for i in range(0, rbf_count):
             rbf_index = input_weight_count + ((input_count + 1) * i)
             self.rbf[i] = RbfGaussian(input_count, self.long_term_memory, rbf_index)
 
@@ -77,11 +77,11 @@ class RbfNetwork(object):
         # bias
         rbf_output[len(rbf_output) - 1] = 1.0
 
-        for rbfIndex in xrange(0, len(self.rbf)):
+        for rbfIndex in range(0, len(self.rbf)):
             # weight the input
             weighted_input = [0] * len(input)
 
-            for inputIndex in xrange(0, len(input)):
+            for inputIndex in range(0, len(input)):
                 memory_index = self.index_input_weights + (rbfIndex * self.input_count) + inputIndex
                 weighted_input[inputIndex] = input[inputIndex] * self.long_term_memory[memory_index]
 
@@ -91,9 +91,9 @@ class RbfNetwork(object):
         # Second, calculate the output, which is the result of the weighted result of the RBF's.
         result = [0] * self.output_count
 
-        for outputIndex in xrange(0, len(result)):
+        for outputIndex in range(0, len(result)):
             sum_value = 0
-            for rbfIndex in xrange(0, len(rbf_output)):
+            for rbfIndex in range(0, len(rbf_output)):
                 # add 1 to rbf length for bias
                 memory_index = self.index_output_weights + (outputIndex * (len(self.rbf) + 1)) + rbfIndex
                 sum_value += rbf_output[rbfIndex] * self.long_term_memory[memory_index]
@@ -106,7 +106,7 @@ class RbfNetwork(object):
         """
         Reset the network to a random state.
         """
-        for i in xrange(0, len(self.long_term_memory)):
+        for i in range(0, len(self.long_term_memory)):
             self.long_term_memory[i] = np.random.uniform(0, 1)
 
     def compure_classification(self, input):
@@ -122,5 +122,5 @@ class RbfNetwork(object):
         """ Copy the specified vector into the long term memory of the network.
         @param source: The source vector.
         """
-        for i in xrange(0, len(source)):
+        for i in range(0, len(source)):
             self.long_term_memory[i] = source[i]

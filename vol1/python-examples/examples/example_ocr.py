@@ -35,8 +35,16 @@ be scanned and the character with the shortest distance is shown.
 """
 __author__ = 'jheaton'
 
-import Tkinter as tk
-import tkMessageBox
+try:
+    # for Python2
+    import Tkinter as tk
+    import tkMessageBox
+except ImportError:
+    # for Python3
+    import tkinter as tk
+    import tkinter.messagebox
+
+
 import sys
 from scipy.spatial import distance
 

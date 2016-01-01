@@ -89,7 +89,7 @@ norm.delete_unknowns(data_file_work)
 norm.col_delete(data_file_work, 0)
 norm.col_replace(data_file_work, 9, 4, 1, 0)
 
-for i in xrange(0, 9):
+for i in range(0, 9):
     norm.make_col_numeric(data_file_work, i)
 
 df = pd.DataFrame(data_file_work)

@@ -126,7 +126,7 @@ class TrainGreedRandom(Train):
         return self.position
 
     def perform_randomization(self, vec):
-        for i in xrange(0, len(vec)):
+        for i in range(0, len(vec)):
             vec[i] = np.random.uniform(self.low, self.high)
 
 
@@ -169,9 +169,9 @@ class TrainHillClimb(Train):
             else:
                 best_step_score = sys.float_info.min
 
-            for dimension in xrange(0, len(self.position)):
+            for dimension in range(0, len(self.position)):
                 best = -1
-                for i in xrange(0, len(candidate)):
+                for i in range(0, len(candidate)):
                     # Take a step
                     self.position[dimension] += candidate[i] * step_size[dimension]
                     # Obtain new trial score.
@@ -256,7 +256,7 @@ class TrainAnneal(Train):
             # Clone current position, create a new array of same size.
             current_temperature = self.cooling_schedule(iteration_number)
 
-            for c in xrange(0, self.cycles):
+            for c in range(0, self.cycles):
                 trial_position = list(current_position)
                 # Randomize trial position.
                 self.perform_randomization(trial_position)
@@ -319,6 +319,6 @@ class TrainAnneal(Train):
         @param vec:
         @return:
         """
-        for i in xrange(0, len(vec)):
+        for i in range(0, len(vec)):
             d = np.random.randn() / 10
             vec[i] += d

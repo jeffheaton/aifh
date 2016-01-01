@@ -53,7 +53,7 @@ class TestRbfNetwork(unittest.TestCase):
         network = RbfNetwork(2, 1, 1)
         total = 0
 
-        for i in xrange(0, len(network.long_term_memory)):
+        for i in range(0, len(network.long_term_memory)):
             total += network.long_term_memory[i]
 
         self.assertEquals(0, total)
@@ -61,7 +61,7 @@ class TestRbfNetwork(unittest.TestCase):
         network.reset()
 
         total = 0
-        for i in xrange(0, len(network.long_term_memory)):
+        for i in range(0, len(network.long_term_memory)):
             total += network.long_term_memory[i]
 
         self.assertTrue(total > 1)
