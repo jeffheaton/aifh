@@ -54,13 +54,15 @@ from genetic import *
 p1 = [ 1,2,3,4,5,6,7,8,9,10 ]
 off = [0] * 10
 
+pop = Population()
+
 print("Mutate Shuffle")
-mutate_shuffle(p1,off)
+mutate_shuffle(pop, p1,off)
 print("Parent: " + str(p1))
 print("Offspring: " + str(off))
 
 print()
 print("Mutate Perturb")
-mutate_perturb(p1,0.1,off)
+mutate_perturb(pop, p1,off)
 print("Parent: " + str(p1))
 print("Offspring: " + str(off))

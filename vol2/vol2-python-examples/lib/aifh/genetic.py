@@ -147,10 +147,6 @@ class Population:
 
             last_best = self.best_genome
 
-        # Copy winner
-        for i in range(0,len(x0)-1):
-            x0[i] = self.best_genome.genes[i]
-
 
 class Species:
     members = []
