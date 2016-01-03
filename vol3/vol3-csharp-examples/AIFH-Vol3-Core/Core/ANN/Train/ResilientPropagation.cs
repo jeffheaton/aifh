@@ -95,10 +95,6 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
         /// </summary>
         private readonly GradientCalc _gradients;
 
-        /**
-         * The current error.
-         */
-
         /// <summary>
         ///     The error calculation method to use.
         /// </summary>
@@ -136,6 +132,7 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
         /// <param name="theTraining">The training data.</param>
         public ResilientPropagation(BasicNetwork theNetwork, IList<BasicData> theTraining)
         {
+            LastError = 1.0;
             _network = theNetwork;
             _training = theTraining;
             _gradients = new GradientCalc(_network, new CrossEntropyErrorFunction(), this);
@@ -186,7 +183,7 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
         /// <summary>
         ///     The error from the last training iteration.
         /// </summary>
-        public double LastError { get; private set; } = 1.0;
+        public double LastError { get; private set; }
 
         /// <summary>
         ///     True, if we are done learning.  Not all learning algorithms know when they are done, in this case

@@ -148,7 +148,13 @@ namespace AIFH_Vol3_Core.Core.Energetic
 
 
         /// <inheritdoc />
-        public override double[] LongTermMemory => new double[0];
+        public override double[] LongTermMemory
+        {
+            get
+            {
+                return new double[0];
+            }
+        }
 
         /// <summary>
         ///     Note: for Boltzmann networks, you will usually want to call the "run"

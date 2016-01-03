@@ -35,7 +35,11 @@ namespace AIFH_Vol3_Core.Core.Selection
     /// </summary>
     public class RandomModelSelection : ModelSelection
     {
-        public IGenerateRandom Random { get; set; } = new MersenneTwisterGenerateRandom();
+        public IGenerateRandom Random { get; set; } 
+
+        public RandomModelSelection() {
+            Random = new MersenneTwisterGenerateRandom();
+        }
 
         public override object[] Next()
         {

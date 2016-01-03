@@ -97,7 +97,7 @@ namespace AIFH_Vol3_Core.Core.ANN.Train
         ///     Should we use stochastic gradient descent (SGD)?  If so, this holds the random number
         ///     generator.If we do not desire SGD, set this value to null.
         /// </summary>
-        private IGenerateRandom Stochastic { get; }
+        private IGenerateRandom Stochastic { get; set; }
 
         /// <summary>
         ///     Should nesterov update be used?

@@ -138,27 +138,27 @@ namespace AIFH_Vol3_Core.Core.Util
         /// <summary>
         ///     The number of labels.
         /// </summary>
-        public int NumLabels { get; }
+        public int NumLabels { get; private set; }
 
         /// <summary>
         ///     The number of images.
         /// </summary>
-        public int NumImages { get; }
+        public int NumImages { get; private set; }
 
         /// <summary>
         ///     The rows.
         /// </summary>
-        public int NumRows { get; }
+        public int NumRows { get; private set; }
 
         /// <summary>
         ///     The columns.
         /// </summary>
-        public int NumCols { get; }
+        public int NumCols { get; private set; }
 
         /// <summary>
         ///     The data.
         /// </summary>
-        public IList<BasicData> Data { get; }
+        public IList<BasicData> Data { get; private set; }
 
         /// <summary>
         /// Read a big-endian integer.
