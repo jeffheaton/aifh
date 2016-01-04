@@ -108,10 +108,10 @@ public class MNISTReader {
             }
 
             byte[] labelsData = new byte[this.numLabels];
-            labels.read(labelsData);
+            labels.readFully(labelsData);
             int imageVectorSize = this.numCols * this.numRows;
             byte[] imagesData = new byte[this.numLabels * imageVectorSize];
-            images.read(imagesData);
+            images.readFully(imagesData);
 
             this.data = new ArrayList<>();
             int imageIndex = 0;

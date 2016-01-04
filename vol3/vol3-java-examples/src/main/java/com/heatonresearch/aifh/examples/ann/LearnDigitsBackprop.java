@@ -134,9 +134,9 @@ public class LearnDigitsBackprop extends SimpleLearn {
 
         BasicNetwork network = new BasicNetwork();
         network.addLayer(new BasicLayer(null,true,inputCount));
+        network.addLayer(new BasicLayer(new ActivationReLU(),true,100));
         network.addLayer(new BasicLayer(new ActivationReLU(),true,50));
         network.addLayer(new BasicLayer(new ActivationReLU(),true,25));
-        network.addLayer(new BasicLayer(new ActivationReLU(),true,5));
         network.addLayer(new BasicLayer(new ActivationSoftMax(),false,outputCount));
         network.finalizeStructure();
         network.reset();
@@ -147,7 +147,7 @@ public class LearnDigitsBackprop extends SimpleLearn {
         train.setL1(0);
         train.setL2(1e-11);
 
-        this.performIterationsClassifyEarlyStop(train, network, trainingReader.getData(), 5);
+        this.performIterationsClassifyEarlyStop(train, network, validationReader.getData(), 5);
     }
 
     public static void main(String[] args) {
