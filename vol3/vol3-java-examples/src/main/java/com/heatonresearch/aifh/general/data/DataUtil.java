@@ -29,6 +29,8 @@
 package com.heatonresearch.aifh.general.data;
 
 import au.com.bytecode.opencsv.CSVWriter;
+import com.heatonresearch.aifh.AIFHError;
+import com.heatonresearch.aifh.ann.BasicNetwork;
 import com.heatonresearch.aifh.error.ErrorCalculation;
 import com.heatonresearch.aifh.learning.ClassificationAlgorithm;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
@@ -166,6 +168,84 @@ public class DataUtil {
 
         }
         writer.close();
+    }
+
+    /**
+     * Calculate the mean and standard deviation for an array.
+     * @param d The data to calculate for.
+     * @return A string that shows the mean and standard dev.
+     */
+    public static String calculateMeanSD(double[] d) {
+        double sum = 0;
+        for(int i=0;i<d.length;i++) {
+            sum+=d[i];
+        }
+        double mean = sum/d.length;
+        for(int i=0;i<d.length;i++) {
+            sum+=Math.pow(d[i]-mean,2);
+        }
+        double sd = Math.sqrt(mean/d.length);
+
+
+        StringBuilder result = new StringBuilder();
+        result.append("[mean=");
+        result.append(mean);
+        result.append(",sd=");
+        result.append(sd);
+        result.append("]");
+        return result.toString();
+    }
+
+    /**
+     * Dump classification results for a file.
+     * @param file The file to write to.
+     * @param network The network to evaluate.
+     * @param dataset The dataset to evaluate.
+     */
+    public static void dumpClassification(String file, BasicNetwork network, List<BasicData> dataset) {
+        try {
+            CSVWriter writer = new CSVWriter(new FileWriter(file));
+            int outputCount = dataset.get(0).getIdeal().length;
+
+            String[] headers = new String[3 + outputCount];
+            headers[0] = "id";
+            headers[1] = "ideal";
+            headers[2] = "actual";
+
+            int idx = 0;
+            for (int i = 0; i < outputCount; i++) {
+                headers[3 + idx++] = "p" + i;
+            }
+            writer.writeNext(headers);
+            int correct = 0;
+            int total = 0;
+
+            String[] line = new String[3 + outputCount];
+            for (int i = 0; i < dataset.size(); i++) {
+                BasicData item = dataset.get(i);
+                double[] output = network.computeRegression(item.getInput());
+                int ideal = ArrayUtil.indexOfLargest(item.getIdeal());
+                int actual = ArrayUtil.indexOfLargest(output);
+                line[0] = "" + i;
+                line[1] = "" + ideal;
+                line[2] = "" + actual;
+                for (int j = 0; j < output.length; j++) {
+                    line[3 + j] = "" + output[j];
+                }
+
+                writer.writeNext(line);
+
+                if( actual==ideal ) {
+                    correct++;
+                    //System.out.println(actual+"="+ideal + "," + correct + Arrays.toString(line));
+                }
+                total++;
+            }
+            System.out.println("Percent incorrect: %" + (double)(total-correct) / (double)total);
+            writer.close();
+        } catch(IOException ex) {
+            throw new AIFHError(ex);
+        }
     }
 
 }
