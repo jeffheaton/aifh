@@ -36,6 +36,7 @@ import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSoftMax;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
 import com.heatonresearch.aifh.examples.learning.SimpleLearn;
+import com.heatonresearch.aifh.general.data.DataUtil;
 import com.heatonresearch.aifh.util.ArrayUtil;
 import com.heatonresearch.aifh.util.FileUtil;
 import com.heatonresearch.aifh.util.MNISTReader;
@@ -148,6 +149,8 @@ public class LearnDigitsBackprop extends SimpleLearn {
         train.setL2(1e-11);
 
         this.performIterationsClassifyEarlyStop(train, network, validationReader.getData(), 5);
+        System.out.println("Final accuracy: Incorrect %"
+                + DataUtil.calculateClassificationError(validationReader.getData(), network)*100);
     }
 
     public static void main(String[] args) {

@@ -141,6 +141,8 @@ public class SimpleLearn {
         boolean done = false;
         double bestError = Double.POSITIVE_INFINITY;
         int badIterations = 0;
+        double[] bestParams = new double[model.getLongTermMemory().length];
+        double bestTrainingError = 0.0;
 
         do {
             iterationNumber++;
@@ -151,6 +153,8 @@ public class SimpleLearn {
             if(validationError<bestError) {
                 badIterations = 0;
                 bestError = validationError;
+                bestTrainingError = train.getLastError();
+                System.arraycopy(model.getLongTermMemory(), 0, bestParams, 0, bestParams.length);
             } else {
                 badIterations++;
             }
@@ -160,18 +164,20 @@ public class SimpleLearn {
             } else if( badIterations>tolerate ) {
                 done = true;
             } else if (Double.isNaN(train.getLastError())) {
-                System.out.println("Training failed.");
+                System.out.println("Weights unstable, stopping training.");
                 done = true;
             }
 
             System.out.println("Iteration #" + iterationNumber
-                    + ", Iteration Score=" + train.getLastError()
-                    + ", Validation Incorrect= %" + validationError*100.0
+                    + ", training error=" + train.getLastError()
+                    + ", Validation # incorrect= %" + validationError*100.0
                     + ", " + train.getStatus());
         } while (!done);
 
         train.finishTraining();
-        System.out.println("Final score: " + bestError*100.0);
+        System.out.println("Best training error: " + bestTrainingError);
+        System.out.println("Restoring weights to best iteration");
+        System.arraycopy(bestParams, 0, model.getLongTermMemory(), 0, bestParams.length);
     }
 
 
