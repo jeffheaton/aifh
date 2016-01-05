@@ -35,6 +35,8 @@ using AIFH_Vol3.Core.Learning;
 using AIFH_Vol3.Core.Randomize;
 using AIFH_Vol3_Core.Core.Util;
 using CsvHelper;
+using AIFH_Vol3_Core.Core.ANN;
+using System;
 
 namespace AIFH_Vol3_Core.Core.General.Data
 {
@@ -54,7 +56,7 @@ namespace AIFH_Vol3_Core.Core.General.Data
         public static IList<IList<T>> Split<T>(IList<T> list, double ratio, IGenerateRandom rnd)
         {
             IList<IList<T>> result = new List<IList<T>>();
-            var aCount = (int) (list.Count*ratio);
+            var aCount = (int)(list.Count * ratio);
 
             var a = new List<T>();
             var b = new List<T>();
@@ -128,7 +130,7 @@ namespace AIFH_Vol3_Core.Core.General.Data
                     correct++;
                 total++;
             }
-            return (total - correct)/(double) total;
+            return (total - correct) / (double)total;
         }
 
         /// <summary>
@@ -139,41 +141,98 @@ namespace AIFH_Vol3_Core.Core.General.Data
         public static void DumpCSV(string file, IList<BasicData> dataset)
         {
             using (TextWriter tw = File.CreateText(file))
+
             {
                 var writer = new CsvWriter(tw);
                 var inputCount = dataset[0].Input.Length;
                 var outputCount = dataset[0].Ideal.Length;
                 var totalCount = inputCount + outputCount;
 
-                var headers = new string[totalCount];
                 var idx = 0;
+
                 for (var i = 0; i < inputCount; i++)
                 {
-                    headers[idx++] = "x" + i;
+                    writer.WriteField("x" + i);
                 }
+
                 for (var i = 0; i < outputCount; i++)
                 {
-                    headers[idx++] = "y" + i;
+                    writer.WriteField("y" + i);
                 }
-                writer.WriteRecord(headers);
 
-                var line = new string[totalCount];
+                writer.NextRecord();
+
                 for (var i = 0; i < dataset.Count; i++)
                 {
                     var item = dataset[i];
 
-                    idx = 0;
                     for (var j = 0; j < inputCount; j++)
                     {
-                        line[idx++] = item.Input[j].ToString(CultureInfo.InvariantCulture);
+                        writer.WriteField(item.Input[j].ToString(CultureInfo.InvariantCulture));
                     }
+
                     for (var j = 0; j < outputCount; j++)
                     {
-                        line[idx++] = item.Ideal[j].ToString(CultureInfo.InvariantCulture);
+                        writer.WriteField(item.Ideal[j].ToString(CultureInfo.InvariantCulture));
                     }
-                    writer.WriteRecord(line);
+                    writer.NextRecord();
                 }
             }
         }
+
+        /**
+    * Dump classification results for a file.
+    * @param file The file to write to.
+    * @param network The network to evaluate.
+    * @param dataset The dataset to evaluate.
+    */
+        public static void DumpClassification(string file, BasicNetwork network, IList<BasicData> dataset)
+        {
+            using (TextWriter tw = File.CreateText(file))
+
+            {
+                var writer = new CsvWriter(tw);
+                int outputCount = dataset[0].Ideal.Length;
+
+                string[] headers = new string[3 + outputCount];
+                writer.WriteField("id");
+                writer.WriteField("ideal");
+                writer.WriteField("actual");
+
+                for (int i = 0; i < outputCount; i++)
+                {
+                    writer.WriteField("p" + i);
+                }
+                writer.NextRecord();
+                int correct = 0;
+                int total = 0;
+
+                for (int i = 0; i < dataset.Count; i++)
+                {
+                    BasicData item = dataset[i];
+                    double[] output = network.ComputeRegression(item.Input);
+                    int ideal = ArrayUtil.IndexOfLargest(item.Ideal);
+                    int actual = ArrayUtil.IndexOfLargest(output);
+                    writer.WriteField("" + i);
+                    writer.WriteField("" + ideal);
+                    writer.WriteField("" + actual);
+                    for (int j = 0; j < output.Length; j++)
+                    {
+                        writer.WriteField("" + output[j]);
+                    }
+
+                    writer.NextRecord();
+
+                    if (actual == ideal)
+                    {
+                        correct++;
+                    }
+                    total++;
+                }
+                Console.WriteLine("Percent incorrect: %" + (double)(total - correct) / (double)total);
+            }
+
+        }
+
     }
 }

@@ -35,6 +35,7 @@ using AIFH_Vol3_Core.Core.ANN;
 using AIFH_Vol3_Core.Core.ANN.Activation;
 using AIFH_Vol3_Core.Core.ANN.Train;
 using AIFH_Vol3_Core.Core.Util;
+using AIFH_Vol3_Core.Core.General.Data;
 
 namespace AIFH_Vol3.Examples.ANN
 {
@@ -150,9 +151,9 @@ namespace AIFH_Vol3.Examples.ANN
 
             var network = new BasicNetwork();
             network.AddLayer(new BasicLayer(null, true, inputCount));
+            network.AddLayer(new BasicLayer(new ActivationReLU(), true, 100));
             network.AddLayer(new BasicLayer(new ActivationReLU(), true, 50));
             network.AddLayer(new BasicLayer(new ActivationReLU(), true, 25));
-            network.AddLayer(new BasicLayer(new ActivationReLU(), true, 5));
             network.AddLayer(new BasicLayer(new ActivationSoftMax(), false, outputCount));
             network.FinalizeStructure();
             network.Reset();
@@ -163,7 +164,10 @@ namespace AIFH_Vol3.Examples.ANN
             train.L1 = 0;
             train.L2 = 1e-11;
 
-            PerformIterationsClassifyEarlyStop(train, network, trainingReader.Data, 5);
+            PerformIterationsClassifyEarlyStop(train, network, validationReader.Data, 5);
+            Console.WriteLine("Final accuracy: Incorrect %" 
+                + DataUtil.CalculateClassificationError(validationReader.Data, network)*100);
+            
         }
 
         /// <summary>

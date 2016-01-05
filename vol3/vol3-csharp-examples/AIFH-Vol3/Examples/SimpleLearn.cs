@@ -235,6 +235,8 @@ namespace AIFH_Vol3.Examples.Learning
             var done = false;
             var bestError = double.PositiveInfinity;
             var badIterations = 0;
+            var bestParams = new double[model.LongTermMemory.Length];
+            var bestTrainingError = 0.0;
 
             do
             {
@@ -247,6 +249,8 @@ namespace AIFH_Vol3.Examples.Learning
                 {
                     badIterations = 0;
                     bestError = validationError;
+                    bestTrainingError = train.LastError;
+                    Array.Copy(model.LongTermMemory, bestParams, bestParams.Length);
                 }
                 else
                 {
@@ -263,18 +267,20 @@ namespace AIFH_Vol3.Examples.Learning
                 }
                 else if (double.IsNaN(train.LastError))
                 {
-                    Console.WriteLine("Training failed.");
+                    Console.WriteLine("Weights unstable, stopping training."); 
                     done = true;
                 }
 
                 Console.WriteLine("Iteration #" + iterationNumber
-                                  + ", Iteration Score=" + train.LastError
-                                  + ", Validation Incorrect= %" + validationError*100.0
+                                  + ", training error=" + train.LastError
+                                  + ", validation # Incorrect= %" + validationError*100.0
                                   + ", " + train.Status);
             } while (!done);
 
             train.FinishTraining();
-            Console.WriteLine("Final score: " + bestError*100.0);
+            Console.WriteLine("Best training error: " + bestTrainingError);
+            Console.WriteLine("Restoring weights to best iteration");
+            Array.Copy(bestParams, model.LongTermMemory, bestParams.Length);
         }
     }
 }
