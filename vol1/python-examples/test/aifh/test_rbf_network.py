@@ -116,7 +116,7 @@ class TestRbfNetwork(unittest.TestCase):
         # Outputs: (1*5) + (1*6) = 11
         self.assertAlmostEqual(11, y[1], 3)
 
-        cls = network.compure_classification(x)
+        cls = network.compute_classification(x)
 
         # class 1 is higher than class 0
         self.assertEqual(1, cls)
