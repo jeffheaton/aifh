@@ -8,6 +8,12 @@ The following volumes are planned for this series:
 * Volume 2: Nature Inspired Algorithms
 * Volume 3: Neural Networks and Deep Learning
 
+## Questions?
+
+If you have a question, or wish to discuss something related to these books, you can find my Google Group here:
+
+https://groups.google.com/forum/#!forum/jeffheatons-ai-group
+
 ##Staying Up to Date
 
 This appendix describes how to obtain the “Artificial Intelligence for Humans” (AIFH) book series examples. 
@@ -16,13 +22,7 @@ Because this area is so dynamic, this file may have become out of date. You can 
 
 https://github.com/jeffheaton/aifh 
 
-##Obtaining the Examples
-
 This book’s examples are provided in a number of computer programming languages.  Core example packs are provided for Java, C#, C/C++, Python and R for most volumes.  The community may have added other languages as well.  All examples can be found at the GitHub repository.
-
-https://github.com/jeffheaton/aifh
-
-You have your choice of two different ways to download the examples. 
 
 ###Download ZIP File
 
