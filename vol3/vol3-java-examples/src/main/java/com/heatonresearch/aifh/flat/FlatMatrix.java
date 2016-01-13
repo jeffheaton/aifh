@@ -13,9 +13,9 @@ public class FlatMatrix extends AbstractFlatObject {
     }
 
     @Override
-    public int init(final double[] theData, final int theOffset) {
+    public int init(final int theOffset) {
         int len = rows * columns;
-        initHelper(theData,theOffset,len);
+        initHelper(theOffset,len);
         return theOffset+len;
     }
 }

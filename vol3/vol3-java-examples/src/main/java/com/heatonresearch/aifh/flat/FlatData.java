@@ -28,10 +28,16 @@ public class FlatData {
             offset = obj.init(offset);
         }
 
-        final double[] data = new double[offset];
+        this.data = new double[offset];
 
         for(FlatObject obj: this.flatObjects) {
             obj.setData(data);
+        }
+    }
+
+    public void clear() {
+        for(int i=0;i<this.data.length;i++) {
+            this.data[i] = 0;
         }
     }
 }

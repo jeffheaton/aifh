@@ -14,10 +14,27 @@ public class FlatVolume extends AbstractFlatObject {
         this.depth = theDepth;
     }
 
+    public FlatVolume(final int[] count) {
+        this(count[0],count[1],count[2]);
+    }
+
     @Override
-    public int init(final double[] theData, final int theOffset) {
+    public int init(final int theOffset) {
         int len = this.rows * this.columns * this.depth;
-        initHelper(theData,theOffset,len);
+        initHelper(theOffset,len);
         return theOffset+len;
     }
+
+    public double get(final int row, final int col, final int depth) {
+        int s = this.rows*this.columns;
+        int idx = (depth*s)+(row*this.columns)+col;
+        return getData()[getOffset()+idx];
+    }
+
+    public void set(final int row, final int col, final int depth, final double v) {
+        int s = this.rows*this.columns;
+        int idx = (depth*s)+(row*this.columns)+col;
+        getData()[getOffset()+idx] = v;
+    }
+
 }

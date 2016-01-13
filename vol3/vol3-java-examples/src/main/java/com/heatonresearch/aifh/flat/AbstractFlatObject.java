@@ -24,9 +24,33 @@ public abstract class AbstractFlatObject implements FlatObject {
         return 0;
     }
 
-    public void initHelper(double[] theData, int theOffset, int theLength) {
-        this.data = theData;
+    public void initHelper(final int theOffset, final int theLength) {
         this.offset = theOffset;
         this.length = theLength;
+    }
+
+    @Override
+    public void setData(double[] theData) {
+        this.data = theData;
+    }
+
+    @Override
+    public double[] getData() {
+        return this.data;
+    }
+
+    @Override
+    public double get(final int index) {
+        return this.data[this.offset+index];
+    }
+
+    @Override
+    public void set(final int index, final double d) {
+        this.data[this.offset+index] = d;
+    }
+
+    @Override
+    public void add(final int index, final double d) {
+        this.data[this.offset+index] += d;
     }
 }
