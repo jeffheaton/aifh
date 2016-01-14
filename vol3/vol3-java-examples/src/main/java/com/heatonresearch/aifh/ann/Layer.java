@@ -30,6 +30,7 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
+import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 /**
@@ -129,5 +130,10 @@ public interface Layer {
      * @return The neurons per depth unit.
      */
     int getNeuronDepthUnit();
+
+    FlatVolume getLayerOutput();
+
+    FlatVolume getLayerSums();
+
 
 }

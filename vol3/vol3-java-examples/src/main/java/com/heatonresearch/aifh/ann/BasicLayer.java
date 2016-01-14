@@ -31,6 +31,7 @@ package com.heatonresearch.aifh.ann;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
+import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 /**
@@ -48,6 +49,8 @@ public class BasicLayer extends WeightedLayer {
      */
     private boolean hasBias;
 
+    private FlatVolume layerOutput;
+    private FlatVolume layerSums;
 
     /**
      * Do not use this constructor.  This was added to support serialization.
@@ -70,6 +73,9 @@ public class BasicLayer extends WeightedLayer {
         setActivation(theActivation);
         this.hasBias = theHasBias;
         this.count = theCount;
+
+        this.layerOutput = new FlatVolume(theCount, hasBias);
+        this.layerSums = new FlatVolume(theCount, hasBias);
     }
 
     /**
@@ -79,7 +85,7 @@ public class BasicLayer extends WeightedLayer {
      * @param theCount The neuron count.
      */
     public BasicLayer(final ActivationFunction theActivation, boolean theHasBias, int theCount) {
-        this(theActivation,theHasBias,new int[] {theCount});
+        this(theActivation,theHasBias,new int[] {theCount,1,1});
     }
 
 
@@ -191,5 +197,13 @@ public class BasicLayer extends WeightedLayer {
         } else {
             return this.count[0];
         }
+    }
+
+    public FlatVolume getLayerOutput() {
+        return layerOutput;
+    }
+
+    public FlatVolume getLayerSums() {
+        return layerSums;
     }
 }

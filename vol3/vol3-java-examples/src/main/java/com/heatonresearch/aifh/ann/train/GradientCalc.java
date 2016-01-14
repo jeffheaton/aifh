@@ -54,15 +54,6 @@ public class GradientCalc {
      */
     private final double[] layerDelta;
 
-    /**
-     * The output from each layer.
-     */
-    private final double[] layerOutput;
-
-    /**
-     * The sums.
-     */
-    private final double[] layerSums;
 
     /**
      * The gradients.
@@ -95,13 +86,11 @@ public class GradientCalc {
         this.network = theNetwork;
         this.errorFunction = ef;
 
-        this.layerDelta = new double[this.network.getLayerOutput().length];
+        this.layerDelta = new double[this.network.getNeuronCount()];
         this.gradients = new double[this.network.getWeights().length];
         this.actual = new double[this.network.getOutputCount()];
 
         this.weights = this.network.getWeights();
-        this.layerOutput = this.network.getLayerOutput();
-        this.layerSums = this.network.getLayerSums();
         this.owner = theOwner;
     }
 
@@ -134,7 +123,8 @@ public class GradientCalc {
         int outputLayerIndex = this.network.getLayers().size() - 1;
         ActivationFunction outputActivation = this.network.getLayers().get(outputLayerIndex).getActivation();
         this.errorFunction.calculateError(
-                outputActivation, this.layerSums, this.layerOutput,
+                outputActivation, this.network.getOutputLayer().getLayerSums(),
+                this.network.getOutputLayer().getLayerOutput(),
                 ideal, this.actual, this.layerDelta, 0, 1.0);
 
         // Apply regularization, if requested.

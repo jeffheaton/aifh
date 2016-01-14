@@ -31,6 +31,7 @@ package com.heatonresearch.aifh.ann;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
+import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 /**
@@ -81,6 +82,10 @@ public class Conv2DLayer extends WeightedLayer {
      */
     private int inDepth;
 
+    private FlatVolume layerOutput;
+    private FlatVolume layerSums;
+
+
     /**
      * Construct a 2D convolution layer.
      * @param theActivation The activation function.
@@ -93,6 +98,11 @@ public class Conv2DLayer extends WeightedLayer {
         this.filterRows = theFilterRows;
         this.filterColumns = theFilterColumns;
         this.numFilters = theNumFilters;
+        int[] shape = {theFilterRows, theFilterColumns, theNumFilters};
+
+        this.layerOutput = new FlatVolume(shape, true);
+        this.layerSums = new FlatVolume(shape, true);
+
     }
 
     /**
@@ -132,6 +142,16 @@ public class Conv2DLayer extends WeightedLayer {
     @Override
     public int getNeuronDepthUnit() {
         return this.filterColumns * this.filterRows;
+    }
+
+    @Override
+    public FlatVolume getLayerOutput() {
+        return this.layerOutput;
+    }
+
+    @Override
+    public FlatVolume getLayerSums() {
+        return this.layerSums;
     }
 
     /**

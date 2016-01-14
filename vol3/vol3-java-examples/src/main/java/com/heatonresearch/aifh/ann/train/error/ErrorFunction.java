@@ -30,6 +30,7 @@ package com.heatonresearch.aifh.ann.train.error;
 
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.flat.FlatVolume;
 
 /**
  * An error function.  This is used to calculate the errors for the
@@ -48,7 +49,7 @@ public interface ErrorFunction {
      * @param derivShift Any derivative shift to apply (usually 0.0), used to implement flat-spot problem shift.
      * @param significance The significance weight (usually 1.0)
      */
-	void calculateError(ActivationFunction af, double[] b, double[] a,
+	void calculateError(ActivationFunction af, FlatVolume b, FlatVolume a,
 							   double[] ideal, double[] actual, double[] error, double derivShift,
 							   double significance);
 }

@@ -30,6 +30,7 @@ package com.heatonresearch.aifh.ann.train.error;
 
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.flat.FlatVolume;
 
 /**
  * Implements a cross entropy error function.  This can be used with backpropagation to
@@ -45,7 +46,7 @@ public class CrossEntropyErrorFunction implements ErrorFunction {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void calculateError(ActivationFunction af, double[] b, double[] a,
+	public void calculateError(ActivationFunction af, FlatVolume b, FlatVolume a,
 							   double[] ideal, double[] actual, double[] error, double derivShift,
 							   double significance) {
 		
