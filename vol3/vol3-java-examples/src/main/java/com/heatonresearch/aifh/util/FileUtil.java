@@ -37,7 +37,16 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
+/**
+ * Misc utilities for file processing.
+ */
 public class FileUtil {
+
+    /**
+     * Download a file from the Internet to a local path.
+     * @param url The URL to download from.
+     * @param path The path to download to.
+     */
     public static void downloadFile(String url, File path) {
         try {
             URL website = new URL(url);
@@ -45,6 +54,7 @@ public class FileUtil {
             FileOutputStream fos = new FileOutputStream(path);
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         } catch(IOException ex) {
+            path.delete();// Delete failed file
             throw new AIFHError(ex);
         }
     }
