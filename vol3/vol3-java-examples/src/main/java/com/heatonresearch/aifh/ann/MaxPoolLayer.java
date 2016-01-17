@@ -30,6 +30,7 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
+import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
@@ -145,6 +146,11 @@ public class MaxPoolLayer implements Layer {
 
     @Override
     public FlatVolume getLayerSums() {
+        return null;
+    }
+
+    @Override
+    public FlatMatrix getWeightMatrix() {
         return null;
     }
 }

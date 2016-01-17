@@ -206,4 +206,5 @@ public class BasicLayer extends WeightedLayer {
     public FlatVolume getLayerSums() {
         return layerSums;
     }
+
 }

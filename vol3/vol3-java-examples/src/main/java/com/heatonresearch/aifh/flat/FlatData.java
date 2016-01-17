@@ -95,4 +95,11 @@ public class FlatData {
             this.data[i] = 0;
         }
     }
+
+    /**
+     * @return  The length of the data.
+     */
+    public int getLength() {
+        return this.data.length;
+    }
 }

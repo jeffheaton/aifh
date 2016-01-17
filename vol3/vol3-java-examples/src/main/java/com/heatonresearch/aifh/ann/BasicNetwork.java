@@ -57,10 +57,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      */
     private int outputCount;
 
-    /**
-     * The weights for a neural network.
-     */
-    private double[] weights;
+    private final FlatData weights = new FlatData();
 
     /**
      * The layers of the network.
@@ -118,7 +115,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      * @return The length of the array the network would encode to.
      */
     public int getEncodeLength() {
-        return this.weights.length;
+        return this.weights.getLength();
     }
 
 
@@ -140,7 +137,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      * @return The index of each layer in the weight and threshold array.
      */
     public double[] getWeights() {
-        return this.weights;
+        return this.weights.getData();
     }
 
 
@@ -189,7 +186,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         final int weightIndex = weightBaseIndex + fromNeuron
                 + (toNeuron * count);
 
-        return this.weights[weightIndex];
+        return this.weights.getData()[weightIndex];
     }
 
     /**
@@ -242,10 +239,13 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
             layer.finalizeStructure(this, i, counts);
             this.layerOutput.addFlatObject(layer.getLayerSums());
             this.layerOutput.addFlatObject(layer.getLayerOutput());
+            if( layer.getWeightMatrix()!=null ) {
+                this.weights.addFlatObject(layer.getWeightMatrix());
+            }
         }
 
         this.layerOutput.finalizeStructure();
-        this.weights = new double[counts.getWeightCount()];
+        this.weights.finalizeStructure();
 
         clearOutput();
     }
@@ -332,7 +332,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      */
     @Override
     public double[] getLongTermMemory() {
-        return this.weights;
+        return this.weights.getData();
     }
 
 

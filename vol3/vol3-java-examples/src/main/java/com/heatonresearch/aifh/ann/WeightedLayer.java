@@ -30,6 +30,7 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
+import com.heatonresearch.aifh.flat.FlatMatrix;
 
 /**
  * Base class for all layers (used with BasicNetwork) that have weights.
@@ -61,6 +62,8 @@ public abstract class WeightedLayer implements Layer {
      */
     private ActivationFunction activation;
 
+    private FlatMatrix weightMatrix;
+
     /**
      * {@inheritDoc}
      */
@@ -71,6 +74,10 @@ public abstract class WeightedLayer implements Layer {
 
         Layer prevLayer = (this.layerIndex>0) ? this.owner.getLayers().get(this.layerIndex-1) : null;
         Layer nextLayer = (this.layerIndex<this.owner.getLayers().size()-1) ? this.owner.getLayers().get(this.layerIndex+1) : null;
+
+        if( prevLayer!=null ) {
+            this.weightMatrix = new FlatMatrix(prevLayer.getTotalCount(), getCount());
+        }
 
         int tc = getTotalCount();
         counts.addNeuronCount(tc);
@@ -245,5 +252,7 @@ public abstract class WeightedLayer implements Layer {
         return result.toString();
     }
 
-
+    public FlatMatrix getWeightMatrix() {
+        return weightMatrix;
+    }
 }
