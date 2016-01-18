@@ -35,6 +35,7 @@ import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.error.ErrorFunction;
 import com.heatonresearch.aifh.error.ErrorCalculation;
 import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.flat.FlatVolume;
 
@@ -61,7 +62,7 @@ public class GradientCalc {
     /**
      * The gradients.
      */
-    private final double[] gradients;
+    private final FlatData gradients = new FlatData();
 
     /**
      * The weights and thresholds.
@@ -89,12 +90,16 @@ public class GradientCalc {
         this.network = theNetwork;
         this.errorFunction = ef;
 
+        boolean inputLayer = true;
         for(Layer layer: this.network.getLayers()) {
             this.layerDelta.addFlatObject(new FlatVolume(layer.getTotalCount(),1,1,false));
+            if( layer.getWeightMatrix() != null ) {
+                this.gradients.addFlatObject(new FlatMatrix(layer.getWeightMatrix()));
+            }
         }
         this.layerDelta.finalizeStructure();
+        this.gradients.finalizeStructure();
 
-        this.gradients = new double[this.network.getWeights().length];
         this.actual = new double[this.network.getOutputCount()];
 
         this.weights = this.network.getWeights();
@@ -160,9 +165,7 @@ public class GradientCalc {
      * Reset all gradients to zero.
      */
     public void reset() {
-        for (int i = 0; i < this.gradients.length; i++) {
-            this.gradients[i] = 0;
-        }
+        this.gradients.clear();
     }
 
 
@@ -170,7 +173,7 @@ public class GradientCalc {
      * @return the gradients
      */
     public double[] getGradients() {
-        return this.gradients;
+        return this.gradients.getData();
     }
 
     /**

@@ -53,6 +53,14 @@ public class FlatMatrix extends AbstractFlatObject {
     }
 
     /**
+     * Create a matrix that is based on the provided matrix.
+     * @param other The other matrix.
+     */
+    public FlatMatrix(FlatMatrix other) {
+        this(other.getRows(),other.getColumns());
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -90,5 +98,19 @@ public class FlatMatrix extends AbstractFlatObject {
      */
     public void add(final int row, final int col, final double d) {
         getData()[getOffset()+(row * this.columns)+col]+=d;
+    }
+
+    /**
+     * @return The number of rows.
+     */
+    public int getRows() {
+        return this.rows;
+    }
+
+    /**
+     * @return The number of columns.
+     */
+    public int getColumns() {
+        return this.columns;
     }
 }
