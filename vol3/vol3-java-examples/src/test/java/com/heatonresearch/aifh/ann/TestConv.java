@@ -31,9 +31,6 @@ public class TestConv {
     public void testConvCounts() {
         BasicNetwork network = buildSimpleConv();
         Assert.assertEquals(1562,network.getWeights().length);
-        Assert.assertEquals(1562,network.getLayers().get(0).getWeightIndex());
-        Assert.assertEquals(18,network.getLayers().get(1).getWeightIndex());
-        Assert.assertEquals(0,network.getLayers().get(2).getWeightIndex());
     }
 
     @Test

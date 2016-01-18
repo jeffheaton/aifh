@@ -109,8 +109,8 @@ public class Conv2DLayer extends WeightedLayer {
      * {@inheritDoc}
      */
     @Override
-    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, TempStructureCounts counts) {
-        super.finalizeStructure(theOwner,theLayerIndex,counts);
+    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex) {
+        super.finalizeStructure(theOwner,theLayerIndex);
 
         Layer prevLayer = (getLayerIndex()>0) ? getOwner().getLayers().get(getLayerIndex()-1) : null;
         Layer nextLayer = (getLayerIndex()<getOwner().getLayers().size()-1) ? getOwner().getLayers().get(getLayerIndex()+1) : null;
@@ -125,23 +125,6 @@ public class Conv2DLayer extends WeightedLayer {
 
         this.outColumns = Math.floor((inColumns + this.padding * 2 - this.filterRows) / this.stride + 1);
         this.outRows = Math.floor((inRows + this.padding * 2 - this.filterColumns) / this.stride + 1);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getWeightDepthUnit() {
-        Layer previousLayer = getOwner().getPreviousLayer(this);
-        return previousLayer.getNeuronDepthUnit() * getNeuronDepthUnit();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getNeuronDepthUnit() {
-        return this.filterColumns * this.filterRows;
     }
 
     @Override

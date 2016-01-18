@@ -72,36 +72,15 @@ public abstract class WeightedLayer implements Layer {
      * {@inheritDoc}
      */
     @Override
-    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, TempStructureCounts counts) {
+    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex) {
         this.owner = theOwner;
         this.layerIndex = theLayerIndex;
 
         Layer prevLayer = (this.layerIndex>0) ? this.owner.getLayers().get(this.layerIndex-1) : null;
-        Layer nextLayer = (this.layerIndex<this.owner.getLayers().size()-1) ? this.owner.getLayers().get(this.layerIndex+1) : null;
 
         if( prevLayer!=null ) {
             this.weightMatrix = new FlatMatrix(prevLayer.getTotalCount(), getCount());
         }
-
-        int tc = getTotalCount();
-        counts.addNeuronCount(tc);
-
-        if (prevLayer != null) {
-            counts.addWeightCount(getCount() * prevLayer.getTotalCount());
-        }
-
-        int weightIndex, layerIndex;
-        if (theLayerIndex == this.owner.getLayers().size()-1 ) {
-            weightIndex = 0;
-            layerIndex = 0;
-        } else {
-            weightIndex = nextLayer.getWeightIndex()
-                    + (getTotalCount() * nextLayer.getCount());
-            layerIndex = nextLayer.getNeuronIndex() + nextLayer.getTotalCount();
-        }
-
-        this.neuronIndex = layerIndex;
-        this.weightIndex = weightIndex;
     }
 
     /**
@@ -157,23 +136,6 @@ public abstract class WeightedLayer implements Layer {
         }
     }
 
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getWeightIndex() {
-        return this.weightIndex;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getNeuronIndex() {
-        return this.neuronIndex;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -213,8 +175,6 @@ public abstract class WeightedLayer implements Layer {
         result.append("[");
         result.append(this.getClass().getSimpleName());
         result.append(",count=").append(getCount());
-        result.append(",weightIndex=").append(getWeightIndex());
-        result.append(",neuronIndex=").append(getNeuronIndex());
 
         result.append("]");
         return result.toString();

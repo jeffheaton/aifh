@@ -58,10 +58,8 @@ public interface Layer {
      * Finalize the structure of this layer.
      * @param theOwner The neural network that owns this layer.
      * @param theLayerIndex The zero-based index of this layer.
-     * @param counts The counts structure to track the weight and neuron counts.
      */
-    void finalizeStructure(BasicNetwork theOwner, int theLayerIndex,
-                           TempStructureCounts counts);
+    void finalizeStructure(BasicNetwork theOwner, int theLayerIndex);
 
     /**
      * Compute this layer.
@@ -73,16 +71,6 @@ public interface Layer {
      * @param calc The gradient calculation utility.
      */
     void computeGradient(GradientCalc calc);
-
-    /**
-     * @return The start of this layer's weights in the weight vector.
-     */
-    int getWeightIndex();
-
-    /**
-     * @return The start of this layer's neurons in the neuron vector.
-     */
-    int getNeuronIndex();
 
     /**
      * @return This layer's index in the layer stack.
@@ -119,24 +107,18 @@ public interface Layer {
     int[] getDimensionCounts();
 
     /**
-     * Get the number of weights in a single unit.  For  non-convolution layer, this is the total number of weights.
-     * For a convolution network, this is the number of weights per filter.
-     * @return The weights per depth unit.
+     * @return The output from each of the layers.
      */
-    int getWeightDepthUnit();
-
-    /**
-     * Get the number of neurons in a single unit.  For non-convolution layers, this is the total number of neurons in
-     * this layer.  For convolution networks this is the number of neurons per filter.
-     * @return The neurons per depth unit.
-     */
-    int getNeuronDepthUnit();
-
     FlatVolume getLayerOutput();
 
+    /**
+     * @return The sums from each of the layers.
+     */
     FlatVolume getLayerSums();
 
+    /**
+     * @return The weight matrix.
+     */
     FlatMatrix getWeightMatrix();
-
 
 }

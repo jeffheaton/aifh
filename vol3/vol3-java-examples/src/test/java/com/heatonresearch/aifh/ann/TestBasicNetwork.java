@@ -105,11 +105,5 @@ public class TestBasicNetwork {
         Assert.assertEquals(129, hidden2Layer.getTotalCount());
         Assert.assertEquals(65, hidden3Layer.getTotalCount());
         Assert.assertEquals(10, outputLayer.getTotalCount());
-
-        Assert.assertEquals(0, outputLayer.getNeuronIndex());
-        Assert.assertEquals(10, hidden3Layer.getNeuronIndex());
-        Assert.assertEquals(75, hidden2Layer.getNeuronIndex());
-        Assert.assertEquals(204, hidden1Layer.getNeuronIndex());
-        Assert.assertEquals(0, outputLayer.getNeuronIndex());
     }
 }

@@ -49,7 +49,14 @@ public class BasicLayer extends WeightedLayer {
      */
     private boolean hasBias;
 
+    /**
+     * The output from each of the layers.
+     */
     private FlatVolume layerOutput;
+
+    /**
+     * The sums from each of the layers, esseitnally the output prior to activation function.
+     */
     private FlatVolume layerSums;
 
     /**
@@ -87,9 +94,6 @@ public class BasicLayer extends WeightedLayer {
     public BasicLayer(final ActivationFunction theActivation, boolean theHasBias, int theCount) {
         this(theActivation,theHasBias,new int[] {theCount,1,1});
     }
-
-
-
 
     /**
      * @return the count
@@ -145,43 +149,14 @@ public class BasicLayer extends WeightedLayer {
      * {@inheritDoc}
      */
     @Override
-    public int getWeightDepthUnit() {
-        Layer previousLayer = getOwner().getPreviousLayer(this);
-        int prevCount;
-        if( previousLayer instanceof Conv2DLayer ) {
-            prevCount = (((Conv2DLayer)previousLayer).getFilterColumns() *
-                    ((Conv2DLayer)previousLayer).getFilterRows());
-        } else {
-            if( previousLayer.getDimensionCounts().length==1) {
-                prevCount = previousLayer.getCount();
-            } else {
-                prevCount = previousLayer.getDimensionCounts()[0] * previousLayer.getDimensionCounts()[1];
-            }
-        }
-        if(previousLayer.hasBias()) {
-            prevCount++;
-        }
-
-
-        return prevCount * getNeuronDepthUnit();
+    public FlatVolume getLayerOutput() {
+        return layerOutput;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public int getNeuronDepthUnit() {
-        if( this.count.length==3) {
-            return this.count[0] * this.count[1];
-        } else {
-            return this.count[0];
-        }
-    }
-
-    public FlatVolume getLayerOutput() {
-        return layerOutput;
-    }
-
     public FlatVolume getLayerSums() {
         return layerSums;
     }

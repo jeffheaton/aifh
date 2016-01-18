@@ -75,7 +75,7 @@ public class MaxPoolLayer implements Layer {
      * {@inheritDoc}
      */
     @Override
-    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex, TempStructureCounts counts) {
+    public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex) {
 
     }
 
@@ -88,16 +88,6 @@ public class MaxPoolLayer implements Layer {
     @Override
     public void computeGradient(GradientCalc calc) {
 
-    }
-
-    @Override
-    public int getWeightIndex() {
-        return 0;
-    }
-
-    @Override
-    public int getNeuronIndex() {
-        return 0;
     }
 
 
@@ -127,16 +117,6 @@ public class MaxPoolLayer implements Layer {
     @Override
     public int[] getDimensionCounts() {
         return new int[0];
-    }
-
-    @Override
-    public int getWeightDepthUnit() {
-        return 0;
-    }
-
-    @Override
-    public int getNeuronDepthUnit() {
-        return 0;
     }
 
     @Override

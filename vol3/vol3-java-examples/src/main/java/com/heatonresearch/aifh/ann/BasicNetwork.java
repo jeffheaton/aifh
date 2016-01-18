@@ -69,6 +69,9 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      */
     private boolean networkTraining;
 
+    /**
+     * The outputs/activations from each layer.
+     */
     private FlatData layerOutput = new FlatData();
 
     /**
@@ -101,25 +104,6 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
     }
 
     /**
-     * @return The total number of neurons in the neural network.
-     */
-    public int getNeuronCount() {
-        int result = 0;
-        for(Layer layer: this.layers) {
-            result+=layer.getTotalCount();
-        }
-        return result;
-    }
-
-    /**
-     * @return The length of the array the network would encode to.
-     */
-    public int getEncodeLength() {
-        return this.weights.getLength();
-    }
-
-
-    /**
      * @return The number of input neurons.
      */
     public int getInputCount() {
@@ -147,16 +131,6 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      */
     public void setInputCount(final int inputCount) {
         this.inputCount = inputCount;
-    }
-
-
-
-    /**
-     * Set the output count.
-     * @param outputCount The output count.
-     */
-    public void setOutputCount(final int outputCount) {
-        this.outputCount = outputCount;
     }
 
     /**
@@ -226,11 +200,9 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         this.inputCount = this.layers.get(0).getCount();
         this.outputCount = this.layers.get(layerCount - 1).getCount();
 
-        TempStructureCounts counts = new TempStructureCounts();
-
         for (int i = this.layers.size() - 1; i >= 0; i--) {
             final Layer layer = this.layers.get(i);
-            layer.finalizeStructure(this, i, counts);
+            layer.finalizeStructure(this, i);
             this.layerOutput.addFlatObject(layer.getLayerSums());
             this.layerOutput.addFlatObject(layer.getLayerOutput());
             if( layer.getWeightMatrix()!=null ) {
@@ -279,14 +251,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
                             + fromLayer);
         }
 
-        final int weightBaseIndex
-                = this.layers.get(fromLayer+1).getWeightIndex();
-        final int count = this.layers.get(fromLayer).getTotalCount();
-
-        final int weightIndex = weightBaseIndex + fromNeuron
-                + (toNeuron * count);
-
-        getWeights()[weightIndex] = value;
+        this.layers.get(fromLayer+1).getWeightMatrix().set(toNeuron,fromNeuron, value);
     }
 
     /**
@@ -388,24 +353,24 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         this.networkTraining = networkTraining;
     }
 
+    /**
+     * @return The input layer.
+     */
     public Layer getInputLayer() {
         return this.layers.get(0);
     }
 
+    /**
+     * @return The output layer.
+     */
     public Layer getOutputLayer() {
         return this.layers.get(this.layers.size()-1);
     }
 
+    /**
+     * @return The output from each of the layers.
+     */
     public FlatData getLayerOutput() {
         return layerOutput;
-    }
-
-    public void dumpOutputs() {
-        int i = 0;
-        for(Layer layer: this.layers) {
-            i++;
-            System.out.println("Layer #" + i + ":Sums=" + layer.getLayerSums()
-                    + ",Output=" + layer.getLayerOutput()  );
-        }
     }
 }
