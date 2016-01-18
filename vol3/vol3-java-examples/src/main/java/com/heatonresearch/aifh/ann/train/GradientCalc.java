@@ -34,6 +34,9 @@ import com.heatonresearch.aifh.ann.Layer;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.error.ErrorFunction;
 import com.heatonresearch.aifh.error.ErrorCalculation;
+import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatObject;
+import com.heatonresearch.aifh.flat.FlatVolume;
 
 /**
  * A utility class used to help calculate the gradient of the error function for neural networks.
@@ -52,7 +55,7 @@ public class GradientCalc {
     /**
      * The deltas for each layer.
      */
-    private final double[] layerDelta;
+    private final FlatData layerDelta = new FlatData();
 
 
     /**
@@ -86,7 +89,11 @@ public class GradientCalc {
         this.network = theNetwork;
         this.errorFunction = ef;
 
-        this.layerDelta = new double[this.network.getNeuronCount()];
+        for(Layer layer: this.network.getLayers()) {
+            this.layerDelta.addFlatObject(new FlatVolume(layer.getTotalCount(),1,1,false));
+        }
+        this.layerDelta.finalizeStructure();
+
         this.gradients = new double[this.network.getWeights().length];
         this.actual = new double[this.network.getOutputCount()];
 
@@ -119,13 +126,16 @@ public class GradientCalc {
 
         errorCalc.updateError(this.actual, ideal, 1.0);
 
+        // Get the layer delta for output row
+        FlatObject outputError = layerDelta.get(this.layerDelta.flatObjectCount()-1);
+
         // Calculate error for the output layer.
         int outputLayerIndex = this.network.getLayers().size() - 1;
         ActivationFunction outputActivation = this.network.getLayers().get(outputLayerIndex).getActivation();
         this.errorFunction.calculateError(
                 outputActivation, this.network.getOutputLayer().getLayerSums(),
                 this.network.getOutputLayer().getLayerOutput(),
-                ideal, this.actual, this.layerDelta, 0, 1.0);
+                ideal, this.actual, outputError, 0, 1.0);
 
         // Apply regularization, if requested.
         if (this.owner.getL1() > AIFH.DEFAULT_PRECISION
@@ -134,7 +144,7 @@ public class GradientCalc {
             calculateRegularizationPenalty(lp);
             for (int i = 0; i < this.actual.length; i++) {
                 double p = (lp[0] * this.owner.getL1()) + (lp[1] * this.owner.getL2());
-                this.layerDelta[i] += p;
+                outputError.add(i, p);
             }
         }
 
@@ -194,7 +204,7 @@ public class GradientCalc {
     /**
      * @return The layer deltas used to calculate the gradient.
      */
-    public double[] getLayerDelta() {
+    public FlatData getLayerDelta() {
         return this.layerDelta;
     }
 }

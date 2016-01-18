@@ -24,6 +24,7 @@
 package com.heatonresearch.aifh.ann.train.error;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.flat.FlatVolume;
 
 /**
@@ -36,12 +37,12 @@ public class OutputErrorFunction implements ErrorFunction {
 	 */
 	@Override
 	public void calculateError(ActivationFunction af, FlatVolume b, FlatVolume a,
-							   double[] ideal, double[] actual, double[] error, double derivShift,
+							   double[] ideal, double[] actual, FlatObject error, double derivShift,
 							   double significance) {
 		
 		for(int i=0;i<actual.length;i++) {
 			double deriv = af.derivativeFunction(b.get(i),a.get(i)) + derivShift;
-			error[i] = ((ideal[i] - actual[i]) *significance) * deriv;
+			error.set(i, ((ideal[i] - actual[i]) *significance) * deriv);
 		}		
 	}
 

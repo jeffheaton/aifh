@@ -103,4 +103,19 @@ public class FlatData {
         return this.data.length;
     }
 
+    /**
+     * @return The number of flat objects.
+     */
+    public int flatObjectCount() {
+        return this.flatObjects.size();
+    }
+
+    /**
+     * Get the specified flat object by index.
+     * @param idx The flat object.
+     * @return The flat object.
+     */
+    public FlatObject get(int idx) {
+        return this.flatObjects.get(idx);
+    }
 }

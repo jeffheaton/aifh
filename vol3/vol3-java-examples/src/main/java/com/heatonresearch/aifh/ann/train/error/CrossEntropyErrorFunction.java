@@ -30,6 +30,8 @@ package com.heatonresearch.aifh.ann.train.error;
 
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
+import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.flat.FlatVolume;
 
 /**
@@ -47,11 +49,11 @@ public class CrossEntropyErrorFunction implements ErrorFunction {
 	 */
 	@Override
 	public void calculateError(ActivationFunction af, FlatVolume b, FlatVolume a,
-							   double[] ideal, double[] actual, double[] error, double derivShift,
+							   double[] ideal, double[] actual, FlatObject error, double derivShift,
 							   double significance) {
 		
 		for(int i=0;i<actual.length;i++) {
-			error[i] = (ideal[i] - actual[i]) *significance;
+			error.set(i, (ideal[i] - actual[i]) *significance);
 		}		
 	}
 

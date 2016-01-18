@@ -30,7 +30,9 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
+import com.heatonresearch.aifh.flat.FlatData;
 import com.heatonresearch.aifh.flat.FlatMatrix;
+import com.heatonresearch.aifh.flat.FlatObject;
 
 /**
  * Base class for all layers (used with BasicNetwork) that have weights.
@@ -151,7 +153,9 @@ public abstract class WeightedLayer implements Layer {
 
         // handle weights
         // array references are made method local to avoid one indirection
-        final double[] layerDelta = calc.getLayerDelta();
+        final FlatObject prevLayerDelta = calc.getLayerDelta().get(getLayerIndex()-1);
+        final FlatObject layerDelta = calc.getLayerDelta().get(getLayerIndex());
+
         int y = fromLayerIndex;
         for (int yi = 0; yi < fromLayerSize; yi++) {
             final double output = prev.getLayerOutput().get(yi);
@@ -163,11 +167,11 @@ public abstract class WeightedLayer implements Layer {
                 int x = xi + toLayerIndex;
 
                 if (prev.isActive(yi) && isActive(xi))
-                    calc.getGradients()[wi] += -(output * layerDelta[x]);
-                sum += this.weightMatrix.get(yi,xi) * layerDelta[x];
+                    calc.getGradients()[wi] += -(output * layerDelta.get(xi));
+                sum += this.weightMatrix.get(yi,xi) * layerDelta.get(xi);
             }
-            layerDelta[y] = sum
-                    * (activation.derivativeFunction(prev.getLayerSums().get(yi), prev.getLayerOutput().get(yi)));
+            prevLayerDelta.set(yi, sum
+                    * (activation.derivativeFunction(prev.getLayerSums().get(yi), prev.getLayerOutput().get(yi))));
 
             y++;
         }
