@@ -189,7 +189,7 @@ public class Conv2DLayer extends WeightedLayer {
         // Calculate the output for each filter (depth).
         for(int dOutput=0;dOutput<this.numFilters;dOutput++) {
             for (int dInput = 0; dInput < this.inDepth; dInput++) {
-                computeLayer(dInput, dOutput, fromCount, getFilterColumns()*getFilterRows());
+                //computeLayer(dInput, dOutput, fromCount, getFilterColumns()*getFilterRows());
             }
         }
     }
@@ -199,14 +199,11 @@ public class Conv2DLayer extends WeightedLayer {
      */
     @Override
     public void computeGradient(GradientCalc calc) {
-        final Layer prev = getOwner().getPreviousLayer(this);
-        final int fromLayerSize = prev.getTotalCount();
-        final int toLayerSize = getCount();
 
         // Calculate the output for each filter (depth).
         for(int dOutput=0;dOutput<this.numFilters;dOutput++) {
             for (int dInput = 0; dInput < this.inDepth; dInput++) {
-                computeGradient(calc,0,0,fromLayerSize,toLayerSize);
+                computeGradient(calc);
             }
         }
     }

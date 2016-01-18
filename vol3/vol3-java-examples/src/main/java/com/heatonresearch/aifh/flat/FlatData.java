@@ -28,7 +28,10 @@
  */
 package com.heatonresearch.aifh.flat;
 
+import com.heatonresearch.aifh.AIFHError;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -117,5 +120,16 @@ public class FlatData {
      */
     public FlatObject get(int idx) {
         return this.flatObjects.get(idx);
+    }
+
+    /**
+     * Inverse the order of the objects before the structure is finalized.
+     */
+    public void reverseOrder() {
+        if( this.data!=null ) {
+            throw new AIFHError("Can't reverse the order after finalizeStructure was called.");
+        }
+
+        Collections.reverse(this.flatObjects);
     }
 }

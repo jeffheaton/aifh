@@ -117,27 +117,6 @@ public class BasicLayer extends WeightedLayer {
         return this.hasBias;
     }
 
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void computeLayer() {
-        Layer prev = getOwner().getPreviousLayer(this);
-        computeLayer(0,0, prev.getTotalCount(), getCount());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void computeGradient(GradientCalc calc) {
-        final Layer prev = getOwner().getPreviousLayer(this);
-        final int fromLayerSize = prev.getTotalCount();
-        final int toLayerSize = getCount();
-        this.computeGradient(calc,0,0,fromLayerSize,toLayerSize);
-    }
-
     /**
      * {@inheritDoc}
      */

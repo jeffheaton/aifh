@@ -30,7 +30,6 @@ package com.heatonresearch.aifh.ann;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
-import com.heatonresearch.aifh.flat.FlatData;
 import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.flat.FlatObject;
 
@@ -64,6 +63,9 @@ public abstract class WeightedLayer implements Layer {
      */
     private ActivationFunction activation;
 
+    /**
+     * The layer's weight matrix.
+     */
     private FlatMatrix weightMatrix;
 
     /**
@@ -96,9 +98,6 @@ public abstract class WeightedLayer implements Layer {
             weightIndex = nextLayer.getWeightIndex()
                     + (getTotalCount() * nextLayer.getCount());
             layerIndex = nextLayer.getNeuronIndex() + nextLayer.getTotalCount();
-
-            //layerIndex = nextLayer.getLayerIndexReverse()
-            //        + nextLayer.getTotalCount();
         }
 
         this.neuronIndex = layerIndex;
@@ -107,19 +106,16 @@ public abstract class WeightedLayer implements Layer {
 
     /**
      * Compute a layer.
-     * @param inputOffset The offset to the input for this layer.
-     * @param outputOffset The offset to the output from this layer.
-     * @param fromCount The count of from neurons.
-     * @param toCount The count of to neurons.
      */
-    public void computeLayer(int inputOffset, int outputOffset, int fromCount, int toCount) {
+    @Override
+    public void computeLayer() {
         Layer prev = getOwner().getPreviousLayer(this);
 
         // weight values
-        for (int ix = 0; ix < toCount; ix++) {
+        for (int ix = 0; ix < getCount(); ix++) {
             double sum = 0;
 
-            for (int y = 0; y < fromCount; y++) {
+            for (int y = 0; y < prev.getTotalCount(); y++) {
                 if(prev.isActive(ix) && isActive(y)) {
                     sum += this.weightMatrix.get(ix,y) * prev.getLayerOutput().get(y);
                 }
@@ -129,51 +125,35 @@ public abstract class WeightedLayer implements Layer {
         }
 
         getActivation().activationFunction(
-                this.owner.getLayerOutput().getData(),getLayerOutput().getOffset(), toCount);
+                this.owner.getLayerOutput().getData(),getLayerOutput().getOffset(), getCount());
     }
 
     /**
      * Compute gradients for this layer.
      * @param calc The gradient calculator.
-     * @param inputOffset The input offset.
-     * @param outputOffset The output offset.
-     * @param fromLayerSize The from layer size.
-     * @param toLayerSize The to layer size.
      */
-    public void computeGradient(GradientCalc calc, int inputOffset, int outputOffset, int fromLayerSize, int toLayerSize) {
-        Layer prev = getOwner().getPreviousLayer(this);
-        final int fromLayerIndex = prev.getNeuronIndex();
-        final int toLayerIndex = getNeuronIndex();
-        final int weightSize = getWeightDepthUnit();
-        final int outputSize = getNeuronDepthUnit();
-
-
-        final int index = getWeightIndex()+(weightSize*inputOffset); // this.weightIndex[currentLevel];
-        final ActivationFunction activation = getActivation();
-
-        // handle weights
-        // array references are made method local to avoid one indirection
+    @Override
+    public void computeGradient(GradientCalc calc) {
+        final Layer prev = getOwner().getPreviousLayer(this);
         final FlatObject prevLayerDelta = calc.getLayerDelta().get(getLayerIndex()-1);
         final FlatObject layerDelta = calc.getLayerDelta().get(getLayerIndex());
 
-        int y = fromLayerIndex;
-        for (int yi = 0; yi < fromLayerSize; yi++) {
+        final ActivationFunction activation = getActivation();
+        FlatMatrix gradientMatrix = (FlatMatrix)calc.getGradientMatrix().getFlatObjects().get(2-getLayerIndex());
+
+
+        for (int yi = 0; yi < prev.getTotalCount(); yi++) {
             final double output = prev.getLayerOutput().get(yi);
             double sum = 0;
 
-            int wi = index + yi;
-
-            for (int xi = 0; xi < toLayerSize; xi++, wi += fromLayerSize) {
-                int x = xi + toLayerIndex;
+            for (int xi = 0; xi < getCount(); xi++) {
 
                 if (prev.isActive(yi) && isActive(xi))
-                    calc.getGradients()[wi] += -(output * layerDelta.get(xi));
+                    gradientMatrix.add(xi,yi, -(output * layerDelta.get(xi)));
                 sum += this.weightMatrix.get(yi,xi) * layerDelta.get(xi);
             }
             prevLayerDelta.set(yi, sum
                     * (activation.derivativeFunction(prev.getLayerSums().get(yi), prev.getLayerOutput().get(yi))));
-
-            y++;
         }
     }
 

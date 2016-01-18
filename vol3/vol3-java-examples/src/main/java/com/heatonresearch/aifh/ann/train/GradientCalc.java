@@ -90,7 +90,6 @@ public class GradientCalc {
         this.network = theNetwork;
         this.errorFunction = ef;
 
-        boolean inputLayer = true;
         for(Layer layer: this.network.getLayers()) {
             this.layerDelta.addFlatObject(new FlatVolume(layer.getTotalCount(),1,1,false));
             if( layer.getWeightMatrix() != null ) {
@@ -98,6 +97,8 @@ public class GradientCalc {
             }
         }
         this.layerDelta.finalizeStructure();
+
+        this.gradients.reverseOrder();
         this.gradients.finalizeStructure();
 
         this.actual = new double[this.network.getOutputCount()];
@@ -210,4 +211,9 @@ public class GradientCalc {
     public FlatData getLayerDelta() {
         return this.layerDelta;
     }
+
+    /**
+     * @return The gradient matrixes.
+     */
+    public FlatData getGradientMatrix() { return this.gradients; }
 }
