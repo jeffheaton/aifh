@@ -112,37 +112,22 @@ public abstract class WeightedLayer implements Layer {
      */
     public void computeLayer(int inputOffset, int outputOffset, int fromCount, int toCount) {
         Layer prev = getOwner().getPreviousLayer(this);
-        final double[] weights = getOwner().getWeights();
-        int weightSize = getWeightDepthUnit();
-        int outputSize = getNeuronDepthUnit();
-
-        int index = getWeightIndex() + (inputOffset*weightSize);
 
         // weight values
         for (int ix = 0; ix < toCount; ix++) {
-            int x = getNeuronIndex()+ix + (outputOffset * outputSize);
             double sum = 0;
 
             for (int y = 0; y < fromCount; y++) {
                 if(prev.isActive(ix) && isActive(y)) {
-                    double temp = weights[index] * prev.getLayerOutput().get(y);
-                    sum += weights[index] * prev.getLayerOutput().get(y);
-                    //System.out.println(index+":" + weights[index] + "*" + prev.getLayerOutput().get(y) + "=" + temp );
-                    //System.out.println("Sum:" + sum);
+                    sum += this.weightMatrix.get(ix,y) * prev.getLayerOutput().get(y);
                 }
-                index++;
             }
-            //System.out.println("sums["+ix+"]="+sum);
             getLayerSums().add(ix, sum);
             getLayerOutput().add(ix, sum);
         }
 
         getActivation().activationFunction(
                 this.owner.getLayerOutput().getData(),getLayerOutput().getOffset(), toCount);
-
-        //this.owner.dumpOutputs();
-        //System.out.println("AF");
-
     }
 
     /**
@@ -167,7 +152,6 @@ public abstract class WeightedLayer implements Layer {
         // handle weights
         // array references are made method local to avoid one indirection
         final double[] layerDelta = calc.getLayerDelta();
-        final double[] weights = this.getOwner().getWeights();
         int y = fromLayerIndex;
         for (int yi = 0; yi < fromLayerSize; yi++) {
             final double output = prev.getLayerOutput().get(yi);
@@ -180,7 +164,7 @@ public abstract class WeightedLayer implements Layer {
 
                 if (prev.isActive(yi) && isActive(xi))
                     calc.getGradients()[wi] += -(output * layerDelta[x]);
-                sum += weights[wi] * layerDelta[x];
+                sum += this.weightMatrix.get(yi,xi) * layerDelta[x];
             }
             layerDelta[y] = sum
                     * (activation.derivativeFunction(prev.getLayerSums().get(yi), prev.getLayerOutput().get(yi)));

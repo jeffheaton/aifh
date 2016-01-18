@@ -180,13 +180,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
                             + fromLayer);
         }
 
-        final int weightBaseIndex
-                = this.layers.get(fromLayer+1).getWeightIndex();
-        final int count = this.layers.get(fromLayer).getTotalCount();
-        final int weightIndex = weightBaseIndex + fromNeuron
-                + (toNeuron * count);
-
-        return this.weights.getData()[weightIndex];
+        return this.layers.get(fromLayer+1).getWeightMatrix().get(toNeuron,fromNeuron);
     }
 
     /**

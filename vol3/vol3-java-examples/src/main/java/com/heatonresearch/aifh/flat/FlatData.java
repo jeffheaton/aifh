@@ -102,4 +102,5 @@ public class FlatData {
     public int getLength() {
         return this.data.length;
     }
+
 }

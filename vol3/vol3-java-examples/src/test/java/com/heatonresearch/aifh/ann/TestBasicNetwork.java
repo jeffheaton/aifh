@@ -45,6 +45,9 @@ public class TestBasicNetwork {
         Assert.assertEquals(0.13864904435785697,network.getWeight(1,0,0), AIFH.DEFAULT_PRECISION);
         Assert.assertEquals(-0.1389734035215744,network.getWeight(1,1,0), AIFH.DEFAULT_PRECISION);
         Assert.assertEquals(0.34318625259753,network.getWeight(1,2,0), AIFH.DEFAULT_PRECISION);
+
+        // length
+        Assert.assertEquals(13, network.getWeights().length);
     }
 
     @Test
@@ -108,6 +111,5 @@ public class TestBasicNetwork {
         Assert.assertEquals(75, hidden2Layer.getNeuronIndex());
         Assert.assertEquals(204, hidden1Layer.getNeuronIndex());
         Assert.assertEquals(0, outputLayer.getNeuronIndex());
-
     }
 }
