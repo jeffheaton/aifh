@@ -49,16 +49,6 @@ public abstract class WeightedLayer implements Layer {
     private BasicNetwork owner;
 
     /**
-     * The index to this layer's weights.
-     */
-    private int weightIndex;
-
-    /**
-     * The index to this layer's neurons.
-     */
-    private int neuronIndex;
-
-    /**
      * The activation function.
      */
     private ActivationFunction activation;
@@ -79,7 +69,7 @@ public abstract class WeightedLayer implements Layer {
         Layer prevLayer = (this.layerIndex>0) ? this.owner.getLayers().get(this.layerIndex-1) : null;
 
         if( prevLayer!=null ) {
-            this.weightMatrix = new FlatMatrix(prevLayer.getTotalCount(), getCount());
+            this.weightMatrix = new FlatMatrix(getCount(), prevLayer.getTotalCount() );
         }
     }
 
@@ -118,7 +108,8 @@ public abstract class WeightedLayer implements Layer {
         final FlatObject layerDelta = calc.getLayerDelta().get(getLayerIndex());
 
         final ActivationFunction activation = getActivation();
-        FlatMatrix gradientMatrix = (FlatMatrix)calc.getGradientMatrix().getFlatObjects().get(2-getLayerIndex());
+        int totalLayers = getOwner().getLayers().size()-1;
+        FlatMatrix gradientMatrix = (FlatMatrix)calc.getGradientMatrix().getFlatObjects().get(totalLayers-getLayerIndex());
 
 
         for (int yi = 0; yi < prev.getTotalCount(); yi++) {
@@ -129,7 +120,7 @@ public abstract class WeightedLayer implements Layer {
 
                 if (prev.isActive(yi) && isActive(xi))
                     gradientMatrix.add(xi,yi, -(output * layerDelta.get(xi)));
-                sum += this.weightMatrix.get(yi,xi) * layerDelta.get(xi);
+                sum += this.weightMatrix.get(xi,yi) * layerDelta.get(xi);
             }
             prevLayerDelta.set(yi, sum
                     * (activation.derivativeFunction(prev.getLayerSums().get(yi), prev.getLayerOutput().get(yi))));

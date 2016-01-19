@@ -6,6 +6,7 @@ import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
 import com.heatonresearch.aifh.ann.activation.ActivationSoftMax;
 import com.heatonresearch.aifh.ann.randomize.RangeRandomizeNetwork;
+import com.heatonresearch.aifh.flat.FlatVector;
 import com.heatonresearch.aifh.randomize.LinearCongruentialRandom;
 import org.junit.Assert;
 import org.junit.Test;
@@ -82,9 +83,9 @@ public class TestBasicNetwork {
     @Test
     public void testCalculate() {
         BasicNetwork network = TestBasicNetwork.buildSimpleXOR();
-        double[] out1 = network.computeRegression(new double[] {0.0, 0.0});
+        double[] out1 = network.computeRegression(FlatVector.createSingleVector(new double[] {0.0, 0.0}));
         Assert.assertEquals(0.34688637738116557, out1[0], AIFH.DEFAULT_PRECISION);
-        double[] out2 = network.computeRegression(new double[] {1.0, 0.0});
+        double[] out2 = network.computeRegression(FlatVector.createSingleVector(new double[] {1.0, 0.0}));
         Assert.assertEquals(0.32943376685512565, out2[0], AIFH.DEFAULT_PRECISION);
         Assert.assertEquals(1,out2.length);
     }

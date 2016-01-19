@@ -127,7 +127,7 @@ public class GradientCalc {
      * @param input The network input.
      * @param ideal The ideal values.
      */
-    public void process(ErrorCalculation errorCalc, double[] input, double[] ideal) {
+    public void process(ErrorCalculation errorCalc, FlatObject input, double[] ideal) {
         this.network.compute(input, this.actual);
 
         errorCalc.updateError(this.actual, ideal, 1.0);

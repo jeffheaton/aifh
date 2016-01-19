@@ -29,6 +29,8 @@
 package com.heatonresearch.aifh.general.data;
 
 import com.heatonresearch.aifh.AIFHError;
+import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatVolume;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +44,7 @@ public class BasicData {
     /**
      * The input vector.
      */
-    private final double[] input;
+    private final FlatVolume input;
 
     /**
      * The ideal (or expected output) vector.
@@ -75,7 +77,7 @@ public class BasicData {
 
     public BasicData(final int theInputDimensions, final int theIdealDimensions, final String theLabel) {
         this.label = theLabel;
-        this.input = new double[theInputDimensions];
+        this.input = FlatVolume.createSingleVolume(theInputDimensions,1,1,false);
         this.ideal = new double[theIdealDimensions];
     }
 
@@ -88,7 +90,7 @@ public class BasicData {
      */
     public BasicData(final double[] theInputData, final double[] theIdealData, final String theLabel) {
         this.label = theLabel;
-        this.input = theInputData;
+        this.input = FlatVolume.createSingleVolume(theInputData);
         this.ideal = theIdealData;
     }
 
@@ -114,7 +116,7 @@ public class BasicData {
     /**
      * @return The input vector.
      */
-    public double[] getInput() {
+    public FlatVolume getInput() {
         return this.input;
     }
 
@@ -146,7 +148,7 @@ public class BasicData {
      */
     public String toString() {
         String result = "[BasicData: input:" +
-                Arrays.toString(this.input) +
+                FlatData.flatObjectToList(this.input) +
                 ", ideal:" +
                 Arrays.toString(this.ideal) +
                 ", label:" +

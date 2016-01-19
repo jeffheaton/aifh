@@ -103,8 +103,8 @@ public class SimpleDBN {
 
         // Use test data.
         for(double[] input : TEST_INPUT) {
-            double[] output = dbn.computeRegression(input);
-            System.out.println(Arrays.toString(input) + " -> " + Arrays.toString(output));
+            //double[] output = dbn.computeRegression(input);
+            //System.out.println(Arrays.toString(input) + " -> " + Arrays.toString(output));
         }
     }
 }

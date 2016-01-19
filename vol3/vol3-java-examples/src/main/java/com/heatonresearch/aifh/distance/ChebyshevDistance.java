@@ -29,22 +29,25 @@
 
 package com.heatonresearch.aifh.distance;
 
+import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatObject;
+
 /**
  * Chebyshev distance is the maximum absolute difference between any two vector elements.  This can be thought
  * of as the number of spaces that a king chess piece must travel between two squares in a 2D dimension space.
  * <p/>
  * http://www.heatonresearch.com/wiki/Chebyshev_Distance
  */
-public class ChebyshevDistance extends AbstractDistance {
+public class ChebyshevDistance implements CalculateDistance {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public double calculate(final double[] position1, final int pos1, final double[] position2, final int pos2, final int length) {
+    public double calculate(FlatObject position1, final FlatObject position2) {
         double result = 0;
-        for (int i = 0; i < length; i++) {
-            final double d = Math.abs(position1[pos1 + i] - position2[pos2 + i]);
+        for (int i = 0; i < position1.getLength(); i++) {
+            final double d = Math.abs(position1.get(i) - position2.get(i));
             result = Math.max(d, result);
         }
         return result;

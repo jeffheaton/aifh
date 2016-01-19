@@ -29,6 +29,7 @@
 package com.heatonresearch.aifh.examples.classic.som.colors;
 
 import Jama.Matrix;
+import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.som.SelfOrganizingMap;
 
 import javax.swing.*;
@@ -72,7 +73,7 @@ public class MapPanel extends JPanel {
         FontMetrics fm = g.getFontMetrics();
 
         int idx = 0;
-        Matrix weights = this.network.getWeights();
+        FlatMatrix weights = this.network.getWeights();
         for(int y = 0; y< this.height; y++)
         {
             for(int x = 0; x< this.width; x++)

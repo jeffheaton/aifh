@@ -32,15 +32,21 @@ import Jama.Matrix;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.distance.CalculateDistance;
 import com.heatonresearch.aifh.distance.EuclideanDistance;
+import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatMatrix;
+import com.heatonresearch.aifh.flat.FlatObject;
+import com.heatonresearch.aifh.flat.FlatVolume;
+import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
+import com.sun.tools.javac.util.List;
 
 public class SelfOrganizingMap {
 
     /**
      *
      */
-    private Matrix weights;
+    private FlatMatrix weights;
 
     private final CalculateDistance calcDist = new EuclideanDistance();
 
@@ -53,19 +59,19 @@ public class SelfOrganizingMap {
      *            Number of output neurons
      */
     public SelfOrganizingMap(final int inputCount, final int outputCount) {
-        this.weights = new Matrix(outputCount,inputCount);
+        this.weights = FlatMatrix.createSingleMatrix(outputCount,inputCount);
     }
 
 
-    public double calculateError(final double[][] data) {
+    public double calculateError(final List<BasicData> data) {
 
         final BestMatchingUnit bmu = new BestMatchingUnit(this);
 
         bmu.reset();
 
         // Determine the BMU for each training element.
-        for (final double[] pair : data) {
-            final double[] input = pair;
+        for (final BasicData pair : data) {
+            final FlatObject input = pair.getInput();
             bmu.calculateBMU(input);
         }
 
@@ -76,18 +82,18 @@ public class SelfOrganizingMap {
     /**
      * {@inheritDoc}
      */
-    public int classify(final double[] input) {
-        if (input.length > getInputCount()) {
+    public int classify(final FlatObject input) {
+        if (input.getLength() > getInputCount()) {
             throw new AIFHError(
                     "Can't classify SOM with input size of " + getInputCount()
-                            + " with input data of count " + input.length);
+                            + " with input data of count " + input.getLength());
         }
 
         double minDist = Double.POSITIVE_INFINITY;
         int result = -1;
 
         for (int i = 0; i < getOutputCount(); i++) {
-            double dist = this.calcDist.calculate(input, this.weights.getArray()[i]);
+            double dist = this.calcDist.calculate(input, this.weights.extractRow(i));
             if (dist < minDist) {
                 minDist = dist;
                 result = i;
@@ -101,27 +107,27 @@ public class SelfOrganizingMap {
      * {@inheritDoc}
      */
     public int getInputCount() {
-        return this.weights.getColumnDimension();
+        return this.weights.getColumns();
     }
 
     /**
      * {@inheritDoc}
      */
     public int getOutputCount() {
-        return this.weights.getRowDimension();
+        return this.weights.getRows();
     }
 
     /**
      * @return the weights
      */
-    public Matrix getWeights() {
+    public FlatMatrix getWeights() {
         return this.weights;
     }
 
 
     public void reset(GenerateRandom rnd) {
-        for(int i=0;i<this.weights.getRowDimension();i++) {
-            for(int j=0;j<this.weights.getColumnDimension();j++) {
+        for(int i=0;i<this.weights.getRows();i++) {
+            for(int j=0;j<this.weights.getColumns();j++) {
                 this.weights.set(i,j,rnd.nextDouble(-1,1));
             }
         }
@@ -137,7 +143,7 @@ public class SelfOrganizingMap {
      * @param weights
      *            the weights to set
      */
-    public void setWeights(final Matrix weights) {
+    public void setWeights(final FlatMatrix weights) {
         this.weights = weights;
     }
 
@@ -149,7 +155,7 @@ public class SelfOrganizingMap {
      *            The input pattern.
      * @return The winning neuron.
      */
-    public int winner(final double[] input) {
+    public int winner(final FlatObject input) {
         return classify(input);
     }
 }

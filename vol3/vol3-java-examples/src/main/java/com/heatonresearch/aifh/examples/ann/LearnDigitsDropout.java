@@ -61,7 +61,7 @@ public class LearnDigitsDropout extends SimpleLearn {
         System.out.println("Training set size: " + trainingReader.getNumImages());
         System.out.println("Validation set size: " + validationReader.getNumImages());
 
-        int inputCount = trainingReader.getData().get(0).getInput().length;
+        int inputCount = trainingReader.getData().get(0).getInput().getLength();
         int outputCount = trainingReader.getData().get(0).getIdeal().length;
 
         BasicNetwork network = new BasicNetwork();

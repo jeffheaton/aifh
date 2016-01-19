@@ -28,6 +28,8 @@
  */
 package com.heatonresearch.aifh.flat;
 
+import com.sun.istack.internal.NotNull;
+
 /**
  * A volume is a 3D data object.
  */
@@ -123,4 +125,33 @@ public class FlatVolume extends AbstractFlatObject {
         return this.extra;
     }
 
+    /**
+     * Create a single volumne.
+     * @param rows The number of rows.
+     * @param columns The number of columns.
+     * @param depth The depth.
+     * @param bias True if biased.
+     * @return The new single volume.
+     */
+    public static FlatVolume createSingleVolume(int rows, int columns, int depth, boolean bias) {
+        FlatVolume result = new FlatVolume(rows,columns,depth, bias);
+        FlatData holder = new FlatData();
+        holder.addFlatObject(result);
+        holder.finalizeStructure();
+        return result;
+    }
+
+    /**
+     * Create a single volume from 1D data.
+     * @param data The 1D data.
+     * @return The new single volume.
+     */
+    public static FlatVolume createSingleVolume(double[] data) {
+        FlatVolume result = new FlatVolume(data.length,1,1,false);
+        FlatData holder = new FlatData();
+        holder.addFlatObject(result);
+        holder.finalizeStructure();
+        System.arraycopy(data,0,holder.getData(),0,data.length);
+        return result;
+    }
 }

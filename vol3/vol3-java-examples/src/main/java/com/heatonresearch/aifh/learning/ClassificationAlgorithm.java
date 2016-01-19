@@ -28,6 +28,9 @@
  */
 package com.heatonresearch.aifh.learning;
 
+import com.heatonresearch.aifh.flat.FlatObject;
+import com.heatonresearch.aifh.flat.FlatVolume;
+
 /**
  * A classification algorithm is used to classify input data into classes.
  */
@@ -38,5 +41,5 @@ public interface ClassificationAlgorithm extends MLMethod {
      * @param input The input data.
      * @return The group the data was classified into.
      */
-    int computeClassification(double[] input);
+    int computeClassification(FlatObject input);
 }

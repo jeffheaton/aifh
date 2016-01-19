@@ -28,16 +28,16 @@ public class TestTimeSeriesUtil {
         List<BasicData> result = TimeSeriesUtil.slidingWindow(dataset,3,1,new int[]{0},new int[]{0});
 
         Assert.assertEquals(7,result.size());
-        Assert.assertEquals(3,result.get(0).getInput().length);
+        Assert.assertEquals(3,result.get(0).getInput().getLength());
         Assert.assertEquals(1,result.get(0).getIdeal().length);
 
-        Assert.assertArrayEquals(new double[] {1,2,3},result.get(0).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {2,3,4},result.get(1).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {3,4,5},result.get(2).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {4,5,6},result.get(3).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {5,6,7},result.get(4).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {6,7,8},result.get(5).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {7,8,9},result.get(6).getInput(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {1,2,3},result.get(0).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {2,3,4},result.get(1).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {3,4,5},result.get(2).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {4,5,6},result.get(3).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {5,6,7},result.get(4).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {6,7,8},result.get(5).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {7,8,9},result.get(6).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
 
         Assert.assertEquals(4,result.get(0).getIdeal()[0],AIFH.DEFAULT_PRECISION);
         Assert.assertEquals(5,result.get(1).getIdeal()[0],AIFH.DEFAULT_PRECISION);
@@ -67,16 +67,16 @@ public class TestTimeSeriesUtil {
         List<BasicData> result = TimeSeriesUtil.slidingWindow(dataset,3,1,new int[]{0,1},new int[]{0});
 
         Assert.assertEquals(7,result.size());
-        Assert.assertEquals(6,result.get(0).getInput().length);
+        Assert.assertEquals(6,result.get(0).getInput().getLength());
         Assert.assertEquals(1,result.get(0).getIdeal().length);
 
-        Assert.assertArrayEquals(new double[] {1,10,2,20,3,30},result.get(0).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {2,20,3,30,4,40},result.get(1).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {3,30,4,40,5,50},result.get(2).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {4,40,5,50,6,60},result.get(3).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {5,50,6,60,7,70},result.get(4).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {6,60,7,70,8,80},result.get(5).getInput(), AIFH.DEFAULT_PRECISION);
-        Assert.assertArrayEquals(new double[] {7,70,8,80,9,90},result.get(6).getInput(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {1,10,2,20,3,30},result.get(0).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {2,20,3,30,4,40},result.get(1).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {3,30,4,40,5,50},result.get(2).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {4,40,5,50,6,60},result.get(3).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {5,50,6,60,7,70},result.get(4).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {6,60,7,70,8,80},result.get(5).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
+        Assert.assertArrayEquals(new double[] {7,70,8,80,9,90},result.get(6).getInput().extractArray(), AIFH.DEFAULT_PRECISION);
 
         Assert.assertEquals(4,result.get(0).getIdeal()[0],AIFH.DEFAULT_PRECISION);
         Assert.assertEquals(5,result.get(1).getIdeal()[0],AIFH.DEFAULT_PRECISION);

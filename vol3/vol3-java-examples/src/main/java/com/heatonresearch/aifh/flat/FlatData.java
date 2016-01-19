@@ -29,6 +29,7 @@
 package com.heatonresearch.aifh.flat;
 
 import com.heatonresearch.aifh.AIFHError;
+import com.heatonresearch.aifh.util.NumberFormatting;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -131,5 +132,24 @@ public class FlatData {
         }
 
         Collections.reverse(this.flatObjects);
+    }
+
+    /**
+     * Convert a flat object to a printable list of numbers.
+     * Output will be comma separated and in USA formatting.
+     * @param obj The object.
+     * @return The string result.
+     */
+    public static String flatObjectToList(FlatObject obj) {
+        StringBuilder result = new StringBuilder('[');
+        for(int i=0; i<obj.getLength();i++) {
+            if( i!=0 ) {
+                result.append(',');
+            }
+            result.append(NumberFormatting.double2USANUmber(obj.get(i)));
+        }
+        result.append(']');
+
+        return result.toString();
     }
 }

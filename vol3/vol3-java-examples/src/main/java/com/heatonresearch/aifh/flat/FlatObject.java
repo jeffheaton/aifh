@@ -77,4 +77,18 @@ public interface FlatObject {
      * @param d The value to add.
      */
     void add(final int index, final double d);
+
+    /**
+     * Copy one flat object to another.  The two objects do not need to be of the same type, but they must be of the
+     * same length.
+     * @param target The target object.
+     */
+    void copyTo(FlatObject target);
+
+    /**
+     * Copy the flat object to an array.  Array must match the size of the flat object.
+     * @param array The target array.
+     * @param offset The target offset to start at.
+     */
+    void copyTo(double[] array, int offset);
 }

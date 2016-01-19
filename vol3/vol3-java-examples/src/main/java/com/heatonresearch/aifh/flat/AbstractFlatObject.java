@@ -28,6 +28,8 @@
  */
 package com.heatonresearch.aifh.flat;
 
+import com.heatonresearch.aifh.AIFHError;
+
 /**
  * Provides some basic functionality for flat objects.  This class does not need to be used by all flat objects.
  * This class assumes that the flat object has a length and offset that must be stored.  Additionally,
@@ -138,5 +140,39 @@ public abstract class AbstractFlatObject implements FlatObject {
 
         result.append("]");
         return result.toString();
+    }
+
+    public double[] extractArray() {
+        double[] result = new double[getLength()];
+        for(int i=0;i<getLength();i++) {
+            result[i] = get(i);
+        }
+        return result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void copyTo(FlatObject target) {
+        if( getLength()>target.getLength()) {
+            throw new AIFHError("Can't copy between two FlatObject's that do not have matching lengths.");
+        }
+
+        for(int i=0;i<getLength();i++) {
+            target.set(i,get(i));
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void copyTo(double[] target, int offset) {
+        if( getLength()>target.length) {
+            throw new AIFHError("Can't copy between a FlatObject and an array that do not have matching lengths.");
+        }
+
+        for(int i=0;i<getLength();i++) {
+            target[i+offset] = get(i);
+        }
     }
 }

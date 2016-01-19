@@ -29,6 +29,8 @@
 
 package com.heatonresearch.aifh.distance;
 
+import com.heatonresearch.aifh.flat.FlatObject;
+
 /**
  * The Manhattan Distance (also known as Taxicab distance) is a Distance Metric used in machine learning.
  * This distance is used to compare how similar two vectors of uniform length are. A lower length indicates that
@@ -36,15 +38,15 @@ package com.heatonresearch.aifh.distance;
  * <p/>
  * http://www.heatonresearch.com/wiki/Manhattan_Distance
  */
-public class ManhattanDistance extends AbstractDistance {
+public class ManhattanDistance  implements CalculateDistance {
     /**
      * {@inheritDoc}
      */
     @Override
-    public double calculate(final double[] position1, final int pos1, final double[] position2, final int pos2, final int length) {
+    public double calculate(FlatObject position1, final FlatObject position2) {
         double sum = 0;
-        for (int i = 0; i < length; i++) {
-            final double d = Math.abs(position1[pos1 + i] - position2[pos1 + i]);
+        for (int i = 0; i < position1.getLength(); i++) {
+            final double d = Math.abs(position1.get(i) - position2.get(i));
             sum += d;
         }
         return sum;

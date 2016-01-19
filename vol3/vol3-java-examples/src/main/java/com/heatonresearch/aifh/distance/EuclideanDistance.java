@@ -29,22 +29,24 @@
 
 package com.heatonresearch.aifh.distance;
 
+import com.heatonresearch.aifh.flat.FlatObject;
+
 /**
  * The Euclidean distance is the straight-line distance between two points.  It is calculated by taking the
  * square root of the sum of squares differences between each point in the vector.
  * <p/>
  * http://www.heatonresearch.com/wiki/Euclidean_Distance
  */
-public class EuclideanDistance extends AbstractDistance {
+public class EuclideanDistance implements CalculateDistance {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public double calculate(final double[] position1, final int pos1, final double[] position2, final int pos2, final int length) {
+    public double calculate(FlatObject position1, final FlatObject position2) {
         double sum = 0;
-        for (int i = 0; i < length; i++) {
-            final double d = position1[i + pos1] - position2[i + pos1];
+        for (int i = 0; i < position1.getLength(); i++) {
+            final double d = position1.get(i) - position2.get(i);
             sum += d * d;
         }
         return Math.sqrt(sum);

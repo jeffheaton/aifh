@@ -32,6 +32,7 @@ import com.heatonresearch.aifh.ann.BasicLayer;
 import com.heatonresearch.aifh.ann.BasicNetwork;
 import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
+import com.heatonresearch.aifh.flat.FlatData;
 import com.heatonresearch.aifh.general.data.BasicData;
 
 import java.util.Arrays;
@@ -80,11 +81,11 @@ public class LearnXORBackprop {
 
         // test the neural network
         System.out.println("Neural Network Results:");
-        for(int i=0;i < XOR_INPUT.length; i++ ) {
-            double[] output = network.computeRegression(XOR_INPUT[i]);
-            System.out.println(Arrays.toString(XOR_INPUT[i])
+        for(BasicData data : trainingData) {
+            double[] output = network.computeRegression(data.getInput());
+            System.out.println(FlatData.flatObjectToList(data.getInput())
                     + ", actual=" + Arrays.toString(output)
-                    + ",ideal=" + Arrays.toString(XOR_IDEAL[i]));
+                    + ",ideal=" + FlatData.flatObjectToList(data.getInput()));
         }
     }
 }

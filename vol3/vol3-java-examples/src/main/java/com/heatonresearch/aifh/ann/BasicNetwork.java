@@ -31,6 +31,7 @@ package com.heatonresearch.aifh.ann;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.randomize.XaiverRandomizeNetwork;
 import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.learning.ClassificationAlgorithm;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 import com.heatonresearch.aifh.util.ArrayUtil;
@@ -89,18 +90,16 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      * @param output
      *            Output will be placed here.
      */
-    public void compute(final double[] input, final double[] output) {
+    public void compute(final FlatObject input, final double[] output) {
         clearOutput();
 
-        System.arraycopy(input, 0, getLayerOutput().getData() ,getInputLayer().getLayerOutput().getOffset(),
-                this.inputCount);
+        input.copyTo(getInputLayer().getLayerOutput());
 
         for (int i = 1; i<this.layers.size(); i++) {
             this.layers.get(i).computeLayer();
         }
 
-        System.arraycopy( getLayerOutput().getData() ,getOutputLayer().getLayerOutput().getOffset(),
-                output, 0, this.outputCount);
+        getOutputLayer().getLayerOutput().copyTo(output,0);
     }
 
     /**
@@ -276,9 +275,9 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      * @return The regression output.
      */
     @Override
-    public double[] computeRegression(double[] input) {
-        if( input.length!=getInputCount()) {
-            throw new AIFHError("Invalid input count("+ input.length+"), this network is designed for: "
+    public double[] computeRegression(FlatObject input) {
+        if( input.getLength()!=getInputCount()) {
+            throw new AIFHError("Invalid input count("+ input.getLength()+"), this network is designed for: "
                     + getInputCount());
         }
         double[] output = new double[getOutputCount()];
@@ -334,7 +333,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
      * @return The group the data was classified into.
      */
     @Override
-    public int computeClassification(double[] input) {
+    public int computeClassification(FlatObject input) {
         return ArrayUtil.indexOfLargest(computeRegression(input));
     }
 

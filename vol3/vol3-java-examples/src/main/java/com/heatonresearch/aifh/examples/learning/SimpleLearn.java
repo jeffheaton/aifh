@@ -29,6 +29,7 @@
 package com.heatonresearch.aifh.examples.learning;
 
 import com.heatonresearch.aifh.error.ErrorCalculation;
+import com.heatonresearch.aifh.flat.FlatData;
 import com.heatonresearch.aifh.general.VectorUtil;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.general.data.DataUtil;
@@ -190,7 +191,9 @@ public class SimpleLearn {
     public static void query(final RegressionAlgorithm alg, final List<BasicData> theTrainingData) {
         for (final BasicData data : theTrainingData) {
             final double[] output = alg.computeRegression(data.getInput());
-            System.out.println(Arrays.toString(data.getInput()) + " -> " + Arrays.toString(output) + ", Ideal: " + Arrays.toString(data.getIdeal()));
+            System.out.println( FlatData.flatObjectToList(data.getInput())
+                    + " -> " + Arrays.toString(output)
+                    + ", Ideal: " + Arrays.toString(data.getIdeal()));
         }
     }
 
@@ -220,7 +223,7 @@ public class SimpleLearn {
             final double[] output = alg.computeRegression(data.getInput());
             final int idealIndex = eq.decode(data.getIdeal());
             final int actualIndex = eq.decode(output);
-            System.out.println(Arrays.toString(data.getInput()) + " -> " + invMap.get(actualIndex)
+            System.out.println(FlatData.flatObjectToList(data.getInput()) + " -> " + invMap.get(actualIndex)
                     + ", Ideal: " + invMap.get(idealIndex));
         }
     }
@@ -247,7 +250,7 @@ public class SimpleLearn {
             final double[] output = alg.computeRegression(data.getInput());
             final int idealIndex = VectorUtil.maxIndex(data.getIdeal());
             final int actualIndex = VectorUtil.maxIndex(output);
-            System.out.println(Arrays.toString(data.getInput()) + " -> " + invMap.get(actualIndex)
+            System.out.println(FlatData.flatObjectToList(data.getInput()) + " -> " + invMap.get(actualIndex)
                     + ", Ideal: " + invMap.get(idealIndex));
         }
     }

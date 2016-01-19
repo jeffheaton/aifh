@@ -28,6 +28,8 @@
  */
 package com.heatonresearch.aifh.flat;
 
+import com.heatonresearch.aifh.AIFHError;
+
 /**
  * A 2D matrix that can be mapped to a flat array.
  */
@@ -77,6 +79,7 @@ public class FlatMatrix extends AbstractFlatObject {
      * @return The value.
      */
     public double get(final int row, final int col) {
+        validateRowAndColumn(row,col);
         return getData()[getOffset()+(row * this.columns)+col];
     }
 
@@ -87,6 +90,7 @@ public class FlatMatrix extends AbstractFlatObject {
      * @param d The value.
      */
     public void set(final int row, final int col, final double d) {
+        validateRowAndColumn(row,col);
         getData()[getOffset()+(row * this.columns)+col]=d;
     }
 
@@ -97,6 +101,7 @@ public class FlatMatrix extends AbstractFlatObject {
      * @param d The value to add to the matrix.
      */
     public void add(final int row, final int col, final double d) {
+        validateRowAndColumn(row,col);
         getData()[getOffset()+(row * this.columns)+col]+=d;
     }
 
@@ -112,5 +117,40 @@ public class FlatMatrix extends AbstractFlatObject {
      */
     public int getColumns() {
         return this.columns;
+    }
+
+    public static FlatMatrix createSingleMatrix(int rows, int columns) {
+        FlatMatrix result = new FlatMatrix(rows,columns);
+        FlatData holder = new FlatData();
+        holder.addFlatObject(result);
+        holder.finalizeStructure();
+        return result;
+    }
+
+    public FlatObject extractRow(int row) {
+        validateRow(row);
+        FlatVector result = FlatVector.createSingleVector(this.columns);
+
+        for(int i=0;i<this.columns;i++) {
+            result.set(i,get(row,i));
+        }
+        return result;
+    }
+
+    private void validateRowAndColumn(final int row, final int column) {
+        validateRow(row);
+        validateColumn(column);
+    }
+
+    private void validateRow(final int row) {
+        if( row<0 || row>=this.rows ) {
+            throw new AIFHError("Invalid row: " + row + ", should be in range: 0-"+(this.rows-1));
+        }
+    }
+
+    private void validateColumn(final int column) {
+        if( column<0 || column>=this.columns ) {
+            throw new AIFHError("Invalid column: " + column + ", should be in range: 0-"+(this.columns-1));
+        }
     }
 }

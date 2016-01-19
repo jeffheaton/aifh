@@ -36,6 +36,8 @@ import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSoftMax;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
 import com.heatonresearch.aifh.examples.learning.SimpleLearn;
+import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.general.data.DataUtil;
 import com.heatonresearch.aifh.util.ArrayUtil;
 import com.heatonresearch.aifh.util.FileUtil;
@@ -50,12 +52,12 @@ public class LearnDigitsBackprop extends SimpleLearn {
 
     public static final int MNIST_DEPTH = 1;
 
-    public static void dump(double[] data) {
+    public static void dump(FlatObject data) {
         int idx = 0;
         for(int i=0;i<28;i++) {
             StringBuilder line = new StringBuilder();
             for(int j=0;j<28;j++) {
-                line.append(data[idx++]> AIFH.DEFAULT_PRECISION?"*":" ");
+                line.append(data.get(idx++)> AIFH.DEFAULT_PRECISION?"*":" ");
             }
         }
     }
@@ -130,7 +132,7 @@ public class LearnDigitsBackprop extends SimpleLearn {
         System.out.println("Training set size: " + trainingReader.getNumImages());
         System.out.println("Validation set size: " + validationReader.getNumImages());
 
-        int inputCount = trainingReader.getData().get(0).getInput().length;
+        int inputCount = trainingReader.getData().get(0).getInput().getLength();
         int outputCount = trainingReader.getData().get(0).getIdeal().length;
 
         BasicNetwork network = new BasicNetwork();

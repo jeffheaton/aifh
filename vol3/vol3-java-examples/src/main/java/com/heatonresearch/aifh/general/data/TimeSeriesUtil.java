@@ -66,7 +66,7 @@ public class TimeSeriesUtil {
             int inputIdx = 0;
             for (int i = 0; i < inputWindow; i++) {
                 for (int j = 0; j < inputColumns.length; j++) {
-                    item.getInput()[inputIdx++] = dataset[datasetIndex + i][inputColumns[j]];
+                    item.getInput().set(inputIdx++, dataset[datasetIndex + i][inputColumns[j]]);
                 }
             }
             // predicted columns
