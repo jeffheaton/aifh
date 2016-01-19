@@ -36,11 +36,11 @@ import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSoftMax;
 import com.heatonresearch.aifh.ann.train.BackPropagation;
 import com.heatonresearch.aifh.examples.learning.SimpleLearn;
-import com.heatonresearch.aifh.flat.FlatData;
 import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.general.data.DataUtil;
 import com.heatonresearch.aifh.util.ArrayUtil;
 import com.heatonresearch.aifh.util.FileUtil;
+import com.heatonresearch.aifh.util.MNIST;
 import com.heatonresearch.aifh.util.MNISTReader;
 
 import java.io.File;
@@ -50,84 +50,14 @@ import java.io.File;
  */
 public class LearnDigitsBackprop extends SimpleLearn {
 
-    public static final int MNIST_DEPTH = 1;
-
-    public static void dump(FlatObject data) {
-        int idx = 0;
-        for(int i=0;i<28;i++) {
-            StringBuilder line = new StringBuilder();
-            for(int j=0;j<28;j++) {
-                line.append(data.get(idx++)> AIFH.DEFAULT_PRECISION?"*":" ");
-            }
-        }
-    }
-
-    public static MNISTReader loadMNIST(String path, boolean training, int depth) {
-        File path2 = new File(path);
-        String imagesFilename;
-        String labelsFilename;
-
-        if ( training ) {
-            imagesFilename = "train-images-idx3-ubyte";
-            labelsFilename = "train-labels-idx1-ubyte";
-        } else {
-            imagesFilename = "t10k-images-idx3-ubyte";
-            labelsFilename = "t10k-labels-idx1-ubyte";
-        }
-
-        File pathImages = new File(path2,imagesFilename);
-        File pathLabels = new File(path2,labelsFilename);
-
-        if( !pathImages.exists() ) {
-            imagesFilename += ".gz";
-            pathImages = new File(path2,imagesFilename);
-        }
-
-        if( !pathLabels.exists() ) {
-            labelsFilename += ".gz";
-            pathLabels = new File(path2,labelsFilename);
-        }
-
-        if( !pathImages.exists() ) {
-            // download
-            System.out.println("Please wait, downloading digits from: http://yann.lecun.com");
-            FileUtil.downloadFile("http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz",
-                    new File(path,"train-images-idx3-ubyte.gz"));
-            FileUtil.downloadFile("http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz",
-                    new File(path,"train-labels-idx1-ubyte.gz"));
-            FileUtil.downloadFile("http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz",
-                    new File(path,"t10k-images-idx3-ubyte.gz"));
-            FileUtil.downloadFile("http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz",
-                    new File(path,"t10k-labels-idx1-ubyte.gz"));
-
-        }
-
-        if( !pathImages.exists() ) {
-            throw( new AIFHError("Can't open file (with or without .gz): "
-                    + pathImages.toString() ));
-        }
-
-        if( !pathLabels.exists() ) {
-            throw( new AIFHError("Can't open file (with or without .gz): "
-                    + pathLabels.toString() ));
-        }
-
-        return new MNISTReader(
-                pathLabels.toString(),pathImages.toString(),depth);
-    }
-
-    public void display(MNISTReader reader) {
-        for(int i=0;i<10;i++) {
-            System.out.println("=========" + ArrayUtil.indexOfLargest(reader.getData().get(i).getIdeal()));
-            dump(reader.getData().get(i).getInput());
-        }
-    }
-
     public void process() {
         System.out.println("Please wait, reading MNIST training data.");
         String dir = System.getProperty("user.dir");
-        MNISTReader trainingReader = loadMNIST(dir,true, MNIST_DEPTH);
-        MNISTReader validationReader = loadMNIST(dir,false, MNIST_DEPTH);
+        MNISTReader trainingReader = MNIST.loadMNIST(dir,true);
+        MNISTReader validationReader = MNIST.loadMNIST(dir,false);
+
+        MNIST.displayFirstMNIST(trainingReader,5);
+
 
         System.out.println("Training set size: " + trainingReader.getNumImages());
         System.out.println("Validation set size: " + validationReader.getNumImages());

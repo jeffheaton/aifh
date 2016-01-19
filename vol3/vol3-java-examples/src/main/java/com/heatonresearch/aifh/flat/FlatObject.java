@@ -91,4 +91,10 @@ public interface FlatObject {
      * @param offset The target offset to start at.
      */
     void copyTo(double[] array, int offset);
+
+    /**
+     * Create a 1D array that holds the data from this object.
+     * @return The new array.
+     */
+    double[] extractArray();
 }

@@ -30,6 +30,7 @@ package com.heatonresearch.aifh.general.data;
 
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.flat.FlatVolume;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class BasicData {
     /**
      * The input vector.
      */
-    private final FlatVolume input;
+    private final FlatObject input;
 
     /**
      * The ideal (or expected output) vector.
@@ -114,9 +115,22 @@ public class BasicData {
     }
 
     /**
+     * Construct a supervised element, with a label.
+     *
+     * @param theInputData The input data vector.
+     * @param theIdealData The ideal data vector.
+     * @param theLabel     The label.
+     */
+    public BasicData(final FlatObject theInputData, final double[] theIdealData, final String theLabel) {
+        this.label = theLabel;
+        this.input = theInputData;
+        this.ideal = theIdealData;
+    }
+
+    /**
      * @return The input vector.
      */
-    public FlatVolume getInput() {
+    public FlatObject getInput() {
         return this.input;
     }
 
