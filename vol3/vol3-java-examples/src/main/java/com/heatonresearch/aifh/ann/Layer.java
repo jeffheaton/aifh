@@ -119,6 +119,6 @@ public interface Layer {
     /**
      * @return The weight matrix.
      */
-    FlatMatrix getWeightMatrix();
+    FlatMatrix[] getWeightMatrix();
 
 }

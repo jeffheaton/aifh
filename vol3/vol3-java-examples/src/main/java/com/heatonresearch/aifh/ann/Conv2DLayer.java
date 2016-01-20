@@ -84,6 +84,7 @@ public class Conv2DLayer implements Layer {
     private final ActivationFunction activation;
     private int layerIndex;
     private BasicNetwork owner;
+    private FlatMatrix[] weightMatrix;
 
     /**
      * Construct a 2D convolution layer.
@@ -150,8 +151,8 @@ public class Conv2DLayer implements Layer {
      * @return The weight matrix.
      */
     @Override
-    public FlatMatrix getWeightMatrix() {
-        return null;
+    public FlatMatrix[] getWeightMatrix() {
+        return this.weightMatrix;
     }
 
     /**

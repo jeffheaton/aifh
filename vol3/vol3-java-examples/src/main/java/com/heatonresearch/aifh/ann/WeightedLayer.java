@@ -56,7 +56,7 @@ public abstract class WeightedLayer implements Layer {
     /**
      * The layer's weight matrix.
      */
-    private FlatMatrix weightMatrix;
+    private FlatMatrix[] weightMatrix;
 
     /**
      * {@inheritDoc}
@@ -69,7 +69,8 @@ public abstract class WeightedLayer implements Layer {
         Layer prevLayer = (this.layerIndex>0) ? this.owner.getLayers().get(this.layerIndex-1) : null;
 
         if( prevLayer!=null ) {
-            this.weightMatrix = new FlatMatrix(getCount(), prevLayer.getTotalCount() );
+            this.weightMatrix = new FlatMatrix[1];
+            this.weightMatrix[0] = new FlatMatrix(getCount(), prevLayer.getTotalCount() );
         }
     }
 
@@ -86,7 +87,7 @@ public abstract class WeightedLayer implements Layer {
 
             for (int y = 0; y < prev.getTotalCount(); y++) {
                 if(prev.isActive(ix) && isActive(y)) {
-                    sum += this.weightMatrix.get(ix,y) * prev.getLayerOutput().get(y);
+                    sum += this.weightMatrix[0].get(ix,y) * prev.getLayerOutput().get(y);
                 }
             }
             getLayerSums().add(ix, sum);
@@ -120,7 +121,7 @@ public abstract class WeightedLayer implements Layer {
 
                 if (prev.isActive(yi) && isActive(xi))
                     gradientMatrix.add(xi,yi, -(output * layerDelta.get(xi)));
-                sum += this.weightMatrix.get(xi,yi) * layerDelta.get(xi);
+                sum += this.weightMatrix[0].get(xi,yi) * layerDelta.get(xi);
             }
             prevLayerDelta.set(yi, sum
                     * (activation.derivativeFunction(prev.getLayerSums().get(yi), prev.getLayerOutput().get(yi))));
@@ -171,7 +172,7 @@ public abstract class WeightedLayer implements Layer {
         return result.toString();
     }
 
-    public FlatMatrix getWeightMatrix() {
+    public FlatMatrix[] getWeightMatrix() {
         return weightMatrix;
     }
 }

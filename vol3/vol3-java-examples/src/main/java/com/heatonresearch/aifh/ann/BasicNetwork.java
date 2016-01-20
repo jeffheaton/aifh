@@ -31,6 +31,7 @@ package com.heatonresearch.aifh.ann;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.randomize.XaiverRandomizeNetwork;
 import com.heatonresearch.aifh.flat.FlatData;
+import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.learning.ClassificationAlgorithm;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
@@ -153,7 +154,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
                             + fromLayer);
         }
 
-        return this.layers.get(fromLayer+1).getWeightMatrix().get(toNeuron,fromNeuron);
+        return this.layers.get(fromLayer+1).getWeightMatrix()[0].get(toNeuron,fromNeuron);
     }
 
     /**
@@ -205,7 +206,9 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
             this.layerOutput.addFlatObject(layer.getLayerSums());
             this.layerOutput.addFlatObject(layer.getLayerOutput());
             if( layer.getWeightMatrix()!=null ) {
-                this.weights.addFlatObject(layer.getWeightMatrix());
+                for(FlatMatrix matrix: layer.getWeightMatrix()) {
+                    this.weights.addFlatObject(matrix);
+                }
             }
         }
 
@@ -250,7 +253,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
                             + fromLayer);
         }
 
-        this.layers.get(fromLayer+1).getWeightMatrix().set(toNeuron,fromNeuron, value);
+        this.layers.get(fromLayer+1).getWeightMatrix()[0].set(toNeuron,fromNeuron, value);
     }
 
     /**

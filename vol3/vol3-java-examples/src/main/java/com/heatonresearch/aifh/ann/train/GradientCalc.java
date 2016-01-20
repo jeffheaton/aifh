@@ -65,11 +65,6 @@ public class GradientCalc {
     private final FlatData gradients = new FlatData();
 
     /**
-     * The weights and thresholds.
-     */
-    private final double[] weights;
-
-    /**
      * The owner of the gradient calculation.
      */
     private final GradientCalcOwner owner;
@@ -93,7 +88,9 @@ public class GradientCalc {
         for(Layer layer: this.network.getLayers()) {
             this.layerDelta.addFlatObject(new FlatVolume(layer.getTotalCount(),1,1,false));
             if( layer.getWeightMatrix() != null ) {
-                this.gradients.addFlatObject(new FlatMatrix(layer.getWeightMatrix()));
+                for(FlatMatrix matrix: layer.getWeightMatrix()) {
+                    this.gradients.addFlatObject(new FlatMatrix(matrix));
+                }
             }
         }
         this.layerDelta.finalizeStructure();
@@ -102,8 +99,6 @@ public class GradientCalc {
         this.gradients.finalizeStructure();
 
         this.actual = new double[this.network.getOutputCount()];
-
-        this.weights = this.network.getWeights();
         this.owner = theOwner;
     }
 
@@ -112,13 +107,6 @@ public class GradientCalc {
      */
     public BasicNetwork getNetwork() {
         return this.network;
-    }
-
-    /**
-     * @return The weights for this network.
-     */
-    public double[] getWeights() {
-        return this.weights;
     }
 
     /**

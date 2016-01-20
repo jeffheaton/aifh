@@ -130,7 +130,7 @@ public class MaxPoolLayer implements Layer {
     }
 
     @Override
-    public FlatMatrix getWeightMatrix() {
+    public FlatMatrix[] getWeightMatrix() {
         return null;
     }
 }
