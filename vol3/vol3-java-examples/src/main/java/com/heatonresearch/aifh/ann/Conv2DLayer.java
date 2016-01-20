@@ -31,6 +31,7 @@ package com.heatonresearch.aifh.ann;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
+import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
@@ -40,7 +41,7 @@ import com.heatonresearch.aifh.randomize.GenerateRandom;
  * LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P. (1998). Gradient-based learning applied to document recognition.
  * Proceedings of the IEEE, 86(11), 2278-2324.
  */
-public class Conv2DLayer extends WeightedLayer {
+public class Conv2DLayer implements Layer {
 
     /**
      * The number of filters (output depth).
@@ -48,34 +49,29 @@ public class Conv2DLayer extends WeightedLayer {
     private final int numFilters;
 
     /**
-     * The number of rows in each filter.
+     * The filter size.
      */
-    private final int filterRows;
-
-    /**
-     * The number of columns in each filter.
-     */
-    private final int filterColumns;
+    private final int filterSize;
 
     /**
      * The padding, both horizontal and vertical.
      */
-    private int padding;
+    private final int padding;
 
     /**
      * The stride.
      */
-    private int stride = 1;
+    private final int stride;
 
     /**
      * The output columns.
      */
-    private double outColumns;
+    private int outColumns;
 
     /**
      * The output rows.
      */
-    private double outRows;
+    private int outRows;
 
     /**
      * The input depth.
@@ -85,24 +81,35 @@ public class Conv2DLayer extends WeightedLayer {
     private FlatVolume layerOutput;
     private FlatVolume layerSums;
 
+    private final ActivationFunction activation;
+    private int layerIndex;
+    private BasicNetwork owner;
 
     /**
      * Construct a 2D convolution layer.
-     * @param theActivation The activation function.
+     * @param theActivation The activation function to use.
      * @param theNumFilters The number of filters.
-     * @param theFilterRows The rows in each filter.
-     * @param theFilterColumns The columns in each filter.
+     * @param theFilterSize The size (rows & columns) of each filter, they must be square.
+     * @param theStride The stride size.
+     * @param thePadding The padding.
      */
-    public Conv2DLayer(final ActivationFunction theActivation, int theNumFilters, int theFilterRows, int theFilterColumns) {
-        this.setActivation(theActivation);
-        this.filterRows = theFilterRows;
-        this.filterColumns = theFilterColumns;
+    public Conv2DLayer(final ActivationFunction theActivation, int theNumFilters, int theFilterSize, int theStride,int thePadding) {
+        this.activation = theActivation;
+        this.filterSize = theFilterSize;
         this.numFilters = theNumFilters;
-        int[] shape = {theFilterRows, theFilterColumns, theNumFilters};
+        this.stride = theStride;
+        this.padding = thePadding;
 
-        this.layerOutput = new FlatVolume(shape, true);
-        this.layerSums = new FlatVolume(shape, true);
+    }
 
+    /**
+     * Construct a 2D convolution layer, with stride of 1 and padding of 0.
+     * @param theActivation The activation function to use.
+     * @param theNumFilters The number of filters.
+     * @param theFilterSize The size (rows & columns) of each filter, they must be square.
+     */
+    public Conv2DLayer(final ActivationFunction theActivation, int theNumFilters, int theFilterSize) {
+        this(theActivation, theNumFilters, theFilterSize,1,0);
     }
 
     /**
@@ -110,7 +117,8 @@ public class Conv2DLayer extends WeightedLayer {
      */
     @Override
     public void finalizeStructure(BasicNetwork theOwner, int theLayerIndex) {
-        super.finalizeStructure(theOwner,theLayerIndex);
+        this.layerIndex = theLayerIndex;
+        this.owner = theOwner;
 
         Layer prevLayer = (getLayerIndex()>0) ? getOwner().getLayers().get(getLayerIndex()-1) : null;
         Layer nextLayer = (getLayerIndex()<getOwner().getLayers().size()-1) ? getOwner().getLayers().get(getLayerIndex()+1) : null;
@@ -119,12 +127,13 @@ public class Conv2DLayer extends WeightedLayer {
             throw new AIFHError("Conv2DLayer must have a previous layer (cannot be used as the input layer).");
         }
 
-        int inColumns = prevLayer.getDimensionCounts()[0];
-        int inRows = prevLayer.getDimensionCounts()[1];
-        this.inDepth = prevLayer.getDimensionCounts()[2];
+        this.outRows = (int)Math.floor((prevLayer.getDimensionCounts()[0] + this.padding * 2 - this.filterSize) / this.stride + 1);
+        this.outColumns = (int)Math.floor((prevLayer.getDimensionCounts()[1] + this.padding * 2 - this.filterSize) / this.stride + 1);
 
-        this.outColumns = Math.floor((inColumns + this.padding * 2 - this.filterRows) / this.stride + 1);
-        this.outRows = Math.floor((inRows + this.padding * 2 - this.filterColumns) / this.stride + 1);
+        int[] shape = {this.outRows, this.outColumns, this.numFilters};
+
+        this.layerOutput = new FlatVolume(shape, true);
+        this.layerSums = new FlatVolume(shape, true);
     }
 
     @Override
@@ -138,11 +147,19 @@ public class Conv2DLayer extends WeightedLayer {
     }
 
     /**
+     * @return The weight matrix.
+     */
+    @Override
+    public FlatMatrix getWeightMatrix() {
+        return null;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public int getCount() {
-        return this.filterRows * this.filterColumns * this.numFilters;
+        return this.outRows * this.outColumns;
     }
 
     /**
@@ -154,26 +171,22 @@ public class Conv2DLayer extends WeightedLayer {
     }
 
     /**
+     * @return The activation/transfer function for this neuron.
+     */
+    @Override
+    public ActivationFunction getActivation() {
+        return null;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public void computeLayer() {
         Layer prev = getOwner().getPreviousLayer(this);
-        int fromCount;
 
-        if( prev instanceof Conv2DLayer ) {
-            fromCount = 1+((Conv2DLayer)prev).getFilterRows()*((Conv2DLayer)prev).getFilterRows();
-        } else if( prev.getDimensionCounts().length==3) {
-            fromCount = prev.getDimensionCounts()[0] * prev.getDimensionCounts()[1] + 1;
-        } else {
-            fromCount = prev.getCount();
-        }
+        for(int currentFilter=0;currentFilter<this.numFilters;currentFilter++) {
 
-        // Calculate the output for each filter (depth).
-        for(int dOutput=0;dOutput<this.numFilters;dOutput++) {
-            for (int dInput = 0; dInput < this.inDepth; dInput++) {
-                //computeLayer(dInput, dOutput, fromCount, getFilterColumns()*getFilterRows());
-            }
         }
     }
 
@@ -186,9 +199,17 @@ public class Conv2DLayer extends WeightedLayer {
         // Calculate the output for each filter (depth).
         for(int dOutput=0;dOutput<this.numFilters;dOutput++) {
             for (int dInput = 0; dInput < this.inDepth; dInput++) {
-                computeGradient(calc);
+                //computeGradient(calc);
             }
         }
+    }
+
+    /**
+     * @return This layer's index in the layer stack.
+     */
+    @Override
+    public int getLayerIndex() {
+        return this.layerIndex;
     }
 
     /**
@@ -197,6 +218,14 @@ public class Conv2DLayer extends WeightedLayer {
     @Override
     public void trainingBatch(GenerateRandom rnd) {
         // nothing to do
+    }
+
+    /**
+     * @return The owner of the neural network.
+     */
+    @Override
+    public BasicNetwork getOwner() {
+        return this.owner;
     }
 
     /**
@@ -220,7 +249,7 @@ public class Conv2DLayer extends WeightedLayer {
      */
     @Override
     public int[] getDimensionCounts() {
-        return new int[] { this.filterColumns, this.filterRows, this.numFilters };
+        return new int[] { this.filterSize, this.filterSize, this.numFilters };
     }
 
     /**
@@ -231,35 +260,11 @@ public class Conv2DLayer extends WeightedLayer {
     }
 
     /**
-     * Set the padding.
-     * @param padding The padding.
-     */
-    public void setPadding(int padding) {
-        this.padding = padding;
-    }
-
-    /**
      * @return The stride.
      */
     public int getStride() {
         return this.stride;
     }
 
-    /**
-     * Set the stride.
-     * @param stride The stride.
-     */
-    public void setStride(int stride) {
-        this.stride = stride;
-    }
 
-    /**
-     * @return The filter rows.
-     */
-    public int getFilterRows() { return this.filterRows; }
-
-    /**
-     * @return The filter columns.
-     */
-    public int getFilterColumns() { return this.filterColumns; }
 }

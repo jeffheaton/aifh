@@ -27,6 +27,8 @@ or improve an example, please consider pushing a change via GitHub.
 * vol3-python-examples
 * vol3-java-examples
 * vol3-csharp-examples 
+
+* Note: I am in the process of refactoring the conv-nets in the Java and C# versions.  This is to fix a few bugs that were reported.  Sorry for any inconvenience, I hope to have the new version complete by the end of January 2016. *
 		
 ## Getting Help
 
