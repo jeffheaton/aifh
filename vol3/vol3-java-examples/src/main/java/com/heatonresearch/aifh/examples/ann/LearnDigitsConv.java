@@ -52,12 +52,12 @@ public class LearnDigitsConv extends SimpleLearn {
 
         int outputCount = trainingReader.getData().get(0).getIdeal().length;
 
-        int[] inputShape = new int[] {trainingReader.getNumCols(),trainingReader.getNumRows(),3};
+        int[] inputShape = new int[] {trainingReader.getNumCols(),trainingReader.getNumRows(),1};
 
         BasicNetwork network = new BasicNetwork();
         network.addLayer(new BasicLayer(null,true,inputShape));
-        network.addLayer(new Conv2DLayer(new ActivationReLU(),32,5));
-        network.addLayer(new BasicLayer(new ActivationReLU(),true,100));
+        network.addLayer(new Conv2DLayer(new ActivationReLU(),8,5));
+        //network.addLayer(new BasicLayer(new ActivationReLU(),true,100));
         network.addLayer(new BasicLayer(new ActivationSoftMax(),false,outputCount));
         network.finalizeStructure();
         network.reset();

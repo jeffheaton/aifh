@@ -29,6 +29,7 @@
 package com.heatonresearch.aifh.ann.randomize;
 
 import com.heatonresearch.aifh.ann.BasicNetwork;
+import com.heatonresearch.aifh.flat.FlatMatrix;
 
 /**
  * The Xaiver initialization (aka Glorot) weight initialization.  A very good weight initialization method that provides very
@@ -51,8 +52,14 @@ public class XaiverRandomizeNetwork extends AbstractRandomizeNetwork {
         for (int fromNeuron = 0; fromNeuron < fromCount; fromNeuron++) {
             for (int toNeuron = 0; toNeuron < toCount; toNeuron++) {
                 double sigma = Math.sqrt(2.0/(fromCount+toCount));
-                double w = this.getRnd().nextGaussian() * sigma;
-                network.setWeight(fromLayer, fromNeuron, toNeuron, w);
+                FlatMatrix[] matrixes = network.getLayers().get(fromLayer+1).getWeightMatrix();
+
+                // Handle layers with multiple weight matrixes (e.g. convolution layers)
+                for(int i=0;i<matrixes.length;i++) {
+                    double w = this.getRnd().nextGaussian() * sigma;
+                    matrixes[i].set(toNeuron,fromNeuron, w);
+                }
+
             }
         }
     }

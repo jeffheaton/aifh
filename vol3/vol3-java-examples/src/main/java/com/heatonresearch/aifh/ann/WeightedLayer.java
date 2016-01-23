@@ -33,6 +33,8 @@ import com.heatonresearch.aifh.ann.train.GradientCalc;
 import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.flat.FlatObject;
 
+import java.util.Arrays;
+
 /**
  * Base class for all layers (used with BasicNetwork) that have weights.
  */
@@ -166,6 +168,7 @@ public abstract class WeightedLayer implements Layer {
         final StringBuilder result = new StringBuilder();
         result.append("[");
         result.append(this.getClass().getSimpleName());
+        result.append(",dimensions=").append(Arrays.toString(getDimensionCounts()));
         result.append(",count=").append(getCount());
 
         result.append("]");

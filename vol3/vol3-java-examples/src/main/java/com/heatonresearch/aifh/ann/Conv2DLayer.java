@@ -32,8 +32,11 @@ import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
 import com.heatonresearch.aifh.flat.FlatMatrix;
+import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
+
+import java.util.Arrays;
 
 /**
  * A 2D convolution layer.
@@ -66,12 +69,12 @@ public class Conv2DLayer implements Layer {
     /**
      * The output columns.
      */
-    private int outColumns;
+    private int scanCols;
 
     /**
      * The output rows.
      */
-    private int outRows;
+    private int scanRows;
 
     /**
      * The input depth.
@@ -128,13 +131,17 @@ public class Conv2DLayer implements Layer {
             throw new AIFHError("Conv2DLayer must have a previous layer (cannot be used as the input layer).");
         }
 
-        this.outRows = (int)Math.floor((prevLayer.getDimensionCounts()[0] + this.padding * 2 - this.filterSize) / this.stride + 1);
-        this.outColumns = (int)Math.floor((prevLayer.getDimensionCounts()[1] + this.padding * 2 - this.filterSize) / this.stride + 1);
+        this.scanRows = (int)Math.floor((prevLayer.getDimensionCounts()[0] + this.padding * 2 - this.filterSize) / this.stride + 1);
+        this.scanCols = (int)Math.floor((prevLayer.getDimensionCounts()[1] + this.padding * 2 - this.filterSize) / this.stride + 1);
 
-        int[] shape = {this.outRows, this.outColumns, this.numFilters};
+        int[] shape = {this.scanRows, this.scanCols, this.numFilters};
 
         this.layerOutput = new FlatVolume(shape, true);
         this.layerSums = new FlatVolume(shape, true);
+        this.weightMatrix = new FlatMatrix[this.numFilters];
+        for(int i=0;i<this.weightMatrix.length;i++) {
+            this.weightMatrix[i] = new FlatMatrix(getCount(), prevLayer.getTotalCount());
+        }
     }
 
     @Override
@@ -160,7 +167,7 @@ public class Conv2DLayer implements Layer {
      */
     @Override
     public int getCount() {
-        return this.outRows * this.outColumns;
+        return this.filterSize * this.filterSize;
     }
 
     /**
@@ -185,9 +192,41 @@ public class Conv2DLayer implements Layer {
     @Override
     public void computeLayer() {
         Layer prev = getOwner().getPreviousLayer(this);
+        int prevRows = prev.getDimensionCounts()[0];
+        int prevColumns = prev.getDimensionCounts()[1];
+        int prevDepth = prev.getDimensionCounts()[2];
 
+        // Loop over every filter
         for(int currentFilter=0;currentFilter<this.numFilters;currentFilter++) {
+            int y = -this.padding;
 
+            // Scan each filter over the previous layer (shared weights). Handle rows.
+            for(int filterRow = 0; filterRow<this.scanRows; y+=this.stride,filterRow++) {
+                int x = -this.padding;
+
+                // Scan each filter over the previous layer (shared weights). Handle columns.
+                for (int filterCol = 0; filterCol < this.scanCols; x += this.stride, filterCol++) {
+
+                    // Now process the previous layer's image at each scan position.
+                    double sum = 0.0;
+                    // Process the rows at each scan point.
+                    for(int prevRowIndex = 0; prevRowIndex<this.scanRows; prevRowIndex++) {
+                        int prevRow = y+prevRowIndex;
+                        // Process the columns at each scan point.
+                        for(int prevColIndex = 0; prevColIndex<this.scanCols; prevColIndex++) {
+                            int prevCol = x+prevColIndex;
+                            if(prevRow>=0 && prevRow<prevRows && prevCol>=0 && prevCol<prevColumns) {
+                                // Process each element of the previous level's depth.
+                                for(int currentPrevDepth=0;currentPrevDepth<prevDepth;currentPrevDepth++) {
+                                    sum += this.weightMatrix[currentFilter].get(prevRowIndex,prevColIndex)
+                                            * prev.getLayerOutput().get(prevRow,prevCol,currentPrevDepth);
+                                }
+                            }
+                        }
+                    }
+                    this.layerOutput.set(filterRow,filterCol,currentFilter,sum);
+                }
+            }
         }
     }
 
@@ -196,11 +235,48 @@ public class Conv2DLayer implements Layer {
      */
     @Override
     public void computeGradient(GradientCalc calc) {
+        final Layer prev = getOwner().getPreviousLayer(this);
+        final FlatVolume prevLayerDelta = (FlatVolume)calc.getLayerDelta().get(getLayerIndex()-1);
+        final FlatVolume layerDelta = (FlatVolume)calc.getLayerDelta().get(getLayerIndex());
 
-        // Calculate the output for each filter (depth).
-        for(int dOutput=0;dOutput<this.numFilters;dOutput++) {
-            for (int dInput = 0; dInput < this.inDepth; dInput++) {
-                //computeGradient(calc);
+        final ActivationFunction activation = getActivation();
+        int totalLayers = getOwner().getLayers().size()-1;
+        FlatMatrix gradientMatrix = (FlatMatrix)calc.getGradientMatrix().getFlatObjects().get(totalLayers-getLayerIndex());
+
+        int prevRows = prev.getDimensionCounts()[0];
+        int prevColumns = prev.getDimensionCounts()[1];
+        int prevDepth = prev.getDimensionCounts()[2];
+
+        // Loop over every filter
+        for(int currentFilter=0;currentFilter<this.numFilters;currentFilter++) {
+            int y = -this.padding;
+
+            // Scan each filter over the previous layer (shared weights). Handle rows.
+            for(int filterRow = 0; filterRow<this.scanRows; y+=this.stride,filterRow++) {
+                int x = -this.padding;
+                // Scan each filter over the previous layer (shared weights). Handle columns.
+                for (int filterCol = 0; filterCol < this.scanCols; x += this.stride, filterCol++) {
+
+                    // Now process the previous layer's image at each scan position.
+                    double sum = 0.0;
+                    // Process the rows at each scan point.
+                    for(int prevRowIndex = 0; prevRowIndex<this.scanRows; prevRowIndex++) {
+                        int prevRow = y+prevRowIndex;
+                        // Process the columns at each scan point.
+                        for(int prevColIndex = 0; prevColIndex<this.scanCols; prevColIndex++) {
+                            int prevCol = x+prevColIndex;
+                            if(prevRow>=0 && prevRow<prevRows && prevCol>=0 && prevCol<prevColumns) {
+                                // Process each element of the previous level's depth.
+                                for(int currentPrevDepth=0;currentPrevDepth<prevDepth;currentPrevDepth++) {
+                                    //gradientMatrix.add(prevRowIndex,prevColIndex, -(output * layerDelta.get(xi)));
+                                    sum += this.weightMatrix[currentFilter].get(prevRowIndex,prevColIndex)
+                                            * prevLayerDelta.get(prevRow,prevCol, currentPrevDepth);
+                                }
+                            }
+                        }
+                    }
+                    this.layerOutput.set(filterRow,filterCol,currentFilter,sum);
+                }
             }
         }
     }
@@ -265,6 +341,17 @@ public class Conv2DLayer implements Layer {
      */
     public int getStride() {
         return this.stride;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("[");
+        result.append(this.getClass().getSimpleName());
+        result.append(":dimensions:"+ Arrays.toString(getDimensionCounts()));
+        result.append(", totalCount:" + getTotalCount());
+        result.append("]");
+        return result.toString();
     }
 
 

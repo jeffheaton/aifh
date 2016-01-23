@@ -107,6 +107,9 @@ public abstract class AbstractFlatObject implements FlatObject {
      */
     @Override
     public void set(final int index, final double d) {
+        if( index>=this.length ) {
+            throw new AIFHError("Length ("+this.length+") exceeded: "+index);
+        }
         this.data[this.offset+index] = d;
     }
 

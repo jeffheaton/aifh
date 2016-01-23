@@ -200,9 +200,9 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         this.inputCount = this.layers.get(0).getCount();
         this.outputCount = this.layers.get(layerCount - 1).getCount();
 
-        for (int i = this.layers.size() - 1; i >= 0; i--) {
-            final Layer layer = this.layers.get(i);
-            layer.finalizeStructure(this, i);
+        int i = 0;
+        for(Layer layer: this.layers) {
+            layer.finalizeStructure(this, i++);
             this.layerOutput.addFlatObject(layer.getLayerSums());
             this.layerOutput.addFlatObject(layer.getLayerOutput());
             if( layer.getWeightMatrix()!=null ) {
@@ -213,6 +213,7 @@ public class BasicNetwork implements RegressionAlgorithm, ClassificationAlgorith
         }
 
         this.layerOutput.finalizeStructure();
+        this.weights.reverseOrder();
         this.weights.finalizeStructure();
 
         clearOutput();

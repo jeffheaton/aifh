@@ -39,6 +39,8 @@ import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.flat.FlatVolume;
 
+import java.util.Arrays;
+
 /**
  * A utility class used to help calculate the gradient of the error function for neural networks.
  */
@@ -86,7 +88,11 @@ public class GradientCalc {
         this.errorFunction = ef;
 
         for(Layer layer: this.network.getLayers()) {
-            this.layerDelta.addFlatObject(new FlatVolume(layer.getTotalCount(),1,1,false));
+            int r = layer.getDimensionCounts()[0];
+            int c = layer.getDimensionCounts()[1];
+            int d = layer.getDimensionCounts()[2];
+            this.layerDelta.addFlatObject(new FlatVolume(r,c,d,false));
+
             if( layer.getWeightMatrix() != null ) {
                 for(FlatMatrix matrix: layer.getWeightMatrix()) {
                     this.gradients.addFlatObject(new FlatMatrix(matrix));
