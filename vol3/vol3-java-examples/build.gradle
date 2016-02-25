@@ -16,7 +16,6 @@ dependencies {
     compile 'org.lwjgl.lwjgl:lwjgl:2.9.1'
     compile 'org.encog:encog-core:3.2.0'
     compile 'jfree:jfreechart:1.0.12'
-    compile "org.deeplearning4j:deeplearning4j-core:0.4-rc3.4"
 }
 
 task wrapper(type: Wrapper) {
