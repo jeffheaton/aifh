@@ -28,8 +28,6 @@
  */
 package com.heatonresearch.aifh.flat;
 
-import com.sun.istack.internal.NotNull;
-
 /**
  * A volume is a 3D data object.
  */

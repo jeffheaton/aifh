@@ -32,14 +32,13 @@ import Jama.Matrix;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.distance.CalculateDistance;
 import com.heatonresearch.aifh.distance.EuclideanDistance;
-import com.heatonresearch.aifh.flat.FlatData;
 import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.flat.FlatObject;
-import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
-import com.sun.tools.javac.util.List;
+
+import java.util.List;
 
 public class SelfOrganizingMap {
 
