@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+    testCompile 'junit:junit:4.10'
+    compile 'net.sf.opencsv:opencsv:2.3'
+    compile 'gov.nist.math:jama:1.0.3'
+    compile 'org.lwjgl.lwjgl:lwjgl:2.9.1'
+    compile 'jfree:jfreechart:1.0.12'
+	compile 'org.deeplearning4j:deeplearning4j-core:0.4-rc3.8' 
+	compile 'org.nd4j:nd4j-x86:0.4-rc3.8'
+   
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2'
+}
+
+task(runLearnXORBackprop, group: 'examples', description: 'Fit a neural network to the XOR function.',
+        dependsOn: 'classes', type: JavaExec) {
+    main = 'com.heatonresearch.aifh.examples.ann.LearnXORBackprop'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
