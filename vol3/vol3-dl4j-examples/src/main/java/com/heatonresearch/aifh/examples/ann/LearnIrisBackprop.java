@@ -28,8 +28,9 @@
  */
 package com.heatonresearch.aifh.examples.ann;
 
+import com.heatonresearch.aifh.normalize.CategoryMap;
+import com.heatonresearch.aifh.normalize.NormalizeDataSet;
 import org.deeplearning4j.datasets.iterator.DataSetIterator;
-import org.deeplearning4j.datasets.iterator.impl.IrisDataSetIterator;
 import org.deeplearning4j.datasets.iterator.impl.ListDataSetIterator;
 import org.deeplearning4j.earlystopping.EarlyStoppingConfiguration;
 import org.deeplearning4j.earlystopping.EarlyStoppingModelSaver;
@@ -37,7 +38,7 @@ import org.deeplearning4j.earlystopping.EarlyStoppingResult;
 import org.deeplearning4j.earlystopping.saver.InMemoryModelSaver;
 import org.deeplearning4j.earlystopping.scorecalc.DataSetLossCalculator;
 import org.deeplearning4j.earlystopping.termination.MaxEpochsTerminationCondition;
-import org.deeplearning4j.earlystopping.termination.MaxTimeIterationTerminationCondition;
+import org.deeplearning4j.earlystopping.termination.ScoreImprovementEpochTerminationCondition;
 import org.deeplearning4j.earlystopping.trainer.EarlyStoppingTrainer;
 import org.deeplearning4j.eval.Evaluation;
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;
@@ -52,98 +53,133 @@ import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.SplitTestAndTrain;
-import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 
+import java.io.InputStream;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
+/**
+ * This example shows how to create a simple classification neural network for the Iris dataset.
+ * An input layer with 4 neurons is used for the 4 input measurements.  A dense (BasicLayer) ReLU layer
+ * is used for the hidden and a softmax on the output.  Because this is a classification problem,
+ * a Softmax is used for the output.  This causes the 3 outputs to specify the relative probability
+ * of the iris measurements being one of the 3 output species.
+ */
 public class LearnIrisBackprop {
+
+    public static String findSpecies(INDArray array, CategoryMap species) {
+        int bestIndex = -1;
+        double bestValue = 0;
+
+        for(int i=0;i<array.size(1);i++) {
+            double d = array.getDouble(i);
+            if( bestIndex==-1 || d>bestValue ) {
+                bestIndex = i;
+                bestValue = d;
+            }
+        }
+
+        return species.getIndexToCat().get(bestIndex)+":"+bestIndex;
+    }
 
     /**
      * The main method.
      * @param args Not used.
      */
     public static void main(String[] args) {
-        int seed = 43;
-        double learningRate = 0.001;
-        int splitTrainNum = (int)(150*.75);
-        int nEpochs = 100;
+        try {
+            int seed = 43;
+            double learningRate = 0.1;
+            int splitTrainNum = (int) (150 * .75);
 
-        int numInputs = 4;
-        int numOutputs = 3;
-        int numHiddenNodes = 100;
+            int numInputs = 4;
+            int numOutputs = 3;
+            int numHiddenNodes = 50;
 
-        // Setup training data.
-        DataSetIterator iter = new IrisDataSetIterator(150, 150);
-        DataSet next = iter.next();
-        next.normalize();
+            // Setup training data.
+            final InputStream istream = LearnIrisBackprop.class.getResourceAsStream("/iris.csv");
+            if( istream==null ) {
+                System.out.println("Cannot access data set, make sure the resources are available.");
+                System.exit(1);
+            }
+            final NormalizeDataSet ds = NormalizeDataSet.load(istream);
+            final CategoryMap species = ds.encodeOneOfN(4); // species is column 4
+            istream.close();
 
-        // Training and validation data split
-        SplitTestAndTrain testAndTrain = next.splitTestAndTrain(splitTrainNum, new Random(seed));
-        DataSet trainSet = testAndTrain.getTrain();
-        DataSet validationSet = testAndTrain.getTest();
+            DataSet next = ds.extractSupervised(0, 4, 4, 3);
+            next.shuffle();
 
-        DataSetIterator trainSetIterator = new ListDataSetIterator(trainSet.asList(),trainSet.numExamples());
+            // Training and validation data split
+            SplitTestAndTrain testAndTrain = next.splitTestAndTrain(splitTrainNum, new Random(seed));
+            DataSet trainSet = testAndTrain.getTrain();
+            DataSet validationSet = testAndTrain.getTest();
 
-        DataSetIterator validationSetIterator = new ListDataSetIterator(validationSet.asList(),validationSet.numExamples());
+            DataSetIterator trainSetIterator = new ListDataSetIterator(trainSet.asList(), trainSet.numExamples());
 
-        // Create neural network.
-        MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
-                .seed(seed)
-                .iterations(1)
-                .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
-                .learningRate(learningRate)
-                .updater(Updater.NESTEROVS).momentum(0.9)
-                .list(2)
-                .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
-                        .weightInit(WeightInit.XAVIER)
-                        .activation("relu")
-                        .build())
-                .layer(1, new OutputLayer.Builder(LossFunction.NEGATIVELOGLIKELIHOOD)
-                        .weightInit(WeightInit.XAVIER)
-                        .activation("softmax")
-                        .nIn(numHiddenNodes).nOut(numOutputs).build())
-                .pretrain(false).backprop(true).build();
+            DataSetIterator validationSetIterator = new ListDataSetIterator(validationSet.asList(), validationSet.numExamples());
+
+            // Create neural network.
+            MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
+                    .seed(seed)
+                    .iterations(1)
+                    .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
+                    .learningRate(learningRate)
+                    .updater(Updater.NESTEROVS).momentum(0.9)
+                    .list(2)
+                    .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
+                            .weightInit(WeightInit.XAVIER)
+                            .activation("relu")
+                            .build())
+                    .layer(1, new OutputLayer.Builder(LossFunction.NEGATIVELOGLIKELIHOOD)
+                            .weightInit(WeightInit.XAVIER)
+                            .activation("softmax")
+                            .nIn(numHiddenNodes).nOut(numOutputs).build())
+                    .pretrain(false).backprop(true).build();
 
 
-        MultiLayerNetwork model = new MultiLayerNetwork(conf);
-        model.init();
-        model.setListeners(new ScoreIterationListener(1));
+            MultiLayerNetwork model = new MultiLayerNetwork(conf);
+            model.init();
+            model.setListeners(new ScoreIterationListener(1));
 
-        // Define when we want to stop training.
-        EarlyStoppingModelSaver saver = new InMemoryModelSaver();
-        EarlyStoppingConfiguration esConf = new EarlyStoppingConfiguration.Builder()
-                .epochTerminationConditions(new MaxEpochsTerminationCondition(500)) //Max of 50 epochs
-                .evaluateEveryNEpochs(1)
-                .iterationTerminationConditions(new MaxTimeIterationTerminationCondition(1, TimeUnit.MINUTES)) //Max of 20 minutes
-                .scoreCalculator(new DataSetLossCalculator(validationSetIterator, true))     //Calculate test set score
-                .modelSaver(saver)
-                .build();
-        EarlyStoppingTrainer trainer = new EarlyStoppingTrainer(esConf,conf,trainSetIterator);
+            // Define when we want to stop training.
+            EarlyStoppingModelSaver saver = new InMemoryModelSaver();
+            EarlyStoppingConfiguration esConf = new EarlyStoppingConfiguration.Builder()
+                    .epochTerminationConditions(new MaxEpochsTerminationCondition(500)) //Max of 50 epochs
+                    .epochTerminationConditions(new ScoreImprovementEpochTerminationCondition(25))
+                    .evaluateEveryNEpochs(1)
+                    .scoreCalculator(new DataSetLossCalculator(validationSetIterator, true))     //Calculate test set score
+                    .modelSaver(saver)
+                    .build();
+            EarlyStoppingTrainer trainer = new EarlyStoppingTrainer(esConf, conf, trainSetIterator);
 
-        // Train and display result.
-        EarlyStoppingResult result = trainer.fit();
-        System.out.println("Termination reason: " + result.getTerminationReason());
-        System.out.println("Termination details: " + result.getTerminationDetails());
-        System.out.println("Total epochs: " + result.getTotalEpochs());
-        System.out.println("Best epoch number: " + result.getBestModelEpoch());
-        System.out.println("Score at best epoch: " + result.getBestModelScore());
+            // Train and display result.
+            EarlyStoppingResult result = trainer.fit();
+            System.out.println("Termination reason: " + result.getTerminationReason());
+            System.out.println("Termination details: " + result.getTerminationDetails());
+            System.out.println("Total epochs: " + result.getTotalEpochs());
+            System.out.println("Best epoch number: " + result.getBestModelEpoch());
+            System.out.println("Score at best epoch: " + result.getBestModelScore());
 
-        // Evaluate
-        Evaluation eval = new Evaluation(numOutputs);
-        validationSetIterator.reset();
+            model = saver.getBestModel();
 
-        for(int i=0;i<validationSet.numExamples();i++) {
-            DataSet t = validationSet.get(i);
-            INDArray features = t.getFeatureMatrix();
-            INDArray labels = t.getLabels();
-            INDArray predicted = model.output(features,false);
-            System.out.println(features + ":" + predicted + "," + labels);
-            eval.eval(labels, predicted);
+            // Evaluate
+            Evaluation eval = new Evaluation(numOutputs);
+            validationSetIterator.reset();
+
+            for (int i = 0; i < validationSet.numExamples(); i++) {
+                DataSet t = validationSet.get(i);
+                INDArray features = t.getFeatureMatrix();
+                INDArray labels = t.getLabels();
+                INDArray predicted = model.output(features, false);
+                System.out.println(features + ":Prediction("+findSpecies(labels,species)
+                        +"):Actual("+findSpecies(predicted,species)+")" + predicted );
+                eval.eval(labels, predicted);
+            }
+
+            //Print the evaluation statistics
+            System.out.println(eval.stats());
+        } catch(Exception ex) {
+            ex.printStackTrace();
         }
-
-        //Print the evaluation statistics
-        //System.out.println(eval.stats());
     }
 }
