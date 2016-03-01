@@ -55,7 +55,7 @@ import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 
-public class LearnDigitsBackprop {
+public class LearnDigitsDropout {
 
     /**
      * The main method.
@@ -88,7 +88,7 @@ public class LearnDigitsBackprop {
 
             int numInputs = trainingReader.getNumCols()*trainingReader.getNumRows();
             int numOutputs = 10;
-            int numHiddenNodes = 200;
+            int numHiddenNodes = 100;
 
             // Create neural network.
             MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
@@ -97,7 +97,6 @@ public class LearnDigitsBackprop {
                     .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
                     .learningRate(learningRate)
                     .updater(Updater.NESTEROVS).momentum(0.9)
-                    .regularization(true).dropOut(0.50)
                     .list(2)
                     .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
                             .weightInit(WeightInit.XAVIER)

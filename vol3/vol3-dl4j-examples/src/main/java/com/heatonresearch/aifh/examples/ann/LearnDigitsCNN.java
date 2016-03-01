@@ -42,20 +42,22 @@ import org.deeplearning4j.earlystopping.termination.ScoreImprovementEpochTermina
 import org.deeplearning4j.earlystopping.trainer.EarlyStoppingTrainer;
 import org.deeplearning4j.eval.Evaluation;
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;
+import org.deeplearning4j.nn.conf.GradientNormalization;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.Updater;
-import org.deeplearning4j.nn.conf.layers.DenseLayer;
-import org.deeplearning4j.nn.conf.layers.OutputLayer;
+import org.deeplearning4j.nn.conf.layers.*;
+import org.deeplearning4j.nn.conf.layers.setup.ConvolutionLayerSetup;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.factory.Nd4j;
+import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 
-public class LearnDigitsBackprop {
+public class LearnDigitsCNN {
 
     /**
      * The main method.
@@ -67,6 +69,7 @@ public class LearnDigitsBackprop {
             double learningRate = 1e-2;
             int nEpochs = 50;
             int batchSize = 500;
+            int channels = 1;
 
             // Setup training data.
             System.out.println("Please wait, reading MNIST training data.");
@@ -83,31 +86,38 @@ public class LearnDigitsBackprop {
             System.out.println("Training set size: " + trainingReader.getNumImages());
             System.out.println("Validation set size: " + validationReader.getNumImages());
 
-            System.out.println(trainingSet.get(0).getFeatures().size(1));
-            System.out.println(validationSet.get(0).getFeatures().size(1));
-
-            int numInputs = trainingReader.getNumCols()*trainingReader.getNumRows();
             int numOutputs = 10;
-            int numHiddenNodes = 200;
 
             // Create neural network.
-            MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
+            MultiLayerConfiguration.Builder builder = new NeuralNetConfiguration.Builder()
                     .seed(seed)
                     .iterations(1)
+                    .regularization(true).l2(0.0005)
+                    .learningRate(0.01)
+                    .weightInit(WeightInit.XAVIER)
                     .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
-                    .learningRate(learningRate)
                     .updater(Updater.NESTEROVS).momentum(0.9)
-                    .regularization(true).dropOut(0.50)
-                    .list(2)
-                    .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
-                            .weightInit(WeightInit.XAVIER)
+                    .list(4)
+                    .layer(0, new ConvolutionLayer.Builder(5, 5)
+                            .nIn(channels)
+                            .stride(1, 1)
+                            .nOut(20).dropOut(0.5)
                             .activation("relu")
                             .build())
-                    .layer(1, new OutputLayer.Builder(LossFunction.NEGATIVELOGLIKELIHOOD)
-                            .weightInit(WeightInit.XAVIER)
+                    .layer(1, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
+                            .kernelSize(2,2)
+                            .stride(2,2)
+                            .build())
+                    .layer(2, new DenseLayer.Builder().activation("relu")
+                            .nOut(500).build())
+                    .layer(3, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
+                            .nOut(10)
                             .activation("softmax")
-                            .nIn(numHiddenNodes).nOut(numOutputs).build())
-                    .pretrain(false).backprop(true).build();
+                            .build())
+                    .backprop(true).pretrain(false);
+
+            new ConvolutionLayerSetup(builder,28,28,1);
+            MultiLayerConfiguration conf = builder.build();
 
 
             MultiLayerNetwork model = new MultiLayerNetwork(conf);
