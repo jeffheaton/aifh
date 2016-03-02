@@ -57,7 +57,12 @@ import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 
-public class LearnDigitsCNN {
+/**
+ * A convolutional neural network is used to predict the MNIST digits.  This neural network makes use of the
+ * Deeplearning4J framework. This neural network trains to an accuracy of around 98%.  The convolutional neural
+ * network might take hours to train, depending on your hardware.
+ */
+public class LearnDigitsConv {
 
     /**
      * The main method.

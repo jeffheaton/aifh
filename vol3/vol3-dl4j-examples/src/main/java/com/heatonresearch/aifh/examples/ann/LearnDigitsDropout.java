@@ -55,6 +55,11 @@ import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 
+/**
+ * Learn the classic MNIST digits.  This is a classification neural network that makes use of the Deeplearning4J
+ * framework. A  feedforward neural network with a ReLU activation function is used.  The
+ * softmax activation function is used for the output.  Dropout is used to prevent overfitting.
+ */
 public class LearnDigitsDropout {
 
     /**

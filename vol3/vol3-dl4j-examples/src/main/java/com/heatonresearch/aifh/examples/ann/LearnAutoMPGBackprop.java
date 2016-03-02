@@ -58,7 +58,9 @@ import java.io.InputStream;
 import java.util.Random;
 
 /**
- * Using several features, learn to predict the MPG for a car.
+ * Using several features, learn to predict the MPG for a car.  This is a classification neural network that makes
+ * use of the Deeplearning4J framework.  A single ReLU layer is used with a linear (identity) output
+ * activation function.
  */
 public class LearnAutoMPGBackprop {
 

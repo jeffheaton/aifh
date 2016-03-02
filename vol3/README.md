@@ -24,14 +24,10 @@ The following language ports have been completed for this book.  See the individ
 README files inside of each chapter for language specific instructions. If you find a bug,
 or improve an example, please consider pushing a change via GitHub.
 	
-* vol3-python-examples
-* vol3-java-examples
-* vol3-csharp-examples 
-
-**Note: I am in the process of refactoring the conv-nets in the Java and C# versions to use Deeplearning4J and CNTK, 
-this is to provide greater performance. Sorry for any inconvenience, I hope to have the 
-new version complete by the end of March 2016.**
-		
+* **vol3-python-examples** - Python examples
+* **vol3-java-examples** - Java examples
+* **vol3-csharp-examples** - Microsoft C# Examples
+* **vol3-dl4j-examples** - Java examples for the Deeplearning4J (DL4J) framework		
 ## Getting Help
 
 * [Q&A Forum on Google Groups](https://groups.google.com/forum/#!forum/jeffheatons-ai-group)

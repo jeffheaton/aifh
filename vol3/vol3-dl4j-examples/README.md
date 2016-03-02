@@ -1,6 +1,5 @@
 AIFH Vol3  - Java Deeplearning4J (DL4J) Examples
 ================================================
-**The DL4J examples are under construction.  Examples are being added, hope to be complete by the end of March 2016.**
 
 This folder contains the Java [Deeplearning4J (DL4J)](http://deeplearning4j.org/) examples for AIFH Volume 3.  
 This software was developed using JDK 1.7. To make use of this software you will need JDK 1.7 or later.
@@ -41,11 +40,17 @@ if you have not downloaded a copy in awhile.
     runCSVExample - Introduction.  This example reads a CSV file
 ```
 * Chapter 1: Neural Network Basics
+
     See [regular Java examples](https://github.com/jeffheaton/aifh/tree/master/vol3/vol3-java-examples).
+
 * Chapter 2: Self Organizing Maps
+
     See [regular Java examples](https://github.com/jeffheaton/aifh/tree/master/vol3/vol3-java-examples).
+
 * Chapter 3: Hopfield & Boltzmann Machines
+
     See [regular Java examples](https://github.com/jeffheaton/aifh/tree/master/vol3/vol3-java-examples).
+
 * Chapter 4: Feedforward Neural Networks
 ```
     runIrisAnnealExample - Train an iris ANN with annealing.
@@ -63,9 +68,13 @@ if you have not downloaded a copy in awhile.
 
 ```
 * Chapter 7: Other Propagation Training
+
 	See [regular Java examples](https://github.com/jeffheaton/aifh/tree/master/vol3/vol3-java-examples).
+
 * Chapter 8: NEAT, CPPN and HyperNEAT
+
     See [regular Java examples](https://github.com/jeffheaton/aifh/tree/master/vol3/vol3-java-examples).
+
 * Chapter 9: Deep Learning
 ```
 	runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn belief neural network.',
