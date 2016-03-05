@@ -64,6 +64,7 @@ namespace AIFH_Vol3.Core.General.Fns
             }
 
             // calculate the value
+            norm /= this.Width * this.Width;
 
             return (1 - norm)*Math.Exp(-norm/2);
         }
