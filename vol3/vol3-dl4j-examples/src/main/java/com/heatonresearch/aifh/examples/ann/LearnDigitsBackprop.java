@@ -40,6 +40,7 @@ import org.deeplearning4j.earlystopping.scorecalc.DataSetLossCalculator;
 import org.deeplearning4j.earlystopping.termination.MaxEpochsTerminationCondition;
 import org.deeplearning4j.earlystopping.termination.ScoreImprovementEpochTerminationCondition;
 import org.deeplearning4j.earlystopping.trainer.EarlyStoppingTrainer;
+import org.deeplearning4j.eval.Evaluation;
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
@@ -55,9 +56,9 @@ import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 
 /**
- * This is a VERY basic example of how to use DL4J to create a neural network to train a feed forward neural network
- * to emulate the XOR function.  Because the data for this operator is only 4 elements there is only a training set,
- * no validation set.  For a simple, yet more typical, example refer to the Iris example.
+ * Learn the classic MNIST digits.  This is a classification neural network that makes use of the Deeplearning4J
+ * framework. A single layer feedforward neural network with a ReLU activation function is used.  The
+ * softmax activation function is used for the output.
  */
 public class LearnDigitsBackprop {
 
@@ -68,8 +69,9 @@ public class LearnDigitsBackprop {
     public static void main(String[] args) {
         try {
             int seed = 43;
-            double learningRate = 0.4;
-            int nEpochs = 100;
+            double learningRate = 1e-2;
+            int nEpochs = 50;
+            int batchSize = 500;
 
             // Setup training data.
             System.out.println("Please wait, reading MNIST training data.");
@@ -80,7 +82,7 @@ public class LearnDigitsBackprop {
             DataSet trainingSet = trainingReader.getData();
             DataSet validationSet = validationReader.getData();
 
-            DataSetIterator trainSetIterator = new ListDataSetIterator(trainingSet.asList(), trainingReader.getNumRows());
+            DataSetIterator trainSetIterator = new ListDataSetIterator(trainingSet.asList(), batchSize);
             DataSetIterator validationSetIterator = new ListDataSetIterator(validationSet.asList(), validationReader.getNumRows());
 
             System.out.println("Training set size: " + trainingReader.getNumImages());
@@ -91,7 +93,7 @@ public class LearnDigitsBackprop {
 
             int numInputs = trainingReader.getNumCols()*trainingReader.getNumRows();
             int numOutputs = 10;
-            int numHiddenNodes = 50;
+            int numHiddenNodes = 200;
 
             // Create neural network.
             MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
@@ -100,14 +102,15 @@ public class LearnDigitsBackprop {
                     .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
                     .learningRate(learningRate)
                     .updater(Updater.NESTEROVS).momentum(0.9)
+                    .regularization(true).dropOut(0.50)
                     .list(2)
                     .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
                             .weightInit(WeightInit.XAVIER)
                             .activation("relu")
                             .build())
-                    .layer(1, new OutputLayer.Builder(LossFunction.MSE)
+                    .layer(1, new OutputLayer.Builder(LossFunction.NEGATIVELOGLIKELIHOOD)
                             .weightInit(WeightInit.XAVIER)
-                            .activation("identity")
+                            .activation("softmax")
                             .nIn(numHiddenNodes).nOut(numOutputs).build())
                     .pretrain(false).backprop(true).build();
 
@@ -119,8 +122,8 @@ public class LearnDigitsBackprop {
             // Define when we want to stop training.
             EarlyStoppingModelSaver saver = new InMemoryModelSaver();
             EarlyStoppingConfiguration esConf = new EarlyStoppingConfiguration.Builder()
-                    .epochTerminationConditions(new MaxEpochsTerminationCondition(500)) //Max of 50 epochs
-                    .epochTerminationConditions(new ScoreImprovementEpochTerminationCondition(25))
+                    //.epochTerminationConditions(new MaxEpochsTerminationCondition(10))
+                    .epochTerminationConditions(new ScoreImprovementEpochTerminationCondition(5))
                     .evaluateEveryNEpochs(1)
                     .scoreCalculator(new DataSetLossCalculator(validationSetIterator, true))     //Calculate test set score
                     .modelSaver(saver)
@@ -136,6 +139,21 @@ public class LearnDigitsBackprop {
             System.out.println("Score at best epoch: " + result.getBestModelScore());
 
             model = saver.getBestModel();
+
+            // Evaluate
+            Evaluation eval = new Evaluation(numOutputs);
+            validationSetIterator.reset();
+
+            for (int i = 0; i < validationSet.numExamples(); i++) {
+                DataSet t = validationSet.get(i);
+                INDArray features = t.getFeatureMatrix();
+                INDArray labels = t.getLabels();
+                INDArray predicted = model.output(features, false);
+                eval.eval(labels, predicted);
+            }
+
+            //Print the evaluation statistics
+            System.out.println(eval.stats());
         } catch(Exception ex) {
             ex.printStackTrace();
         }

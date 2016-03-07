@@ -14,6 +14,9 @@ Additionally, the following two JAR files are needed for unit tests:
 'org.hamcrest:hamcrest-all:1.3'
 'junit:junit:4.10'
 
+For performance reasons, most of the deep learning (particularly image) examples make
+use of the Deeplearning4J framework.  [These examples can be found here.](https://github.com/jeffheaton/aifh/tree/master/vol3/vol3-dl4j-examples)
+
 ##Data Files
 
 There are three different data sets used by this book's examples.  All three can be found
@@ -80,18 +83,18 @@ if you have not downloaded a copy in awhile.
 	runDBNExample, group: 'examples', description: 'Chapter 9.  Simple dbnn belief neural network.',
 ```
 * Chapter 10: Convolutional Neural Networks
-```
-	runDigitsConvExample - Convolution network for MNIST digits.
-```
+
+    See [Deeplearning4J Examples](https://github.com/jeffheaton/aifh/tree/master/vol3/vol3-dl4j-examples).
+
 * Chapter 11: Pruning and Model Selection
 ```
 	runListSearches - Compare grid and random search.
 	runIrisModelSearchGrid - Grid model search.
 ```
 * Chapter 12: Dropout and Regularization
-```
-	runDigitsDropoutExample - Dropout network for MNIST digits.
-```
+
+    See [Deeplearning4J Examples](https://github.com/jeffheaton/aifh/tree/master/vol3/vol3-dl4j-examples).
+
 * Chapter 13: Time Series and Recurrent Networks
 ```
 	runPredictSunspots - Predict sunspots

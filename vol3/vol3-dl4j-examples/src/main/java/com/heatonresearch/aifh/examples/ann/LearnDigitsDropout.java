@@ -28,7 +28,8 @@
  */
 package com.heatonresearch.aifh.examples.ann;
 
-import com.heatonresearch.aifh.normalize.NormalizeDataSet;
+import com.heatonresearch.aifh.util.MNIST;
+import com.heatonresearch.aifh.util.MNISTReader;
 import org.deeplearning4j.datasets.iterator.DataSetIterator;
 import org.deeplearning4j.datasets.iterator.impl.ListDataSetIterator;
 import org.deeplearning4j.earlystopping.EarlyStoppingConfiguration;
@@ -51,18 +52,15 @@ import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
-import org.nd4j.linalg.dataset.SplitTestAndTrain;
+import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 
-import java.io.InputStream;
-import java.util.Random;
-
 /**
- * Using several features, learn to predict the MPG for a car.  This is a classification neural network that makes
- * use of the Deeplearning4J framework.  A single ReLU layer is used with a linear (identity) output
- * activation function.
+ * Learn the classic MNIST digits.  This is a classification neural network that makes use of the Deeplearning4J
+ * framework. A  feedforward neural network with a ReLU activation function is used.  The
+ * softmax activation function is used for the output.  Dropout is used to prevent overfitting.
  */
-public class LearnAutoMPGBackprop {
+public class LearnDigitsDropout {
 
     /**
      * The main method.
@@ -71,50 +69,33 @@ public class LearnAutoMPGBackprop {
     public static void main(String[] args) {
         try {
             int seed = 43;
-            double learningRate = 0.01;
+            double learningRate = 1e-2;
+            int nEpochs = 50;
+            int batchSize = 500;
 
             // Setup training data.
-            final InputStream istream = LearnAutoMPGBackprop.class.getResourceAsStream("/auto-mpg.data.csv");
-            if( istream==null ) {
-                System.out.println("Cannot access data set, make sure the resources are available.");
-                System.exit(1);
-            }
-            final NormalizeDataSet ds = NormalizeDataSet.load(istream);
-            istream.close();
+            System.out.println("Please wait, reading MNIST training data.");
+            String dir = System.getProperty("user.dir");
+            MNISTReader trainingReader = MNIST.loadMNIST(dir, true);
+            MNISTReader validationReader = MNIST.loadMNIST(dir, false);
 
-            // The following ranges are setup for the Auto MPG data set.  If you wish to normalize other files you will
-            // need to modify the below function calls other files.
+            DataSet trainingSet = trainingReader.getData();
+            DataSet validationSet = validationReader.getData();
 
-            // First remove some columns that we will not use:
-            ds.deleteColumn(8); // Car name
-            ds.deleteColumn(7); // Car origin
-            ds.deleteColumn(6); // Year
-            ds.deleteUnknowns();
+            DataSetIterator trainSetIterator = new ListDataSetIterator(trainingSet.asList(), batchSize);
+            DataSetIterator validationSetIterator = new ListDataSetIterator(validationSet.asList(), validationReader.getNumRows());
 
-            ds.normalizeZScore(1);
-            ds.normalizeZScore(2);
-            ds.normalizeZScore(3);
-            ds.normalizeZScore(4);
-            ds.normalizeZScore(5);
+            System.out.println("Training set size: " + trainingReader.getNumImages());
+            System.out.println("Validation set size: " + validationReader.getNumImages());
 
-            DataSet next = ds.extractSupervised(1, 4, 0, 1);
-            next.shuffle();
+            System.out.println(trainingSet.get(0).getFeatures().size(1));
+            System.out.println(validationSet.get(0).getFeatures().size(1));
 
-            // Training and validation data split
-            int splitTrainNum = (int) (next.numExamples() * .75);
-            SplitTestAndTrain testAndTrain = next.splitTestAndTrain(splitTrainNum, new Random(seed));
-            DataSet trainSet = testAndTrain.getTrain();
-            DataSet validationSet = testAndTrain.getTest();
-
-            DataSetIterator trainSetIterator = new ListDataSetIterator(trainSet.asList(), trainSet.numExamples());
-
-            DataSetIterator validationSetIterator = new ListDataSetIterator(validationSet.asList(), validationSet.numExamples());
+            int numInputs = trainingReader.getNumCols()*trainingReader.getNumRows();
+            int numOutputs = 10;
+            int numHiddenNodes = 100;
 
             // Create neural network.
-            int numInputs = next.numInputs();
-            int numOutputs = next.numOutcomes();
-            int numHiddenNodes = 50;
-
             MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                     .seed(seed)
                     .iterations(1)
@@ -126,9 +107,9 @@ public class LearnAutoMPGBackprop {
                             .weightInit(WeightInit.XAVIER)
                             .activation("relu")
                             .build())
-                    .layer(1, new OutputLayer.Builder(LossFunction.MSE)
+                    .layer(1, new OutputLayer.Builder(LossFunction.NEGATIVELOGLIKELIHOOD)
                             .weightInit(WeightInit.XAVIER)
-                            .activation("identity")
+                            .activation("softmax")
                             .nIn(numHiddenNodes).nOut(numOutputs).build())
                     .pretrain(false).backprop(true).build();
 
@@ -140,8 +121,8 @@ public class LearnAutoMPGBackprop {
             // Define when we want to stop training.
             EarlyStoppingModelSaver saver = new InMemoryModelSaver();
             EarlyStoppingConfiguration esConf = new EarlyStoppingConfiguration.Builder()
-                    .epochTerminationConditions(new MaxEpochsTerminationCondition(500)) //Max of 50 epochs
-                    .epochTerminationConditions(new ScoreImprovementEpochTerminationCondition(25))
+                    //.epochTerminationConditions(new MaxEpochsTerminationCondition(10))
+                    .epochTerminationConditions(new ScoreImprovementEpochTerminationCondition(5))
                     .evaluateEveryNEpochs(1)
                     .scoreCalculator(new DataSetLossCalculator(validationSetIterator, true))     //Calculate test set score
                     .modelSaver(saver)
@@ -159,6 +140,7 @@ public class LearnAutoMPGBackprop {
             model = saver.getBestModel();
 
             // Evaluate
+            Evaluation eval = new Evaluation(numOutputs);
             validationSetIterator.reset();
 
             for (int i = 0; i < validationSet.numExamples(); i++) {
@@ -166,12 +148,14 @@ public class LearnAutoMPGBackprop {
                 INDArray features = t.getFeatureMatrix();
                 INDArray labels = t.getLabels();
                 INDArray predicted = model.output(features, false);
-                System.out.println(features + ":Prediction("+predicted
-                        +"):Actual("+labels+")" );
+                eval.eval(labels, predicted);
             }
 
+            //Print the evaluation statistics
+            System.out.println(eval.stats());
         } catch(Exception ex) {
             ex.printStackTrace();
         }
+
     }
 }
