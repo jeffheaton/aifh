@@ -28,9 +28,6 @@
  */
 package com.heatonresearch.aifh.learning;
 
-import com.heatonresearch.aifh.flat.FlatObject;
-import com.heatonresearch.aifh.flat.FlatVolume;
-
 /**
  * A regression algorithm provides an output for the given input.  This allows the machine learning algorithm to
  * approximate a function.
@@ -42,5 +39,5 @@ public interface RegressionAlgorithm extends MLMethod {
      * @param input The input.
      * @return The regression output.
      */
-    double[] computeRegression(FlatObject input);
+    double[] computeRegression(double[] input);
 }

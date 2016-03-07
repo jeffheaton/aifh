@@ -30,23 +30,15 @@
 package com.heatonresearch.aifh.distance;
 
 /**
- * Chebyshev distance is the maximum absolute difference between any two vector elements.  This can be thought
- * of as the number of spaces that a king chess piece must travel between two squares in a 2D dimension space.
- * <p/>
- * http://www.heatonresearch.com/wiki/Chebyshev_Distance
+ * This distance calculator provides a convenience
  */
-public class ChebyshevDistance extends AbstractDistance {
+public abstract class AbstractDistance implements CalculateDistance {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public double calculate(final double[] position1, final int pos1, final double[] position2, final int pos2, final int length) {
-        double result = 0;
-        for (int i = 0; i < length; i++) {
-            final double d = Math.abs(position1[pos1 + i] - position2[pos2 + i]);
-            result = Math.max(d, result);
-        }
-        return result;
+    public double calculate(final double[] position1, final double[] position2) {
+        return calculate(position1, 0, position2, 0, position1.length);
     }
 }

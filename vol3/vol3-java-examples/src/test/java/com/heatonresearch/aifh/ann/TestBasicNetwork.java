@@ -6,7 +6,6 @@ import com.heatonresearch.aifh.ann.activation.ActivationReLU;
 import com.heatonresearch.aifh.ann.activation.ActivationSigmoid;
 import com.heatonresearch.aifh.ann.activation.ActivationSoftMax;
 import com.heatonresearch.aifh.ann.randomize.RangeRandomizeNetwork;
-import com.heatonresearch.aifh.flat.FlatVector;
 import com.heatonresearch.aifh.randomize.LinearCongruentialRandom;
 import org.junit.Assert;
 import org.junit.Test;
@@ -46,9 +45,6 @@ public class TestBasicNetwork {
         Assert.assertEquals(0.13864904435785697,network.getWeight(1,0,0), AIFH.DEFAULT_PRECISION);
         Assert.assertEquals(-0.1389734035215744,network.getWeight(1,1,0), AIFH.DEFAULT_PRECISION);
         Assert.assertEquals(0.34318625259753,network.getWeight(1,2,0), AIFH.DEFAULT_PRECISION);
-
-        // length
-        Assert.assertEquals(13, network.getWeights().length);
     }
 
     @Test
@@ -83,9 +79,9 @@ public class TestBasicNetwork {
     @Test
     public void testCalculate() {
         BasicNetwork network = TestBasicNetwork.buildSimpleXOR();
-        double[] out1 = network.computeRegression(FlatVector.createSingleVector(new double[] {0.0, 0.0}));
+        double[] out1 = network.computeRegression(new double[] {0.0, 0.0});
         Assert.assertEquals(0.34688637738116557, out1[0], AIFH.DEFAULT_PRECISION);
-        double[] out2 = network.computeRegression(FlatVector.createSingleVector(new double[] {1.0, 0.0}));
+        double[] out2 = network.computeRegression(new double[] {1.0, 0.0});
         Assert.assertEquals(0.32943376685512565, out2[0], AIFH.DEFAULT_PRECISION);
         Assert.assertEquals(1,out2.length);
     }
@@ -106,5 +102,12 @@ public class TestBasicNetwork {
         Assert.assertEquals(129, hidden2Layer.getTotalCount());
         Assert.assertEquals(65, hidden3Layer.getTotalCount());
         Assert.assertEquals(10, outputLayer.getTotalCount());
+
+        Assert.assertEquals(0, outputLayer.getNeuronIndex());
+        Assert.assertEquals(10, hidden3Layer.getNeuronIndex());
+        Assert.assertEquals(75, hidden2Layer.getNeuronIndex());
+        Assert.assertEquals(204, hidden1Layer.getNeuronIndex());
+        Assert.assertEquals(0, outputLayer.getNeuronIndex());
+
     }
 }

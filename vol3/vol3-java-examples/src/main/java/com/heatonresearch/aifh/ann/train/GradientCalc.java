@@ -34,12 +34,6 @@ import com.heatonresearch.aifh.ann.Layer;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.error.ErrorFunction;
 import com.heatonresearch.aifh.error.ErrorCalculation;
-import com.heatonresearch.aifh.flat.FlatData;
-import com.heatonresearch.aifh.flat.FlatMatrix;
-import com.heatonresearch.aifh.flat.FlatObject;
-import com.heatonresearch.aifh.flat.FlatVolume;
-
-import java.util.Arrays;
 
 /**
  * A utility class used to help calculate the gradient of the error function for neural networks.
@@ -58,13 +52,27 @@ public class GradientCalc {
     /**
      * The deltas for each layer.
      */
-    private final FlatData layerDelta = new FlatData();
+    private final double[] layerDelta;
 
+    /**
+     * The output from each layer.
+     */
+    private final double[] layerOutput;
+
+    /**
+     * The sums.
+     */
+    private final double[] layerSums;
 
     /**
      * The gradients.
      */
-    private final FlatData gradients = new FlatData();
+    private final double[] gradients;
+
+    /**
+     * The weights and thresholds.
+     */
+    private final double[] weights;
 
     /**
      * The owner of the gradient calculation.
@@ -87,24 +95,13 @@ public class GradientCalc {
         this.network = theNetwork;
         this.errorFunction = ef;
 
-        for(Layer layer: this.network.getLayers()) {
-            int r = layer.getDimensionCounts()[0];
-            int c = layer.getDimensionCounts()[1];
-            int d = layer.getDimensionCounts()[2];
-            this.layerDelta.addFlatObject(new FlatVolume(r,c,d,false));
-
-            if( layer.getWeightMatrix() != null ) {
-                for(FlatMatrix matrix: layer.getWeightMatrix()) {
-                    this.gradients.addFlatObject(new FlatMatrix(matrix));
-                }
-            }
-        }
-        this.layerDelta.finalizeStructure();
-
-        this.gradients.reverseOrder();
-        this.gradients.finalizeStructure();
-
+        this.layerDelta = new double[this.network.getLayerOutput().length];
+        this.gradients = new double[this.network.getWeights().length];
         this.actual = new double[this.network.getOutputCount()];
+
+        this.weights = this.network.getWeights();
+        this.layerOutput = this.network.getLayerOutput();
+        this.layerSums = this.network.getLayerSums();
         this.owner = theOwner;
     }
 
@@ -116,26 +113,29 @@ public class GradientCalc {
     }
 
     /**
+     * @return The weights for this network.
+     */
+    public double[] getWeights() {
+        return this.weights;
+    }
+
+    /**
      * Process one training set element.
      * @param  errorCalc The error calculation.
      * @param input The network input.
      * @param ideal The ideal values.
      */
-    public void process(ErrorCalculation errorCalc, FlatObject input, double[] ideal) {
+    public void process(ErrorCalculation errorCalc, double[] input, double[] ideal) {
         this.network.compute(input, this.actual);
 
         errorCalc.updateError(this.actual, ideal, 1.0);
-
-        // Get the layer delta for output row
-        FlatObject outputError = layerDelta.get(this.layerDelta.flatObjectCount()-1);
 
         // Calculate error for the output layer.
         int outputLayerIndex = this.network.getLayers().size() - 1;
         ActivationFunction outputActivation = this.network.getLayers().get(outputLayerIndex).getActivation();
         this.errorFunction.calculateError(
-                outputActivation, this.network.getOutputLayer().getLayerSums(),
-                this.network.getOutputLayer().getLayerOutput(),
-                ideal, this.actual, outputError, 0, 1.0);
+                outputActivation, this.layerSums, this.layerOutput,
+                ideal, this.actual, this.layerDelta, 0, 1.0);
 
         // Apply regularization, if requested.
         if (this.owner.getL1() > AIFH.DEFAULT_PRECISION
@@ -144,7 +144,7 @@ public class GradientCalc {
             calculateRegularizationPenalty(lp);
             for (int i = 0; i < this.actual.length; i++) {
                 double p = (lp[0] * this.owner.getL1()) + (lp[1] * this.owner.getL2());
-                outputError.add(i, p);
+                this.layerDelta[i] += p;
             }
         }
 
@@ -160,7 +160,9 @@ public class GradientCalc {
      * Reset all gradients to zero.
      */
     public void reset() {
-        this.gradients.clear();
+        for (int i = 0; i < this.gradients.length; i++) {
+            this.gradients[i] = 0;
+        }
     }
 
 
@@ -168,7 +170,7 @@ public class GradientCalc {
      * @return the gradients
      */
     public double[] getGradients() {
-        return this.gradients.getData();
+        return this.gradients;
     }
 
     /**
@@ -202,12 +204,7 @@ public class GradientCalc {
     /**
      * @return The layer deltas used to calculate the gradient.
      */
-    public FlatData getLayerDelta() {
+    public double[] getLayerDelta() {
         return this.layerDelta;
     }
-
-    /**
-     * @return The gradient matrixes.
-     */
-    public FlatData getGradientMatrix() { return this.gradients; }
 }

@@ -139,7 +139,7 @@ public class DataUtil {
      */
     public static void dumpCSV(File file, List<BasicData> dataset) throws IOException {
         CSVWriter writer = new CSVWriter(new FileWriter(file));
-        int inputCount = dataset.get(0).getInput().getLength();
+        int inputCount = dataset.get(0).getInput().length;
         int outputCount = dataset.get(0).getIdeal().length;
         int totalCount = inputCount + outputCount;
 
@@ -159,7 +159,7 @@ public class DataUtil {
 
             idx = 0;
             for(int j=0;j<inputCount;j++) {
-                line[idx++] = String.format(Locale.ENGLISH, "%.2f", item.getInput().get(j));
+                line[idx++] = String.format(Locale.ENGLISH, "%.2f", item.getInput()[j]);
             }
             for(int j=0;j<outputCount;j++) {
                 line[idx++] = String.format(Locale.ENGLISH, "%.2f", item.getIdeal()[j]);

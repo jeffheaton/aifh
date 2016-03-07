@@ -29,7 +29,6 @@
 package com.heatonresearch.aifh.dbnn;
 
 import com.heatonresearch.aifh.AIFHError;
-import com.heatonresearch.aifh.flat.FlatObject;
 import com.heatonresearch.aifh.learning.RegressionAlgorithm;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
@@ -174,7 +173,7 @@ public class DeepBeliefNetwork implements RegressionAlgorithm {
      * @return An array that contains the probabilities of each class.
      */
     @Override
-    public double[] computeRegression(final FlatObject input) {
+    public double[] computeRegression(final double[] input) {
 
         double[] result = new double[getOutputCount()];
         double[] layerInput = new double[0];

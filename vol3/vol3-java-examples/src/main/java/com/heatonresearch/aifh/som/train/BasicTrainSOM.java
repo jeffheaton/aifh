@@ -29,9 +29,6 @@
 package com.heatonresearch.aifh.som.train;
 
 import Jama.Matrix;
-import com.heatonresearch.aifh.flat.FlatMatrix;
-import com.heatonresearch.aifh.flat.FlatObject;
-import com.heatonresearch.aifh.flat.FlatVector;
 import com.heatonresearch.aifh.general.VectorAlgebra;
 import com.heatonresearch.aifh.general.data.BasicData;
 import com.heatonresearch.aifh.som.BestMatchingUnit;
@@ -223,10 +220,10 @@ public class BasicTrainSOM  {
      * @param input
      *            The input pattern to copy.
      */
-    private void copyInputPattern(final FlatMatrix matrix, final int outputNeuron,
-                                  final FlatObject input) {
+    private void copyInputPattern(final Matrix matrix, final int outputNeuron,
+                                  final double[] input) {
         for (int inputNeuron = 0; inputNeuron < this.inputNeuronCount; inputNeuron++) {
-            matrix.set(outputNeuron,inputNeuron, input.get(inputNeuron));
+            matrix.set(outputNeuron,inputNeuron, input[inputNeuron]);
         }
     }
 
@@ -292,8 +289,8 @@ public class BasicTrainSOM  {
      *            The synapse to modify.
      * @return True if a winner was forced.
      */
-    private boolean forceWinners(final FlatMatrix matrix, final int[] won,
-                                 final FlatObject leastRepresented) {
+    private boolean forceWinners(final Matrix matrix, final int[] won,
+                                 final double[] leastRepresented) {
 
         double maxActivation = Double.MIN_VALUE;
         int maxActivationNeuron = -1;
@@ -368,7 +365,7 @@ public class BasicTrainSOM  {
         this.bmuUtil.reset();
         final int[] won = new int[this.outputNeuronCount];
         double leastRepresentedActivation = Double.MAX_VALUE;
-        FlatObject leastRepresented = null;
+        double[] leastRepresented = null;
 
         // Reset the correction matrix for this synapse and iteration.
         //*this.correctionMatrix.clear();
@@ -497,7 +494,7 @@ public class BasicTrainSOM  {
      * @param input
      *            The input to train for.
      */
-    private void train(final int bmu, final FlatMatrix matrix, final FlatObject input) {
+    private void train(final int bmu, final Matrix matrix, final double[] input) {
         // adjust the weight for the BMU and its neighborhood
         for (int outputNeuron = 0; outputNeuron < this.outputNeuronCount; outputNeuron++) {
             trainPattern(matrix, input, outputNeuron, bmu);
@@ -516,13 +513,13 @@ public class BasicTrainSOM  {
      * @param bmu
      *            The best matching unit, or winning output neuron.
      */
-    private void trainPattern(final FlatMatrix matrix, final FlatObject input,
+    private void trainPattern(final Matrix matrix, final double[] input,
                               final int current, final int bmu) {
 
         for (int inputNeuron = 0; inputNeuron < this.inputNeuronCount; inputNeuron++) {
 
             final double currentWeight = matrix.get(current,inputNeuron);
-            final double inputValue = input.get(inputNeuron);
+            final double inputValue = input[inputNeuron];
 
             final double newWeight = determineNewWeight(currentWeight,
                     inputValue, current, bmu);
@@ -538,7 +535,7 @@ public class BasicTrainSOM  {
      * @param pattern
      *            The pattern to train.
      */
-    public void trainPattern(final FlatObject pattern) {
+    public void trainPattern(final double[] pattern) {
         final int bmu = this.bmuUtil.calculateBMU(pattern);
         train(bmu, this.network.getWeights(), pattern);
         applyCorrection();
@@ -551,22 +548,22 @@ public class BasicTrainSOM  {
      *            The input pattern.
      * @return The output activation of each output neuron.
      */
-    private double[] compute(final SelfOrganizingMap som, final FlatObject input) {
+    private double[] compute(final SelfOrganizingMap som, final double[] input) {
 
         final double[] result = new double[som.getOutputCount()];
 
         for (int i = 0; i < som.getOutputCount(); i++) {
-            final FlatObject optr = som.getWeights().extractRow(i);
+            final double[] optr = som.getWeights().getArray()[i];
 
-            final Matrix matrixA = new Matrix(input.getLength(),1);
-            for(int j=0;j<input.getLength();j++) {
-                matrixA.getArray()[0][j] = input.get(j);
+            final Matrix matrixA = new Matrix(input.length,1);
+            for(int j=0;j<input.length;j++) {
+                matrixA.getArray()[0][j] = input[j];
             }
 
 
-            final Matrix matrixB = new Matrix(1,input.getLength());
-            for(int j=0;j<optr.getLength();j++) {
-                matrixB.getArray()[0][j] = optr.get(j);
+            final Matrix matrixB = new Matrix(1,input.length);
+            for(int j=0;j<optr.length;j++) {
+                matrixB.getArray()[0][j] = optr[j];
             }
 
             result[i] = VectorAlgebra.dotProduct(matrixA, matrixB);

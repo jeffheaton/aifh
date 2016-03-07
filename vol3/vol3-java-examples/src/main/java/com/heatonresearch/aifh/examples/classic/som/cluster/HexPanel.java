@@ -29,7 +29,6 @@
 package com.heatonresearch.aifh.examples.classic.som.cluster;
 
 import Jama.Matrix;
-import com.heatonresearch.aifh.flat.FlatMatrix;
 import com.heatonresearch.aifh.som.SelfOrganizingMap;
 
 import javax.swing.*;
@@ -147,7 +146,7 @@ public class HexPanel extends JPanel {
 
         int idx = 0;
         boolean indent = false;
-        FlatMatrix weights = this.network.getWeights();
+        Matrix weights = this.network.getWeights();
         for(int y = 0; y< this.height; y++)
         {
             for(int x = 0; x< this.width; x++)

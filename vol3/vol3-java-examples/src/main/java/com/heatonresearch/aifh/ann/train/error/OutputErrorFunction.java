@@ -24,8 +24,6 @@
 package com.heatonresearch.aifh.ann.train.error;
 
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
-import com.heatonresearch.aifh.flat.FlatObject;
-import com.heatonresearch.aifh.flat.FlatVolume;
 
 /**
  * A very simple quadratic error function.  It is usually better to use the cross entropy error function.
@@ -36,13 +34,13 @@ public class OutputErrorFunction implements ErrorFunction {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void calculateError(ActivationFunction af, FlatVolume b, FlatVolume a,
-							   double[] ideal, double[] actual, FlatObject error, double derivShift,
+	public void calculateError(ActivationFunction af, double[] b, double[] a,
+							   double[] ideal, double[] actual, double[] error, double derivShift,
 							   double significance) {
 		
 		for(int i=0;i<actual.length;i++) {
-			double deriv = af.derivativeFunction(b.get(i),a.get(i)) + derivShift;
-			error.set(i, ((ideal[i] - actual[i]) *significance) * deriv);
+			double deriv = af.derivativeFunction(b[i],a[i]) + derivShift;
+			error[i] = ((ideal[i] - actual[i]) *significance) * deriv;
 		}		
 	}
 

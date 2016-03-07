@@ -29,9 +29,6 @@
 package com.heatonresearch.aifh.general.data;
 
 import com.heatonresearch.aifh.AIFHError;
-import com.heatonresearch.aifh.flat.FlatData;
-import com.heatonresearch.aifh.flat.FlatObject;
-import com.heatonresearch.aifh.flat.FlatVolume;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +42,7 @@ public class BasicData {
     /**
      * The input vector.
      */
-    private final FlatObject input;
+    private final double[] input;
 
     /**
      * The ideal (or expected output) vector.
@@ -78,7 +75,7 @@ public class BasicData {
 
     public BasicData(final int theInputDimensions, final int theIdealDimensions, final String theLabel) {
         this.label = theLabel;
-        this.input = FlatVolume.createSingleVolume(theInputDimensions,1,1,false);
+        this.input = new double[theInputDimensions];
         this.ideal = new double[theIdealDimensions];
     }
 
@@ -91,7 +88,7 @@ public class BasicData {
      */
     public BasicData(final double[] theInputData, final double[] theIdealData, final String theLabel) {
         this.label = theLabel;
-        this.input = FlatVolume.createSingleVolume(theInputData);
+        this.input = theInputData;
         this.ideal = theIdealData;
     }
 
@@ -115,22 +112,9 @@ public class BasicData {
     }
 
     /**
-     * Construct a supervised element, with a label.
-     *
-     * @param theInputData The input data vector.
-     * @param theIdealData The ideal data vector.
-     * @param theLabel     The label.
-     */
-    public BasicData(final FlatObject theInputData, final double[] theIdealData, final String theLabel) {
-        this.label = theLabel;
-        this.input = theInputData;
-        this.ideal = theIdealData;
-    }
-
-    /**
      * @return The input vector.
      */
-    public FlatObject getInput() {
+    public double[] getInput() {
         return this.input;
     }
 
@@ -162,7 +146,7 @@ public class BasicData {
      */
     public String toString() {
         String result = "[BasicData: input:" +
-                FlatData.flatObjectToList(this.input) +
+                Arrays.toString(this.input) +
                 ", ideal:" +
                 Arrays.toString(this.ideal) +
                 ", label:" +

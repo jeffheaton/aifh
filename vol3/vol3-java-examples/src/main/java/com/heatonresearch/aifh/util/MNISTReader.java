@@ -30,7 +30,6 @@ package com.heatonresearch.aifh.util;
 
 
 import com.heatonresearch.aifh.AIFHError;
-import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.general.data.BasicData;
 
 import java.io.DataInputStream;
@@ -57,8 +56,13 @@ public class MNISTReader {
     private final int numCols;
     private final List<BasicData> data;
 
-    public MNISTReader(String labelFilename, String imageFilename) {
+    public MNISTReader(String labelFilename, String imageFilename, int depth) {
         try {
+            if( depth!=1 && depth!=3 ) {
+                throw new AIFHError("MNIST depth must be 1 or 3.");
+            }
+
+
             DataInputStream labels;
             DataInputStream images;
 
@@ -113,9 +117,14 @@ public class MNISTReader {
             int imageIndex = 0;
             for(int i=0;i<this.numLabels;i++) {
                 int label = labelsData[i];
-                FlatVolume inputData = FlatVolume.createSingleVolume(this.numRows,this.numCols,1,false);
-                for (int j = 0; j < imageVectorSize; j++) {
-                    inputData.set(j,((double) (imagesData[imageIndex++] & 0xff)) / 255.0);
+                double[] inputData = new double[imageVectorSize*depth];
+                int outputIndex = 0;
+                int t = imageIndex;
+                for(int k=0;k<depth;k++) {
+                    imageIndex = t;
+                    for (int j = 0; j < imageVectorSize; j++) {
+                        inputData[outputIndex++] = ((double) (imagesData[imageIndex++] & 0xff)) / 255.0;
+                    }
                 }
                 double[] idealData = new double[10];
                 idealData[label] = 1.0;

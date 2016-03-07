@@ -84,7 +84,7 @@ public class LearnAutoMPGBackprop extends SimpleLearn {
             System.out.println("Size of training set: " + trainingData.size());
             System.out.println("Size of validation set: " + validationData.size());
 
-            int inputCount = trainingData.get(0).getInput().getLength();
+            int inputCount = trainingData.get(0).getInput().length;
 
             BasicNetwork network = new BasicNetwork();
             network.addLayer(new BasicLayer(null,true,inputCount));

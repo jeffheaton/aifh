@@ -30,10 +30,6 @@ package com.heatonresearch.aifh.som;
 
 import Jama.Matrix;
 import com.heatonresearch.aifh.AIFHError;
-import com.heatonresearch.aifh.flat.FlatData;
-import com.heatonresearch.aifh.flat.FlatMatrix;
-import com.heatonresearch.aifh.flat.FlatObject;
-import com.heatonresearch.aifh.flat.FlatVolume;
 
 /**
  * The "Best Matching Unit" or BMU is a very important concept in the training
@@ -73,13 +69,13 @@ public class BestMatchingUnit {
      *            The input vector.
      * @return The output neuron number that is the BMU.
      */
-    public int calculateBMU(final FlatObject input) {
+    public int calculateBMU(final double[] input) {
         int result = 0;
 
-        if( input.getLength()>this.som.getInputCount() ) {
+        if( input.length>this.som.getInputCount() ) {
             throw new AIFHError("Can't train SOM with input size of " + this.som.getInputCount()
                     + " with input data of count "
-                    + input.getLength());
+                    + input.length);
         }
 
         // Track the lowest distance so far.
@@ -117,13 +113,13 @@ public class BestMatchingUnit {
      *            The neuron we are calculating the distance for.
      * @return The Euclidean distance.
      */
-    public double calculateEuclideanDistance(final FlatMatrix matrix,
-                                             final FlatObject input, final int outputNeuron) {
+    public double calculateEuclideanDistance(final Matrix matrix,
+                                             final double[] input, final int outputNeuron) {
         double result = 0;
 
         // Loop over all input data.
-        for (int i = 0; i < input.getLength(); i++) {
-            final double diff = input.get(i)
+        for (int i = 0; i < input.length; i++) {
+            final double diff = input[i]
                     - matrix.get(outputNeuron,i);
             result += diff * diff;
         }

@@ -23,8 +23,6 @@
  */
 package com.heatonresearch.aifh.examples.classic.som.colors;
 
-import com.heatonresearch.aifh.flat.FlatObject;
-import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.general.fns.RBFEnum;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 import com.heatonresearch.aifh.randomize.MersenneTwisterGenerateRandom;
@@ -33,8 +31,6 @@ import com.heatonresearch.aifh.som.neighborhood.NeighborhoodRBF;
 import com.heatonresearch.aifh.som.train.BasicTrainSOM;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A classic SOM example that shows how the SOM groups similar color shades.
@@ -84,21 +80,18 @@ public class SomColors extends JFrame implements Runnable {
     public void run() {
         GenerateRandom rnd = new MersenneTwisterGenerateRandom();
 
-        List<FlatVolume> samples = new ArrayList<>();
-
+        double[][] samples = new double[15][3];
         for (int i = 0; i < 15; i++) {
-            FlatVolume sample = FlatVolume.createSingleVolume(3,1,1,false);
-            sample.set(0,rnd.nextDouble(-1,1));
-            sample.set(1,rnd.nextDouble(-1,1));
-            sample.set(2,rnd.nextDouble(-1,1));
-            samples.add(sample);
+            samples[i][0] = rnd.nextDouble(-1,1);
+            samples[i][1] = rnd.nextDouble(-1,1);
+            samples[i][2] = rnd.nextDouble(-1,1);
         }
 
         this.train.setAutoDecay(1000, 0.8, 0.003, 30, 5);
 
         for (int i = 0; i < 1000; i++) {
-            int idx = (int) (Math.random() * samples.size());
-            FlatObject c = samples.get(idx);
+            int idx = (int) (Math.random() * samples.length);
+            double[] c = samples[idx];
 
             this.train.trainPattern(c);
             this.train.autoDecay();

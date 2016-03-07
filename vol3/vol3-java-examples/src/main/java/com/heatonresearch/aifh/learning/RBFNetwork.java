@@ -28,8 +28,6 @@
  */
 package com.heatonresearch.aifh.learning;
 
-import com.heatonresearch.aifh.flat.FlatObject;
-import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.general.VectorUtil;
 import com.heatonresearch.aifh.general.fns.FnRBF;
 import com.heatonresearch.aifh.general.fns.GaussianFunction;
@@ -113,7 +111,7 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
      * {@inheritDoc}
      */
     @Override
-    public double[] computeRegression(final FlatObject input) {
+    public double[] computeRegression(final double[] input) {
 
         // first, compute the output values of each of the RBFs
         // Add in one additional RBF output for bias (always set to one).
@@ -123,11 +121,11 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
         for (int rbfIndex = 0; rbfIndex < this.rbf.length; rbfIndex++) {
 
             // weight the input
-            final double[] weightedInput = new double[input.getLength()];
+            final double[] weightedInput = new double[input.length];
 
-            for (int inputIndex = 0; inputIndex < input.getLength(); inputIndex++) {
+            for (int inputIndex = 0; inputIndex < input.length; inputIndex++) {
                 final int memoryIndex = this.indexInputWeights + (rbfIndex * this.inputCount) + inputIndex;
-                weightedInput[inputIndex] = input.get(inputIndex) * this.longTermMemory[memoryIndex];
+                weightedInput[inputIndex] = input[inputIndex] * this.longTermMemory[memoryIndex];
             }
 
             // calculate the rbf
@@ -174,7 +172,7 @@ public class RBFNetwork implements RegressionAlgorithm, ClassificationAlgorithm 
      * {@inheritDoc}
      */
     @Override
-    public int computeClassification(final FlatObject input) {
+    public int computeClassification(final double[] input) {
         final double[] output = computeRegression(input);
         if (output.length > 1) {
             return VectorUtil.maxIndex(output);

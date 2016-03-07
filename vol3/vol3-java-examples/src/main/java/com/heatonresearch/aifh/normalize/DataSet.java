@@ -662,7 +662,7 @@ public class DataSet {
             int colIndex = 0;
             for (int rawColIndex = 0; rawColIndex < getHeaderCount(); rawColIndex++) {
                 if (rawColIndex != labelIndex) {
-                    row.getInput().set(colIndex++, convertNumeric(raw, rawColIndex));
+                    row.getInput()[colIndex++] = convertNumeric(raw, rawColIndex);
                 }
             }
 
@@ -689,7 +689,7 @@ public class DataSet {
             final BasicData row = new BasicData(inputCount, idealCount);
 
             for (int i = 0; i < inputCount; i++) {
-                row.getInput().set(i, convertNumeric(raw, inputBegin + i));
+                row.getInput()[i] = convertNumeric(raw, inputBegin + i);
             }
 
             for (int i = 0; i < idealCount; i++) {

@@ -31,7 +31,6 @@ package com.heatonresearch.aifh.ann;
 import com.heatonresearch.aifh.AIFHError;
 import com.heatonresearch.aifh.ann.activation.ActivationFunction;
 import com.heatonresearch.aifh.ann.train.GradientCalc;
-import com.heatonresearch.aifh.flat.FlatVolume;
 import com.heatonresearch.aifh.randomize.GenerateRandom;
 
 /**
@@ -49,15 +48,6 @@ public class BasicLayer extends WeightedLayer {
      */
     private boolean hasBias;
 
-    /**
-     * The output from each of the layers.
-     */
-    private FlatVolume layerOutput;
-
-    /**
-     * The sums from each of the layers, esseitnally the output prior to activation function.
-     */
-    private FlatVolume layerSums;
 
     /**
      * Do not use this constructor.  This was added to support serialization.
@@ -80,9 +70,6 @@ public class BasicLayer extends WeightedLayer {
         setActivation(theActivation);
         this.hasBias = theHasBias;
         this.count = theCount;
-
-        this.layerOutput = new FlatVolume(theCount, hasBias);
-        this.layerSums = new FlatVolume(theCount, hasBias);
     }
 
     /**
@@ -92,8 +79,11 @@ public class BasicLayer extends WeightedLayer {
      * @param theCount The neuron count.
      */
     public BasicLayer(final ActivationFunction theActivation, boolean theHasBias, int theCount) {
-        this(theActivation,theHasBias,new int[] {theCount,1,1});
+        this(theActivation,theHasBias,new int[] {theCount});
     }
+
+
+
 
     /**
      * @return the count
@@ -119,6 +109,27 @@ public class BasicLayer extends WeightedLayer {
      */
     public boolean hasBias() {
         return this.hasBias;
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void computeLayer() {
+        Layer prev = getOwner().getPreviousLayer(this);
+        computeLayer(0,0, prev.getTotalCount(), getCount());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void computeGradient(GradientCalc calc) {
+        final Layer prev = getOwner().getPreviousLayer(this);
+        final int fromLayerSize = prev.getTotalCount();
+        final int toLayerSize = getCount();
+        this.computeGradient(calc,0,0,fromLayerSize,toLayerSize);
     }
 
     /**
@@ -149,16 +160,19 @@ public class BasicLayer extends WeightedLayer {
      * {@inheritDoc}
      */
     @Override
-    public FlatVolume getLayerOutput() {
-        return layerOutput;
+    public int getWeightDepthUnit() {
+        return 0;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public FlatVolume getLayerSums() {
-        return layerSums;
+    public int getNeuronDepthUnit() {
+        if( this.count.length==3) {
+            return this.count[0] * this.count[1];
+        } else {
+            return this.count[0];
+        }
     }
-
 }

@@ -65,6 +65,7 @@ public class MexicanHatFunction extends AbstractRBF {
         }
 
         // calculate the value
+        norm /= getWidth() * getWidth();
 
         return (1 - norm) * Math.exp(-norm / 2);
 

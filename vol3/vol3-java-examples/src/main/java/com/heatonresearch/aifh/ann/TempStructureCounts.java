@@ -26,28 +26,50 @@
  * and trademarks visit:
  * http://www.heatonresearch.com/copyright
  */
-
-package com.heatonresearch.aifh.distance;
+package com.heatonresearch.aifh.ann;
 
 /**
- * The Manhattan Distance (also known as Taxicab distance) is a Distance Metric used in machine learning.
- * This distance is used to compare how similar two vectors of uniform length are. A lower length indicates that
- * the two vectors are more similar than two vectors with a larger length.
- * <p/>
- * http://www.heatonresearch.com/wiki/Manhattan_Distance
+ * Simple holder class that keeps the count of the neurons and weights as a neural network is built.  This class is
+ * temporary and is only used briefly while the neural network structure is finalized.
  */
-public class ManhattanDistance extends AbstractDistance {
+public class TempStructureCounts {
     /**
-     * {@inheritDoc}
+     * The count of neurons.
      */
-    @Override
-    public double calculate(final double[] position1, final int pos1, final double[] position2, final int pos2, final int length) {
-        double sum = 0;
-        for (int i = 0; i < length; i++) {
-            final double d = Math.abs(position1[pos1 + i] - position2[pos1 + i]);
-            sum += d;
-        }
-        return sum;
+    int neuronCount;
+
+    /**
+     * The count of weights.
+     */
+    int weightCount;
+
+    /**
+     * @return The neuron count.
+     */
+    public int getNeuronCount() {
+        return this.neuronCount;
     }
 
+    /**
+     * @return The weight count.
+     */
+    public int getWeightCount() {
+        return this.weightCount;
+    }
+
+    /**
+     * Add to the neuron count.
+     * @param i The value to add to the neuron count.
+     */
+    public void addNeuronCount(int i) {
+        this.neuronCount+=i;
+    }
+
+    /**
+     * Add to the weight count.
+     * @param i The value to add to the weight count.
+     */
+    public void addWeightCount(int i) {
+        this.weightCount+=i;
+    }
 }
