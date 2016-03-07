@@ -106,20 +106,16 @@ public abstract class WeightedLayer implements Layer {
     public void computeLayer(int inputOffset, int outputOffset, int fromCount, int toCount) {
         Layer prev = getOwner().getPreviousLayer(this);
         final double[] weights = getOwner().getWeights();
-        int weightSize = getWeightDepthUnit();
-        int outputSize = getNeuronDepthUnit();
 
-        int index = getWeightIndex() + (inputOffset*weightSize);
+        int index = getWeightIndex();
 
         // weight values
         for (int ix = 0; ix < toCount; ix++) {
-            int x = getNeuronIndex()+ix + (outputOffset * outputSize);
+            int x = getNeuronIndex()+ix;
             double sum = 0;
 
             for (int y = 0; y < fromCount; y++) {
-                if(prev.isActive(ix) && isActive(y)) {
-                    sum += weights[index] * getOwner().getLayerOutput()[prev.getNeuronIndex()+y];
-                }
+                sum += weights[index] * getOwner().getLayerOutput()[prev.getNeuronIndex()+y];
                 index++;
             }
             getOwner().getLayerSums()[x] += sum;
@@ -142,11 +138,9 @@ public abstract class WeightedLayer implements Layer {
         Layer prev = getOwner().getPreviousLayer(this);
         final int fromLayerIndex = prev.getNeuronIndex();
         final int toLayerIndex = getNeuronIndex();
-        final int weightSize = getWeightDepthUnit();
-        final int outputSize = getNeuronDepthUnit();
 
 
-        final int index = getWeightIndex()+(weightSize*inputOffset); // this.weightIndex[currentLevel];
+        final int index = getWeightIndex();
         final ActivationFunction activation = getActivation();
 
         // handle weights
@@ -165,8 +159,7 @@ public abstract class WeightedLayer implements Layer {
             for (int xi = 0; xi < toLayerSize; xi++, wi += fromLayerSize) {
                 int x = xi + toLayerIndex;
 
-                if (prev.isActive(yi) && isActive(xi))
-                    calc.getGradients()[wi] += -(output * layerDelta[x]);
+                calc.getGradients()[wi] += -(output * layerDelta[x]);
                 sum += weights[wi] * layerDelta[x];
             }
             layerDelta[y] = sum
@@ -192,12 +185,6 @@ public abstract class WeightedLayer implements Layer {
     public int getNeuronIndex() {
         return this.neuronIndex;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getLayerIndex() { return this.layerIndex; }
 
     /**
      * {@inheritDoc}

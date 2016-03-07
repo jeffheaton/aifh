@@ -140,39 +140,4 @@ public class BasicLayer extends WeightedLayer {
         // Nothing needs to be done!
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isActive(int i) {
-        return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int[] getDimensionCounts() {
-        return this.count;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getWeightDepthUnit() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getNeuronDepthUnit() {
-        if( this.count.length==3) {
-            return this.count[0] * this.count[1];
-        } else {
-            return this.count[0];
-        }
-    }
 }

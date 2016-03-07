@@ -83,11 +83,6 @@ public interface Layer {
     int getNeuronIndex();
 
     /**
-     * @return This layer's index in the layer stack.
-     */
-    int getLayerIndex();
-
-    /**
      * Notification that a training batch is beginning.
      * @param rnd A random number generator, from the trainer.
      */
@@ -99,35 +94,7 @@ public interface Layer {
     BasicNetwork getOwner();
 
     /**
-     * Determine if a neuron is active.
-     * @param i The neuron to check.
-     * @return True of that neuron is active.
-     */
-    boolean isActive(int i);
-
-    /**
      * @return True if this neuron has bias.
      */
     boolean hasBias();
-
-    /**
-     * The dimension conts, a single dimension network will return a 1D array with the count.
-     * @return
-     */
-    int[] getDimensionCounts();
-
-    /**
-     * Get the number of weights in a single unit.  For  non-convolution layer, this is the total number of weights.
-     * For a convolution network, this is the number of weights per filter.
-     * @return The weights per depth unit.
-     */
-    int getWeightDepthUnit();
-
-    /**
-     * Get the number of neurons in a single unit.  For non-convolution layers, this is the total number of neurons in
-     * this layer.  For convolution networks this is the number of neurons per filter.
-     * @return The neurons per depth unit.
-     */
-    int getNeuronDepthUnit();
-
 }
