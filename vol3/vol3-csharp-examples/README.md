@@ -3,7 +3,7 @@ AIFH Vol3  - C# Code Examples
 
 **Note: I am in the process of refactoring the conv-nets in the C# versions to use [CNTK](https://github.com/Microsoft/CNTK), 
 this is to provide greater performance. Sorry for any inconvenience, I hope to have the 
-new version complete by the end of March 2016.**
+new version complete by the end of June 2016.**
 
 This folder contains the C# examples for AIFH Volume 2.  This software was developed using Visual Studio 2012.
 
