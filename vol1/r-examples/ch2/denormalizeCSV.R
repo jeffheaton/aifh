@@ -42,13 +42,14 @@ norm2 <- read.csv(file="iris_norm2.csv",head=TRUE,sep=",")
 ## DeNormalize columns 1, 2, 3 & 4 from the range -1 to 1 #
 ###########################################################
 
-## Multiply every value (from the last step) by 2 and subtract 1
+## Subtract every value by lower bound (Add 1)
+## Divide by width of normalized range (2)
 denorm1 <- (norm1+1)/2
 
-## Divide every value (from the last step) by the column maximum
+## Multiply every value (from the last step) by the iris column maximum
 denorm1 <- sweep(denorm1, 2, irisMax, "*") 
 
-## Subtract every value from its column minimum.
+## Add every value to iris column minimum.
 denorm1 <- sweep(denorm1, 2, irisMin, "+") 
 
 print("Iris -1 to 1 data denormalized")
@@ -58,10 +59,10 @@ denorm1
 ## DeNormalize columns 1, 2, 3 & 4 from the range 0 to 1 #
 ##########################################################
 
-## Divide every value (from the last step) by the column maximum
+## Multiply every value (from the last step) by iris column range width 
 denorm2 <- sweep(norm2, 2, irisMax - irisMin, "*") 
 
-## Subtract every value from its column minimum.
+## Add every value to iris column minimum.
 denorm2 <- sweep(denorm2, 2, irisMin, "+") 
 
 ## Display the results
