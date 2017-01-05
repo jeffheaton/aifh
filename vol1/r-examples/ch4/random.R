@@ -69,5 +69,9 @@ hist(rnorm(10000))
 # The above graph plots 10000 random numbers.  The bars should be mostly the same hight, with
 # no clear pattern.
 
+# Can change where the numbers cluster around as well
+# The following plots 10000 random numbers clustered around 40
+hist(rnorm(10000, 40))
+
 
 rnorm(rnorm(1000000))
