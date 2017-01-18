@@ -94,3 +94,4 @@ install_manifest.txt
 
 # Other files
 *.gz
+.ipynb_checkpoints

@@ -17,6 +17,9 @@ Anaconda is what I used while developing these examples.
 
 ##Required Libraries
 
+** Please note (17 Jan 2017): I am in the process of changing the Python examples to use Google TensorFlow, instead of Lasange. **
+** I hope to complete this around the time of TensorFlow 1.0's release. **
+
 The Python programming language has some of the most advanced deep learning neural network
 frameworks available of any language.  These libraries are designed for maximum 
 efficiency and computational power.  Most of these frameworks can also use a GPU to 
