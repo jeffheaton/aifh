@@ -14,7 +14,7 @@ If you have a question, or wish to discuss something related to these books, you
 
 https://groups.google.com/forum/#!forum/jeffheatons-ai-group
 
-##Staying Up to Date
+## Staying Up to Date
 
 This appendix describes how to obtain the “Artificial Intelligence for Humans” (AIFH) book series examples. 
 This is probably the most dynamic area of the book.  Computer languages are always changing and adding new versions.  I will update the examples as this becomes necessary.  There are also bugs and corrections.  You are encouraged to always make sure you are using the latest version of the book examples.  
@@ -24,7 +24,7 @@ https://github.com/jeffheaton/aifh
 
 This book’s examples are provided in a number of computer programming languages.  Core example packs are provided for Java, C#, C/C++, Python and R for most volumes.  The community may have added other languages as well.  All examples can be found at the GitHub repository.
 
-###Download ZIP File
+### Download ZIP File
 
 Github provides an icon that allows you to simply download a ZIP file that contains all of the example code for the series.  A single ZIP file is used to contain all of the examples for the series.  Because of this, the contents of this ZIP are frequently updated.  If you are starting a new volume, it is very important that you make sure you have the latest copy.  The download can be performed from the following URL.
 
@@ -37,7 +37,7 @@ Figure 1: GitHub
 ![Image](http://www.heatonresearch.com/images/aifh/readme_github.png)
  
 
-###Clone the Git Repository
+### Clone the Git Repository
 
 All examples can be obtained using the source control program git, if it is installed on your system. The following command clones the examples to your computer.  Cloning simply refers to the process of copying the example files.
 ```
@@ -51,7 +51,7 @@ If you would like an introduction to git refer to the following URL.
 
 http://git-scm.com/docs/gittutorial
 
-##Example Contents
+## Example Contents
 
 The entire “Artificial Intelligence for Humans” series is contained in one download.  This download is a zip file. 
 Once you open the examples file you will see the contents see in Figure 2.
@@ -94,11 +94,11 @@ https://help.github.com/articles/fork-a-repo
 
 * [Q&A Forum on Google Groups](https://groups.google.com/forum/#!forum/jeffheatons-ai-group)
 
-##Citations
+## Citations
 
 If you would like to cite Volume 1: please use:
 
-###Bibtex:
+### Bibtex:
 
 	@book{Heaton13a,
 		Author = {Jeff Heaton},
@@ -108,7 +108,7 @@ If you would like to cite Volume 1: please use:
 		ISBN = {1493682229}
 	}
 
-###Endnote:
+### Endnote:
 	%0 Book
 	%T Artificial Intelligence for Humans, Volume 1: Fundamental Algorithms
 	%A Heaton, J.
@@ -119,7 +119,7 @@ If you would like to cite Volume 1: please use:
 	
 If you would like to cite Volume 2: please use:
 
-###Bibtex:
+### Bibtex:
 
 	@book{Heaton14a,
 		Author = {Jeff Heaton},
@@ -129,7 +129,7 @@ If you would like to cite Volume 2: please use:
 		ISBN = {1499720572}
 	}
 
-###Endnote:
+### Endnote:
 	%0 Book
 	%T Artificial Intelligence for Humans, Volume 2: Nature Inspired Algorithms
 	%A Heaton, J.
