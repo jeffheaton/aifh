@@ -20,6 +20,9 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+
+    Test loss: 0.029922397572506452
+    Test accuracy: 0.9912
 """
 # Based on provided Keras example
 from __future__ import print_function
@@ -54,8 +57,8 @@ x_test = x_test.astype('float32')
 x_train /= 255
 x_test /= 255
 print('x_train shape:', x_train.shape)
-print("Training samples: {}".format(x_train.shape[0])
-print("Test samples: {}".format(x_test.shape[0])
+print("Training samples: {}".format(x_train.shape[0]))
+print("Test samples: {}".format(x_test.shape[0]))
 
 # convert class vectors to binary class matrices
 y_train = keras.utils.to_categorical(y_train, num_classes)
