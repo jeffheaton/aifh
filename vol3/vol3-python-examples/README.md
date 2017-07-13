@@ -17,9 +17,6 @@ Anaconda is what I used while developing these examples.
 
 ##Required Libraries
 
-** Please note (17 Jan 2017): I am in the process of changing the Python examples to use Google TensorFlow, instead of Lasange. **
-** I hope to complete this around the time of TensorFlow 1.0's release. **
-
 The Python programming language has some of the most advanced deep learning neural network
 frameworks available of any language.  These libraries are designed for maximum 
 efficiency and computational power.  Most of these frameworks can also use a GPU to 
@@ -28,9 +25,8 @@ maximum performance.  Unfortunately, this increases the complexity of installing
 frameworks.  The environment that I used for these examples includes:
 
 * [Anaconda Python 3.4](https://www.continuum.io/downloads) - Anaconda is built for scientific computing and contains many packages out of the box.  
-* [Theano](http://deeplearning.net/software/theano/install.html) - Numeric package for deep learning that supports CPU/GPU.
-* [Lasange](http://lasagne.readthedocs.org/en/latest/) - A deep neural network framework built upon Theano.
-* [Nolearn](https://pythonhosted.org/nolearn/) - A scikit-learn wrapper for Lasange.
+* [TensorFlow](https://www.tensorflow.org/) - Google's numeric package for deep learning that supports CPU/GPU.
+* [Keras](https://keras.io/) - A deep neural network framework built upon several lower level packages, such as TensorFlow.
 
 The above links contain information for the installation of each of these packages.  To 
 make use of all neural network examples in this book you will need the above packages

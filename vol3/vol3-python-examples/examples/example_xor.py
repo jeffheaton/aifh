@@ -7,7 +7,7 @@
     http://www.jeffheaton.com
     Code repository:
     https://github.com/jeffheaton/aifh
-    Copyright 2015 by Jeff Heaton
+    Copyright 2017 by Jeff Heaton
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
@@ -20,48 +20,39 @@
     For more information on Heaton Research copyrights, licenses
     and trademarks visit:
     http://www.heatonresearch.com/copyright
+
+
+    This program trains a neural network to be an XOR operator.
+    This is a random process, so if you do not get results similar to below
+    just rerun.  The actual output from the neural network is not expected
+    to exactly equal the ideal.
+
+    Output should be similar to:
+
+    Input: [ 0.  0.], Ideal: [ 0.], Actual: [ 0.01280871]
+    Input: [ 0.  1.], Ideal: [ 1.], Actual: [ 0.98295271]
+    Input: [ 1.  0.], Ideal: [ 1.], Actual: [ 0.98494756]
+    Input: [ 1.  1.], Ideal: [ 0.], Actual: [ 0.02071664]
 """
 import types
 import numpy as np
-from lasagne.layers import DenseLayer
-from lasagne.layers import InputLayer
-from lasagne.nonlinearities import sigmoid
-from lasagne.nonlinearities import rectify
-from lasagne.updates import nesterov_momentum
-from nolearn.lasagne import NeuralNet
-
-layers0 = [('input', InputLayer),
-           ('dense0', DenseLayer),
-           ('output', DenseLayer)]
-
-net0 = NeuralNet(layers=layers0,
-    input_shape=(None, 2),
-    dense0_num_units=5,
-    dense0_nonlinearity = sigmoid,
-    output_num_units=1,
-    output_nonlinearity=sigmoid,
-
-    update=nesterov_momentum,
-    update_learning_rate=0.5,
-    update_momentum=0.9,
-    regression=True,
-
-    eval_size=None,
-    verbose=1,
-    max_epochs=200)
+from keras.models import Sequential
+from keras.layers.core import Dense, Activation
+from keras.utils import np_utils
 
 
-X = np.array([ [0,0], [0,1], [1,0], [1,1] ])
+x = np.array([ [0,0], [0,1], [1,0], [1,1] ], dtype=np.float32)
 y = np.array([ [0.0], [1.0], [1.0], [0.0] ], dtype=np.float32)
 
-def my_split(self, X, y, eval_size):
-    return X,X,y,y
+net = Sequential()
+net.add(Dense(5, input_shape=(x.shape[1],)))
+net.add(Activation('tanh'))
+net.add(Dense(1))
+net.compile(loss='mean_squared_error', optimizer='adam')
 
-net0.train_test_split = types.MethodType(my_split, net0)
+net.fit(x, y, verbose=1, batch_size=4,epochs=1000)
 
-net0.fit(X,y)
+pred_y = net.predict(x)
 
-pred_y = net0.predict(X)
-
-for element in zip(X,y,pred_y):
+for element in zip(x,y,pred_y):
     print("Input: {}, Ideal: {}, Actual: {}".format(element[0],element[1],element[2]))

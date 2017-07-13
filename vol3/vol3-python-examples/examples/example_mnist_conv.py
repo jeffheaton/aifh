@@ -21,65 +21,67 @@
     and trademarks visit:
     http://www.heatonresearch.com/copyright
 """
-import lasagne
-from lib.aifh.mnist import *
-import theano
-import theano.tensor as T
-import time
-import types
-from lasagne.layers import DenseLayer
-from lasagne.layers import InputLayer
-from lasagne.nonlinearities import sigmoid
-from lasagne.nonlinearities import softmax
-from lasagne.nonlinearities import rectify
-from lasagne.updates import nesterov_momentum
-from nolearn.lasagne import NeuralNet
-from lasagne.layers import Conv2DLayer
+# Based on provided Keras example
+from __future__ import print_function
+import keras
+from keras.datasets import mnist
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Conv2D, MaxPooling2D
+from keras import backend as K
 
-layers0 = [('input', InputLayer),
-           ('conv0', Conv2DLayer),
-           ('dense0', DenseLayer),
-           ('output', DenseLayer)]
+batch_size = 128
+num_classes = 10
+epochs = 12
 
-net0 = NeuralNet(layers=layers0,
-    input_shape=(None, 1, 28, 28),
-    conv0_num_filters=32,
-    conv0_filter_size=(5, 5),
-    conv0_nonlinearity=lasagne.nonlinearities.rectify,
-    dense0_num_units=1000,
-    dense0_nonlinearity = rectify,
-    output_num_units=10,
-    output_nonlinearity=softmax,
+# input image dimensions
+img_rows, img_cols = 28, 28
 
-    update=nesterov_momentum,
-    update_learning_rate=0.1,
-    update_momentum=0.9,
-    regression=False,
+# the data, shuffled and split between train and test sets
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-    on_epoch_finished=[
-        EarlyStopping(patience=5)
-        ],
+if K.image_data_format() == 'channels_first':
+    x_train = x_train.reshape(x_train.shape[0], 1, img_rows, img_cols)
+    x_test = x_test.reshape(x_test.shape[0], 1, img_rows, img_cols)
+    input_shape = (1, img_rows, img_cols)
+else:
+    x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
+    x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
+    input_shape = (img_rows, img_cols, 1)
 
-    verbose=1,
-    max_epochs=100)
+x_train = x_train.astype('float32')
+x_test = x_test.astype('float32')
+x_train /= 255
+x_test /= 255
+print('x_train shape:', x_train.shape)
+print("Training samples: {}".format(x_train.shape[0])
+print("Test samples: {}".format(x_test.shape[0])
 
-X_train, y_train, X_val, y_val, X_test, y_test = load_dataset(True)
+# convert class vectors to binary class matrices
+y_train = keras.utils.to_categorical(y_train, num_classes)
+y_test = keras.utils.to_categorical(y_test, num_classes)
 
-def my_split(self, X, y, eval_size):
-    return X_train,X_val,y_train,y_val
+model = Sequential()
+model.add(Conv2D(32, kernel_size=(3, 3),
+                 activation='relu',
+                 input_shape=input_shape))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+model.add(Flatten())
+model.add(Dense(128, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(num_classes, activation='softmax'))
 
-net0.train_test_split = types.MethodType(my_split, net0)
+model.compile(loss=keras.losses.categorical_crossentropy,
+              optimizer=keras.optimizers.Adadelta(),
+              metrics=['accuracy'])
 
-net0.fit(X_train, y_train)
-
-y_predict = net0.predict(X_val)
-
-count = 0
-wrong = 0
-for element in zip(X_val,y_val,y_predict):
-    if element[1] != element[2]:
-        wrong = wrong + 1
-    count = count + 1
-
-print("Incorrect {}/{} ({}%)".format(wrong,count,(wrong/count)*100))
-
+model.fit(x_train, y_train,
+          batch_size=batch_size,
+          epochs=epochs,
+          verbose=1,
+          validation_data=(x_test, y_test))
+score = model.evaluate(x_test, y_test, verbose=0)
+print('Test loss: {}'.format(score[0]))
+print('Test accuracy: {}'.format(score[1]))
