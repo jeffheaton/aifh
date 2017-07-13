@@ -1,5 +1,6 @@
 AIFH Vol3  - Python Code Examples
-====
+=================================
+
 This folder contains the Python examples for AIFH Volume 3.  These examples make use of 
 Python, Scipy, Theano, Lasange and Numpy.  To run these examples it will be necessary to 
 have Scipy and Numpy installed.  Whenever possible, I used Scipy and Numpy rather than 
@@ -15,7 +16,8 @@ https://store.continuum.io/cshop/anaconda/
 
 Anaconda is what I used while developing these examples.
 
-##Required Libraries
+Required Libraries
+------------------
 
 The Python programming language has some of the most advanced deep learning neural network
 frameworks available of any language.  These libraries are designed for maximum 
@@ -32,7 +34,8 @@ The above links contain information for the installation of each of these packag
 make use of all neural network examples in this book you will need the above packages
 installed into Python. 
 
-##Data Files
+Data Files
+----------
 
 There are three different data sets used by this book's examples.  All three can be found
 at the UCI machine learning repository.
@@ -46,9 +49,11 @@ The Python examples make use of this code to find the data sets.
 # find the Iris data set
 irisFile = os.path.dirname(os.path.realpath(__file__))
 irisFile = os.path.abspath(irisFile + "../../datasets/iris.csv")
+```
 
 The following data sets were used.
 
+```
 * http://archive.ics.uci.edu/ml/datasets/Iris
 * http://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Original)
 * http://archive.ics.uci.edu/ml/datasets/Abalone
