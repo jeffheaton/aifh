@@ -62,18 +62,17 @@ void Equilat (
 			for (j=0 ; j<k-1 ; j++) {     
 				outputMatrix[i*rowSize+j] *= f ;
 			}
-
-			r = -1.0 / r ;
-			for (i=0 ; i<k ; i++) {
-				outputMatrix[i*rowSize+k-1] = r ;
-			}
-
-			for (i=0 ; i<k-1 ; i++) {
-				outputMatrix[k*rowSize+i] = 0.0 ;
-			}
-
-			outputMatrix[k*rowSize+k-1] = 1.0 ;
 		}
+		r = -1.0 / r ;
+		for (i=0 ; i<k ; i++) {
+			outputMatrix[i*rowSize+k-1] = r ;
+		}
+
+		for (i=0 ; i<k-1 ; i++) {
+			outputMatrix[k*rowSize+i] = 0.0 ;
+		}
+
+		outputMatrix[k*rowSize+k-1] = 1.0 ;
 	}
 
 	/* scale to correct range */
