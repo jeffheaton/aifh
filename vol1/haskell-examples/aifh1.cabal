@@ -1,0 +1,131 @@
+name: aifh1
+version: 0.1
+cabal-version: >=1.8
+build-type: Simple
+license: Apache
+license-file: LICENSE.txt
+maintainer: JP Moresmau <jp@moresmau.fr>
+stability: experimental
+synopsis: Playing with recurrent neural networks
+description:
+    Playing with recurrent neural networks
+category: AI
+author: JP Moresmau
+
+library
+    exposed-modules:
+        AI.AIFH.DataSets.Iris
+        AI.AIFH.Cluster
+        AI.AIFH.Normalize
+        AI.AIFH.Utils
+    build-depends:
+        base <5,
+        bytestring -any,
+        cassava -any,
+        directory -any,
+        vector -any,
+        text -any,
+        containers -any,
+        unordered-containers -any,
+        mwc-random
+    hs-source-dirs: src
+    ghc-options: -Wall
+
+executable runCSVExample
+    main-is: exe/runcsv.hs
+    build-depends:
+        base <5,
+        bytestring -any,
+        cassava -any,
+        directory -any,
+        vector -any
+    ghc-options: -Wall
+
+executable normalizeCSVExample
+    main-is: exe/normalizecsv.hs
+    build-depends:
+        base <5,
+        aifh1 -any,
+        bytestring -any,
+        cassava -any,
+        directory -any,
+        vector -any,
+        text -any,
+        containers -any,
+        unordered-containers -any
+    ghc-options: -Wall
+
+executable distanceExample
+    main-is: exe/distance.hs
+    build-depends:
+        base <5,
+        aifh1 -any
+    ghc-options: -Wall
+
+
+executable ocrExample
+    main-is: exe/ocr.hs
+    build-depends:
+        base <5,
+        aifh1 -any,
+        gtk3,
+        mtl,
+        cairo,
+        vector -any
+    ghc-options: -Wall -fno-warn-unused-do-bind
+
+executable randomExample
+    main-is: exe/random.hs
+    build-depends:
+        base <5,
+        aifh1,
+        Chart,
+        Chart-cairo,
+        mwc-random
+    ghc-options: -Wall -fno-warn-unused-do-bind
+
+executable piExample
+    main-is: exe/pi.hs
+    build-depends:
+        base <5,
+        aifh1,
+        mwc-random
+    ghc-options: -Wall -fno-warn-unused-do-bind -threaded -rtsopts
+
+executable kmeansExample
+    main-is: exe/kmeans.hs
+    build-depends:
+        base <5,
+        aifh1,
+        mwc-random,
+        bytestring -any,
+        cassava -any,
+        directory -any,
+        vector -any,
+        containers
+    ghc-options: -Wall -fno-warn-unused-do-bind -threaded -rtsopts
+
+
+
+test-suite aifh-test
+    type: exitcode-stdio-1.0
+    main-is: aifh-test.hs
+    build-depends:
+        base >=4,
+        tasty >0.10,
+        tasty-hunit -any,
+        tasty-quickcheck -any,
+        HUnit -any,
+        QuickCheck -any,
+        vector -any,
+        containers -any,
+        unordered-containers -any,
+        mwc-random
+    hs-source-dirs: test src
+    other-modules:
+        AI.AIFH.Normalize
+        AI.AIFH.NormalizeTests
+        AI.AIFH.Utils
+        AI.AIFH.UtilsTest
+        AI.AIFH.Cluster
+    ghc-options: -Wall -O2 -rtsopts -fprof-auto
